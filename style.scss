@@ -1,0 +1,27 @@
+// imports
+@import 'css/vars';
+@import 'css/reset';
+@import 'css/defaults';
+@import 'css/mixin';
+// imports mobile
+@media screen and (min-width: $break-mobile-start) and  (max-width: $break-mobile-end) {
+  @import 'css/typography-smart';
+  @import 'css/structure-smart';
+}
+// imports tablet
+@media screen and (min-width: $break-tablet-start) and  (max-width: $break-tablet-end) {
+  @import 'css/typography-tablet';
+  @import 'css/structure-tablet';
+}
+// imports desktop
+@media screen and (min-width: $break-desktop) {
+  @import 'css/typography-desktop';
+  @import 'css/structure-desktop';
+}
+@import 'css/images';
+
+// UTILITIES
+// Generatore gradiente CSS: http://www.colorzilla.com/gradient-editor/
+// Generatore Text Shadow CSS: https://css3gen.com/text-shadow/
+// Generatore Border Radius CSS: https://css3gen.com/border-radius/
+// Generatore Box Shadow CSS: https://css3gen.com/box-shadow/
