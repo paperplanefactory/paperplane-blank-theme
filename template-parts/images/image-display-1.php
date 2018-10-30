@@ -6,6 +6,7 @@ $thumb_url_desktop = wp_get_attachment_image_src($thumb_id, 'desktop_image', tru
 $thumb_url_tablet = wp_get_attachment_image_src($thumb_id, 'tablet_image', true);
 $thumb_url_mobile = wp_get_attachment_image_src($thumb_id, 'mobile_image', true);
 $thumb_url_mini = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+if ( $thumb_id != '' ) :
  ?>
  <div class="no-the-100">
    <picture>
@@ -15,3 +16,4 @@ $thumb_url_mini = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
       <img data-src="<?php echo $thumb_url_desktop[0]; ?>" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="lazy" />
     </picture>
  </div>
+<?php endif; ?>

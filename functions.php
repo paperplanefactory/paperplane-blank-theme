@@ -1,7 +1,7 @@
 <?php
 // imposto la versione del tema
 global $theme_version;
-$theme_version = 2.0;
+$theme_version = get_field( 'theme_version', 'option' );
 // gestione caricamento css
 include_once "functions/theme-stylesloader.php";
 // gestione caricamento script
@@ -21,7 +21,7 @@ include_once "functions/theme-slides.php";
 // gestione tassonomie
 include_once "functions/theme-taxonomies.php";
 // infinite posts
-include_once "functions/theme-infinite-posts.php";
+//include_once "functions/theme-infinite-posts.php";
 
 
 // gestione DetectMobile - stabilisco il device e creo le variabili globali da richiamare nei template e negli altri script del tema

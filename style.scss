@@ -1,27 +1,42 @@
 // imports
-@import 'css/vars';
-@import 'css/reset';
-@import 'css/defaults';
-@import 'css/mixin';
+@import 'css/global-vars';
+@import 'css/global-mixin';
+@import 'css/global-reset';
+@import 'css/global-defaults';
+// comportamento immagini in the_content(); - rimuovere il commento se le immagini non hanno differenze tra desktop e mobile
+//@import 'css/global-images';
 // imports mobile
 @media screen and (min-width: $break-mobile-start) and  (max-width: $break-mobile-end) {
-  @import 'css/typography-smart';
-  @import 'css/structure-smart';
+  // @import 'css/mobile-header-footer';
+  // @import 'css/mobile-structure';
+  // @import 'css/mobile-typography';
+  // @import 'css/mobile-images';
+  // @import 'css/mobile-effects';
+  // @import 'css/mobile-forms';
 }
 // imports tablet
 @media screen and (min-width: $break-tablet-start) and  (max-width: $break-tablet-end) {
-  @import 'css/typography-tablet';
-  @import 'css/structure-tablet';
+  //@import 'css/typography-tablet';
+  //@import 'css/structure-tablet';
 }
 // imports desktop
 @media screen and (min-width: $break-desktop) {
-  @import 'css/typography-desktop';
-  @import 'css/structure-desktop';
+  @import 'css/desktop-header-footer';
+  @import 'css/desktop-structure';
+  @import 'css/desktop-typography';
+  @import 'css/desktop-images';
+  @import 'css/desktop-effects';
+  @import 'css/desktop-forms';
+  @import 'css/desktop-slideshows';
+
 }
-@import 'css/images';
+// rimuovere il commento se si usa pagenavi - https://wordpress.org/plugins/wp-pagenavi/
+//@import 'css/pagenavi';
+
 
 // UTILITIES
 // Generatore gradiente CSS: http://www.colorzilla.com/gradient-editor/
 // Generatore Text Shadow CSS: https://css3gen.com/text-shadow/
 // Generatore Border Radius CSS: https://css3gen.com/border-radius/
 // Generatore Box Shadow CSS: https://css3gen.com/box-shadow/
+// Come usare mixin con parametri: https://marksheet.io/sass-mixins.html

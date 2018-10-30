@@ -20,7 +20,7 @@ $my_filter_posts = get_posts( $args_filter_posts );
   $thumb_url_mobile = wp_get_attachment_image_src($thumb_id, 'mobile_image', true);
   $thumb_url_mini = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
   ?>
-    <div class="box-fullscreen bg-2 lazy coverize">
+    <div class="box-fullscreen test-gradient lazy coverize">
         <?php get_template_part( 'template-parts/images/image-display-fullscreen' ); ?>
       <div class="fullscreen-cta fullscreen-cta-center">
         <div class="wrapper">
@@ -56,29 +56,62 @@ endif;
 
 
 
+<h1>Slideshow</h1>
+<!-- modulo slide -->
+
+<?php get_template_part( 'template-parts/slideshows/fullscreen-slideshow' ); ?>
+
+<div class="wrapper bg-6 modulo-space">
+  <div class="in-box-space">
+    <div class="box-fullscreen-home">
+      <div class="wrapper">
+        <div class="wrapper-padded">
+          <div class="wrapper-padded-more">
+            <div class="wrapper-padded-more-650">
+              <?php get_template_part( 'template-parts/slideshows/regular-slideshow' ); ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<?php get_template_part( 'template-parts/slideshows/fullscreen-slideshow' ); ?>
 
 
 
 
 
 
-<h1>Test tipografico h1<br />Test tipografico h1!</h1>
+
+<h1>Test tipografico h1<br /><a href="#" class="inzzz">Test tipografico h1!</a></h1>
 <h2>Test tipografico h2<br />Test tipografico h2!</h2>
 <h3>Test tipografico h3<br />Test tipografico h3!</h3>
 <h4>Test tipografico h4<br />Test tipografico h4!</h4>
 <h5>Test tipografico h5<br />Test tipografico h5!</h5>
 <h6>Test tipografico h6<br />Test tipografico h1!</h6>
 
+
+<a href="#" class="round-button">round-button</a>
+
 <div class="wrapper">
   <div class="wrapper-padded">
     <div class="wrapper-padded-more content-styled bg-5">
-      <h1>Test tipografico h1<br />Test tipografico h1!</h1>
+      <div class="pad-1">
+        <h1>Test tipografico h1<br />Test tipografico h1!!!!!</h1>
+      </div>
+
       <h2>Test tipografico h2<br />Test tipografico h2</h2>
       <h3>Test tipografico h3<br />Test tipografico h3</h3>
       <h4>Test tipografico h4<br />Test tipografico h4</h4>
       <h5>Test tipografico h5<br />Test tipografico h5</h5>
       <h6>Test tipografico h6<br />Test tipografico h6</h6>
-      <p>Test <em>tipografico</em> paragrafo<br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
+      <div class="marg-1">
+        <p>Test <em>tipografico</em> paragrafo<br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
+      </div>
+
       <ul>
         <li>Elenco puntato</li>
         <li>Elenco puntato</li>
@@ -93,7 +126,7 @@ endif;
         <li>Elenco numerato</li>
         <li>Elenco numerato</li>
       </ol>
-      <p>Test tipografico paragrafo<br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
+      <p>Test tipografico <a href="#" class="download">paragrafo!!!</a><br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
     </div>
   </div>
 </div>
@@ -119,56 +152,6 @@ endif;
 </div>
 
 
-
-
-
-
-
-<h1>Slideshow</h1>
-<!-- modulo slide -->
-<?php
-//simulo il contatore
-$module_count = 1;
- ?>
-<div class="wrapper bg-6 modulo-space">
-  <div class="in-box-space">
-    <div class="box-fullscreen-home">
-      <div class="wrapper">
-        <div class="wrapper-padded">
-          <div class="wrapper-padded-more">
-            <div class="modulo-slideshow-post modulo-slideshow<?php echo $module_count; ?>">
-              <input type="hidden" class="slideshow_number" value=".postslider<?php echo $module_count; ?>" />
-              <div class="postslider_dress">
-                <ul id="postsliderID" class="postslider postslider<?php echo $module_count; ?>">
-                  <?php
-                  $args_filter_posts = array(
-                    'post_type' => 'post',
-                    'posts_per_page' => -1
-                  );
-                  $my_filter_posts = get_posts( $args_filter_posts );
-                  ?>
-                  <?php if ( !empty ( $my_filter_posts ) ) : ?>
-                    <?php foreach ( $my_filter_posts as $post ) : setup_postdata ($post ); ?>
-                      <li>
-                        <div class="image-block">
-                          <a href="<?php the_permalink(); ?>">
-                            <?php get_template_part( 'template-parts/images/image-display-1' ); ?>
-                          </a>
-                        </div>
-                        <div class="text-block">
-                          <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                        </div>
-                      </li>
-                    <?php endforeach; wp_reset_postdata(); endif; ?>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 

@@ -4,9 +4,10 @@ get_header();
 ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
-  <div class="content_styled">
-  <h2><?php the_title(); ?></h2>
-  <?php the_content(); ?>
-  </div>
+  <?php get_template_part( 'template-parts/single-contents/infinite-post' ); ?>
 <?php endwhile; ?>
+<div class="bottom-message">
+  <h2>wait!!!</h2>
+  </div>
+</div>
 <?php get_footer(); ?>

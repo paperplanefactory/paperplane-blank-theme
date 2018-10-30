@@ -1,0 +1,144 @@
+@import 'global-vars';
+@import 'global-mixin';
+$header-height: 60px;
+$logo-width: 14%;
+$menu-width: 74%;
+$hamburger-width: 12%;
+
+// header
+
+#preheader {
+  position: relative;
+  display: block;
+  width: 100vw;
+  height: $header-height;
+}
+
+#header {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100vw;
+  height: $header-height;
+  a:link,
+  a:visited {
+    color: $color-2;
+  }
+  a:hover {
+    color: $color-3;
+  }
+}
+
+#head-overlay {
+  position: fixed;
+  z-index: 9998;
+  top: $header-height;
+  left: 0;
+  display: block;
+  width: 100vw;
+  height: calc(100vh - #{$header-height});
+  display: none;
+}
+
+.occupy-scrollbar {
+	width: calc(100vw - 18px);
+}
+
+.hide-y-overflow {
+  overflow-y: hidden;
+}
+
+.scroll-opportunity {
+	position: relative;
+	display: block;
+	width: calc(100vw + 18px);
+	height: calc(100vh - #{$header-height});
+	overflow-y: scroll;
+}
+
+#header-structure {
+  position: relative;
+  width: 100%;
+  height: $header-height;
+  @include flex-wrap;
+  @include flex-verticalize;
+  .logo {
+    -webkit-box-flex: 1;
+    -ms-flex: 0 0 $logo-width;
+    flex: 0 0 $logo-width;
+    height: $header-height;
+    @include flex-wrap;
+    @include flex-verticalize;
+    img {
+      width: 100%;
+      max-width: 182px;
+      height: auto;
+    }
+  }
+  .menu {
+    -webkit-box-flex: 1;
+    -ms-flex: 0 0 $menu-width;
+    flex: 0 0 $menu-width;
+    height: $header-height;
+    @include flex-wrap;
+    @include flex-verticalize;
+    text-align: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    ul {
+      width: 100%;
+      li {
+        text-align: center !important;
+        display: inline-block;
+        margin: 0 2%;
+      }
+      .current_page_item, .current-page-ancestor {
+        border-bottom: $color-2 solid 1px;
+      }
+    }
+  }
+  .hamburger {
+    -webkit-box-flex: 1;
+    -ms-flex: 0 0 $hamburger-width;
+    flex: 0 0 $hamburger-width;
+    height: $header-height;
+    text-align: right;
+    @include flex-wrap;
+    @include flex-verticalize;
+    @include flex-end;
+    ul {
+      width: 100%;
+      li {
+        text-align: center !important;
+        display: inline-block;
+        margin: 0 2%;
+      }
+      li:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+
+// footer
+
+#footer {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin: 0;
+  a:link,
+  a:visited {
+    color: $color-2;
+  }
+  a:hover {
+    color: $color-3;
+  }
+}

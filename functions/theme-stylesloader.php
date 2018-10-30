@@ -4,10 +4,6 @@ if ( !is_admin() ) {
 function theme_css() {
 	// versione del tema
 	global $theme_version;
-	// stabilisco il device
-	global $isMobile;
-	global $isTablet;
-	global $isDesktop;
 
 	// stili comuni
 	wp_enqueue_style( 'theme-commnon', get_template_directory_uri() . '/style.min.css', '', $theme_version, 'all' );

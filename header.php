@@ -25,9 +25,8 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <?php wp_head();
 // stabilisco il device
-global $isMobile;
-global $isTablet;
-global $isDesktop;
+$module_count = 0;
+global $module_count;
 ?>
 <link rel="apple-touch-icon" sizes="57x57" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicons/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicons/apple-icon-60x60.png">
@@ -69,7 +68,7 @@ global $isDesktop;
                 <li class="search-open">
                 </li>
                 <li>
-                  <button class="nav-icon3 ham-activator" title="Apri / chiudi menu">
+                  <button class="hambuger-element ham-activator" title="Apri / chiudi menu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -87,10 +86,55 @@ global $isDesktop;
 
     <div id="head-overlay" class="bg-6">
       <div class="scroll-opportunity">
-        <div class="menu-overlay">
-          <ul>
-            <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'menu_class' => 'foot-menu' ) ); ?>
-          </ul>
+        <div class="wrapper">
+          <div class="wrapper-padded">
+            <div class="wrapper-padded-more">
+              <?php if ( have_rows( 'global_socials', 'option' ) ) : ?>
+                <ul class="inline-socials">
+                  <?php while ( have_rows( 'global_socials', 'option' ) ) : the_row(); ?>
+                    <li>
+                      <a href="<?php the_sub_field( 'global_socials_profile_url' ); ?>" target="_blank">
+                        <img src="<?php the_sub_field( 'global_socials_icona' ); ?>" />
+                      </a>
+                    </li>
+                  <?php endwhile; ?>
+                </ul>
+              <?php endif; ?>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+              <h1>Test spazio verticale viewport</h1>
+            </div>
+          </div>
         </div>
       </div>
     </div>

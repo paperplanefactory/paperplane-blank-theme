@@ -3,7 +3,7 @@
 function footer_lazyload() { ?>
   <script>
   (function() {
-    new LazyLoad({
+    var myLazyLoad = new LazyLoad({
       elements_selector: ".lazy",
       class_loading: "lazy-loading",
       class_loaded: "lazy-loaded"

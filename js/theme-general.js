@@ -14,20 +14,24 @@ $(document).ready(function() {
 	if( $('img.alignright') ) {
 		$('img.alignright').wrap('<div class="wp-caption alignright"></div>');
 	}
-	
+
 
 
 	// hamburger
-	$('.ham-activator').click(function(){
-		$('.nav-icon3').toggleClass('open');
-		if ( $( '.nav-icon3' ).hasClass('open') ) {
-			$( '#head-overlay' ).focus();
+	$( '.ham-activator' ).click(function(){
+		$( '.hambuger-element' ).toggleClass('open');
+		if ( $( '.hambuger-element' ).hasClass( 'open' ) ) {
+			$('html').css('overflowY', 'hidden');
+			$('body').addClass('occupy-scrollbar');
+			$( '#header-overlay' ).focus();
 		}
 		else {
+			$('html').css('overflowY', 'scroll');
+			$('body').removeClass('occupy-scrollbar');
 			$( '#header' ).focus();
 		}
 		$( '#head-overlay' ).fadeToggle( 150 );
-		$( '#search-box' ).fadeOut(300);
+		$( '#search-box' ).fadeOut( 300 );
 	});
 	// expandables
 	$('.expander').click(function() {
