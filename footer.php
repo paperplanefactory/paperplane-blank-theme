@@ -2,7 +2,7 @@
 // Paperplane _blankTheme - template per footer.
 wp_reset_query();
 ?>
-<div id="footer" class="bg-1 txt-6">
+<footer id="footer" class="bg-1 txt-6">
   <div class="wrapper">
     <div class="wrapper-padded">
       <div class="flex-hold flex-hold-3">
@@ -23,7 +23,7 @@ wp_reset_query();
               <?php while ( have_rows( 'global_socials', 'option' ) ) : the_row(); ?>
                 <li>
                   <a href="<?php the_sub_field( 'global_socials_profile_url' ); ?>" target="_blank">
-                    <img src="<?php the_sub_field( 'global_socials_icona' ); ?>" />      
+                    <img src="<?php the_sub_field( 'global_socials_icona' ); ?>" />
                   </a>
                 </li>
               <?php endwhile; ?>
@@ -31,9 +31,11 @@ wp_reset_query();
           <?php endif; ?>
         </div>
       </div>
+    </div>
+  </div>
+</footer>
 
 
-<?php wp_footer();
-?>
+<?php wp_footer(); ?>
 </body>
 </html>

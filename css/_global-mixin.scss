@@ -24,6 +24,16 @@
 	justify-content: flex-end;
 }
 
+@mixin reset-button {
+	padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border: none !important;
+  background-color: transparent !important;
+	line-height: normal;
+	-webkit-appearance: none !important;
+}
+
 @mixin define-vertical-radient($top, $bottom){
 	background: $top; /* Old browsers */
   background: -moz-linear-gradient(top,  $top 0%, $bottom 100%); /* FF3.6+ */
@@ -64,19 +74,6 @@
   border-radius: $radius;
 }
 
-@mixin define-linx-colors($link, $visit, $hover, $active) {
-  color: $link;
-  &:visited {
-    color: $visit;
-  }
-  &:hover {
-    color: $hover;
-  }
-  &:active {
-    color: $active;
-  }
-}
-
 @mixin define-paddings($top, $right, $bottom, $left) {
 	padding-top: $top;
 	padding-right: $right;
@@ -105,4 +102,31 @@
 	-o-transition: $effet_affected $effect_duration ease-in-out;
 	-ms-transition: $effet_affected $effect_duration ease-in-out;
 	transition: $effet_affected $effect_duration ease-in-out;
+}
+
+@mixin define-transform($transforms) {
+	-webkit-transform: $transforms;
+	-moz-transform: $transforms;
+	-ms-transform: $transforms;
+	transform: $transforms;
+}
+
+// Rotate
+@mixin define-rotate ($deg) {
+	@include define-transform(rotate(#{$deg}deg));
+}
+
+// Scale
+@mixin define-scale($scale) {
+	@include define-transform(scale($scale));
+}
+
+// Translate
+@mixin define-translate ($x, $y) {
+	@include define-transform(translate($x, $y));
+}
+
+// Skew
+@mixin define-skew ($x, $y) {
+	@include define-transform(skew(#{$x}deg, #{$y}deg));
 }

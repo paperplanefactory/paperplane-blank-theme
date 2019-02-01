@@ -6,9 +6,9 @@
 	position: relative;
 	display: block;
 	width: 100%;
-	font-family: $font-sub;
+	font-family: $font-main;
 	label {
-		font-family: $font-sub;
+		font-family: $font-main;
 		color: $color-1;
 		font-size: $h5-size-desktop;
 		line-height: $h5-lineheight-desktop;
@@ -37,7 +37,7 @@
 		height: 40px;
 		margin: 10px 0 0 0;
 		padding: 0 2% 0 2%;
-		font-family: $font-sub;
+		font-family: $font-main;
 		font-size: $h5-size-desktop;
 		line-height: 18px;
 		margin-bottom: 15px;
@@ -52,7 +52,7 @@
 		height: 100px;
 		margin: 10px 0 0 0;
 		padding: 0 2% 0 2%;
-		font-family: $font-sub;
+		font-family: $font-main;
 		font-size: $h5-size-desktop;
 		line-height: 18px;
 		margin-bottom: 15px;
@@ -65,7 +65,7 @@
 		background-color: $color-5;
 		margin: 10px 0 0 0;
 		padding: 0;
-		font-family: $font-sub;
+		font-family: $font-main;
 		font-size: 20px;
 		line-height: 30px;
 		font-weight: $font-weight-1;
@@ -79,7 +79,7 @@
 		height: 40px;
 		margin: 10px 0 0 0;
 		padding: 0 2% 0 2%;
-		font-family: $font-sub;
+		font-family: $font-main;
 		font-size: $h5-size-desktop;
 		line-height: 18px;
 		margin-bottom: 15px;
@@ -92,7 +92,7 @@
 		width: 100%;
 		height: 50px;
 		margin: 20px 0 0 0;
-		font-family: $font-sub;
+		font-family: $font-main;
 		font-size: $paragraph-size-desktop;
 		font-weight: $font-weight-3;
 		line-height: 50px;
@@ -119,7 +119,7 @@
 			right: 0;
 			height: 50px;
       content: " →";
-      font-family: $font-sub;
+      font-family: $font-main;
       font-size: $h3-size-desktop;
 			line-height: 50px;
 			pointer-events: none;
@@ -149,7 +149,7 @@
 		background-color: $form-error-background-color !important;
 		color: $form-error-color !important;
 		border:none !important;
-		font-family: $font-sub !important;
+		font-family: $font-main !important;
 		font-size: $paragraph-size-desktop !important;
 		line-height: 130% !important;
 		font-weight: $font-weight-1 !important;
@@ -166,7 +166,7 @@
 	background-color: $form-error-background-color !important;
 	color: $form-error-color !important;
 	border:none !important;
-	font-family: $font-sub !important;
+	font-family: $font-main !important;
 	font-size: $paragraph-size-desktop !important;
 	line-height: 130% !important;
 	font-weight: $font-weight-1 !important;
@@ -180,7 +180,7 @@
 	background-color: $form-ok-background-color !important;
 	color: $form-ok-color !important;
 	border:none !important;
-	font-family: $font-sub !important;
+	font-family: $font-main !important;
 	font-size:$paragraph-size-desktop !important;
 	line-height: 130% !important;
 	font-weight: $font-weight-1 !important;

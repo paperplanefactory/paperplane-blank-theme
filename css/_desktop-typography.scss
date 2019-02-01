@@ -2,7 +2,7 @@
 @import 'global-mixin';
 
 h1 {
-  font-family: $font-sub;
+  font-family: $font-main;
   font-weight: $font-weight-3;
   font-size: $h1-size-desktop;
   line-height: $h1-lineheight-desktop;
@@ -12,7 +12,7 @@ h1 {
 
 
 h2 {
-  font-family: $font-sub;
+  font-family: $font-main;
   font-weight: $font-weight-3;
   font-size: $h2-size-desktop;
   line-height: $h2-lineheight-desktop;
@@ -21,7 +21,7 @@ h2 {
 }
 
 h3 {
-  font-family: $font-sub;
+  font-family: $font-main;
   font-weight: $font-weight-3;
   font-size: $h3-size-desktop;
   line-height: $h3-lineheight-desktop;
@@ -39,7 +39,7 @@ h4 {
 }
 
 h5, #header-structure, .download {
-  font-family: $font-sub;
+  font-family: $font-main;
   font-weight: $font-weight-1;
   font-size: $h5-size-desktop;
   line-height: $h5-lineheight-desktop;
@@ -76,7 +76,7 @@ p {
 }
 
 .hamburger {
-  font-family: $font-sub;
+  font-family: $font-main;
   font-weight:$font-weight-3;
   font-size: $cta1-size-desktop;
   line-height: $cta1-lineheight-desktop;
@@ -86,7 +86,7 @@ p {
 .content-styled {
 word-wrap:break-word;
 h4, h5, h6 {
-  font-family: $font-sub;
+  font-family: $font-main;
   font-weight: $font-weight-3;
   font-size: $h4-size-desktop;
   line-height: $h4-lineheight-desktop;
@@ -142,7 +142,7 @@ ol > li:before {
   top: 0;
   left:0;
 	color: $color-1;
-  font-family: $font-sub;
+  font-family: $font-main;
   font-weight: $font-weight-3;
   font-size: $paragraph-size-desktop;
   text-align: right;
@@ -153,64 +153,82 @@ ol > li:before {
 }
 
 .expander {
+  display: inline-block;
   font-family: $font-main;
   position: relative;
   line-height: 17px !important;
   font-weight: $font-weight-2 !important;
-  padding-left: 30px;
+  padding-left: 30px !important;
+  text-align: left;
   color: $color-2;
-  cursor: pointer;
+  @include reset-button;
+  font-family:  $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h4-size-desktop;
+  line-height: $h4-lineheight-desktop;
   &:hover, &:hover span {
-    color: $color-1;
+    color: $color-8;
   }
   span {
     position: absolute;
     left: 0;
-    top: 2px;
+    top: 0;
     display: inline-block;
-    border: $color-2 solid 1px;
-    width: 17px;
-    height: 17px;
+    border: $color-2 solid 2px;
+    width: 21px;
+    height: 21px;
+  }
+  &:hover span {
+    border-color: $color-8;
+  }
+  &:hover span {
+      &:before, &:after {
+        background-color: $color-8;
+    }
+  }
+  .exp-plus {
+    @include define-basic-transition(all, 0.3s);
+    &:before {
+      position: absolute;
+      top: 10px;
+      left: 3px;
+      content: " ";
+      width: 15px;
+      height: 2px;
+      background-color: $color-2;
+    }
+    &:after {
+      position: absolute;
+      top: 3px;
+      left: 10px;
+      content: " ";
+      width: 2px;
+      height: 15px;
+      background-color: $color-2;
+    }
+
+  }
+
+  .exp-minus {
+    @include define-basic-transition(all, 0.3s);
+    &:before {
+      position: absolute;
+      top: 10px;
+      left: 3px;
+      content: " ";
+      width: 15px;
+      height: 2px;
+      background-color: $color-2;
+    }
   }
 }
 
-.exp-plus {
-  &:before {
-    position: absolute;
-    top: 11px;
-    left: 5px;
-    content: " ";
-    width: 9px;
-    height: 1px;
-    background-color: $color-2;
-  }
-  &:after {
-    position: absolute;
-    top: 7px;
-    left: 9px;
-    content: " ";
-    width: 1px;
-    height: 9px;
-    background-color: $color-2;
-  }
-}
 
-.exp-minus {
-  &:before {
-    position: absolute;
-    top: 11px;
-    left: 5px;
-    content: " ";
-    width: 9px;
-    height: 1px;
-    background-color: $color-2;
-  }
-}
 
 a.button:link, a.button:visited, a.button:hover {
   display: inline-block;
   padding: 10px 20px;
-  font-family: $font-sub;
+  font-family: $font-main;
   font-weight: $font-weight-1;
   font-size: $h5-size-desktop;
   line-height: $h5-lineheight-desktop;
@@ -222,7 +240,7 @@ a.button:link, a.button:visited, a.button:hover {
 a.button-small:link, a.button-small:visited, a.button-small:hover {
   display: inline-block;
   padding: 2px 6px;
-  font-family: $font-sub;
+  font-family: $font-main;
   font-weight: $font-weight-1;
   font-size: $h5-size-desktop;
   line-height: $h5-lineheight-desktop;

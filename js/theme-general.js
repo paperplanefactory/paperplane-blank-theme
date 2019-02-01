@@ -24,27 +24,30 @@ $(document).ready(function() {
 			$('html').css('overflowY', 'hidden');
 			$('body').addClass('occupy-scrollbar');
 			$( '#header-overlay' ).focus();
+			$(this).attr('aria-expanded', true);
 		}
 		else {
 			$('html').css('overflowY', 'scroll');
 			$('body').removeClass('occupy-scrollbar');
 			$( '#header' ).focus();
+			$(this).attr('aria-expanded', false);
 		}
 		$( '#head-overlay' ).fadeToggle( 150 );
 		$( '#search-box' ).fadeOut( 300 );
 	});
 	// expandables
-	$('.expander').click(function() {
-	if ( $(this).hasClass('exp-minus') ) {
-		$(this).addClass('exp-plus');
-		$(this).removeClass('exp-minus');
+	$('.expander').click(function(e) {
+	if ( $(this).hasClass('exp-close') ) {
+		$(this).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false).focus();
+		$(this).find('span').addClass('exp-plus').removeClass('exp-minus');
 		$(this).parent().next('.expandable-content').slideUp(150);
 
 		}
 	else {
-		$(this).addClass('exp-minus');
-		$(this).removeClass('exp-plus');
-		$(this).parent().next('.expandable-content').slideDown(150);
+		$(this).addClass('exp-close').removeClass('exp-open').attr('aria-expanded', true);
+		$(this).find('span').removeClass('exp-plus').addClass('exp-minus');
+		$(this).parent().next('.expandable-content').slideDown(150).focus();
 		}
+		e.preventDefault();
 	});
 });

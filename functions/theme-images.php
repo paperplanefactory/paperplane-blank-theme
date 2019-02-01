@@ -15,6 +15,8 @@ add_image_size( 'content_picture', 768, 9999);
 add_image_size( 'desktop_image', 1920, 800, true);
 add_image_size( 'tablet_image', 768, 50, true);
 add_image_size( 'mobile_image', 200, 600, true);
+add_image_size( 'micro', 10, 9999);
+
 
 function wpb_imagelink_setup() {
     $image_set = get_option( 'image_default_link_type' );

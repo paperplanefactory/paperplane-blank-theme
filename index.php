@@ -58,7 +58,6 @@ endif;
 
 <h1>Slideshow</h1>
 <!-- modulo slide -->
-
 <?php get_template_part( 'template-parts/slideshows/fullscreen-slideshow' ); ?>
 
 <div class="wrapper bg-6 modulo-space">
@@ -138,7 +137,7 @@ endif;
     <div class="wrapper-padded-more">
       <div class="wrapper-padded-more-650 expander-bottom">
         <div class="expander-top">
-          <h4 class="expander exp-plus"><span></span>Titolo ad espansione</h4>
+          <button class="expander exp-open" aria-expanded="false"><span class="exp-plus"></span>Titolo ad espansione<br />con test a capo</button>
         </div>
 
         <div class="expandable-content">

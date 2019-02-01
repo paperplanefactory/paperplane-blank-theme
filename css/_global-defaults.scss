@@ -158,7 +158,7 @@
 	width: 100%;
 	bottom: 0;
 	left: 0;
-	font-family: $font-sub !important;
+	font-family: $font-main !important;
   font-weight:$font-weight-1 !important;
   font-size: $cta1-size-smartphone !important;
   line-height: $cta1-lineheight-smartphone !important;
@@ -190,13 +190,18 @@
   z-index: 9998;
 	padding: 0;
   margin: 0;
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: .15s ease-in-out;
-  transition: .15s ease-in-out;
+  @include define-rotate(0);
+  @include define-basic-transition(all, 0.15s);
   cursor: pointer;
   border: none !important;
   background-color: transparent !important;
+	overflow: hidden;
+	line-height: normal;
+	-webkit-appearance: none;
+	&::-moz-focus-inner {
+		border: 0;
+    padding: 0;
+	}
 }
 
 .open_head .hambuger-element span {
@@ -211,10 +216,8 @@
   background: $color-2;
   opacity: 1;
   left: 0;
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: .15s ease-in-out;
-  transition: .15s ease-in-out;
+  @include define-rotate(0);
+  @include define-basic-transition(all, 0.15s);
 }
 
 .hambuger-element span:nth-child(1) {
@@ -236,13 +239,11 @@
 }
 
 .hambuger-element.open span:nth-child(2) {
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
+	@include define-rotate(45);
 }
 
 .hambuger-element.open span:nth-child(3) {
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+  @include define-rotate(-45);
 }
 
 .hambuger-element.open span:nth-child(4) {
@@ -327,34 +328,12 @@ a.absl:link {
 	height:100%;
 }
 
-// mixin per gli stati dei link (gestisce solo hover, visited, etc.)
-// vars usage: $link, $visit, $hover, $active
-
-a {
-	@include define-linx-colors($color-2, $color-2, $color-1, $color-2);
-}
-
-p a {
-	@include define-linx-colors($form-label-color, $form-label-color, $form-label-color, $form-label-color);
-	text-decoration: underline;
-}
-
-.inzzz {
-	@include define-linx-colors($form-label-color, $form-label-color, $form-label-color, $form-label-color);
-	text-decoration: underline;
-}
-
-.lightlink {
-	@include define-linx-colors($color-5, $color-5, $color-4, $color-5);
-	color: $color-5;
-}
 
 .round-button {
 	position: relative;
 	display: inline-block;
 	@include define-paddings(10px, 20px, 10px, 20px);
 	@include define-border-radius(20px);
-	@include define-linx-colors($color-5, $color-5, $form-label-color, $color-5);
 	text-align: center;
 	background-color: $color-1;
 	&:hover {
@@ -363,7 +342,6 @@ p a {
 }
 
 .download {
-	@include define-linx-colors($color-5, $color-5, $color-4, $color-5);
 	display: inline-block;
 	position: relative;
 	padding-left: 34px;

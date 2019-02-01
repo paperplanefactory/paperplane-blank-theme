@@ -48,93 +48,92 @@ global $module_count;
 
 <body>
 
-  <div id="preheader"></div>
-  <div id="header" class="bg-7">
+<div id="preheader"></div>
+<header id="header" class="bg-7">
+  <div class="wrapper-padded">
+    <div class="wrapper-padded-more">
+      <div id="header-structure">
+        <div class="logo">
+          <a href="<?php echo home_url(); ?>" rel="bookmark" title="homepage - <?php echo get_bloginfo( 'name' ); ?>">
+            <img src="<?php bloginfo('stylesheet_directory'); ?>/images/a-logo.svg" onerror="this.onerror=null; this.src='<?php bloginfo('stylesheet_directory'); ?>/images/a-logo.png'" alt="homepage - <?php echo get_bloginfo( 'name' ); ?>" />
+          </a>
+        </div>
+        <nav class="menu allupper">
+          <ul>
+            <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'menu_class' => 'foot-menu' ) ); ?>
+          </ul>
+        </nav>
+        <div class="hamburger">
+          <ul>
+            <li class="search-open">
+            </li>
+            <li>
+              <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Navigation" class="hambuger-element ham-activator">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div id="head-overlay" class="bg-6">
+  <div class="scroll-opportunity">
+    <div class="wrapper">
       <div class="wrapper-padded">
         <div class="wrapper-padded-more">
-          <div id="header-structure">
-            <div class="logo">
-              <a href="<?php echo home_url(); ?>" rel="bookmark" title="homepage - <?php echo get_bloginfo( 'name' ); ?>">
-                <img src="<?php bloginfo('stylesheet_directory'); ?>/images/a-logo.svg" onerror="this.onerror=null; this.src='<?php bloginfo('stylesheet_directory'); ?>/images/a-logo.png'" alt="homepage - <?php echo get_bloginfo( 'name' ); ?>" />
-              </a>
-            </div>
-            <div class="menu allupper">
-              <ul>
-                <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'menu_class' => 'foot-menu' ) ); ?>
-              </ul>
-            </div>
-            <div class="hamburger">
-              <ul>
-                <li class="search-open">
-                </li>
+          <?php if ( have_rows( 'global_socials', 'option' ) ) : ?>
+            <ul class="inline-socials">
+              <?php while ( have_rows( 'global_socials', 'option' ) ) : the_row(); ?>
                 <li>
-                  <button class="hambuger-element ham-activator" title="Apri / chiudi menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </button>
+                  <a href="<?php the_sub_field( 'global_socials_profile_url' ); ?>" target="_blank">
+                    <img src="<?php the_sub_field( 'global_socials_icona' ); ?>" />
+                  </a>
                 </li>
-              </ul>
-            </div>
-
-          </div>
+              <?php endwhile; ?>
+            </ul>
+          <?php endif; ?>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
+          <h1>Test spazio verticale viewport</h1>
         </div>
       </div>
     </div>
-
-
-    <div id="head-overlay" class="bg-6">
-      <div class="scroll-opportunity">
-        <div class="wrapper">
-          <div class="wrapper-padded">
-            <div class="wrapper-padded-more">
-              <?php if ( have_rows( 'global_socials', 'option' ) ) : ?>
-                <ul class="inline-socials">
-                  <?php while ( have_rows( 'global_socials', 'option' ) ) : the_row(); ?>
-                    <li>
-                      <a href="<?php the_sub_field( 'global_socials_profile_url' ); ?>" target="_blank">
-                        <img src="<?php the_sub_field( 'global_socials_icona' ); ?>" />
-                      </a>
-                    </li>
-                  <?php endwhile; ?>
-                </ul>
-              <?php endif; ?>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-              <h1>Test spazio verticale viewport</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
+</div>
