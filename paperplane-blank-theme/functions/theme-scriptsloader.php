@@ -1,5 +1,4 @@
 <?php
-
 // Async load
 function theme_async_scripts( $url ) {
   if ( strpos( $url, '#asyncload' ) === false )
@@ -63,13 +62,15 @@ function all_scripts(){
   wp_enqueue_script( 'custom-infinitescroll' );
   // Lazy load
   // documentazione: http://www.andreaverlicchi.eu/lazyload/
-  wp_register_script( 'vanilla-lazyload', 'https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js', '', '8.6.0', false);
+  wp_register_script( 'vanilla-lazyload', 'https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/10.20.0/lazyload.min.js', '', '10.20.0', false);
   wp_enqueue_script( 'vanilla-lazyload' );
 	// Comportamenti ricorrenti
 	wp_register_script( 'theme-general', get_stylesheet_directory_uri() . '/js/theme-general.min.js#deferload', '', $theme_version, true);
 	wp_enqueue_script( 'theme-general' );
   // bxslider
   // documentazione: https://bxslider.com/
-	wp_register_script( 'bxslider', 'https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js#deferload', '', '4.2.12', true);
+	wp_register_script( 'bxslider', 'https://cdn.paperplanefactory.com/js/jquery.bxslider.min.js#deferload', '', '4.2.1d', true);
 	wp_enqueue_script( 'bxslider' );
-	}
+  wp_register_script( 'bxslider-activate', get_stylesheet_directory_uri() . '/js/theme-slides.min.js#deferload', '', $theme_version, true);
+	wp_enqueue_script( 'bxslider-activate' );
+}

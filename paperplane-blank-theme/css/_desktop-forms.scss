@@ -131,23 +131,23 @@
 	input[type=number]:focus,
 	textarea:focus,
 	input[type=tel]:focus {
-		border: $form-border-color-focus solid 1px;
+		border: $color-1 solid 1px;
 	}
 	select:active {
-		border: $form-border-color-focus solid 1px;
+		border: $color-1 solid 1px;
 	}
 	.capt {
 		margin: 20px 0 0 0;
 	}
 	.wpcf7-not-valid {
-		border: $form-error-background-color solid 1px !important;
+		border: $color-1 solid 1px !important;
 	}
 	.wpcf7-not-valid-tip {
 		display: block !important;
 		z-index: 99 !important;
 		width: 96% !important;
-		background-color: $form-error-background-color !important;
-		color: $form-error-color !important;
+		background-color: $color-1 !important;
+		color: $color-1 !important;
 		border:none !important;
 		font-family: $font-main !important;
 		font-size: $paragraph-size-desktop !important;
@@ -163,8 +163,8 @@
 	display: block !important;
 	z-index: 99 !important;
 	width: 96% !important;
-	background-color: $form-error-background-color !important;
-	color: $form-error-color !important;
+	background-color: $color-1 !important;
+	color: $color-1 !important;
 	border:none !important;
 	font-family: $font-main !important;
 	font-size: $paragraph-size-desktop !important;
@@ -177,11 +177,11 @@
 	display: block !important;
 	z-index:99 !important;
 	width:96% !important;
-	background-color: $form-ok-background-color !important;
-	color: $form-ok-color !important;
+	background-color: $color-1 !important;
+	color: $color-1 !important;
 	border:none !important;
 	font-family: $font-main !important;
-	font-size:$paragraph-size-desktop !important;
+	font-size: $paragraph-size-desktop !important;
 	line-height: 130% !important;
 	font-weight: $font-weight-1 !important;
 	padding:2% !important;
