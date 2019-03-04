@@ -10,10 +10,10 @@ if ( $thumb_id != '' ) :
  ?>
  <div class="no-the-100">
    <picture>
-      <source media="(max-width: 767px)" data-srcset="<?php echo $thumb_url_mobile[0]; ?>">
-      <source media="(max-width: 1024px)" data-srcset="<?php echo $thumb_url_tablet[0]; ?>">
-      <source media="(min-width: 1025px)" data-srcset="<?php echo $thumb_url_desktop[0]; ?>">
-      <img src="<?php echo $thumb_url_micro[0]; ?>" data-src="<?php echo $thumb_url_desktop[0]; ?>" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="lazy" />
+      <source media="(max-width: 767px)" srcset="<?php echo $thumb_url_mobile[0]; ?>">
+      <source media="(max-width: 1024px)" srcset="<?php echo $thumb_url_tablet[0]; ?>">
+      <source media="(min-width: 1025px)" srcset="<?php echo $thumb_url_desktop[0]; ?>">
+      <img src="<?php echo $thumb_url_desktop[0]; ?>" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>" />
     </picture>
  </div>
 <?php endif; ?>

@@ -6,18 +6,13 @@
 // comportamento immagini in the_content(); - rimuovere il commento se le immagini non hanno differenze tra desktop e mobile
 //@import 'css/global-images';
 // imports mobile
-@media screen and (min-width: $break-mobile-start) and  (max-width: $break-mobile-end) {
+@media screen and (min-width: $break-mobile-start) and  (max-width: $break-tablet-end) {
   // @import 'css/mobile-header-footer';
   // @import 'css/mobile-structure';
   // @import 'css/mobile-typography';
   // @import 'css/mobile-images';
   // @import 'css/mobile-effects';
   // @import 'css/mobile-forms';
-}
-// imports tablet
-@media screen and (min-width: $break-tablet-start) and  (max-width: $break-tablet-end) {
-  //@import 'css/typography-tablet';
-  //@import 'css/structure-tablet';
 }
 // imports desktop
 @media screen and (min-width: $break-desktop) {

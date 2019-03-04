@@ -167,7 +167,7 @@ ol > li:before {
   font-size: $h4-size-desktop;
   line-height: $h4-lineheight-desktop;
   &:hover, &:hover span {
-    color: $color-8;
+    color: $color-1;
   }
   span {
     position: absolute;
@@ -179,11 +179,11 @@ ol > li:before {
     height: 21px;
   }
   &:hover span {
-    border-color: $color-8;
+    border-color: $color-1;
   }
   &:hover span {
       &:before, &:after {
-        background-color: $color-8;
+        background-color: $color-1;
     }
   }
   .exp-plus {
