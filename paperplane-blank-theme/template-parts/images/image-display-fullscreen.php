@@ -12,6 +12,6 @@ if ( $thumb_id != '' ) :
       <source media="(max-width: 767px)" data-srcset="<?php echo $thumb_url_mobile[0]; ?>">
       <source media="(max-width: 1024px)" data-srcset="<?php echo $thumb_url_tablet[0]; ?>">
       <source media="(min-width: 1025px)" data-srcset="<?php echo $thumb_url_desktop[0]; ?>">
-      <img src="<?php echo $thumb_url_micro[0]; ?>" data-src="<?php echo $thumb_url_desktop[0]; ?>" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="lazy covered" />
+      <img src="<?php echo $thumb_url_micro[0]; ?>" data-src="<?php echo $thumb_url_desktop[0]; ?>" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="lazy" />
     </picture>
 <?php endif; ?>

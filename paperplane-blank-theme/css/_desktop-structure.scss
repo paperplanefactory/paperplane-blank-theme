@@ -72,15 +72,23 @@
 	width: 100%;
   height: calc(100vh - #{$header-height});
   overflow: hidden;
+  &.covered {
+    img {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - #{$header-height});
+      -o-object-fit: cover;
+      object-fit: cover;
+      -o-object-position: 50% 50%;
+      object-position: 50% 50%;
+    }
+  }
 }
 
-.covered {
-  width: 100%;
-	height: calc(100vh - #{$header-height});
-  -o-object-fit: cover;
-  object-fit: cover;
-  -o-object-position: 50% 0;
-  object-position: 50% 0;
+.coverize {
+  background-size: cover;
+  background-position: 50% 0;
+  background-attachment: fixed;
 }
 
 .bg-covered {

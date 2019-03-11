@@ -20,21 +20,3 @@ include_once "functions/theme-menus.php";
 include_once "functions/theme-taxonomies.php";
 // infinite posts
 //include_once "functions/theme-infinite-posts.php";
-
-
-// gestione DetectMobile - stabilisco il device e creo le variabili globali da richiamare nei template e negli altri script del tema
-add_action( 'wp_head', 'theme_detect_device');
-function theme_detect_device() {
-  require_once 'libraries/Mobile-Detect.php';
-  global $isMobile;
-  global $isTablet;
-  global $isDesktop;
-  $mobileDetect   = false;
-  $isMobile       = false;
-  $isTablet       = false;
-  $isDesktop      = false;
-  $mobileDetect   = new Mobile_Detect;
-  $isTablet       = $mobileDetect->isTablet();
-  $isMobile       = $mobileDetect->isMobile() && !$isTablet;
-  $isDesktop      = !$isMobile && !$isTablet;
-}

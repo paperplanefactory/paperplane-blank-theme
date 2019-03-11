@@ -29,9 +29,24 @@
 //@import 'css/pagenavi';
 
 
+// IMPORTANTE!!
+// 1 - rinominare la cartella del tema
+// 2 - compilare il file style.css con il nome del tema
+// 3 - nel file wp-config.php modificare la riga define( 'UPLOADS', 'blankuploads' ); con il nome della cartella uploads corretta
+
+// MENU NOTES
+// i menu non vengono stampati a meno che non siano stati definiti in back end. I menu non devono più avere  <ul> e </ul> intorno perchè tutto viene generato delle opzioni:
+// wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu' ) );
+// nell'ordine 1 - nome del menu 2 - tipo di elemento contenitore 3 - classe del contenitore
+
 // UTILITIES
 // Generatore gradiente CSS: http://www.colorzilla.com/gradient-editor/
 // Generatore Text Shadow CSS: https://css3gen.com/text-shadow/
 // Generatore Border Radius CSS: https://css3gen.com/border-radius/
 // Generatore Box Shadow CSS: https://css3gen.com/box-shadow/
 // Come usare mixin con parametri: https://marksheet.io/sass-mixins.html
+
+// LAZY LOAD NOTES
+// nelle immagini caricate con lazyload devono essere presenti i 2 tag:
+// data-src="url file" src="url file con ritaglio micro"
+// in questo modo verrà caricata prima l'immagine sgranata e poi sarà sostituita da quella vera e propria

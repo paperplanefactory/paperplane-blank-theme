@@ -12,9 +12,9 @@ wp_reset_query();
           </a>
         </div>
         <div class="flex-hold-child">
-          <ul>
-            <?php wp_nav_menu( array( 'theme_location' => 'footer-menu', 'menu_class' => 'foot-menu' ) ); ?>
-          </ul>
+          <?php if ( has_nav_menu( 'footer-menu' ) ) {
+            wp_nav_menu( array( 'theme_location' => 'footer-menu', 'container' => 'ul', 'menu_class' => 'footer-menu' ) );
+          } ?>
         </div>
         <div class="flex-hold-child">
           <?php the_field( 'credits_and_more', 'options' ); ?>
