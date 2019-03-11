@@ -2,58 +2,78 @@
 // Paperplane _blankTheme - template per index.
 get_header();
 ?>
-<?php
-$args_filter_posts = array(
-  'post_type' => 'post',
-  'posts_per_page' => 2
-);
-$my_filter_posts = get_posts( $args_filter_posts );
-?>
-<?php if ( !empty ( $my_filter_posts ) ) : ?>
 
-  <?php foreach ( $my_filter_posts as $post ) : setup_postdata ($post );
-  $thumb_id = get_post_thumbnail_id();
-  $attachment_title = get_the_title($thumb_id);
-  $attachment_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true);
-  $thumb_url_desktop = wp_get_attachment_image_src($thumb_id, 'desktop_image', true);
-  $thumb_url_tablet = wp_get_attachment_image_src($thumb_id, 'tablet_image', true);
-  $thumb_url_mobile = wp_get_attachment_image_src($thumb_id, 'mobile_image', true);
-  $thumb_url_mini = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
-  ?>
-    <div class="box-fullscreen test-gradient lazy coverize">
-        <?php get_template_part( 'template-parts/images/image-display-fullscreen' ); ?>
-      <div class="fullscreen-cta fullscreen-cta-center">
-        <div class="wrapper">
-          <div class="wrapper-padded">
-            <h1 class="txt-6">aa<?php the_title(); ?></h1>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-  <?php endforeach; wp_reset_postdata();
-endif;
-
-?>
-
-
-
-
-<h1>Hold on</h1>
-
-<div class="box-fullscreen bg-3 lazy coverize">
-  <?php get_template_part( 'template-parts/images/image-display-fullscreen' ); ?>
-  <div class="fullscreen-cta-bottom">
+<div class="box-fullscreen bg-3 lazy coverize" data-bg="url('http://blank-20181213.local/blankuploads/2018/10/sf01-1920x800.jpg')">
+  <div class="fullscreen-cta fullscreen-cta-center">
     <div class="wrapper">
       <div class="wrapper-padded">
-        <h1 class="txt-6">Box full-screen con titolo in basso</h1>
+        <h1 class="txt-6">Box fullscreen con titolo a metà e immagine BG</h1>
       </div>
     </div>
   </div>
 </div>
 
 
+<div class="box-fullscreen bg-3 covered">
+  <div class="lazy only-explorer" data-bg="url('http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg')"></div>
+  <picture>
+     <source media="(max-width: 767px)" data-srcset="http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg">
+     <source media="(max-width: 1024px)" data-srcset="http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg">
+     <source media="(min-width: 1025px)" data-srcset="http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg">
+     <img src="http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg" data-src="http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="no-explorer lazy" />
+   </picture>
+  <div class="fullscreen-cta-bottom">
+    <div class="wrapper">
+      <div class="wrapper-padded">
+        <h1 class="txt-6">Box fullscreen con titolo in basso e immagine con proprietà object-fit</h1>
+        <h2 class="txt-6">incluso un fallback per Explorer che mostra l'immagine di BG perchè object-fit non è supportato da Explorer</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="wrapper-padded">
+    <div class="wrapper-padded-more">
+      <div class="content-styled">
+        <h1>Test tipografico h1<br />Test tipografico h1!!!!!</h1>
+        <h2>Test tipografico h2<br />Test tipografico h2</h2>
+        <h3>Test tipografico h3<br />Test tipografico h3</h3>
+        <h4>Test tipografico h4<br />Test tipografico h4</h4>
+        <h5>Test tipografico h5<br />Test tipografico h5</h5>
+        <h6>Test tipografico h6<br />Test tipografico h6</h6>
+        <p>Test <em>tipografico</em> paragrafo<br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
+        <a href="#" class="round-button">round-button</a>
+
+        <ul>
+          <li>Elenco puntato</li>
+          <li>Elenco puntato</li>
+          <li>Elenco puntato</li>
+          <li>Elenco puntato</li>
+          <li>Elenco puntato</li>
+        </ul>
+        <ol>
+          <li>Elenco numerato</li>
+          <li>Elenco numerato</li>
+          <li>Elenco numerato</li>
+          <li>Elenco numerato</li>
+          <li>Elenco numerato</li>
+        </ol>
+
+        <div class="expander-top">
+          <div class="expander exp-open" aria-expanded="false"><span class="exp-plus"></span>Titolo ad espansione<br />con test a capo</div>
+        </div>
+
+        <div class="expandable-content">
+          <div class=" content-styled">
+            <p>Test tipografico paragrafo<br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <h1>Slideshow altezza adattiva</h1>
@@ -78,72 +98,6 @@ endif;
 
 <h1>Slideshow verticale</h1>
 <?php get_template_part( 'template-parts/slideshows/regular-slideshow-b' ); ?>
-
-
-
-
-<h1>Tipografia</h1>
-<div class="wrapper">
-  <div class="wrapper-padded">
-    <div class="wrapper-padded-more content-styled">
-      <h1>Test tipografico h1<br />Test tipografico h1!!!!!</h1>
-      <h2>Test tipografico h2<br />Test tipografico h2</h2>
-      <h3>Test tipografico h3<br />Test tipografico h3</h3>
-      <h4>Test tipografico h4<br />Test tipografico h4</h4>
-      <h5>Test tipografico h5<br />Test tipografico h5</h5>
-      <h6>Test tipografico h6<br />Test tipografico h6</h6>
-      <p>Test <em>tipografico</em> paragrafo<br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
-      <p>Test <em>tipografico</em> paragrafo<br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
-
-      <ul>
-        <li>Elenco puntato</li>
-        <li>Elenco puntato</li>
-        <li>Elenco puntato</li>
-        <li>Elenco puntato</li>
-        <li>Elenco puntato</li>
-      </ul>
-      <ol>
-        <li>Elenco numerato</li>
-        <li>Elenco numerato</li>
-        <li>Elenco numerato</li>
-        <li>Elenco numerato</li>
-        <li>Elenco numerato</li>
-      </ol>
-      <p>Test tipografico <a href="#" class="download">paragrafo!!!</a><br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
-      <a href="#" class="round-button">round-button</a>
-      <p>Test tipografico <a href="#" class="download">paragrafo!!!</a><br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
-      <div class="expander-top">
-        <button class="expander exp-open" aria-expanded="false"><span class="exp-plus"></span>Titolo ad espansione<br />con test a capo</button>
-      </div>
-
-      <div class="expandable-content">
-        <div class=" content-styled">
-          <p>Test tipografico paragrafo<br />Test tipografico paragrafo con un <a href="#">link</a>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

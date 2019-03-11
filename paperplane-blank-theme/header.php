@@ -59,9 +59,9 @@ global $module_count;
           </a>
         </div>
         <nav class="menu allupper">
-          <ul>
-            <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'menu_class' => 'foot-menu' ) ); ?>
-          </ul>
+          <?php if ( has_nav_menu( 'header-menu' ) ) {
+            wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu' ) );
+          } ?>
         </nav>
         <div class="hamburger">
           <ul>

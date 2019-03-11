@@ -10,7 +10,7 @@ $hamburger-width: 12%;
 #preheader {
   position: relative;
   display: block;
-  width: 100vw;
+  width: 100%;
   height: $header-height;
 }
 
@@ -65,12 +65,10 @@ $hamburger-width: 12%;
   @include flex-wrap;
   @include flex-verticalize;
   .logo {
+    position: relative;
     -webkit-box-flex: 1;
-    -ms-flex: 0 0 $logo-width;
-    flex: 0 0 $logo-width;
+    width: $logo-width;
     height: $header-height;
-    @include flex-wrap;
-    @include flex-verticalize;
     img {
       width: 100%;
       max-width: 182px;
@@ -79,15 +77,8 @@ $hamburger-width: 12%;
   }
   .menu {
     -webkit-box-flex: 1;
-    -ms-flex: 0 0 $menu-width;
-    flex: 0 0 $menu-width;
-    height: $header-height;
-    @include flex-wrap;
-    @include flex-verticalize;
-    text-align: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    width: calc(100% - #{$logo-width} - #{$hamburger-width});
+    text-align: right;
     ul {
       width: 100%;
       li {
@@ -102,13 +93,7 @@ $hamburger-width: 12%;
   }
   .hamburger {
     -webkit-box-flex: 1;
-    -ms-flex: 0 0 $hamburger-width;
-    flex: 0 0 $hamburger-width;
-    height: $header-height;
-    text-align: right;
-    @include flex-wrap;
-    @include flex-verticalize;
-    @include flex-end;
+    width: $hamburger-width;
     ul {
       width: 100%;
       li {

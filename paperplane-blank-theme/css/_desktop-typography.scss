@@ -84,81 +84,72 @@ p {
 }
 
 .content-styled {
-word-wrap:break-word;
-h4, h5, h6 {
-  font-family: $font-main;
-  font-weight: $font-weight-3;
-  font-size: $h4-size-desktop;
-  line-height: $h4-lineheight-desktop;
-  margin-bottom: $h4-marginbottom-desktop;
   word-wrap:break-word;
-}
-strong {
-  font-weight: $font-weight-2;
-}
-ul {
-  font-family: $font-main;
-  font-weight: $font-weight-1;
-  font-size: $paragraph-size-desktop;
-  line-height: $paragraph-lineheight-desktop;
-  margin-bottom: $paragraph-marginbottom-desktop;
-  list-style-position:inside;
-  list-style: none;
-  padding: 0;
-}
-ul li {
-  display: table-row;
-}
-ul li:before {
-  position: relative;
-  display: table-cell;
-  content: '•';
-  font-size: 20px;
-  color: $color-1;
-  font-weight: $font-weight-1;
-  padding: 0 20px 0 0;
-}
-ol {
-  font-family: $font-main;
-  font-weight: $font-weight-1;
-  font-size: $paragraph-size-desktop;
-  line-height: $paragraph-lineheight-desktop;
-  margin-bottom: $paragraph-marginbottom-desktop;
-  list-style-type: none;
-  list-style-type: decimal;
-  padding: 0;
-  counter-reset: li-counter;
-}
-ol > li {
-	overflow: hidden;
-	position: relative;
-	margin:0;
-	padding:0 0 0 20px;
-	display: table-row;
-}
-ol > li:before {
-	position: relative;
-	display: table-cell;
-  top: 0;
-  left:0;
-	color: $color-1;
-  font-family: $font-main;
-  font-weight: $font-weight-3;
-  font-size: $paragraph-size-desktop;
-  text-align: right;
-  content: counter(li-counter)" ";
-  counter-increment: li-counter;
-	padding: 0 15px 0 0;
-}
+  strong {
+    font-weight: $font-weight-2;
+  }
+  ul {
+    font-family: $font-main;
+    font-weight: $font-weight-1;
+    font-size: $paragraph-size-desktop;
+    line-height: $paragraph-lineheight-desktop;
+    margin-bottom: $paragraph-marginbottom-desktop;
+    list-style-position:inside;
+    list-style: none;
+    padding: 0;
+  }
+  ul li {
+    display: table-row;
+  }
+  ul li:before {
+    position: relative;
+    display: table-cell;
+    content: '•';
+    font-size: 20px;
+    color: $color-1;
+    font-weight: $font-weight-1;
+    padding: 0 10px 0 0;
+  }
+  ol {
+    font-family: $font-main;
+    font-weight: $font-weight-1;
+    font-size: $paragraph-size-desktop;
+    line-height: $paragraph-lineheight-desktop;
+    margin-bottom: $paragraph-marginbottom-desktop;
+    list-style-type: none;
+    list-style-type: decimal;
+    padding: 0;
+    counter-reset: li-counter;
+  }
+  ol > li {
+  	overflow: hidden;
+  	position: relative;
+  	margin:0;
+  	padding:0 0 0 20px;
+  	display: table-row;
+  }
+  ol > li:before {
+  	position: relative;
+  	display: table-cell;
+    top: 0;
+    left:0;
+  	color: $color-1;
+    font-family: $font-main;
+    font-weight: $font-weight-3;
+    font-size: $paragraph-size-desktop;
+    text-align: right;
+    content: counter(li-counter)" ";
+    counter-increment: li-counter;
+  	padding: 0 15px 0 0;
+  }
 }
 
 .expander {
-  display: inline-block;
   font-family: $font-main;
   position: relative;
   line-height: 17px !important;
   font-weight: $font-weight-2 !important;
-  padding-left: 30px !important;
+  padding-left: 25px !important;
   text-align: left;
   color: $color-2;
   @include reset-button;
@@ -166,59 +157,20 @@ ol > li:before {
   font-weight: $font-weight-1;
   font-size: $h4-size-desktop;
   line-height: $h4-lineheight-desktop;
-  &:hover, &:hover span {
-    color: $color-1;
-  }
-  span {
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: inline-block;
-    border: $color-2 solid 2px;
-    width: 21px;
-    height: 21px;
-  }
-  &:hover span {
-    border-color: $color-1;
-  }
-  &:hover span {
-      &:before, &:after {
-        background-color: $color-1;
-    }
-  }
   .exp-plus {
-    @include define-basic-transition(all, 0.3s);
     &:before {
       position: absolute;
-      top: 10px;
-      left: 3px;
-      content: " ";
-      width: 15px;
-      height: 2px;
-      background-color: $color-2;
+      left: 0;
+      font-family: FontAwesome;
+      content: "\f0fe";
     }
-    &:after {
-      position: absolute;
-      top: 3px;
-      left: 10px;
-      content: " ";
-      width: 2px;
-      height: 15px;
-      background-color: $color-2;
-    }
-
   }
-
   .exp-minus {
-    @include define-basic-transition(all, 0.3s);
     &:before {
       position: absolute;
-      top: 10px;
-      left: 3px;
-      content: " ";
-      width: 15px;
-      height: 2px;
-      background-color: $color-2;
+      left: 0;
+      font-family: FontAwesome;
+      content: "\f146";
     }
   }
 }
