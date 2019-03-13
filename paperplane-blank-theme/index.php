@@ -3,7 +3,7 @@
 get_header();
 ?>
 
-<div class="box-fullscreen bg-3 lazy coverize" data-bg="url('http://blank-20181213.local/blankuploads/2018/10/sf01-1920x800.jpg')">
+<div class="box-fullscreen bg-3 lazy coverize" data-bg="url('<?php bloginfo('stylesheet_directory'); ?>/images/test-images/1.jpg')">
   <div class="fullscreen-cta fullscreen-cta-center">
     <div class="wrapper">
       <div class="wrapper-padded">
@@ -15,12 +15,11 @@ get_header();
 
 
 <div class="box-fullscreen bg-3 covered">
-  <div class="lazy only-explorer" data-bg="url('http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg')"></div>
+  <div class="lazy only-explorer" data-bg="url('<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg')"></div>
   <picture>
-     <source media="(max-width: 767px)" data-srcset="http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg">
-     <source media="(max-width: 1024px)" data-srcset="http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg">
-     <source media="(min-width: 1025px)" data-srcset="http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg">
-     <img src="http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg" data-src="http://blank-20181213.local/blankuploads/2018/10/berlin01.jpg" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="no-explorer lazy" />
+     <source media="(max-width: 1024px)" data-srcset="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg">
+     <source media="(min-width: 1025px)" data-srcset="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg">
+     <img src="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg" data-src="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="no-explorer lazy" />
    </picture>
   <div class="fullscreen-cta-bottom">
     <div class="wrapper">
@@ -61,7 +60,7 @@ get_header();
         </ol>
 
         <div class="expander-top">
-          <div class="expander exp-open" aria-expanded="false"><span class="exp-plus"></span>Titolo ad espansione<br />con test a capo</div>
+          <button class="expander exp-open" aria-expanded="false"><span class="exp-plus"></span>Titolo ad espansione<br />con test a capo</button>
         </div>
 
         <div class="expandable-content">
@@ -76,7 +75,7 @@ get_header();
 </div>
 
 
-<h1>Slideshow altezza adattiva</h1>
+<h1>Slideshow con altezza adattiva</h1>
 <!-- modulo slide -->
 <?php //get_template_part( 'template-parts/slideshows/fullscreen-slideshow' ); ?>
 
@@ -96,15 +95,17 @@ get_header();
   </div>
 </div>
 
-<h1>Slideshow verticale</h1>
+<h1>Slideshow verticale con altezza adattiva</h1>
 <?php get_template_part( 'template-parts/slideshows/regular-slideshow-b' ); ?>
 
 
 
-<h1>Test griglie</h1>
+
 <div class="wrapper">
   <div class="wrapper-padded">
     <div class="wrapper-padded-more">
+      <h1>Test griglie</h1>
+      <h2>le griglie con flexbox ora hanno una classe che gestisce il numero di elementi per riga e una che definisce la loro spaziatura.</h2>
 
       <h2>griglia a 2 - margins-thin</h2>
       <div class="flex-hold flex-hold-2 margins-thin bg-5">

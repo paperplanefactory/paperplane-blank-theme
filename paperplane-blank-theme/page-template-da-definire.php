@@ -1,7 +1,7 @@
 <?php
 /**
 *  Paperplane _blankTheme
- * Template Name: Template generico
+ * Template Name: Template da definire!!
 */
 get_header();
 ?>

@@ -1,26 +1,40 @@
-<?php
-$args_filter_posts = array(
-  'post_type' => 'post',
-  'posts_per_page' => -1
-);
-$my_filter_posts = get_posts( $args_filter_posts );
-?>
-<?php if ( !empty ( $my_filter_posts ) ) : ?>
-
-
 <div class="slider-is-true regular-slideshow">
 <input type="hidden" class="slideshow-selector-1" value="postslider-1" />
 <ul class="slideshow-ul postslider verticalize postslider-1">
-  <?php foreach ( $my_filter_posts as $post ) : setup_postdata ($post ); ?>
-    <li>
-      <div class="image-block">
-        <?php get_template_part( 'template-parts/images/image-display-1' ); ?>
+  <li>
+    <div class="image-block">
+      <div class="no-the-100">
+        <picture>
+           <source media="(max-width: 1024px)" data-srcset="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/1.jpg">
+           <source media="(min-width: 1025px)" data-srcset="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/1.jpg">
+           <img src="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/1.jpg" data-src="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/1.jpg" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="no-explorer lazy" />
+         </picture>
       </div>
-    </li>
-  <?php endforeach; wp_reset_postdata(); ?>
-
+    </div>
+  </li>
+  <li>
+    <div class="image-block">
+      <div class="no-the-100">
+        <picture>
+           <source media="(max-width: 1024px)" data-srcset="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg">
+           <source media="(min-width: 1025px)" data-srcset="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg">
+           <img src="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg" data-src="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="no-explorer lazy" />
+         </picture>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="image-block">
+      <div class="no-the-100">
+        <picture>
+           <source media="(max-width: 1024px)" data-srcset="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/3.jpg">
+           <source media="(min-width: 1025px)" data-srcset="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/3.jpg">
+           <img src="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/3.jpg" data-src="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/3.jpg" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="no-explorer lazy" />
+         </picture>
+      </div>
+    </div>
+  </li>
 </ul>
 <div class="fullscreen-activator fullscreen-activator-1">
 </div>
 </div>
-<?php endif; ?>

@@ -5,19 +5,20 @@ wp_reset_query();
 <footer id="footer" class="bg-1 txt-6">
   <div class="wrapper">
     <div class="wrapper-padded">
-      <div class="flex-hold flex-hold-3">
+      <div class="flex-hold flex-hold-3 margins-thin">
+
         <div class="flex-hold-child">
-          <a href="<?php echo home_url(); ?>" rel="bookmark" title="homepage">
-          &copy; <?php echo date("Y"); ?> <?php echo get_bloginfo( 'name' ); ?>
-          </a>
+          <?php the_field( 'credits_and_more', 'options' ); ?>
         </div>
+
         <div class="flex-hold-child">
+          <h5>menu - se non spunta il menu è perchè non è stato definito o impostato.</h5>
           <?php if ( has_nav_menu( 'footer-menu' ) ) {
             wp_nav_menu( array( 'theme_location' => 'footer-menu', 'container' => 'ul', 'menu_class' => 'footer-menu' ) );
           } ?>
         </div>
+
         <div class="flex-hold-child">
-          <?php the_field( 'credits_and_more', 'options' ); ?>
           <?php if ( have_rows( 'global_socials', 'option' ) ) : ?>
             <ul class="inline-socials">
               <?php while ( have_rows( 'global_socials', 'option' ) ) : the_row(); ?>
@@ -30,7 +31,9 @@ wp_reset_query();
             </ul>
           <?php endif; ?>
         </div>
+
       </div>
+
     </div>
   </div>
 </footer>
