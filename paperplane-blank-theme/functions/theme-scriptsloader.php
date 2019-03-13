@@ -58,8 +58,8 @@ function all_scripts(){
   }
   // Infinite Scroll
   // documentazione: https://infinite-scroll.com/
-  wp_register_script( 'custom-infinitescroll', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/3.0.3/infinite-scroll.pkgd.min.js#deferload', '', '3.0.3', false);
-  wp_enqueue_script( 'custom-infinitescroll' );
+  // wp_register_script( 'custom-infinitescroll', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/3.0.5/infinite-scroll.pkgd.min.js#deferload', '', '3.0.5', false);
+  // wp_enqueue_script( 'custom-infinitescroll' );
   // Lazy load
   // documentazione: http://www.andreaverlicchi.eu/lazyload/
   wp_register_script( 'vanilla-lazyload', 'https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/10.20.0/lazyload.min.js', '', '10.20.0', false);

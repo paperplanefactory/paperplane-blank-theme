@@ -59,6 +59,7 @@ global $module_count;
           </a>
         </div>
         <nav class="menu allupper">
+          <h5>menu - se non spunta il menu è perchè non è stato definito o impostato.</h5>
           <?php if ( has_nav_menu( 'header-menu' ) ) {
             wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu' ) );
           } ?>
