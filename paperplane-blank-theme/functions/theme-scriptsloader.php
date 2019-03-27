@@ -36,15 +36,6 @@ function synth_typekit() { ?>
   </script>
 <?php }
 
-// add google analytics to footer
-add_action( 'wp_head', 'synth_google_analytics');
-function synth_google_analytics() {
-  if ( function_exists('cn_cookies_accepted') && cn_cookies_accepted() ) {
-    // set in "Theme Geneal Option" page
-    the_field( 'tracking_codes', 'options' );
-  }
- }
-
 // All scripts
 add_action( 'wp_enqueue_scripts', 'all_scripts' );
 function all_scripts(){
@@ -67,10 +58,20 @@ function all_scripts(){
 	// Comportamenti ricorrenti
 	wp_register_script( 'theme-general', get_stylesheet_directory_uri() . '/js/theme-general.min.js#deferload', '', $theme_version, true);
 	wp_enqueue_script( 'theme-general' );
+  // Cookies library
+  // documentazione: https://github.com/js-cookie/js-cookie
+	wp_register_script( 'js-cookie', 'https://cdn.paperplanefactory.com/js/js.cookie.min.js', '', '2.2.0', false);
+	wp_enqueue_script( 'js-cookie' );
   // bxslider
   // documentazione: https://bxslider.com/
 	wp_register_script( 'bxslider', 'https://cdn.paperplanefactory.com/js/jquery.bxslider.min.js#deferload', '', '4.2.1d', true);
 	wp_enqueue_script( 'bxslider' );
   wp_register_script( 'bxslider-activate', get_stylesheet_directory_uri() . '/js/theme-slides.min.js#deferload', '', $theme_version, true);
 	wp_enqueue_script( 'bxslider-activate' );
+  // gestione script CF7
+  if ( is_page( array( 47, 562 ) ) ) {
+    if ( function_exists( 'wpcf7_enqueue_scripts' ) ) {
+        wpcf7_enqueue_scripts();
+    }
+  }
 }

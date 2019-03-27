@@ -132,6 +132,25 @@
   @include flex-wrap;
 }
 
+.parnter-grid {
+  margin-top: 20px;
+}
+
+.partner-box {
+  @include flex-wrap;
+  width: 100%;
+}
+
+.partner-label {
+  width: 100%;
+  align-items: flex-start;
+}
+
+.partner-logo {
+  @include flex-wrap;
+  align-items: center;
+}
+
 .flex-hold-2 {
   &.margins-thin {
     .flex-hold-child {
@@ -280,16 +299,11 @@
     height: 32px;
     margin: 0 0 15px 15px;
     overflow: hidden;
-    img {
-      width: 32px;
-      height: 32px;
-    }
     &:first-child {
       margin: 0 0 15px 0;
     }
-    &:hover {
-      @include define-basic-transition(all, 0.3s);
-      opacity: 0.7;
+    i {
+      font-size: 22px;
     }
   }
 }

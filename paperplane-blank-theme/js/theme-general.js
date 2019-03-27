@@ -15,25 +15,29 @@ $(document).ready(function() {
 		$('img.alignright').wrap('<div class="wp-caption alignright"></div>');
 	}
 
+	
 
 
 	// hamburger
-	$( '.ham-activator' ).click(function(){
+	function hamburgerMenu() {
 		$( '.hambuger-element' ).toggleClass('open');
 		if ( $( '.hambuger-element' ).hasClass( 'open' ) ) {
 			$('html').css('overflowY', 'hidden');
-			$('body').addClass('occupy-scrollbar');
+			$('body, #header').addClass('occupy-scrollbar');
 			$( '#header-overlay' ).focus();
 			$(this).attr('aria-expanded', true);
 		}
 		else {
 			$('html').css('overflowY', 'scroll');
-			$('body').removeClass('occupy-scrollbar');
+			$('body, #header').removeClass('occupy-scrollbar');
 			$( '#header' ).focus();
 			$(this).attr('aria-expanded', false);
 		}
 		$( '#head-overlay' ).fadeToggle( 150 );
 		$( '#search-box' ).fadeOut( 300 );
+	}
+	$( '.ham-activator' ).click(function(){
+		hamburgerMenu();
 	});
 
 	// expandables

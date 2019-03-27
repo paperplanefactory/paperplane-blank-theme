@@ -168,27 +168,32 @@
 
 // banner cookies
 
-#cookie-notice {
+#paperplane-cookie-notice {
 	position: fixed;
 	z-index: 9999;
 	display: block;
-	visibility: hidden;
-	width: 100%;
-	bottom: 0;
-	left: 0;
+	//visibility: hidden;
+	display: none;
+	width: calc(100% - 26px);
+	bottom: 10px;
+	left: 10px;
 	font-family: $font-main !important;
   font-weight:$font-weight-1 !important;
   font-size: $cta1-size-smartphone !important;
   line-height: $cta1-lineheight-smartphone !important;
-	border-top: $color-1 solid 1px !important;
+	border: $color-4 solid 3px !important;
 	background-color: $color-1 !important;
 	color: $color-6 !important;
-	.cookie-notice-container {
+	.paperplane-cookie-notice-container {
 		position: relative;
-		width: 96%;
+		width: calc(100% - 20px);
+		max-width: 768px;
 		margin: 0 auto;
-		padding: 7px 2%;
+		padding: 10px;
 		text-align: center;
+		.paperplane-message-cookie-accepted, .paperplane-message-cookie-refused {
+			display: none;
+		}
 	}
 	a {
 		margin: 0 5px;
@@ -199,27 +204,32 @@
 	}
 }
 
+.paperplane-gdpr-content-message {
+	position: relative;
+	padding: 10px;
+	margin: 20px 0;
+	background-color: $color-1;
+	color: $color-7;
+	p {
+		margin-bottom: 0;
+		//text-transform: uppercase;
+	}
+}
+
 // hamburger
 
 .hambuger-element {
   width: 20px;
-  height: 20px;
+  height: 16px;
   position: relative;
+	display: inline-block;
   z-index: 9998;
 	padding: 0;
-  margin: 0;
+  margin: 7px 0 0 0;
   @include define-rotate(0);
-  @include define-basic-transition(all, 0.15s);
   cursor: pointer;
   border: none !important;
-  background-color: transparent !important;
 	overflow: hidden;
-	line-height: normal;
-	-webkit-appearance: none;
-	&::-moz-focus-inner {
-		border: 0;
-    padding: 0;
-	}
 }
 
 .open_head .hambuger-element span {
@@ -243,7 +253,7 @@
 }
 
 .hambuger-element span:nth-child(2), .hambuger-element span:nth-child(3) {
-  top: 9px;
+  top: 7px;
 }
 
 .hambuger-element span:nth-child(4) {
@@ -346,6 +356,13 @@ a.absl:link {
 	height:100%;
 }
 
+a:link,
+a:visited {
+	color: $color-2;
+}
+a:hover {
+	color: $color-3;
+}
 
 .round-button {
 	position: relative;

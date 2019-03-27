@@ -140,8 +140,5 @@ a {
 	text-decoration:none;
 	border:none;
 	outline:none !important;
-	-webkit-transition: .3s ease-in-out;
-    -moz-transition: .3s ease-in-out;
-    -o-transition: .3s ease-in-out;
-    transition: .3s ease-in-out;
+	@include define-basic-transition(all, 0.3s);
 }

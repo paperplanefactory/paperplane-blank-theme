@@ -22,13 +22,6 @@ $hamburger-width: 12%;
   display: block;
   width: 100%;
   height: $header-height;
-  a:link,
-  a:visited {
-    color: $color-2;
-  }
-  a:hover {
-    color: $color-3;
-  }
 }
 
 #head-overlay {
@@ -37,13 +30,13 @@ $hamburger-width: 12%;
   top: $header-height;
   left: 0;
   display: block;
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - #{$header-height});
   display: none;
 }
 
 .occupy-scrollbar {
-	width: calc(100vw - 18px);
+	width: calc(100% - 18px) !important;
 }
 
 .hide-y-overflow {
@@ -53,7 +46,7 @@ $hamburger-width: 12%;
 .scroll-opportunity {
 	position: relative;
 	display: block;
-	width: calc(100vw + 18px);
+	width: calc(100% + 18px);
 	height: calc(100vh - #{$header-height});
 	overflow-y: scroll;
 }
@@ -69,10 +62,16 @@ $hamburger-width: 12%;
     -webkit-box-flex: 1;
     width: $logo-width;
     height: $header-height;
-    img {
+    &:before {
+      content: "";
+      position: absolute;
+      display: block;
       width: 100%;
-      max-width: 182px;
-      height: auto;
+      height: 100%;
+      background-image:url(images/a-logo.png);
+      background-position: 0 50%;
+      background-repeat: no-repeat;
+      background-size: contain;
     }
   }
   .menu {
@@ -82,7 +81,6 @@ $hamburger-width: 12%;
     ul {
       width: 100%;
       li {
-        text-align: center !important;
         display: inline-block;
         margin: 0 2%;
       }
@@ -94,6 +92,7 @@ $hamburger-width: 12%;
   .hamburger {
     -webkit-box-flex: 1;
     width: $hamburger-width;
+    text-align: right;
     ul {
       width: 100%;
       li {
@@ -119,11 +118,4 @@ $hamburger-width: 12%;
   padding-top: 30px;
   padding-bottom: 30px;
   margin: 0;
-  a:link,
-  a:visited {
-    color: $color-2;
-  }
-  a:hover {
-    color: $color-3;
-  }
 }
