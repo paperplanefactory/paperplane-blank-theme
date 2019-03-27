@@ -11,10 +11,7 @@ add_filter('intermediate_image_sizes_advanced', 'add_image_insert_override' );
 add_theme_support( 'post-thumbnails' );
 add_image_size( 'full_desk', 1920, 9999);
 add_image_size( 'content_picture', 768, 9999);
-
-add_image_size( 'desktop_image', 1920, 800, true);
-add_image_size( 'tablet_image', 768, 50, true);
-add_image_size( 'mobile_image', 200, 600, true);
+add_image_size( 'logo_size', 200, 9999);
 add_image_size( 'micro', 10, 9999);
 
 

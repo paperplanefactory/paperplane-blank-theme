@@ -54,27 +54,22 @@ global $module_count;
     <div class="wrapper-padded-more">
       <div id="header-structure">
         <div class="logo">
-          <a href="<?php echo home_url(); ?>" rel="bookmark" title="homepage - <?php echo get_bloginfo( 'name' ); ?>">
-            <img src="<?php bloginfo('stylesheet_directory'); ?>/images/a-logo.svg" onerror="this.onerror=null; this.src='<?php bloginfo('stylesheet_directory'); ?>/images/a-logo.png'" alt="homepage - <?php echo get_bloginfo( 'name' ); ?>" />
-          </a>
+          <a href="<?php echo home_url(); ?>" rel="bookmark" title="homepage - <?php echo get_bloginfo( 'name' ); ?>" class="absl"></a>
         </div>
         <nav class="menu allupper">
-          <h5>menu - se non spunta il menu è perchè non è stato definito o impostato.</h5>
           <?php if ( has_nav_menu( 'header-menu' ) ) {
             wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu' ) );
           } ?>
         </nav>
         <div class="hamburger">
           <ul>
-            <li class="search-open">
-            </li>
             <li>
-              <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Navigation" class="hambuger-element ham-activator">
+              <div type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Navigation" class="hambuger-element ham-activator">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-              </button>
+              </div>
             </li>
           </ul>
         </div>
@@ -94,7 +89,7 @@ global $module_count;
               <?php while ( have_rows( 'global_socials', 'option' ) ) : the_row(); ?>
                 <li>
                   <a href="<?php the_sub_field( 'global_socials_profile_url' ); ?>" target="_blank">
-                    <img src="<?php the_sub_field( 'global_socials_icona' ); ?>" />
+                    <i class="<?php the_sub_field( 'global_socials_icona' ); ?>"></i>
                   </a>
                 </li>
               <?php endwhile; ?>

@@ -59,6 +59,10 @@ get_header();
           <li>Elenco numerato</li>
         </ol>
 
+        <p>
+          <?php _e('Ciao mondo!', 'paperplane-theme'); ?>
+        </p>
+
         <div class="expander-top">
           <button class="expander exp-open" aria-expanded="false"><span class="exp-plus"></span>Titolo ad espansione<br />con test a capo</button>
         </div>
@@ -97,8 +101,6 @@ get_header();
 
 <h1>Slideshow verticale con altezza adattiva</h1>
 <?php get_template_part( 'template-parts/slideshows/regular-slideshow-b' ); ?>
-
-
 
 
 <div class="wrapper">

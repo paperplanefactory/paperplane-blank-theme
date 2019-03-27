@@ -33,10 +33,40 @@ if( function_exists('acf_add_options_page') ) {
 		'menu_title' 	=> 'Gestione social',
 		'parent_slug' 	=> $parent['menu_slug'],
 	));
-  // header
+  // partner / sponsor
 	acf_add_options_sub_page(array(
-		'page_title' 	=> 'Gestione header',
-		'menu_title' 	=> 'Gestione header',
+		'page_title' 	=> 'Gestione partner / sponsor',
+		'menu_title' 	=> 'Gestione partner / sponsor',
 		'parent_slug' 	=> $parent['menu_slug'],
 	));
+  // verifico che sia attivo Polylang
+  if ( function_exists( 'PLL' ) ) {
+    $langs_parameters = array(
+      'hide_empty' => 0,
+      'fields' => 'slug'
+    );
+    $languages = pll_languages_list($args);
+  }
+  else {
+    $languages = array('any-lang');
+  }
+  foreach ( $languages as $lang ) {
+    // gestione programma
+  	acf_add_options_sub_page( array (
+      'page_title' => 'Gestione programma (' . strtoupper( $lang ) . ')',
+      'menu_title' => __('Gestione programma (' . strtoupper( $lang ) . ')', 'text-domain'),
+      'menu_slug'  => "gestione-programma-${lang}",
+      'post_id'    => $lang,
+      'parent_slug' 	=> $parent['menu_slug'],
+  	) );
+    // gestione cookie GDPR
+  	acf_add_options_sub_page( array (
+      'page_title' => 'Gestione cookie GDPR (' . strtoupper( $lang ) . ')',
+      'menu_title' => __('Gestione cookie GDPR (' . strtoupper( $lang ) . ')', 'text-domain'),
+      'menu_slug'  => "gestione-cookie-gdpr-${lang}",
+      'post_id'    => $lang,
+      'parent_slug' 	=> $parent['menu_slug'],
+  	) );
+  }
+
 }
