@@ -3,32 +3,32 @@
 get_header();
 ?>
 
-<div class="box-fullscreen bg-3 lazy coverize" data-bg="url('<?php bloginfo('stylesheet_directory'); ?>/images/test-images/1.jpg')">
-  <div class="fullscreen-cta fullscreen-cta-center">
+<div class="box-fullscreen fullscreen-cta fullscreen-cta-center bg-3 lazy coverize" data-bg="url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/test-images/1.jpg')">
+  <div class="fullscreen-cta-aligner">
     <div class="wrapper">
       <div class="wrapper-padded">
-        <h1 class="txt-6">Box fullscreen con titolo a metà e immagine BG</h1>
+        <div class="fullscreen-cta-safe-padding last-child-no-margin">
+          <h1 class="txt-6">Box fullscreen con titolo a metà e immagine BG</h1>
+          <h1 class="txt-6">Box fullscreen con titolo a metà e immagine BG</h1>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 
-<div class="box-fullscreen bg-3 covered">
-  <div class="lazy only-explorer" data-bg="url('<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg')"></div>
-  <picture>
-     <source media="(max-width: 1024px)" data-srcset="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg">
-     <source media="(min-width: 1025px)" data-srcset="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg">
-     <img src="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg" data-src="<?php bloginfo('stylesheet_directory'); ?>/images/test-images/2.jpg" title="<?php echo $attachment_title; ?>" alt="<?php echo $attachment_alt; ?>"  class="no-explorer lazy" />
-   </picture>
-  <div class="fullscreen-cta-bottom">
+<div class="box-fullscreen fullscreen-cta fullscreen-cta-bottom bg-3 lazy coverize fixx" data-bg="url('<?php bloginfo('stylesheet_directory'); ?>/assets/images/test-images/2.jpg')">
+  <div class="fullscreen-cta-aligner">
     <div class="wrapper">
       <div class="wrapper-padded">
-        <h1 class="txt-6">Box fullscreen con titolo in basso e immagine con proprietà object-fit</h1>
-        <h2 class="txt-6">incluso un fallback per Explorer che mostra l'immagine di BG perchè object-fit non è supportato da Explorer</h2>
+        <div class="fullscreen-cta-safe-padding last-child-no-margin">
+          <h1 class="txt-6">Box fullscreen con titolo a metà e immagine BG</h1>
+          <h1 class="txt-6">Box fullscreen con titolo a metà e immagine BG</h1>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
 
 <div class="wrapper">
@@ -99,9 +99,10 @@ get_header();
   </div>
 </div>
 
-<h1>Slideshow verticale con altezza adattiva</h1>
-<?php get_template_part( 'template-parts/slideshows/regular-slideshow-b' ); ?>
-
+<div class="wrapper bg-6 modulo-space">
+  <h1>Slideshow verticale con altezza adattiva</h1>
+  <?php get_template_part( 'template-parts/slideshows/regular-slideshow-b' ); ?>
+</div>
 
 <div class="wrapper">
   <div class="wrapper-padded">
@@ -113,7 +114,7 @@ get_header();
       <div class="flex-hold flex-hold-2 margins-thin bg-5">
 
         <div class="flex-hold-child bg-3">
-          <h2>just a box</h2>
+          <h2>just a box - xxx</h2>
         </div>
 
         <div class="flex-hold-child bg-3">

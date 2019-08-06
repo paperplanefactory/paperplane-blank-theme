@@ -1,0 +1,211 @@
+@import 'z-global-vars';
+@import 'z-global-mixin';
+
+h1 {
+  font-family: $font-main;
+  font-weight: $font-weight-3;
+  font-size: $h1-size-desktop;
+  line-height: $h1-lineheight-desktop;
+  margin-bottom: $h1-marginbottom-desktop;
+  @include define-hyphens;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#b4ddb4+0,83c783+17,52b152+33,008a00+67,005700+83,002400+100;Green+3D+%231 */
+  background: rgb(180,221,180); /* Old browsers */
+  background: -moz-linear-gradient(45deg, rgba(180,221,180,1) 0%, rgba(131,199,131,1) 17%, rgba(82,177,82,1) 33%, rgba(0,138,0,1) 67%, rgba(0,87,0,1) 83%, rgba(0,36,0,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg, rgba(180,221,180,1) 0%,rgba(131,199,131,1) 17%,rgba(82,177,82,1) 33%,rgba(0,138,0,1) 67%,rgba(0,87,0,1) 83%,rgba(0,36,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg, rgba(180,221,180,1) 0%,rgba(131,199,131,1) 17%,rgba(82,177,82,1) 33%,rgba(0,138,0,1) 67%,rgba(0,87,0,1) 83%,rgba(0,36,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ddb4', endColorstr='#002400',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+h2 {
+  font-family: $font-main;
+  font-weight: $font-weight-3;
+  font-size: $h2-size-desktop;
+  line-height: $h2-lineheight-desktop;
+  margin-bottom: $h2-marginbottom-desktop;
+  @include define-hyphens;
+}
+
+h3 {
+  font-family: $font-main;
+  font-weight: $font-weight-3;
+  font-size: $h3-size-desktop;
+  line-height: $h3-lineheight-desktop;
+  margin-bottom: $h3-marginbottom-desktop;
+  @include define-hyphens;
+}
+
+h4 {
+  font-family:  $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h4-size-desktop;
+  line-height: $h4-lineheight-desktop;
+  margin-bottom: $h4-marginbottom-desktop;
+  @include define-hyphens;
+}
+
+h5 {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h5-size-desktop;
+  line-height: $h5-lineheight-desktop;
+  margin-bottom: $h5-marginbottom-desktop;
+  @include define-hyphens;
+}
+
+h6 {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h6-size-desktop;
+  line-height: $h6-lineheight-desktop;
+  margin-bottom: $h6-marginbottom-desktop;
+  @include define-hyphens;
+}
+
+p {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $paragraph-size-desktop;
+  line-height: $paragraph-lineheight-desktop;
+  margin: 0 0 $paragraph-marginbottom-desktop 0;
+  padding: 0;
+  @include define-hyphens;
+}
+
+.cta-1 {
+  font-family: $font-main;
+  font-weight:$font-weight-1;
+  font-size: $cta1-size-desktop;
+  line-height: $cta1-lineheight-desktop;
+  margin-bottom: $cta1-marginbottom-desktop;
+  @include define-hyphens;
+}
+
+.hamburger {
+  font-family: $font-main;
+  font-weight:$font-weight-3;
+  font-size: $cta1-size-desktop;
+  line-height: $cta1-lineheight-desktop;
+  text-transform: uppercase;
+}
+
+.content-styled {
+  strong {
+    font-weight: $font-weight-2;
+  }
+  ul {
+    font-family: $font-main;
+    font-weight: $font-weight-1;
+    font-size: $paragraph-size-desktop;
+    line-height: $paragraph-lineheight-desktop;
+    margin-bottom: $paragraph-marginbottom-desktop;
+    list-style-position:inside;
+    list-style: none;
+    padding: 0;
+    @include define-hyphens;
+  }
+  ul li {
+    display: table-row;
+  }
+  ul li:before {
+    position: relative;
+    display: table-cell;
+    content: '•';
+    font-size: 20px;
+    color: $color-1;
+    font-weight: $font-weight-1;
+    padding: 0 10px 0 0;
+  }
+  ol {
+    font-family: $font-main;
+    font-weight: $font-weight-1;
+    font-size: $paragraph-size-desktop;
+    line-height: $paragraph-lineheight-desktop;
+    margin-bottom: $paragraph-marginbottom-desktop;
+    list-style-type: none;
+    list-style-type: decimal;
+    padding: 0;
+    counter-reset: li-counter;
+    @include define-hyphens;
+  }
+  ol > li {
+  	overflow: hidden;
+  	position: relative;
+  	margin:0;
+  	padding:0 0 0 20px;
+  	display: table-row;
+  }
+  ol > li:before {
+  	position: relative;
+  	display: table-cell;
+    top: 0;
+    left:0;
+  	color: $color-1;
+    font-family: $font-main;
+    font-weight: $font-weight-3;
+    font-size: $paragraph-size-desktop;
+    text-align: right;
+    content: counter(li-counter)" ";
+    counter-increment: li-counter;
+  	padding: 0 15px 0 0;
+  }
+}
+
+.expander {
+  font-family: $font-main;
+  position: relative;
+  line-height: 17px !important;
+  font-weight: $font-weight-2 !important;
+  padding-left: 25px !important;
+  text-align: left;
+  color: $color-2;
+  @include reset-button;
+  font-family:  $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h4-size-desktop;
+  line-height: $h4-lineheight-desktop;
+  .exp-plus {
+    &:before {
+      position: absolute;
+      left: 0;
+      font-family: "Font Awesome 5 Free";
+      content: "\f0fe";
+    }
+  }
+  .exp-minus {
+    &:before {
+      position: absolute;
+      left: 0;
+      font-family: "Font Awesome 5 Free";
+      content: '\f146';
+    }
+  }
+}
+
+
+
+a.button:link, a.button:visited, a.button:hover {
+  display: inline-block;
+  padding: 10px 20px;
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h5-size-desktop;
+  line-height: $h5-lineheight-desktop;
+  margin-bottom: $h5-marginbottom-desktop;
+  word-wrap:break-word;
+  text-transform: uppercase;
+}
+
+a.button-small:link, a.button-small:visited, a.button-small:hover {
+  display: inline-block;
+  padding: 2px 6px;
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h5-size-desktop;
+  line-height: $h5-lineheight-desktop;
+  margin-bottom: $h5-marginbottom-desktop;
+  word-wrap:break-word;
+  text-transform: uppercase;
+}
