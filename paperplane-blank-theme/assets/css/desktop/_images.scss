@@ -1,0 +1,35 @@
+@import '../0-global/vars';
+@import '../0-global/mixin';
+
+.wp-caption.alignnone,
+.wp-caption.aligncenter {
+	margin-bottom: 15px;
+}
+
+.wp-caption.alignleft,
+.wp-caption.alignright {
+	width: 50% !important;
+	margin-bottom: 15px;
+}
+
+.wp-caption.alignleft {
+	float: left;
+	margin-right: 15px;
+}
+
+.wp-caption.alignright {
+	float: right;
+	margin-left: 15px;
+}
+
+.wp-caption.alignnone .wp-caption-text,
+.wp-caption.aligncenter .wp-caption-text,
+.wp-caption.alignleft .wp-caption-text,
+.wp-caption.alignright .wp-caption-text,
+.wp-caption-text {
+	font-family: $font-main;
+  font-weight:$font-weight-1;
+  font-size: $cta1-size-desktop;
+  line-height: $cta1-lineheight-desktop;
+	font-style: italic;
+}

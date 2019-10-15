@@ -1,0 +1,39 @@
+@import 'vars';
+@import 'mixin';
+
+.no-the-100 {
+	width: 100%;
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.wp-caption.alignnone,
+.wp-caption.aligncenter {
+	position: relative;
+	width: 100% !important;
+	display: block;
+}
+
+.wp-caption.alignleft,
+.wp-caption.alignright {
+	position: relative;
+}
+
+.wp-caption.alignnone, .wp-caption.aligncenter, .wp-caption.alignleft, .wp-caption.alignright {
+	img {
+		width: 100% !important;
+		height: auto !important;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+.wp-caption.alignnone .wp-caption-text,
+.wp-caption.aligncenter .wp-caption-text,
+.wp-caption.alignleft .wp-caption-text,
+.wp-caption.alignright .wp-caption-text,
+.wp-caption-text {
+
+}

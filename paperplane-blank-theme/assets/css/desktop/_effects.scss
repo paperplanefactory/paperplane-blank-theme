@@ -1,0 +1,26 @@
+@import '../0-global/vars';
+@import '../0-global/mixin';
+
+// lazy load / infinite load
+
+.lazy {
+	position: relative;
+	opacity: 0;
+	@include define-basic-transition(all, .3s);
+}
+
+.lazy-loading {
+	@include define-blur(20px);
+}
+
+.lazy-loaded {
+	@include define-blur(0);
+	opacity: 1;
+}
+
+.box-fullscreen {
+	&.lazy {
+		@include define-blur(0);
+		opacity: 1 !important;
+	}
+}

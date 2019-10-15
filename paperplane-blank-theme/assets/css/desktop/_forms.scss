@@ -1,0 +1,34 @@
+@import '../0-global/vars';
+@import '../0-global/mixin';
+
+// forms
+.form-hold {
+	margin: 10px 0;
+	label {
+		font-size: $h5-size-desktop;
+		line-height: $h5-lineheight-desktop;
+		margin-bottom: 5px;
+	}
+	input[type=text],
+	input[type=email],
+	input[type=number],
+	input[type=tel] {
+		font-size: $h5-size-desktop;
+		line-height: $h5-lineheight-desktop;
+		margin-bottom: 15px;
+	}
+	textarea {
+		font-size: $h5-size-desktop;
+		line-height: 18px;
+		margin-bottom: 15px;
+	}
+	select {
+		font-size: $h5-size-desktop;
+		line-height: 18px;
+		margin-bottom: 15px;
+	}
+	input[type=submit] {
+		font-size: $paragraph-size-desktop;
+		font-weight: $font-weight-3;
+	}
+}

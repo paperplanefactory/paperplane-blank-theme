@@ -1,0 +1,73 @@
+@import '../0-global/vars';
+@import '../0-global/mixin';
+
+.slider-nav {
+  width: calc(100% - 50px);
+  margin: 25px 0 0 25px;
+  .slick-prev {
+    left: -25px;
+    margin-top: -23px;
+  }
+  .slick-next {
+    right: -25px;
+    margin-top: -23px;
+  }
+}
+
+// navigation
+
+.slick-arrow {
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  margin-top: -5px;
+}
+
+.slick-prev {
+  top: 50%;
+  left: 10px;
+}
+
+.slick-next {
+  top: 50%;
+  right: 10px;
+}
+
+.slick-dots {
+  text-align: center;
+  padding: 10px 0 0 0 !important;
+  li {
+    display: inline-block;
+    margin: 0 5px;
+    button {
+      width: 20px;
+      height: 20px;
+      border: none;
+      background-color: $color-3;
+      font-size: 0;
+      margin: 0;
+      padding: 0;
+      @include define-basic-transition(all, 0.3s);
+      @include define-border-radius(20px);
+      cursor: pointer;
+      &:hover {
+        background-color: $color-1;
+      }
+    }
+    &.slick-active {
+      button {
+        background-color: $color-1;
+      }
+    }
+  }
+}
+
+.paging-info {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 10px 0 0 0;
+  text-align: center;
+}

@@ -1,0 +1,125 @@
+@import '../0-global/vars';
+@import '../0-global/mixin';
+
+// wrappers and more
+
+.wrapper {
+  position:relative;
+  width: 100%;
+	margin: 0 auto;
+}
+
+.wrapper-padded {
+  position:relative;
+  width: calc(100% - 50px);
+  margin: 0 auto;
+  padding: 0 25px 0 25px;
+}
+
+.wrapper-padded-more {
+  position:relative;
+  width: 100%;
+	max-width: 1150px;
+	margin: 0 auto;
+}
+
+.wrapper-padded-more-840 {
+  position:relative;
+  width: 100%;
+	max-width: 840px;
+	margin: 0 auto;
+}
+
+.wrapper-padded-more-650 {
+  position:relative;
+  width: 100%;
+	max-width: 650px;
+	margin: 0 auto;
+}
+
+.wrapper-padded-more-500 {
+  position:relative;
+  width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.expandable-content {
+  padding-top: 15px;
+  display: none;
+}
+
+// paddings- margins
+
+.modulo-space {
+  padding: 40px 0;
+}
+
+// fullscreen boxes
+
+.box-fullscreen {
+	position: relative;
+	display: block;
+	width: 100%;
+  min-height: calc(100vh - #{$header-height});
+  overflow: hidden;
+}
+
+.coverize {
+  background-size: cover;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+}
+
+.fixx {
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}
+
+.bg-covered {
+  width: 100%;
+	height: calc(100vh - #{$header-height});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}
+
+.fullscreen-cta {
+  @include flex-wrap;
+}
+
+
+.fullscreen-cta-center-object {
+  padding: 0;
+  margin: 0;
+  @include flex-verticalize;
+  .fullscreen-cta-aligner {
+    .fullscreen-cta-safe-padding {
+      padding: 5vh 0;
+    }
+  }
+}
+
+.fullscreen-cta-center {
+  padding: 0;
+  margin: 0;
+  @include flex-verticalize;
+  .fullscreen-cta-aligner {
+    .fullscreen-cta-safe-padding {
+      padding: 5vh 0;
+    }
+  }
+}
+
+.fullscreen-cta-bottom {
+  padding: 0;
+  margin: 0;
+  .fullscreen-cta-aligner {
+    align-self: flex-end;
+    .fullscreen-cta-safe-padding {
+      padding: 5vh 0;
+    }
+  }
+}
