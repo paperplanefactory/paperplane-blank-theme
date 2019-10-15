@@ -49,7 +49,7 @@ global $module_count;
 <body>
 
 <div id="preheader"></div>
-<header id="header" class="bg-5">
+<header id="header" class="bg-1 clearlink-area txt-4">
   <div class="wrapper-padded">
     <div id="header-structure">
       <div class="logo">
@@ -62,7 +62,7 @@ global $module_count;
         }
         ?>
       </nav>
-      <div class="hamburger">
+      <div class="side-head">
         <ul>
           <li>
             <div type="button" aria-haspopup="true" aria-expanded="false" aria-label="Navigation" class="hambuger-element ham-activator">
@@ -79,7 +79,7 @@ global $module_count;
 </header>
 
 
-<div id="head-overlay" class="bg-6">
+<div id="head-overlay" class="hidden bg-1 clearlink-area txt-4">
   <div class="scroll-opportunity">
     <div class="wrapper">
       <div class="wrapper-padded">

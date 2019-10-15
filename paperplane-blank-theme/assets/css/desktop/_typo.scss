@@ -1,0 +1,141 @@
+@import '../0-global/vars';
+@import '../0-global/mixin';
+
+h1 {
+  font-family: $font-main;
+  font-weight: $font-weight-3;
+  font-size: $h1-size-desktop;
+  line-height: $h1-lineheight-desktop;
+  margin-bottom: $h1-marginbottom-desktop;
+}
+
+
+h2 {
+  font-family: $font-main;
+  font-weight: $font-weight-3;
+  font-size: $h2-size-desktop;
+  line-height: $h2-lineheight-desktop;
+  margin-bottom: $h2-marginbottom-desktop;
+}
+
+h3 {
+  font-family: $font-main;
+  font-weight: $font-weight-3;
+  font-size: $h3-size-desktop;
+  line-height: $h3-lineheight-desktop;
+  margin-bottom: $h3-marginbottom-desktop;
+}
+
+h4 {
+  font-family:  $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h4-size-desktop;
+  line-height: $h4-lineheight-desktop;
+  margin-bottom: $h4-marginbottom-desktop;
+}
+
+h5 {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h5-size-desktop;
+  line-height: $h5-lineheight-desktop;
+  margin-bottom: $h5-marginbottom-desktop;
+}
+
+h6 {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h6-size-desktop;
+  line-height: $h6-lineheight-desktop;
+  margin-bottom: $h6-marginbottom-desktop;
+}
+
+p {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $paragraph-size-desktop;
+  line-height: $paragraph-lineheight-desktop;
+  margin: 0 0 $paragraph-marginbottom-desktop 0;
+  padding: 0;
+}
+
+.cta-1, .round-button {
+  font-family: $font-main;
+  font-weight:$font-weight-1;
+  font-size: $cta1-size-desktop;
+  line-height: $cta1-lineheight-desktop;
+  margin-bottom: $cta1-marginbottom-desktop;
+}
+
+.content-styled {
+  ul {
+    font-weight: $font-weight-1;
+    font-size: $paragraph-size-desktop;
+    line-height: $paragraph-lineheight-desktop;
+    margin-bottom: $paragraph-marginbottom-desktop;
+    li {
+      display: table-row;
+      &:before {
+        font-size: 20px;
+        font-weight: $font-weight-1;
+      }
+    }
+  }
+  ol {
+    font-family: $font-main;
+    font-weight: $font-weight-1;
+    font-size: $paragraph-size-desktop;
+    line-height: $paragraph-lineheight-desktop;
+    margin-bottom: $paragraph-marginbottom-desktop;
+  }
+  ol > li {
+    &:before {
+      font-weight: $font-weight-3;
+      font-size: $paragraph-size-desktop;
+    }
+  }
+}
+
+.wp-caption.alignnone .wp-caption-text,
+.wp-caption.aligncenter .wp-caption-text,
+.wp-caption.alignleft .wp-caption-text,
+.wp-caption.alignright .wp-caption-text,
+.wp-caption-text {
+	font-family: $font-main;
+  font-weight:$font-weight-1;
+  font-size: $cta1-size-desktop;
+  line-height: $cta1-lineheight-desktop;
+  word-wrap:break-word;
+	font-style: italic;
+}
+
+.expander {
+  font-family: $font-main;
+  position: relative;
+  line-height: 17px !important;
+  font-weight: $font-weight-2 !important;
+  padding-left: 25px !important;
+  text-align: left;
+  color: $color-2;
+  @include reset-button;
+  font-family:  $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h4-size-desktop;
+  line-height: $h4-lineheight-desktop;
+  .exp-plus {
+    &:before {
+      position: absolute;
+      left: 0;
+      font-family: "Font Awesome 5 Free";
+      content: "\f0fe";
+    }
+  }
+  .exp-minus {
+    &:before {
+      position: absolute;
+      left: 0;
+      font-family: "Font Awesome 5 Free";
+      content: '\f146';
+    }
+  }
+}

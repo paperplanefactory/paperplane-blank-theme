@@ -32,12 +32,6 @@ if ( !is_admin() ) {
 		wp_enqueue_style( 'theme-font', 'https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Roboto:400,400i,700,700i#asyncload', '', $theme_version, 'all' );
 		wp_enqueue_style( 'theme-font-awesome', 'https://use.fontawesome.com/releases/v5.8.1/css/all.css#asyncload', array(), null );
 		// wp_enqueue_style( 'material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons', '', $theme_version, 'all' );
-		// gestione stili CF7
-		if ( is_page( array( 47, 562 ) ) ) {
-			if ( function_exists( 'wpcf7_enqueue_styles' ) ) {
-				wpcf7_enqueue_styles();
-			}
-		}
 	}
 	add_action( 'wp_enqueue_scripts', 'theme_css' );
 }

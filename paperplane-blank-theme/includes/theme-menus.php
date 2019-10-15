@@ -60,5 +60,15 @@ if( function_exists('acf_add_options_page') ) {
       'parent_slug'     => $parent['menu_slug'],
     ) );
   }
+}
 
+// show flamingo to editors
+add_filter( 'flamingo_map_meta_cap', 'for_editors_flamingo_map_meta_cap' );
+function for_editors_flamingo_map_meta_cap( $meta_caps ) {
+	$meta_caps = array_merge( $meta_caps, array(
+		'flamingo_edit_contacts' => 'edit_pages',
+		'flamingo_edit_inbound_messages' => 'edit_pages',
+	) );
+
+	return $meta_caps;
 }

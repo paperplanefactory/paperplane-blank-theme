@@ -2,8 +2,8 @@
 // Paperplane _blankTheme - template per footer.
 wp_reset_query();
 ?>
-<footer id="footer" class="bg-1 txt-6">
-  <div class="wrapper clear-link-area">
+<footer id="footer" class="bg-1 txt-4 clearlink-area">
+  <div class="wrapper">
     <div class="wrapper-padded">
       <div class="flex-hold flex-hold-3 margins-thin">
 
@@ -78,13 +78,21 @@ wp_reset_query();
             </div>
           </div>
         </div>
-
       </div>
     </div>
   <?php endif; ?>
 
-</footer>
+  <div class="wrapper bg-7 txt-4">
+    <div class="wrapper-padded">
+      <div class="wrapper-padded-more">
+        <div class="wrapper-padded-more-840">
+          <?php the_field( 'credits_and_more', 'option' ); ?>
+        </div>
+      </div>
+    </div>
+  </div>
 
+</footer>
 
 <?php wp_footer(); ?>
 </body>
