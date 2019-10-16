@@ -1570,11 +1570,9 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   }
   .slider-nav .slick-prev {
     left: -25px;
-    margin-top: -23px;
   }
   .slider-nav .slick-next {
     right: -25px;
-    margin-top: -23px;
   }
   .slick-arrow {
     position: absolute;
@@ -1582,14 +1580,15 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
     cursor: pointer;
     border: none;
     background-color: transparent;
-    margin-top: -5px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    top: 0;
   }
   .slick-prev {
-    top: 50%;
     left: 10px;
   }
   .slick-next {
-    top: 50%;
     right: 10px;
   }
   .slick-dots {

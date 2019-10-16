@@ -44,10 +44,9 @@ function all_scripts(){
   // documentazione: https://github.com/michalsnik/aos
   wp_register_script( 'theme-aos', get_stylesheet_directory_uri() . '/assets/js/libs/aos.min.js#deferload', '', $theme_version, true);
   wp_enqueue_script( 'theme-aos' );
-  // Lazy load
-  // documentazione: http://www.andreaverlicchi.eu/lazyload/
-  wp_register_script( 'vanilla-lazyload', get_stylesheet_directory_uri() . '/assets/js/libs/lazyload.min.js#deferload', '', '12.0.0', false);
-  wp_enqueue_script( 'vanilla-lazyload' );
+  //Smoothscroll
+  wp_register_script( 'smooth', get_stylesheet_directory_uri() . '/assets/js/libs/smoothscroll.min.js#deferload', '', $theme_version, true);
+  wp_enqueue_script( 'smooth' );
 	// Comportamenti ricorrenti
 	wp_register_script( 'theme-general', get_stylesheet_directory_uri() . '/assets/js/theme-general.min.js#deferload', '', $theme_version, true);
 	wp_enqueue_script( 'theme-general' );
@@ -55,6 +54,9 @@ function all_scripts(){
   // documentazione: https://github.com/js-cookie/js-cookie
 	wp_register_script( 'js-cookie', get_stylesheet_directory_uri() . '/assets/js/libs/js.cookie.min.js#deferload', '', '2.2.0', false);
 	wp_enqueue_script( 'js-cookie' );
+  //lax.js per effetti di parallasse
+  wp_register_script( 'parallasse', 'https://cdn.jsdelivr.net/npm/lax.js', '', '1.10.0', true );
+  wp_enqueue_script( 'parallasse' );
   // slick
   // documentazione: https://github.com/kenwheeler/slick
   wp_register_script( 'slick', get_stylesheet_directory_uri() . '/assets/js/libs/slick.min.js#deferload', '', $theme_version, false);
