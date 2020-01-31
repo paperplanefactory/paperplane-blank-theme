@@ -1,9 +1,6 @@
 <?php
-// imposto la versione del tema
-global $theme_version;
-if( class_exists('acf') ) {
-  $theme_version = get_field( 'theme_version', 'option' );
-}
+// gestione caching parameter
+include_once "includes/theme-caching-parameter.php";
 // gestione caricamento css
 include_once "includes/theme-stylesloader.php";
 // gestione caricamento script
@@ -27,11 +24,7 @@ include_once "includes/theme-embedded-acf-parnters-sponsors.php";
 // gestione tassonomie
 include_once "includes/theme-taxonomies.php";
 // transients killer
-include_once "includes/theme-transients-killer.php";
-// gestione cookies
-//include_once "functions/theme-cookies-handler.php";
-// infinite posts
-//include_once "functions/theme-infinite-posts.php";
+// include_once "includes/theme-transients-killer.php";
 
 //load_theme_textdomain( 'paperplane-theme', '/languages' );
 load_theme_textdomain( 'paperplane-theme', TEMPLATEPATH.'/languages' );

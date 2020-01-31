@@ -139,19 +139,16 @@ $('.slider-for').slick({
 	slidesToScroll: 1,
 	infinite: true,
 	arrows: false,
-	//fade: true,
-	//asNavFor: '.slider-nav',
+	fade: true,
+	asNavFor: '.slider-nav',
 	lazyLoad: 'ondemand',
-	swipeToSlide: true,
-	vertical: true
 });
 $('.slider-nav').slick({
-	slidesToShow: 5,
+	slidesToShow: 3,
 	slidesToScroll: 1,
 	infinite: true,
 	asNavFor: '.slider-for',
-	swipeToSlide: true,
-	dots: false,
+	dots: true,
 	centerMode: true,
 	arrows: true,
 	focusOnSelect: true,
@@ -186,13 +183,13 @@ else {
 	e.preventDefault();
 });
 
-/////////////////////////////////////
-// Smoothscroll init
-////////////////////////////////////
-function init(){
-	//Parametri: target, pixel a scrollata, smoothness
-	new SmoothScroll(document,150,10)
+/////////////////////////////////////////////
+// preload
+/////////////////////////////////////////////
+
+function hidePreload() {
+	$('.preload-container').addClass('hidden-preload');
+	//alert('dfg');
 }
 
-init();
-///////////////////////////////////////////
+window.addEventListener('load', hidePreload);

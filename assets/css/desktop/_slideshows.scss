@@ -6,9 +6,11 @@
   margin: 25px 0 0 25px;
   .slick-prev {
     left: -25px;
+    margin-top: -23px;
   }
   .slick-next {
     right: -25px;
+    margin-top: -23px;
   }
 }
 
@@ -20,17 +22,16 @@
   cursor: pointer;
   border: none;
   background-color: transparent;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  top: 0;
+  margin-top: -5px;
 }
 
 .slick-prev {
+  top: 50%;
   left: 10px;
 }
 
 .slick-next {
+  top: 50%;
   right: 10px;
 }
 

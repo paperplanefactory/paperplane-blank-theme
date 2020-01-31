@@ -44,8 +44,9 @@
 // IMPORTANTE!!
 // 0 - verifica di utilizzare l'ultima versione del tema!!
 // 1 - rinominare la cartella del tema
-// 2 - compilare il file style.css con il nome del tema
+// 2 - compilare il file style.css con il nome del tema e il percorso alla repo del tema su GitHub
 // 3 - nel file wp-config.php modificare la riga define( 'UPLOADS', 'blankuploads' ); con il nome della cartella uploads corretta
+// 4 - installare anche il plugin https://github.com/afragen/github-updater scaricando l'ultima release: https://github.com/afragen/github-updater/releases
 
 // MENU NOTES
 // i menu non vengono stampati a meno che non siano stati definiti in back end. I menu non devono più avere  <ul> e </ul> intorno perchè tutto viene generato delle opzioni:
