@@ -1,3 +1,4 @@
+ // main: ../style.scss
 @import 'vars';
 @import 'mixin';
 
@@ -70,6 +71,12 @@
 }
 
 // link behaviour and colors
+:-webkit-any-link {
+  @include define-basic-transition(all, 0.3s);
+}
+:-moz-any-link {
+  @include define-basic-transition(all, 0.3s);
+}
 :any-link {
   @include define-basic-transition(all, 0.3s);
 }
@@ -112,7 +119,8 @@ a.clear-link:hover, a.clear-link:active {
 .content-styled {
 	a:link, a:visited {
 		text-decoration: underline;
-		text-decoration-style: double;
+		-webkit-text-decoration-style: double;
+		        text-decoration-style: double;
 	}
 	a:hover, a:active {
 	 color: $color-4;

@@ -1,12 +1,14 @@
 <?php
-// gestione caching parameter
+// gestione caching parameter per css e script
 include_once "includes/theme-caching-parameter.php";
 // gestione caricamento css
 include_once "includes/theme-stylesloader.php";
 // gestione caricamento script
 include_once "includes/theme-scriptsloader.php";
+// gestione ritagli immagini
+include_once "includes/theme-images-crop.php";
 // gestione immagini
-include_once "includes/theme-images.php";
+include_once "includes/theme-images-grab.php";
 // lazy load
 include_once "includes/theme-lazyload.php";
 // gestione trim testi
@@ -26,5 +28,5 @@ include_once "includes/theme-taxonomies.php";
 // transients killer
 // include_once "includes/theme-transients-killer.php";
 
-//load_theme_textdomain( 'paperplane-theme', '/languages' );
+// load_theme_textdomain( 'paperplane-theme', '/languages' );
 load_theme_textdomain( 'paperplane-theme', TEMPLATEPATH.'/languages' );
