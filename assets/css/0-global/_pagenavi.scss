@@ -1,41 +1,42 @@
+// main: ../style.scss
 @import 'vars';
-@import 'mixin';
-
-// pagenavi
+@import 'mixin'; // pagenavi
 
 .wp-pagenavi {
-	display:block;
-	width:100%;
+	display: block;
+	width: 100%;
 	font-size: $h4-size-desktop;
 	font-weight: $font-weight-2;
 }
 
-.wp-pagenavi .last, .wp-pagenavi .extend, .wp-pagenavi .first {
-	display:none !important;
+.wp-pagenavi .extend,
+.wp-pagenavi .first,
+.wp-pagenavi .last {
+	display: none !important;
 }
 
 .wp-pagenavi .pages {
-	display:none;
+	display: none;
 }
 
 .wp-pagenavi .previouspostslink {
-	display:inline-block;
-	float:left;
-	margin:0 20px 0 0;
+	display: inline-block;
+	float: left;
+	margin: 0 20px 0 0;
 	color: $color-2;
 }
 
 .wp-pagenavi .nextpostslink {
-	display:inline-block;
-	float:left;
-	margin:0 20px 0 0;
+	display: inline-block;
+	float: left;
+	margin: 0 20px 0 0;
 	color: $color-2;
 }
 
 .wp-pagenavi a {
-	display:inline-block;
-	float:left;
-	margin:0 20px 0 0;
+	display: inline-block;
+	float: left;
+	margin: 0 20px 0 0;
 	color: $color-2;
 	border: none !important;
 }
@@ -53,16 +54,16 @@
 }
 
 .wp-pagenavi .page {
-	display:inline-block;
-	float:left;
-	margin:0 20px 0 0;
+	display: inline-block;
+	float: left;
+	margin: 0 20px 0 0;
 	color: $color-2;
 }
 
 .wp-pagenavi span.current {
-	display:inline-block;
-	float:left;
-	margin:0 20px 0 0;
+	display: inline-block;
+	float: left;
+	margin: 0 20px 0 0;
 	color: $color-3;
 	border: none !important;
 }

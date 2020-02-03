@@ -1,8 +1,9 @@
+// main: ../style.scss
 @import '../0-global/vars';
 @import '../0-global/mixin';
 
-.wp-caption.alignnone,
-.wp-caption.aligncenter {
+.wp-caption.aligncenter,
+.wp-caption.alignnone {
 	margin-bottom: 15px;
 }
 
@@ -22,14 +23,14 @@
 	margin-left: 15px;
 }
 
-.wp-caption.alignnone .wp-caption-text,
+.wp-caption-text,
 .wp-caption.aligncenter .wp-caption-text,
 .wp-caption.alignleft .wp-caption-text,
-.wp-caption.alignright .wp-caption-text,
-.wp-caption-text {
+.wp-caption.alignnone .wp-caption-text,
+.wp-caption.alignright .wp-caption-text {
 	font-family: $font-main;
-  font-weight:$font-weight-1;
-  font-size: $cta1-size-desktop;
-  line-height: $cta1-lineheight-desktop;
+	font-weight: $font-weight-1;
+	font-size: $cta1-size-desktop;
+	line-height: $cta1-lineheight-desktop;
 	font-style: italic;
 }

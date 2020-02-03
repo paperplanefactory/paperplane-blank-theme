@@ -157,10 +157,6 @@ a {
   text-decoration: none;
   border: none;
   outline: none !important;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
@@ -191,8 +187,7 @@ a {
 }
 
 .verticalize {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+  -webkit-align-items: center;
   align-items: center;
 }
 
@@ -332,10 +327,6 @@ a {
   width: 100vw;
   opacity: 1;
   pointer-events: all;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
@@ -367,13 +358,11 @@ a {
 #header-structure {
   position: relative;
   width: calc(100% - 18px);
-  display: -webkit-box;
-  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+  -webkit-align-items: center;
   align-items: center;
 }
 
@@ -472,11 +461,15 @@ a {
   background-color: #FFFFFF;
 }
 
+:-webkit-any-link {
+  transition: all 0.3s ease-in-out;
+}
+
+:-moz-any-link {
+  transition: all 0.3s ease-in-out;
+}
+
 :any-link {
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
@@ -516,6 +509,7 @@ a.clear-link:hover, a.clear-link:active {
 
 .content-styled a:link, .content-styled a:visited {
   text-decoration: underline;
+  -webkit-text-decoration-style: double;
   text-decoration-style: double;
 }
 
@@ -548,7 +542,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   word-wrap: break-word;
   overflow-wrap: break-word;
   -webkit-hyphens: auto;
-  -moz-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
 }
@@ -651,8 +644,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   padding: 0;
   margin: 7px 0 0 0;
   -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
   transform: rotate(0deg);
   cursor: pointer;
   border: none !important;
@@ -672,13 +663,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   opacity: 1;
   left: 0;
   -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: all 0.15s ease-in-out;
-  -moz-transition: all 0.15s ease-in-out;
-  -o-transition: all 0.15s ease-in-out;
-  -ms-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
 }
 
@@ -702,15 +687,11 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
 
 .hambuger-element.open span:nth-child(2) {
   -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
 .hambuger-element.open span:nth-child(3) {
   -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 
@@ -724,9 +705,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   position: relative;
   display: inline-block;
   padding: 10px 20px 10px 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
   border-radius: 20px;
   text-align: center;
   text-decoration: none !important;
@@ -795,10 +773,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   background-color: #FFFFFF;
   pointer-events: none;
   opacity: 1;
-  -webkit-transition: opacity 0.5s ease-in-out;
-  -moz-transition: opacity 0.5s ease-in-out;
-  -o-transition: opacity 0.5s ease-in-out;
-  -ms-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
 }
 
@@ -825,7 +799,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   height: 50%;
   position: relative;
   -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
   transform: scale(1.1);
 }
 
@@ -840,7 +813,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
   animation: sk-foldCubeAngle 2.4s infinite linear both;
   -webkit-transform-origin: 100% 100%;
-  -ms-transform-origin: 100% 100%;
   transform-origin: 100% 100%;
 }
 
@@ -919,8 +891,8 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   height: auto;
 }
 
-.wp-caption.alignnone,
-.wp-caption.aligncenter {
+.wp-caption.aligncenter,
+.wp-caption.alignnone {
   position: relative;
   width: 100% !important;
   display: block;
@@ -931,7 +903,10 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   position: relative;
 }
 
-.wp-caption.alignnone img, .wp-caption.aligncenter img, .wp-caption.alignleft img, .wp-caption.alignright img {
+.wp-caption.aligncenter img,
+.wp-caption.alignleft img,
+.wp-caption.alignnone img,
+.wp-caption.alignright img {
   width: 100% !important;
   height: auto !important;
   padding: 0;
@@ -1005,9 +980,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   position: relative;
   display: block;
   padding: 10px 20px 10px 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
   border-radius: 20px;
   text-align: center;
   margin: 20px 0 0 0;
@@ -1016,10 +988,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   background-color: #000000;
   border: none;
   cursor: pointer;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   white-space: normal;
 }
@@ -1040,10 +1008,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
 .form-hold input[type=tel]:focus,
 .form-hold select:active {
   border-color: #0DBA04;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
@@ -1157,9 +1121,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
     margin-left: -90px;
     padding: 10px 0 10px 0 !important;
     width: 180px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
     border-radius: 3px;
     background-color: #333333;
     text-align: left;
@@ -1168,15 +1129,9 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
     font-size: 14px;
     line-height: 21px;
     text-transform: uppercase;
-    -webkit-box-shadow: 0px 3px 6px 2px rgba(0, 0, 0, 0.16);
-    -moz-box-shadow: 0px 3px 6px 2px rgba(0, 0, 0, 0.16);
     box-shadow: 0px 3px 6px 2px rgba(0, 0, 0, 0.16);
     opacity: 0;
     pointer-events: none;
-    -webkit-transition: opacity 0.15s ease-in-out;
-    -moz-transition: opacity 0.15s ease-in-out;
-    -o-transition: opacity 0.15s ease-in-out;
-    -ms-transition: opacity 0.15s ease-in-out;
     transition: opacity 0.15s ease-in-out;
     overflow: hidden;
   }
@@ -1292,17 +1247,15 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
     background-position: 50% 0;
   }
   .fullscreen-cta {
-    display: -webkit-box;
-    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
   }
   .fullscreen-cta-center-object {
     padding: 0;
     margin: 0;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
+    -webkit-align-items: center;
     align-items: center;
   }
   .fullscreen-cta-center-object .fullscreen-cta-aligner .fullscreen-cta-safe-padding {
@@ -1311,8 +1264,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   .fullscreen-cta-center {
     padding: 0;
     margin: 0;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
+    -webkit-align-items: center;
     align-items: center;
   }
   .fullscreen-cta-center .fullscreen-cta-aligner .fullscreen-cta-safe-padding {
@@ -1323,6 +1275,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
     margin: 0;
   }
   .fullscreen-cta-bottom .fullscreen-cta-aligner {
+    -webkit-align-self: flex-end;
     align-self: flex-end;
   }
   .fullscreen-cta-bottom .fullscreen-cta-aligner .fullscreen-cta-safe-padding {
@@ -1335,33 +1288,32 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   .flex-hold {
     position: relative;
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
   }
   .parnter-grid {
     margin-top: 20px;
   }
   .partner-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
     width: 100%;
   }
   .partner-label {
     width: 100%;
+    -webkit-align-items: flex-start;
     align-items: flex-start;
   }
   .partner-logo {
-    display: -webkit-box;
-    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-align-items: center;
     align-items: center;
   }
   .flex-hold-2.margins-thin .flex-hold-child {
@@ -1599,8 +1551,8 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
     font-family: "Font Awesome 5 Free";
     content: '\f146';
   }
-  .wp-caption.alignnone,
-  .wp-caption.aligncenter {
+  .wp-caption.aligncenter,
+  .wp-caption.alignnone {
     margin-bottom: 15px;
   }
   .wp-caption.alignleft,
@@ -1616,11 +1568,11 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
     float: right;
     margin-left: 15px;
   }
-  .wp-caption.alignnone .wp-caption-text,
+  .wp-caption-text,
   .wp-caption.aligncenter .wp-caption-text,
   .wp-caption.alignleft .wp-caption-text,
-  .wp-caption.alignright .wp-caption-text,
-  .wp-caption-text {
+  .wp-caption.alignnone .wp-caption-text,
+  .wp-caption.alignright .wp-caption-text {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 12px;
@@ -1630,10 +1582,6 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   .lazy {
     position: relative;
     opacity: 0;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
   }
   .lazy-loading {
@@ -1733,14 +1681,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
     font-size: 0;
     margin: 0;
     padding: 0;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
     border-radius: 20px;
     cursor: pointer;
   }
