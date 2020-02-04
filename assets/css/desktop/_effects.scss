@@ -1,13 +1,11 @@
- // main: ../style.scss
+// main: ../style.scss
 @import '../0-global/vars';
-@import '../0-global/mixin';
-
-// lazy load / infinite load
+@import '../0-global/mixin'; // lazy load / infinite load
 
 .lazy {
 	position: relative;
 	opacity: 0;
-	@include define-basic-transition(all, .3s);
+	@include define-basic-transition(all, 0.3s);
 }
 
 .lazy-loading {
