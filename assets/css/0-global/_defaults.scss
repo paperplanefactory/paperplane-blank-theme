@@ -80,56 +80,6 @@
 	}
 }
 
-// banner cookies
-
-#paperplane-cookie-notice {
-	position: fixed;
-	z-index: 9999;
-	display: block;
-	//visibility: hidden;
-	display: none;
-	width: calc(100vw - 44px);
-	bottom: 10px;
-	left: 10px;
-	font-family: $font-main !important;
-  font-weight:$font-weight-1 !important;
-  font-size: $cta1-size-smartphone !important;
-  line-height: $cta1-lineheight-smartphone !important;
-	border: $color-4 solid 3px !important;
-	background-color: $color-1 !important;
-	color: $color-4 !important;
-	.paperplane-cookie-notice-container {
-		position: relative;
-		width: calc(100% - 20px);
-		margin: 0 auto;
-		padding: 10px;
-		text-align: center;
-		.paperplane-message-cookie-accepted, .paperplane-message-cookie-refused {
-			display: none;
-		}
-	}
-	a {
-		display: inline-block;
-		margin: 5px;
-		padding: 3px 6px;
-		background-color: $color-4;
-		color: $color-1 !important;
-		text-transform: uppercase;
-	}
-}
-
-.paperplane-gdpr-content-message {
-	position: relative;
-	padding: 10px;
-	margin: 20px 0;
-	background-color: $color-1;
-	color: $color-4;
-	p {
-		margin-bottom: 0;
-		//text-transform: uppercase;
-	}
-}
-
 // responsive iframes / videos
 
 .video_frame {

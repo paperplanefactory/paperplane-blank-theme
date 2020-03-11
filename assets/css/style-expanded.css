@@ -237,56 +237,6 @@ a {
   text-transform: uppercase;
 }
 
-#paperplane-cookie-notice {
-  position: fixed;
-  z-index: 9999;
-  display: block;
-  display: none;
-  width: calc(100vw - 44px);
-  bottom: 10px;
-  left: 10px;
-  font-family: "Roboto", sans-serif !important;
-  font-weight: 400 !important;
-  font-size: 12px !important;
-  line-height: 20px !important;
-  border: #FFFFFF solid 3px !important;
-  background-color: #000000 !important;
-  color: #FFFFFF !important;
-}
-
-#paperplane-cookie-notice .paperplane-cookie-notice-container {
-  position: relative;
-  width: calc(100% - 20px);
-  margin: 0 auto;
-  padding: 10px;
-  text-align: center;
-}
-
-#paperplane-cookie-notice .paperplane-cookie-notice-container .paperplane-message-cookie-accepted, #paperplane-cookie-notice .paperplane-cookie-notice-container .paperplane-message-cookie-refused {
-  display: none;
-}
-
-#paperplane-cookie-notice a {
-  display: inline-block;
-  margin: 5px;
-  padding: 3px 6px;
-  background-color: #FFFFFF;
-  color: #000000 !important;
-  text-transform: uppercase;
-}
-
-.paperplane-gdpr-content-message {
-  position: relative;
-  padding: 10px;
-  margin: 20px 0;
-  background-color: #000000;
-  color: #FFFFFF;
-}
-
-.paperplane-gdpr-content-message p {
-  margin-bottom: 0;
-}
-
 .video_frame {
   position: relative;
   padding-bottom: 56.25%;
@@ -1698,6 +1648,71 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
     padding: 10px 0 0 0;
     text-align: center;
   }
+}
+
+#paperplane-cookie-notice {
+  position: fixed;
+  z-index: 9999;
+  width: calc(100% - 26px);
+  bottom: 10px;
+  left: 10px;
+  font-weight: normal;
+  font-family: fantasy;
+  font-size: 12px;
+  line-height: 18px;
+  border: #989898 solid 3px;
+  background-color: #000000;
+  color: #FFFFFF;
+  transition: opacity 1s;
+  pointer-events: none;
+  opacity: 0;
+}
+
+#paperplane-cookie-notice.shown {
+  pointer-events: all;
+  opacity: 1;
+}
+
+#paperplane-cookie-notice .paperplane-cookie-notice-container {
+  position: relative;
+  width: calc(100% - 20px);
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+
+#paperplane-cookie-notice .paperplane-cookie-notice-container .paperplane-message-cookie-accepted, #paperplane-cookie-notice .paperplane-cookie-notice-container .paperplane-message-cookie-refused {
+  display: none;
+}
+
+#paperplane-cookie-notice a {
+  display: inline-block;
+  margin: 5px;
+  padding: 3px 6px;
+  background-color: #FFFFFF;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+.paperplane-gdpr-content-message {
+  position: relative;
+  padding: 10px;
+  margin: 20px 0;
+  background-color: #000000;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.paperplane-gdpr-content-message p {
+  margin: 0;
+}
+
+.cookies-list-block {
+  border-bottom: #000000 solid 1px;
+  padding-bottom: 10px;
+  margin-top: 20px;
 }
 
 [data-aos][data-aos][data-aos-duration="50"], body[data-aos-duration="50"] [data-aos] {
