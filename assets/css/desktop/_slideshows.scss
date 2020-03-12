@@ -1,6 +1,24 @@
  // main: ../style.scss
-@import '../0-global/vars';
-@import '../0-global/mixin';
+@import '../global/vars';
+@import '../global/mixin';
+
+.slide-double {
+  position: relative;
+  left: -32px;
+  width: calc(100% + 64px);
+  background-color: lime;
+}
+
+.single-slide {
+  .container {
+    padding: 0 32px 0 32px !important;
+    background-color: red;
+  }
+}
+
+.slide-caption {
+  margin-top: 20px;
+}
 
 .slider-nav {
   width: calc(100% - 50px);

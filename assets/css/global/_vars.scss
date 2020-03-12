@@ -2,11 +2,13 @@
 $break-desktop: 1024px;
 $break-tablet-end: 1023px;
 $break-mobile-start: 1px; // fonts vars
-$font-main: 'Roboto', sans-serif;
-$font-sub: 'Roboto', sans-serif;
+$font-main: 'Montserrat', sans-serif;
+$font-sub: 'Lora', serif;
 $font-weight-1: 400; //regular
 $font-weight-2: 500; //medium
 $font-weight-3: 700; //bold
+// header sizes
+$header-desktop-height: 60px;
 // colors vars
 $color-1: #000000;
 $color-2: #333333;
@@ -16,28 +18,28 @@ $color-form-ok: #0DBA04;
 $color-form-error: #FF0000; //fonts desktop
 $h1-size-desktop: 36px;
 $h1-lineheight-desktop: 36px;
-$h1-marginbottom-desktop: 8px;
+$h1-marginbottom-desktop: 20px;
 $h2-size-desktop: 28px;
 $h2-lineheight-desktop: 36px;
-$h2-marginbottom-desktop: 12px;
+$h2-marginbottom-desktop: 20px;
 $h3-size-desktop: 24px;
 $h3-lineheight-desktop: 30px;
-$h3-marginbottom-desktop: 12px;
+$h3-marginbottom-desktop: 20px;
 $h4-size-desktop: 21px;
 $h4-lineheight-desktop: 30px;
-$h4-marginbottom-desktop: 8px;
+$h4-marginbottom-desktop: 20px;
 $h5-size-desktop: 14px;
 $h5-lineheight-desktop: 21px;
-$h5-marginbottom-desktop: 8px;
+$h5-marginbottom-desktop: 20px;
 $h6-size-desktop: 12px;
 $h6-lineheight-desktop: 14px;
-$h6-marginbottom-desktop: 0;
+$h6-marginbottom-desktop: 20px;
 $paragraph-size-desktop: 16px;
 $paragraph-lineheight-desktop: 24px;
-$paragraph-marginbottom-desktop: 24px;
-$cta1-size-desktop: 12px;
-$cta1-lineheight-desktop: 20px;
-$cta1-marginbottom-desktop: 10px; //fonts smartphone
+$paragraph-marginbottom-desktop: 20px;
+$cta1-size-desktop: 14px;
+$cta1-lineheight-desktop: 15px;
+$cta1-marginbottom-desktop: 20px; //fonts smartphone
 $h1-size-smartphone: 24px;
 $h1-lineheight-smartphone: 24px;
 $h1-marginbottom-smartphone: 4px;
@@ -57,7 +59,7 @@ $h6-size-smartphone: 12px;
 $h6-lineheight-smartphone: 14px;
 $h6-marginbottom-smartphone: 0;
 $paragraph-size-smartphone: 14px;
-$paragraph-lineheight-smartphone: 22px;
+$paragraph-lineheight-smartphone: 26px;
 $paragraph-marginbottom-smartphone: 22px;
 $cta1-size-smartphone: 12px;
 $cta1-lineheight-smartphone: 20px;

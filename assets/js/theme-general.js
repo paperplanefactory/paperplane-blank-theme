@@ -155,6 +155,32 @@ $('.slider-nav').slick({
   prevArrow: '<div class="slick-prev"><i class="fas fa-long-arrow-alt-left" aria-label="previous"></i></div>'
 });
 
+
+
+
+
+
+$('.slide-double').slick({
+  dots: false,
+  focusOnSelect: true,
+  draggable: true,
+  infinite: true,
+  accessibility: true,
+  adaptiveHeight: false,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  nextArrow: '<div class="slick-next"><i class="fas fa-long-arrow-alt-right" aria-label="next"></i></div>',
+  prevArrow: '<div class="slick-prev"><i class="fas fa-long-arrow-alt-left" aria-label="previous"></i></div>'
+});
+$(document).on('keydown', function(e) {
+  if (e.keyCode == 37) {
+    $('.single-item').slick('slickPrev');
+  }
+  if (e.keyCode == 39) {
+    $('.single-item').slick('slickNext');
+  }
+});
+
 /////////////////////////////////////////////
 // click hamburger
 /////////////////////////////////////////////

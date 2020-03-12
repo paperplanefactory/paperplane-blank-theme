@@ -1,23 +1,26 @@
 // compileExpanded: style-expanded.css, compileCompressed: ../../style.min.css
 
 // imports
-@import '0-global/vars';
-@import '0-global/mixin';
-@import '0-global/reset';
-@import '0-global/defaults';
-@import '0-global/header-footer';
-@import '0-global/colors-links';
-@import '0-global/typo';
-@import '0-global/buttons';
-@import '0-global/effects';
-@import '0-global/images';
-@import '0-global/forms';
+@import 'global/vars';
+@import 'global/mixin';
+@import 'global/reset';
+@import 'global/defaults';
+@import 'global/header-footer';
+@import 'global/colors-links';
+@import 'global/typo';
+@import 'global/grids';
+@import 'global/modules';
+@import 'global/buttons';
+@import 'global/effects';
+@import 'global/images';
+@import 'global/forms';
 
 // imports mobile
 @media screen and (min-width: $break-mobile-start) and  (max-width: $break-tablet-end) {
   @import 'mobile/header-footer';
   @import 'mobile/structure';
   @import 'mobile/grids';
+  @import 'mobile/modules';
   @import 'mobile/typo';
   @import 'mobile/images';
   @import 'mobile/effects';
@@ -29,17 +32,18 @@
   @import 'desktop/header-footer';
   @import 'desktop/structure';
   @import 'desktop/grids';
+  @import 'desktop/modules';
   @import 'desktop/typo';
   @import 'desktop/images';
   @import 'desktop/effects';
   @import 'desktop/forms';
   @import 'desktop/slideshows';
 }
-@import '0-global/cookies';
-@import '0-global/libraries/aos';
-@import '0-global/libraries/slick';
+@import 'global/cookies';
+@import 'global/libraries/aos';
+@import 'global/libraries/slick';
 // rimuovere il commento se si usa pagenavi - https://wordpress.org/plugins/wp-pagenavi/
-// @import 'pagenavi';
+// @import 'global/pagenavi';
 //@import 'global/visual-debug';
 
 // IMPORTANTE!!

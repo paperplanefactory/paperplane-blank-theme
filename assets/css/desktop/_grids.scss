@@ -1,6 +1,6 @@
  // main: ../style.scss
-@import '../0-global/vars';
-@import '../0-global/mixin';
+@import '../global/vars';
+@import '../global/mixin';
 
 .expandable-content {
   padding-top: 15px;
@@ -13,11 +13,7 @@
 // valore margin right - (valore margin right / numero elmenti per riga)
 // es. 16 - (16/2) = 8
 
-.flex-hold {
-	position: relative;
-	width: 100%;
-  @include flex-wrap;
-}
+
 
 .parnter-grid {
   margin-top: 20px;
@@ -45,8 +41,8 @@
     .flex-hold-child {
       position: relative;
       -webkit-box-flex: 1;
-      width: calc(50% - 8px) !important;
-      margin: 0 16px 16px 0;
+      width: calc(50% - 36px) !important;
+      margin: 0 72px 24px 0;
     }
 
     .flex-hold-child:nth-child(2n) {
@@ -57,8 +53,8 @@
     .flex-hold-child {
       position: relative;
       -webkit-box-flex: 1;
-      width: calc(50% - 15px) !important;
-      margin: 0 30px 30px 0;
+      width: calc(50% - 36px) !important;
+      margin: 0 72px 48px 0;
     }
 
     .flex-hold-child:nth-child(2n) {
@@ -91,8 +87,8 @@
     .flex-hold-child {
       position: relative;
       -webkit-box-flex: 1;
-      width: calc(33.333333% - 22px);
-      margin: 0 33px 33px 0;
+      width: calc(33.333333% - 48px);
+      margin: 0 72px 48px 0;
     }
     .flex-hold-child:nth-child(3n) {
       margin-right: 0;
@@ -106,6 +102,42 @@
     }
   }
 }
+
+.flex-fix-column {
+  &.left-fix {
+    .fix {
+      position: relative;
+      -webkit-box-flex: 1;
+      width: calc(33.333333% - 48px);
+      margin: 0 72px 48px 0;
+    }
+    .nofix {
+      width: calc(66.666666% - 48px);
+      margin-right: 0;
+    }
+  }
+
+  &.right-fix {
+    .fix {
+      position: relative;
+      -webkit-box-flex: 1;
+      width: calc(33.333333% - 48px);
+      margin: 0 0 48px 72px;
+    }
+    .nofix {
+      width: calc(66.666666% - 48px);
+      margin-right: 0;
+    }
+  }
+
+}
+
+
+
+
+
+
+
 
 .flex-hold-4 {
   &.margins-thin {
@@ -124,8 +156,8 @@
     .flex-hold-child {
       position: relative;
       -webkit-box-flex: 1;
-      width: calc(25% - 30px) !important;
-      margin: 0 40px 40px 0;
+      width: calc(25% - 36px) !important;
+      margin: 0 48px 48px 0;
     }
 
     .flex-hold-child:nth-child(4n) {

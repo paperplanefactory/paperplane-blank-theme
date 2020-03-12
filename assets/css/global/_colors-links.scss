@@ -119,16 +119,13 @@ a.clear-link:hover, a.clear-link:active {
 .content-styled {
 	a:link, a:visited {
 		text-decoration: underline;
-		-webkit-text-decoration-style: double;
-		        text-decoration-style: double;
 	}
 	a:hover, a:active {
-	 color: $color-4;
-	 background-color: $color-1;
+
 	}
 }
 
-.dark-round-button {
+.dark-default-button {
 	color: $color-4 !important;
 	background-color: $color-1 !important;
 	&:hover {
@@ -137,7 +134,7 @@ a.clear-link:hover, a.clear-link:active {
 	}
 }
 
-.clear-round-button {
+.clear-default-button {
 	color: $color-1 !important;
 	background-color: $color-3 !important;
 	&:hover {
