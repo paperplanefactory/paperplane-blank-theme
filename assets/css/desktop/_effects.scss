@@ -1,12 +1,28 @@
 // main: ../style.scss
-@import '../0-global/vars';
-@import '../0-global/mixin'; // lazy load / infinite load
+@import '../global/vars';
+@import '../global/mixin'; // lazy load / infinite load
+
+.blended {
+	background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: multiply;
+}
 
 .lazy {
 	position: relative;
 	opacity: 0;
 	@include define-basic-transition(all, 0.3s);
+	&.image-icon {
+		opacity: 1;
+	}
 }
+
+span {
+	&.lazy {
+		position: relative;
+		opacity: 1;
+	}
+}
+
 
 .lazy-loading {
 	@include define-blur(20px);

@@ -1,0 +1,9 @@
+ // main: ../style.scss
+@import 'vars';
+@import 'mixin';
+
+.flex-hold {
+	position: relative;
+	width: 100%;
+  @include flex-wrap;
+}

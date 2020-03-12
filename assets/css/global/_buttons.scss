@@ -66,11 +66,12 @@
   left: 50%;
 }
 
-.round-button {
+.default-button {
 	position: relative;
 	display: inline-block;
-	padding: 10px 20px 10px 20px;
-	@include define-border-radius(20px);
+	padding: 14px 22px;
+	@include define-border-radius(24px);
 	text-align: center;
   text-decoration: none !important;
+  max-width: 250px;
 }

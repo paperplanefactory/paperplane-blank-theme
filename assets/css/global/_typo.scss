@@ -3,11 +3,23 @@
 @import 'mixin';
 
 h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
-  @include define-hyphens;
+  //@include define-hyphens;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+  font-weight: $font-weight-1;
+}
+
+.cta-1, .default-button {
+  font-weight: $font-weight-3;
+}
+
+h1, h2, h3, h4, h5, h6, .cta-1 {
   font-family: $font-main;
+}
+
+p, ul, ol {
+  font-family: $font-sub;
 }
 
 .aligncenter {
@@ -51,7 +63,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
 // remove typography elements last child margin bottom
 
 .last-child-no-margin {
-	h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child, h6:last-child, p:last-child {
+	h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child, h6:last-child, p:last-child, ul:last-child, ol:last-child {
     margin-bottom: 0 !important;
   }
 }
@@ -69,7 +81,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
       &:before {
         position: relative;
         display: table-cell;
-        content: '•';
+        content: '○';
         color: $color-1;
         padding: 0 10px 0 0;
       }
@@ -94,7 +106,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
       left:0;
     	color: $color-1;
       text-align: right;
-      content: counter(li-counter)" ";
+      content: counter(li-counter)". ";
       counter-increment: li-counter;
     	padding: 0 15px 0 0;
     }

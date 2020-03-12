@@ -1,6 +1,6 @@
  // main: ../style.scss
-@import '../0-global/vars';
-@import '../0-global/mixin';
+@import '../global/vars';
+@import '../global/mixin';
 
 // wrappers and more
 
@@ -20,14 +20,21 @@
 .wrapper-padded-more {
   position:relative;
   width: 100%;
-	max-width: 1150px;
+	max-width: 1068px;
 	margin: 0 auto;
 }
 
-.wrapper-padded-more-840 {
+.wrapper-padded-more-924 {
   position:relative;
   width: 100%;
-	max-width: 840px;
+	max-width: 924px;
+	margin: 0 auto;
+}
+
+.wrapper-padded-more-700 {
+  position:relative;
+  width: 100%;
+	max-width: 700px;
 	margin: 0 auto;
 }
 
@@ -58,13 +65,7 @@
 
 // fullscreen boxes
 
-.box-fullscreen {
-	position: relative;
-	display: block;
-	width: 100%;
-  min-height: calc(100vh - #{$header-height});
-  overflow: hidden;
-}
+
 
 .coverize {
   background-size: cover;
@@ -87,9 +88,7 @@
   background-position: 50% 0;
 }
 
-.fullscreen-cta {
-  @include flex-wrap;
-}
+
 
 
 .fullscreen-cta-center-object {
@@ -97,29 +96,6 @@
   margin: 0;
   @include flex-verticalize;
   .fullscreen-cta-aligner {
-    .fullscreen-cta-safe-padding {
-      padding: 5vh 0;
-    }
-  }
-}
-
-.fullscreen-cta-center {
-  padding: 0;
-  margin: 0;
-  @include flex-verticalize;
-  .fullscreen-cta-aligner {
-    .fullscreen-cta-safe-padding {
-      padding: 5vh 0;
-    }
-  }
-}
-
-.fullscreen-cta-bottom {
-  padding: 0;
-  margin: 0;
-  .fullscreen-cta-aligner {
-    -webkit-align-self: flex-end;
-            align-self: flex-end;
     .fullscreen-cta-safe-padding {
       padding: 5vh 0;
     }
