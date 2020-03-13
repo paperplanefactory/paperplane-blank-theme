@@ -108,10 +108,12 @@
     .fix {
       position: relative;
       -webkit-box-flex: 1;
+      order: 1;
       width: calc(33.333333% - 48px);
       margin: 0 72px 48px 0;
     }
     .nofix {
+      order: 2;
       width: calc(66.666666% - 48px);
       margin-right: 0;
     }
@@ -121,10 +123,12 @@
     .fix {
       position: relative;
       -webkit-box-flex: 1;
+      order: 2;
       width: calc(33.333333% - 48px);
       margin: 0 0 48px 72px;
     }
     .nofix {
+      order: 1;
       width: calc(66.666666% - 48px);
       margin-right: 0;
     }

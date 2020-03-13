@@ -72,3 +72,20 @@ function for_editors_flamingo_map_meta_cap( $meta_caps ) {
 
 	return $meta_caps;
 }
+
+
+add_action('admin_head', 'my_custom_acf');
+function my_custom_acf() {
+  echo '<style>
+  [data-name*="choose_module"] {
+    background-color: #2867c5 !important;
+    color: #FFFFFF;
+  }
+  .acf-label.acf-accordion-title, .acf-label.acf-accordion-title:hover  {
+    background-color: #989898 !important;
+    color: #000000;
+  }
+
+
+  </style>';
+}

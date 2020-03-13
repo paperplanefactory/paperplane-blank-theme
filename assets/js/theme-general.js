@@ -102,6 +102,20 @@ function hamburgerMenu(e) {
   $('#head-overlay').toggleClass('hidden');
 }
 
+/////////////////////////////////////////////
+// go Below The Fold
+/////////////////////////////////////////////
+
+function goBelowTheFold() {
+  $('html, body').animate({
+    scrollTop: $('.below-the-fold').offset().top - 100
+  }, 500)
+}
+
+// below the fold
+$('#intro-scroll-js').click(function() {
+  goBelowTheFold();
+});
 
 /////////////////////////////////////////////
 // slick slideshow
@@ -161,6 +175,7 @@ $('.slider-nav').slick({
 
 
 $('.slide-double').slick({
+  lazyLoad: 'ondemand',
   dots: false,
   focusOnSelect: true,
   draggable: true,
@@ -169,8 +184,8 @@ $('.slide-double').slick({
   adaptiveHeight: false,
   slidesToShow: 2,
   slidesToScroll: 1,
-  nextArrow: '<div class="slick-next"><i class="fas fa-long-arrow-alt-right" aria-label="next"></i></div>',
-  prevArrow: '<div class="slick-prev"><i class="fas fa-long-arrow-alt-left" aria-label="previous"></i></div>'
+  nextArrow: '<div class="slick-next"><div class="slide-button-shaper"><i class="fas fa-long-arrow-alt-right" aria-label="next"></i></div></div>',
+  prevArrow: '<div class="slick-prev"><div class="slide-button-shaper"><i class="fas fa-long-arrow-alt-left" aria-label="previous"></i></div></div>'
 });
 $(document).on('keydown', function(e) {
   if (e.keyCode == 37) {

@@ -16,7 +16,7 @@
 	}
 }
 
-span {
+span, video {
 	&.lazy {
 		position: relative;
 		opacity: 1;

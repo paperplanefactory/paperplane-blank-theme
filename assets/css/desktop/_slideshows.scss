@@ -6,13 +6,12 @@
   position: relative;
   left: -32px;
   width: calc(100% + 64px);
-  background-color: lime;
+  padding-bottom: 78px;
 }
 
 .single-slide {
   .container {
     padding: 0 32px 0 32px !important;
-    background-color: red;
   }
 }
 
@@ -20,16 +19,67 @@
   margin-top: 20px;
 }
 
-.slider-nav {
-  width: calc(100% - 50px);
-  margin: 25px 0 0 25px;
-  .slick-prev {
-    left: -25px;
-    margin-top: -23px;
+.slick-prev, .slick-next {
+  position: absolute;
+}
+
+.slick-prev {
+  bottom: 0;
+  left: 50%;
+  margin-left: -104px;
+  overflow: hidden;
+  width: 104px;
+  height: 50px;
+  border-right: $color-1 solid 1px !important;
+  .slide-button-shaper {
+    left: 0;
+    i {
+      left: 24px;
+    }
   }
-  .slick-next {
-    right: -25px;
-    margin-top: -23px;
+  &:hover {
+    .slide-button-shaper {
+      color: $color-4;
+      background-color: $color-1;
+    }
+
+  }
+}
+
+.slick-next {
+  bottom: 0;
+  left: 50%;
+  overflow: hidden;
+  width: 104px;
+  height: 50px;
+  .slide-button-shaper {
+    left: -28px;
+    i {
+      right: 24px;
+    }
+  }
+  &:hover {
+    .slide-button-shaper {
+      color: $color-4;
+      background-color: $color-1;
+    }
+
+  }
+}
+
+.slide-button-shaper {
+  position: absolute;
+  top: 0;
+  @include define-border-radius(24px);
+  width: 128px;
+  height: 48px;
+  border: $color-1 solid 1px;
+  color: $color-1;
+  background-color: $color-4;
+  @include define-basic-transition(all, 0.15s);
+  i {
+    position: absolute;
+    top: 17px;
   }
 }
 
@@ -42,16 +92,6 @@
   border: none;
   background-color: transparent;
   margin-top: -5px;
-}
-
-.slick-prev {
-  top: 50%;
-  left: 10px;
-}
-
-.slick-next {
-  top: 50%;
-  right: 10px;
 }
 
 .slick-dots {

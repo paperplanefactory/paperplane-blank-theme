@@ -52,6 +52,44 @@
   color: $color-4;
 }
 
+.combo-1 {
+	color: $color-4;
+	background-color: $color-1;
+	a:link, a:visited {
+	 color: $color-4;
+	}
+	a:hover, a:active {
+	 color: $color-4;
+	}
+	.default-button {
+		color: $color-1 !important;
+		background-color: $color-3 !important;
+		&:hover {
+			color: $color-4 !important;
+			background-color: $color-1 !important;
+		}
+	}
+}
+
+.combo-2 {
+	color: $color-1;
+	background-color: $color-3;
+	a:link, a:visited {
+	 color: $color-1;
+	}
+	a:hover, a:active {
+	 color: $color-1;
+	}
+	.default-button {
+		color: $color-4 !important;
+		background-color: $color-1 !important;
+		&:hover {
+			color: $color-1 !important;
+			background-color: $color-3 !important;
+		}
+	}
+}
+
 // bg colors
 
 .bg-1 {

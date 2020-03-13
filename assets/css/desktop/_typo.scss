@@ -83,6 +83,7 @@ p {
 .wp-caption.alignleft .wp-caption-text,
 .wp-caption.alignright .wp-caption-text,
 .wp-caption-text {
+  padding: 5px 0 0 0;
   font-size: $cta1-size-desktop;
   line-height: $cta1-lineheight-desktop;
   word-wrap:break-word;
