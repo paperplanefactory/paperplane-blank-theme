@@ -5,44 +5,7 @@ get_header();
 
 
 
-<div class="wrapper module-text">
-  <div class="module-spacer">
-    <div class="wrapper-padded">
-      <div class="wrapper-padded-more">
-        <div class="wrapper-padded-more-700">
-          <div class="content-styled last-child-no-margin">
-            <h1>Test tipografico h1<br />Test tipografico h1!!!!!</h1>
-            <h2>Test tipografico h2<br />Test tipografico h2</h2>
-            <h3>Test tipografico h3<br />Test tipografico h3</h3>
-            <h4>Test tipografico h4<br />Test tipografico h4</h4>
-            <h5>Test tipografico h5<br />Test tipografico h5</h5>
-            <h6>Test tipografico h6<br />Test tipografico h6</h6>
-            <p>
-              Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipiscing elit. <em>Sed facilisis sodales sem eu vestibulum</em>. Pellentesque mi nulla, molestie at accumsan sed, vulputate sed mauris. Phasellus orci arcu, iaculis eu finibus eu, efficitur et quam. Quisque lobortis, dolor quis dignissim porttitor, mi velit lacinia lectus, eget consectetur nisl orci a erat. Fusce posuere orci non felis maximus sodales. Fusce eu augue auctor, congue nisl sit amet, dapibus ligula. Quisque id diam nisi. Nunc lacinia mauris vel tincidunt tincidunt. <strong>Nulla sed augue auctor, volutpat dui varius, rutrum arcu.</strong> Aliquam id sem odio. Ut a ligula tempor, dapibus magna ut, lobortis nunc. Fusce vitae mattis nibh.
-            </p>
-            <ul>
-              <li>Elenco puntato</li>
-              <li>Elenco puntato</li>
-              <li>Elenco puntato</li>
-              <li>Elenco puntato</li>
-              <li>Elenco puntato</li>
-            </ul>
-            <ol>
-              <li>Elenco numerato</li>
-              <li>Elenco numerato</li>
-              <li>Elenco numerato</li>
-              <li>Elenco numerato</li>
-              <li>Elenco numerato</li>
-            </ol>
-          </div>
-          <div class="cta-holder">
-            <a href="#" class="default-button dark-default-button allupper">Call to action</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 
@@ -102,25 +65,7 @@ get_header();
 </div>
 
 
-<div class="wrapper module-highlighted-sentence">
-  <div class="module-spacer">
-    <div class="wrapper-padded">
-      <div class="wrapper-padded-more">
-        <div class="wrapper-padded-more-924">
-          <div class="last-child-no-margin">
-            <h2>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</h2>
-            <h6>Nome Cognome</h6>
-          </div>
 
-          <div class="cta-holder">
-            <a href="#" class="default-button dark-default-button allupper">Call to action</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="wrapper module-highlighted-sentence">
   <div class="module-spacer">
@@ -684,6 +629,31 @@ get_header();
                   <h5 class="download-icon"><a href="#"><span class="lazy" data-bg="url(https://careers.moviri.com/careers-moviri-uploads/2020/02/security.svg)"></span>Modulo dichiarazione di conformità</a></h5>
                 </div>
               </div>
+              <div class="flex-hold-child">
+                <div class="download-block">
+                  <h5 class="download-icon"><a href="#"><span class="lazy" data-bg="url(https://careers.moviri.com/careers-moviri-uploads/2020/02/security.svg)"></span>Modulo dichiarazione di conformità</a></h5>
+                </div>
+              </div>
+              <div class="flex-hold-child">
+                <div class="download-block">
+                  <h5 class="download-icon"><a href="#"><span class="lazy" data-bg="url(https://careers.moviri.com/careers-moviri-uploads/2020/02/security.svg)"></span>Modulo dichiarazione di conformità</a></h5>
+                </div>
+              </div>
+              <div class="flex-hold-child">
+                <div class="download-block">
+                  <h5 class="download-icon"><a href="#"><span class="lazy" data-bg="url(https://careers.moviri.com/careers-moviri-uploads/2020/02/security.svg)"></span>Modulo dichiarazione di conformità</a></h5>
+                </div>
+              </div>
+              <div class="flex-hold-child">
+                <div class="download-block">
+                  <h5 class="download-icon"><a href="#"><span class="lazy" data-bg="url(https://careers.moviri.com/careers-moviri-uploads/2020/02/security.svg)"></span>Modulo dichiarazione di conformità</a></h5>
+                </div>
+              </div>
+              <div class="flex-hold-child">
+                <div class="download-block">
+                  <h5 class="download-icon"><a href="#"><span class="lazy" data-bg="url(https://careers.moviri.com/careers-moviri-uploads/2020/02/security.svg)"></span>Modulo dichiarazione di conformità</a></h5>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -788,8 +758,7 @@ get_header();
 
 <div class="wrapper module-slideshow">
   <div class="module-spacer">
-    <div class="wrapper-padded bg-1">
-      ss
+    <div class="wrapper-padded">
       <div class="slide-double">
         <div class="single-slide">
           <div class="container">
@@ -1148,7 +1117,5 @@ get_header();
     </div>
   </div>
 </div>
-<div class="wrapper bg-7 modulo-space">
-  <?php get_template_part( 'template-parts/slideshows/regular-slideshow' ); ?>
-</div>
+
 <?php get_footer(); ?>
