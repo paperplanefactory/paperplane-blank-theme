@@ -17,8 +17,6 @@ include_once "includes/theme-txts.php";
 include_once "includes/theme-messages.php";
 // custom menus
 include_once "includes/theme-menus.php";
-// embedded ACF version and info
-include_once "includes/theme-embedded-acf-version-and-info.php";
 // embedded ACF social
 include_once "includes/theme-embedded-acf-social.php";
 // embedded ACF parnters and sponsors

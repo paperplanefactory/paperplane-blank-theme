@@ -2,6 +2,21 @@
 @import '../global/vars';
 @import '../global/mixin';
 
+.column-color {
+	.no-the-100 {
+		width: calc(100% + 96px);
+		margin-left: -48px;
+		margin-top: -48px;
+	}
+	.image-rounder {
+		.no-the-100 {
+			width: 100%;
+			margin-left: 0;
+			margin-top: 0;
+		}
+	}
+}
+
 .wp-caption.aligncenter,
 .wp-caption.alignnone {
 	margin-bottom: 15px;

@@ -1,5 +1,5 @@
-<div class="flex-hold-child">
-  <div class="pad-top-2 pad-right-2 pad-bottom-2 pad-left-2">
+<div class="flex-hold flex-hold-block flex-hold-block-listed grid-item-infinite" data-aos="fade-up">
+  <div class="flex-hold-child-image">
     <a href="<?php the_permalink(); ?>">
       <?php
       $image_data = array(
@@ -8,14 +8,18 @@
           'size_fallback' => 'full_desk'
       );
       $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-          'retina' => 'full_desk_retina',
-          'desktop' => 'full_desk',
-          'mobile' => 'content_picture',
+          'retina' => 'content_picture_cropped',
+          'desktop' => 'content_picture_cropped',
+          'mobile' => 'content_picture_cropped',
           'micro' => 'micro'
       );
       print_theme_image( $image_data, $image_sizes );
       ?>
     </a>
-    <h6><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
+  </div>
+  <div class="flex-hold-child-texts">
+    <div class="last-child-no-margin">
+      <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+    </div>
   </div>
 </div>

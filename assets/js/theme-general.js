@@ -26,8 +26,9 @@ var paperPlaneLazyLoad = new LazyLoad({
 /////////////////////////////////////////////
 
 AOS.init({
-  duration: 600,
-  once: true,
+  duration: 900,
+  once: false,
+  mirror: true,
   //offset: 50
 });
 
@@ -41,11 +42,14 @@ function initInfiniteScroll() {
       path: '.nav-next a',
       append: '.grid-item-infinite',
       status: '#infscr-loading',
-      history: false,
+      prefill: true,
+      history: 'push',
+      historyTitle: true
     });
 
     $('.grid-infinite').on('append.infiniteScroll', function(event, response, path, items) {
       paperPlaneLazyLoad.update();
+      AOS.refresh();
     });
     window.setInterval(function() {
       if ($('.infinite-scroll-last').is(":visible")) {
@@ -88,7 +92,6 @@ function hamburgerMenu(e) {
   if ($('.hambuger-element').hasClass('open')) {
     $('html').css('overflowY', 'hidden');
     $('html').addClass('occupy-scrollbar');
-    $('.scroll-opportunity').removeClass('blurred');
     $('#header-overlay').focus();
     $(this).attr('aria-expanded', true);
   } else {
@@ -97,10 +100,42 @@ function hamburgerMenu(e) {
     $('#header').focus();
     $(this).attr('aria-expanded', false);
     $('.scroll-opportunity').scrollTop(0);
-    $('.scroll-opportunity').addClass('blurred');
   }
   $('#head-overlay').toggleClass('hidden');
+  $('.mega-menu-js').addClass('hidden');
 }
+
+/////////////////////////////////////////////
+// menu scroll effect
+/////////////////////////////////////////////
+
+var lastScrollTop = 0;
+
+function scrollDirectionMenu() {
+  var st = $(this).scrollTop();
+  if ((st > lastScrollTop) && (st > 100)) {
+    // downscroll code
+    $('#header').addClass('hidden');
+    $('.mega-menu-js').addClass('hidden');
+  } else {
+    // upscroll code
+    $('#header').removeClass('hidden');
+  }
+  lastScrollTop = st;
+}
+
+
+$(window).scroll(function(event) {
+  scrollDirectionMenu();
+});
+
+/////////////////////////////////////////////
+// mega menu
+/////////////////////////////////////////////
+
+$('.mega-menu-js').mouseleave(function() {
+  $(this).addClass('hidden');
+});
 
 /////////////////////////////////////////////
 // go Below The Fold
@@ -171,7 +206,9 @@ $('.slider-nav').slick({
 
 
 
-
+$('.slide-double').on('init reInit afterChange', function(event, slick, currentSlide, nextSlide) {
+  AOS.refresh();
+});
 
 
 $('.slide-double').slick({
@@ -195,6 +232,50 @@ $(document).on('keydown', function(e) {
     $('.single-item').slick('slickNext');
   }
 });
+
+/////////////////////////////////////////////
+// Numbers counter
+/////////////////////////////////////////////
+
+if ($('.count')[0]) {}
+
+function activateCounter() {
+  $('.count').each(function() {
+    $(this).prop('Counter', 0).animate({
+      Counter: $(this).attr('data-bar-number')
+
+    }, {
+      duration: 2000,
+      step: function(now) {
+        $(this).text(Math.ceil(now));
+        if ($(this).hasClass('percent-justnumber')) {
+          $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+        }
+
+      }
+    });
+  });
+}
+
+
+
+if (!!window.IntersectionObserver) {
+  let observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        console.log(entry);
+        entry.target.src = entry.target.dataset.src;
+        activateCounter();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    rootMargin: "0px 0px -200px 0px"
+  });
+  document.querySelectorAll('.count').forEach(count => {
+    observer.observe(count)
+  });
+} else document.querySelector('#warning').style.display = 'block';
 
 /////////////////////////////////////////////
 // click hamburger

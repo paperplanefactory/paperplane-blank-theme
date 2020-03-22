@@ -2,11 +2,6 @@
 @import '../global/vars';
 @import '../global/mixin';
 
-.expandable-content {
-  padding-top: 15px;
-  display: none;
-}
-
 // flex boxes
 
 // per calcolare la larghezza degli elementi flex:
@@ -67,6 +62,48 @@
       -webkit-box-flex: 1;
       width: 50%;
     }
+  }
+}
+
+.flex-hold-block {
+  &.flex-hold-block-listed {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: $color-2 solid 1px;
+  }
+  .flex-hold-child-image {
+    position: relative;
+    -webkit-box-flex: 1;
+    width: 236px;
+    margin-right: 72px;
+  }
+
+  .flex-hold-child-texts {
+    position: relative;
+    -webkit-box-flex: 1;
+    width: calc(100% - 308px);
+    margin-right: 0;
+  }
+}
+
+.flex-hold-page-opening {
+  .page-opening-text {
+    order: 1;
+    position: relative;
+    -webkit-box-flex: 1;
+    width: calc(50% + 35px);
+    .page-opening-text-space {
+      position: relative;
+      width: calc(100% - 70px - #{$wrapper-padded-desktop});
+      max-width: 960px;
+      padding: 5vh 70px 5vh $wrapper-padded-desktop;
+    }
+  }
+  .page-opening-image {
+    order: 1;
+    position: relative;
+    -webkit-box-flex: 1;
+    width: calc(50% - 35px);
   }
 }
 

@@ -33,6 +33,11 @@ h5 {
   margin-bottom: $h5-marginbottom-desktop;
 }
 
+.menu, .mega-menu {
+  font-size: $h5-size-desktop;
+  line-height: $h5-lineheight-desktop;
+}
+
 h6 {
   font-size: $h6-size-desktop;
   line-height: $h6-lineheight-desktop;
@@ -46,9 +51,15 @@ p {
   padding: 0;
 }
 
-.cta-1, .default-button {
+.cta-1, .default-button, .default-button-b, .cta-navi a {
   font-size: $cta1-size-desktop;
   line-height: $cta1-lineheight-desktop;
+  //margin-bottom: $cta1-marginbottom-desktop;
+}
+
+.cta-2 {
+  font-size: $cta2-size-desktop;
+  line-height: $cta2-lineheight-desktop;
   //margin-bottom: $cta1-marginbottom-desktop;
 }
 
@@ -96,7 +107,6 @@ p {
   font-weight: $font-weight-2 !important;
   padding-left: 25px !important;
   text-align: left;
-  color: $color-2;
   @include reset-button;
   font-family:  $font-main;
   font-weight: $font-weight-1;

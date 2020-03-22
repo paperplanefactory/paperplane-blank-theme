@@ -12,9 +12,9 @@
 
 .wrapper-padded {
   position:relative;
-  width: calc(100% - 50px);
+  width: calc(100% - (#{$wrapper-padded-desktop} * 2));
   margin: 0 auto;
-  padding: 0 25px 0 25px;
+  padding: 0 $wrapper-padded-desktop 0 $wrapper-padded-desktop;
 }
 
 .wrapper-padded-more {
@@ -52,26 +52,20 @@
 	margin: 0 auto;
 }
 
-.expandable-content {
-  padding-top: 15px;
-  display: none;
-}
-
 // paddings- margins
 
-.modulo-space {
-  padding: 40px 0;
+.page-opening-simple-spacer {
+  padding: 72px 0 48px 0;
+  .cta-holder {
+    margin: 35px 0 0 0;
+  }
 }
 
 // fullscreen boxes
 
 
 
-.coverize {
-  background-size: cover;
-  background-position: 50% 0;
-  background-repeat: no-repeat;
-}
+
 
 .fixx {
   background-size: cover;
@@ -80,13 +74,6 @@
   background-position: 50% 0;
 }
 
-.bg-covered {
-  width: 100%;
-	height: calc(100vh - #{$header-height});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 0;
-}
 
 
 

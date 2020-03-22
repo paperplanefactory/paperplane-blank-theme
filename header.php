@@ -23,10 +23,18 @@
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<?php wp_head();
+<?php
+wp_head();
 // stabilisco il device
 $module_count = 0;
 global $module_count;
+if (function_exists('pll_the_languages')) {
+  $acf_options_parameter = pll_current_language('slug');
+}
+else {
+  $acf_options_parameter = 'any-lang';
+}
+
 ?>
 <link rel="apple-touch-icon" sizes="57x57" href="<?php bloginfo('stylesheet_directory'); ?>/assets/images/favicons/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="<?php bloginfo('stylesheet_directory'); ?>/assets/images/favicons/apple-icon-60x60.png">
@@ -49,7 +57,7 @@ global $module_count;
 <body>
 
 <div id="preheader"></div>
-<header id="header" class="bg-1 clearlink-area txt-4">
+<header id="header" class="combo-1">
   <div class="wrapper-padded">
     <div id="header-structure">
       <div class="logo">
@@ -77,7 +85,7 @@ global $module_count;
     </div>
   </div>
 </header>
-
+<?php include( locate_template( 'template-parts/grid/mega-menu.php' ) ); ?>
 
 <div id="head-overlay" class="hidden bg-1 clearlink-area txt-4">
   <div class="scroll-opportunity">

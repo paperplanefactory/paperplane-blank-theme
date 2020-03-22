@@ -70,7 +70,7 @@ switch ( $module_additional_elements_cta_target ) {
                 </div>
                 <?php if ( get_sub_field( 'module_stripe_repeater_cta_text' ) ) : ?>
                   <div class="cta-holder">
-                    <a href="<?php echo $module_stripe_repeater_cta_url; ?>" target="<?php echo $module_stripe_repeater_cta_url_target; ?>" class="default-button dark-default-button allupper"><?php the_sub_field( 'module_stripe_repeater_cta_text' ); ?></a>
+                    <a href="<?php echo $module_stripe_repeater_cta_url; ?>" target="<?php echo $module_stripe_repeater_cta_url_target; ?>" class="<?php the_sub_field( 'module_stripe_repeater_cta_appearence' ); ?> allupper"><?php the_sub_field( 'module_stripe_repeater_cta_text' ); ?></a>
                   </div>
                 <?php endif; ?>
               </div>
@@ -81,7 +81,7 @@ switch ( $module_additional_elements_cta_target ) {
         <?php endwhile; endif; ?>
         <?php if ( get_sub_field( 'module_additional_elements_cta_text' ) ) : ?>
           <div class="cta-holder <?php the_sub_field( 'module_additional_elements_cta_align' ); ?>">
-            <a href="<?php echo $module_additional_elements_cta_url; ?>" target="<?php echo $module_additional_elements_cta_url_target; ?>" class="default-button dark-default-button allupper"><?php the_sub_field( 'module_additional_elements_cta_text' ); ?></a>
+            <a href="<?php echo $module_additional_elements_cta_url; ?>" target="<?php echo $module_additional_elements_cta_url_target; ?>" class="<?php the_sub_field( 'module_additional_elements_cta_appearence' ); ?> allupper"><?php the_sub_field( 'module_additional_elements_cta_text' ); ?></a>
           </div>
         <?php endif; ?>
 

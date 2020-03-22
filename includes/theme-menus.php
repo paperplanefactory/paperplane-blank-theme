@@ -60,6 +60,19 @@ if( function_exists('acf_add_options_page') ) {
       'parent_slug'     => $parent['menu_slug'],
     ) );
   }
+  $use_mega_menus = get_field( 'use_mega_menus', 'option');
+  if ( $use_mega_menus == 1 ) {
+    foreach ( $languages as $lang ) {
+      // gestione cookie GDPR
+      acf_add_options_sub_page( array (
+        'page_title' => 'Gestione mega menu (' . strtoupper( $lang ) . ')',
+        'menu_title' => __('Gestione mega menu (' . strtoupper( $lang ) . ')', 'text-domain'),
+        'menu_slug'  => "gestione-mega-menu-${lang}",
+        'post_id'    => $lang,
+        'parent_slug'     => $parent['menu_slug'],
+      ) );
+    }
+  }
 }
 
 // show flamingo to editors

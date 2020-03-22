@@ -2,8 +2,39 @@
 @import '../global/vars';
 @import '../global/mixin';
 
+.modules-handler {
+}
+
 .page-opening {
 
+}
+
+.page-opening-text-image-column-spacer {
+  padding-top:48px;
+  .cta-holder {
+    margin: 32px 0 0 0;
+  }
+  .no-the-100 {
+    margin-top:48px;
+  }
+}
+
+.breadcrumbs-holder {
+  margin-bottom: 32px;
+}
+
+.module-spacer {
+  padding: 70px 0;
+}
+
+.module-spacer-flex {
+  padding: 70px 0 22px 0;
+}
+
+.grid-listing-texts {
+  &.last-child-no-margin {
+    margin-top: 30px !important;
+  }
 }
 
 .fullscreen-video {
@@ -38,7 +69,6 @@
   width: 8vh;
   height: 8vh;
   @include define-border-radius(8vh);
-  background-color: $color-3;
   overflow: hidden;
   cursor: pointer;
 }
@@ -83,8 +113,20 @@
   }
 }
 
-.module-spacer {
-  padding: 70px 0;
+.fullscreen-cta-safe-padding, .page-opening-simple-spacer {
+  .last-child-no-margin {
+    max-width: 690px;
+  }
+  &.alignright {
+    .last-child-no-margin {
+      float: right;
+    }
+  }
+  &.aligncenter {
+    .last-child-no-margin {
+      margin: 0 auto;
+    }
+  }
 }
 
 .module-text {
@@ -98,7 +140,7 @@
   	position: relative;
   	display: block;
   	width: 100%;
-    min-height: calc(70vh - #{$header-desktop-height});
+    min-height: 60vh;
     overflow: hidden;
   }
 }
@@ -107,24 +149,6 @@
   .cta-holder {
     margin: 32px 0 0 0;
     //text-align: center;
-  }
-  .flex-hold {
-    .flex-hold-child {
-      position: relative;
-      -webkit-box-flex: 1;
-      width: 236px;
-      margin-right: 72px;
-    }
-    .flex-hold-child:first-child {
-      text-align: right;
-    }
-
-    .flex-hold-child:nth-child(2n) {
-      position: relative;
-      -webkit-box-flex: 1;
-      width: calc(100% - 308px);
-      margin-right: 0;
-    }
   }
 }
 
@@ -173,13 +197,15 @@
       margin: 35px 0 0 0;
     }
   }
-  .column-color {
-    padding: 48px 48px 48px 48px;
+  .fix {
     .last-child-no-margin {
       h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child, p:first-child, ul:first-child, ol:first-child {
         margin-top: 25px !important;
       }
     }
+  }
+  .column-color {
+    padding: 48px 48px 48px 48px;
     .cta-holder {
       margin: 48px 0 0 0;
       text-align: inherit !important;
@@ -187,7 +213,6 @@
   }
   .cta-holder {
     margin: 0;
-    text-align: center;
   }
 }
 
@@ -236,7 +261,49 @@
       }
     }
   }
+}
 
+.module-banner {
+  .banner-space {
+    padding: 48px 72px;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+  .flex-hold-banner-image {
+    .banner-box {
+      position: relative;
+      -webkit-box-flex: 1;
+    }
+    .banner-image {
+      width: 236px;
+      margin-right: 72px;
+    }
+    .banner-text {
+      width: calc(100% - 553px);
+    }
+
+    .banner-cta {
+      width: 210px;
+      margin-left: 35px;
+      text-align: right;
+    }
+  }
+  .flex-hold-banner {
+    .banner-box {
+      position: relative;
+      -webkit-box-flex: 1;
+    }
+    .banner-text {
+      width: calc(100% - 245px);
+    }
+
+    .banner-cta {
+      width: 210px;
+      margin-left: 35px;
+      text-align: right;
+    }
+  }
 }
 
 .image-icon {
@@ -250,35 +317,19 @@
 }
 
 .download-block {
-  h5 {
+  h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
   }
   .download-icon {
     position: relative;
-    padding-left: 73px;
-    span {
+    padding-left: 43px;
+    i {
       position: absolute;
       left: 0;
-      top: 0;
-      width: 73px;
-      height: 48px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: 0 0;
-      background-size: 48px auto;
-      margin-right: 25px;
-      &.link-download {
-        background-color: red;
-      }
-      &.link-url {
-        background-color: blue;
-      }
+      top: 4px;
+      font-size: 30px;
     }
   }
-}
-
-.download-icon {
-
 }
 
 .image-rounder {
@@ -297,4 +348,16 @@
   position: -o-sticky;
   position: sticky;
   top: calc(#{$header-desktop-height} + 35px);
+}
+
+.column-counter-wrapper {
+  margin-top: 25px;
+  h1, h2, h3, h4, h5, h6, p {
+    display: inline-block;
+    margin: 0 0 5px 0;
+  }
+}
+
+.expandable-content {
+  padding-top: 35px;
 }
