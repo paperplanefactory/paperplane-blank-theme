@@ -41,6 +41,14 @@
       case 'module-fullscreen-image' :
       include( locate_template( 'template-parts/modules/module-fullscreen-image.php' ) );
       break;
+      // module-expanding-text
+      case 'module-expanding-text' :
+      include( locate_template( 'template-parts/modules/module-expanding-text.php' ) );
+      break;
+      // module-banner
+      case 'module-banner' :
+      include( locate_template( 'template-parts/modules/module-banner.php' ) );
+      break;
     }
   }
 

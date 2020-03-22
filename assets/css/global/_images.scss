@@ -3,8 +3,8 @@
 @import 'mixin';
 
 .no-the-100 {
+	position: relative;
 	width: 100%;
-
 	img {
 		width: 100%;
 		height: auto;
@@ -40,3 +40,17 @@
 .wp-caption.alignleft .wp-caption-text,
 .wp-caption.alignnone .wp-caption-text,
 .wp-caption.alignright .wp-caption-text {}
+
+.coverize {
+  background-size: cover;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+}
+
+.bg-covered {
+  width: 100%;
+	height: calc(100vh - #{$header-desktop-height});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}

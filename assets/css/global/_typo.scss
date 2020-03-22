@@ -6,19 +6,23 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
   //@include define-hyphens;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, ol {
+h1, h2, h3, h4, h5, h6, p, ul, ol, .menu, .mega-menu-page-list {
   font-weight: $font-weight-1;
 }
 
-.cta-1, .default-button {
+.cta-1, .default-button, .default-button-b, .cta-navi a {
   font-weight: $font-weight-3;
 }
 
-h1, h2, h3, h4, h5, h6, .cta-1 {
+.cta-2 {
+  font-weight: $font-weight-4;
+}
+
+h1, h2, h3, h4, h5, h6, .cta-1, .cta-2, .menu, .mega-menu, .mega-menu p {
   font-family: $font-main;
 }
 
-p, ul, ol {
+p {
   font-family: $font-sub;
 }
 
@@ -71,6 +75,9 @@ p, ul, ol {
 .content-styled {
 	strong {
     font-weight: $font-weight-3;
+  }
+  ul, ol {
+    font-family: $font-sub;
   }
 	ul {
     list-style-position:inside;

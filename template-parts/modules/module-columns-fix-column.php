@@ -4,7 +4,7 @@ $module_columns_fix_side = get_sub_field( 'module_columns_fix_side' );
 $module_columns_fix_fix_column_background = get_sub_field( 'module_columns_fix_fix_column_background' );
 switch ( $module_columns_fix_fix_column_background ) {
   case 'no-bg' :
-  $module_columns_fix_fix_column_background_style = '';
+  $module_columns_fix_fix_column_background_style = 'no-bg';
   $module_columns_fix_fix_column_background_padding = '';
   break;
   case 'combo-1' :
@@ -13,6 +13,12 @@ switch ( $module_columns_fix_fix_column_background ) {
   break;
   case 'combo-2' :
   $module_columns_fix_fix_column_background_style = 'combo-2';
+  $module_columns_fix_fix_column_background_padding = 'column-color';
+  break;
+}
+$module_columns_fix_fix_column_box_shadow = get_sub_field( 'module_columns_fix_fix_column_box_shadow' );
+switch ( $module_columns_fix_fix_column_box_shadow ) {
+  case 'default-box-shadow' :
   $module_columns_fix_fix_column_background_padding = 'column-color';
   break;
 }
@@ -45,12 +51,12 @@ switch ( $module_columns_fix_content_type ) {
 }
  ?>
 <div class="wrapper module-columns-fix-column <?php the_sub_field( 'module_bg' ); ?>">
-  <div class="module-spacer">
+  <div class="module-spacer-flex">
     <div class="wrapper-padded">
       <div class="wrapper-padded-more">
         <div class="flex-hold flex-fix-column <?php the_sub_field( 'module_columns_fix_side' ); ?>">
           <div class="fix">
-            <div class="sticky-element <?php echo $module_columns_fix_fix_column_background_style; ?>">
+            <div class="sticky-element <?php echo $module_columns_fix_fix_column_background_style; ?> <?php the_sub_field( 'module_columns_fix_fix_column_box_shadow' ); ?>" data-aos="<?php the_sub_field( 'module_columns_fix_animation' ); ?>">
               <div class="<?php echo $module_columns_fix_fix_column_background_padding; ?>">
                 <div class="<?php the_sub_field( 'module_columns_fix_fix_column_align' ); ?>">
                   <?php if ( $module_columns_fix_fix_column_image != '' ) : ?>
@@ -97,7 +103,7 @@ switch ( $module_columns_fix_content_type ) {
                   <?php endif; ?>
                   <?php if ( get_sub_field( 'module_columns_fix_fix_column_cta_text' ) ) : ?>
                     <div class="cta-holder">
-                      <a href="<?php echo $module_columns_fix_fix_column_cta_url; ?>" target="<?php echo $module_columns_fix_fix_column_cta_url_target; ?>" class="default-button dark-default-button allupper"><?php the_sub_field( 'module_columns_fix_fix_column_cta_text' ); ?></a>
+                      <a href="<?php echo $module_columns_fix_fix_column_cta_url; ?>" target="<?php echo $module_columns_fix_fix_column_cta_url_target; ?>" class="<?php the_sub_field( 'module_columns_fix_fix_column_cta_appearence' ); ?> allupper"><?php the_sub_field( 'module_columns_fix_fix_column_cta_text' ); ?></a>
                     </div>
                   <?php endif; ?>
                 </div>
@@ -112,7 +118,7 @@ switch ( $module_columns_fix_content_type ) {
                 $module_columns_fix_repeater_background = get_sub_field( 'module_columns_fix_repeater_background' );
                 switch ( $module_columns_fix_repeater_background ) {
                   case 'no-bg' :
-                  $module_columns_fix_repeater_background_style = '';
+                  $module_columns_fix_repeater_background_style = 'no-bg';
                   $module_columns_fix_repeater_background_padding = '';
                   break;
                   case 'combo-1' :
@@ -121,6 +127,12 @@ switch ( $module_columns_fix_content_type ) {
                   break;
                   case 'combo-2' :
                   $module_columns_fix_repeater_background_style = 'combo-2';
+                  $module_columns_fix_repeater_background_padding = 'column-color';
+                  break;
+                }
+                $module_columns_fix_repeater_box_shadow = get_sub_field( 'module_columns_fix_repeater_box_shadow' );
+                switch ( $module_columns_fix_repeater_box_shadow ) {
+                  case 'default-box-shadow' :
                   $module_columns_fix_repeater_background_padding = 'column-color';
                   break;
                 }
@@ -143,9 +155,9 @@ switch ( $module_columns_fix_content_type ) {
                   break;
                 }
                 ?>
-                <div class="flex-hold-child <?php echo $module_columns_fix_repeater_background_style; ?>">
+                <div class="flex-hold-child <?php echo $module_columns_fix_repeater_background_style; ?> <?php the_sub_field( 'module_columns_fix_repeater_box_shadow' ); ?>">
                   <div class="<?php echo $module_columns_fix_repeater_background_padding; ?>">
-                    <div class="<?php the_sub_field( 'module_columns_fix_repeater_align' ); ?>">
+                    <div class="<?php the_sub_field( 'module_columns_fix_repeater_align' ); ?> --">
                       <?php if ( $module_columns_fix_repeater_image != '' ) : ?>
                         <?php if ( $module_columns_fix_repeater_image_format === 'normal-image' ) : ?>
                           <?php
@@ -190,7 +202,7 @@ switch ( $module_columns_fix_content_type ) {
                       <?php endif; ?>
                       <?php if ( get_sub_field( 'module_columns_fix_repeater_cta_text' ) ) : ?>
                         <div class="cta-holder">
-                          <a href="<?php echo $module_columns_fix_repeater_cta_url; ?>" target="<?php echo $module_columns_fix_repeater_cta_url_target; ?>" class="default-button dark-default-button allupper"><?php the_sub_field( 'module_columns_fix_repeater_cta_text' ); ?></a>
+                          <a href="<?php echo $module_columns_fix_repeater_cta_url; ?>" target="<?php echo $module_columns_fix_repeater_cta_url_target; ?>" class="<?php the_sub_field( 'module_columns_fix_repeater_cta_appearence' ); ?> allupper"><?php the_sub_field( 'module_columns_fix_repeater_cta_text' ); ?></a>
                         </div>
                       <?php endif; ?>
                     </div>
@@ -200,10 +212,26 @@ switch ( $module_columns_fix_content_type ) {
               <?php else : ?>
                 <?php
                 if ( have_rows( 'module_columns_fix_repeater_downloads' ) ) : while ( have_rows( 'module_columns_fix_repeater_downloads' ) ) : the_row();
+                $module_columns_fix_repeater_downloads_link_type = get_sub_field( 'module_columns_fix_repeater_downloads_link_type' );
+                switch ( $module_columns_fix_repeater_downloads_link_type ) {
+                  case 'link-download' :
+                  $module_columns_fix_repeater_downloads_link_url = get_sub_field( 'module_columns_fix_repeater_downloads_file' );
+                  $$module_columns_fix_repeater_downloads_link_icon = 'fas fa-file-download';
+                  break;
+                  case 'link-url' :
+                  $module_columns_fix_repeater_downloads_link_url = get_sub_field( 'module_columns_fix_repeater_downloads_url' );
+                  $$module_columns_fix_repeater_downloads_link_icon = 'fas fa-link';
+                  break;
+                }
                 ?>
                 <div class="flex-hold-child">
                   <div class="download-block">
-                    <h5 class="download-icon"><a href="<?php the_sub_field( 'module_columns_fix_repeater_downloads_file' ); ?>" target="_blank"><span class="<?php the_sub_field( 'module_columns_fix_repeater_downloads_link_type' ); ?>"></span><?php the_sub_field( 'module_columns_fix_repeater_downloads_title' ); ?></a></h5>
+                    <h5 class="download-icon">
+                      <a href="<?php echo $module_columns_fix_repeater_downloads_link_url; ?>" target="_blank">
+                        <i class="<?php echo $$module_columns_fix_repeater_downloads_link_icon; ?>"></i>
+                        <?php the_sub_field( 'module_columns_fix_repeater_downloads_title' ); ?>
+                      </a>
+                    </h5>
                   </div>
                 </div>
                 <?php endwhile; endif; ?>

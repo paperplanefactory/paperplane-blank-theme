@@ -24,8 +24,8 @@ switch ( $module_highlighted_sentence_cta_target ) {
       <div class="wrapper-padded-more">
         <div class="wrapper-padded-more-924">
           <?php if ( $module_highlighted_sentence_image != '' ) : ?>
-            <div class="flex-hold">
-              <div class="flex-hold-child">
+            <div class="flex-hold flex-hold-block">
+              <div class="flex-hold-child-image">
                 <?php if ( $module_highlighted_sentence_image_format === 'normal-image' ) : ?>
                   <?php
                   $image_data = array(
@@ -42,25 +42,27 @@ switch ( $module_highlighted_sentence_cta_target ) {
                   print_theme_image( $image_data, $image_sizes );
                   ?>
                 <?php else : ?>
-                  <div class="image-rounder">
-                    <?php
-                    $image_data = array(
-                        'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
-                        'image_value' => 'module_highlighted_sentence_image', // se utilizzi un custom field indica qui il nome del campo
-                        'size_fallback' => 'round_image'
-                    );
-                    $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                        'retina' => 'round_image',
-                        'desktop' => 'round_image',
-                        'mobile' => 'round_image',
-                        'micro' => 'micro'
-                    );
-                    print_theme_image( $image_data, $image_sizes );
-                    ?>
+                  <div class="alignright">
+                    <div class="image-rounder">
+                      <?php
+                      $image_data = array(
+                          'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
+                          'image_value' => 'module_highlighted_sentence_image', // se utilizzi un custom field indica qui il nome del campo
+                          'size_fallback' => 'round_image'
+                      );
+                      $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+                          'retina' => 'round_image',
+                          'desktop' => 'round_image',
+                          'mobile' => 'round_image',
+                          'micro' => 'micro'
+                      );
+                      print_theme_image( $image_data, $image_sizes );
+                      ?>
+                    </div>
                   </div>
                 <?php endif; ?>
               </div>
-              <div class="flex-hold-child">
+              <div class="flex-hold-child-texts">
                 <div class="last-child-no-margin">
                   <h2><?php the_sub_field( 'module_highlighted_sentence_text' ); ?></h2>
                   <?php if ( get_sub_field( 'module_highlighted_sentence_author' ) ) : ?>
@@ -84,7 +86,7 @@ switch ( $module_highlighted_sentence_cta_target ) {
             </div>
             <?php if ( get_sub_field( 'module_highlighted_sentence_cta_text' ) ) : ?>
               <div class="cta-holder">
-                <a href="<?php echo $module_highlighted_sentence_cta_url; ?>" target="<?php echo $module_highlighted_sentence_cta_url_target; ?>" class="default-button dark-default-button allupper"><?php the_sub_field( 'module_highlighted_sentence_cta_text' ); ?></a>
+                <a href="<?php echo $module_highlighted_sentence_cta_url; ?>" target="<?php echo $module_highlighted_sentence_cta_url_target; ?>" class="<?php the_sub_field( 'module_highlighted_sentence_cta_appearence' ); ?> allupper"><?php the_sub_field( 'module_highlighted_sentence_cta_text' ); ?></a>
               </div>
             <?php endif; ?>
           <?php endif; ?>

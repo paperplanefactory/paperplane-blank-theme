@@ -17,6 +17,14 @@
   left: 0;
   display: block;
   width: 100vw;
+  -webkit-transition: all 0.45s linear, width 0s;
+  -moz-transition: all 0.45s linear, width 0s;
+  -o-transition: all 0.45s linear, width 0s;
+  transition: all 0.45s linear, width 0s;
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 #head-overlay {
@@ -31,7 +39,6 @@
   &.hidden {
     opacity: 0;
     pointer-events: none;
-    @include define-blur(5px);
   }
 }
 

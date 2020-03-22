@@ -1,5 +1,5 @@
 <!-- module-slideshow -->
-<div class="wrapper module-slideshow">
+<div class="wrapper module-slideshow <?php the_sub_field( 'module_bg' ); ?>">
   <div class="module-spacer">
     <div class="wrapper-padded">
       <div class="slide-double">
@@ -22,12 +22,11 @@
             );
             print_theme_image_lazyslick( $image_data, $image_sizes );
             ?>
-            <?php if ( get_sub_field( 'module_slideshow_repeater_caption' ) ) : ?>
-              <div class="slide-caption">
+            <div class="slide-caption">
+              <?php if ( get_sub_field( 'module_slideshow_repeater_caption' ) ) : ?>
                 <h6><?php the_sub_field( 'module_slideshow_repeater_caption' ); ?></h6>
-              </div>
-            <?php endif; ?>
-
+              <?php endif; ?>
+            </div>
           </div>
         </div>
         <?php endwhile; endif; ?>

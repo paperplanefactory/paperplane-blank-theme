@@ -1,9 +1,9 @@
  // main: ../style.scss
 @mixin flex-wrap {
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-wrap: wrap;
-	        flex-wrap: wrap;
+	display: -webkit-flex !important;
+	display: flex !important;
+	-webkit-flex-wrap: wrap !important;
+	        flex-wrap: wrap !important;
 }
 
 @mixin define-flex-per-row($row_items) {

@@ -34,6 +34,220 @@
 	color: $color-2;
 }
 
+// colors patterns
+
+.no-bg {
+	color: $color-1;
+	&.blended {
+		background-color: rgba(255, 255, 255, 0.45);
+	  background-blend-mode: lighten;
+	}
+	a:link, a:visited {
+	 color: $color-1;
+	}
+	a:hover, a:active {
+	 color: $color-2;
+	}
+	.hambuger-element {
+		span {
+			background-color: $color-1;
+		}
+		&:hover {
+			span {
+				background-color: $color-2;
+			}
+		}
+	}
+	.default-button, .cta-navi a {
+		color: $color-3 !important;
+		background-color: $color-1 !important;
+		&:hover {
+			color: $color-3 !important;
+			background-color: $color-2 !important;
+		}
+	}
+	.default-button-b {
+		color: $color-1;
+		&:hover {
+			color: $color-2;
+		}
+	}
+	.slide-button-shaper {
+	  border: $color-1 solid 1px;
+	  color: $color-1;
+	  background-color: $color-4;
+	}
+	.slick-prev {
+	  border-right: $color-1 solid 1px !important;
+	  &:hover {
+	    .slide-button-shaper {
+				color: $color-4;
+	      background-color: $color-1;
+	    }
+	  }
+	}
+	.slick-next {
+	  &:hover {
+	    .slide-button-shaper {
+	      color: $color-4;
+	      background-color: $color-1;
+	    }
+	  }
+	}
+	.expander {
+	  color: $color-1;
+		&:hover {
+			color: $color-2;
+		}
+	}
+	.scroll-down {
+	  background-color: $color-1;
+		color: $color-4;
+	}
+}
+
+.combo-1 {
+	color: $color-4;
+	background-color: $color-1;
+	&.blended {
+		background-color: rgba(0, 0, 0, 0.6);
+	  background-blend-mode: multiply;
+	}
+	a:link, a:visited {
+	 color: $color-4;
+	}
+	a:hover, a:active {
+	 color: $color-3;
+	}
+	.hambuger-element {
+		span {
+			background-color: $color-4;
+		}
+		&:hover {
+			span {
+				background-color: $color-3;
+			}
+		}
+	}
+	.default-button, .cta-navi a {
+		color: $color-1 !important;
+		background-color: $color-3 !important;
+		&:hover {
+			color: $color-1 !important;
+			background-color: $color-4 !important;
+		}
+	}
+	.default-button-b {
+		color: $color-4;
+		&:hover {
+			color: $color-3;
+		}
+	}
+	.slide-button-shaper {
+	  border: $color-4 solid 1px;
+	  color: $color-4;
+	  background-color: $color-1;
+	}
+	.slick-prev {
+	  border-right: $color-4 solid 1px !important;
+	  &:hover {
+	    .slide-button-shaper {
+				color: $color-1;
+	      background-color: $color-4;
+	    }
+	  }
+	}
+	.slick-next {
+	  &:hover {
+	    .slide-button-shaper {
+	      color: $color-1;
+	      background-color: $color-4;
+	    }
+	  }
+	}
+	.expander {
+	  color: $color-4;
+		&:hover {
+			color: $color-3;
+		}
+	}
+	.scroll-down {
+	  background-color: $color-4;
+		color: $color-1;
+	}
+}
+
+.combo-2 {
+	color: $color-1;
+	background-color: $color-3;
+	&.blended {
+		background-color: rgba(255, 255, 255, 0.45);
+	  background-blend-mode: lighten;
+	}
+	a:link, a:visited {
+	 color: $color-1;
+	}
+	a:hover, a:active {
+	 color: $color-2;
+	}
+	.hambuger-element {
+		span {
+			background-color: $color-1;
+		}
+		&:hover {
+			span {
+				background-color: $color-2;
+			}
+		}
+	}
+	.default-button, .cta-navi a {
+		color: $color-4 !important;
+		background-color: $color-1 !important;
+		&:hover {
+			color: $color-4 !important;
+			background-color: $color-2 !important;
+		}
+	}
+	.default-button-b {
+		color: $color-1;
+		&:hover {
+			color: $color-2;
+		}
+	}
+	.slide-button-shaper {
+	  border: $color-1 solid 1px;
+	  color: $color-1;
+	  background-color: $color-4;
+	}
+	.slick-prev {
+	  border-right: $color-1 solid 1px !important;
+	  &:hover {
+	    .slide-button-shaper {
+				color: $color-4;
+	      background-color: $color-1;
+	    }
+	  }
+	}
+	.slick-next {
+	  &:hover {
+	    .slide-button-shaper {
+	      color: $color-4;
+	      background-color: $color-1;
+	    }
+	  }
+	}
+	.expander {
+	  color: $color-1;
+		&:hover {
+			color: $color-2;
+		}
+	}
+	.scroll-down {
+	  background-color: $color-1;
+		color: $color-4;
+	}
+}
+
 // txt colors
 
 .txt-1 {
@@ -52,44 +266,6 @@
   color: $color-4;
 }
 
-.combo-1 {
-	color: $color-4;
-	background-color: $color-1;
-	a:link, a:visited {
-	 color: $color-4;
-	}
-	a:hover, a:active {
-	 color: $color-4;
-	}
-	.default-button {
-		color: $color-1 !important;
-		background-color: $color-3 !important;
-		&:hover {
-			color: $color-4 !important;
-			background-color: $color-1 !important;
-		}
-	}
-}
-
-.combo-2 {
-	color: $color-1;
-	background-color: $color-3;
-	a:link, a:visited {
-	 color: $color-1;
-	}
-	a:hover, a:active {
-	 color: $color-1;
-	}
-	.default-button {
-		color: $color-4 !important;
-		background-color: $color-1 !important;
-		&:hover {
-			color: $color-1 !important;
-			background-color: $color-3 !important;
-		}
-	}
-}
-
 // bg colors
 
 .bg-1 {
@@ -106,6 +282,12 @@
 
 .bg-4 {
   background-color: $color-4;
+}
+
+.default-box-shadow {
+	-webkit-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.2);
 }
 
 // link behaviour and colors
@@ -135,6 +317,12 @@ a.absl:link, a.absl:visited, a.absl:hover, a.absl:active {
 	display:block;
 	width:100%;
 	height:100%;
+}
+
+.undelinked-links {
+	a {
+		text-decoration: underline;
+	}
 }
 
 a.clear-link:link, a.clear-link:visited {
@@ -167,8 +355,8 @@ a.clear-link:hover, a.clear-link:active {
 	color: $color-4 !important;
 	background-color: $color-1 !important;
 	&:hover {
-		color: $color-1 !important;
-		background-color: $color-3 !important;
+		color: $color-4 !important;
+		background-color: $color-2 !important;
 	}
 }
 
@@ -177,6 +365,20 @@ a.clear-link:hover, a.clear-link:active {
 	background-color: $color-3 !important;
 	&:hover {
 		color: $color-4 !important;
-		background-color: $color-1 !important;
+		background-color: $color-2 !important;
+	}
+}
+
+.dark-default-b-button {
+	color: $color-1 !important;
+	&:hover {
+		color: $color-2 !important;
+	}
+}
+
+.clear-default-b-button {
+	color: $color-4 !important;
+	&:hover {
+		color: $color-3 !important;
 	}
 }

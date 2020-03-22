@@ -27,7 +27,7 @@ switch ( $module_additional_elements_cta_target ) {
           $module_columns_columns_repeater_background = get_sub_field( 'module_columns_columns_repeater_background' );
           switch ( $module_columns_columns_repeater_background ) {
             case 'no-bg' :
-            $module_columns_columns_repeater_background_style = '';
+            $module_columns_columns_repeater_background_style = 'no-bg';
             $module_columns_columns_repeater_background_padding = '';
             break;
             case 'combo-1' :
@@ -36,6 +36,12 @@ switch ( $module_additional_elements_cta_target ) {
             break;
             case 'combo-2' :
             $module_columns_columns_repeater_background_style = 'combo-2';
+            $module_columns_columns_repeater_background_padding = 'column-color';
+            break;
+          }
+          $module_columns_columns_repeater_box_shadow = get_sub_field( 'module_columns_columns_repeater_box_shadow' );
+          switch ( $module_columns_columns_repeater_box_shadow ) {
+            case 'default-box-shadow' :
             $module_columns_columns_repeater_background_padding = 'column-color';
             break;
           }
@@ -58,7 +64,7 @@ switch ( $module_additional_elements_cta_target ) {
             break;
           }
           ?>
-          <div class="flex-hold-child <?php echo $module_columns_columns_repeater_background_style; ?>">
+          <div class="flex-hold-child <?php echo $module_columns_columns_repeater_background_style; ?> <?php the_sub_field( 'module_columns_columns_repeater_box_shadow' ); ?>" data-aos="<?php the_sub_field( 'module_columns_columns_repeater_animation' ); ?>">
             <div class="<?php echo $module_columns_columns_repeater_background_padding; ?>">
               <div class="<?php the_sub_field( 'module_columns_columns_repeater_align' ); ?>">
                 <?php if ( $module_columns_columns_repeater_image != '' ) : ?>
@@ -98,6 +104,23 @@ switch ( $module_additional_elements_cta_target ) {
                     <div class="image-icon lazy" data-bg="url(<?php echo $module_columns_columns_repeater_image_URL; ?>)"></div>
                   <?php endif; ?>
                 <?php endif; ?>
+                <?php if ( get_sub_field( 'module_columns_columns_repeater_counter_value' ) ) : ?>
+                  <div class="column-counter-wrapper">
+                    <?php if ( get_sub_field( 'module_columns_columns_repeater_counter_value_before' ) ) : ?>
+                      <h3><?php the_sub_field( 'module_columns_columns_repeater_counter_value_before' ); ?></h3>
+                    <?php endif; ?>
+                    <h1 class="count just-number count-pre cta-2" data-bar-number="<?php the_sub_field( 'module_columns_columns_repeater_counter_value' ); ?>">0</h1>
+                    <?php if ( get_sub_field( 'module_columns_columns_repeater_counter_value_after' ) ) : ?>
+                      <h3><?php the_sub_field( 'module_columns_columns_repeater_counter_value_after' ); ?></h3>
+                    <?php endif; ?>
+                    <?php if ( get_sub_field( 'module_columns_columns_repeater_counter_description' ) ) : ?>
+                      <div>
+                        <h4><?php the_sub_field( 'module_columns_columns_repeater_counter_description' ); ?></h4>
+                      </div>
+
+                    <?php endif; ?>
+                  </div>
+                <?php endif; ?>
                 <?php if ( get_sub_field( 'module_columns_columns_repeater_content' ) ) : ?>
                   <div class="content-styled last-child-no-margin">
                     <?php the_sub_field( 'module_columns_columns_repeater_content' ); ?>
@@ -105,7 +128,7 @@ switch ( $module_additional_elements_cta_target ) {
                 <?php endif; ?>
                 <?php if ( get_sub_field( 'module_columns_columns_repeater_cta_text' ) ) : ?>
                   <div class="cta-holder">
-                    <a href="<?php echo $module_columns_columns_repeater_cta_url; ?>" target="<?php echo $module_columns_columns_repeater_cta_url_target; ?>" class="default-button dark-default-button allupper"><?php the_sub_field( 'module_columns_columns_repeater_cta_text' ); ?></a>
+                    <a href="<?php echo $module_columns_columns_repeater_cta_url; ?>" target="<?php echo $module_columns_columns_repeater_cta_url_target; ?>" class="<?php the_sub_field( 'module_columns_columns_repeater_cta_appearence' ); ?> allupper"><?php the_sub_field( 'module_columns_columns_repeater_cta_text' ); ?></a>
                   </div>
                 <?php endif; ?>
               </div>
@@ -115,11 +138,9 @@ switch ( $module_additional_elements_cta_target ) {
         </div>
         <?php if ( get_sub_field( 'module_additional_elements_cta_text' ) ) : ?>
           <div class="cta-holder <?php the_sub_field( 'module_additional_elements_cta_align' ); ?>">
-            <a href="<?php echo $module_additional_elements_cta_url; ?>" target="<?php echo $module_additional_elements_cta_url_target; ?>" class="default-button dark-default-button allupper"><?php the_sub_field( 'module_additional_elements_cta_text' ); ?></a>
+            <a href="<?php echo $module_additional_elements_cta_url; ?>" target="<?php echo $module_additional_elements_cta_url_target; ?>" class="<?php the_sub_field( 'module_additional_elements_cta_appearence' ); ?> allupper"><?php the_sub_field( 'module_additional_elements_cta_text' ); ?></a>
           </div>
         <?php endif; ?>
-
-
       </div>
     </div>
   </div>

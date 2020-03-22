@@ -2,11 +2,6 @@
 @import '../global/vars';
 @import '../global/mixin'; // lazy load / infinite load
 
-.blended {
-	background-color: rgba(0, 0, 0, 0.6);
-  background-blend-mode: multiply;
-}
-
 .lazy {
 	position: relative;
 	opacity: 0;

@@ -6,10 +6,11 @@ add_image_size( 'full_desk', 1920, 9999);
 add_image_size( 'content_picture', 768, 9999);
 add_image_size( 'content_picture_cropped', 768, 400, true);
 //add_image_size( 'logo_size', 200, 9999);
-add_image_size( 'column', 410, 9999);
+add_image_size( 'column', 500, 9999);
 add_image_size( 'highlighted_sentence', 236, 9999);
 add_image_size( 'round_image', 160, 160, true);
 add_image_size( 'slide', 900, 9999);
+add_image_size( 'opening_squared', 960, 960, true);
 add_image_size( 'micro', 10, 9999);
 
 
