@@ -1,25 +1,28 @@
 <?php
 // Paperplane _blankTheme - template per footer.
 wp_reset_query();
+global $acf_options_parameter;
 ?>
-<footer id="footer" class="bg-1 txt-4 clearlink-area">
+<footer id="footer" class="combo-1">
   <div class="wrapper">
     <div class="wrapper-padded">
-      <div class="flex-hold flex-hold-3 margins-thin">
+      <div class="footer-structure-1">
 
-        <div class="flex-hold-child">
-          <?php the_field( 'credits_and_more', 'options' ); ?>
+        <div class="block logo">
+          <div class="logo">
+            <a href="<?php echo home_url(); ?>" rel="bookmark" title="homepage - <?php echo get_bloginfo( 'name' ); ?>" class="absl"></a>
+          </div>
         </div>
 
-        <div class="flex-hold-child">
+        <div class="block menu allupper">
           <?php
-          if ( has_nav_menu( 'header-menu' ) ) {
-            wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu' ) );
+          if ( has_nav_menu( 'footer-menu' ) ) {
+            wp_nav_menu( array( 'theme_location' => 'footer-menu', 'container' => 'ul', 'menu_class' => 'footer-menu' ) );
           }
           ?>
         </div>
 
-        <div class="flex-hold-child">
+        <div class="block social">
           <?php if ( have_rows( 'global_socials', 'option' ) ) : ?>
             <ul class="inline-socials">
               <?php while ( have_rows( 'global_socials', 'option' ) ) : the_row(); ?>
@@ -32,68 +35,15 @@ wp_reset_query();
             </ul>
           <?php endif; ?>
         </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <?php if ( have_rows( 'aggiungi_modifica_sponsor_partner', 'option' ) ) : ?>
-    <div class="wrapper bg-7 txt-1">
-      <div class="wrapper-padded">
-        <div class="wrapper-padded-more">
-          <div class="wrapper-padded-more-840">
-            <div class="flex-hold parnter-grid flex-hold-5 margins-wide">
-              <?php while ( have_rows( 'aggiungi_modifica_sponsor_partner', 'option' ) ) : the_row();
-              $logo = get_sub_field( 'logo_partner' );
-              $logo_URL = $logo['sizes']['logo_size'];
-              $logo_URL_micro = $logo['sizes']['micro'];
-               ?>
-              <div class="flex-hold-child partner-box">
-                <div class="partner-label cta-1">
-                  <?php if ( get_sub_field( 'etichetta_partner_sponsor' ) ) : ?>
-                    <?php the_sub_field( 'etichetta_partner_sponsor' ); ?>
-                  <?php else : ?>
-                    &nbsp;
-                  <?php endif; ?>
-                </div>
-                <?php if ( get_sub_field( 'url_sito_partner_sponsor' ) ) : ?>
-                    <div class="partner-logo no-the-100">
-                      <a href="<?php the_sub_field( 'url_sito_partner_sponsor' ); ?>" target="_blank" aria-label="Visit <?php the_sub_field( 'url_sito_partner_sponsor' ); ?>" rel="noopener">
-                      <picture>
-                        <img data-src="<?php echo $logo_URL; ?>" src="<?php echo $logo_URL_micro; ?>" class="lazy" alt="logo" />
-                      </picture>
-                      </a>
-                    </div>
-
-                <?php else : ?>
-                  <div class="partner-logo no-the-100">
-                    <picture>
-                      <img data-src="<?php echo $logo_URL; ?>" src="<?php echo $logo_URL_micro; ?>" class="lazy" alt="logo" />
-                    </picture>
-                  </div>
-                <?php endif; ?>
-              </div>
-            <?php endwhile; ?>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <?php endif; ?>
-
-  <div class="wrapper bg-7 txt-4">
-    <div class="wrapper-padded">
-      <div class="wrapper-padded-more">
-        <div class="wrapper-padded-more-840">
-          <?php the_field( 'credits_and_more', 'option' ); ?>
+        <div class="block texts">
+          <?php the_field( 'footer_fields_texts_1', $acf_options_parameter ); ?>
         </div>
       </div>
     </div>
   </div>
-
 </footer>
 
+<!--
 <div class="preload-container">
   <div class="sk-folding-cube">
     <div class="sk-cube1 sk-cube"></div>
@@ -102,7 +52,7 @@ wp_reset_query();
     <div class="sk-cube3 sk-cube"></div>
   </div>
 </div>
-
+-->
 <?php wp_footer(); ?>
 </body>
 </html>

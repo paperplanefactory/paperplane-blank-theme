@@ -38,6 +38,7 @@
 
 .no-bg {
 	color: $color-1;
+	background-color: $color-4;
 	&.blended {
 		background-color: rgba(255, 255, 255, 0.45);
 	  background-blend-mode: lighten;
@@ -55,6 +56,26 @@
 		&:hover {
 			span {
 				background-color: $color-2;
+			}
+		}
+	}
+	.current-mega-menu {
+		&:after {
+			background-color: $color-1;
+		}
+	}
+	.sub-menu {
+		color: $color-3 !important;
+		background-color: $color-1;
+		li {
+			border-bottom: $color-2 solid 1px;
+			a {
+				&:link, &:visited {
+					color: $color-4;
+				}
+				&:hover {
+					color: $color-3;
+				}
 			}
 		}
 	}
@@ -129,6 +150,26 @@
 			}
 		}
 	}
+	.current-mega-menu {
+		&:after {
+			background-color: $color-4;
+		}
+	}
+	.sub-menu {
+		color: $color-2 !important;
+		background-color: $color-3;
+		li {
+			border-bottom: $color-4 solid 1px;
+			a {
+				&:link, &:visited {
+					color: $color-1;
+				}
+				&:hover {
+					color: $color-2;
+				}
+			}
+		}
+	}
 	.default-button, .cta-navi a {
 		color: $color-1 !important;
 		background-color: $color-3 !important;
@@ -197,6 +238,26 @@
 		&:hover {
 			span {
 				background-color: $color-2;
+			}
+		}
+	}
+	.current-mega-menu {
+		&:after {
+			background-color: $color-1;
+		}
+	}
+	.sub-menu {
+		color: $color-3 !important;
+		background-color: $color-1;
+		li {
+			border-bottom: $color-2 solid 1px;
+			a {
+				&:link, &:visited {
+					color: $color-4;
+				}
+				&:hover {
+					color: $color-3;
+				}
 			}
 		}
 	}

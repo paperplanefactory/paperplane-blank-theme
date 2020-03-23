@@ -6,7 +6,6 @@
 }
 
 .page-opening {
-
 }
 
 .page-opening-text-image-column-spacer {
@@ -24,11 +23,11 @@
 }
 
 .module-spacer {
-  padding: 70px 0;
+  padding: 72px 0;
 }
 
 .module-spacer-flex {
-  padding: 70px 0 22px 0;
+  padding: 72px 0 24px 0;
 }
 
 .grid-listing-texts {
@@ -71,6 +70,25 @@
   @include define-border-radius(8vh);
   overflow: hidden;
   cursor: pointer;
+  opacity: 1;
+  @include define-basic-transition(opacity, 0.3s);
+  &:hover {
+    opacity: 0.8;
+  }
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -14px 0 0 -12px;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-size: $h2-size-desktop;
+    font-weight: 900;
+    content: "\f063";
+  }
 }
 
 .page-opening-fullscreen-less {
@@ -178,8 +196,8 @@
       text-align: inherit !important;
     }
   }
-  .cta-holder {
-    margin: 0;
+  .cta-holder-columns {
+    margin: 0 0 48px 0;
   }
 }
 
@@ -194,7 +212,7 @@
       }
     }
     .cta-holder {
-      margin: 35px 0 0 0;
+      margin: 32px 0 0 0;
     }
   }
   .fix {
@@ -211,8 +229,8 @@
       text-align: inherit !important;
     }
   }
-  .cta-holder {
-    margin: 0;
+  .cta-holder-columns {
+    margin: 0 0 48px 0;
   }
 }
 
@@ -239,7 +257,7 @@
         padding-left: 48px;
       }
       .cta-holder {
-        margin: 35px 0 0 0;
+        margin: 32px 0 0 0;
       }
     }
   }
@@ -257,7 +275,7 @@
         padding-right: 48px;
       }
       .cta-holder {
-        margin: 35px 0 0 0;
+        margin: 32px 0 0 0;
       }
     }
   }
@@ -285,7 +303,7 @@
 
     .banner-cta {
       width: 210px;
-      margin-left: 35px;
+      margin-left: 32px;
       text-align: right;
     }
   }
@@ -300,7 +318,7 @@
 
     .banner-cta {
       width: 210px;
-      margin-left: 35px;
+      margin-left: 32px;
       text-align: right;
     }
   }
@@ -330,15 +348,6 @@
       font-size: 30px;
     }
   }
-}
-
-.image-rounder {
-  position: relative;
-  display: inline-block;
-  width: 160px;
-  height: 160px;
-  @include define-border-radius(160px);
-  overflow: hidden;
 }
 
 .sticky-element {

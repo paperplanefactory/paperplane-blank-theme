@@ -38,7 +38,7 @@ h5 {
   line-height: $h5-lineheight-desktop;
 }
 
-h6 {
+h6, #footer p {
   font-size: $h6-size-desktop;
   line-height: $h6-lineheight-desktop;
   margin-bottom: $h6-marginbottom-desktop;
@@ -102,30 +102,8 @@ p {
 }
 
 .expander {
-  position: relative;
-  line-height: 17px !important;
-  font-weight: $font-weight-2 !important;
-  padding-left: 25px !important;
-  text-align: left;
-  @include reset-button;
-  font-family:  $font-main;
+  font-family: $font-main;
   font-weight: $font-weight-1;
   font-size: $h4-size-desktop;
   line-height: $h4-lineheight-desktop;
-  .exp-plus {
-    &:before {
-      position: absolute;
-      left: 0;
-      font-family: "Font Awesome 5 Free";
-      content: "\f0fe";
-    }
-  }
-  .exp-minus {
-    &:before {
-      position: absolute;
-      left: 0;
-      font-family: "Font Awesome 5 Free";
-      content: '\f146';
-    }
-  }
 }

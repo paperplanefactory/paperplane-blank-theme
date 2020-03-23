@@ -17,7 +17,7 @@ switch ( $module_additional_elements_cta_target ) {
 }
  ?>
 <div class="wrapper module-columns <?php the_sub_field( 'module_bg' ); ?>">
-  <div class="module-spacer">
+  <div class="module-spacer-flex">
     <div class="wrapper-padded">
       <div class="wrapper-padded-more">
         <?php include( locate_template( 'template-parts/modules/module-intro.php' ) ); ?>
@@ -137,7 +137,7 @@ switch ( $module_additional_elements_cta_target ) {
         <?php endwhile; endif; ?>
         </div>
         <?php if ( get_sub_field( 'module_additional_elements_cta_text' ) ) : ?>
-          <div class="cta-holder <?php the_sub_field( 'module_additional_elements_cta_align' ); ?>">
+          <div class="cta-holder cta-holder-columns <?php the_sub_field( 'module_additional_elements_cta_align' ); ?>">
             <a href="<?php echo $module_additional_elements_cta_url; ?>" target="<?php echo $module_additional_elements_cta_url_target; ?>" class="<?php the_sub_field( 'module_additional_elements_cta_appearence' ); ?> allupper"><?php the_sub_field( 'module_additional_elements_cta_text' ); ?></a>
           </div>
         <?php endif; ?>

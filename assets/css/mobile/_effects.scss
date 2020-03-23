@@ -1,2 +1,36 @@
+// main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/mixin'; // lazy load / infinite load
+
+.lazy {
+	position: relative;
+	opacity: 0;
+	@include define-basic-transition(all, 0.3s);
+	&.image-icon {
+		opacity: 1;
+	}
+}
+
+span, video {
+	&.lazy {
+		position: relative;
+		opacity: 1;
+	}
+}
+
+
+.lazy-loading {
+	@include define-blur(20px);
+}
+
+.lazy-loaded {
+	@include define-blur(0);
+	opacity: 1;
+}
+
+.box-fullscreen {
+	&.lazy {
+		@include define-blur(0);
+		opacity: 1 !important;
+	}
+}

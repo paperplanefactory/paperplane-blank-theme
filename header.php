@@ -25,9 +25,7 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <?php
 wp_head();
-// stabilisco il device
-$module_count = 0;
-global $module_count;
+global $acf_options_parameter;
 if (function_exists('pll_the_languages')) {
   $acf_options_parameter = pll_current_language('slug');
 }
@@ -87,7 +85,7 @@ else {
 </header>
 <?php include( locate_template( 'template-parts/grid/mega-menu.php' ) ); ?>
 
-<div id="head-overlay" class="hidden bg-1 clearlink-area txt-4">
+<div id="head-overlay" class="hidden bg-1 combo-1">
   <div class="scroll-opportunity">
     <div class="wrapper">
       <div class="wrapper-padded">

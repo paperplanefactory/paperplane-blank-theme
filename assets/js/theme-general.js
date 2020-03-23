@@ -29,6 +29,7 @@ AOS.init({
   duration: 900,
   once: false,
   mirror: true,
+  offset: 180
   //offset: 50
 });
 
@@ -103,6 +104,7 @@ function hamburgerMenu(e) {
   }
   $('#head-overlay').toggleClass('hidden');
   $('.mega-menu-js').addClass('hidden');
+  $('.mega-menu-js-trigger').removeClass('current-mega-menu');
 }
 
 /////////////////////////////////////////////
@@ -117,6 +119,7 @@ function scrollDirectionMenu() {
     // downscroll code
     $('#header').addClass('hidden');
     $('.mega-menu-js').addClass('hidden');
+    $('.mega-menu-js-trigger').removeClass('current-mega-menu');
   } else {
     // upscroll code
     $('#header').removeClass('hidden');
@@ -135,6 +138,7 @@ $(window).scroll(function(event) {
 
 $('.mega-menu-js').mouseleave(function() {
   $(this).addClass('hidden');
+  $('.mega-menu-js-trigger').removeClass('current-mega-menu');
 });
 
 /////////////////////////////////////////////
@@ -143,7 +147,7 @@ $('.mega-menu-js').mouseleave(function() {
 
 function goBelowTheFold() {
   $('html, body').animate({
-    scrollTop: $('.below-the-fold').offset().top - 100
+    scrollTop: $('.below-the-fold').offset().top - 20
   }, 500)
 }
 
@@ -210,7 +214,6 @@ $('.slide-double').on('init reInit afterChange', function(event, slick, currentS
   AOS.refresh();
 });
 
-
 $('.slide-double').slick({
   lazyLoad: 'ondemand',
   dots: false,
@@ -221,8 +224,15 @@ $('.slide-double').slick({
   adaptiveHeight: false,
   slidesToShow: 2,
   slidesToScroll: 1,
-  nextArrow: '<div class="slick-next"><div class="slide-button-shaper"><i class="fas fa-long-arrow-alt-right" aria-label="next"></i></div></div>',
-  prevArrow: '<div class="slick-prev"><div class="slide-button-shaper"><i class="fas fa-long-arrow-alt-left" aria-label="previous"></i></div></div>'
+  nextArrow: '<div class="slick-next"><div class="slide-button-shaper"><i class="fas fa-arrow-right" aria-label="next"></i></div></div>',
+  prevArrow: '<div class="slick-prev"><div class="slide-button-shaper"><i class="fas fa-arrow-left" aria-label="previous"></i></div></div>',
+  responsive: [{
+    breakpoint: 1024,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+  }]
 });
 $(document).on('keydown', function(e) {
   if (e.keyCode == 37) {
@@ -311,4 +321,4 @@ function hidePreload() {
   //alert('dfg');
 }
 
-window.addEventListener('load', hidePreload);
+//window.addEventListener('load', hidePreload);
