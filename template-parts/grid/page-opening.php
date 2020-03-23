@@ -30,6 +30,7 @@ switch ( $page_opening_cta_target ) {
   $page_opening_cta_url_target = '_blank';
   break;
 }
+$page_opening_image_shape = get_field( 'page_opening_image_shape' );
  ?>
  <?php if ( $page_opening_layout === 'opening-fullscreen' || $page_opening_layout === 'opening-almost-fullscreen' ) : ?>
    <div class="wrapper page-opening">
@@ -115,20 +116,42 @@ switch ( $page_opening_cta_target ) {
        </div>
      </div>
      <div class="page-opening-image">
-       <?php
-       $image_data = array(
-           'image_type' => 'post_thumbnail', // options: post_thumbnail, acf_field, acf_sub_field
-           'image_value' => '', // se utilizzi un custom field indica qui il nome del campo
-           'size_fallback' => 'opening_squared'
-       );
-       $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-           'retina' => 'opening_squared',
-           'desktop' => 'opening_squared',
-           'mobile' => 'opening_squared',
-           'micro' => 'micro'
-       );
-       print_theme_image( $image_data, $image_sizes );
-       ?>
+       <?php if ( $page_opening_image_shape === 'image-square' ) : ?>
+         <?php
+         $image_data = array(
+             'image_type' => 'post_thumbnail', // options: post_thumbnail, acf_field, acf_sub_field
+             'image_value' => '', // se utilizzi un custom field indica qui il nome del campo
+             'size_fallback' => 'opening_squared'
+         );
+         $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+             'retina' => 'opening_squared',
+             'desktop' => 'opening_squared',
+             'mobile' => 'opening_squared',
+             'micro' => 'micro'
+         );
+         print_theme_image( $image_data, $image_sizes );
+         ?>
+       <?php else : ?>
+         <div class="page-opening-image-aligner">
+           <div class="page-opening-image-rounder">
+             <?php
+             $image_data = array(
+                 'image_type' => 'post_thumbnail', // options: post_thumbnail, acf_field, acf_sub_field
+                 'image_value' => '', // se utilizzi un custom field indica qui il nome del campo
+                 'size_fallback' => 'round_image'
+             );
+             $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+                 'retina' => 'opening_squared',
+                 'desktop' => 'opening_squared',
+                 'mobile' => 'opening_squared',
+                 'micro' => 'micro'
+             );
+             print_theme_image( $image_data, $image_sizes );
+             ?>
+           </div>
+         </div>
+       <?php endif; ?>
+
      </div>
    </div>
  <?php elseif ( $page_opening_layout === 'opening-text-column' ) : ?>

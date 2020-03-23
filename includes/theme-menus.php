@@ -53,9 +53,9 @@ if( function_exists('acf_add_options_page') ) {
   foreach ( $languages as $lang ) {
     // gestione cookie GDPR
     acf_add_options_sub_page( array (
-      'page_title' => 'Opzioni eventuali (' . strtoupper( $lang ) . ')',
-      'menu_title' => __('Opzioni eventuali (' . strtoupper( $lang ) . ')', 'text-domain'),
-      'menu_slug'  => "opzioni-eventuali-${lang}",
+      'page_title' => 'Gestione footer (' . strtoupper( $lang ) . ')',
+      'menu_title' => __('Gestione footer (' . strtoupper( $lang ) . ')', 'text-domain'),
+      'menu_slug'  => "gestione-footer-${lang}",
       'post_id'    => $lang,
       'parent_slug'     => $parent['menu_slug'],
     ) );

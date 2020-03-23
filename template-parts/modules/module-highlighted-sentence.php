@@ -42,7 +42,7 @@ switch ( $module_highlighted_sentence_cta_target ) {
                   print_theme_image( $image_data, $image_sizes );
                   ?>
                 <?php else : ?>
-                  <div class="alignright">
+                  <div class="flex-hold-child-image-aligner">
                     <div class="image-rounder">
                       <?php
                       $image_data = array(

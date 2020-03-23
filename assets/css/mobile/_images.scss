@@ -1,2 +1,55 @@
+// main: ../style.scss
 @import '../global/vars';
 @import '../global/mixin';
+
+.column-color {
+	.no-the-100 {
+		width: calc(100% + 64px);
+		margin-left: -32px;
+		margin-top: -32px;
+	}
+	.image-rounder {
+		.no-the-100 {
+			width: 100%;
+			margin-left: 0;
+			margin-top: 0;
+		}
+	}
+}
+
+.image-rounder {
+ position: relative;
+ display: inline-block;
+ width: 120px;
+ height: 120px;
+ @include define-border-radius(120px);
+ overflow: hidden;
+}
+
+.page-opening-image-rounder {
+	position: relative;
+  display: inline-block;
+  width: 220px;
+  height: 220px;
+  @include define-border-radius(220px);
+  overflow: hidden;
+}
+
+.wp-caption.aligncenter,
+.wp-caption.alignnone,
+.wp-caption.alignleft,
+.wp-caption.alignright {
+	margin-bottom: 15px;
+}
+
+.wp-caption-text,
+.wp-caption.aligncenter .wp-caption-text,
+.wp-caption.alignleft .wp-caption-text,
+.wp-caption.alignnone .wp-caption-text,
+.wp-caption.alignright .wp-caption-text {
+	font-family: $font-main;
+	font-weight: $font-weight-1;
+	font-size: $cta1-size-desktop;
+	line-height: $cta1-lineheight-desktop;
+	font-style: italic;
+}

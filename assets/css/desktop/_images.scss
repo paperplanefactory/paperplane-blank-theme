@@ -17,6 +17,25 @@
 	}
 }
 
+.image-rounder {
+  position: relative;
+  display: inline-block;
+  width: 160px;
+  height: 160px;
+  @include define-border-radius(160px);
+  overflow: hidden;
+}
+
+.page-opening-image-rounder {
+	position: relative;
+  display: inline-block;
+  width: 300px;
+  height: 300px;
+  @include define-border-radius(300px);
+  overflow: hidden;
+	margin: 72px 0;
+}
+
 .wp-caption.aligncenter,
 .wp-caption.alignnone {
 	margin-bottom: 15px;
