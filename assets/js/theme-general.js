@@ -29,7 +29,7 @@ AOS.init({
   duration: 900,
   once: false,
   mirror: true,
-  offset: 180
+  offset: 40
   //offset: 50
 });
 

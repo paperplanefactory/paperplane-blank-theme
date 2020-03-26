@@ -1,16 +1,33 @@
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-(function (global, factory) {
-  (typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.LazyLoad = factory();
-})(this, function () {
+(function(global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global = global || self, global.LazyLoad = factory());
+}(this, (function() {
   'use strict';
+
+  function _extends() {
+    _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+
+      return target;
+    };
+
+    return _extends.apply(this, arguments);
+  }
 
   var runningOnBrowser = typeof window !== "undefined";
   var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent);
-  var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window && "IntersectionObserverEntry" in window && "intersectionRatio" in window.IntersectionObserverEntry.prototype && "isIntersecting" in window.IntersectionObserverEntry.prototype;
+  var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
   var supportsClassList = runningOnBrowser && "classList" in document.createElement("p");
+
   var defaultSettings = {
     elements_selector: "img",
     container: isBot || runningOnBrowser ? document : null,
@@ -20,6 +37,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     data_srcset: "srcset",
     data_sizes: "sizes",
     data_bg: "bg",
+    data_poster: "poster",
     class_loading: "loading",
     class_loaded: "loaded",
     class_error: "error",
@@ -27,19 +45,17 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     auto_unobserve: true,
     callback_enter: null,
     callback_exit: null,
-    callback_reveal: null,
+    callback_loading: null,
     callback_loaded: null,
     callback_error: null,
     callback_finish: null,
     use_native: false
   };
-
-  var getInstanceSettings = function getInstanceSettings(customSettings) {
+  var getExtendedSettings = function getExtendedSettings(customSettings) {
     return _extends({}, defaultSettings, customSettings);
   };
+
   /* Creates instance and notifies it through the window element */
-
-
   var createInstance = function createInstance(classObj, options) {
     var event;
     var eventString = "LazyLoad::Initialized";
@@ -66,7 +82,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       options passed in (plain object or an array) */
 
 
-  function autoInitialize(classObj, options) {
+  var autoInitialize = function autoInitialize(classObj, options) {
     if (!options) {
       return;
     }
@@ -80,17 +96,20 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
         createInstance(classObj, optionsItem);
       }
     }
-  }
+  };
+
+  var statusObserved = "observed";
+  var statusLoading = "loading";
+  var statusLoaded = "loaded";
+  var statusError = "error";
+  var statusNative = "native";
 
   var dataPrefix = "data-";
-  var processedDataName = "was-processed";
+  var statusDataName = "ll-status";
   var timeoutDataName = "ll-timeout";
-  var trueString = "true";
-
   var getData = function getData(element, attribute) {
     return element.getAttribute(dataPrefix + attribute);
   };
-
   var setData = function setData(element, attribute, value) {
     var attrName = dataPrefix + attribute;
 
@@ -101,49 +120,32 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
     element.setAttribute(attrName, value);
   };
-
-  var setWasProcessedData = function setWasProcessedData(element) {
-    return setData(element, processedDataName, trueString);
+  var resetStatus = function resetStatus(element) {
+    return setData(element, statusDataName, null);
   };
-
-  var getWasProcessedData = function getWasProcessedData(element) {
-    return getData(element, processedDataName) === trueString;
+  var setStatus = function setStatus(element, status) {
+    return setData(element, statusDataName, status);
   };
-
+  var hasAnyStatus = function hasAnyStatus(element) {
+    return getData(element, statusDataName) !== null;
+  };
+  var hasStatusObserved = function hasStatusObserved(element) {
+    return getData(element, statusDataName) === statusObserved;
+  };
+  var hasStatusError = function hasStatusError(element) {
+    return getData(element, statusDataName) === statusError;
+  };
   var setTimeoutData = function setTimeoutData(element, value) {
     return setData(element, timeoutDataName, value);
   };
-
   var getTimeoutData = function getTimeoutData(element) {
     return getData(element, timeoutDataName);
   };
 
-  var purgeProcessedElements = function purgeProcessedElements(elements) {
-    return elements.filter(function (element) {
-      return !getWasProcessedData(element);
-    });
+  var increaseLoadingCount = function increaseLoadingCount(instance) {
+    if (!instance) return;
+    instance.loadingCount += 1;
   };
-
-  var purgeOneElement = function purgeOneElement(elements, elementToPurge) {
-    return elements.filter(function (element) {
-      return element !== elementToPurge;
-    });
-  };
-
-  var callbackIfSet = function callbackIfSet(callback, argument) {
-    if (callback) {
-      callback(argument);
-    }
-  };
-
-  var updateLoadingCount = function updateLoadingCount(instance, plusMinus) {
-    instance._loadingCount += plusMinus;
-
-    if (instance._elements.length === 0 && instance._loadingCount === 0) {
-      callbackIfSet(instance._settings.callback_finish);
-    }
-  };
-
   var getSourceTags = function getSourceTags(parentTag) {
     var sourceTags = [];
 
@@ -155,7 +157,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
     return sourceTags;
   };
-
   var setAttributeIfValue = function setAttributeIfValue(element, attrName, value) {
     if (!value) {
       return;
@@ -163,39 +164,35 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
     element.setAttribute(attrName, value);
   };
-
   var setImageAttributes = function setImageAttributes(element, settings) {
     setAttributeIfValue(element, "sizes", getData(element, settings.data_sizes));
     setAttributeIfValue(element, "srcset", getData(element, settings.data_srcset));
     setAttributeIfValue(element, "src", getData(element, settings.data_src));
   };
-
   var setSourcesImg = function setSourcesImg(element, settings) {
     var parent = element.parentNode;
 
     if (parent && parent.tagName === "PICTURE") {
       var sourceTags = getSourceTags(parent);
-      sourceTags.forEach(function (sourceTag) {
+      sourceTags.forEach(function(sourceTag) {
         setImageAttributes(sourceTag, settings);
       });
     }
 
     setImageAttributes(element, settings);
   };
-
   var setSourcesIframe = function setSourcesIframe(element, settings) {
     setAttributeIfValue(element, "src", getData(element, settings.data_src));
   };
-
   var setSourcesVideo = function setSourcesVideo(element, settings) {
     var sourceTags = getSourceTags(element);
-    sourceTags.forEach(function (sourceTag) {
+    sourceTags.forEach(function(sourceTag) {
       setAttributeIfValue(sourceTag, "src", getData(sourceTag, settings.data_src));
     });
+    setAttributeIfValue(element, "poster", getData(element, settings.data_poster));
     setAttributeIfValue(element, "src", getData(element, settings.data_src));
     element.load();
   };
-
   var setSourcesBgImage = function setSourcesBgImage(element, settings) {
     var srcDataValue = getData(element, settings.data_src);
     var bgDataValue = getData(element, settings.data_bg);
@@ -208,26 +205,21 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       element.style.backgroundImage = bgDataValue;
     }
   };
-
   var setSourcesFunctions = {
     IMG: setSourcesImg,
     IFRAME: setSourcesIframe,
     VIDEO: setSourcesVideo
   };
-
-  var setSources = function setSources(element, instance) {
-    var settings = instance._settings;
+  var setSources = function setSources(element, settings, instance) {
     var tagName = element.tagName;
     var setSourcesFunction = setSourcesFunctions[tagName];
 
     if (setSourcesFunction) {
       setSourcesFunction(element, settings);
-      updateLoadingCount(instance, 1);
-      instance._elements = purgeOneElement(instance._elements, element);
-      return;
+      increaseLoadingCount(instance);
+    } else {
+      setSourcesBgImage(element, settings);
     }
-
-    setSourcesBgImage(element, settings);
   };
 
   var addClass = function addClass(element, className) {
@@ -238,7 +230,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
     element.className += (element.className ? " " : "") + className;
   };
-
   var removeClass = function removeClass(element, className) {
     if (supportsClassList) {
       element.classList.remove(className);
@@ -248,87 +239,120 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     element.className = element.className.replace(new RegExp("(^|\\s+)" + className + "(\\s+|$)"), " ").replace(/^\s+/, "").replace(/\s+$/, "");
   };
 
+  var safeCallback = function safeCallback(callback, arg1, arg2, arg3) {
+    if (!callback) {
+      return;
+    }
+
+    if (arg3 !== undefined) {
+      callback(arg1, arg2, arg3);
+      return;
+    }
+
+    if (arg2 !== undefined) {
+      callback(arg1, arg2);
+      return;
+    }
+
+    callback(arg1);
+  };
+
   var genericLoadEventName = "load";
   var mediaLoadEventName = "loadeddata";
   var errorEventName = "error";
-
+  var decreaseLoadingCount = function decreaseLoadingCount(settings, instance) {
+    if (!instance) return;
+    instance.loadingCount -= 1;
+    checkFinish(settings, instance);
+  };
+  var checkFinish = function checkFinish(settings, instance) {
+    if (instance.toLoadCount || instance.loadingCount) return;
+    safeCallback(settings.callback_finish, instance);
+  };
   var addEventListener = function addEventListener(element, eventName, handler) {
     element.addEventListener(eventName, handler);
   };
-
   var removeEventListener = function removeEventListener(element, eventName, handler) {
     element.removeEventListener(eventName, handler);
   };
-
   var addEventListeners = function addEventListeners(element, loadHandler, errorHandler) {
     addEventListener(element, genericLoadEventName, loadHandler);
     addEventListener(element, mediaLoadEventName, loadHandler);
     addEventListener(element, errorEventName, errorHandler);
   };
-
   var removeEventListeners = function removeEventListeners(element, loadHandler, errorHandler) {
     removeEventListener(element, genericLoadEventName, loadHandler);
     removeEventListener(element, mediaLoadEventName, loadHandler);
     removeEventListener(element, errorEventName, errorHandler);
   };
-
-  var eventHandler = function eventHandler(event, success, instance) {
-    var settings = instance._settings;
-    var className = success ? settings.class_loaded : settings.class_error;
-    var callback = success ? settings.callback_loaded : settings.callback_error;
+  var loadHandler = function loadHandler(event, settings, instance) {
     var element = event.target;
+    setStatus(element, statusLoaded);
     removeClass(element, settings.class_loading);
-    addClass(element, className);
-    callbackIfSet(callback, element);
-    updateLoadingCount(instance, -1);
+    addClass(element, settings.class_loaded);
+    safeCallback(settings.callback_loaded, element, instance);
+    decreaseLoadingCount(settings, instance);
   };
-
-  var addOneShotEventListeners = function addOneShotEventListeners(element, instance) {
-    var loadHandler = function loadHandler(event) {
-      eventHandler(event, true, instance);
-      removeEventListeners(element, loadHandler, errorHandler);
+  var errorHandler = function errorHandler(event, settings, instance) {
+    var element = event.target;
+    setStatus(element, statusError);
+    removeClass(element, settings.class_loading);
+    addClass(element, settings.class_error);
+    safeCallback(settings.callback_error, element, instance);
+    decreaseLoadingCount(settings, instance);
+  };
+  var addOneShotEventListeners = function addOneShotEventListeners(element, settings, instance) {
+    var _loadHandler = function _loadHandler(event) {
+      loadHandler(event, settings, instance);
+      removeEventListeners(element, _loadHandler, _errorHandler);
     };
 
-    var errorHandler = function errorHandler(event) {
-      eventHandler(event, false, instance);
-      removeEventListeners(element, loadHandler, errorHandler);
+    var _errorHandler = function _errorHandler(event) {
+      errorHandler(event, settings, instance);
+      removeEventListeners(element, _loadHandler, _errorHandler);
     };
 
-    addEventListeners(element, loadHandler, errorHandler);
+    addEventListeners(element, _loadHandler, _errorHandler);
   };
 
-  var managedTags = ["IMG", "IFRAME", "VIDEO"];
-
-  var onEnter = function onEnter(element, instance) {
-    var settings = instance._settings;
-    callbackIfSet(settings.callback_enter, element);
-
-    if (!settings.load_delay) {
-      revealAndUnobserve(element, instance);
-      return;
-    }
-
-    delayLoad(element, instance);
+  var manageableTags = ["IMG", "IFRAME", "VIDEO"];
+  var decreaseToLoadCount = function decreaseToLoadCount(settings, instance) {
+    if (!instance) return;
+    instance.toLoadCount -= 1;
+    checkFinish(settings, instance);
   };
-
-  var revealAndUnobserve = function revealAndUnobserve(element, instance) {
+  var unobserve = function unobserve(element, instance) {
+    if (!instance) return;
     var observer = instance._observer;
-    revealElement(element, instance);
 
     if (observer && instance._settings.auto_unobserve) {
       observer.unobserve(element);
     }
   };
-
-  var onExit = function onExit(element, instance) {
-    var settings = instance._settings;
-    callbackIfSet(settings.callback_exit, element);
-
-    if (!settings.load_delay) {
-      return;
+  var isManageableTag = function isManageableTag(element) {
+    return manageableTags.indexOf(element.tagName) > -1;
+  };
+  var enableLoading = function enableLoading(element, settings, instance) {
+    if (isManageableTag(element)) {
+      addOneShotEventListeners(element, settings, instance);
+      addClass(element, settings.class_loading);
     }
 
-    cancelDelayLoad(element);
+    setSources(element, settings, instance);
+    decreaseToLoadCount(settings, instance);
+  };
+  var load = function load(element, settings, instance) {
+    enableLoading(element, settings, instance);
+    setStatus(element, statusLoading);
+    safeCallback(settings.callback_loading, element, instance);
+    /* DEPRECATED, REMOVE IN V.15 => */
+
+    safeCallback(settings.callback_reveal, element, instance);
+    unobserve(element, instance);
+  };
+  var loadNative = function loadNative(element, settings, instance) {
+    enableLoading(element, settings, instance);
+    setStatus(element, statusNative);
   };
 
   var cancelDelayLoad = function cancelDelayLoad(element) {
@@ -341,38 +365,58 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     clearTimeout(timeoutId);
     setTimeoutData(element, null);
   };
-
-  var delayLoad = function delayLoad(element, instance) {
-    var loadDelay = instance._settings.load_delay;
+  var delayLoad = function delayLoad(element, settings, instance) {
+    var loadDelay = settings.load_delay;
     var timeoutId = getTimeoutData(element);
 
     if (timeoutId) {
       return; // do nothing if timeout already set
     }
 
-    timeoutId = setTimeout(function () {
-      revealAndUnobserve(element, instance);
+    timeoutId = setTimeout(function() {
+      load(element, settings, instance);
       cancelDelayLoad(element);
     }, loadDelay);
     setTimeoutData(element, timeoutId);
   };
 
-  var revealElement = function revealElement(element, instance, force) {
+  var onEnter = function onEnter(element, entry, instance) {
     var settings = instance._settings;
+    safeCallback(settings.callback_enter, element, entry, instance);
 
-    if (!force && getWasProcessedData(element)) {
-      return; // element has already been processed and force wasn't true
+    if (!settings.load_delay) {
+      load(element, settings, instance);
+      return;
     }
 
-    if (managedTags.indexOf(element.tagName) > -1) {
-      addOneShotEventListeners(element, instance);
-      addClass(element, settings.class_loading);
+    delayLoad(element, settings, instance);
+  };
+  var onExit = function onExit(element, entry, instance) {
+    var settings = instance._settings;
+    safeCallback(settings.callback_exit, element, entry, instance);
+
+    if (!settings.load_delay) {
+      return;
     }
 
-    setSources(element, instance);
-    setWasProcessedData(element);
-    callbackIfSet(settings.callback_reveal, element);
-    callbackIfSet(settings.callback_set, element);
+    cancelDelayLoad(element);
+  };
+
+  var nativeLazyTags = ["IMG", "IFRAME"];
+  var loadingString = "loading";
+  var shouldUseNative = function shouldUseNative(settings) {
+    return settings.use_native && loadingString in HTMLImageElement.prototype;
+  };
+  var loadAllNative = function loadAllNative(elements, settings, instance) {
+    elements.forEach(function(element) {
+      if (nativeLazyTags.indexOf(element.tagName) === -1) {
+        return;
+      }
+
+      element.setAttribute(loadingString, "lazy");
+      loadNative(element, settings, instance);
+    });
+    instance.toLoadCount = 0;
   };
 
   var isIntersecting = function isIntersecting(entry) {
@@ -386,106 +430,136 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     };
   };
 
-  var setObserver = function setObserver(instance) {
-    if (!supportsIntersectionObserver) {
-      return false;
-    }
-
-    instance._observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        return isIntersecting(entry) ? onEnter(entry.target, instance) : onExit(entry.target, instance);
-      });
-    }, getObserverSettings(instance._settings));
-    return true;
+  var resetObserver = function resetObserver(observer) {
+    observer.disconnect();
   };
-
-  var nativeLazyTags = ["IMG", "IFRAME"];
-
-  var shouldUseNative = function shouldUseNative(settings) {
-    return settings.use_native && "loading" in HTMLImageElement.prototype;
-  };
-
-  var loadAllNative = function loadAllNative(instance) {
-    instance._elements.forEach(function (element) {
-      if (nativeLazyTags.indexOf(element.tagName) === -1) {
-        return;
-      }
-
-      element.setAttribute("loading", "lazy");
-      revealElement(element, instance);
+  var observeElements = function observeElements(observer, elements) {
+    elements.forEach(function(element) {
+      observer.observe(element);
+      setStatus(element, statusObserved);
     });
   };
+  var updateObserver = function updateObserver(observer, elementsToObserve) {
+    resetObserver(observer);
+    observeElements(observer, elementsToObserve);
+  };
+  var setObserver = function setObserver(instance) {
+    if (!supportsIntersectionObserver || shouldUseNative(instance._settings)) {
+      return;
+    }
 
-  var nodeSetToArray = function nodeSetToArray(nodeSet) {
-    return Array.prototype.slice.call(nodeSet);
+    instance._observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        return isIntersecting(entry) ? onEnter(entry.target, entry, instance) : onExit(entry.target, entry, instance);
+      });
+    }, getObserverSettings(instance._settings));
   };
 
+  var toArray = function toArray(nodeSet) {
+    return Array.prototype.slice.call(nodeSet);
+  };
   var queryElements = function queryElements(settings) {
     return settings.container.querySelectorAll(settings.elements_selector);
   };
+  var isToManage = function isToManage(element) {
+    return !hasAnyStatus(element) || hasStatusObserved(element);
+  };
+  var excludeManagedElements = function excludeManagedElements(elements) {
+    return toArray(elements).filter(isToManage);
+  };
+  var hasError = function hasError(element) {
+    return hasStatusError(element);
+  };
+  var filterErrorElements = function filterErrorElements(elements) {
+    return toArray(elements).filter(hasError);
+  };
+  var getElementsToLoad = function getElementsToLoad(elements, settings) {
+    return excludeManagedElements(elements || queryElements(settings));
+  };
 
-  var getElements = function getElements(elements, settings) {
-    return purgeProcessedElements(nodeSetToArray(elements || queryElements(settings)));
+  var retryLazyLoad = function retryLazyLoad(instance) {
+    var settings = instance._settings;
+    var errorElements = filterErrorElements(queryElements(settings));
+    errorElements.forEach(function(element) {
+      removeClass(element, settings.class_error);
+      resetStatus(element);
+    });
+    instance.update();
+  };
+  var setOnlineCheck = function setOnlineCheck(instance) {
+    if (!runningOnBrowser) {
+      return;
+    }
+
+    window.addEventListener("online", function(event) {
+      retryLazyLoad(instance);
+    });
   };
 
   var LazyLoad = function LazyLoad(customSettings, elements) {
-    this._settings = getInstanceSettings(customSettings);
-    this._loadingCount = 0;
+    this._settings = getExtendedSettings(customSettings);
+    this.loadingCount = 0;
     setObserver(this);
+    setOnlineCheck(this);
     this.update(elements);
   };
 
   LazyLoad.prototype = {
-    update: function update(elements) {
-      var _this = this;
-
+    update: function update(givenNodeset) {
       var settings = this._settings;
-      this._elements = getElements(elements, settings);
+      var elementsToLoad = getElementsToLoad(givenNodeset, settings);
+      this.toLoadCount = elementsToLoad.length;
 
-      if (isBot || !this._observer) {
-        this.loadAll();
+      if (isBot || !supportsIntersectionObserver) {
+        this.loadAll(elementsToLoad);
         return;
       }
 
       if (shouldUseNative(settings)) {
-        loadAllNative(this);
-        this._elements = getElements(elements, settings);
+        loadAllNative(elementsToLoad, settings, this);
+        return;
       }
 
-      this._elements.forEach(function (element) {
-        _this._observer.observe(element);
-      });
+      updateObserver(this._observer, elementsToLoad);
     },
     destroy: function destroy() {
-      var _this2 = this;
-
+      // Observer
       if (this._observer) {
-        this._elements.forEach(function (element) {
-          _this2._observer.unobserve(element);
-        });
-
-        this._observer = null;
+        this._observer.disconnect();
       }
 
-      this._elements = null;
-      this._settings = null;
+      delete this._observer;
+      delete this._settings;
+      delete this.loadingCount;
+      delete this.toLoadCount;
     },
-    load: function load(element, force) {
-      revealElement(element, this, force);
-    },
-    loadAll: function loadAll() {
-      var _this3 = this;
+    loadAll: function loadAll(elements) {
+      var _this = this;
 
-      this._elements.forEach(function (element) {
-        revealAndUnobserve(element, _this3);
+      var settings = this._settings;
+      var elementsToLoad = getElementsToLoad(elements, settings);
+      elementsToLoad.forEach(function(element) {
+        load(element, settings, _this);
       });
+    },
+    load: function load$1(element) {
+      /* DEPRECATED, REMOVE IN V.15 */
+      load(element, this._settings, this);
     }
   };
+
+  LazyLoad.load = function(element, customSettings) {
+    var settings = getExtendedSettings(customSettings);
+
+    load(element, settings);
+  };
   /* Automatic instances creation if required (useful for async script loading) */
+
 
   if (runningOnBrowser) {
     autoInitialize(LazyLoad, window.lazyLoadOptions);
   }
 
   return LazyLoad;
-});
+
+})));

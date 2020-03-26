@@ -1,9 +1,61 @@
- // main: ../style.scss
+// main: ../style.scss
 @import 'vars';
 @import 'mixin';
+// wrappers and more
+.wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wrapper-padded {
+  position: relative;
+  margin: 0 auto;
+}
+
+.wrapper-padded-more {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wrapper-padded-more-924 {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wrapper-padded-more-700 {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wrapper-padded-more-650 {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wrapper-padded-more-500 {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
 
 .flex-hold {
-	position: relative;
-	width: 100%;
+  position: relative;
+  width: 100%;
   @include flex-wrap;
+}
+
+.flex-hold-child,
+.flex-hold-child-image,
+.flex-hold-child-texts,
+.left-fix,
+.page-opening-image,
+.page-opening-text,
+.right-fix {
+  position: relative;
+  -webkit-box-flex: 1;
 }
