@@ -1,24 +1,26 @@
- // main: ../style.scss
+// main: ../style.scss
 @import 'vars';
 @import 'mixin';
 
-h1, h2, h3, h4, h5, h6, p, ul, ol, .cta-1 {
-  //@include define-hyphens;
-}
-
-h1, h2, h3, h4, h5, h6, p, ul, ol, .menu, .mega-menu-page-list, #footer p {
-  font-weight: $font-weight-1;
-}
-
-.cta-1, .default-button, .default-button-b, .cta-navi a {
-  font-weight: $font-weight-3;
-}
-
-.cta-2 {
-  font-weight: $font-weight-4;
-}
-
-h1, h2, h3, h4, h5, h6, .cta-1, .cta-2, .menu, .mega-menu, .mega-menu p, #footer p {
+#footer p,
+.cta-1,
+.cta-2,
+.mega-menu,
+.mega-menu p,
+.menu,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input[type=email],
+input[type=number],
+input[type=submit],
+input[type=submit],
+input[type=tel],
+input[type=text],
+label {
   font-family: $font-main;
 }
 
@@ -26,22 +28,54 @@ p {
   font-family: $font-sub;
 }
 
+#footer p,
+.mega-menu-page-list,
+.menu,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input[type=email],
+input[type=number],
+input[type=submit],
+input[type=submit],
+input[type=tel],
+input[type=text],
+label,
+ol,
+p,
+ul {
+  font-weight: $font-weight-1;
+}
+
+.cta-1,
+.cta-navi a,
+.default-button,
+.default-button-b {
+  font-weight: $font-weight-3;
+}
+
+.cta-2 {
+  font-weight: $font-weight-4;
+}
+
 .aligncenter {
-	text-align:center;
+  text-align: center;
 }
 
 .alignright {
-	text-align:right;
+  text-align: right;
 }
 
 .alignleft {
-	text-align:left;
+  text-align: left;
 }
 
 .allupper {
-	text-transform:uppercase;
+  text-transform: uppercase;
 }
-
 // comma separated links
 
 .category-list {
@@ -50,41 +84,56 @@ p {
     &:after {
       content: ", ";
     }
+
     &:last-child:after {
       content: "";
     }
   }
+
   span {
     &:after {
       content: ", ";
     }
+
     &:last-child:after {
       content: "";
     }
   }
 }
-
 // remove typography elements last child margin bottom
 
 .last-child-no-margin {
-	h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child, h6:last-child, p:last-child, ul:last-child, ol:last-child {
+  h1:last-child,
+  h2:last-child,
+  h3:last-child,
+  h4:last-child,
+  h5:last-child,
+  h6:last-child,
+  ol:last-child,
+  p:last-child,
+  ul:last-child {
     margin-bottom: 0 !important;
   }
 }
 
 .content-styled {
-	strong {
+  strong {
     font-weight: $font-weight-3;
   }
-  ul, ol {
+
+  ol,
+  ul {
     font-family: $font-sub;
   }
-	ul {
-    list-style-position:inside;
+
+  ul {
+    list-style-position: inside;
     list-style: none;
     padding: 0;
-		li {
+
+    li {
       display: table-row;
+
       &:before {
         position: relative;
         display: table-cell;
@@ -94,28 +143,31 @@ p {
       }
     }
   }
-	ol {
+
+  ol {
     list-style-type: none;
     list-style-type: decimal;
     padding: 0;
     counter-reset: li-counter;
   }
+
   ol > li {
-  	overflow: hidden;
-  	position: relative;
-  	margin:0;
-  	padding:0 0 0 20px;
-  	display: table-row;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 20px;
+    display: table-row;
+
     &:before {
-    	position: relative;
-    	display: table-cell;
+      position: relative;
+      display: table-cell;
       top: 0;
-      left:0;
-    	color: $color-1;
+      left: 0;
+      color: $color-1;
       text-align: right;
       content: counter(li-counter)". ";
       counter-increment: li-counter;
-    	padding: 0 15px 0 0;
+      padding: 0 15px 0 0;
     }
   }
 }

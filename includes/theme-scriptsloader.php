@@ -39,7 +39,7 @@ function all_scripts(){
 
   // Lazy load
   // documentazione: http://www.andreaverlicchi.eu/lazyload/
-  wp_register_script( 'vanilla-lazyload', get_template_directory_uri() . '/assets/js/libs/lazyload.min.js#deferload', '', '12.0.0', true);
+  wp_register_script( 'vanilla-lazyload', get_template_directory_uri() . '/assets/js/libs/lazyload.min.js#deferload', '', '14.0.0', true);
   wp_enqueue_script( 'vanilla-lazyload' );
 
   // AOS

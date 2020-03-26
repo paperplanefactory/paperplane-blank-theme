@@ -11,14 +11,13 @@
 @import 'global/grids';
 @import 'global/modules';
 @import 'global/buttons';
-@import 'global/effects';
+//@import 'global/preload-animations';
 @import 'global/images';
 @import 'global/forms';
 
 // imports mobile
 @media screen and (min-width: $break-mobile-start) and  (max-width: $break-tablet-end) {
   @import 'mobile/header-footer';
-  @import 'mobile/structure';
   @import 'mobile/grids';
   @import 'mobile/modules';
   @import 'mobile/typo';
@@ -30,7 +29,6 @@
 // imports desktop
 @media screen and (min-width: $break-desktop) {
   @import 'desktop/header-footer';
-  @import 'desktop/structure';
   @import 'desktop/grids';
   @import 'desktop/modules';
   @import 'desktop/typo';
@@ -44,7 +42,7 @@
 @import 'global/libraries/slick';
 // rimuovere il commento se si usa pagenavi - https://wordpress.org/plugins/wp-pagenavi/
 // @import 'global/pagenavi';
-//@import 'global/visual-debug';
+// @import 'global/visual-debug';
 
 // IMPORTANTE!!
 // 0 - verifica di utilizzare l'ultima versione del tema!!

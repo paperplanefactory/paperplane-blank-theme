@@ -1,4 +1,5 @@
 <?php
+global $acf_options_parameter;
 $mega_menu_counter = 0;
 if ( have_rows( 'mega_menu_repeater', $acf_options_parameter ) ) : while ( have_rows( 'mega_menu_repeater', $acf_options_parameter ) ) : the_row();
 $mega_menu_counter++;
@@ -18,7 +19,7 @@ switch ( $mega_menu_repeater_cta_target ) {
   break;
 }
 ?>
-<nav class="mega-menu combo-1 default-box-shadow mega-menu-js mega-menu-js-<?php echo $mega_menu_counter; ?>-target hidden">
+<nav class="mega-menu combo-1 default-box-shadow mega-menu-js mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-target hidden">
   <div class="mega-menu-spacer">
     <div class="flex-hold flex-hold-3 margins-wide">
       <div class="flex-hold-child">
@@ -64,11 +65,11 @@ switch ( $mega_menu_repeater_cta_target ) {
   </div>
 </nav>
 <script type="text/javascript">
-$('.mega-menu-js-<?php echo $mega_menu_counter; ?>-trigger').hover(function() {
+$('.mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-trigger').hover(function() {
   $('.mega-menu-js-trigger').removeClass('current-mega-menu');
   $(this).addClass('current-mega-menu');
   $('.mega-menu-js').addClass('hidden');
-  $('.mega-menu-js-<?php echo $mega_menu_counter; ?>-target').removeClass('hidden');
+  $('.mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-target').removeClass('hidden');
 });
 </script>
 <?php endwhile; endif; ?>
