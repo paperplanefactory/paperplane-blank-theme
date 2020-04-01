@@ -4,6 +4,7 @@ $banner = get_sub_field( 'module_banner_object' );
 if( $banner ) :
   $post = $banner;
   setup_postdata( $post );
+  $banner_shadow = get_field( 'banner_shadow' );
   $banner_background_image = get_field( 'banner_background_image' );
   $banner_background_image_URL = $banner_background_image['sizes']['full_desk'];
 
@@ -30,9 +31,9 @@ if( $banner ) :
       <div class="wrapper-padded-more">
         <?php if ( $banner_foreground_image != '' ) : ?>
           <?php if ( $banner_background_image != '' ) : ?>
-            <div class="banner-space lazy blended <?php the_field( 'banner_color_scheme' ); ?>" data-bg="url('<?php echo $banner_background_image_URL; ?>')" data-aos="zoom-out">
+            <div class="banner-space lazy blended <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>" data-bg="url('<?php echo $banner_background_image_URL; ?>')" data-aos="zoom-out">
           <?php else : ?>
-            <div class="banner-space <?php the_field( 'banner_color_scheme' ); ?>">
+            <div class="banner-space <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>">
           <?php endif; ?>
             <div class="flex-hold flex-hold-banner-image verticalize">
               <div class="banner-box banner-image" data-aos="fade-right" data-aos-delay="450">
@@ -63,9 +64,9 @@ if( $banner ) :
           </div>
         <?php else : ?>
           <?php if ( $banner_background_image != '' ) : ?>
-            <div class="banner-space lazy blended <?php the_field( 'banner_color_scheme' ); ?>" data-bg="url('<?php echo $banner_background_image_URL; ?>')" data-aos="zoom-out">
+            <div class="banner-space lazy blended <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>" data-bg="url('<?php echo $banner_background_image_URL; ?>')" data-aos="zoom-out">
           <?php else : ?>
-            <div class="banner-space <?php the_field( 'banner_color_scheme' ); ?>">
+            <div class="banner-space <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>">
           <?php endif; ?>
             <div class="flex-hold flex-hold-banner verticalize">
               <div class="banner-box banner-text last-child-no-margin">

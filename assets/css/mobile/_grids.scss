@@ -1,7 +1,7 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
-// wrappers and more
+@import '../global/mixin'; // wrappers and more
+
 .wrapper {
   overflow: hidden;
 }
@@ -48,7 +48,9 @@
 }
 
 .flex-fix-column,
-.flex-hold-2 {
+.flex-hold-2,
+.flex-hold-3,
+.flex-hold-4 {
   .flex-hold-child {
     position: relative;
     -webkit-box-flex: 1;
@@ -93,9 +95,8 @@
 
     .page-opening-text-space {
       position: relative;
-      width: calc(100% - 60px - #{$wrapper-padded-smartphone});
-      max-width: 960px;
-      padding: 5vh 70px 5vh $wrapper-padded-smartphone;
+      width: calc(100% - (#{$wrapper-padded-smartphone} * 2));
+      padding: 5vh $wrapper-padded-smartphone;
       text-align: center;
     }
   }
@@ -103,7 +104,7 @@
   .page-opening-image {
     order: 1;
     width: 100%;
-    margin-top: 60px;
+    margin-top: 40px;
 
     .page-opening-image-aligner {
       text-align: center;
@@ -171,6 +172,7 @@
   }
 }
 // social list
+
 .inline-socials {
   width: 100%;
   margin: 10px 0;

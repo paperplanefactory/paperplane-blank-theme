@@ -1,8 +1,6 @@
- // main: ../style.scss
+// main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
-
-// header
+@import '../global/mixin'; // header
 
 #preheader {
   position: relative;
@@ -21,6 +19,7 @@
   -moz-transition: all 0.2s linear, width 0s;
   -o-transition: all 0.2s linear, width 0s;
   transition: all 0.2s linear, width 0s;
+
   &.hidden {
     pointer-events: none;
   }
@@ -35,6 +34,7 @@
   opacity: 1;
   pointer-events: all;
   @include define-basic-transition(all, 0.3s);
+
   &.hidden {
     opacity: 0;
     pointer-events: none;
@@ -42,7 +42,7 @@
 }
 
 .occupy-scrollbar {
-	width: calc(100% - 18px) !important;
+  width: calc(100% - 18px);
 }
 
 .hide-y-overflow {
@@ -50,39 +50,41 @@
 }
 
 .scroll-opportunity {
-	position: relative;
-	display: block;
-	width: calc(100% + 18px);
-	overflow-y: scroll;
+  position: relative;
+  display: block;
+  width: calc(100% + 18px);
+  overflow-y: scroll;
 }
 
 #header-structure {
   position: relative;
   @include flex-wrap;
   @include flex-verticalize;
+
   .logo {
     position: relative;
     -webkit-box-flex: 1;
+
     &:before {
       content: "";
       position: absolute;
       display: block;
       width: 100%;
-      background-image:url(assets/images/site-logo-header.svg);
+      background-image: url("assets/images/site-logo-header.svg");
       background-position: 0 50%;
       background-repeat: no-repeat;
       background-size: contain;
     }
   }
+
   .menu {
     -webkit-box-flex: 1;
   }
+
   .side-head {
     -webkit-box-flex: 1;
   }
 }
-
-
 // footer
 
 #footer {
@@ -90,21 +92,24 @@
   display: block;
   width: 100%;
   overflow: hidden;
+
   .footer-structure-1 {
     position: relative;
     @include flex-wrap;
     @include flex-verticalize;
+
     .block {
       position: relative;
       -webkit-box-flex: 1;
     }
+
     .logo {
       &:before {
         content: "";
         position: absolute;
         display: block;
         width: 100%;
-        background-image:url(assets/images/site-logo-header.svg);
+        background-image: url("assets/images/site-logo-header.svg");
         background-position: 0 50%;
         background-repeat: no-repeat;
         background-size: contain;

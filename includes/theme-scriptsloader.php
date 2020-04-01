@@ -34,7 +34,7 @@ function all_scripts(){
   }
   // Infinite Scroll
   // documentazione: https://infinite-scroll.com/
-  wp_register_script( 'custom-infinitescroll', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/3.0.5/infinite-scroll.pkgd.min.js#deferload', '', '3.0.5', false);
+  wp_register_script( 'custom-infinitescroll', get_template_directory_uri() . '/assets/js/libs/infinite-scroll.min.js#deferload', '', '3.0.6', false);
   wp_enqueue_script( 'custom-infinitescroll' );
 
   // Lazy load

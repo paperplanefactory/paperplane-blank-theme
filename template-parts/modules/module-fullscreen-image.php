@@ -17,10 +17,13 @@ switch ( $module_fullscreen_image_cta_target ) {
   $module_fullscreen_image_cta_url_target = '_blank';
   break;
 }
+if ( get_sub_field( 'module_fullscreen_image_main_text' ) || get_sub_field( 'module_fullscreen_image_secondary_text' ) || get_sub_field( 'module_fullscreen_image_cta_text' ) ) {
+  $blended_class = 'blended';
+}
 ?>
 <div class="wrapper module-fullscreen-image">
   <?php if ( $module_fullscreen_image_image != '' ) : ?>
-    <div class="module-box-fullscreen fullscreen-cta <?php the_sub_field( 'module_fullscreen_text_align' ); ?> lazy coverize blended <?php the_sub_field( 'module_fullscreen_image_color_scheme' ); ?>" data-bg="url('<?php echo $module_fullscreen_image_image_URL; ?>')" data-aos="fade">
+    <div class="module-box-fullscreen fullscreen-cta <?php the_sub_field( 'module_fullscreen_text_align' ); ?> lazy coverize <?php echo $blended_class; ?> <?php the_sub_field( 'module_fullscreen_image_color_scheme' ); ?>" data-bg="url('<?php echo $module_fullscreen_image_image_URL; ?>')" data-aos="fade">
   <?php else : ?>
     <div class="module-box-fullscreen fullscreen-cta <?php the_sub_field( 'module_fullscreen_text_align' ); ?> <?php the_sub_field( 'module_fullscreen_image_color_scheme' ); ?>">
   <?php endif; ?>
