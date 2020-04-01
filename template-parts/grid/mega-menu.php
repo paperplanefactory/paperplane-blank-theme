@@ -1,5 +1,6 @@
 <?php
 global $acf_options_parameter;
+global $mega_menu_wrapper;
 $mega_menu_counter = 0;
 if ( have_rows( 'mega_menu_repeater', $acf_options_parameter ) ) : while ( have_rows( 'mega_menu_repeater', $acf_options_parameter ) ) : the_row();
 $mega_menu_counter++;
@@ -19,52 +20,61 @@ switch ( $mega_menu_repeater_cta_target ) {
   break;
 }
 ?>
-<nav class="mega-menu combo-1 default-box-shadow mega-menu-js mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-target hidden">
-  <div class="mega-menu-spacer">
-    <div class="flex-hold flex-hold-3 margins-wide">
-      <div class="flex-hold-child">
-        <ul class="mega-menu-page-list">
-          <?php
-          if ( have_rows( 'mega_menu_repeater_pages_repeater' ) ) : while ( have_rows( 'mega_menu_repeater_pages_repeater' ) ) : the_row();
-          ?>
-          <li>
-            <a href="<?php the_sub_field( 'mega_menu_repeater_pages_repeater_page' ); ?>"><?php the_sub_field( 'mega_menu_repeater_pages_repeater_page_title' ); ?></a>
-          </li>
-          <?php endwhile; endif; ?>
-        </ul>
-      </div>
-      <div class="flex-hold-child">
-        <?php
-        $image_data = array(
-            'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
-            'image_value' => 'mega_menu_repeater_image', // se utilizzi un custom field indica qui il nome del campo
-            'size_fallback' => 'column'
-        );
-        $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-            'retina' => 'column',
-            'desktop' => 'column',
-            'mobile' => 'column',
-            'micro' => 'micro'
-        );
-        print_theme_image( $image_data, $image_sizes );
-        ?>
-      </div>
-      <div class="flex-hold-child">
-        <div class="last-child-no-margin">
-          <p>
-            <?php the_sub_field( 'mega_menu_repeater_additional_info' ); ?>
-          </p>
+<nav class="mega-menu mega-menu-js mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-target hidden">
+  <div class="mega-menu-holder <?php echo $mega_menu_wrapper; ?> no-bg">
+    <div class="mega-menu-spacer mega-menu-js-hover">
+      <div class="flex-hold flex-hold-3 margins-wide">
+        <div class="flex-hold-child">
+          <ul class="mega-menu-page-list">
+            <?php
+            if ( have_rows( 'mega_menu_repeater_pages_repeater' ) ) : while ( have_rows( 'mega_menu_repeater_pages_repeater' ) ) : the_row();
+            ?>
+            <li>
+              <a href="<?php the_sub_field( 'mega_menu_repeater_pages_repeater_page' ); ?>"><?php the_sub_field( 'mega_menu_repeater_pages_repeater_page_title' ); ?></a>
+            </li>
+            <?php endwhile; endif; ?>
+          </ul>
         </div>
-        <?php if ( get_sub_field( 'mega_menu_repeater_cta_text' ) ) : ?>
-          <div class="cta-holder">
-            <a href="<?php echo $mega_menu_repeater_cta_url; ?>" target="<?php echo $mega_menu_repeater_cta_url_target; ?>" class="<?php the_sub_field( 'mega_menu_repeater_cta_appearence' ); ?> allupper"><?php the_sub_field( 'mega_menu_repeater_cta_text' ); ?></a>
+        <div class="flex-hold-child">
+          <?php
+          $image_data = array(
+              'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
+              'image_value' => 'mega_menu_repeater_image', // se utilizzi un custom field indica qui il nome del campo
+              'size_fallback' => 'column'
+          );
+          $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+              'retina' => 'column',
+              'desktop' => 'column',
+              'mobile' => 'column',
+              'micro' => 'micro'
+          );
+          print_theme_image( $image_data, $image_sizes );
+          ?>
+        </div>
+        <div class="flex-hold-child">
+          <div class="last-child-no-margin">
+            <p>
+              <?php the_sub_field( 'mega_menu_repeater_additional_info' ); ?>
+            </p>
           </div>
-        <?php endif; ?>
+          <?php if ( get_sub_field( 'mega_menu_repeater_cta_text' ) ) : ?>
+            <div class="cta-holder">
+              <a href="<?php echo $mega_menu_repeater_cta_url; ?>" target="<?php echo $mega_menu_repeater_cta_url_target; ?>" class="<?php the_sub_field( 'mega_menu_repeater_cta_appearence' ); ?> allupper"><?php the_sub_field( 'mega_menu_repeater_cta_text' ); ?></a>
+            </div>
+          <?php endif; ?>
+        </div>
       </div>
     </div>
   </div>
 </nav>
 <script type="text/javascript">
+$('.header-menu-js > .menu-item').not('.mega-menu-js-trigger').hover(function(e) {
+  $('.mega-menu-js').addClass('hidden');
+});
+$('.mega-menu-js-hover').mouseleave(function() {
+  $('.mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-target').addClass('hidden');
+  $('.mega-menu-js-trigger').removeClass('current-mega-menu');
+});
 $('.mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-trigger').hover(function() {
   $('.mega-menu-js-trigger').removeClass('current-mega-menu');
   $(this).addClass('current-mega-menu');

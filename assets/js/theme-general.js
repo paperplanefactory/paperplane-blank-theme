@@ -136,9 +136,8 @@ $(window).scroll(function(event) {
 // mega menu
 /////////////////////////////////////////////
 
-$('.mega-menu-js').mouseleave(function() {
-  $(this).addClass('hidden');
-  $('.mega-menu-js-trigger').removeClass('current-mega-menu');
+$('.mega-menu-js-trigger').click(function(e) {
+  e.preventDefault();
 });
 
 /////////////////////////////////////////////
@@ -309,6 +308,15 @@ $('.expander').click(function(e) {
     $(this).find('span').removeClass('exp-plus').addClass('exp-minus');
     $(this).parent().next('.expandable-content').slideDown(150).focus();
   }
+  e.preventDefault();
+});
+
+/////////////////////////////////////////////
+// sub menu mobile
+/////////////////////////////////////////////
+
+$('.overlay-menu-mobile-js > .menu-item-has-children').click(function(e) {
+  $(this).find('.sub-menu').slideToggle(150);
   e.preventDefault();
 });
 
