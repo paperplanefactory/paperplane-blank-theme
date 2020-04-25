@@ -3321,7 +3321,8 @@ ul {
   .lazy.image-icon {
     opacity: 1;
   }
-  span.lazy, video.lazy {
+  span.lazy,
+  video.lazy {
     position: relative;
     opacity: 1;
   }
@@ -3356,10 +3357,10 @@ ul {
     line-height: 21px;
     margin-bottom: 5px;
   }
-  .form-hold input[type=text],
   .form-hold input[type=email],
   .form-hold input[type=number],
-  .form-hold input[type=tel] {
+  .form-hold input[type=tel],
+  .form-hold input[type=text] {
     font-size: 14px;
     line-height: 21px;
     margin-bottom: 15px;
