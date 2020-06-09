@@ -1,0 +1,98 @@
+{
+    "key": "group_5e7b0ba4ec858",
+    "title": "Opzioni pagina listing",
+    "fields": [
+        {
+            "key": "field_5e7b0bdc55cb2",
+            "label": "Contenuto da elencare",
+            "name": "page_listing_cpt",
+            "type": "post_type_selector",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "select_type": 0
+        },
+        {
+            "key": "field_5e7b0c4d9054d",
+            "label": "Layout elenco",
+            "name": "page_listing_layout",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "listing-grid": "Colonne",
+                "listing-blocks": "Blocchi"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5e7b0cb49054e",
+            "label": "Numero di colonne",
+            "name": "page_listing_columns_number",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5e7b0c4d9054d",
+                        "operator": "==",
+                        "value": "listing-grid"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "Due colonne",
+                "3": "Tre Colonne",
+                "4": "Quattro colonne"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-listing.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1591630575
+}

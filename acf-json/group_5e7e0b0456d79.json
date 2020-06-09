@@ -1,0 +1,55 @@
+{
+    "key": "group_5e7e0b0456d79",
+    "title": "Indicazioni sulla composizione dei contenuti",
+    "fields": [
+        {
+            "key": "field_5e7e0b1754478",
+            "label": "Schema colori:",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Il blocco di apertura di ogni pagina. ogni modulo e i moduli di alcuni elementi (ad esempio le colonne) possono avere uno schema colori che funziona come segue:\r\n- Predefinito: sfondo bianco e testi neri\r\n- Schema 1: sfondo nero e testi bianchi\r\n- Schema 2: sfondo grigio chiaro e testi neri",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "cpt_banner"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1591630571
+}
