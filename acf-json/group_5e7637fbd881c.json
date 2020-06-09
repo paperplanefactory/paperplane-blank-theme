@@ -1,0 +1,345 @@
+{
+    "key": "group_5e7637fbd881c",
+    "title": "Opzioni mega menu",
+    "fields": [
+        {
+            "key": "field_5e76738dc0c71",
+            "label": "Attivazione mega menu",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Aggiungere alla voce di menu che deve deve attivare il mega menu la classe \"mega-menu-js-trigger mega-menu-js-1-any-lang-trigger\". <br \/>\r\n\"mega-menu-js-1-any-lang-trigger\" -> 1 è il numero del mega menu che verrà attivato al rollover.<br \/>\r\n\"any-lang\" è il parametro quando non viene usato Polylang. Nel caso in cui Polylang sia attivo sostituire \"any-lang\" con il codice della lingua (es. it).",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_5e76380fdc31a",
+            "label": "Gestione mega menu",
+            "name": "mega_menu_repeater",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Aggiungi mega menu",
+            "sub_fields": [
+                {
+                    "key": "field_5e763e33faceb",
+                    "label": "Elementi mega menu",
+                    "name": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 0,
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_5e76385bdc31b",
+                    "label": "Voci menu",
+                    "name": "mega_menu_repeater_pages_repeater",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "block",
+                    "button_label": "Aggiungi pagina",
+                    "sub_fields": [
+                        {
+                            "key": "field_5e76388cdc31c",
+                            "label": "Scegli una pagina",
+                            "name": "mega_menu_repeater_pages_repeater_page",
+                            "type": "page_link",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "page"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "allow_archives": 1,
+                            "multiple": 0
+                        },
+                        {
+                            "key": "field_5e7638b8dc31d",
+                            "label": "Titolo",
+                            "name": "mega_menu_repeater_pages_repeater_page_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_5e763db9133f7",
+                    "label": "Immagine",
+                    "name": "mega_menu_repeater_image",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_5e763e5a82256",
+                    "label": "Testo aggiuntivo",
+                    "name": "mega_menu_repeater_additional_info",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "new_lines": "br"
+                },
+                {
+                    "key": "field_5e763ef882257",
+                    "label": "Testo CTA",
+                    "name": "mega_menu_repeater_cta_text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5e763f1282258",
+                    "label": "Aspetto CTA",
+                    "name": "mega_menu_repeater_cta_appearence",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e763ef882257",
+                                "operator": "!=empty"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "default-button": "CTA primaria",
+                        "default-button-b": "CTA secondaria"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5e763f5f82259",
+                    "label": "Destinazione CTA",
+                    "name": "mega_menu_repeater_cta_target",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e763ef882257",
+                                "operator": "!=empty"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "cta-target-internal": "Contenuto interno al sito",
+                        "cta-target-external": "Contenuto esterno al sito",
+                        "cta-target-file": "File"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5e763f9a8225a",
+                    "label": "Scegli un contenuto",
+                    "name": "mega_menu_repeater_cta_target_internal",
+                    "type": "page_link",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e763f5f82259",
+                                "operator": "==",
+                                "value": "cta-target-internal"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": "",
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "allow_archives": 1,
+                    "multiple": 0
+                },
+                {
+                    "key": "field_5e763fe78225b",
+                    "label": "Inserisci una URL",
+                    "name": "mega_menu_repeater_cta_target_external",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e763f5f82259",
+                                "operator": "==",
+                                "value": "cta-target-external"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5e7640168225c",
+                    "label": "Scegli il file",
+                    "name": "mega_menu_repeater_cta_target_file",
+                    "type": "file",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e763f5f82259",
+                                "operator": "==",
+                                "value": "cta-target-file"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "library": "all",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "gestione-mega-menu-any-lang"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1591630573
+}
