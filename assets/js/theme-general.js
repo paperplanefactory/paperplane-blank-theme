@@ -286,13 +286,6 @@ if (!!window.IntersectionObserver) {
   });
 } else document.querySelector('#warning').style.display = 'block';
 
-/////////////////////////////////////////////
-// click hamburger
-/////////////////////////////////////////////
-
-$('.ham-activator').click(function(e) {
-  hamburgerMenu();
-});
 
 /////////////////////////////////////////////
 // expandables
