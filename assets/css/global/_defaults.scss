@@ -1,33 +1,31 @@
- // main: ../style.scss
+// main: ../style.scss
 @import 'vars';
 @import 'mixin';
-
 // comportamenti predefiniti
-
 .clearer {
-	clear:both;
+	clear: both;
 }
 
 .only-explorer {
-  display: none !important;
+	display: none !important;
 }
-
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-   .no-explorer {
-     display: none !important;
-   }
-   .only-explorer {
-     position: absolute;
-     left: 0;
-     top: 0;
-     display: block;
-     width: 100%;
-     height: 100%;
-     background-size: cover;
-     background-repeat: no-repeat;
-     background-position: 50% 50%;
-     display: block !important;
-   }
+	.no-explorer {
+		display: none !important;
+	}
+
+	.only-explorer {
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		display: block !important;
+	}
 }
 
 .verticalize {
@@ -79,18 +77,46 @@
 		text-transform: uppercase;
 	}
 }
-
 // responsive iframes / videos
-
 .video_frame {
-	position:relative;
-	padding-bottom:56.25%;
-	height:0;
-	overflow:hidden;
-	max-width:100%;
-	height:auto;
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	max-width: 100%;
+	height: auto;
 }
 
-.video_frame iframe, .video_frame object, .video_frame embed {
-	position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+.video_frame embed,
+.video_frame iframe,
+.video_frame object {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+div#wpadminbar {
+	top: auto;
+	bottom: 0;
+	position: fixed;
+}
+
+.ab-sub-wrapper {
+	bottom: 32px;
+}
+
+html[lang] {
+	margin-top: 0 !important;
+	margin-bottom: 32px !important;
+}
+@media screen and (max-width: 782px) {
+	.ab-sub-wrapper {
+		bottom: 46px;
+	}
+
+	html[lang] {
+		margin-bottom: 46px !important;
+	}
 }

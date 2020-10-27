@@ -14,16 +14,10 @@
 	select,
 	textarea {
 		position: relative;
-		background-color: transparent;
-	}
-
-	input[type=email],
-	input[type=number],
-	input[type=tel],
-	input[type=text] {
 		width: calc(100% - 22px);
 		margin: 10px 0 0;
 		padding: 10px;
+		background-color: transparent;
 	}
 
 	textarea {
