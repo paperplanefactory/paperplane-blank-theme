@@ -28,10 +28,10 @@ if( $banner ) :
 <div class="wrapper module-banner <?php the_sub_field( 'module_bg' ); ?>">
   <div class="module-spacer">
     <div class="wrapper-padded">
-      <div class="wrapper-padded-more">
+      <div class="wrapper-padded-container">
         <?php if ( $banner_foreground_image != '' ) : ?>
           <?php if ( $banner_background_image != '' ) : ?>
-            <div class="banner-space lazy blended <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>" data-bg="url('<?php echo $banner_background_image_URL; ?>')" data-aos="zoom-out">
+            <div class="banner-space lazy blended <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>" data-bg="<?php echo $banner_background_image_URL; ?>" data-aos="zoom-out">
           <?php else : ?>
             <div class="banner-space <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>">
           <?php endif; ?>

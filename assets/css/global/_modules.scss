@@ -1,14 +1,9 @@
- // main: ../style.scss
- @import '../global/vars';
- @import '../global/mixin';
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
 
 .module-spacer {
   position: relative;
-}
-
-.module-text, .module-columns {
-  .cta-holder {
-  }
 }
 
 .expandable-content {

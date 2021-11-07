@@ -21,7 +21,7 @@ switch ( $mega_menu_repeater_cta_target ) {
 }
 ?>
 <nav class="mega-menu mega-menu-js mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-target hidden">
-  <div class="mega-menu-holder <?php echo $mega_menu_wrapper; ?> no-bg">
+  <div class="mega-menu-holder <?php echo $mega_menu_wrapper; ?> colors-black-bg">
     <div class="mega-menu-spacer mega-menu-js-hover">
       <div class="flex-hold flex-hold-3 margins-wide">
         <div class="flex-hold-child">
@@ -43,10 +43,11 @@ switch ( $mega_menu_repeater_cta_target ) {
               'size_fallback' => 'column'
           );
           $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-              'retina' => 'column',
-              'desktop' => 'column',
-              'mobile' => 'column',
-              'micro' => 'micro'
+              'desktop_default' => 'column',
+              'desktop_hd' => 'column_hd',
+              'mobile_default' => 'column',
+              'mobile_hd' => 'column_hd',
+              'lazy_placheholder' => 'micro'
           );
           print_theme_image( $image_data, $image_sizes );
           ?>
@@ -68,18 +69,19 @@ switch ( $mega_menu_repeater_cta_target ) {
   </div>
 </nav>
 <script type="text/javascript">
-$('.header-menu-js > .menu-item').not('.mega-menu-js-trigger').hover(function(e) {
-  $('.mega-menu-js').addClass('hidden');
+jQuery('.header-menu-js > .menu-item').not('.mega-menu-js-trigger').hover(function(e) {
+  jQuery('.mega-menu-js').addClass('hidden');
+  jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
 });
-$('.mega-menu-js-hover').mouseleave(function() {
-  $('.mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-target').addClass('hidden');
-  $('.mega-menu-js-trigger').removeClass('current-mega-menu');
+jQuery('.mega-menu-js-hover').mouseleave(function() {
+  jQuery('.mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-target').addClass('hidden');
+  jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
 });
-$('.mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-trigger').hover(function() {
-  $('.mega-menu-js-trigger').removeClass('current-mega-menu');
-  $(this).addClass('current-mega-menu');
-  $('.mega-menu-js').addClass('hidden');
-  $('.mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-target').removeClass('hidden');
+jQuery('.mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-trigger').hover(function() {
+  jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
+  jQuery(this).addClass('current-mega-menu');
+  jQuery('.mega-menu-js').addClass('hidden');
+  jQuery('.mega-menu-js-<?php echo $mega_menu_counter; ?>-<?php echo $acf_options_parameter; ?>-target').removeClass('hidden');
 });
 </script>
 <?php endwhile; endif; ?>

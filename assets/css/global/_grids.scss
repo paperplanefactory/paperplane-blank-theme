@@ -1,47 +1,6 @@
 // main: ../style.scss
 @import 'vars';
-@import 'mixin';
-// wrappers and more
-.wrapper {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.wrapper-padded {
-  position: relative;
-  margin: 0 auto;
-}
-
-.wrapper-padded-more {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.wrapper-padded-more-924 {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.wrapper-padded-more-700 {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.wrapper-padded-more-650 {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.wrapper-padded-more-500 {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-}
+@import 'mixin'; // wrappers and more
 
 .flex-hold {
   position: relative;
@@ -53,6 +12,8 @@
 .flex-hold-child-image,
 .flex-hold-child-texts,
 .left-fix,
+.module-stripe-image,
+.module-stripe-text,
 .page-opening-image,
 .page-opening-text,
 .right-fix {

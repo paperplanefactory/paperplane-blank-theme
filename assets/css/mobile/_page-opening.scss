@@ -1,0 +1,153 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.page-opening-fullscreen,
+.page-opening-fullscreen-less {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.page-opening-fullscreen {
+  min-height: calc(100vh - #{$header-desktop-height});
+}
+
+.page-opening-fullscreen-less {
+  position: relative;
+  min-height: calc(80vh - #{$header-desktop-height});
+}
+
+.fullscreen-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+
+  video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.fullscreen-cta {
+  @include flex-wrap;
+
+  .cta-holder {
+    margin: 32px 0 0;
+  }
+}
+
+.fullscreen-cta-center {
+  padding: 0;
+  margin: 0;
+  @include flex-verticalize;
+
+  .fullscreen-cta-aligner {
+    width: 100%;
+
+    .fullscreen-cta-safe-padding {
+      padding: 15vh 0;
+    }
+  }
+}
+
+.fullscreen-cta-bottom {
+  padding: 0;
+  margin: 0;
+
+  .fullscreen-cta-aligner {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    .fullscreen-cta-safe-padding {
+      padding: 5vh 0;
+    }
+  }
+}
+
+.fullscreen-cta-safe-padding,
+.page-opening-simple-spacer {
+  .last-child-no-margin {
+    max-width: 690px;
+  }
+
+  &.alignright {
+    .last-child-no-margin {
+      float: right;
+    }
+  }
+
+  &.aligncenter {
+    .last-child-no-margin {
+      margin: 0 auto;
+    }
+  }
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  margin-left: -4vh;
+  width: 8vh;
+  height: 8vh;
+  @include define-border-radius(100%);
+  overflow: hidden;
+  text-align: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  a {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    &:before {
+      content: "↓";
+      position: relative;
+      display: block;
+      width: 100%;
+      font-size: 70px;
+      line-height: 7.5vh;
+    }
+  }
+}
+
+.page-opening-simple-spacer {
+  padding: 40px 0 32px;
+
+  .cta-holder {
+    margin: 32px 0 0;
+  }
+}
+
+.breadcrumbs-holder {
+  margin-bottom: 24px;
+}
+
+.categories-holder {
+  margin: 24px 0 0;
+
+  a {
+    margin: 0 16px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

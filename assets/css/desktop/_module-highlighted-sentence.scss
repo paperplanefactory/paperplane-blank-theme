@@ -1,0 +1,35 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.module-highlighted-sentence {
+  .module-paddings {
+    padding-top: $module-vertical-padding-desktop;
+    padding-bottom: $module-vertical-padding-desktop;
+  }
+
+  .module-paddings-double {
+    padding-top: calc(#{$module-vertical-padding-desktop} * 2);
+    padding-bottom: calc(#{$module-vertical-padding-desktop} * 2);
+  }
+
+  .module-no-paddings {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .flex-hold-rich-highlighted-sentence {
+    .flex-hold-rich-highlighted-sentence-image {
+      width: 250px;
+    }
+
+    .flex-hold-rich-highlighted-sentence-text {
+      width: calc(100% - 250px);
+      padding-left: calc(#{$wrapper-padded-desktop} * 2);
+    }
+  }
+
+  .cta-holder {
+    margin: 32px 0 0;
+  }
+}

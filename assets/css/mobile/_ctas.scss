@@ -1,0 +1,18 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.cta-1,
+.cta-navi a,
+.default-button,
+.default-button-b {
+	font-size: $cta1-size-smartphone;
+	line-height: $cta1-lineheight-smartphone;
+}
+
+.default-button-b {
+	&:after {
+		font-size: calc(#{$cta1-size-smartphone} + 5px);
+		line-height: calc(#{$cta1-lineheight-smartphone} + 5px);
+	}
+}

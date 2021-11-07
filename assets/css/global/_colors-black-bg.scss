@@ -1,0 +1,192 @@
+// main: ../style.scss
+@import 'vars';
+@import 'mixin'; // hamburger
+
+.colors-black-bg {
+  color: $color-4;
+  background-color: $color-1;
+
+  .page-opening-oapcity {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  a:link,
+  a:visited {
+    color: $color-4;
+  }
+
+  a:active,
+  a:hover {
+    color: $color-3;
+  }
+
+  .hambuger-element {
+    span {
+      background-color: $color-4;
+    }
+
+    &:hover {
+      span {
+        background-color: $color-3;
+      }
+    }
+  }
+
+  .current-mega-menu {
+    &:after {
+      background-color: $color-4;
+    }
+  }
+
+  .sub-menu {
+    color: $color-2 !important;
+    background-color: $color-3;
+
+    li {
+      border-bottom: $color-4 solid 1px;
+
+      a {
+        &:link,
+        &:visited {
+          color: $color-1;
+        }
+
+        &:hover {
+          color: $color-2;
+        }
+      }
+    }
+  }
+
+  .overlay-menu-mobile-css {
+    border-top: solid 1px $color-2 !important;
+
+    li {
+      border-bottom: solid 1px $color-2 !important;
+    }
+
+    .sub-menu {
+      background-color: $color-2;
+
+      li {
+        border-top: solid 1px $color-1 !important;
+
+        a {
+          &:link,
+          &:visited {
+            color: $color-4;
+          }
+
+          &:hover {
+            color: $color-4;
+          }
+        }
+      }
+    }
+  }
+
+  .cta-navi a,
+  .default-button {
+    color: $color-1 !important;
+    background-color: $color-3 !important;
+
+    &:hover {
+      color: $color-1 !important;
+      background-color: $color-4 !important;
+    }
+  }
+
+  .default-button-b {
+    color: $color-4;
+
+    &:hover {
+      color: $color-3;
+    }
+  }
+
+  .slick-next,
+  .slick-prev {
+    color: $color-4;
+  }
+
+  .slick-dots {
+    li {
+      button {
+        background-color: $color-2;
+
+        &:hover {
+          background-color: $color-4;
+        }
+      }
+
+      &.slick-active {
+        button {
+          background-color: $color-4;
+        }
+      }
+    }
+  }
+
+  .slide-double,
+  .slide-single {
+    &:after,
+    &:before {
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+  }
+
+  .expander {
+    color: $color-4;
+
+    &:hover {
+      color: $color-3;
+    }
+  }
+
+  .scroll-down {
+    background-color: $color-4;
+    color: $color-1;
+
+    a {
+      color: $color-1;
+    }
+  }
+
+  ::-webkit-input-placeholder {
+    color: $color-3;
+  }
+
+  :-moz-placeholder {
+    color: $color-3;
+  }
+
+  ::-moz-placeholder {
+    color: $color-3;
+  }
+
+  label {
+    color: $color-4;
+  }
+
+  input[type=email],
+  input[type=number],
+  input[type=password],
+  input[type=tel],
+  input[type=text],
+  select,
+  textarea {
+    border: $color-3 solid 1px;
+    color: $color-4;
+    background-color: $color-1;
+  }
+
+  input[type=submit] {
+    color: $color-1 !important;
+    background-color: $color-3 !important;
+
+    &:hover {
+      color: $color-1 !important;
+      background-color: $color-4 !important;
+    }
+  }
+}

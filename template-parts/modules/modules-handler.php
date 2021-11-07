@@ -11,7 +11,7 @@
     if ( is_user_logged_in() ) {
       //echo '<div class="wrapper admin-hideable"><div class="admin-index">Modulo: '.$module_count.' - Tipo di modulo: '.$choose_module.' - URL: '.get_permalink().'#section-'.$module_count.'</div></div>';
     }
-    echo '<a name="section-'.$module_count.'" class="section-anchor"></a>';
+    echo '<a name="section-'.$module_count.'" class="header-offset-anchor"></a>';
     switch ( $choose_module ) {
       // module-text
       case 'module-text' :

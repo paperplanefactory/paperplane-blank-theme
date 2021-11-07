@@ -15,7 +15,7 @@ add_filter('the_generator', 'wpbeginner_remove_version');
 
 // admin footer
 function remove_footer_admin () {
-echo 'Powered by <a href="https://www.wordpress.org" target="_blank">WordPress</a> | Handcrafted by <a href="https://www.paperplanefactory.com" target="_blank">Paperplane</a></p>';
+echo 'Powered by <a href="https://www.wordpress.org" target="_blank">WordPress</a> | Handcrafted by <a href="https://paperplanefactory.com" target="_blank">Paperplane</a></p>';
 }
 add_filter('admin_footer_text', 'remove_footer_admin');
 
@@ -26,8 +26,8 @@ global $wp_meta_boxes;
 wp_add_dashboard_widget('custom_help_widget', 'Supporto per il tuo sito', 'custom_dashboard_help');
 }
 function custom_dashboard_help() {
-echo '<a href="http://www.paperplanefactory.com" target="_blank"><img src="' . get_template_directory_uri() . '/assets/images/admin-images/logo-paper.jpg" width="200" /></a><h2>Benvenuto nelll&rsquo;area di amministrazione del tuo sito!</h2><p>Il sito <strong>' . get_bloginfo('name') . '</strong> è basato su <a href="https://wordpress.org/" target="_blank">WordPress</a> e utilizza un tema appositamente creato da <a href="http://www.paperplanefactory.com" target="_blank">Paper Plane Factory.</a><br />
-<strong>Hai bisogno di aiuto? <a href="mailto:info@paperplanefactory.com">Contattaci</a>!!</strong></p>';
+  echo '<a href="https://paperplanefactory.com" target="_blank"><img src="' . get_template_directory_uri() . '/assets/images/admin-images/logo-paper.svg" width="200" /></a><h2>Benvenuto nelll&rsquo;area di amministrazione del tuo sito!</h2><p>Il sito <strong>' . get_bloginfo('name') . '</strong> è basato su <a href="https://wordpress.org/" target="_blank">WordPress</a> e utilizza un tema appositamente creato da <a href="https://paperplanefactory.com" target="_blank">PaperPlane</a>.<br />
+  <strong>Hai bisogno di aiuto? <a href="mailto:info@paperplanefactory.com">Contattaci!</a></strong></p>';
 }
 
 // remove junk from head

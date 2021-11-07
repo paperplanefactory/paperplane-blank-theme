@@ -1,0 +1,24 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.module-slideshow {
+  .module-paddings {
+    padding-top: $module-vertical-padding-desktop;
+    padding-bottom: $module-vertical-padding-desktop;
+  }
+
+  .module-paddings-double {
+    padding-top: calc(#{$module-vertical-padding-desktop} * 2);
+    padding-bottom: calc(#{$module-vertical-padding-desktop} * 2);
+  }
+
+  .module-no-paddings {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .cta-holder {
+    margin: 32px 0 0;
+  }
+}

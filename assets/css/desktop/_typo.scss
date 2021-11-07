@@ -1,4 +1,4 @@
- // main: ../style.scss
+// main: ../style.scss
 @import '../global/vars';
 @import '../global/mixin';
 
@@ -7,7 +7,6 @@ h1 {
   line-height: $h1-lineheight-desktop;
   margin-bottom: $h1-marginbottom-desktop;
 }
-
 
 h2 {
   font-size: $h2-size-desktop;
@@ -33,12 +32,14 @@ h5 {
   margin-bottom: $h5-marginbottom-desktop;
 }
 
-.menu, .mega-menu {
+.mega-menu,
+.menu {
   font-size: $h5-size-desktop;
   line-height: $h5-lineheight-desktop;
 }
 
-h6, #footer p {
+#footer p,
+h6 {
   font-size: $h6-size-desktop;
   line-height: $h6-lineheight-desktop;
   margin-bottom: $h6-marginbottom-desktop;
@@ -47,14 +48,8 @@ h6, #footer p {
 p {
   font-size: $paragraph-size-desktop;
   line-height: $paragraph-lineheight-desktop;
-  margin: 0 0 $paragraph-marginbottom-desktop 0;
+  margin: 0 0 $paragraph-marginbottom-desktop;
   padding: 0;
-}
-
-.cta-1, .default-button, .default-button-b, .cta-navi a {
-  font-size: $cta1-size-desktop;
-  line-height: $cta1-lineheight-desktop;
-  //margin-bottom: $cta1-marginbottom-desktop;
 }
 
 .cta-2 {
@@ -68,19 +63,23 @@ p {
     font-size: $paragraph-size-desktop;
     line-height: $paragraph-lineheight-desktop;
     margin-bottom: $paragraph-marginbottom-desktop;
+
     li {
       display: table-row;
+
       &:before {
         font-size: 20px;
         font-weight: $font-weight-1;
       }
     }
   }
+
   ol {
     font-size: $paragraph-size-desktop;
     line-height: $paragraph-lineheight-desktop;
     margin-bottom: $paragraph-marginbottom-desktop;
   }
+
   ol > li {
     &:before {
       font-family: $font-main;
@@ -89,16 +88,16 @@ p {
   }
 }
 
-.wp-caption.alignnone .wp-caption-text,
+.wp-caption-text,
 .wp-caption.aligncenter .wp-caption-text,
 .wp-caption.alignleft .wp-caption-text,
-.wp-caption.alignright .wp-caption-text,
-.wp-caption-text {
-  padding: 5px 0 0 0;
+.wp-caption.alignnone .wp-caption-text,
+.wp-caption.alignright .wp-caption-text {
+  padding: 5px 0 0;
   font-size: $cta1-size-desktop;
   line-height: $cta1-lineheight-desktop;
-  word-wrap:break-word;
-	font-style: italic;
+  word-wrap: break-word;
+  font-style: italic;
 }
 
 .expander {

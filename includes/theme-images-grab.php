@@ -39,10 +39,9 @@ function print_theme_image( $image_data, $image_sizes ) {
         $html_image_output = '';
         $html_image_output .= '<div class="no-the-100">';
         $html_image_output .= '<picture>';
-        $html_image_output .= '<source media="(max-width: 767px)" data-srcset="'.$sharped_images[2].'">';
-        $html_image_output .= '<source media="(max-width: 1920px)" data-srcset="'.$sharped_images[1].'">';
-        $html_image_output .= '<source media="(min-width: 1921px)" data-srcset="'.$sharped_images[0].'">';
-        $html_image_output .= '<img data-src="'.$sharped_images[1].'" src="'.$sharped_images[3].'" title="'.$attachment_title.'" alt="'.$attachment_alt.'" class="lazy" />';
+        $html_image_output .= '<source media="(max-width: 1023px)" data-srcset="'.$sharped_images[2].','.$sharped_images[3].' 2x" sizes="100vw">';
+        $html_image_output .= '<source media="(min-width: 1024px)" data-srcset="'.$sharped_images[0].', '.$sharped_images[1].' 2x" sizes="100vw">';
+        $html_image_output .= '<img data-src="'.$sharped_images[4].'" src="'.$sharped_images[3].'" title="'.$attachment_title.'" alt="'.$attachment_alt.'" class="lazy" />';
         $html_image_output .= '</picture>';
         $html_image_output .= '</div>';
         echo $html_image_output;
@@ -140,13 +139,12 @@ function print_theme_image_lazyslick( $image_data, $image_sizes ) {
           }
         	wp_cache_set( $print_theme_image_cache_key, $sharped_images, 300 ); // set array of images URL as cache
         }
-        // this is simple HTML - remember to use lazyload (https://github.com/verlok/lazyload) for better performance
+        // this is simple HTML - remember to use lazyload (https://github.com/verlok/lazyload) for better performance        
         $html_image_output = '';
         $html_image_output .= '<div class="no-the-100">';
         $html_image_output .= '<picture>';
-        $html_image_output .= '<source media="(max-width: 767px)" srcset="'.$sharped_images[2].'">';
-        $html_image_output .= '<source media="(max-width: 1920px)" srcset="'.$sharped_images[1].'">';
-        $html_image_output .= '<source media="(min-width: 1921px)" srcset="'.$sharped_images[0].'">';
+        $html_image_output .= '<source media="(max-width: 1023px)" srcset="'.$sharped_images[2].','.$sharped_images[3].' 2x" sizes="100vw">';
+        $html_image_output .= '<source media="(min-width: 1024px)" srcset="'.$sharped_images[0].', '.$sharped_images[1].' 2x" sizes="100vw">';
         $html_image_output .= '<img data-lazy="'.$sharped_images[3].'" title="'.$attachment_title.'" alt="'.$attachment_alt.'" />';
         $html_image_output .= '</picture>';
         $html_image_output .= '</div>';

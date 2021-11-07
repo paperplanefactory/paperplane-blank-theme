@@ -185,7 +185,7 @@ elseif ( $isDesktop == 1 ) {
 <?php if ( $parent != 0 ) : ?>
   <div class="wrapper">
     <div class="wrapper-padded">
-      <div class="wrapper-padded-more">
+      <div class="wrapper-padded-container">
         <?php include( locate_template ( 'page-templates/gallery_thumbs.php' ) ); ?>
         <?php foreach ($original_post as $post) : setup_postdata($post); ?>
           <div class="content-styled">

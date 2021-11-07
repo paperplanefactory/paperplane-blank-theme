@@ -1,0 +1,69 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.module-stripe {
+  .module-paddings {
+    padding-top: $module-vertical-padding-desktop;
+    padding-bottom: $module-vertical-padding-desktop;
+  }
+
+  .module-paddings-double {
+    padding-top: calc(#{$module-vertical-padding-desktop} * 2);
+    padding-bottom: calc(#{$module-vertical-padding-desktop} * 2);
+  }
+
+  .module-no-paddings {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .stripe-listed {
+    margin-bottom: $flex-hold-column-wide-space-desktop;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.stripe-image-text {
+      .module-stripe-image {
+        order: 1;
+      }
+
+      .module-stripe-text {
+        order: 2;
+
+        .spacer {
+          padding: 20px $flex-hold-column-thin-space-desktop 20px $flex-hold-column-wide-space-desktop;
+          max-width: 850px;
+        }
+      }
+    }
+
+    &.stripe-text-image {
+      .module-stripe-image {
+        order: 2;
+      }
+
+      .module-stripe-text {
+        order: 1;
+
+        .spacer {
+          padding: 20px $flex-hold-column-wide-space-desktop 20px $flex-hold-column-thin-space-desktop;
+          max-width: 850px;
+          margin-left: auto;
+        }
+      }
+    }
+
+    .cta-holder {
+      text-align: inherit;
+      margin: 32px 0 0;
+    }
+  }
+
+  .cta-holder {
+    text-align: center;
+    margin: $module-vertical-padding-desktop 0 0;
+  }
+}

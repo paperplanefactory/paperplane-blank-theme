@@ -1,0 +1,19 @@
+// main: ../style.scss
+@import 'vars';
+@import 'mixin'; // wrappers and more
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.wrapper-padded,
+.wrapper-padded-container,
+.wrapper-padded-more-700,
+.wrapper-padded-more-924,
+.wrapper-padded-slideshow {
+  position: relative;
+  margin: 0 auto;
+}

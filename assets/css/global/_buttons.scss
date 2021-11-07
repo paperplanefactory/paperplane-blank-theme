@@ -1,21 +1,19 @@
- // main: ../style.scss
+// main: ../style.scss
 @import 'vars';
 @import 'mixin';
-
 // hamburger
-
 .hambuger-element {
   width: 20px;
   height: 16px;
   position: relative;
-	display: inline-block;
+  display: inline-block;
   z-index: 9998;
-	padding: 0;
+  padding: 0;
   margin: 0;
   @include define-rotate(0);
   cursor: pointer;
   border: none !important;
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .hambuger-element span {
@@ -30,10 +28,11 @@
 }
 
 .hambuger-element span:nth-child(1) {
-  top: 0px;
+  top: 0;
 }
 
-.hambuger-element span:nth-child(2), .hambuger-element span:nth-child(3) {
+.hambuger-element span:nth-child(2),
+.hambuger-element span:nth-child(3) {
   top: 7px;
 }
 
@@ -43,12 +42,12 @@
 
 .hambuger-element.open span:nth-child(1) {
   top: 18px;
-  width: 0%;
+  width: 0;
   left: 50%;
 }
 
 .hambuger-element.open span:nth-child(2) {
-	@include define-rotate(45);
+  @include define-rotate(45);
 }
 
 .hambuger-element.open span:nth-child(3) {
@@ -57,34 +56,8 @@
 
 .hambuger-element.open span:nth-child(4) {
   top: 18px;
-  width: 0%;
+  width: 0;
   left: 50%;
-}
-
-.default-button, .cta-navi a {
-	position: relative;
-	display: inline-block;
-	padding: 14px 22px;
-	@include define-border-radius(24px);
-	text-align: center;
-  text-decoration: none !important;
-  max-width: 250px;
-}
-
-.default-button-b {
-  position: relative;
-	display: inline-block;
-  text-decoration: none !important;
-  &:after {
-    margin: 0 0 0 10px;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    content: "\f061";
-  }
 }
 
 .expander {
@@ -94,6 +67,7 @@
   padding-left: 25px !important;
   text-align: left;
   @include reset-button;
+
   .exp-plus {
     &:before {
       position: absolute;
@@ -102,6 +76,7 @@
       content: "\f0fe";
     }
   }
+
   .exp-minus {
     &:before {
       position: absolute;
