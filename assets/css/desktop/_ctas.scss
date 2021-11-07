@@ -1,0 +1,19 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.cta-1,
+.cta-navi a,
+.default-button,
+.default-button-b {
+	padding: 14px 22px 12px !important;
+	font-size: $cta1-size-desktop;
+	line-height: $cta1-lineheight-desktop;
+}
+
+.default-button-b {
+	&:after {
+		font-size: calc(#{$cta1-size-desktop} + 5px);
+		line-height: calc(#{$cta1-lineheight-desktop} + 5px);
+	}
+}

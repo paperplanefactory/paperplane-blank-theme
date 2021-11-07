@@ -9,6 +9,7 @@
 
 	input[type=email],
 	input[type=number],
+	input[type=password],
 	input[type=tel],
 	input[type=text],
 	select,
@@ -50,6 +51,7 @@
 		@include define-basic-transition(all, 0.3s);
 		white-space: normal;
 		text-transform: uppercase;
+		-webkit-appearance: none;
 	}
 
 	input[type=submit]:disabled {

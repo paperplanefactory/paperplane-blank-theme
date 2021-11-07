@@ -7,8 +7,7 @@
 }
 
 .wrapper-padded {
-  width: calc(100% - (#{$wrapper-padded-smartphone} * 2));
-  max-width: 768px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 $wrapper-padded-smartphone;
 }
@@ -25,27 +24,6 @@
 // per calcolare la larghezza degli elementi flex:
 // valore margin right - (valore margin right / numero elmenti per riga)
 // es. 16 - (16/2) = 8
-
-.parnter-grid {
-  margin-top: 20px;
-}
-
-.partner-box {
-  @include flex-wrap;
-  width: 100%;
-}
-
-.partner-label {
-  width: 100%;
-  -webkit-align-items: flex-start;
-  align-items: flex-start;
-}
-
-.partner-logo {
-  @include flex-wrap;
-  -webkit-align-items: center;
-  align-items: center;
-}
 
 .flex-fix-column,
 .flex-hold-2,
@@ -85,30 +63,6 @@
     width: 100%!important;
     margin: 0 0 24px;
     text-align: center;
-  }
-}
-
-.flex-hold-page-opening {
-  .page-opening-text {
-    order: 2;
-    width: 100%;
-
-    .page-opening-text-space {
-      position: relative;
-      width: calc(100% - (#{$wrapper-padded-smartphone} * 2));
-      padding: 5vh $wrapper-padded-smartphone;
-      text-align: center;
-    }
-  }
-
-  .page-opening-image {
-    order: 1;
-    width: 100%;
-    margin-top: 40px;
-
-    .page-opening-image-aligner {
-      text-align: center;
-    }
   }
 }
 
@@ -175,22 +129,15 @@
 
 .inline-socials {
   width: 100%;
-  margin: 10px 0;
+  margin: 0;
 
   li {
     text-align: center !important;
     display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin: 0 0 15px 15px;
+    width: 28px;
+    height: 28px;
+    margin: 0 0 10px 15px;
     overflow: hidden;
-
-    &:first-child {
-      margin: 0 0 15px;
-    }
-
-    i {
-      font-size: 22px;
-    }
+    font-size: 28px;
   }
 }

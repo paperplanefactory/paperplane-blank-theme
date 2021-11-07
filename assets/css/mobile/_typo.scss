@@ -3,107 +3,105 @@
 @import '../global/mixin';
 
 h1 {
- font-size: $h1-size-smartphone;
- line-height: $h1-lineheight-smartphone;
- margin-bottom: $h1-marginbottom-smartphone;
+  font-size: $h1-size-smartphone;
+  line-height: $h1-lineheight-smartphone;
+  margin-bottom: $h1-marginbottom-smartphone;
 }
 
-
 h2 {
- font-size: $h2-size-smartphone;
- line-height: $h2-lineheight-smartphone;
- margin-bottom: $h2-marginbottom-smartphone;
+  font-size: $h2-size-smartphone;
+  line-height: $h2-lineheight-smartphone;
+  margin-bottom: $h2-marginbottom-smartphone;
 }
 
 h3 {
- font-size: $h3-size-smartphone;
- line-height: $h3-lineheight-smartphone;
- margin-bottom: $h3-marginbottom-smartphone;
+  font-size: $h3-size-smartphone;
+  line-height: $h3-lineheight-smartphone;
+  margin-bottom: $h3-marginbottom-smartphone;
 }
 
 h4 {
- font-size: $h4-size-smartphone;
- line-height: $h4-lineheight-smartphone;
- margin-bottom: $h4-marginbottom-smartphone;
+  font-size: $h4-size-smartphone;
+  line-height: $h4-lineheight-smartphone;
+  margin-bottom: $h4-marginbottom-smartphone;
 }
 
 h5 {
- font-size: $h5-size-smartphone;
- line-height: $h5-lineheight-smartphone;
- margin-bottom: $h5-marginbottom-smartphone;
+  font-size: $h5-size-smartphone;
+  line-height: $h5-lineheight-smartphone;
+  margin-bottom: $h5-marginbottom-smartphone;
 }
 
-.menu, .mega-menu {
- font-size: $h5-size-smartphone;
- line-height: $h5-lineheight-smartphone;
+.mega-menu,
+.menu {
+  font-size: $h5-size-smartphone;
+  line-height: $h5-lineheight-smartphone;
 }
 
 h6 {
- font-size: $h6-size-smartphone;
- line-height: $h6-lineheight-smartphone;
- margin-bottom: $h6-marginbottom-smartphone;
+  font-size: $h6-size-smartphone;
+  line-height: $h6-lineheight-smartphone;
+  margin-bottom: $h6-marginbottom-smartphone;
 }
 
 p {
- font-size: $paragraph-size-smartphone;
- line-height: $paragraph-lineheight-smartphone;
- margin: 0 0 $paragraph-marginbottom-smartphone 0;
- padding: 0;
-}
-
-.cta-1, .default-button, .default-button-b, .cta-navi a {
- font-size: $cta1-size-smartphone;
- line-height: $cta1-lineheight-smartphone;
- //margin-bottom: $cta1-marginbottom-smartphone;
+  font-size: $paragraph-size-smartphone;
+  line-height: $paragraph-lineheight-smartphone;
+  margin: 0 0 $paragraph-marginbottom-smartphone;
+  padding: 0;
 }
 
 .cta-2 {
- font-size: $cta2-size-smartphone;
- line-height: $cta2-lineheight-smartphone;
- //margin-bottom: $cta1-marginbottom-smartphone;
+  font-size: $cta2-size-smartphone;
+  line-height: $cta2-lineheight-smartphone;
+  //margin-bottom: $cta1-marginbottom-smartphone;
 }
 
 .content-styled {
- ul {
-   font-size: $paragraph-size-smartphone;
-   line-height: $paragraph-lineheight-smartphone;
-   margin-bottom: $paragraph-marginbottom-smartphone;
-   li {
-     display: table-row;
-     &:before {
-       font-size: 20px;
-       font-weight: $font-weight-1;
-     }
-   }
- }
- ol {
-   font-size: $paragraph-size-smartphone;
-   line-height: $paragraph-lineheight-smartphone;
-   margin-bottom: $paragraph-marginbottom-smartphone;
- }
- ol > li {
-   &:before {
-     font-family: $font-main;
-     font-size: $paragraph-size-smartphone;
-   }
- }
+  ul {
+    font-size: $paragraph-size-smartphone;
+    line-height: $paragraph-lineheight-smartphone;
+    margin-bottom: $paragraph-marginbottom-smartphone;
+
+    li {
+      display: table-row;
+
+      &:before {
+        font-size: 20px;
+        font-weight: $font-weight-1;
+      }
+    }
+  }
+
+  ol {
+    font-size: $paragraph-size-smartphone;
+    line-height: $paragraph-lineheight-smartphone;
+    margin-bottom: $paragraph-marginbottom-smartphone;
+  }
+
+  ol > li {
+    &:before {
+      font-family: $font-main;
+      font-size: $paragraph-size-smartphone;
+    }
+  }
 }
 
-.wp-caption.alignnone .wp-caption-text,
+.wp-caption-text,
 .wp-caption.aligncenter .wp-caption-text,
 .wp-caption.alignleft .wp-caption-text,
-.wp-caption.alignright .wp-caption-text,
-.wp-caption-text {
- padding: 5px 0 0 0;
- font-size: $cta1-size-smartphone;
- line-height: $cta1-lineheight-smartphone;
- word-wrap:break-word;
- font-style: italic;
+.wp-caption.alignnone .wp-caption-text,
+.wp-caption.alignright .wp-caption-text {
+  padding: 5px 0 0;
+  font-size: $cta1-size-smartphone;
+  line-height: $cta1-lineheight-smartphone;
+  word-wrap: break-word;
+  font-style: italic;
 }
 
 .expander {
- font-family: $font-main;
- font-weight: $font-weight-1;
- font-size: $h4-size-smartphone;
- line-height: $h4-lineheight-smartphone;
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h4-size-smartphone;
+  line-height: $h4-lineheight-smartphone;
 }

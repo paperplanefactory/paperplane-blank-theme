@@ -1,7 +1,7 @@
 <?php if ( have_rows( 'aggiungi_modifica_sponsor_partner', 'option' ) ) : ?>
   <div class="wrapper bg-7 txt-1">
     <div class="wrapper-padded">
-      <div class="wrapper-padded-more">
+      <div class="wrapper-padded-container">
         <div class="wrapper-padded-more-840">
           <div class="flex-hold parnter-grid flex-hold-5 margins-wide">
             <?php while ( have_rows( 'aggiungi_modifica_sponsor_partner', 'option' ) ) : the_row();

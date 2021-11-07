@@ -1,22 +1,28 @@
 // compileExpanded: style-expanded.css, compileCompressed: ../../style.min.css
 // imports
 @import 'global/vars';
-@import 'global/mixin';
 @import 'global/reset';
 @import 'global/defaults';
 @import 'global/header-footer';
-@import 'global/colors-links';
+@import 'global/colors';
+@import 'global/colors-black-bg';
+@import 'global/colors-white-bg';
+@import 'global/colors-grey-bg';
 @import 'global/typo';
+@import 'global/wrappers';
 @import 'global/grids';
 @import 'global/modules';
-@import 'global/buttons'; //@import 'global/preload-animations';
+@import 'global/buttons';
+@import 'global/ctas';
 @import 'global/images';
 @import 'global/forms'; // imports mobile
 @media screen and (min-width: $break-mobile-start) and (max-width: $break-tablet-end) {
   @import 'mobile/header-footer';
+  @import 'mobile/typo';
+  @import 'mobile/page-opening';
   @import 'mobile/grids';
   @import 'mobile/modules';
-  @import 'mobile/typo';
+  @import 'mobile/ctas';
   @import 'mobile/images';
   @import 'mobile/effects';
   @import 'mobile/forms';
@@ -25,18 +31,29 @@
 // imports desktop
 @media screen and (min-width: $break-desktop) {
   @import 'desktop/header-footer';
-  @import 'desktop/grids';
-  @import 'desktop/modules';
   @import 'desktop/typo';
+  @import 'desktop/page-opening';
+  @import 'desktop/wrappers';
+  @import 'desktop/grids';
+  @import 'desktop/modules-shared';
+  @import 'desktop/module-text';
+  @import 'desktop/module-highlighted-sentence';
+  @import 'desktop/module-columns';
+  @import 'desktop/module-columns-fix-column';
+  @import 'desktop/module-stripe';
+  @import 'desktop/module-slideshow';
+  @import 'desktop/ctas';
   @import 'desktop/images';
   @import 'desktop/effects';
   @import 'desktop/forms';
   @import 'desktop/slideshows';
 }
-@import 'global/cookies';
 @import 'global/libraries/aos';
-@import 'global/libraries/slick'; // rimuovere il commento se si usa pagenavi - https://wordpress.org/plugins/wp-pagenavi/
-// @import 'global/pagenavi';
+@import 'global/libraries/slick';
+@import 'global/font-social-icons';
+@import 'global/pagenavi';
+@import 'global/cookies';
+@import 'global/mixin'; //@import 'global/preload-animations';
 // @import 'global/visual-debug';
 // IMPORTANTE!!
 // 0 - verifica di utilizzare l'ultima versione del tema!!

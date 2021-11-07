@@ -104,3 +104,12 @@ function my_custom_acf() {
 
   </style>';
 }
+
+
+
+function options_page_clear_cache() {
+  if (function_exists('wpfc_clear_all_cache')) {
+    wpfc_clear_all_cache(true);
+  }
+}
+add_action('acf/save_post', 'options_page_clear_cache', 20);

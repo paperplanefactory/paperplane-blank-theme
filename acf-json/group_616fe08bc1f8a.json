@@ -1,0 +1,94 @@
+{
+    "key": "group_616fe08bc1f8a",
+    "title": "Profili social",
+    "fields": [
+        {
+            "key": "field_616fe094cc7d5",
+            "label": "Gestione social",
+            "name": "global_socials",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "row",
+            "button_label": "Aggiungi social",
+            "sub_fields": [
+                {
+                    "key": "field_616fe0b3cc7d6",
+                    "label": "URL profilo",
+                    "name": "global_socials_profile_url",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_616fe0cdcc7d7",
+                    "label": "Icona",
+                    "name": "global_socials_icon",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "icon-newsletter-social": "Newsletter",
+                        "icon-facebook-social": "Facebook",
+                        "icon-facebook-messenger-social": "Facebook Messenger",
+                        "icon-instagram-social": "Instagram",
+                        "icon-linkedin-social": "LinkedIn",
+                        "icon-telegram-social": "Telegram",
+                        "icon-tiktok-social": "TikTok",
+                        "icon-twitter-social": "Twitter",
+                        "icon-vk-social": "VK",
+                        "icon-whatsapp-social": "WhatsApp"
+                    },
+                    "default_value": false,
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-gestione-social"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1634724388
+}

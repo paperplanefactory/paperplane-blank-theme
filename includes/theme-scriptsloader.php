@@ -26,20 +26,25 @@ add_action( 'wp_enqueue_scripts', 'all_scripts' );
 function all_scripts(){
   // versione del tema
 	global $theme_version;
+  global $theme_pagination;
   // smart jquery inclusion
   if (!is_admin()) {
   	wp_deregister_script('jquery');
   	wp_register_script('jquery', get_template_directory_uri() . '/assets/js/libs/jquery-3.4.1.min.js', '', '3.4.1', false);
   	wp_enqueue_script('jquery');
   }
-  // Infinite Scroll
-  // documentazione: https://infinite-scroll.com/
-  wp_register_script( 'custom-infinitescroll', get_template_directory_uri() . '/assets/js/libs/infinite-scroll.min.js#deferload', '', '3.0.6', false);
-  wp_enqueue_script( 'custom-infinitescroll' );
+
+  if ( $theme_pagination === 'theme-infinite-scroll' ) {
+    // Infinite Scroll
+    // documentazione: https://infinite-scroll.com/
+    wp_register_script( 'theme-infinitescroll', get_template_directory_uri() . '/assets/js/libs/infinite-scroll.min.js#deferload', '', '4.0.1', false);
+    wp_enqueue_script( 'theme-infinitescroll' );
+  }
+
 
   // Lazy load
   // documentazione: http://www.andreaverlicchi.eu/lazyload/
-  wp_register_script( 'vanilla-lazyload', get_template_directory_uri() . '/assets/js/libs/lazyload.min.js#deferload', '', '14.0.0', true);
+  wp_register_script( 'vanilla-lazyload', get_template_directory_uri() . '/assets/js/libs/lazyload.min.js#deferload', '', '17.5.0', true);
   wp_enqueue_script( 'vanilla-lazyload' );
 
   // AOS
@@ -56,11 +61,6 @@ function all_scripts(){
   // documentazione: https://github.com/dixonandmoe/rellax
 	// wp_register_script( 'js-parallax', get_template_directory_uri() . '/assets/js/libs/rellax.min.js', '', '1.10.0', false);
 	// wp_enqueue_script( 'js-parallax' );
-
-  // FontAwesome
-  // documentazione: https://fontawesome.com/
-	// wp_register_script( 'theme-fontawesome', 'https://kit.fontawesome.com/2ab89a2041.js#deferload', '', $theme_version, true);
-	// wp_enqueue_script( 'theme-fontawesome' );
 
   // Comportamenti ricorrenti
 	wp_register_script( 'theme-general', get_template_directory_uri() . '/assets/js/theme-general.min.js#deferload', '', $theme_version, true);

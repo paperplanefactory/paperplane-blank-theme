@@ -28,9 +28,8 @@ if ( !is_admin() ) {
 		// versione del tema
 		global $theme_version;
 		// stili comuni
+		wp_enqueue_style( 'theme-font', 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap#asyncload', array(), null );
 		wp_enqueue_style( 'theme-commnon', get_template_directory_uri() . '/style.min.css', '', $theme_version, 'all' );
-		wp_enqueue_style( 'theme-font', 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap#asyncload', '', $theme_version, 'all' );
-		wp_enqueue_style( 'theme-font-awesome', 'https://use.fontawesome.com/releases/v5.8.1/css/all.css#asyncload', array(), null );
 		// wp_enqueue_style( 'material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons', '', $theme_version, 'all' );
 	}
 	add_action( 'wp_enqueue_scripts', 'theme_css' );

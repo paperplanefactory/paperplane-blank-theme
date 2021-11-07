@@ -51,6 +51,10 @@ if ( $footer_width === 'full-width' ) {
 if ( $footer_width === 'contained-width' ) {
   $footer_wrapper = 'wrapper-padded-more';
 }
+
+global $theme_pagination;
+global $static_bloginfo_stylesheet_directory;
+$theme_pagination = get_field( 'theme_pagination', 'option' );
 $static_bloginfo_stylesheet_directory = get_bloginfo('stylesheet_directory');
 ?>
 <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-57x57.png">
@@ -72,62 +76,62 @@ $static_bloginfo_stylesheet_directory = get_bloginfo('stylesheet_directory');
 </head>
 
 <body>
-
-<div id="preheader"></div>
-<header id="header" class="combo-1">
-  <div class="wrapper-padded">
-    <div class="<?php echo $header_wrapper; ?>">
-      <div id="header-structure">
-        <div class="logo">
-          <a href="<?php echo home_url(); ?>" rel="bookmark" title="homepage - <?php echo get_bloginfo( 'name' ); ?>" class="absl"></a>
-        </div>
-        <nav class="menu allupper">
-          <?php
-          if ( has_nav_menu( 'header-menu' ) ) {
-            wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu header-menu-js' ) );
-          }
-          ?>
-        </nav>
-        <div class="side-head">
-          <ul>
-            <li>
-              <div type="button" aria-haspopup="true" aria-expanded="false" aria-label="Navigation" class="hambuger-element ham-activator" onclick="hamburgerMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </li>
-          </ul>
+  <div id="preheader"></div>
+  <header id="header" class="colors-black-bg">
+    <div class="wrapper-padded">
+      <div class="<?php echo $header_wrapper; ?>">
+        <div id="header-structure">
+          <div class="logo">
+            <a href="<?php echo home_url(); ?>" rel="bookmark" title="homepage - <?php echo get_bloginfo( 'name' ); ?>" class="absl"></a>
+          </div>
+          <nav class="menu allupper">
+            <?php
+            if ( has_nav_menu( 'header-menu' ) ) {
+              wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu header-menu-js' ) );
+            }
+            ?>
+          </nav>
+          <div class="side-head">
+            <ul>
+              <li>
+                <div type="button" aria-expanded="false" aria-label="Navigation" class="hambuger-element ham-activator" onclick="hamburgerMenu()">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
-<?php include( locate_template( 'template-parts/grid/mega-menu.php' ) ); ?>
+  </header>
+  <?php include( locate_template( 'template-parts/grid/mega-menu.php' ) ); ?>
 
-<div id="head-overlay" class="hidden no-bg">
-  <div class="scroll-opportunity">
-    <div class="wrapper">
-      <nav class="menu">
-        <?php
-        if ( has_nav_menu( 'overlay-menu-mobile' ) ) {
-          wp_nav_menu( array( 'theme_location' => 'overlay-menu-mobile', 'container' => 'ul', 'menu_class' => 'overlay-menu-mobile-css overlay-menu-mobile-js' ) );
-        }
-        ?>
-      </nav>
+  <div id="head-overlay" class="hidden colors-black-bg">
+    <div class="scroll-opportunity">
+      <div class="wrapper">
+        <nav class="menu">
+          <?php
+          if ( has_nav_menu( 'overlay-menu-mobile' ) ) {
+            wp_nav_menu( array( 'theme_location' => 'overlay-menu-mobile', 'container' => 'ul', 'menu_class' => 'overlay-menu-mobile-css overlay-menu-mobile-js' ) );
+          }
+          ?>
+        </nav>
 
-      <?php if ( have_rows( 'global_socials', 'option' ) ) : ?>
-        <ul class="inline-socials">
-          <?php while ( have_rows( 'global_socials', 'option' ) ) : the_row(); ?>
-            <li>
-              <a href="<?php the_sub_field( 'global_socials_profile_url' ); ?>" target="_blank" aria-label="Visit <?php the_sub_field( 'global_socials_profile_url' ); ?>" rel="noopener">
-                <i class="<?php the_sub_field( 'global_socials_icona' ); ?>" aria-hidden="true"></i>
-              </a>
-            </li>
-          <?php endwhile; ?>
-        </ul>
-      <?php endif; ?>
+        <?php if ( have_rows( 'global_socials', 'option' ) ) : ?>
+          <ul class="inline-socials">
+            <?php while ( have_rows( 'global_socials', 'option' ) ) : the_row(); ?>
+              <li>
+                <a href="<?php the_sub_field( 'global_socials_profile_url' ); ?>" target="_blank" aria-label="Visit <?php the_sub_field( 'global_socials_profile_url' ); ?>" rel="noopener">
+                  <i class="<?php the_sub_field( 'global_socials_icona' ); ?>" aria-hidden="true"></i>
+                </a>
+              </li>
+            <?php endwhile; ?>
+          </ul>
+        <?php endif; ?>
+      </div>
     </div>
   </div>
-</div>
+  <?php include( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>

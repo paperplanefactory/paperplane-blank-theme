@@ -5,7 +5,7 @@ get_header();
 <div class="wrapper module-highlighted-sentence">
   <div class="module-spacer">
     <div class="wrapper-padded">
-      <div class="wrapper-padded-more">
+      <div class="wrapper-padded-container">
         <div class="wrapper-padded-more-924">
           <div class="flex-hold flex-hold-block">
             <div class="flex-hold-child-image">

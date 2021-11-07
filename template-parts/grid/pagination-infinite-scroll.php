@@ -1,3 +1,11 @@
+<div class="wrapper">
+  <div class="wrapper-padded">
+    <div class="aligncenter no-bg">
+      <a href="#" class="default-button allupper view-more-button-js">Carica altri contenuti</a>
+    </div>
+  </div>
+</div>
+
 <div id="infscr-loading" class="last-child-no-margin">
   <div class="infinite-scroll-request">
     <div class="spinner">

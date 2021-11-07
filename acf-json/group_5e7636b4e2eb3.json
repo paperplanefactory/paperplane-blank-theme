@@ -89,6 +89,31 @@
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_616ff1b2505f2",
+            "label": "Tipo di paginazione contenuti",
+            "name": "theme_pagination",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "theme-pagenavi": "Paginazione classica con PageNavi",
+                "theme-infinite-scroll": "Infinite Scroll con bottone \"carica altri contenuti\""
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         }
     ],
     "location": [
@@ -106,7 +131,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1591630578
+    "modified": 1634726558
 }

@@ -1,0 +1,55 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.module-columns {
+  .module-paddings {
+    padding-top: $module-vertical-padding-desktop;
+    padding-bottom: $module-vertical-padding-desktop;
+  }
+
+  .module-paddings-double {
+    padding-top: calc(#{$module-vertical-padding-desktop} * 2);
+    padding-bottom: calc(#{$module-vertical-padding-desktop} * 2);
+  }
+
+  .module-no-paddings {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .cta-holder {
+    text-align: center;
+    margin: 64px 0 0;
+  }
+
+  .module-column-box {
+    .column-image {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+
+      .image-rounder {
+        max-width: 250px;
+      }
+
+      .image-icon {
+        display: inline-block;
+        max-width: 100px;
+      }
+    }
+
+    .counter {
+      h1,
+      h3 {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+    }
+
+    .cta-holder {
+      text-align: inherit;
+      margin: 24px 0 0;
+    }
+  }
+}

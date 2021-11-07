@@ -6,7 +6,7 @@ include( locate_template( 'template-parts/grid/page-opening.php' ) );
 <div class="wrapper">
   <div class="module-spacer-flex">
     <div class="wrapper-padded">
-      <div class="wrapper-padded-more">
+      <div class="wrapper-padded-container">
         <?php
         if ( have_posts() ) : ?>
         <div class="flex-hold flex-hold-3 margins-wide grid-infinite">

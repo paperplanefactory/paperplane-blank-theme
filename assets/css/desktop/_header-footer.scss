@@ -5,7 +5,8 @@ $logo-width: 200px;
 $hamburger-width: 45px; // header
 
 #preheader {
-  height: $header-desktop-height;
+  display: none;
+  //height: $header-desktop-height;
 }
 
 #header {
@@ -22,85 +23,8 @@ $hamburger-width: 45px; // header
   }
 }
 
-#head-overlay {
-  top: $header-desktop-height;
-  height: calc(100vh - #{$header-desktop-height});
-
-  .menu {
-    width: 100%;
-
-    .overlay-menu-mobile-css {
-      width: 100%;
-
-      li {
-        position: relative;
-        display: block;
-        text-align: left;
-
-        a {
-          display: block;
-          width: calc(100% - (#{$wrapper-padded-smartphone} * 2));
-          padding: 20px $wrapper-padded-smartphone 20px calc(#{$wrapper-padded-smartphone} - 15px);
-        }
-
-        &.menu-item-has-children {
-          a {
-            &:after {
-              position: absolute;
-              right: 0;
-              top: 20px;
-              content: "▼";
-              font-size: 15px;
-              margin-right: $wrapper-padded-smartphone;
-            }
-          }
-        }
-      }
-
-      .current-page-ancestor,
-      .current_page_item {}
-
-      .sub-menu {
-        display: none;
-
-        li {
-          width: 100%;
-
-          &:last-child {
-            border-bottom: none;
-            padding: 0;
-            margin: 0;
-          }
-
-          a {
-            display: block;
-            width: calc(100% - (#{$wrapper-padded-smartphone} * 2));
-            padding: 20px $wrapper-padded-smartphone;
-
-            &:after {
-              content: "";
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .inline-socials {
-    margin-top: 20px;
-  }
-}
-
-.occupy-scrollbar {
-  width: calc(100% - 18px);
-}
-
-.scroll-opportunity {
-  height: calc(100vh - #{$header-desktop-height});
-}
-
 #header-structure {
-  width: calc(100% - 18px);
+  width: 100%;
   height: $header-desktop-height;
 
   .logo {
@@ -120,6 +44,10 @@ $hamburger-width: 45px; // header
 
     ul {
       width: 100%;
+      @include flex-wrap;
+      @include flex-verticalize;
+      text-align: right;
+      justify-content: flex-end;
 
       li {
         position: relative;
@@ -169,7 +97,7 @@ $hamburger-width: 45px; // header
         }
 
         &.menu-item-has-children {
-          padding: 15px 0;
+          padding: 0;
 
           &:hover {
             .sub-menu {
@@ -187,7 +115,7 @@ $hamburger-width: 45px; // header
       .sub-menu {
         position: absolute;
         z-index: 9997 !important;
-        top: 50px;
+        top: 30px;
         left: 50%;
         width: 220px;
         margin-left: -110px;
@@ -202,6 +130,7 @@ $hamburger-width: 45px; // header
         pointer-events: none;
         @include define-basic-transition(opacity, 0.15s);
         overflow: hidden;
+        height: 0;
 
         &.activated {
           height: auto;
@@ -302,50 +231,104 @@ $hamburger-width: 45px; // header
     }
   }
 }
+
+#head-overlay {
+  top: $header-desktop-height;
+  height: calc(100vh - #{$header-desktop-height});
+
+  .menu {
+    width: 100%;
+
+    .overlay-menu-mobile-css {
+      width: 100%;
+      text-align: center;
+
+      li {
+        position: relative;
+        display: block;
+
+        a {
+          display: inline-block;
+          //width: calc(100% - (#{$wrapper-padded-desktop} * 2));
+          padding: 20px $wrapper-padded-desktop;
+        }
+
+        &.menu-item-has-children {
+          a {
+            &:after {
+              position: relative;
+              display: inline-block;
+              content: "▼";
+              font-size: 15px;
+              margin: 0 10px;
+            }
+          }
+        }
+      }
+
+      .current-page-ancestor,
+      .current_page_item {}
+
+      .sub-menu {
+        display: none;
+
+        li {
+          width: 100%;
+
+          &:last-child {
+            border-bottom: none;
+            padding: 0;
+            margin: 0;
+          }
+
+          a {
+            display: block;
+            //width: calc(100% - (#{$wrapper-padded-desktop} * 2));
+            padding: 20px $wrapper-padded-desktop;
+
+            &:after {
+              content: "";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .inline-socials {
+    margin-top: 20px;
+  }
+}
+
+.scroll-opportunity {
+  height: calc(100vh - #{$header-desktop-height});
+}
 // footer
 
 #footer {
   padding-top: 72px;
   padding-bottom: 16px;
 
-  .footer-structure-1 {
-    .logo {
-      width: $logo-width;
-      height: $header-desktop-height;
-      margin-right: 48px;
+  .desktop-align-right {
+    text-align: right;
+  }
 
-      &:before {
-        top: 10px;
-        left: 0;
-        height: calc(100% - 20px);
+  .footer-logo {
+    max-width: 200px;
+  }
+
+  .footer-menu {
+    width: 100%;
+    text-align: left;
+    margin: 50px 0;
+
+    li {
+      display: inline-block;
+      margin: 0 20px 0 0;
+
+      &:last-child {
+        margin: 0;
       }
-    }
-
-    .menu {
-      width: calc(80% - #{$logo-width} - 48px);
-      margin-right: 48px;
-
-      ul {
-        width: 100%;
-        text-align: center;
-
-        li {
-          position: relative;
-          display: inline-block;
-          margin: 0 0 0 3%;
-          text-align: left;
-        }
-      }
-    }
-
-    .social {
-      width: calc(20% - 48px);
-      text-align: right;
-    }
-
-    .texts {
-      width: 100%;
-      margin-top: 48px;
     }
   }
 }

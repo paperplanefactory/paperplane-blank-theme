@@ -1,6 +1,8 @@
 <?php
-// gestione caching parameter per css e script
-include_once "includes/theme-caching-parameter.php";
+global $theme_version;
+$theme_version = get_field( 'theme_version', 'option' );
+global $theme_pagination;
+$theme_pagination = get_field( 'theme_pagination', 'option' );
 // gestione caricamento css
 include_once "includes/theme-stylesloader.php";
 // gestione caricamento script
@@ -17,14 +19,10 @@ include_once "includes/theme-txts.php";
 include_once "includes/theme-messages.php";
 // custom menus
 include_once "includes/theme-menus.php";
-// embedded ACF social
-include_once "includes/theme-embedded-acf-social.php";
-// embedded ACF parnters and sponsors
-include_once "includes/theme-embedded-acf-parnters-sponsors.php";
 // gestione tassonomie
 include_once "includes/theme-taxonomies.php";
-// transients killer
-// include_once "includes/theme-transients-killer.php";
+// gestione tipo di paginazione
+include_once "includes/theme-pagination.php";
 
 // load_theme_textdomain( 'paperplane-theme', '/languages' );
 load_theme_textdomain( 'paperplane-theme', TEMPLATEPATH.'/languages' );

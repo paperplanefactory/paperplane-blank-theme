@@ -16,11 +16,11 @@
                 "id": ""
             },
             "choices": {
-                "no-bg": "Predefinito",
-                "combo-1": "Schema 1",
-                "combo-2": "Schema 2"
+                "colors-white-bg": "Sfondo bianco - testi neri",
+                "colors-black-bg": "Sfondo nero - testi bianchi",
+                "colors-grey-bg": "Sfondo grigio - testi neri"
             },
-            "default_value": [],
+            "default_value": false,
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -268,7 +268,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1591630568
+    "modified": 1634743855
 }

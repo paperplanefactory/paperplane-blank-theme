@@ -16,13 +16,11 @@
                 "id": ""
             },
             "choices": {
-                "opening-fullscreen": "Immagine fullscreen 100x100",
-                "opening-almost-fullscreen": "Immagine fullscreen 100x80",
-                "opening-text-image": "Testo e immagine affiancati",
-                "opening-text-column": "Testo e immagine in colonna",
+                "opening-fullscreen": "Immagine fullscreen",
+                "opening-almost-fullscreen": "Immagine fullscreen con below the fold visibile",
                 "opening-text": "Solo testo"
             },
-            "default_value": [],
+            "default_value": false,
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -44,44 +42,11 @@
                 "id": ""
             },
             "choices": {
-                "no-bg": "Predefinito",
-                "combo-1": "Schema 1",
-                "combo-2": "Schema 2"
+                "colors-white-bg": "Sfondo bianco - testi neri",
+                "colors-black-bg": "Sfondo nero - testi bianchi",
+                "colors-grey-bg": "Sfondo grigio - testi neri"
             },
-            "default_value": [],
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_5e78edc82b520",
-            "label": "Aspetto immagine",
-            "name": "page_opening_image_shape",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5e6bad4b7f721",
-                        "operator": "==",
-                        "value": "opening-text-image"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "image-square": "Quadrata",
-                "image-round": "A cerchio"
-            },
-            "default_value": [],
+            "default_value": false,
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -309,60 +274,6 @@
             "key": "field_5e6bb78a8c93c",
             "label": "mp4",
             "name": "page_opening_video_mp4",
-            "type": "file",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5e6bb7588c93b",
-                        "operator": "==",
-                        "value": "si"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "url",
-            "library": "all",
-            "min_size": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
-            "key": "field_5e6bb7b58c93d",
-            "label": "ogg",
-            "name": "page_opening_video_ogg",
-            "type": "file",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5e6bb7588c93b",
-                        "operator": "==",
-                        "value": "si"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "url",
-            "library": "all",
-            "min_size": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
-            "key": "field_5e6bb7c28c93e",
-            "label": "avi",
-            "name": "page_opening_video_avi",
             "type": "file",
             "instructions": "",
             "required": 1,
@@ -619,7 +530,7 @@
     "hide_on_screen": [
         "the_content"
     ],
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1591630554
+    "modified": 1636219570
 }
