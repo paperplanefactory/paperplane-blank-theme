@@ -1,7 +1,7 @@
 // main: ../style.scss
 @import 'vars';
-@import 'mixin';
-// hamburger
+@import 'mixin'; // hamburger
+
 .hambuger-element {
   width: 20px;
   height: 16px;
@@ -13,7 +13,15 @@
   @include define-rotate(0);
   cursor: pointer;
   border: none !important;
-  overflow: hidden;
+  //overflow: hidden;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -20px;
+    width: 55px;
+    height: 48px;
+  }
 }
 
 .hambuger-element span {
@@ -58,31 +66,4 @@
   top: 18px;
   width: 0;
   left: 50%;
-}
-
-.expander {
-  position: relative;
-  line-height: 17px !important;
-  font-weight: $font-weight-2 !important;
-  padding-left: 25px !important;
-  text-align: left;
-  @include reset-button;
-
-  .exp-plus {
-    &:before {
-      position: absolute;
-      left: 0;
-      font-family: "Font Awesome 5 Free";
-      content: "\f0fe";
-    }
-  }
-
-  .exp-minus {
-    &:before {
-      position: absolute;
-      left: 0;
-      font-family: "Font Awesome 5 Free";
-      content: '\f146';
-    }
-  }
 }

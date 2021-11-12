@@ -26,7 +26,7 @@ if ( $cta_text_data != '' ) {
 }
  ?>
 <div class="wrapper module-columns <?php the_sub_field( 'module_bg' ); ?>">
-  <div class="<?php the_sub_field( 'module_vertical_space' ); ?>">
+  <div class="<?php the_sub_field( 'module_vertical_top_space' ); ?> <?php the_sub_field( 'module_vertical_bottom_space' ); ?>">
     <div class="wrapper-padded">
       <div class="wrapper-padded-container">
         <div class="flex-hold flex-hold-<?php the_sub_field( 'module_columns_columns_number' ); ?> margins-wide">
@@ -93,7 +93,7 @@ if ( $cta_text_data != '' ) {
                           'desktop_hd' => 'round_image_hd',
                           'mobile_default' => 'round_image',
                           'mobile_hd' => 'round_image',
-                          'lazy_placheholder' => 'micro'
+                          'lazy_placheholder' => 'micro_cut'
                       );
                       print_theme_image( $image_data, $image_sizes );
                       ?>
@@ -104,13 +104,13 @@ if ( $cta_text_data != '' ) {
                       $image_data = array(
                           'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
                           'image_value' => 'module_columns_columns_repeater_image', // se utilizzi un custom field indica qui il nome del campo
-                          'size_fallback' => 'column'
+                          'size_fallback' => 'column_icon'
                       );
                       $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                          'desktop_default' => 'column',
-                          'desktop_hd' => 'column_hd',
-                          'mobile_default' => 'column',
-                          'mobile_hd' => 'column_hd',
+                          'desktop_default' => 'column_icon',
+                          'desktop_hd' => 'column_icon_hd',
+                          'mobile_default' => 'column_icon',
+                          'mobile_hd' => 'column_icon_hd',
                           'lazy_placheholder' => 'micro'
                       );
                       print_theme_image( $image_data, $image_sizes );
@@ -124,7 +124,7 @@ if ( $cta_text_data != '' ) {
                   <?php if ( get_sub_field( 'module_columns_columns_repeater_counter_value_before' ) ) : ?>
                     <h3><?php the_sub_field( 'module_columns_columns_repeater_counter_value_before' ); ?></h3>
                   <?php endif; ?>
-                  <h1 class="count just-number count-pre cta-2" data-bar-number="<?php the_sub_field( 'module_columns_columns_repeater_counter_value' ); ?>">0</h1>
+                  <h2 class="as-h1 count just-number count-pre" data-bar-number="<?php the_sub_field( 'module_columns_columns_repeater_counter_value' ); ?>">0</h1>
                   <?php if ( get_sub_field( 'module_columns_columns_repeater_counter_value_after' ) ) : ?>
                     <h3><?php the_sub_field( 'module_columns_columns_repeater_counter_value_after' ); ?></h3>
                   <?php endif; ?>

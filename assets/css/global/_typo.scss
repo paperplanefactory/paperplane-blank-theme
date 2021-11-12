@@ -3,6 +3,7 @@
 @import 'mixin';
 
 #footer p,
+.as-h1,
 .cta-1,
 .cta-2,
 .mega-menu,
@@ -50,6 +51,7 @@ ul {
   font-weight: $font-weight-1;
 }
 
+.as-h1,
 .cta-1,
 .cta-navi a,
 .default-button,
@@ -137,8 +139,7 @@ ul {
       &:before {
         position: relative;
         display: table-cell;
-        content: '○';
-        color: $color-1;
+        content: '●';
         padding: 0 10px 0 0;
       }
     }
@@ -163,7 +164,7 @@ ul {
       display: table-cell;
       top: 0;
       left: 0;
-      color: $color-1;
+      font-weight: $font-weight-3;
       text-align: right;
       content: counter(li-counter)". ";
       counter-increment: li-counter;

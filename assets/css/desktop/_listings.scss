@@ -1,0 +1,19 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin'; // wrappers and more
+
+.listing-grid-container {
+  margin: $module-vertical-padding-desktop 0;
+}
+
+.infinite-button,
+.wp-pagenavi {
+  margin-bottom: $module-vertical-padding-desktop;
+}
+
+.grid-listing-image {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.grid-listing-texts {}

@@ -2,7 +2,7 @@
 function all_categories( $page_taxonomy_slug ) {
   $taxonomies = get_terms( array(
     'taxonomy' => $page_taxonomy_slug,
-    'hide_empty' => false
+    'hide_empty' => true
   )
 );
 

@@ -1,0 +1,78 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.module-expanding-text {
+  .module-paddings-top {
+    padding-top: $module-vertical-padding-desktop;
+  }
+
+  .module-paddings-top-double {
+    padding-top: calc(#{$module-vertical-padding-desktop} * 2);
+  }
+
+  .module-no-paddings-top {
+    padding-top: 0;
+  }
+
+  .module-paddings-bottom {
+    padding-bottom: $module-vertical-padding-desktop;
+  }
+
+  .module-paddings-bottom-double {
+    padding-bottom: calc(#{$module-vertical-padding-desktop} * 2);
+  }
+
+  .module-no-paddings-bottom {
+    padding-bottom: 0;
+  }
+
+  .expanding-block {
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  .expander {
+    position: relative;
+    line-height: 17px !important;
+    font-weight: $font-weight-2 !important;
+    padding-left: 25px !important;
+    text-align: left;
+    @include reset-button;
+
+    .exp-minus,
+    .exp-plus {
+      position: absolute;
+      left: 0;
+      font-weight: $font-weight-4;
+    }
+
+    .exp-plus {
+      &:before {
+        content: "+";
+      }
+    }
+
+    .exp-minus {
+      &:before {
+        content: '–';
+      }
+    }
+  }
+
+  .expandable-content {
+    .inner {
+      padding-top: 15px;
+      padding-left: 25px;
+    }
+  }
+
+  .cta-holder {
+    margin: 32px 0 0;
+  }
+}

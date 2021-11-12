@@ -1,0 +1,33 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.module-text {
+  .module-paddings-top {
+    padding-top: $module-vertical-padding-smartphone;
+  }
+
+  .module-paddings-top-double {
+    padding-top: calc(#{$module-vertical-padding-smartphone} * 2);
+  }
+
+  .module-no-paddings-top {
+    padding-top: 0;
+  }
+
+  .module-paddings-bottom {
+    padding-bottom: $module-vertical-padding-smartphone;
+  }
+
+  .module-paddings-bottom-double {
+    padding-bottom: calc(#{$module-vertical-padding-smartphone} * 2);
+  }
+
+  .module-no-paddings-bottom {
+    padding-bottom: 0;
+  }
+
+  .cta-holder {
+    margin: 32px 0 0;
+  }
+}

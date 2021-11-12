@@ -1,0 +1,53 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.module-banner {
+  .module-paddings-top {
+    padding-top: $module-vertical-padding-smartphone;
+  }
+
+  .module-paddings-top-double {
+    padding-top: calc(#{$module-vertical-padding-smartphone} * 2);
+  }
+
+  .module-no-paddings-top {
+    padding-top: 0;
+  }
+
+  .module-paddings-bottom {
+    padding-bottom: $module-vertical-padding-smartphone;
+  }
+
+  .module-paddings-bottom-double {
+    padding-bottom: calc(#{$module-vertical-padding-smartphone} * 2);
+  }
+
+  .module-no-paddings-bottom {
+    padding-bottom: 0;
+  }
+
+  .coverize {
+    background-attachment: fixed;
+  }
+
+  .banner-content {
+    position: relative;
+    padding: $module-vertical-padding-smartphone;
+  }
+
+  .flex-hold-banner {
+    .banner-image {
+      width: 100%;
+      margin-bottom: $flex-hold-column-thin-space-smartphone;
+    }
+
+    .banner-texts {
+      width: 100%;
+    }
+  }
+
+  .cta-holder {
+    margin: 32px 0 0;
+  }
+}

@@ -3,18 +3,27 @@
 @import '../global/mixin';
 
 .module-columns-fix-column {
-  .module-paddings {
+  .module-paddings-top {
     padding-top: $module-vertical-padding-desktop;
+  }
+
+  .module-paddings-top-double {
+    padding-top: calc(#{$module-vertical-padding-desktop} * 2);
+  }
+
+  .module-no-paddings-top {
+    padding-top: 0;
+  }
+
+  .module-paddings-bottom {
     padding-bottom: $module-vertical-padding-desktop;
   }
 
-  .module-paddings-double {
-    padding-top: calc(#{$module-vertical-padding-desktop} * 2);
+  .module-paddings-bottom-double {
     padding-bottom: calc(#{$module-vertical-padding-desktop} * 2);
   }
 
-  .module-no-paddings {
-    padding-top: 0;
+  .module-no-paddings-bottom {
     padding-bottom: 0;
   }
 
@@ -31,12 +40,12 @@
       margin-bottom: 24px;
 
       .image-rounder {
-        max-width: 250px;
+        width: 250px;
       }
 
       .image-icon {
         display: inline-block;
-        max-width: 100px;
+        width: 100px;
       }
     }
 

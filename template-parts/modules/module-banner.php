@@ -4,80 +4,95 @@ $banner = get_sub_field( 'module_banner_object' );
 if( $banner ) :
   $post = $banner;
   setup_postdata( $post );
-  $banner_shadow = get_field( 'banner_shadow' );
   $banner_background_image = get_field( 'banner_background_image' );
-  $banner_background_image_URL = $banner_background_image['sizes']['full_desk'];
-
+  if ( $banner_background_image != '' ) {
+    $banner_background_image_URL = $banner_background_image['sizes']['full_desk'];
+    $banner_background_image_hd_URL = $banner_background_image['sizes']['full_desk_hd'];
+    $banner_bg_lazy_class = 'lazy coverize';
+  }
   $banner_foreground_image = get_field( 'banner_foreground_image' );
-  $banner_cta_target = get_field( 'banner_cta_target' );
-  switch ( $banner_cta_target ) {
-    case 'cta-target-internal' :
-    $banner_cta_url = get_field( 'banner_cta_target_internal' );
-    $banner_cta_url_target = '_self';
-    break;
-    case 'cta-target-external' :
-    $banner_cta_url = get_field( 'banner_cta_target_external' );
-    $banner_cta_url_target = '_blank';
-    break;
-    case 'cta-target-file' :
-    $banner_cta_url = get_field( 'banner_cta_target_file' );
-    $banner_cta_url_target = '_blank';
-    break;
+  // recupero le informazioni per la CTA del modulo
+  $cta_banner_text_data = get_field( 'banner_cta_text' );
+  if ( $cta_banner_text_data != '' ) {
+    $cta_banner_type_data = get_field( 'banner_cta_target' );
+    switch ( $cta_banner_type_data ) {
+      case 'cta-target-internal' :
+      $cta_banner_url_data = get_field( 'banner_cta_target_internal' );
+      $cta_banner_url_target = '_self';
+      $cta_banner_url_parameter_data = get_field( 'banner_cta_target_internal_parameter' );
+      if ( $cta_banner_url_parameter_data != '' ) {
+        $cta_banner_url_data = $cta_banner_url_data . $cta_url_parameter_data;
+      }
+      break;
+      case 'cta-target-external' :
+      $cta_banner_url_data = get_field( 'banner_cta_target_external' );
+      $cta_banner_url_target = '_blank';
+      break;
+      case 'cta-target-file' :
+      $cta_banner_url_data = get_field( 'banner_cta_target_file' );
+      $cta_banner_url_target = '_blank';
+      break;
+    }
+    $cta_banner_appearence = get_field( 'banner_cta_appearence' );
   }
 ?>
-<div class="wrapper module-banner <?php the_sub_field( 'module_bg' ); ?>">
-  <div class="module-spacer">
+<div class="wrapper module-banner">
+  <div class="<?php the_sub_field( 'module_vertical_top_space' ); ?> <?php the_sub_field( 'module_vertical_bottom_space' ); ?>">
     <div class="wrapper-padded">
       <div class="wrapper-padded-container">
-        <?php if ( $banner_foreground_image != '' ) : ?>
-          <?php if ( $banner_background_image != '' ) : ?>
-            <div class="banner-space lazy blended <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>" data-bg="<?php echo $banner_background_image_URL; ?>" data-aos="zoom-out">
-          <?php else : ?>
-            <div class="banner-space <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>">
-          <?php endif; ?>
-            <div class="flex-hold flex-hold-banner-image verticalize">
-              <div class="banner-box banner-image" data-aos="fade-right" data-aos-delay="450">
-                <a href="<?php echo $banner_cta_url; ?>" target="<?php echo $banner_cta_url_target; ?>">
-                  <?php
-                  $image_data = array(
-                      'image_type' => 'acf_field', // options: post_thumbnail, acf_field, acf_sub_field
-                      'image_value' => 'banner_foreground_image', // se utilizzi un custom field indica qui il nome del campo
-                      'size_fallback' => 'highlighted_sentence'
-                  );
-                  $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                      'retina' => 'highlighted_sentence',
-                      'desktop' => 'highlighted_sentence',
-                      'mobile' => 'highlighted_sentence',
-                      'micro' => 'micro'
-                  );
-                  print_theme_image( $image_data, $image_sizes );
+        <div class="banner-space coverize <?php echo $banner_bg_lazy_class; ?> <?php the_field( 'banner_color_scheme' ); ?>" data-bg="<?php echo $module_fullscreen_image_image_URL; ?>" data-bg-hidpi="<?php echo $module_fullscreen_image_image_hd_URL; ?>">
+          <div class="above-image-opacity"></div>
+          <div class="banner-content">
+            <?php if ( $banner_foreground_image != '' ) : ?>
+              <div class="flex-hold flex-hold-banner">
+                <div class="banner-image" data-aos="zoom-out">
+                  <a href="<?php echo $cta_banner_url_data; ?>" target="<?php echo $cta_banner_url_target; ?>">
+                    <?php
+                    $image_data = array(
+                        'image_type' => 'acf_field', // options: post_thumbnail, acf_field, acf_sub_field
+                        'image_value' => 'banner_foreground_image', // se utilizzi un custom field indica qui il nome del campo
+                        'size_fallback' => 'banner'
+                    );
+                    $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+                        'desktop_default' => 'banner',
+                        'desktop_hd' => 'banner_hd',
+                        'mobile_default' => 'banner',
+                        'mobile_hd' => 'banner_hd',
+                        'lazy_placheholder' => 'micro'
+                    );
+                    print_theme_image( $image_data, $image_sizes );
+                    ?>
+                  </a>
+                </div>
+                <div class="banner-texts">
+                  <div class="last-child-no-margin">
+                    <h2><?php the_title(); ?></h2>
+                    <?php
+                    // se è impostata la CTA la inserisco
+                    if ( $cta_banner_text_data != '' ) :
+                      ?>
+                      <div class="cta-holder">
+                        <a href="<?php echo $cta_banner_url_data; ?>" target="<?php echo $cta_banner_url_target; ?>" class="<?php echo $cta_banner_appearence; ?> allupper"><?php echo $cta_banner_text_data; ?></a>
+                      </div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+            <?php else : ?>
+              <div class="last-child-no-margin">
+                <h2><?php the_title(); ?></h2>
+                <?php
+                // se è impostata la CTA la inserisco
+                if ( $cta_banner_text_data != '' ) :
                   ?>
-                </a>
+                  <div class="cta-holder">
+                    <a href="<?php echo $cta_banner_url_data; ?>" target="<?php echo $cta_banner_url_target; ?>" class="<?php echo $cta_banner_appearence; ?> allupper"><?php echo $cta_banner_text_data; ?></a>
+                  </div>
+                <?php endif; ?>
               </div>
-              <div class="banner-box banner-text last-child-no-margin">
-                <h2><?php the_title(); ?></h2>
-              </div>
-              <div class="banner-box banner-cta" data-aos="fade-left" data-aos-delay="450">
-                <a href="<?php echo $banner_cta_url; ?>" target="<?php echo $banner_cta_url_target; ?>" class="<?php the_field( 'banner_cta_appearence' ); ?> allupper"><?php the_field( 'banner_cta_text' ); ?></a>
-              </div>
-            </div>
+            <?php endif; ?>
           </div>
-        <?php else : ?>
-          <?php if ( $banner_background_image != '' ) : ?>
-            <div class="banner-space lazy blended <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>" data-bg="url('<?php echo $banner_background_image_URL; ?>')" data-aos="zoom-out">
-          <?php else : ?>
-            <div class="banner-space <?php the_field( 'banner_color_scheme' ); ?> <?php echo $banner_shadow; ?>">
-          <?php endif; ?>
-            <div class="flex-hold flex-hold-banner verticalize">
-              <div class="banner-box banner-text last-child-no-margin">
-                <h2><?php the_title(); ?></h2>
-              </div>
-              <div class="banner-box banner-cta">
-                <a href="<?php echo $banner_cta_url; ?>" target="<?php echo $banner_cta_url_target; ?>" class="<?php the_field( 'banner_cta_appearence' ); ?> allupper"><?php the_field( 'banner_cta_text' ); ?></a>
-              </div>
-            </div>
-          </div>
-        <?php endif; ?>
+        </div>
       </div>
     </div>
   </div>

@@ -54,7 +54,7 @@ $module_columns_fix_fix_column_image = get_sub_field( 'module_columns_fix_fix_co
 $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix_fix_column_image_format' );
  ?>
 <div class="wrapper module-columns-fix-column <?php the_sub_field( 'module_bg' ); ?>">
-  <div class="<?php the_sub_field( 'module_vertical_space' ); ?>">
+  <div class="<?php the_sub_field( 'module_vertical_top_space' ); ?> <?php the_sub_field( 'module_vertical_bottom_space' ); ?>">
     <div class="wrapper-padded">
       <div class="wrapper-padded-container">
         <div class="flex-hold flex-fix-column <?php the_sub_field( 'module_columns_fix_side' ); ?> module-column-box">
@@ -68,7 +68,7 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                       $image_data = array(
                           'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
                           'image_value' => 'module_columns_fix_fix_column_image', // se utilizzi un custom field indica qui il nome del campo
-                          'size_fallback' => 'micro'
+                          'size_fallback' => 'column'
                       );
                       $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
                           'desktop_default' => 'column',
@@ -85,14 +85,14 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                         $image_data = array(
                             'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
                             'image_value' => 'module_columns_fix_fix_column_image', // se utilizzi un custom field indica qui il nome del campo
-                            'size_fallback' => 'micro'
+                            'size_fallback' => 'round_image'
                         );
                         $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
                             'desktop_default' => 'round_image',
                             'desktop_hd' => 'round_image_hd',
                             'mobile_default' => 'round_image',
                             'mobile_hd' => 'round_image',
-                            'lazy_placheholder' => 'micro'
+                            'lazy_placheholder' => 'micro_cut'
                         );
                         print_theme_image( $image_data, $image_sizes );
                         ?>
@@ -103,14 +103,14 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                         $image_data = array(
                             'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
                             'image_value' => 'module_columns_fix_fix_column_image', // se utilizzi un custom field indica qui il nome del campo
-                            'size_fallback' => 'micro'
+                            'size_fallback' => 'column'
                         );
                         $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                            'desktop_default' => 'column',
-                            'desktop_hd' => 'column_hd',
-                            'mobile_default' => 'column',
-                            'mobile_hd' => 'column_hd',
-                            'lazy_placheholder' => 'micro'
+                          'desktop_default' => 'column_icon',
+                          'desktop_hd' => 'column_icon_hd',
+                          'mobile_default' => 'column_icon',
+                          'mobile_hd' => 'column_icon_hd',
+                          'lazy_placheholder' => 'micro'
                         );
                         print_theme_image( $image_data, $image_sizes );
                         ?>
@@ -175,8 +175,7 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                         $image_data = array(
                             'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
                             'image_value' => 'module_columns_fix_repeater_image', // se utilizzi un custom field indica qui il nome del campo
-                            'size_fallback' => 'micro',
-                            'lazy_placheholder' => 'micro'
+                            'size_fallback' => 'round_image',
                         );
                         $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
                             'desktop_default' => 'column',
@@ -193,14 +192,14 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                           $image_data = array(
                               'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
                               'image_value' => 'module_columns_fix_repeater_image', // se utilizzi un custom field indica qui il nome del campo
-                              'size_fallback' => 'micro'
+                              'size_fallback' => 'round_image'
                           );
                           $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
                               'desktop_default' => 'round_image',
                               'desktop_hd' => 'round_image_hd',
                               'mobile_default' => 'round_image',
                               'mobile_hd' => 'round_image',
-                              'lazy_placheholder' => 'micro'
+                              'lazy_placheholder' => 'micro_cut'
                           );
                           print_theme_image( $image_data, $image_sizes );
                           ?>
@@ -211,14 +210,14 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                           $image_data = array(
                               'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
                               'image_value' => 'module_columns_fix_repeater_image', // se utilizzi un custom field indica qui il nome del campo
-                              'size_fallback' => 'micro'
+                              'size_fallback' => 'round_image'
                           );
                           $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                              'desktop_default' => 'column',
-                              'desktop_hd' => 'column_hd',
-                              'mobile_default' => 'column',
-                              'mobile_hd' => 'column_hd',
-                              'lazy_placheholder' => 'micro'
+                            'desktop_default' => 'column_icon',
+                            'desktop_hd' => 'column_icon_hd',
+                            'mobile_default' => 'column_icon',
+                            'mobile_hd' => 'column_icon_hd',
+                            'lazy_placheholder' => 'micro'
                           );
                           print_theme_image( $image_data, $image_sizes );
                           ?>

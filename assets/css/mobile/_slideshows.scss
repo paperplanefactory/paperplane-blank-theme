@@ -2,51 +2,87 @@
 @import '../global/vars';
 @import '../global/mixin';
 
-.slide-double {
+.slide-double,
+.slide-single {
   position: relative;
   width: 100%;
-  padding-bottom: 78px;
-}
+  padding-bottom: 32px;
 
-.single-slide {
-  .container {
-    padding: 0 0 0 0 !important;
+  .slick-list,
+  .slick-track {
+    overflow: visible;
+  }
+
+  .slick-slide {
+    overflow: hidden;
+
+    img {
+      transform: scale(1.5);
+      @include define-basic-transition(all, 0.5s);
+    }
+
+    &.slick-active,
+    &.slick-cloned {
+      img {
+        transform: scale(1);
+        @include define-basic-transition(all, 0.5s);
+      }
+    }
+  }
+
+  .slide-inner {
+    .container {
+      padding: 0 $flex-hold-column-thin-space-smartphone 0 $flex-hold-column-thin-space-smartphone !important;
+    }
   }
 }
 
 .slide-caption {
-  margin-top: 20px;
+  padding: 10px 5px 0;
 }
+
+.slide-double,
+.slide-single {
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    display: block;
+    width: 100vw;
+    height: 100%;
+  }
+
+  &:before {
+    left: -100vw;
+  }
+
+  &:after {
+    right: -100vw;
+  }
+}
+// navigation
 
 .slick-next,
 .slick-prev {
   position: absolute;
+  bottom: 30px;
+  cursor: pointer;
+  font-size: 30px;
+
+  &.slick-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 
 .slick-prev {
-  bottom: 0;
-  left: 50%;
-  margin-left: -105px;
-  overflow: hidden;
-  width: 104px;
-  height: 50px;
+  right: 64px;
 }
 
 .slick-next {
-  bottom: 0;
-  left: 50%;
-  overflow: hidden;
-  width: 104px;
-  height: 50px;
-}
-// navigation
-.slick-arrow {
-  position: absolute;
-  z-index: 2;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  margin-top: -5px;
+  right: 32px;
 }
 
 .slick-dots {
@@ -61,23 +97,12 @@
       width: 20px;
       height: 20px;
       border: none;
-      background-color: $color-3;
       font-size: 0;
       margin: 0;
       padding: 0;
       @include define-basic-transition(all, 0.3s);
       @include define-border-radius(20px);
       cursor: pointer;
-
-      &:hover {
-        background-color: $color-1;
-      }
-    }
-
-    &.slick-active {
-      button {
-        background-color: $color-1;
-      }
     }
   }
 }

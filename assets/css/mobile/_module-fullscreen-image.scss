@@ -1,0 +1,59 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.module-fullscreen-image {
+  &.module-paddings-top {
+    margin-top: $module-vertical-padding-smartphone;
+  }
+
+  &.module-paddings-top-double {
+    margin-top: calc(#{$module-vertical-padding-smartphone} * 2);
+  }
+
+  &.module-no-paddings-top {
+    margin-top: 0;
+  }
+
+  &.module-paddings-bottom {
+    margin-bottom: $module-vertical-padding-smartphone;
+  }
+
+  &.module-paddings-bottom-double {
+    margin-bottom: calc(#{$module-vertical-padding-smartphone} * 2);
+  }
+
+  &.module-no-paddings-bottom {
+    margin-bottom: 0;
+  }
+
+  .module-box-fullscreen {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 60vh;
+    overflow: hidden;
+    padding: 15vh 0;
+
+    &.coverize {
+      background-attachment: fixed;
+    }
+
+    .module-fullscreen-texts {
+      max-width: 800px;
+
+      &.aligncenter {
+        max-width: 950px;
+        margin: 0 auto;
+      }
+
+      &.alignright {
+        margin-left: auto;
+      }
+    }
+  }
+
+  .cta-holder {
+    margin: 32px 0 0;
+  }
+}

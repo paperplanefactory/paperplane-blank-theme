@@ -3,18 +3,27 @@
 @import '../global/mixin';
 
 .module-highlighted-sentence {
-  .module-paddings {
+  .module-paddings-top {
     padding-top: $module-vertical-padding-desktop;
+  }
+
+  .module-paddings-top-double {
+    padding-top: calc(#{$module-vertical-padding-desktop} * 2);
+  }
+
+  .module-no-paddings-top {
+    padding-top: 0;
+  }
+
+  .module-paddings-bottom {
     padding-bottom: $module-vertical-padding-desktop;
   }
 
-  .module-paddings-double {
-    padding-top: calc(#{$module-vertical-padding-desktop} * 2);
+  .module-paddings-bottom-double {
     padding-bottom: calc(#{$module-vertical-padding-desktop} * 2);
   }
 
-  .module-no-paddings {
-    padding-top: 0;
+  .module-no-paddings-bottom {
     padding-bottom: 0;
   }
 

@@ -210,46 +210,29 @@ jQuery('.slide-single-js').slick({
 // Numbers counter
 /////////////////////////////////////////////
 
-if (jQuery('.count')[0]) {}
-
-function activateCounter() {
-  jQuery('.count').each(function() {
-    jQuery(this).prop('Counter', 0).animate({
-      Counter: jQuery(this).attr('data-bar-number')
-
-    }, {
-      duration: 2000,
-      step: function(now) {
-        jQuery(this).text(Math.ceil(now));
-        if (jQuery(this).hasClass('percent-justnumber')) {
-          jQuery(this).text(jQuery(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-        }
-
+function numbers_counter() {
+  if (jQuery('.count')[0]) {
+    var win_height = (jQuery(window).height() / 1.2);
+    var scrollTop = jQuery(window).scrollTop();
+    jQuery('.count').each(function(i, el) {
+      data_number = jQuery(this).data('data-bar-number');
+      elementOffset = jQuery(this).offset().top,
+        distance = (elementOffset - scrollTop);
+      if (distance < win_height) {
+        jQuery(this).prop('Counter', 0).animate({
+          Counter: jQuery(this).attr('data-bar-number')
+        }, {
+          duration: 2000,
+          //easing: 'swing',
+          step: function(now) {
+            jQuery(this).text(Math.ceil(now));
+          }
+        });
       }
     });
-  });
+  }
 }
-
-
-
-if (!!window.IntersectionObserver) {
-  let observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        console.log(entry);
-        entry.target.src = entry.target.dataset.src;
-        activateCounter();
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    rootMargin: "0px 0px -200px 0px"
-  });
-  document.querySelectorAll('.count').forEach(count => {
-    observer.observe(count)
-  });
-} else document.querySelector('#warning').style.display = 'block';
-
+numbers_counter();
 
 /////////////////////////////////////////////
 // expandables
@@ -276,6 +259,17 @@ jQuery('.overlay-menu-mobile-js > .menu-item-has-children').click(function(e) {
   jQuery(this).find('.sub-menu').slideToggle(150);
   e.preventDefault();
 });
+
+/////////////////////////////////////////////
+// Window scroll / resize events
+/////////////////////////////////////////////
+
+jQuery(window).scroll(function() {
+  numbers_counter();
+});
+
+//jQuery(window).resize(function() {
+//});
 
 /////////////////////////////////////////////
 // preload

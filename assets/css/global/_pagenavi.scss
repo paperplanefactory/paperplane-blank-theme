@@ -22,43 +22,33 @@
 .wp-pagenavi .previouspostslink {
 	display: inline-block;
 	margin: 0 20px 0 0;
-	color: $color-2;
 }
 
 .wp-pagenavi .nextpostslink {
 	display: inline-block;
 	margin: 0 20px 0 0;
-	color: $color-2;
 }
 
 .wp-pagenavi a {
 	display: inline-block;
 	margin: 0 20px 0 0;
-	color: $color-2;
 	border: none !important;
 }
 
-.wp-pagenavi a:link {
-	color: $color-2;
-}
+.wp-pagenavi a:link {}
 
-.wp-pagenavi a:visited {
-	color: $color-2;
-}
+.wp-pagenavi a:visited {}
 
-.wp-pagenavi a:hover {
-	color: $color-1;
-}
+.wp-pagenavi a:hover {}
 
 .wp-pagenavi .page {
 	display: inline-block;
 	margin: 0 20px 0 0;
-	color: $color-2;
 }
 
 .wp-pagenavi span.current {
 	display: inline-block;
 	margin: 0 20px 0 0;
-	color: $color-3;
 	border: none !important;
+	opacity: 0.5;
 }

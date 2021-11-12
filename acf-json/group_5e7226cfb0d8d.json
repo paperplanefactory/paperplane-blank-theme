@@ -29,31 +29,6 @@
             "placeholder": ""
         },
         {
-            "key": "field_5e833d80a6489",
-            "label": "Ombra box",
-            "name": "banner_shadow",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "no-shadow": "No",
-                "default-box-shadow": "Sì"
-            },
-            "default_value": [],
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_5e7244b5d5221",
             "label": "Immagine sfondo",
             "name": "banner_background_image",
@@ -202,6 +177,33 @@
             "multiple": 0
         },
         {
+            "key": "field_61890d476e576",
+            "label": "Parametro aggiuntivo URL",
+            "name": "banner_cta_target_internal_parameter",
+            "type": "text",
+            "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5e72279bd61f8",
+                        "operator": "==",
+                        "value": "cta-target-internal"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_5e7239a9e12c4",
             "label": "Inserisci una URL",
             "name": "banner_cta_target_external",
@@ -270,5 +272,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634743855
+    "modified": 1636372325
 }
