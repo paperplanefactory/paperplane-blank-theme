@@ -4,8 +4,8 @@
 
 .cta-1,
 .cta-navi a,
-.default-button,
-.default-button-b {
+.default-button {
+	padding: 14px 22px 12px !important;
 	font-size: $cta1-size-smartphone;
 	line-height: $cta1-lineheight-smartphone;
 }

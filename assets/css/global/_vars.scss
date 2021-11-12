@@ -11,19 +11,21 @@ $font-weight-4: 900; //black
 $header-desktop-height: 75px; // header sizes
 $header-smartphone-height: 64px; // header sizes
 $wrapper-padded-desktop: 3.5vw; // wrapper paddings
-$wrapper-padded-smartphone: 30px; // wrapper paddings
+$wrapper-padded-smartphone: 5vw; // wrapper paddings
 $module-vertical-padding-desktop: 75px; // modules vertical paddings
 $module-vertical-padding-smartphone: 35px; // modules vertical paddings
 $flex-hold-column-thin-space-desktop: 36px; // modules vertical paddings
 $flex-hold-column-wide-space-desktop: 72px; // modules vertical paddings
+$flex-hold-column-thin-space-smartphone: 24px; // modules vertical paddings
+$flex-hold-column-wide-space-smartphone: 36px; // modules vertical paddings
 $color-1: #000000;
 $color-2: #333333;
 $color-3: #F2F2F2;
 $color-4: #FFFFFF; // form usability colors
 $color-form-ok: #0DBA04;
 $color-form-error: #FF0000; //fonts desktop
-$h1-size-desktop: 36px;
-$h1-lineheight-desktop: 36px;
+$h1-size-desktop: 60px;
+$h1-lineheight-desktop: 60px;
 $h1-marginbottom-desktop: 20px;
 $h2-size-desktop: 28px;
 $h2-lineheight-desktop: 36px;
@@ -49,26 +51,26 @@ $cta1-marginbottom-desktop: 20px;
 $cta2-size-desktop: 60px;
 $cta2-lineheight-desktop: 60px;
 $cta2-marginbottom-desktop: 24px; //fonts smartphone
-$h1-size-smartphone: 40px;
+$h1-size-smartphone: 50px;
 $h1-lineheight-smartphone: 50px;
 $h1-marginbottom-smartphone: 16px;
 $h2-size-smartphone: 24px;
 $h2-lineheight-smartphone: 32px;
 $h2-marginbottom-smartphone: 16px;
 $h3-size-smartphone: 20px;
-$h3-lineheight-smartphone: 30px;
+$h3-lineheight-smartphone: 24px;
 $h3-marginbottom-smartphone: 16px;
-$h4-size-smartphone: 20px;
-$h4-lineheight-smartphone: 30px;
+$h4-size-smartphone: 16px;
+$h4-lineheight-smartphone: 20px;
 $h4-marginbottom-smartphone: 16px;
-$h5-size-smartphone: 20px;
-$h5-lineheight-smartphone: 30px;
+$h5-size-smartphone: 16px;
+$h5-lineheight-smartphone: 20px;
 $h5-marginbottom-smartphone: 16px;
-$h6-size-smartphone: 20px;
-$h6-lineheight-smartphone: 30px;
+$h6-size-smartphone: 16px;
+$h6-lineheight-smartphone: 20px;
 $h6-marginbottom-smartphone: 16px;
-$paragraph-size-smartphone: 16px;
-$paragraph-lineheight-smartphone: 24px;
+$paragraph-size-smartphone: 18px;
+$paragraph-lineheight-smartphone: 28px;
 $paragraph-marginbottom-smartphone: 16px;
 $cta1-size-smartphone: 12px;
 $cta1-lineheight-smartphone: 20px;

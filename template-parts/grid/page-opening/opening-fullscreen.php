@@ -11,12 +11,12 @@
        </video>
      </div>
      <?php endif; ?>
-     <div class="page-opening-oapcity"></div>
+     <div class="above-image-opacity"></div>
       <div class="fullscreen-cta-aligner">
         <div class="wrapper">
           <div class="wrapper-padded">
             <div class="wrapper-padded-container">
-              <div class="fullscreen-cta-safe-padding <?php the_field( 'page_opening_text_align_horizontal' ); ?>" data-aos="zoom-in">
+              <div class="fullscreen-cta-safe-padding <?php the_field( 'page_opening_text_align_horizontal' ); ?>" data-aos="fade-in">
                 <div class="last-child-no-margin">
                   <?php if ( $page_breadcrumbs === 'yes' && function_exists( 'bcn_display' ) ) : ?>
                     <div class="breadcrumbs-holder undelinked-links" typeof="BreadcrumbList" vocab="http://schema.org/">
@@ -54,7 +54,7 @@
       </div>
       <?php if ( $page_opening_layout === 'opening-fullscreen' && $page_scroll_button == 1 ) : ?>
         <div class="scroll-down">
-          <a href="#below-the-fold"></a>
+          <a href="#below-the-fold" title="scroll below the fold"></a>
         </div>
       <?php endif; ?>
   </div>

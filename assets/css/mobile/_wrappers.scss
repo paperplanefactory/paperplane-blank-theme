@@ -1,0 +1,21 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin'; // wrappers and more
+
+.wrapper-padded {
+  width: 100%;
+  padding: 0 $wrapper-padded-smartphone;
+  overflow-x: hidden;
+}
+
+.wrapper-padded-slideshow {
+  width: 100%;
+  padding: 0 $wrapper-padded-smartphone;
+  overflow-x: hidden;
+}
+
+.wrapper-padded-container {}
+
+.wrapper-padded-more-924 {}
+
+.wrapper-padded-more-700 {}

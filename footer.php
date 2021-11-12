@@ -5,7 +5,7 @@ global $acf_options_parameter;
 global $footer_wrapper;
 global $static_bloginfo_stylesheet_directory;
 ?>
-<footer id="footer" class="colors-black-bg">
+<footer id="footer" class="colors-white-bg">
   <div class="wrapper">
     <div class="wrapper-padded">
       <div class="<?php echo $footer_wrapper; ?>">
@@ -13,7 +13,7 @@ global $static_bloginfo_stylesheet_directory;
           <div class="flex-hold-child">
             <div class="footer-logo">
               <a href="<?php echo home_url(); ?>" rel="bookmark" title="homepage - <?php echo get_bloginfo( 'name' ); ?>">
-                <img data-src="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/site-logo-header.svg" class="lazy" />
+                <img data-src="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/site-logo-header.svg" class="lazy" alt="<?php echo get_bloginfo( 'name' ); ?> - homepage" />
               </a>
             </div>
           </div>

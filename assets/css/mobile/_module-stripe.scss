@@ -1,0 +1,66 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.module-stripe {
+  .wrapper-padded {
+    overflow-y: hidden;
+  }
+
+  .module-paddings-top {
+    padding-top: $module-vertical-padding-smartphone;
+  }
+
+  .module-paddings-top-double {
+    padding-top: calc(#{$module-vertical-padding-smartphone} * 2);
+  }
+
+  .module-no-paddings-top {
+    padding-top: 0;
+  }
+
+  .module-paddings-bottom {
+    padding-bottom: $module-vertical-padding-smartphone;
+  }
+
+  .module-paddings-bottom-double {
+    padding-bottom: calc(#{$module-vertical-padding-smartphone} * 2);
+  }
+
+  .module-no-paddings-bottom {
+    padding-bottom: 0;
+  }
+
+  .stripe-listed {
+    margin-bottom: $flex-hold-column-wide-space-smartphone;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.stripe-image-text,
+    &.stripe-text-image {
+      .module-stripe-image {
+        order: 1;
+      }
+
+      .module-stripe-text {
+        order: 2;
+
+        .spacer {
+          padding: 20px 0;
+        }
+      }
+    }
+
+    .cta-holder {
+      text-align: inherit;
+      margin: 32px 0 0;
+    }
+  }
+
+  .cta-holder {
+    text-align: center;
+    margin: $module-vertical-padding-smartphone 0 0;
+  }
+}

@@ -2,6 +2,7 @@
 @import '../global/vars';
 @import '../global/mixin';
 
+.as-h1,
 h1 {
   font-size: $h1-size-smartphone;
   line-height: $h1-lineheight-smartphone;
@@ -38,6 +39,8 @@ h5 {
   line-height: $h5-lineheight-smartphone;
 }
 
+#footer p,
+.slide-caption,
 h6 {
   font-size: $h6-size-smartphone;
   line-height: $h6-lineheight-smartphone;

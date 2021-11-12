@@ -34,3 +34,12 @@
 	line-height: $cta1-lineheight-desktop;
 	font-style: italic;
 }
+
+.above-image-opacity {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+}

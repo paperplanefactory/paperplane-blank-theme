@@ -1,0 +1,63 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.module-columns-fix-column {
+  .module-paddings-top {
+    padding-top: $module-vertical-padding-smartphone;
+  }
+
+  .module-paddings-top-double {
+    padding-top: calc(#{$module-vertical-padding-smartphone} * 2);
+  }
+
+  .module-no-paddings-top {
+    padding-top: 0;
+  }
+
+  .module-paddings-bottom {
+    padding-bottom: $module-vertical-padding-smartphone;
+  }
+
+  .module-paddings-bottom-double {
+    padding-bottom: calc(#{$module-vertical-padding-smartphone} * 2);
+  }
+
+  .module-no-paddings-bottom {
+    padding-bottom: 0;
+  }
+
+  .cta-holder {
+    text-align: center;
+    margin: 64px 0 0;
+  }
+
+  .module-column-box {
+    .column-image {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 24px;
+
+      .image-rounder {
+        max-width: 250px;
+      }
+
+      .image-icon {
+        display: inline-block;
+        max-width: 100px;
+      }
+    }
+
+    .cta-holder {
+      text-align: inherit;
+      margin: 24px 0 0;
+    }
+  }
+
+  .flex-hold-2 {
+    .flex-hold-child {
+      margin-bottom: $flex-hold-column-wide-space-desktop;
+    }
+  }
+}

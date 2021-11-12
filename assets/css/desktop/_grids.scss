@@ -178,14 +178,17 @@
 
 .flex-hold-block {
   &.flex-hold-block-listed {
-    margin-bottom: 48px;
-    padding-bottom: 48px;
+    margin-bottom: $flex-hold-column-thin-space-desktop;
+    padding-bottom: $flex-hold-column-thin-space-desktop;
     border-bottom: $color-2 solid 1px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 
   .flex-hold-child-image {
     width: 236px;
-    margin-right: 72px;
 
     .flex-hold-child-image-aligner {
       text-align: right;
@@ -193,7 +196,7 @@
   }
 
   .flex-hold-child-texts {
-    width: calc(100% - 308px);
-    margin-right: 0;
+    width: calc(100% - 236px);
+    padding-left: $flex-hold-column-thin-space-desktop;
   }
 }

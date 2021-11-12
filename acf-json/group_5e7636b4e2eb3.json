@@ -114,6 +114,32 @@
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_6189679ab7c84",
+            "label": "Schema colori pagine archivio",
+            "name": "theme_archive_page_color_scheme",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "colors-white-bg": "Sfondo bianco - testi neri",
+                "colors-black-bg": "Sfondo nero - testi bianchi",
+                "colors-grey-bg": "Sfondo grigio - testi neri"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         }
     ],
     "location": [
@@ -133,5 +159,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634726558
+    "modified": 1636394962
 }

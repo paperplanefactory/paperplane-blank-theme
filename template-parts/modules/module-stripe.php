@@ -28,7 +28,7 @@ if ( $cta_text_data != '' ) {
 $module_stripe_vertical_aligment = get_sub_field( 'module_stripe_vertical_aligment' );
  ?>
 <div class="wrapper module-stripe <?php the_sub_field( 'module_bg' ); ?>">
-  <div class="<?php the_sub_field( 'module_vertical_space' ); ?>">
+  <div class="<?php the_sub_field( 'module_vertical_top_space' ); ?> <?php the_sub_field( 'module_vertical_bottom_space' ); ?>">
     <div class="wrapper-padded">
       <div class="<?php the_sub_field( 'module_stripe_width' ); ?>">
         <?php
@@ -61,7 +61,7 @@ $module_stripe_vertical_aligment = get_sub_field( 'module_stripe_vertical_aligme
         <!-- blocco -->
           <div class="flex-hold flex-hold-stripe-module stripe-listed <?php echo $module_stripe_vertical_aligment; ?> <?php the_sub_field( 'module_stripe_repeater_order' ); ?>">
             <!-- colonna -->
-            <div class="module-stripe-image" data-aos="fade-left">
+            <div class="module-stripe-image" data-aos="fade-up">
               <div class="spacer">
                 <?php
                 $image_data = array(
@@ -83,7 +83,7 @@ $module_stripe_vertical_aligment = get_sub_field( 'module_stripe_vertical_aligme
             </div>
             <!-- colonna -->
             <!-- colonna -->
-            <div class="module-stripe-text" data-aos="fade-right" data-aos-delay=500"">
+            <div class="module-stripe-text" data-aos="fade-in" data-aos-delay="250">
               <div class="spacer">
                 <div class="content-styled last-child-no-margin">
                   <?php the_sub_field( 'module_stripe_repeater_content' ); ?>

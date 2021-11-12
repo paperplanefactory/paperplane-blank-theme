@@ -6,7 +6,7 @@ else {
   $page_opening_layout = get_field( 'page_opening_layout' );
   $thumb_id = get_post_thumbnail_id();
   $thumb_url_desktop = wp_get_attachment_image_src($thumb_id, 'full_desk', true);
-  $thumb_url_desktop_hd = wp_get_attachment_image_src($thumb_id, 'full_desk_retina', true);
+  $thumb_url_desktop_hd = wp_get_attachment_image_src($thumb_id, 'full_desk_hd', true);
   $page_opening_video = get_field( 'page_opening_video' );
   $page_breadcrumbs = get_field( 'page_breadcrumbs' );
   $page_scroll_button = get_field( 'page_scroll_button' );

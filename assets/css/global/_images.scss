@@ -87,9 +87,9 @@ img {
 }
 
 .lazy-loading {
-	@include define-blur(40px);
+	//@include define-blur(40px);
 }
 
 .lazy-loaded {
-	@include define-blur(0);
+	//@include define-blur(0);
 }
