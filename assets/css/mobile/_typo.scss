@@ -61,6 +61,30 @@ p {
 }
 
 .content-styled {
+  h1:not(:first-child) {
+    margin-top: calc(#{$h1-marginbottom-smartphone} * 2);
+  }
+
+  h2:not(:first-child) {
+    margin-top: calc(#{$h2-marginbottom-smartphone} * 2);
+  }
+
+  h3:not(:first-child) {
+    margin-top: calc(#{$h3-marginbottom-smartphone} * 2);
+  }
+
+  h4:not(:first-child) {
+    margin-top: calc(#{$h4-marginbottom-smartphone} * 2);
+  }
+
+  h5:not(:first-child) {
+    margin-top: calc(#{$h5-marginbottom-smartphone} * 2);
+  }
+
+  h6:not(:first-child) {
+    margin-top: calc(#{$h6-marginbottom-smartphone} * 2);
+  }
+
   ul {
     font-size: $paragraph-size-smartphone;
     line-height: $paragraph-lineheight-smartphone;

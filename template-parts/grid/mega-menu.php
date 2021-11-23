@@ -25,15 +25,11 @@ switch ( $mega_menu_repeater_cta_target ) {
     <div class="mega-menu-spacer mega-menu-js-hover">
       <div class="flex-hold flex-hold-3 margins-wide">
         <div class="flex-hold-child">
-          <ul class="mega-menu-page-list">
-            <?php
-            if ( have_rows( 'mega_menu_repeater_pages_repeater' ) ) : while ( have_rows( 'mega_menu_repeater_pages_repeater' ) ) : the_row();
-            ?>
-            <li>
-              <a href="<?php the_sub_field( 'mega_menu_repeater_pages_repeater_page' ); ?>"><?php the_sub_field( 'mega_menu_repeater_pages_repeater_page_title' ); ?></a>
-            </li>
-            <?php endwhile; endif; ?>
-          </ul>
+          <?php
+          if ( has_nav_menu( 'mega-menu-' . $mega_menu_counter . '' ) ) {
+            wp_nav_menu( array( 'theme_location' => 'mega-menu-' . $mega_menu_counter . '', 'container' => 'ul', 'menu_class' => 'mega-menu-page-list' ) );
+          }
+          ?>
         </div>
         <div class="flex-hold-child">
           <?php

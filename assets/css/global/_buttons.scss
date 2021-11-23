@@ -33,6 +33,7 @@
   left: 0;
   @include define-rotate(0);
   @include define-basic-transition(all, 0.15s);
+  @include define-border-radius(1px);
 }
 
 .hambuger-element span:nth-child(1) {
@@ -63,7 +64,5 @@
 }
 
 .hambuger-element.open span:nth-child(4) {
-  top: 18px;
-  width: 0;
-  left: 50%;
+  opacity: 0;
 }

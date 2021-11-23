@@ -11,8 +11,25 @@ function register_theme_menus() {
   );
 }
 add_action( 'init', 'register_theme_menus' );
+// registro la gestione dei menu, esempio header e footer
+function register_theme_mega_menus() {
+  if (function_exists('pll_the_languages')) {
+    $acf_options_parameter = pll_current_language('slug');
+  }
+  else {
+    $acf_options_parameter = 'any-lang';
+  }
+  $mega_menu_counter = 0;
+  if ( have_rows( 'mega_menu_repeater', $acf_options_parameter ) ) : while ( have_rows( 'mega_menu_repeater', $acf_options_parameter ) ) : the_row();
+  $mega_menu_counter++;
+  register_nav_menu( 'mega-menu-' . $mega_menu_counter . '', __( 'Mega Menu ' . $mega_menu_counter . '' ) );
+  endwhile; endif;
+}
+add_action( 'init', 'register_theme_mega_menus' );
 
-// necessita di ACF PRO - aggiunge un pannello per gestire ulteriori impostazioni del tema
+
+
+// necessita di ACF PRO - aggiunge pannelli per gestire ulteriori impostazioni del tema
 if( function_exists('acf_add_options_page') ) {
   // gestione tema per admin
   $option_page = acf_add_options_page(array(

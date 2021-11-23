@@ -241,7 +241,8 @@ $hamburger-width: 45px; // header
 
     .overlay-menu-mobile-css {
       width: 100%;
-      text-align: center;
+      //text-align: center;
+      text-align: left;
 
       li {
         position: relative;
@@ -249,18 +250,24 @@ $hamburger-width: 45px; // header
 
         a {
           display: inline-block;
-          //width: calc(100% - (#{$wrapper-padded-desktop} * 2));
+          width: 100%;
           padding: 20px $wrapper-padded-desktop;
-        }
 
-        &.menu-item-has-children {
-          a {
+          span {
+            position: relative;
+            display: inline-block;
+            width: 30px;
+            height: 100%;
+            margin-left: 10px;
+
             &:after {
-              position: relative;
-              display: inline-block;
-              content: "▼";
-              font-size: 15px;
-              margin: 0 10px;
+              content: "";
+              position: absolute;
+              top: -20px;
+              left: 0;
+              display: block;
+              width: calc(100% + 20px);
+              height: calc(100% + 40px);
             }
           }
         }

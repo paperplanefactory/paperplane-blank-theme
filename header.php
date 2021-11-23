@@ -95,7 +95,7 @@ $static_bloginfo_stylesheet_directory = get_bloginfo('stylesheet_directory');
           <div class="side-head">
             <ul>
               <li>
-                <div type="button" aria-expanded="false" aria-label="Navigation" class="hambuger-element ham-activator" onclick="hamburgerMenu()">
+                <div aria-haspopup="true" aria-controls="head-overlay" class="hambuger-element ham-activator" onclick="hamburgerMenu()">
                   <span></span>
                   <span></span>
                   <span></span>

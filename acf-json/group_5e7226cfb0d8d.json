@@ -17,8 +17,7 @@
             },
             "choices": {
                 "colors-white-bg": "Sfondo bianco - testi neri",
-                "colors-black-bg": "Sfondo nero - testi bianchi",
-                "colors-grey-bg": "Sfondo grigio - testi neri"
+                "colors-black-bg": "Sfondo nero - testi bianchi"
             },
             "default_value": false,
             "allow_null": 0,
@@ -272,5 +271,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636372325
+    "show_in_rest": 0,
+    "modified": 1637400919
 }

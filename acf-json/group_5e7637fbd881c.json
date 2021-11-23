@@ -56,10 +56,10 @@
                     "endpoint": 0
                 },
                 {
-                    "key": "field_5e76385bdc31b",
-                    "label": "Voci menu",
-                    "name": "mega_menu_repeater_pages_repeater",
-                    "type": "repeater",
+                    "key": "field_619a598119d64",
+                    "label": "Voci di menu",
+                    "name": "",
+                    "type": "message",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -68,53 +68,9 @@
                         "class": "",
                         "id": ""
                     },
-                    "collapsed": "",
-                    "min": 0,
-                    "max": 0,
-                    "layout": "block",
-                    "button_label": "Aggiungi pagina",
-                    "sub_fields": [
-                        {
-                            "key": "field_5e76388cdc31c",
-                            "label": "Scegli una pagina",
-                            "name": "mega_menu_repeater_pages_repeater_page",
-                            "type": "page_link",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "post_type": [
-                                "page"
-                            ],
-                            "taxonomy": "",
-                            "allow_null": 0,
-                            "allow_archives": 1,
-                            "multiple": 0
-                        },
-                        {
-                            "key": "field_5e7638b8dc31d",
-                            "label": "Titolo",
-                            "name": "mega_menu_repeater_pages_repeater_page_title",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        }
-                    ]
+                    "message": "Le voci di menu possono essere gestite dal pannello Aspetto > Menu",
+                    "new_lines": "wpautop",
+                    "esc_html": 0
                 },
                 {
                     "key": "field_5e763db9133f7",
@@ -339,7 +295,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1591630573
+    "show_in_rest": 0,
+    "modified": 1637505473
 }
