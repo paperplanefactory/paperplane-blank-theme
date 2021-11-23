@@ -12,6 +12,7 @@ var paperPlaneLazyLoad = new LazyLoad({
       container: el
     });
     lazyLoadInstances.push(oneLL);
+    AOS.refresh();
   },
   callback_reveal: (el) => {
     if (el.complete && el.naturalWidth !== 0) {
@@ -29,8 +30,7 @@ AOS.init({
   duration: 900,
   once: false,
   mirror: true,
-  //offset: 40
-  //offset: 50
+  //offset: 350
 });
 
 /////////////////////////////////////////////
@@ -147,10 +147,29 @@ jQuery('.mega-menu-js-trigger').click(function(e) {
 });
 
 /////////////////////////////////////////////
+// sub menu mobile
+/////////////////////////////////////////////
+
+jQuery('.overlay-menu-mobile-js > .menu-item-has-children > a').each(function(i, el) {
+  jQuery(this).append('<span>▼</span>');
+});
+
+jQuery('.overlay-menu-mobile-js > .menu-item-has-children > a > span').click(function(e) {
+  //alert('sdfsdf');
+  if (jQuery(this).text() == "▼") {
+    jQuery(this).text("▲");
+  } else {
+    jQuery(this).text("▼");
+  }
+  jQuery(this).parent().parent().find('.sub-menu').slideToggle(150);
+  e.preventDefault();
+});
+
+/////////////////////////////////////////////
 // slick slideshow
 /////////////////////////////////////////////
 
-jQuery('.slide-double-js, .slide-single-js').on('init reInit afterChange', function(event, slick, currentSlide, nextSlide) {
+jQuery('.slide-double-js, .slide-single-js').on('init reInit', function(event, slick, currentSlide, nextSlide) {
   AOS.refresh();
 });
 
@@ -223,7 +242,7 @@ function numbers_counter() {
           Counter: jQuery(this).attr('data-bar-number')
         }, {
           duration: 2000,
-          //easing: 'swing',
+          easing: 'swing',
           step: function(now) {
             jQuery(this).text(Math.ceil(now));
           }
@@ -252,20 +271,12 @@ jQuery('.expander').click(function(e) {
 });
 
 /////////////////////////////////////////////
-// sub menu mobile
-/////////////////////////////////////////////
-
-jQuery('.overlay-menu-mobile-js > .menu-item-has-children').click(function(e) {
-  jQuery(this).find('.sub-menu').slideToggle(150);
-  e.preventDefault();
-});
-
-/////////////////////////////////////////////
 // Window scroll / resize events
 /////////////////////////////////////////////
-
+//let scrollRef = 0;
 jQuery(window).scroll(function() {
   numbers_counter();
+  //scrollRef <= 10 ? scrollRef++ : AOS.refresh();
 });
 
 //jQuery(window).resize(function() {

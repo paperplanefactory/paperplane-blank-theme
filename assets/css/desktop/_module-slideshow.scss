@@ -3,6 +3,8 @@
 @import '../global/mixin';
 
 .module-slideshow {
+  overflow: hidden !important;
+
   .module-paddings-top {
     padding-top: $module-vertical-padding-desktop;
   }

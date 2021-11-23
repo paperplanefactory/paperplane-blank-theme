@@ -2,6 +2,16 @@
 @import 'vars';
 @import 'mixin';
 
+.block-layer {
+	position: fixed;
+	z-index: 99999;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	background-color: rgba(0,0,0,0.8);
+}
+
 #paperplane-cookie-notice {
 	position: fixed;
 	z-index: 9999;
@@ -28,23 +38,44 @@
 		position: relative;
 		width: calc(100% - 40px);
 		max-width: calc(100% - 40px);
+		max-width: 880px;
 		margin: 0 auto;
 		padding: 20px;
 		text-align: center;
 
 		.paperplane-message-cookie-accepted,
+		.paperplane-message-cookie-refused,
+		.paperplane-message-cookie-text {
+			//margin: 0 0 10px;
+		}
+
+		.paperplane-message-cookie-accepted,
 		.paperplane-message-cookie-refused {
 			display: none;
+			font-weight: bold;
+
+			&.visible {
+				display: block;
+			}
+
+			span {
+				margin-right: 5px;
+			}
+		}
+
+		.paperplane-message-cookie-buttons {
+			margin-top: 20px;
 		}
 	}
 
 	a {
 		display: inline-block;
 		margin: 5px;
-		padding: 3px 6px;
+		padding: 6px 10px;
 		background-color: $color-4;
 		color: $color-1;
 		text-transform: uppercase;
+		font-weight: $font-weight-3;
 	}
 }
 
@@ -52,12 +83,16 @@
 	position: relative;
 	padding: 10px;
 	margin: 20px 0;
-	background-color: #000000;
-	color: #FFFFFF;
+	color: $color-4;
+	background-color: $color-form-error;
 	text-transform: uppercase;
 	cursor: pointer;
 
 	p {
+		font-family: $font-main;
+		font-weight: $font-weight-3;
+		font-size: 12px;
+		line-height: 18px;
 		margin: 0;
 	}
 }

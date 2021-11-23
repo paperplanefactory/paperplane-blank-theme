@@ -21,9 +21,12 @@ $flex-hold-column-wide-space-smartphone: 36px; // modules vertical paddings
 $color-1: #000000;
 $color-2: #333333;
 $color-3: #F2F2F2;
-$color-4: #FFFFFF; // form usability colors
-$color-form-ok: #0DBA04;
-$color-form-error: #FF0000; //fonts desktop
+$color-4: #FFFFFF;
+$color-upload-icon-clear: '%23FFFFFF'; // codificato per funzionare con SVG in linea nei CSS
+$color-upload-icon-dark: '%23000000'; // codificato per funzionare con SVG in linea nei CSS
+$color-form-ok: #0DBA04; // form usability colors
+$color-form-error: #FF0000; // form usability colors
+//fonts desktop
 $h1-size-desktop: 60px;
 $h1-lineheight-desktop: 60px;
 $h1-marginbottom-desktop: 20px;
@@ -64,7 +67,7 @@ $h4-size-smartphone: 16px;
 $h4-lineheight-smartphone: 20px;
 $h4-marginbottom-smartphone: 16px;
 $h5-size-smartphone: 16px;
-$h5-lineheight-smartphone: 20px;
+$h5-lineheight-smartphone: 24px;
 $h5-marginbottom-smartphone: 16px;
 $h6-size-smartphone: 16px;
 $h6-lineheight-smartphone: 20px;

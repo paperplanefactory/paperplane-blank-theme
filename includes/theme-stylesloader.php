@@ -30,7 +30,7 @@ if ( !is_admin() ) {
 		// stili comuni
 		wp_enqueue_style( 'theme-font', 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap#asyncload', array(), null );
 		wp_enqueue_style( 'theme-commnon', get_template_directory_uri() . '/style.min.css', '', $theme_version, 'all' );
-		// wp_enqueue_style( 'material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons', '', $theme_version, 'all' );
+		wp_enqueue_style( 'material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons', array(), null );
 	}
 	add_action( 'wp_enqueue_scripts', 'theme_css' );
 }

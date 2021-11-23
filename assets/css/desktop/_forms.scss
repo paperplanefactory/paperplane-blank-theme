@@ -1,23 +1,39 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
-// forms
+@import '../global/mixin'; // forms
+
 .form-hold {
 	margin: 10px 0;
 
-	label {
+	label,
+	p {
 		font-size: $h5-size-desktop;
 		line-height: $h5-lineheight-desktop;
 		margin-bottom: 5px;
 	}
 
+	input[type=date],
 	input[type=email],
+	input[type=file],
 	input[type=number],
+	input[type=range],
 	input[type=tel],
-	input[type=text] {
+	input[type=text],
+	input[type=url] {
 		font-size: $h5-size-desktop;
 		line-height: $h5-lineheight-desktop;
 		margin-bottom: 15px;
+	}
+
+	input[type=checkbox],
+	input[type=radio] {
+		margin-bottom: 5px;
+
+		&:before {
+			position: relative;
+			top: 4px;
+			font-size: calc(#{$h5-size-desktop} * 1.5);
+		}
 	}
 
 	textarea {
