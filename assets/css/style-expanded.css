@@ -2373,17 +2373,6 @@ img.lazy-loaded {
     float: right;
     margin-left: 20px;
   }
-  .wp-caption-text,
-  .wp-caption.aligncenter .wp-caption-text,
-  .wp-caption.alignleft .wp-caption-text,
-  .wp-caption.alignnone .wp-caption-text,
-  .wp-caption.alignright .wp-caption-text {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 15px;
-    font-style: italic;
-  }
   .above-image-opacity {
     position: absolute;
     top: 0;
@@ -3607,17 +3596,6 @@ img.lazy-loaded {
   .wp-caption.alignright {
     float: right;
     margin-left: 20px;
-  }
-  .wp-caption-text,
-  .wp-caption.aligncenter .wp-caption-text,
-  .wp-caption.alignleft .wp-caption-text,
-  .wp-caption.alignnone .wp-caption-text,
-  .wp-caption.alignright .wp-caption-text {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 15px;
-    font-style: italic;
   }
   .above-image-opacity {
     position: absolute;
