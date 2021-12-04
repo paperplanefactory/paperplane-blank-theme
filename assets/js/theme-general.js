@@ -271,6 +271,25 @@ jQuery('.expander').click(function(e) {
 });
 
 /////////////////////////////////////////////
+// Clear ovarlay scroll when resizing desktop - mobile if desktop has no overlay menu
+/////////////////////////////////////////////
+
+function clear_overlay_scroll() {
+  var clear_overlay_scroll_window_width = jQuery(window).width();
+  if (!jQuery('#head-overlay').hasClass('hidden')) {
+    if (clear_overlay_scroll_window_width > 1023) {
+      jQuery('html, body').css({
+        overflow: 'visible',
+      });
+    } else {
+      jQuery('html, body').css({
+        overflow: 'hidden',
+      });
+    }
+  }
+}
+
+/////////////////////////////////////////////
 // Window scroll / resize events
 /////////////////////////////////////////////
 //let scrollRef = 0;
