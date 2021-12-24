@@ -245,9 +245,18 @@ function numbers_counter() {
           easing: 'swing',
           step: function(now) {
             jQuery(this).text(Math.ceil(now));
+            if (now < jQuery(this).attr('data-bar-number')) {
+              jQuery(this).addClass('blurred-counter');
+            } else {
+              jQuery(this).removeClass('blurred-counter');
+            }
+            //
+            console.log(now);
           }
+
         });
       }
+
     });
   }
 }
@@ -300,6 +309,22 @@ jQuery(window).scroll(function() {
 
 //jQuery(window).resize(function() {
 //});
+
+/////////////////////////////////////////////
+// Viewport units / contenuti fullscreen mobile sottraendo barre di navigazione dei browser
+/////////////////////////////////////////////
+
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+// We listen to the resize event
+window.addEventListener('resize', () => {
+  // We execute the same script as before
+  let vh = window.innerHeight * 0.01;
+  console.log(vh);
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
 
 /////////////////////////////////////////////
 // preload

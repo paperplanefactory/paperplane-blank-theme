@@ -65,6 +65,7 @@ $hamburger-width: 55px; // header
   top: $header-smartphone-height;
   width: 100%;
   height: calc(100vh - #{$header-smartphone-height});
+  height: calc((var(--vh, 1vh) * 100) - #{$header-smartphone-height});
 
   .menu {
     width: 100%;
