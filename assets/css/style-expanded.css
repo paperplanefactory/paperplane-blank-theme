@@ -1124,6 +1124,15 @@ ul {
   padding: 0 15px 0 0;
 }
 
+.blurred-counter {
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  transition: all 0.3s ease-in-out;
+}
+
 .wrapper {
   position: relative;
   width: 100%;
@@ -1616,6 +1625,7 @@ img.lazy-loaded {
     top: 64px;
     width: 100%;
     height: calc(100vh - 64px);
+    height: calc((var(--vh, 1vh) * 100) - 64px);
   }
   #head-overlay .menu {
     width: 100%;
@@ -1802,6 +1812,20 @@ img.lazy-loaded {
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ol,
+  p,
+  ul {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
   }
   .page-opening-fullscreen,
   .page-opening-fullscreen-less {
@@ -2747,6 +2771,7 @@ img.lazy-loaded {
   #head-overlay {
     top: 75px;
     height: calc(100vh - 75px);
+    height: calc((var(--vh, 1vh) * 100) - 75px);
   }
   #head-overlay .menu {
     width: 100%;
