@@ -1,0 +1,29 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.paperplane-modal {
+  .modal-box {
+    width: calc(100vw - 30px);
+    height: calc(100vh - 30px);
+    padding: 75px 0 0;
+
+    .modal-title {
+      height: 75px;
+      padding: 24px 20px 0;
+    }
+
+    .modal-close-button {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 32px;
+      height: 32px;
+    }
+
+    .insider {
+      padding: 0 20px 30px;
+      max-height: calc(100vh - 120px);
+    }
+  }
+}

@@ -15,10 +15,13 @@ if( $banner ) :
   $cta_banner_text_data = get_field( 'banner_cta_text' );
   if ( $cta_banner_text_data != '' ) {
     $cta_banner_type_data = get_field( 'banner_cta_target' );
+    global $cta_url_modal_array;
     switch ( $cta_banner_type_data ) {
       case 'cta-target-internal' :
       $cta_banner_url_data = get_field( 'banner_cta_target_internal' );
+      $cta_banner_url_data = get_permalink( $cta_banner_url_data[0] );
       $cta_banner_url_target = '_self';
+      $cta_url_modal_class = '';
       $cta_banner_url_parameter_data = get_field( 'banner_cta_target_internal_parameter' );
       if ( $cta_banner_url_parameter_data != '' ) {
         $cta_banner_url_data = $cta_banner_url_data . $cta_url_parameter_data;
@@ -27,10 +30,19 @@ if( $banner ) :
       case 'cta-target-external' :
       $cta_banner_url_data = get_field( 'banner_cta_target_external' );
       $cta_banner_url_target = '_blank';
+      $cta_url_modal_class = '';
       break;
       case 'cta-target-file' :
       $cta_banner_url_data = get_field( 'banner_cta_target_file' );
       $cta_banner_url_target = '_blank';
+      $cta_url_modal_class = '';
+      break;
+      case 'cta-target-modal' :
+      $cta_url_data = '#';
+      $cta_url_target = '_self';
+      $cta_url_modal_class = 'modal-open-js';
+      $cta_url_modal_id = get_field( 'banner_cta_modal' );
+      $cta_url_modal_array[] = get_field( 'banner_cta_modal' );
       break;
     }
     $cta_banner_appearence = get_field( 'banner_cta_appearence' );
@@ -72,7 +84,7 @@ if( $banner ) :
                     if ( $cta_banner_text_data != '' ) :
                       ?>
                       <div class="cta-holder">
-                        <a href="<?php echo $cta_banner_url_data; ?>" target="<?php echo $cta_banner_url_target; ?>" class="<?php echo $cta_banner_appearence; ?> allupper"><?php echo $cta_banner_text_data; ?></a>
+                        <a href="<?php echo $cta_banner_url_data; ?>" target="<?php echo $cta_banner_url_target; ?>" class="<?php echo $cta_banner_appearence; ?> <?php echo $cta_url_modal_class; ?> allupper" data-modal-open-id=".paperplane-modal-js-<?php echo $cta_url_modal_id; ?>"><?php echo $cta_banner_text_data; ?></a>
                       </div>
                     <?php endif; ?>
                   </div>
@@ -86,7 +98,7 @@ if( $banner ) :
                 if ( $cta_banner_text_data != '' ) :
                   ?>
                   <div class="cta-holder">
-                    <a href="<?php echo $cta_banner_url_data; ?>" target="<?php echo $cta_banner_url_target; ?>" class="<?php echo $cta_banner_appearence; ?> allupper"><?php echo $cta_banner_text_data; ?></a>
+                    <a href="<?php echo $cta_banner_url_data; ?>" target="<?php echo $cta_banner_url_target; ?>" class="<?php echo $cta_banner_appearence; ?> <?php echo $cta_url_modal_class; ?> allupper" data-modal-open-id=".paperplane-modal-js-<?php echo $cta_url_modal_id; ?>"><?php echo $cta_banner_text_data; ?></a>
                   </div>
                 <?php endif; ?>
               </div>

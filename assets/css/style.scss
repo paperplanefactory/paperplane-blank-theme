@@ -35,10 +35,12 @@
   @import 'mobile/effects';
   @import 'mobile/forms';
   @import 'mobile/slideshows';
+  @import 'mobile/modals';
 }
 // imports desktop
 @media screen and (min-width: $break-desktop) {
   @import 'desktop/header-footer';
+  @import 'desktop/mega-menu';
   @import 'desktop/typo';
   @import 'desktop/page-opening';
   @import 'desktop/wrappers';
@@ -58,6 +60,7 @@
   @import 'desktop/effects';
   @import 'desktop/forms';
   @import 'desktop/slideshows';
+  @import 'desktop/modals';
 }
 @import 'global/libraries/aos';
 @import 'global/libraries/slick';
@@ -65,7 +68,8 @@
 @import 'global/pagenavi';
 @import 'global/cookies';
 @import 'global/admin-bar';
-@import 'global/mixin'; //@import 'global/preload-animations';
+@import 'global/mixin';
+@import 'global/modals'; //@import 'global/preload-animations';
 // @import 'global/visual-debug';
 // IMPORTANTE!!
 // 0 - verifica di utilizzare l'ultima versione del tema!!
@@ -79,7 +83,7 @@
 // nell'ordine 1 - nome del menu 2 - tipo di elemento contenitore 3 - classe del contenitore
 // i menu gestibili da back end vengono definiti nel file functions/theme-menus.php
 // UTILITIES
-// Generatore gradiente CSS: http://www.colorzilla.com/gradient-editor/
+// Generatore gradiente CSS: https://cssgradient.io/
 // Generatore Text Shadow CSS: https://css3gen.com/text-shadow/
 // Generatore Border Radius CSS: https://css3gen.com/border-radius/
 // Generatore Box Shadow CSS: https://css3gen.com/box-shadow/

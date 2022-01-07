@@ -408,9 +408,10 @@
             "choices": {
                 "cta-target-internal": "Contenuto interno al sito",
                 "cta-target-external": "Contenuto esterno al sito",
-                "cta-target-file": "File"
+                "cta-target-file": "File",
+                "cta-target-modal": "Modal"
             },
-            "default_value": [],
+            "default_value": false,
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -422,7 +423,7 @@
             "key": "field_5e6bac3ca3429",
             "label": "Scegli un contenuto",
             "name": "page_opening_cta_target_internal",
-            "type": "page_link",
+            "type": "relationship",
             "instructions": "",
             "required": 1,
             "conditional_logic": [
@@ -444,13 +445,52 @@
                 "id": ""
             },
             "post_type": [
-                "post",
-                "page"
+                "page",
+                "post"
             ],
             "taxonomy": "",
-            "allow_null": 0,
-            "allow_archives": 1,
-            "multiple": 0
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": 1,
+            "max": 1,
+            "return_format": "id"
+        },
+        {
+            "key": "field_61d7fc788a32f",
+            "label": "Parametro aggiuntivo URL",
+            "name": "page_opening_cta_target_internal_parameter",
+            "type": "text",
+            "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5e6baba6a3415",
+                        "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_5e6bac09a3416",
+                        "operator": "==",
+                        "value": "cta-target-internal"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_5e6bac92a342b",
@@ -510,6 +550,40 @@
             "min_size": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_61d7fcb88a331",
+            "label": "Scegli modal",
+            "name": "page_opening_cta_modal",
+            "type": "post_object",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5e6baba6a3415",
+                        "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_5e6bac09a3416",
+                        "operator": "==",
+                        "value": "cta-target-modal"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "cpt_modal"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "id",
+            "ui": 1
         }
     ],
     "location": [
@@ -518,6 +592,13 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
             }
         ]
     ],
@@ -532,5 +613,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1637400901
+    "modified": 1641545247
 }

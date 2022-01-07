@@ -1,0 +1,50 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.mega-menu {
+  position: fixed;
+  z-index: 9998;
+  top: $header-desktop-height;
+  left: $wrapper-padded-desktop;
+  display: block;
+  width: calc(100% - (#{$wrapper-padded-desktop} * 2));
+  @include define-basic-transition(all, 0.2s);
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .mega-menu-holder {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-box-shadow: 0 10px 20px -10px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 10px 20px -10px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.2);
+  }
+
+  .mega-menu-holder-contained {
+    max-width: 1220px;
+  }
+
+  .mega-menu-spacer {
+    padding: 48px 70px;
+
+    .mega-menu-page-list {
+      li {
+        display: block;
+        margin-bottom: 25px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .cta-holder {
+      margin: 35px 0 0;
+    }
+  }
+}

@@ -7,7 +7,6 @@ var paperPlaneLazyLoad = new LazyLoad({
   class_loading: "lazy-loading",
   class_loaded: "lazy-loaded",
   callback_enter: function(el) {
-    // console.log('entered');
     var oneLL = new LazyLoad({
       container: el
     });
@@ -250,8 +249,6 @@ function numbers_counter() {
             } else {
               jQuery(this).removeClass('blurred-counter');
             }
-            //
-            console.log(now);
           }
 
         });
@@ -278,6 +275,49 @@ jQuery('.expander').click(function(e) {
   }
   e.preventDefault();
 });
+
+/////////////////////////////////////////////
+// Modals
+/////////////////////////////////////////////
+
+if (jQuery('.paperplane-modal')[0]) {
+  jQuery('.modal-close-js').click(function(e) {
+    var modal_close_id = jQuery(this).data('modal-close-id');
+    jQuery(modal_close_id).addClass('hidden');
+    jQuery('html, body').css({
+      overflow: 'visible',
+    });
+    e.preventDefault();
+  });
+  jQuery('.modal-open-js').click(function(e) {
+    var modal_open_id = jQuery(this).data('modal-open-id');
+    jQuery(modal_open_id).removeClass('hidden');
+    jQuery('html, body').css({
+      overflow: 'hidden',
+    });
+    e.preventDefault();
+  });
+}
+
+/////////////////////////////////////////////
+// Allineamento CTA in modulo di testo
+/////////////////////////////////////////////
+
+if (jQuery('.text-module-cta-align-js')[0]) {
+  jQuery('.text-module-cta-align-js').each(function(i, el) {
+    var check_align = jQuery(this).parent().find('.content-styled').html();
+    if (typeof check_align !== 'undefined') {
+      if (check_align.indexOf("text-align: center;") >= 0) {
+        jQuery(this).addClass('aligncenter');
+      }
+      if (check_align.indexOf("text-align: right;") >= 0) {
+        jQuery(this).addClass('alignright');
+      }
+    }
+
+  });
+}
+
 
 /////////////////////////////////////////////
 // Clear ovarlay scroll when resizing desktop - mobile if desktop has no overlay menu
@@ -322,7 +362,6 @@ document.documentElement.style.setProperty('--vh', `${vh}px`);
 window.addEventListener('resize', () => {
   // We execute the same script as before
   let vh = window.innerHeight * 0.01;
-  console.log(vh);
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
 

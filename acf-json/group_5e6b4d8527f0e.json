@@ -173,7 +173,43 @@
                     "type": "text",
                     "instructions": "La CTA comparirà in fondo al modulo",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e6b4ddf13dcb",
+                                "operator": "==",
+                                "value": "module-text"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_5e6b4ddf13dcb",
+                                "operator": "==",
+                                "value": "module-columns"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_5e6b4ddf13dcb",
+                                "operator": "==",
+                                "value": "module-fullscreen-image"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_5e6b4ddf13dcb",
+                                "operator": "==",
+                                "value": "module-highlighted-sentence"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_5e6b4ddf13dcb",
+                                "operator": "==",
+                                "value": "module-stripe"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -240,9 +276,10 @@
                     "choices": {
                         "cta-target-internal": "Contenuto interno al sito",
                         "cta-target-external": "Contenuto esterno al sito",
-                        "cta-target-file": "File"
+                        "cta-target-file": "File",
+                        "cta-target-modal": "Modal"
                     },
-                    "default_value": [],
+                    "default_value": false,
                     "allow_null": 0,
                     "multiple": 0,
                     "ui": 0,
@@ -254,7 +291,7 @@
                     "key": "field_5e6b523236122",
                     "label": "Scegli un contenuto",
                     "name": "module_additional_elements_cta_target_internal",
-                    "type": "page_link",
+                    "type": "relationship",
                     "instructions": "",
                     "required": 1,
                     "conditional_logic": [
@@ -280,9 +317,17 @@
                         "page"
                     ],
                     "taxonomy": "",
-                    "allow_null": 0,
-                    "allow_archives": 1,
-                    "multiple": 0
+                    "filters": [
+                        "search",
+                        "post_type",
+                        "taxonomy"
+                    ],
+                    "elements": [
+                        "featured_image"
+                    ],
+                    "min": 1,
+                    "max": 1,
+                    "return_format": "id"
                 },
                 {
                     "key": "field_61862989d733d",
@@ -373,6 +418,40 @@
                     "min_size": "",
                     "max_size": "",
                     "mime_types": ""
+                },
+                {
+                    "key": "field_61d57180fc332",
+                    "label": "Scegli modal",
+                    "name": "module_additional_elements_cta_modal",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e6b51143611f",
+                                "operator": "!=empty"
+                            },
+                            {
+                                "field": "field_5e6b51b836121",
+                                "operator": "==",
+                                "value": "cta-target-modal"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "cpt_modal"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "id",
+                    "ui": 1
                 },
                 {
                     "key": "field_5e6b52eed806b",
@@ -794,7 +873,7 @@
                         {
                             "key": "field_5e6b6833711bf",
                             "label": "Testo CTA",
-                            "name": "module_columns_columns_repeater_cta_text",
+                            "name": "module_additional_elements_cta_text",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -813,7 +892,7 @@
                         {
                             "key": "field_5e70f4f82987c",
                             "label": "Aspetto CTA",
-                            "name": "module_columns_columns_repeater_cta_appearence",
+                            "name": "module_additional_elements_cta_appearence",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -834,7 +913,7 @@
                                 "default-button": "CTA primaria",
                                 "default-button-b": "CTA secondaria"
                             },
-                            "default_value": [],
+                            "default_value": false,
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -845,7 +924,7 @@
                         {
                             "key": "field_5e6b684e711c0",
                             "label": "Destinazione CTA",
-                            "name": "module_columns_columns_repeater_cta_target",
+                            "name": "module_additional_elements_cta_target",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -865,9 +944,10 @@
                             "choices": {
                                 "cta-target-internal": "Contenuto interno al sito",
                                 "cta-target-external": "Contenuto esterno al sito",
-                                "cta-target-file": "File"
+                                "cta-target-file": "File",
+                                "cta-target-modal": "Modal"
                             },
-                            "default_value": [],
+                            "default_value": false,
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -878,8 +958,8 @@
                         {
                             "key": "field_5e6b686e711c1",
                             "label": "Scegli un contenuto",
-                            "name": "module_columns_columns_repeater_cta_target_internal",
-                            "type": "page_link",
+                            "name": "module_additional_elements_cta_target_internal",
+                            "type": "relationship",
                             "instructions": "",
                             "required": 1,
                             "conditional_logic": [
@@ -905,14 +985,22 @@
                                 "page"
                             ],
                             "taxonomy": "",
-                            "allow_null": 0,
-                            "allow_archives": 1,
-                            "multiple": 0
+                            "filters": [
+                                "search",
+                                "post_type",
+                                "taxonomy"
+                            ],
+                            "elements": [
+                                "featured_image"
+                            ],
+                            "min": 1,
+                            "max": 1,
+                            "return_format": "id"
                         },
                         {
                             "key": "field_6186374a5f874",
                             "label": "Parametro aggiuntivo URL",
-                            "name": "module_columns_columns_repeater_cta_target_internal_parameter",
+                            "name": "module_additional_elements_cta_target_internal_parameter",
                             "type": "text",
                             "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
                             "required": 0,
@@ -943,7 +1031,7 @@
                         {
                             "key": "field_5e6b6897711c2",
                             "label": "Inserisci una URL",
-                            "name": "module_columns_columns_repeater_cta_target_external",
+                            "name": "module_additional_elements_cta_target_external",
                             "type": "url",
                             "instructions": "",
                             "required": 1,
@@ -971,7 +1059,7 @@
                         {
                             "key": "field_5e6b68b9711c3",
                             "label": "Scegli il file",
-                            "name": "module_columns_columns_repeater_cta_target_file",
+                            "name": "module_additional_elements_cta_target_file",
                             "type": "file",
                             "instructions": "",
                             "required": 1,
@@ -998,6 +1086,40 @@
                             "min_size": "",
                             "max_size": "",
                             "mime_types": ""
+                        },
+                        {
+                            "key": "field_61d5a6529b594",
+                            "label": "Scegli modal",
+                            "name": "module_additional_elements_cta_modal",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_5e6b6833711bf",
+                                        "operator": "!=empty"
+                                    },
+                                    {
+                                        "field": "field_5e6b684e711c0",
+                                        "operator": "==",
+                                        "value": "cta-target-modal"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "cpt_modal"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "return_format": "id",
+                            "ui": 1
                         }
                     ]
                 },
@@ -1227,9 +1349,10 @@
                     "choices": {
                         "cta-target-internal": "Contenuto interno al sito",
                         "cta-target-external": "Contenuto esterno al sito",
-                        "cta-target-file": "File"
+                        "cta-target-file": "File",
+                        "cta-target-modal": "Modal"
                     },
-                    "default_value": [],
+                    "default_value": false,
                     "allow_null": 0,
                     "multiple": 0,
                     "ui": 0,
@@ -1241,7 +1364,7 @@
                     "key": "field_5e6b7cdb0d46c",
                     "label": "Scegli un contenuto",
                     "name": "module_columns_fix_fix_column_cta_target_internal",
-                    "type": "page_link",
+                    "type": "relationship",
                     "instructions": "",
                     "required": 1,
                     "conditional_logic": [
@@ -1267,9 +1390,17 @@
                         "page"
                     ],
                     "taxonomy": "",
-                    "allow_null": 0,
-                    "allow_archives": 1,
-                    "multiple": 0
+                    "filters": [
+                        "search",
+                        "post_type",
+                        "taxonomy"
+                    ],
+                    "elements": [
+                        "featured_image"
+                    ],
+                    "min": 1,
+                    "max": 1,
+                    "return_format": "id"
                 },
                 {
                     "key": "field_61864c634cf41",
@@ -1362,6 +1493,40 @@
                     "mime_types": ""
                 },
                 {
+                    "key": "field_61d5afed856be",
+                    "label": "Scegli modal",
+                    "name": "module_columns_fix_fix_column_cta_modal",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e6b7c7b0d46a",
+                                "operator": "!=empty"
+                            },
+                            {
+                                "field": "field_5e6b7cbb0d46b",
+                                "operator": "==",
+                                "value": "cta-target-modal"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "cpt_modal"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "id",
+                    "ui": 1
+                },
+                {
                     "key": "field_5e6b810a1836c",
                     "label": "Gestisci colonne non fisse",
                     "name": "module_columns_fix_repeater",
@@ -1406,31 +1571,6 @@
                             "endpoint": 0
                         },
                         {
-                            "key": "field_5e74ca1f023d6",
-                            "label": "Ombra box",
-                            "name": "module_columns_fix_repeater_box_shadow",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "no-shadow": "No",
-                                "default-box-shadow": "Sì"
-                            },
-                            "default_value": [],
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
-                            "return_format": "value",
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
                             "key": "field_5e6b810a1836e",
                             "label": "Allineamento",
                             "name": "module_columns_fix_repeater_align",
@@ -1447,32 +1587,6 @@
                                 "alignleft": "Sinistra",
                                 "aligncenter": "Centro",
                                 "alignright": "Destra"
-                            },
-                            "default_value": [],
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
-                            "return_format": "value",
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_5e6b810a1836f",
-                            "label": "Schema colori",
-                            "name": "module_columns_fix_repeater_background",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "no-bg": "Predefinito",
-                                "combo-1": "Schema 1",
-                                "combo-2": "Schema 2"
                             },
                             "default_value": [],
                             "allow_null": 0,
@@ -1561,7 +1675,7 @@
                         {
                             "key": "field_5e6b810a18373",
                             "label": "Testo CTA",
-                            "name": "module_columns_fix_repeater_cta_text",
+                            "name": "module_additional_elements_cta_text",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -1580,7 +1694,7 @@
                         {
                             "key": "field_5e70f6555a84e",
                             "label": "Aspetto CTA",
-                            "name": "module_columns_fix_repeater_cta_appearence",
+                            "name": "module_additional_elements_cta_appearence",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -1601,7 +1715,7 @@
                                 "default-button": "CTA primaria",
                                 "default-button-b": "CTA secondaria"
                             },
-                            "default_value": [],
+                            "default_value": false,
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -1612,7 +1726,7 @@
                         {
                             "key": "field_5e6b810a18374",
                             "label": "Destinazione CTA",
-                            "name": "module_columns_fix_repeater_cta_target",
+                            "name": "module_additional_elements_cta_target",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -1632,9 +1746,10 @@
                             "choices": {
                                 "cta-target-internal": "Contenuto interno al sito",
                                 "cta-target-external": "Contenuto esterno al sito",
-                                "cta-target-file": "File"
+                                "cta-target-file": "File",
+                                "cta-target-modal": "Modal"
                             },
-                            "default_value": [],
+                            "default_value": false,
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -1645,7 +1760,7 @@
                         {
                             "key": "field_5e6b810a18375",
                             "label": "Scegli un contenuto",
-                            "name": "module_columns_fix_repeater_cta_target_internal",
+                            "name": "module_additional_elements_cta_target_internal",
                             "type": "page_link",
                             "instructions": "",
                             "required": 1,
@@ -1679,7 +1794,7 @@
                         {
                             "key": "field_61865132f6261",
                             "label": "Parametro aggiuntivo URL",
-                            "name": "module_columns_fix_repeater_cta_target_internal_parameter",
+                            "name": "module_additional_elements_cta_target_internal_parameter",
                             "type": "text",
                             "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
                             "required": 0,
@@ -1710,7 +1825,7 @@
                         {
                             "key": "field_5e6b810a18376",
                             "label": "Inserisci una URL",
-                            "name": "module_columns_fix_repeater_cta_target_external",
+                            "name": "module_additional_elements_cta_target_external",
                             "type": "url",
                             "instructions": "",
                             "required": 1,
@@ -1738,7 +1853,7 @@
                         {
                             "key": "field_5e6b810a18377",
                             "label": "Scegli il file",
-                            "name": "module_columns_fix_repeater_cta_target_file",
+                            "name": "module_additional_elements_cta_target_file",
                             "type": "file",
                             "instructions": "",
                             "required": 1,
@@ -1765,6 +1880,40 @@
                             "min_size": "",
                             "max_size": "",
                             "mime_types": ""
+                        },
+                        {
+                            "key": "field_61d5a3d3e178b",
+                            "label": "Scegli modal",
+                            "name": "module_additional_elements_cta_modal",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_5e6b810a18373",
+                                        "operator": "!=empty"
+                                    },
+                                    {
+                                        "field": "field_5e6b810a18374",
+                                        "operator": "==",
+                                        "value": "cta-target-modal"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "cpt_modal"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "return_format": "id",
+                            "ui": 1
                         }
                     ]
                 },
@@ -1950,7 +2099,7 @@
                         {
                             "key": "field_5e6b8b9067ad6",
                             "label": "Testo CTA",
-                            "name": "module_stripe_repeater_cta_text",
+                            "name": "module_additional_elements_cta_text",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -1969,7 +2118,7 @@
                         {
                             "key": "field_5e70fe665a84f",
                             "label": "Aspetto CTA",
-                            "name": "module_stripe_repeater_cta_appearence",
+                            "name": "module_additional_elements_cta_appearence",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -1990,7 +2139,7 @@
                                 "default-button": "CTA primaria",
                                 "default-button-b": "CTA secondaria"
                             },
-                            "default_value": [],
+                            "default_value": false,
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -2001,7 +2150,7 @@
                         {
                             "key": "field_5e6b8b9a67ad7",
                             "label": "Destinazione CTA",
-                            "name": "module_stripe_repeater_cta_target",
+                            "name": "module_additional_elements_cta_target",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -2021,9 +2170,10 @@
                             "choices": {
                                 "cta-target-internal": "Contenuto interno al sito",
                                 "cta-target-external": "Contenuto esterno al sito",
-                                "cta-target-file": "File"
+                                "cta-target-file": "File",
+                                "cta-target-modal": "Modal"
                             },
-                            "default_value": [],
+                            "default_value": false,
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -2034,8 +2184,8 @@
                         {
                             "key": "field_5e6b8ba567ad8",
                             "label": "Scegli un contenuto",
-                            "name": "module_stripe_repeater_cta_target_internal",
-                            "type": "page_link",
+                            "name": "module_additional_elements_cta_target_internal",
+                            "type": "relationship",
                             "instructions": "",
                             "required": 1,
                             "conditional_logic": [
@@ -2061,14 +2211,22 @@
                                 "page"
                             ],
                             "taxonomy": "",
-                            "allow_null": 0,
-                            "allow_archives": 1,
-                            "multiple": 0
+                            "filters": [
+                                "search",
+                                "post_type",
+                                "taxonomy"
+                            ],
+                            "elements": [
+                                "featured_image"
+                            ],
+                            "min": 1,
+                            "max": 1,
+                            "return_format": "id"
                         },
                         {
                             "key": "field_6186ce86fa70c",
                             "label": "Parametro aggiuntivo URL",
-                            "name": "module_stripe_repeater_cta_target_internal_parameter",
+                            "name": "module_additional_elements_cta_target_internal_parameter",
                             "type": "text",
                             "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
                             "required": 0,
@@ -2099,7 +2257,7 @@
                         {
                             "key": "field_5e6b8bad67ad9",
                             "label": "Inserisci una URL",
-                            "name": "module_stripe_repeater_cta_target_external",
+                            "name": "module_additional_elements_cta_target_external",
                             "type": "url",
                             "instructions": "",
                             "required": 1,
@@ -2127,7 +2285,7 @@
                         {
                             "key": "field_5e6b8bb767ada",
                             "label": "Scegli il file",
-                            "name": "module_stripe_repeater_cta_target_file",
+                            "name": "module_additional_elements_cta_target_file",
                             "type": "file",
                             "instructions": "",
                             "required": 1,
@@ -2154,6 +2312,40 @@
                             "min_size": "",
                             "max_size": "",
                             "mime_types": ""
+                        },
+                        {
+                            "key": "field_61d5a28a88b89",
+                            "label": "Scegli modal",
+                            "name": "module_additional_elements_cta_modal",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_5e6b8b9067ad6",
+                                        "operator": "!=empty"
+                                    },
+                                    {
+                                        "field": "field_5e6b8b9a67ad7",
+                                        "operator": "==",
+                                        "value": "cta-target-modal"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "cpt_modal"
+                            ],
+                            "taxonomy": "",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "return_format": "id",
+                            "ui": 1
                         }
                     ]
                 },
@@ -2580,5 +2772,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1637400986
+    "modified": 1641547345
 }

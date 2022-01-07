@@ -26,11 +26,7 @@
           </div>
         <?php endif; ?>
         <div class="clearer"></div>
-        <?php if ( get_field( 'page_opening_cta_text' ) ) : ?>
-          <div class="cta-holder">
-            <a href="<?php echo $page_opening_cta_url; ?>" target="<?php echo $page_opening_cta_url_target; ?>" class="<?php the_field( 'page_opening_cta_appearence' ); ?>  allupper"><?php the_field( 'page_opening_cta_text' ); ?></a>
-          </div>
-        <?php endif; ?>
+        <?php get_template_part( 'template-parts/grid/page-opening/opening-cta-default' ); ?>
       </div>
     </div>
   </div>
