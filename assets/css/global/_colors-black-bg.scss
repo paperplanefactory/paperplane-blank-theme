@@ -257,4 +257,25 @@
     background: $color-3;
     color: $color-1;
   }
+
+  &.paperplane-modal {
+    background-color: rgba(255,255,255,0.8);
+
+    .modal-box,
+    .modal-title {
+      background-color: $color-1;
+    }
+
+    .modal-box {
+      &:after {
+        background-color: $color-1;
+      }
+    }
+
+    .modal-close-button {
+      .svg-button-line {
+        stroke: $color-4;
+      }
+    }
+  }
 }

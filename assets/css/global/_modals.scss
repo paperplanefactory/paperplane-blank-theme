@@ -1,0 +1,89 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.paperplane-modal {
+  position: fixed;
+  z-index: 99999 !important;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+  @include define-basic-transition(all, 0.4s);
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .modal-box {
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: calc(100% - 14px);
+      height: 30px;
+    }
+
+    .modal-title {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% - 56px);
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .modal-close-button {
+      cursor: pointer;
+      @include define-basic-transition(all, 0.3s);
+
+      &:hover {
+        opacity: 0.7;
+      }
+
+      .svg-button-bg,
+      .svg-button-line {
+        fill: none;
+      }
+
+      .svg-button-line {
+        stroke-width: 2px;
+      }
+    }
+
+    .insider {
+      overflow-y: auto;
+      width: 100%;
+    }
+  }
+
+  .modal-close-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

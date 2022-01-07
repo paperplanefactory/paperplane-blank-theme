@@ -20,5 +20,8 @@
   </div>
   <div class="grid-listing-texts last-child-no-margin">
     <h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+    <div class="cta-holder">
+      <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="default-button-b allupper"><?php _e( 'Leggi tutto', 'paperPlane-blankTheme' ); ?></a>
+    </div>
   </div>
 </div>

@@ -4,6 +4,8 @@ wp_reset_query();
 global $acf_options_parameter;
 global $footer_wrapper;
 global $static_bloginfo_stylesheet_directory;
+global $cta_url_modal_array;
+$cta_url_modal_array = array_unique($cta_url_modal_array);
 ?>
 <footer id="footer" class="colors-white-bg">
   <div class="wrapper">
@@ -47,6 +49,28 @@ global $static_bloginfo_stylesheet_directory;
     </div>
   </div>
 </footer>
+
+<?php
+$args_modals = array(
+  'post_type' => 'cpt_modal',
+  'posts_per_page' => -1,
+  'include' => $cta_url_modal_array
+);
+$my_modals = get_posts( $args_modals );
+if ( !empty ( $my_modals ) ) {
+  foreach ( $my_modals as $post ) : setup_postdata ( $post );
+  get_template_part( 'template-parts/grid/modal' );
+  endforeach; wp_reset_postdata();
+}
+?>
+
+
+
+
+
+
+
+
 <!--
 <div class="preload-container">
   <div class="sk-folding-cube">
