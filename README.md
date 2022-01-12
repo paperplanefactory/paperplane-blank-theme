@@ -10,12 +10,16 @@
 - [Generatore Text Shadow CSS](https://css3gen.com/text-shadow/)
 - [Generatore Border Radius CSS](https://css3gen.com/border-radius/)
 - [Generatore Box Shadow CSS](https://css3gen.com/box-shadow/)
-- [Come usare mixin con parametris](https://marksheet.io/sass-mixins.html)
+- [Come usare mixin con parametri](https://marksheet.io/sass-mixins.html)
 
 ## PICTURES SET
-// trovi esempi per gestire le immagini con post thumbnail e ACF:
-// template-parts/images/image-display-post-thumbnail.php
-// template-parts/images/image-display-acf.php
+Il resize delle immagini e altre impostazioni si trovano in:
+includes/theme-images-crop.php
+Le funzioni per utilizzare le immagini nel tema si trovano in:
+includes/theme-images-grab.php
+Altri esempi per gestire le immagini con post thumbnail e ACF:
+sample-blocks/images.php
+
 // LAZY LOAD NOTES
 // nelle immagini caricate con lazyload devono essere presenti i 2 tag:
 // data-src="url file" src="url file con ritaglio micro"
