@@ -5,13 +5,14 @@
 2. compilare il file style.css con il nome del tema e il percorso alla repo del tema su GitHub
 3. nel file wp-config.php modificare la riga define( 'UPLOADS', 'blankuploads' ); con il nome della cartella uploads corretta
 
-## UTILITIES
-// Generatore gradiente CSS: https://cssgradient.io/
-// Generatore Text Shadow CSS: https://css3gen.com/text-shadow/
-// Generatore Border Radius CSS: https://css3gen.com/border-radius/
-// Generatore Box Shadow CSS: https://css3gen.com/box-shadow/
-// Come usare mixin con parametri: https://marksheet.io/sass-mixins.html
-// PICTURES SET
+## Strumenti CSS
+- [Generatore gradiente CSS](https://cssgradient.io/)
+- [Generatore Text Shadow CSS](https://css3gen.com/text-shadow/)
+- [Generatore Border Radius CSS](https://css3gen.com/border-radius/)
+- [Generatore Box Shadow CSS](https://css3gen.com/box-shadow/)
+- [Come usare mixin con parametris](https://marksheet.io/sass-mixins.html)
+
+## PICTURES SET
 // trovi esempi per gestire le immagini con post thumbnail e ACF:
 // template-parts/images/image-display-post-thumbnail.php
 // template-parts/images/image-display-acf.php
