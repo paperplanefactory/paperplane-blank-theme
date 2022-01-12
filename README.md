@@ -14,10 +14,15 @@
 
 ## PICTURES SET
 Il resize delle immagini e altre impostazioni si trovano in:
+
 includes/theme-images-crop.php
+
 Le funzioni per utilizzare le immagini nel tema si trovano in:
+
 includes/theme-images-grab.php
+
 Altri esempi per gestire le immagini con post thumbnail e ACF:
+
 sample-blocks/images.php
 
 // LAZY LOAD NOTES
