@@ -54,10 +54,10 @@ if ( $footer_width === 'contained-width' ) {
 }
 
 global $theme_pagination;
-global $static_bloginfo_stylesheet_directory;
 $theme_pagination = get_field( 'theme_pagination', 'option' );
 global $cta_url_modal_array;
 $cta_url_modal_array = array();
+global $static_bloginfo_stylesheet_directory;
 $static_bloginfo_stylesheet_directory = get_bloginfo('stylesheet_directory');
 ?>
 <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-57x57.png">

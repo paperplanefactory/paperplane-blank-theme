@@ -132,7 +132,6 @@ function scrollDirectionMenu() {
   lastScrollTop = st;
 }
 
-
 jQuery(window).scroll(function(event) {
   scrollDirectionMenu();
 });
@@ -244,7 +243,7 @@ function numbers_counter() {
           easing: 'swing',
           step: function(now) {
             jQuery(this).text(Math.ceil(now));
-            if (now < jQuery(this).attr('data-bar-number')) {
+            if (now < (jQuery(this).attr('data-bar-number') - 2)) {
               jQuery(this).addClass('blurred-counter');
             } else {
               jQuery(this).removeClass('blurred-counter');
@@ -298,26 +297,6 @@ if (jQuery('.paperplane-modal')[0]) {
     e.preventDefault();
   });
 }
-
-/////////////////////////////////////////////
-// Allineamento CTA in modulo di testo
-/////////////////////////////////////////////
-
-if (jQuery('.text-module-cta-align-js')[0]) {
-  jQuery('.text-module-cta-align-js').each(function(i, el) {
-    var check_align = jQuery(this).parent().find('.content-styled').html();
-    if (typeof check_align !== 'undefined') {
-      if (check_align.indexOf("text-align: center;") >= 0) {
-        jQuery(this).addClass('aligncenter');
-      }
-      if (check_align.indexOf("text-align: right;") >= 0) {
-        jQuery(this).addClass('alignright');
-      }
-    }
-
-  });
-}
-
 
 /////////////////////////////////////////////
 // Clear ovarlay scroll when resizing desktop - mobile if desktop has no overlay menu

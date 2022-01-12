@@ -1,4 +1,17 @@
 <!-- module-text -->
+<?php
+global $cta_align_class;
+$analize_content = get_sub_field( 'module_text' );
+if ( strpos( $analize_content, 'text-align: center;' ) ) {
+  $cta_align_class = 'aligncenter';
+}
+elseif ( strpos( $analize_content, 'text-align: right;' ) ) {
+  $cta_align_class = 'alignright';
+}
+else {
+  $cta_align_class = '';
+}
+ ?>
 <section class="wrapper module-text <?php the_sub_field( 'module_bg' ); ?>">
   <div class="<?php the_sub_field( 'module_vertical_top_space' ); ?> <?php the_sub_field( 'module_vertical_bottom_space' ); ?>">
     <div class="wrapper-padded">
