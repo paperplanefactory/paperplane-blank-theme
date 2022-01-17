@@ -1,6 +1,7 @@
 /////////////////////////////////////////////
 // lazy load
 /////////////////////////////////////////////
+
 var lazyLoadInstances = [];
 var paperPlaneLazyLoad = new LazyLoad({
   elements_selector: ".lazy",

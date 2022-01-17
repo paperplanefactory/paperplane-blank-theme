@@ -5,18 +5,38 @@ $mega_menu_counter = 0;
 if ( have_rows( 'mega_menu_repeater', $acf_options_parameter ) ) : while ( have_rows( 'mega_menu_repeater', $acf_options_parameter ) ) : the_row();
 $mega_menu_counter++;
 $mega_menu_repeater_cta_target = get_sub_field( 'mega_menu_repeater_cta_target' );
+// richiamo l'array per staibilire se e quali modal includere in pagina
+global $cta_url_modal_array;
 switch ( $mega_menu_repeater_cta_target ) {
   case 'cta-target-internal' :
   $mega_menu_repeater_cta_url = get_sub_field( 'mega_menu_repeater_cta_target_internal' );
+  $mega_menu_repeater_cta_url = get_permalink( $mega_menu_repeater_cta_url[0] );
   $mega_menu_repeater_cta_url_target = '_self';
+  $mega_menu_repeater_cta_url_modal_class = '';
+  $mega_menu_repeater_cta_url_parameter_data = get_sub_field( 'mega_menu_repeater_cta_target_internal_parameter' );
+  if ( $mega_menu_repeater_cta_url_parameter_data != '' ) {
+    $mega_menu_repeater_cta_url = $mega_menu_repeater_cta_url . $mega_menu_repeater_cta_url_parameter_data;
+  }
   break;
   case 'cta-target-external' :
   $mega_menu_repeater_cta_url = get_sub_field( 'mega_menu_repeater_cta_target_external' );
   $mega_menu_repeater_cta_url_target = '_blank';
+  $mega_menu_repeater_cta_url_modal_class = '';
+  $mega_menu_repeater_cta_url_modal_id = '';
   break;
   case 'cta-target-file' :
   $mega_menu_repeater_cta_url = get_sub_field( 'mega_menu_repeater_cta_target_file' );
   $mega_menu_repeater_cta_url_target = '_blank';
+  $mega_menu_repeater_cta_url_modal_class = '';
+  $mega_menu_repeater_cta_url_modal_id = '';
+  break;
+  case 'cta-target-modal' :
+  $mega_menu_repeater_cta_url = '#';
+  $mega_menu_repeater_cta_url_target = '_self';
+  $mega_menu_repeater_cta_url_modal_class = 'modal-open-js';
+  $mega_menu_repeater_cta_url_modal_id = get_sub_field( 'mega_menu_repeater_cta_modal' );
+  // aggiungo l'ID della modal all'array per staibilire se e quali modal includere in pagina
+  $cta_url_modal_array[] = get_sub_field( 'mega_menu_repeater_cta_modal' );
   break;
 }
 ?>
@@ -56,8 +76,8 @@ switch ( $mega_menu_repeater_cta_target ) {
           </div>
           <?php if ( get_sub_field( 'mega_menu_repeater_cta_text' ) ) : ?>
             <div class="cta-holder">
-              <a href="<?php echo $mega_menu_repeater_cta_url; ?>" target="<?php echo $mega_menu_repeater_cta_url_target; ?>" class="<?php the_sub_field( 'mega_menu_repeater_cta_appearence' ); ?> allupper"><?php the_sub_field( 'mega_menu_repeater_cta_text' ); ?></a>
-            </div>
+              <a href="<?php echo $mega_menu_repeater_cta_url; ?>" target="<?php echo $mega_menu_repeater_cta_url_target; ?>" class="<?php the_sub_field( 'mega_menu_repeater_cta_appearence' ); ?> <?php echo $mega_menu_repeater_cta_url_modal_class; ?> allupper" data-modal-open-id=".paperplane-modal-js-<?php echo $mega_menu_repeater_cta_url_modal_id; ?>"><?php the_sub_field( 'mega_menu_repeater_cta_text' ); ?></a>
+            
           <?php endif; ?>
         </div>
       </div>

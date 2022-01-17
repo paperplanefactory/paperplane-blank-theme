@@ -4,47 +4,12 @@
 $module_stripe_vertical_aligment = get_sub_field( 'module_stripe_vertical_aligment' );
  ?>
 <div class="wrapper module-stripe <?php the_sub_field( 'module_bg' ); ?>">
+  <a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
   <div class="<?php the_sub_field( 'module_vertical_top_space' ); ?> <?php the_sub_field( 'module_vertical_bottom_space' ); ?>">
     <div class="wrapper-padded">
       <div class="<?php the_sub_field( 'module_stripe_width' ); ?>">
         <?php
         if ( have_rows( 'module_stripe_repeater' ) ) : while ( have_rows( 'module_stripe_repeater' ) ) : the_row();
-        // recupero le informazioni per la CTA della striscia
-        $cta_stripe_text_data = get_sub_field( 'module_stripe_repeater_cta_text' );
-        if ( $cta_stripe_text_data != '' ) {
-          global $cta_url_modal_array;
-          $cta_stripe_type_data = get_sub_field( 'module_stripe_repeater_cta_target' );
-          switch ( $cta_stripe_type_data ) {
-            case 'cta-target-internal' :
-            $cta_stripe_url_data = get_sub_field( 'module_stripe_repeater_cta_target_internal' );
-            $cta_stripe_url_data = get_permalink( $cta_stripe_url_data[0] );
-            $cta_stripe_url_target = '_self';
-            $cta_url_modal_class = '';
-            $cta_stripe_url_parameter_data = get_sub_field( 'module_stripe_repeater_cta_target_internal_parameter' );
-            if ( $cta_stripe_url_parameter_data != '' ) {
-              $cta_stripe_url_data = $cta_stripe_url_data . $cta_stripe_url_parameter_data;
-            }
-            break;
-            case 'cta-target-external' :
-            $cta_stripe_url_data = get_sub_field( 'module_stripe_repeater_cta_target_external' );
-            $cta_stripe_url_target = '_blank';
-            $cta_url_modal_class = '';
-            break;
-            case 'cta-target-file' :
-            $cta_stripe_url_data = get_sub_field( 'module_stripe_repeater_cta_target_file' );
-            $cta_stripe_url_target = '_blank';
-            $cta_url_modal_class = '';
-            break;
-            case 'cta-target-modal' :
-            $cta_url_data = '#';
-            $cta_url_target = '_self';
-            $cta_url_modal_class = 'modal-open-js';
-            $cta_url_modal_id = get_sub_field( 'module_additional_elements_cta_modal' );
-            $cta_url_modal_array[] = get_sub_field( 'module_additional_elements_cta_modal' );
-            break;
-          }
-          $cta_stripe_appearence = get_sub_field( 'module_stripe_repeater_cta_appearence' );
-        }
         ?>
         <!-- blocco -->
           <div class="flex-hold flex-hold-stripe-module stripe-listed <?php echo $module_stripe_vertical_aligment; ?> <?php the_sub_field( 'module_stripe_repeater_order' ); ?>">
