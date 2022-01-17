@@ -8,6 +8,7 @@ if ( $module_fullscreen_image_image != '' ) {
 }
 ?>
 <div class="wrapper module-fullscreen-image <?php the_sub_field( 'module_bg' ); ?> <?php the_sub_field( 'module_vertical_top_space' ); ?> <?php the_sub_field( 'module_vertical_bottom_space' ); ?>">
+  <a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
   <div class="module-box-fullscreen coverize <?php the_sub_field( 'module_fullscreen_text_align' ); ?>  <?php echo $bg_lazy_class; ?>" data-bg="<?php echo $module_fullscreen_image_image_URL; ?>" data-bg-hidpi="<?php echo $module_fullscreen_image_image_hd_URL; ?>" data-aos="fade">
     <div class="above-image-opacity"></div>
     <div class="wrapper-padded">

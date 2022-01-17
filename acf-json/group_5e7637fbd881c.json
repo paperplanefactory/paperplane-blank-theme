@@ -189,9 +189,10 @@
                     "choices": {
                         "cta-target-internal": "Contenuto interno al sito",
                         "cta-target-external": "Contenuto esterno al sito",
-                        "cta-target-file": "File"
+                        "cta-target-file": "File",
+                        "cta-target-modal": "Modal"
                     },
-                    "default_value": [],
+                    "default_value": false,
                     "allow_null": 0,
                     "multiple": 0,
                     "ui": 0,
@@ -203,7 +204,7 @@
                     "key": "field_5e763f9a8225a",
                     "label": "Scegli un contenuto",
                     "name": "mega_menu_repeater_cta_target_internal",
-                    "type": "page_link",
+                    "type": "relationship",
                     "instructions": "",
                     "required": 1,
                     "conditional_logic": [
@@ -220,11 +221,53 @@
                         "class": "",
                         "id": ""
                     },
-                    "post_type": "",
+                    "post_type": [
+                        "post",
+                        "page"
+                    ],
                     "taxonomy": "",
-                    "allow_null": 0,
-                    "allow_archives": 1,
-                    "multiple": 0
+                    "filters": [
+                        "search",
+                        "post_type",
+                        "taxonomy"
+                    ],
+                    "elements": [
+                        "featured_image"
+                    ],
+                    "min": 1,
+                    "max": 1,
+                    "return_format": "id"
+                },
+                {
+                    "key": "field_61e002ca6f9ba",
+                    "label": "Parametro aggiuntivo URL",
+                    "name": "mega_menu_repeater_cta_target_internal_parameter",
+                    "type": "text",
+                    "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e763ef882257",
+                                "operator": "!=empty"
+                            },
+                            {
+                                "field": "field_5e763f5f82259",
+                                "operator": "==",
+                                "value": "cta-target-internal"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_5e763fe78225b",
@@ -276,6 +319,36 @@
                     "min_size": "",
                     "max_size": "",
                     "mime_types": ""
+                },
+                {
+                    "key": "field_61e0031d6f9bc",
+                    "label": "Scegli modal",
+                    "name": "mega_menu_repeater_cta_modal",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e763f5f82259",
+                                "operator": "==",
+                                "value": "cta-target-modal"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "cpt_modal"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "id",
+                    "ui": 1
                 }
             ]
         }
@@ -298,5 +371,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1637505473
+    "modified": 1642071352
 }

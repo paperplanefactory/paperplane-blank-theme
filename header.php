@@ -26,6 +26,9 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <?php
 wp_head();
+// Imposto la variabile globale per definire:
+// - se è attivo Polylang il linguaggio in cui l'utente sta visitando il sito
+// - se non è attivo Polylang un valore generico 'any-lang'
 global $acf_options_parameter;
 if (function_exists('pll_the_languages')) {
   $acf_options_parameter = pll_current_language('slug');
@@ -33,6 +36,7 @@ if (function_exists('pll_the_languages')) {
 else {
   $acf_options_parameter = 'any-lang';
 }
+// Imposto e valorizzo le variabili globali per definire i wrapper:
 global $header_wrapper;
 global $mega_menu_wrapper;
 $header_width = get_field( 'theme_header_width', 'option' );
@@ -52,11 +56,13 @@ if ( $footer_width === 'full-width' ) {
 if ( $footer_width === 'contained-width' ) {
   $footer_wrapper = 'wrapper-padded-more';
 }
-
+// Imposto e valorizzo la variabile globale per definire il tipo di paginazione:
 global $theme_pagination;
 $theme_pagination = get_field( 'theme_pagination', 'option' );
+// Imposto e valorizzo l'array globale con le ID delle modal eventualmente inserite in pagina:
 global $cta_url_modal_array;
 $cta_url_modal_array = array();
+// Imposto e valorizzo la variabile globale per definire la cartella del tema:
 global $static_bloginfo_stylesheet_directory;
 $static_bloginfo_stylesheet_directory = get_bloginfo('stylesheet_directory');
 ?>

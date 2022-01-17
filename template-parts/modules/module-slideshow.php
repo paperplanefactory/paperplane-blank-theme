@@ -12,6 +12,7 @@ elseif ( $module_slideshow_width === 'slide-full' ) {
 $module_slideshow_type = get_sub_field( 'module_slideshow_type' );
  ?>
 <div class="wrapper module-slideshow <?php the_sub_field( 'module_bg' ); ?>">
+  <a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
   <div class="<?php the_sub_field( 'module_vertical_top_space' ); ?> <?php the_sub_field( 'module_vertical_bottom_space' ); ?>">
     <div class="wrapper-padded">
       <div class="<?php echo $slide_wrapper_class; ?>">
@@ -36,7 +37,7 @@ $module_slideshow_type = get_sub_field( 'module_slideshow_type' );
                     'mobile_hd' => 'slide_double_hd',
                     'lazy_placheholder' => 'micro'
                 );
-                print_theme_image_lazyslick( $image_data, $image_sizes );
+                print_theme_image( $image_data, $image_sizes );
               }
               // slideshow doppio - larghezza full
               if ( $module_slideshow_width === 'slide-full' && $module_slideshow_type === 'slide-double' ) {
@@ -52,7 +53,7 @@ $module_slideshow_type = get_sub_field( 'module_slideshow_type' );
                     'mobile_hd' => 'slide_hd',
                     'lazy_placheholder' => 'micro'
                 );
-                print_theme_image_lazyslick( $image_data, $image_sizes );
+                print_theme_image( $image_data, $image_sizes );
               }
               // slideshow singolo - larghezza contenuta
               if ( $module_slideshow_width === 'slide-contained' && $module_slideshow_type === 'slide-single' ) {
@@ -68,7 +69,7 @@ $module_slideshow_type = get_sub_field( 'module_slideshow_type' );
                     'mobile_hd' => 'slide_hd',
                     'lazy_placheholder' => 'micro'
                 );
-                print_theme_image_lazyslick( $image_data, $image_sizes );
+                print_theme_image( $image_data, $image_sizes );
               }
               // slideshow singolo - larghezza full
               if ( $module_slideshow_width === 'slide-full' && $module_slideshow_type === 'slide-single' ) {
@@ -84,12 +85,12 @@ $module_slideshow_type = get_sub_field( 'module_slideshow_type' );
                     'mobile_hd' => 'full_desk_hd',
                     'lazy_placheholder' => 'micro'
                 );
-                print_theme_image_lazyslick( $image_data, $image_sizes );
+                print_theme_image( $image_data, $image_sizes );
               }
               ?>
               <div class="slide-caption">
                 <?php if ( get_sub_field( 'module_slideshow_repeater_caption' ) ) : ?>
-                  <h6><?php the_sub_field( 'module_slideshow_repeater_caption' ); ?></h6>
+                  <figcaption><?php the_sub_field( 'module_slideshow_repeater_caption' ); ?></figcaption>
                 <?php endif; ?>
               </div>
             </div>

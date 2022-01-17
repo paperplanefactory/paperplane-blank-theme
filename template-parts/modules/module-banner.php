@@ -49,6 +49,7 @@ if( $banner ) :
   }
 ?>
 <div class="wrapper module-banner">
+  <a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
   <div class="<?php the_sub_field( 'module_vertical_top_space' ); ?> <?php the_sub_field( 'module_vertical_bottom_space' ); ?>">
     <div class="wrapper-padded">
       <div class="wrapper-padded-container">
@@ -58,7 +59,7 @@ if( $banner ) :
             <?php if ( $banner_foreground_image != '' ) : ?>
               <div class="flex-hold flex-hold-banner">
                 <div class="banner-image" data-aos="zoom-out">
-                  <a href="<?php echo $cta_banner_url_data; ?>" target="<?php echo $cta_banner_url_target; ?>">
+                  <a href="<?php echo $cta_banner_url_data; ?>" target="<?php echo $cta_banner_url_target; ?>" title="<?php the_title(); ?>">
                     <?php
                     $image_data = array(
                         'image_type' => 'acf_field', // options: post_thumbnail, acf_field, acf_sub_field
