@@ -9,24 +9,28 @@ h1 {
   margin-bottom: $h1-marginbottom-desktop;
 }
 
+.as-h2,
 h2 {
   font-size: $h2-size-desktop;
   line-height: $h2-lineheight-desktop;
   margin-bottom: $h2-marginbottom-desktop;
 }
 
+.as-h3,
 h3 {
   font-size: $h3-size-desktop;
   line-height: $h3-lineheight-desktop;
   margin-bottom: $h3-marginbottom-desktop;
 }
 
+.as-h4,
 h4 {
   font-size: $h4-size-desktop;
   line-height: $h4-lineheight-desktop;
   margin-bottom: $h4-marginbottom-desktop;
 }
 
+.as-h5,
 h5 {
   font-size: $h5-size-desktop;
   line-height: $h5-lineheight-desktop;
@@ -40,6 +44,7 @@ h5 {
 }
 
 #footer p,
+.as-h6,
 figcaption,
 h6 {
   font-size: $h6-size-desktop;

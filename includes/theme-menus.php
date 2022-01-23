@@ -92,6 +92,19 @@ if( function_exists('acf_add_options_page') ) {
       ) );
     }
   }
+  $theme_external_scripts = get_field( 'theme_external_scripts', 'option');
+  if ( $theme_external_scripts == 1 ) {
+    foreach ( $languages as $lang ) {
+      // gestione cookie GDPR
+      acf_add_options_sub_page( array (
+        'page_title' => 'Gestione script esterni (' . strtoupper( $lang ) . ')',
+        'menu_title' => __('Gestione script esterni (' . strtoupper( $lang ) . ')', 'text-domain'),
+        'menu_slug'  => "gestione-script-esterni-${lang}",
+        'post_id'    => $lang,
+        'parent_slug'     => $parent['menu_slug'],
+      ) );
+    }
+  }
 }
 
 // show flamingo to editors
