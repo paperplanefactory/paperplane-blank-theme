@@ -9,24 +9,28 @@ h1 {
   margin-bottom: $h1-marginbottom-smartphone;
 }
 
+.as-h2,
 h2 {
   font-size: $h2-size-smartphone;
   line-height: $h2-lineheight-smartphone;
   margin-bottom: $h2-marginbottom-smartphone;
 }
 
+.as-h3,
 h3 {
   font-size: $h3-size-smartphone;
   line-height: $h3-lineheight-smartphone;
   margin-bottom: $h3-marginbottom-smartphone;
 }
 
+.as-h4,
 h4 {
   font-size: $h4-size-smartphone;
   line-height: $h4-lineheight-smartphone;
   margin-bottom: $h4-marginbottom-smartphone;
 }
 
+.as-h5,
 h5 {
   font-size: $h5-size-smartphone;
   line-height: $h5-lineheight-smartphone;
@@ -40,6 +44,7 @@ h5 {
 }
 
 #footer p,
+.as-h6,
 .slide-caption,
 figcaption,
 h6 {

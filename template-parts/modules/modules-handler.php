@@ -7,9 +7,12 @@
   $module_count++;
   $choose_module = get_sub_field( 'choose_module');
   $show_hide_module = get_sub_field( 'show_hide_module');
+  // mostro o nascondo il modulo
   if ( $show_hide_module == 1 ) {
-    if ( is_user_logged_in() ) {
-      echo '<div class="editor-info editor-info-js"><div class="admin-index"><span class="hide-me">X</span> Module: '.( $module_count - 1 ).' URL: '.get_permalink().'#section-'.$module_count.'</div></div>';
+    $bar = get_user_option( 'show_admin_bar_front', get_current_user_id() );
+    // mostro o nascondo l'indice del modulo
+    if (  $bar == 'true' ) {
+      echo '<div class="editor-info editor-info-js"><div class="admin-index"><span class="hide-me">X</span> Modulo: '. $module_count .' URL: '. get_permalink() .'#section-'. $module_count .'</div></div>';
     }
     //echo '<a name="section-'.$module_count.'" class="header-offset-anchor"></a>';
     switch ( $choose_module ) {

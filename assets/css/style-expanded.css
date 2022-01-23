@@ -1750,21 +1750,25 @@ img.lazy-loaded {
     line-height: 50px;
     margin-bottom: 16px;
   }
+  .as-h2,
   h2 {
     font-size: 24px;
     line-height: 32px;
     margin-bottom: 16px;
   }
+  .as-h3,
   h3 {
     font-size: 20px;
     line-height: 24px;
     margin-bottom: 16px;
   }
+  .as-h4,
   h4 {
     font-size: 16px;
     line-height: 20px;
     margin-bottom: 16px;
   }
+  .as-h5,
   h5 {
     font-size: 16px;
     line-height: 24px;
@@ -1776,6 +1780,7 @@ img.lazy-loaded {
     line-height: 24px;
   }
   #footer p,
+  .as-h6,
   .slide-caption,
   figcaption,
   h6 {
@@ -2913,21 +2918,25 @@ img.lazy-loaded {
     line-height: 60px;
     margin-bottom: 20px;
   }
+  .as-h2,
   h2 {
     font-size: 28px;
     line-height: 36px;
     margin-bottom: 20px;
   }
+  .as-h3,
   h3 {
     font-size: 24px;
     line-height: 30px;
     margin-bottom: 20px;
   }
+  .as-h4,
   h4 {
     font-size: 21px;
     line-height: 30px;
     margin-bottom: 20px;
   }
+  .as-h5,
   h5 {
     font-size: 14px;
     line-height: 21px;
@@ -2939,6 +2948,7 @@ img.lazy-loaded {
     line-height: 21px;
   }
   #footer p,
+  .as-h6,
   figcaption,
   h6 {
     font-size: 12px;
@@ -3296,7 +3306,7 @@ img.lazy-loaded {
     position: absolute;
     top: 0;
     left: 0;
-    padding: 7px;
+    padding: 7px 7px 7px 0;
     font-size: 12px;
     line-height: 12px;
     background-color: #000000;

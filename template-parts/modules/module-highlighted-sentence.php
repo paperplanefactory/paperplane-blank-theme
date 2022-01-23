@@ -38,7 +38,7 @@ $module_highlighted_sentence_image = get_sub_field( 'module_highlighted_sentence
               <div class="last-child-no-margin">
                 <h2><?php the_sub_field( 'module_highlighted_sentence_text' ); ?></h2>
                 <?php if ( get_sub_field( 'module_highlighted_sentence_author' ) ) : ?>
-                  <h6><?php the_sub_field( 'module_highlighted_sentence_author' ); ?></h6>
+                  <h3 class="as-h6"><?php the_sub_field( 'module_highlighted_sentence_author' ); ?></h3>
                 <?php endif; ?>
               </div>
               <?php get_template_part( 'template-parts/modules/module-cta-default' ); ?>
@@ -52,7 +52,7 @@ $module_highlighted_sentence_image = get_sub_field( 'module_highlighted_sentence
               <div class="last-child-no-margin">
                 <h2><?php the_sub_field( 'module_highlighted_sentence_text' ); ?></h2>
                 <?php if ( get_sub_field( 'module_highlighted_sentence_author' ) ) : ?>
-                  <h6><?php the_sub_field( 'module_highlighted_sentence_author' ); ?></h6>
+                  <h3 class="as-h6"><?php the_sub_field( 'module_highlighted_sentence_author' ); ?></h3>
                 <?php endif; ?>
               </div>
               <?php get_template_part( 'template-parts/modules/module-cta-default' ); ?>
