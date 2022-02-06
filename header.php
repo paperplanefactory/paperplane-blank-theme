@@ -133,8 +133,7 @@ $static_bloginfo_stylesheet_directory = get_bloginfo('stylesheet_directory');
           <ul class="inline-socials">
             <?php while ( have_rows( 'global_socials', 'option' ) ) : the_row(); ?>
               <li>
-                <a href="<?php the_sub_field( 'global_socials_profile_url' ); ?>" target="_blank" aria-label="Visit <?php the_sub_field( 'global_socials_profile_url' ); ?>" rel="noopener">
-                  <i class="<?php the_sub_field( 'global_socials_icona' ); ?>" aria-hidden="true"></i>
+                <a href="<?php the_sub_field( 'global_socials_profile_url' ); ?>" class="icon <?php the_sub_field( 'global_socials_icon' ); ?>" target="_blank" aria-label="Visit <?php the_sub_field( 'global_socials_profile_url' ); ?>" rel="noopener">
                 </a>
               </li>
             <?php endwhile; ?>

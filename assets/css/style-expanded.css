@@ -1172,6 +1172,7 @@ ul {
   position: relative;
   width: 100%;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .wrapper-padded,
@@ -3199,7 +3200,7 @@ img.lazy-loaded {
     width: calc(33.333333% - (36px - (36px / 3))) !important;
     margin: 0 36px 36px 0;
   }
-  .flex-hold-3.margins-thin .flex-hold-child:nth-child(2n) {
+  .flex-hold-3.margins-thin .flex-hold-child:nth-child(3n) {
     margin-right: 0;
   }
   .flex-hold-3.margins-wide .flex-hold-child {
