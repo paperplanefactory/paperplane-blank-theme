@@ -1,6 +1,6 @@
 <div class="paperplane-modal paperplane-modal-js-<?php echo get_the_ID(); ?> hidden <?php the_field( 'colore_di_sfondo_modal' ); ?>">
     <div class="modal-close-area modal-close-js" data-modal-close-id=".paperplane-modal-js-<?php echo get_the_ID(); ?>"></div>
-      <div class="modal-box offerta-overlay-box-js">
+      <div class="modal-box offerta-overlay-box-js" style="max-width: <?php the_field( 'modal_max_width'); ?>px">
         <?php if ( get_field( 'modal_title') ) : ?>
           <div class="modal-title">
             <h3><?php the_field( 'modal_title'); ?></h3>

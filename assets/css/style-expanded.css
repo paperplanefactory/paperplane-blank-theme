@@ -935,6 +935,7 @@ a.absl:visited {
 .colors-white-bg textarea {
   border: #333333 solid 1px;
   color: #000000;
+  background-color: #FFFFFF;
 }
 
 .colors-white-bg input[type=checkbox]:before,
@@ -1501,13 +1502,19 @@ img.lazy-loaded {
 .form-hold input[type=tel],
 .form-hold input[type=text],
 .form-hold input[type=url],
-.form-hold select,
 .form-hold textarea {
   position: relative;
   width: calc(100% - 2px);
   margin: 10px 0 0;
   padding: 10px;
   background-color: transparent;
+}
+
+.form-hold select {
+  position: relative;
+  width: calc(100% - 2px);
+  margin: 10px 0 0;
+  padding: 10px;
 }
 
 .form-hold textarea {
@@ -3171,6 +3178,32 @@ img.lazy-loaded {
     position: sticky;
     top: calc(75px + 35px);
   }
+  ::-webkit-scrollbar,
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-track {
+    width: 12px;
+    border: none;
+    background: transparent;
+    -webkit-appearance: none !important;
+  }
+  ::-webkit-resizer,
+  ::-webkit-scrollbar-button,
+  ::-webkit-scrollbar-corner,
+  ::-webkit-scrollbar-track-piece {
+    display: none;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 12px;
+    background-color: #333333;
+  }
+  ::-webkit-scrollbar-track {
+    opacity: 0 !important;
+    background-color: transparent;
+  }
+  :root {
+    scrollbar-color: #FFFFFF #333333 !important;
+    scrollbar-width: auto !important;
+  }
   .header-offset-anchor {
     position: absolute;
     display: block;
@@ -3874,8 +3907,7 @@ img.lazy-loaded {
     text-align: center;
   }
   .paperplane-modal .modal-box {
-    max-width: 900px;
-    min-width: 550px;
+    min-width: 350px;
     width: 80%;
     max-height: 90vh;
     padding: 75px 0 0;
