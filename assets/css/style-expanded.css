@@ -90,6 +90,7 @@ body {
   overflow: overlay !important;
   scrollbar-gutter: auto;
   margin: 0;
+  overflow: hidden;
 }
 
 main {
@@ -1173,7 +1174,6 @@ ul {
   position: relative;
   width: 100%;
   margin: 0 auto;
-  overflow: hidden;
 }
 
 .wrapper-padded,
@@ -3330,28 +3330,32 @@ img.lazy-loaded {
     position: relative;
     z-index: 30;
   }
-  .editor-info.hidden-label {
-    pointer-events: none;
-    visibility: hidden;
-    opacity: 0;
-    display: none;
-  }
   .editor-info .admin-index {
     position: absolute;
     top: 0;
     left: 0;
-    padding: 7px 7px 7px 0;
-    font-size: 12px;
-    line-height: 12px;
+    padding: 7px 0;
+    font-size: 11px;
+    line-height: 11px;
     background-color: #000000;
     color: #FFFFFF;
   }
+  .editor-info .admin-index .click-hide {
+    background-color: #333333;
+    padding: 6px 8px;
+    cursor: pointer;
+  }
   .editor-info .admin-index .hide-me {
     cursor: pointer;
-    background-color: #333333;
     padding: 5px 7px;
     margin-right: 10px;
     font-weight: 400;
+  }
+  .editor-info .admin-index .hide-me.hidden-label {
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    display: none;
   }
   .listing-grid-container {
     margin: 75px 0;
@@ -5261,6 +5265,14 @@ body[data-aos-easing=ease-in-out-quart] [data-aos] {
   content: "\6a";
 }
 
+.icon-oblique:before {
+  content: "\6b";
+}
+
+.icon-spotify-brands:before {
+  content: "\6c";
+}
+
 .wp-pagenavi {
   display: block;
   width: 100%;
@@ -5423,7 +5435,7 @@ body.customize-support {
 
 .paperplane-modal {
   position: fixed;
-  z-index: 99999 !important;
+  z-index: 99999;
   display: block;
   top: 0;
   left: 0;
@@ -5439,6 +5451,7 @@ body.customize-support {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
+  z-index: -1;
 }
 
 .paperplane-modal .modal-box {

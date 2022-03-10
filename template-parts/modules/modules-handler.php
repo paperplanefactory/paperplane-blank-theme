@@ -12,7 +12,7 @@
     $bar = get_user_option( 'show_admin_bar_front', get_current_user_id() );
     // mostro o nascondo l'indice del modulo
     if (  $bar == 'true' ) {
-      echo '<div class="editor-info editor-info-js"><div class="admin-index"><span class="hide-me">X</span> Modulo: '. $module_count .' URL: '. get_permalink() .'#section-'. $module_count .'</div></div>';
+      echo '<div class="editor-info editor-info-js"><div class="admin-index"><span class="click-hide">+</span><span class="hide-me hidden-label"> Modulo: '. $module_count .' URL: '. get_permalink() .'#section-'. $module_count .'</span></div></div>';
     }
     //echo '<a name="section-'.$module_count.'" class="header-offset-anchor"></a>';
     switch ( $choose_module ) {

@@ -12,7 +12,7 @@ var paperPlaneLazyLoad = new LazyLoad({
       container: el
     });
     lazyLoadInstances.push(oneLL);
-    AOS.refresh();
+    AOS.refreshHard();
   },
   callback_reveal: (el) => {
     if (el.complete && el.naturalWidth !== 0) {
@@ -54,7 +54,7 @@ function initInfiniteScroll() {
 
     jQuery('.grid-infinite').on('append.infiniteScroll', function(event, response, path, items) {
       paperPlaneLazyLoad.update();
-      AOS.refresh();
+      AOS.refreshHard();
     });
     window.setInterval(function() {
       if (jQuery('.infinite-scroll-last').is(":visible")) {
@@ -349,8 +349,10 @@ window.addEventListener('resize', () => {
 // hide editor section front end labels
 /////////////////////////////////////////////
 
-jQuery('.hide-me').click(function(e) {
-  jQuery(this).parent().parent().toggleClass('hidden-label');
+jQuery('.click-hide').click(function(e) {
+  jQuery(this).next('.hide-me').toggleClass('hidden-label');
+  var isVisible = jQuery(this).next('.hide-me').hasClass('hidden-label');
+  jQuery(this).text(isVisible ? "+" : "-");
   e.preventDefault();
 });
 
