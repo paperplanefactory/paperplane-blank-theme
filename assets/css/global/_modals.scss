@@ -4,7 +4,7 @@
 
 .paperplane-modal {
   position: fixed;
-  z-index: 99999 !important;
+  z-index: 99999;
   display: block;
   top: 0;
   left: 0;
@@ -19,6 +19,7 @@
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
+    z-index: -1;
   }
 
   .modal-box {
