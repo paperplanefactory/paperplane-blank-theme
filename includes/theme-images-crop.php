@@ -1,4 +1,5 @@
 <?php
+add_filter( 'big_image_size_threshold', '__return_false' );
 // custom image size for featured images
 add_theme_support( 'post-thumbnails' );
 add_image_size( 'full_desk_hd', 3840, 9999);
