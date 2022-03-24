@@ -59,11 +59,11 @@ $args_modals = array(
 $my_modals = get_posts( $args_modals );
 if ( !empty ( $my_modals ) ) {
   foreach ( $my_modals as $post ) : setup_postdata ( $post );
-  get_template_part( 'template-parts/grid/modal' );
+  include( locate_template( 'template-parts/grid/modal.php' ) );
   endforeach; wp_reset_postdata();
 }
 ?>
-
+</div>
 
 
 

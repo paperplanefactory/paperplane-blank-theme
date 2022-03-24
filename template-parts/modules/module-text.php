@@ -21,7 +21,7 @@ else {
           <div class="content-styled last-child-no-margin">
             <?php the_sub_field( 'module_text' ); ?>
           </div>
-          <?php get_template_part( 'template-parts/modules/module-cta-default' ); ?>
+          <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
         </div>
       </div>
     </div>

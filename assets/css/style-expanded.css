@@ -90,7 +90,6 @@ body {
   overflow: overlay !important;
   scrollbar-gutter: auto;
   margin: 0;
-  overflow: hidden;
 }
 
 main {
@@ -292,6 +291,12 @@ textarea {
 
 ::-moz-placeholder {
   color: #333333;
+}
+
+#site-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .clearer {
@@ -761,7 +766,7 @@ a.absl:visited {
 }
 
 .colors-black-bg.paperplane-modal {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .colors-black-bg.paperplane-modal .modal-box,
@@ -1000,7 +1005,7 @@ a.absl:visited {
 }
 
 .colors-white-bg.paperplane-modal {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .colors-white-bg.paperplane-modal .modal-box,
@@ -5269,8 +5274,12 @@ body[data-aos-easing=ease-in-out-quart] [data-aos] {
   content: "\6b";
 }
 
-.icon-spotify-brands:before {
+.icon-spotify-social:before {
   content: "\6c";
+}
+
+.icon-youtube-social:before {
+  content: "\6d";
 }
 
 .wp-pagenavi {

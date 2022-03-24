@@ -94,7 +94,6 @@ body {
 	overflow: overlay !important;
 	scrollbar-gutter: auto;
 	margin: 0;
-	overflow: hidden;
 }
 
 main {
@@ -300,4 +299,10 @@ textarea {
 
 ::-moz-placeholder {
 	color: $color-2;
+}
+
+#site-wrapper {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
 }

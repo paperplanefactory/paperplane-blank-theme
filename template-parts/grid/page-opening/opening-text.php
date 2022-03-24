@@ -26,7 +26,7 @@
           </div>
         <?php endif; ?>
         <div class="clearer"></div>
-        <?php get_template_part( 'template-parts/grid/page-opening/opening-cta-default' ); ?>
+        <?php include( locate_template( 'template-parts/grid/page-opening/opening-cta-default.php' ) ); ?>
       </div>
     </div>
   </div>

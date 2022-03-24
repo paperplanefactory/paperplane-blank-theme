@@ -60,7 +60,9 @@
                         "icon-tiktok-social": "TikTok",
                         "icon-twitter-social": "Twitter",
                         "icon-vk-social": "VK",
-                        "icon-whatsapp-social": "WhatsApp"
+                        "icon-whatsapp-social": "WhatsApp",
+                        "icon-spotify-social": "Spotify",
+                        "icon-youtube-social": "YouTube"
                     },
                     "default_value": false,
                     "allow_null": 0,
@@ -90,5 +92,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634724388
+    "show_in_rest": 0,
+    "modified": 1647422633
 }

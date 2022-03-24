@@ -41,7 +41,7 @@ $module_stripe_vertical_aligment = get_sub_field( 'module_stripe_vertical_aligme
                 <div class="content-styled last-child-no-margin">
                   <?php the_sub_field( 'module_stripe_repeater_content' ); ?>
                 </div>
-                <?php get_template_part( 'template-parts/modules/module-cta-default' ); ?>
+                <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
               </div>
             </div>
             <!-- colonna -->
@@ -49,7 +49,7 @@ $module_stripe_vertical_aligment = get_sub_field( 'module_stripe_vertical_aligme
           <!-- blocco -->
         <?php endwhile; endif; ?>
       </div>
-      <?php get_template_part( 'template-parts/modules/module-cta-default' ); ?>
+      <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
     </div>
   </div>
 </div>
