@@ -14,4 +14,4 @@ if ( have_posts() ) : ?>
 endwhile; ?>
 </div>
 <?php endif; ?>
-<?php get_template_part( 'template-parts/grid/infinite-message' ); ?>
+<?php include( locate_template( 'template-parts/grid/infinite-message.php' ) ); ?>

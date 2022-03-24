@@ -23,9 +23,10 @@ $listing_page_id = get_the_ID();
         query_posts( $args_posts_paginati_infiniti );
         if ( have_posts() ) : ?>
         <div class="flex-hold flex-hold-<?php the_field( 'page_listing_columns_number' ); ?> margins-wide grid-infinite listing-grid-container">
-        <?php while ( have_posts() ) : the_post(); ?>
-          <?php get_template_part( 'template-parts/grid/post-infinite' ); ?>
-        <?php endwhile; ?>
+        <?php
+        while ( have_posts() ) : the_post();
+        include( locate_template( 'template-parts/grid/post-infinite.php' ) );
+        endwhile; ?>
         </div>
         <?php endif; ?>
       </div>
@@ -49,9 +50,9 @@ $listing_page_id = get_the_ID();
             query_posts( $args_posts_paginati_infiniti );
             if ( have_posts() ) : ?>
             <div class="flex-hold flex-hold-3 margins-wide grid-infinite">
-            <?php while ( have_posts() ) : the_post(); ?>
-              <?php get_template_part( 'template-parts/grid/block-infinite' ); ?>
-            <?php endwhile; ?>
+            <?php while ( have_posts() ) : the_post();
+            include( locate_template( 'template-parts/grid/block-infinite.php' ) );
+            endwhile; ?>
             </div>
             <?php endif; ?>
           </div>

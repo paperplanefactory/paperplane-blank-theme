@@ -20,7 +20,7 @@ if ( $module_fullscreen_image_image != '' ) {
           <h2><?php the_sub_field( 'module_fullscreen_image_secondary_text' ); ?></h2>
         <?php endif; ?>
         <div class="clearer"></div>
-        <?php get_template_part( 'template-parts/modules/module-cta-default' ); ?>
+        <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
       </div>
     </div>
   </div>

@@ -89,12 +89,12 @@
                   <?php the_sub_field( 'module_columns_columns_repeater_content' ); ?>
                 </div>
               <?php endif; ?>
-              <?php get_template_part( 'template-parts/modules/module-cta-default' ); ?>
+              <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
             </div>
           </div>
         <?php endwhile; endif; ?>
         </div>
-        <?php get_template_part( 'template-parts/modules/module-cta-default' ); ?>
+        <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
       </div>
     </div>
   </div>

@@ -195,7 +195,7 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                       <?php the_sub_field( 'module_columns_fix_repeater_content' ); ?>
                     </div>
                   <?php endif; ?>
-                  <?php get_template_part( 'template-parts/modules/module-cta-default' ); ?>
+                  <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
                 </div>
               </div>
             <?php endwhile; endif; ?>
@@ -203,7 +203,7 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
 
           </div>
         </div>
-        <?php get_template_part( 'template-parts/modules/module-cta-default' ); ?>
+        <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
       </div>
     </div>
   </div>

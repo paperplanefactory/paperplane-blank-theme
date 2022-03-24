@@ -144,15 +144,7 @@ function options_page_clear_cache() {
 }
 add_action('acf/save_post', 'options_page_clear_cache', 20);
 
-
-
-
-
-
-
-
-
-
+// collegamento voci menu - modal
 function add_modal_menu_atts( $atts, $item, $args ) {
   $acf_id_modal = get_field('acf_id_modal', $item);
   if( $acf_id_modal ) {
@@ -164,3 +156,19 @@ function add_modal_menu_atts( $atts, $item, $args ) {
   return $atts;
 }
 add_filter( 'nav_menu_link_attributes', 'add_modal_menu_atts', 10, 3 );
+
+// colori personalizzati preimpostati in WYSIWYG
+function paperplane_wysiwyg_preset_colors( $init ) {
+  $custom_colours = '
+  "000000", "Colore 1",
+  "333333", "Colore 2",
+  "F2F2F2", "Colore 3"
+  ';
+  // build colour grid default+custom colors
+  $init['textcolor_map'] = '['.$custom_colours.']';
+  // change the number of rows in the grid if the number of colors changes
+  // 8 swatches per row
+  $init['textcolor_rows'] = 1;
+  return $init;
+}
+add_filter('tiny_mce_before_init', 'paperplane_wysiwyg_preset_colors');
