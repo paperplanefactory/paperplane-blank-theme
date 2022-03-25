@@ -1139,6 +1139,11 @@ ul {
   padding: 0 10px 0 0;
 }
 
+.content-styled ul li:after {
+  content: "";
+  display: block;
+}
+
 .content-styled ol {
   list-style-type: none;
   list-style-type: decimal;
@@ -1164,6 +1169,11 @@ ul {
   content: counter(li-counter) ". ";
   counter-increment: li-counter;
   padding: 0 15px 0 0;
+}
+
+.content-styled ol > li:after {
+  content: "";
+  display: block;
 }
 
 .blurred-counter {
@@ -1841,6 +1851,9 @@ img.lazy-loaded {
     font-size: 20px;
     font-weight: 400;
   }
+  .content-styled ul li:after {
+    height: calc(16px / 2);
+  }
   .content-styled ol {
     font-size: 18px;
     line-height: 28px;
@@ -1849,6 +1862,9 @@ img.lazy-loaded {
   .content-styled ol > li:before {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
+  }
+  .content-styled ol > li:after {
+    height: calc(16px / 2);
   }
   .wp-caption-text,
   .wp-caption.aligncenter .wp-caption-text,
@@ -3008,6 +3024,9 @@ img.lazy-loaded {
     font-size: 20px;
     font-weight: 400;
   }
+  .content-styled ul li:after {
+    height: calc(20px / 2);
+  }
   .content-styled ol {
     font-size: 16px;
     line-height: 24px;
@@ -3016,6 +3035,9 @@ img.lazy-loaded {
   .content-styled ol > li:before {
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
+  }
+  .content-styled ol > li:after {
+    height: calc(20px / 2);
   }
   .wp-caption-text,
   .wp-caption.aligncenter .wp-caption-text,
