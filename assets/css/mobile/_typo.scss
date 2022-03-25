@@ -103,6 +103,10 @@ p {
         font-size: 20px;
         font-weight: $font-weight-1;
       }
+
+      &:after {
+        height: calc(#{$paragraph-marginbottom-smartphone} / 2);
+      }
     }
   }
 
@@ -116,6 +120,10 @@ p {
     &:before {
       font-family: $font-main;
       font-size: $paragraph-size-smartphone;
+    }
+
+    &:after {
+      height: calc(#{$paragraph-marginbottom-smartphone} / 2);
     }
   }
 }

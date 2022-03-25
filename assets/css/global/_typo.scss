@@ -129,6 +129,11 @@ ul {
         content: '●';
         padding: 0 10px 0 0;
       }
+
+      &:after {
+        content: "";
+        display: block;
+      }
     }
   }
 
@@ -156,6 +161,11 @@ ul {
       content: counter(li-counter)". ";
       counter-increment: li-counter;
       padding: 0 15px 0 0;
+    }
+
+    &:after {
+      content: "";
+      display: block;
     }
   }
 }
