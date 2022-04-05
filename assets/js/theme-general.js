@@ -260,23 +260,6 @@ function numbers_counter() {
 numbers_counter();
 
 /////////////////////////////////////////////
-// expandables
-/////////////////////////////////////////////
-
-jQuery('.expander').click(function(e) {
-  if (jQuery(this).hasClass('exp-close')) {
-    jQuery(this).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false).focus();
-    jQuery(this).find('span').addClass('exp-plus').removeClass('exp-minus');
-    jQuery(this).parent().next('.expandable-content').slideUp(150);
-  } else {
-    jQuery(this).addClass('exp-close').removeClass('exp-open').attr('aria-expanded', true);
-    jQuery(this).find('span').removeClass('exp-plus').addClass('exp-minus');
-    jQuery(this).parent().next('.expandable-content').slideDown(150).focus();
-  }
-  e.preventDefault();
-});
-
-/////////////////////////////////////////////
 // Modals
 /////////////////////////////////////////////
 
@@ -363,5 +346,24 @@ jQuery('.click-hide').click(function(e) {
 function hidePreload() {
   jQuery('.preload-container').addClass('hidden-preload');
 }
-
 //window.addEventListener('load', hidePreload);
+
+/*
+/////////////////////////////////////////////
+// expandables
+/////////////////////////////////////////////
+
+jQuery('.expander').click(function(e) {
+  if (jQuery(this).hasClass('exp-close')) {
+    jQuery(this).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false).focus();
+    jQuery(this).find('span').addClass('exp-plus').removeClass('exp-minus');
+    jQuery(this).parent().next('.expandable-content').slideUp(150);
+  } else {
+    jQuery(this).addClass('exp-close').removeClass('exp-open').attr('aria-expanded', true);
+    jQuery(this).find('span').removeClass('exp-plus').addClass('exp-minus');
+    jQuery(this).parent().next('.expandable-content').slideDown(150).focus();
+  }
+  e.preventDefault();
+});
+
+*/

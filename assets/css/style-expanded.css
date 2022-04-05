@@ -2345,6 +2345,9 @@ img.lazy-loaded {
   .module-fullscreen-image .cta-holder {
     margin: 32px 0 0;
   }
+  ::marker {
+    content: '';
+  }
   .module-expanding-text .module-paddings-top {
     padding-top: 35px;
   }
@@ -2371,11 +2374,11 @@ img.lazy-loaded {
     margin-bottom: 0;
     border-bottom: none;
   }
-  .module-expanding-text .expander {
+  .module-expanding-text summary {
     position: relative;
     line-height: 17px !important;
     font-weight: 500 !important;
-    padding-left: 25px !important;
+    padding: 25px !important;
     text-align: left;
     padding: 0;
     margin: 0;
@@ -2385,21 +2388,33 @@ img.lazy-loaded {
     line-height: normal;
     -webkit-appearance: none !important;
   }
-  .module-expanding-text .expander .exp-minus,
-  .module-expanding-text .expander .exp-plus {
-    position: absolute;
-    left: 0;
+  .module-expanding-text details[open] summary ~ * {
+    animation: sweep 0.6s ease-in-out;
+  }
+  @keyframes sweep {
+    0% {
+      opacity: 0;
+      margin-top: -10px;
+    }
+    100% {
+      opacity: 1;
+      margin-top: 0;
+    }
+  }
+  .module-expanding-text details > summary::after {
     font-weight: 900;
-  }
-  .module-expanding-text .expander .exp-plus:before {
+    position: absolute;
     content: "+";
+    left: 0;
   }
-  .module-expanding-text .expander .exp-minus:before {
-    content: '–';
+  .module-expanding-text details[open] > summary::after {
+    font-weight: 900;
+    position: absolute;
+    content: "-";
+    left: 0;
   }
-  .module-expanding-text .expandable-content .inner {
-    padding-top: 15px;
-    padding-left: 25px;
+  .module-expanding-text details > summary::-webkit-details-marker {
+    display: none;
   }
   .module-expanding-text .cta-holder {
     margin: 32px 0 0;
@@ -3659,6 +3674,9 @@ img.lazy-loaded {
   .module-fullscreen-image .cta-holder {
     margin: 32px 0 0;
   }
+  ::marker {
+    content: '';
+  }
   .module-expanding-text .module-paddings-top {
     padding-top: 75px;
   }
@@ -3677,19 +3695,11 @@ img.lazy-loaded {
   .module-expanding-text .module-no-paddings-bottom {
     padding-bottom: 0;
   }
-  .module-expanding-text .expanding-block {
-    margin-bottom: 48px;
-    padding-bottom: 24px;
-  }
-  .module-expanding-text .expanding-block:last-child {
-    margin-bottom: 0;
-    border-bottom: none;
-  }
-  .module-expanding-text .expander {
+  .module-expanding-text summary {
     position: relative;
     line-height: 17px !important;
     font-weight: 500 !important;
-    padding-left: 25px !important;
+    padding: 25px !important;
     text-align: left;
     padding: 0;
     margin: 0;
@@ -3699,21 +3709,33 @@ img.lazy-loaded {
     line-height: normal;
     -webkit-appearance: none !important;
   }
-  .module-expanding-text .expander .exp-minus,
-  .module-expanding-text .expander .exp-plus {
-    position: absolute;
-    left: 0;
+  .module-expanding-text details[open] summary ~ * {
+    animation: sweep 0.6s ease-in-out;
+  }
+  @keyframes sweep {
+    0% {
+      opacity: 0;
+      margin-top: -10px;
+    }
+    100% {
+      opacity: 1;
+      margin-top: 0;
+    }
+  }
+  .module-expanding-text details > summary::after {
     font-weight: 900;
-  }
-  .module-expanding-text .expander .exp-plus:before {
+    position: absolute;
     content: "+";
+    left: 0;
   }
-  .module-expanding-text .expander .exp-minus:before {
-    content: '–';
+  .module-expanding-text details[open] > summary::after {
+    font-weight: 900;
+    position: absolute;
+    content: "-";
+    left: 0;
   }
-  .module-expanding-text .expandable-content .inner {
-    padding-top: 15px;
-    padding-left: 25px;
+  .module-expanding-text details > summary::-webkit-details-marker {
+    display: none;
   }
   .module-expanding-text .cta-holder {
     margin: 32px 0 0;
