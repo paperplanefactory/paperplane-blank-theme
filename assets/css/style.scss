@@ -71,3 +71,6 @@
 @import 'global/mixin';
 @import 'global/modals'; //@import 'global/preload-animations';
 // @import 'global/visual-debug';
+// regole specifiche per Safari
+// es. le immagini con background-attachment: fixed; su Safari devono essere background-attachment: scroll !important;
+@media not all and (min-resolution:.001dpcm) {}
