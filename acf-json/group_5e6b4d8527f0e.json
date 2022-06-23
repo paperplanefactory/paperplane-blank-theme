@@ -168,9 +168,9 @@
                 },
                 {
                     "key": "field_5e6b51143611f",
-                    "label": "Testo CTA",
-                    "name": "module_additional_elements_cta_text",
-                    "type": "text",
+                    "label": "Dati CTA",
+                    "name": "module_additional_elements_cta_data",
+                    "type": "link",
                     "instructions": "La CTA comparirà in fondo al modulo",
                     "required": 0,
                     "conditional_logic": [
@@ -215,14 +215,10 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "return_format": "array"
                 },
                 {
-                    "key": "field_5e70f3ce2987a",
+                    "key": "field_62b3471808f10",
                     "label": "Aspetto CTA",
                     "name": "module_additional_elements_cta_appearence",
                     "type": "select",
@@ -245,7 +241,7 @@
                         "default-button": "CTA primaria",
                         "default-button-b": "CTA secondaria"
                     },
-                    "default_value": [],
+                    "default_value": false,
                     "allow_null": 0,
                     "multiple": 0,
                     "ui": 0,
@@ -254,9 +250,9 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_5e6b51b836121",
-                    "label": "Destinazione CTA",
-                    "name": "module_additional_elements_cta_target",
+                    "key": "field_62b3475908f11",
+                    "label": "Altre funzioni",
+                    "name": "module_additional_elements_cta_altre_funzioni",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
@@ -274,10 +270,9 @@
                         "id": ""
                     },
                     "choices": {
-                        "cta-target-internal": "Contenuto interno al sito",
-                        "cta-target-external": "Contenuto esterno al sito",
-                        "cta-target-file": "File",
-                        "cta-target-modal": "Modal"
+                        "cta-preset": "CTA predefinita",
+                        "cta-modal": "Collega ad una modal",
+                        "cta-file": "Collega ad un file (download)"
                     },
                     "default_value": false,
                     "allow_null": 0,
@@ -288,154 +283,18 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_5e6b523236122",
-                    "label": "Scegli un contenuto",
-                    "name": "module_additional_elements_cta_target_internal",
-                    "type": "relationship",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e6b51143611f",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e6b51b836121",
-                                "operator": "==",
-                                "value": "cta-target-internal"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "post_type": [
-                        "post",
-                        "page"
-                    ],
-                    "taxonomy": "",
-                    "filters": [
-                        "search",
-                        "post_type",
-                        "taxonomy"
-                    ],
-                    "elements": [
-                        "featured_image"
-                    ],
-                    "min": 1,
-                    "max": 1,
-                    "return_format": "id"
-                },
-                {
-                    "key": "field_61862989d733d",
-                    "label": "Parametro aggiuntivo URL",
-                    "name": "module_additional_elements_cta_target_internal_parameter",
-                    "type": "text",
-                    "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e6b51143611f",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e6b51b836121",
-                                "operator": "==",
-                                "value": "cta-target-internal"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_5e6b527c36124",
-                    "label": "Inserisci una URL",
-                    "name": "module_additional_elements_cta_target_external",
-                    "type": "url",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e6b51143611f",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e6b51b836121",
-                                "operator": "==",
-                                "value": "cta-target-external"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_5e6b529a36125",
-                    "label": "Scegli il file",
-                    "name": "module_additional_elements_cta_target_file",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e6b51143611f",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e6b51b836121",
-                                "operator": "==",
-                                "value": "cta-target-file"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "url",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": ""
-                },
-                {
-                    "key": "field_61d57180fc332",
+                    "key": "field_62b3478208f12",
                     "label": "Scegli modal",
                     "name": "module_additional_elements_cta_modal",
                     "type": "post_object",
-                    "instructions": "",
+                    "instructions": "Se viene selezionata una modal verrà automaticamente aperta al posto del link impostato in \"Dati CTA\".",
                     "required": 1,
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_5e6b51143611f",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e6b51b836121",
+                                "field": "field_62b3475908f11",
                                 "operator": "==",
-                                "value": "cta-target-modal"
+                                "value": "cta-modal"
                             }
                         ]
                     ],
@@ -452,6 +311,33 @@
                     "multiple": 0,
                     "return_format": "id",
                     "ui": 1
+                },
+                {
+                    "key": "field_62b347e508f13",
+                    "label": "Scegli file",
+                    "name": "module_additional_elements_cta_file",
+                    "type": "file",
+                    "instructions": "Se viene selezionato un file verrà automaticamente aperto al posto del link impostato in \"Dati CTA\".",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_62b3475908f11",
+                                "operator": "==",
+                                "value": "cta-file"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "library": "all",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": ""
                 },
                 {
                     "key": "field_5e6b52eed806b",
@@ -872,9 +758,9 @@
                         },
                         {
                             "key": "field_5e6b6833711bf",
-                            "label": "Testo CTA",
-                            "name": "module_additional_elements_cta_text",
-                            "type": "text",
+                            "label": "Dati CTA",
+                            "name": "module_additional_elements_cta_data",
+                            "type": "link",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -883,14 +769,10 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "return_format": "array"
                         },
                         {
-                            "key": "field_5e70f4f82987c",
+                            "key": "field_62b3574611a36",
                             "label": "Aspetto CTA",
                             "name": "module_additional_elements_cta_appearence",
                             "type": "select",
@@ -922,9 +804,9 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_5e6b684e711c0",
-                            "label": "Destinazione CTA",
-                            "name": "module_additional_elements_cta_target",
+                            "key": "field_62b3578711a37",
+                            "label": "Altre funzioni",
+                            "name": "module_additional_elements_cta_altre_funzioni",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -942,10 +824,9 @@
                                 "id": ""
                             },
                             "choices": {
-                                "cta-target-internal": "Contenuto interno al sito",
-                                "cta-target-external": "Contenuto esterno al sito",
-                                "cta-target-file": "File",
-                                "cta-target-modal": "Modal"
+                                "cta-preset": "CTA predefinita",
+                                "cta-modal": "Collega ad una modal",
+                                "cta-file": "Collega ad un file (download)"
                             },
                             "default_value": false,
                             "allow_null": 0,
@@ -956,154 +837,18 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_5e6b686e711c1",
-                            "label": "Scegli un contenuto",
-                            "name": "module_additional_elements_cta_target_internal",
-                            "type": "relationship",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b6833711bf",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b684e711c0",
-                                        "operator": "==",
-                                        "value": "cta-target-internal"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "post_type": [
-                                "post",
-                                "page"
-                            ],
-                            "taxonomy": "",
-                            "filters": [
-                                "search",
-                                "post_type",
-                                "taxonomy"
-                            ],
-                            "elements": [
-                                "featured_image"
-                            ],
-                            "min": 1,
-                            "max": 1,
-                            "return_format": "id"
-                        },
-                        {
-                            "key": "field_6186374a5f874",
-                            "label": "Parametro aggiuntivo URL",
-                            "name": "module_additional_elements_cta_target_internal_parameter",
-                            "type": "text",
-                            "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b6833711bf",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b684e711c0",
-                                        "operator": "==",
-                                        "value": "cta-target-internal"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_5e6b6897711c2",
-                            "label": "Inserisci una URL",
-                            "name": "module_additional_elements_cta_target_external",
-                            "type": "url",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b6833711bf",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b684e711c0",
-                                        "operator": "==",
-                                        "value": "cta-target-external"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_5e6b68b9711c3",
-                            "label": "Scegli il file",
-                            "name": "module_additional_elements_cta_target_file",
-                            "type": "file",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b6833711bf",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b684e711c0",
-                                        "operator": "==",
-                                        "value": "cta-target-file"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "url",
-                            "library": "all",
-                            "min_size": "",
-                            "max_size": "",
-                            "mime_types": ""
-                        },
-                        {
-                            "key": "field_61d5a6529b594",
+                            "key": "field_62b357aa11a38",
                             "label": "Scegli modal",
                             "name": "module_additional_elements_cta_modal",
                             "type": "post_object",
-                            "instructions": "",
+                            "instructions": "Se viene selezionata una modal verrà automaticamente aperta al posto del link impostato in \"Dati CTA\".",
                             "required": 1,
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5e6b6833711bf",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b684e711c0",
+                                        "field": "field_62b3578711a37",
                                         "operator": "==",
-                                        "value": "cta-target-modal"
+                                        "value": "cta-modal"
                                     }
                                 ]
                             ],
@@ -1120,6 +865,33 @@
                             "multiple": 0,
                             "return_format": "id",
                             "ui": 1
+                        },
+                        {
+                            "key": "field_62b357e111a39",
+                            "label": "Scegli file",
+                            "name": "module_additional_elements_cta_file",
+                            "type": "file",
+                            "instructions": "Se viene selezionato un file verrà automaticamente aperto al posto del link impostato in \"Dati CTA\".",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_62b3578711a37",
+                                        "operator": "==",
+                                        "value": "cta-modal"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "url",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": "",
+                            "mime_types": ""
                         }
                     ]
                 },
@@ -1276,10 +1048,10 @@
                     "delay": 1
                 },
                 {
-                    "key": "field_5e6b7c7b0d46a",
-                    "label": "Testo CTA",
-                    "name": "module_columns_fix_fix_column_cta_text",
-                    "type": "text",
+                    "key": "field_62b358f37bbe9",
+                    "label": "Dati CTA",
+                    "name": "module_columns_fix_fix_column_cta_data",
+                    "type": "link",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -1288,14 +1060,10 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "return_format": "array"
                 },
                 {
-                    "key": "field_5e70f5c05a84d",
+                    "key": "field_62b359017bbea",
                     "label": "Aspetto CTA",
                     "name": "module_columns_fix_fix_column_cta_appearence",
                     "type": "select",
@@ -1304,7 +1072,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_5e6b7c7b0d46a",
+                                "field": "field_62b358f37bbe9",
                                 "operator": "!=empty"
                             }
                         ]
@@ -1318,7 +1086,7 @@
                         "default-button": "CTA primaria",
                         "default-button-b": "CTA secondaria"
                     },
-                    "default_value": [],
+                    "default_value": false,
                     "allow_null": 0,
                     "multiple": 0,
                     "ui": 0,
@@ -1327,16 +1095,16 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_5e6b7cbb0d46b",
-                    "label": "Destinazione CTA",
-                    "name": "module_columns_fix_fix_column_cta_target",
+                    "key": "field_62b3590a7bbeb",
+                    "label": "Altre funzioni",
+                    "name": "module_columns_fix_fix_column_cta_altre_funzioni",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_5e6b7c7b0d46a",
+                                "field": "field_62b358f37bbe9",
                                 "operator": "!=empty"
                             }
                         ]
@@ -1347,10 +1115,9 @@
                         "id": ""
                     },
                     "choices": {
-                        "cta-target-internal": "Contenuto interno al sito",
-                        "cta-target-external": "Contenuto esterno al sito",
-                        "cta-target-file": "File",
-                        "cta-target-modal": "Modal"
+                        "cta-preset": "CTA predefinita",
+                        "cta-modal": "Collega ad una modal",
+                        "cta-file": "Collega ad un file (download)"
                     },
                     "default_value": false,
                     "allow_null": 0,
@@ -1361,154 +1128,18 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_5e6b7cdb0d46c",
-                    "label": "Scegli un contenuto",
-                    "name": "module_columns_fix_fix_column_cta_target_internal",
-                    "type": "relationship",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e6b7c7b0d46a",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e6b7cbb0d46b",
-                                "operator": "==",
-                                "value": "cta-target-internal"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "post_type": [
-                        "post",
-                        "page"
-                    ],
-                    "taxonomy": "",
-                    "filters": [
-                        "search",
-                        "post_type",
-                        "taxonomy"
-                    ],
-                    "elements": [
-                        "featured_image"
-                    ],
-                    "min": 1,
-                    "max": 1,
-                    "return_format": "id"
-                },
-                {
-                    "key": "field_61864c634cf41",
-                    "label": "Parametro aggiuntivo URL",
-                    "name": "module_columns_fix_fix_column_cta_target_internal_parameter",
-                    "type": "text",
-                    "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e6b7c7b0d46a",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e6b7cbb0d46b",
-                                "operator": "==",
-                                "value": "cta-target-internal"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_5e6b7cfc0d46d",
-                    "label": "Inserisci una URL",
-                    "name": "module_columns_fix_fix_column_cta_target_external",
-                    "type": "url",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e6b7c7b0d46a",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e6b7cbb0d46b",
-                                "operator": "==",
-                                "value": "cta-target-external"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_5e6b7d160d46e",
-                    "label": "Scegli il file",
-                    "name": "module_columns_fix_fix_column_cta_target_file",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e6b7c7b0d46a",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e6b7cbb0d46b",
-                                "operator": "==",
-                                "value": "cta-target-file"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "url",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": ""
-                },
-                {
-                    "key": "field_61d5afed856be",
+                    "key": "field_62b359127bbec",
                     "label": "Scegli modal",
                     "name": "module_columns_fix_fix_column_cta_modal",
                     "type": "post_object",
-                    "instructions": "",
+                    "instructions": "Se viene selezionata una modal verrà automaticamente aperta al posto del link impostato in \"Dati CTA\".",
                     "required": 1,
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_5e6b7c7b0d46a",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e6b7cbb0d46b",
+                                "field": "field_62b3590a7bbeb",
                                 "operator": "==",
-                                "value": "cta-target-modal"
+                                "value": "cta-modal"
                             }
                         ]
                     ],
@@ -1525,6 +1156,33 @@
                     "multiple": 0,
                     "return_format": "id",
                     "ui": 1
+                },
+                {
+                    "key": "field_62b3591f7bbed",
+                    "label": "Scegli file",
+                    "name": "module_columns_fix_fix_column_cta_file",
+                    "type": "file",
+                    "instructions": "Se viene selezionato un file verrà automaticamente aperto al posto del link impostato in \"Dati CTA\".",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_62b3590a7bbeb",
+                                "operator": "==",
+                                "value": "cta-file"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "library": "all",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": ""
                 },
                 {
                     "key": "field_5e6b810a1836c",
@@ -1673,10 +1331,10 @@
                             "delay": 0
                         },
                         {
-                            "key": "field_5e6b810a18373",
-                            "label": "Testo CTA",
-                            "name": "module_additional_elements_cta_text",
-                            "type": "text",
+                            "key": "field_62b35ad2fa5b4",
+                            "label": "Dati CTA",
+                            "name": "module_additional_elements_cta_data",
+                            "type": "link",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -1685,14 +1343,10 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "return_format": "array"
                         },
                         {
-                            "key": "field_5e70f6555a84e",
+                            "key": "field_62b35adbfa5b5",
                             "label": "Aspetto CTA",
                             "name": "module_additional_elements_cta_appearence",
                             "type": "select",
@@ -1701,7 +1355,7 @@
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5e6b810a18373",
+                                        "field": "field_62b35ad2fa5b4",
                                         "operator": "!=empty"
                                     }
                                 ]
@@ -1724,16 +1378,16 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_5e6b810a18374",
-                            "label": "Destinazione CTA",
-                            "name": "module_additional_elements_cta_target",
+                            "key": "field_62b35ae6fa5b6",
+                            "label": "Altre funzioni",
+                            "name": "module_additional_elements_cta_altre_funzioni",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5e6b810a18373",
+                                        "field": "field_62b35ad2fa5b4",
                                         "operator": "!=empty"
                                     }
                                 ]
@@ -1744,10 +1398,9 @@
                                 "id": ""
                             },
                             "choices": {
-                                "cta-target-internal": "Contenuto interno al sito",
-                                "cta-target-external": "Contenuto esterno al sito",
-                                "cta-target-file": "File",
-                                "cta-target-modal": "Modal"
+                                "cta-preset": "CTA predefinita",
+                                "cta-modal": "Collega ad una modal",
+                                "cta-file": "Collega ad un file (download)"
                             },
                             "default_value": false,
                             "allow_null": 0,
@@ -1758,146 +1411,18 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_5e6b810a18375",
-                            "label": "Scegli un contenuto",
-                            "name": "module_additional_elements_cta_target_internal",
-                            "type": "page_link",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b810a18373",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b810a18374",
-                                        "operator": "==",
-                                        "value": "cta-target-internal"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "post_type": [
-                                "post",
-                                "page"
-                            ],
-                            "taxonomy": "",
-                            "allow_null": 0,
-                            "allow_archives": 1,
-                            "multiple": 0
-                        },
-                        {
-                            "key": "field_61865132f6261",
-                            "label": "Parametro aggiuntivo URL",
-                            "name": "module_additional_elements_cta_target_internal_parameter",
-                            "type": "text",
-                            "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b810a18373",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b810a18374",
-                                        "operator": "==",
-                                        "value": "cta-target-internal"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_5e6b810a18376",
-                            "label": "Inserisci una URL",
-                            "name": "module_additional_elements_cta_target_external",
-                            "type": "url",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b810a18373",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b810a18374",
-                                        "operator": "==",
-                                        "value": "cta-target-external"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_5e6b810a18377",
-                            "label": "Scegli il file",
-                            "name": "module_additional_elements_cta_target_file",
-                            "type": "file",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b810a18373",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b810a18374",
-                                        "operator": "==",
-                                        "value": "cta-target-file"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "url",
-                            "library": "all",
-                            "min_size": "",
-                            "max_size": "",
-                            "mime_types": ""
-                        },
-                        {
-                            "key": "field_61d5a3d3e178b",
+                            "key": "field_62b35af4fa5b7",
                             "label": "Scegli modal",
                             "name": "module_additional_elements_cta_modal",
                             "type": "post_object",
-                            "instructions": "",
+                            "instructions": "Se viene selezionata una modal verrà automaticamente aperta al posto del link impostato in \"Dati CTA\".",
                             "required": 1,
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5e6b810a18373",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b810a18374",
+                                        "field": "field_62b35ae6fa5b6",
                                         "operator": "==",
-                                        "value": "cta-target-modal"
+                                        "value": "cta-modal"
                                     }
                                 ]
                             ],
@@ -1914,6 +1439,33 @@
                             "multiple": 0,
                             "return_format": "id",
                             "ui": 1
+                        },
+                        {
+                            "key": "field_62b35b05fa5b8",
+                            "label": "Scegli file",
+                            "name": "module_additional_elements_cta_file",
+                            "type": "file",
+                            "instructions": "Se viene selezionato un file verrà automaticamente aperto al posto del link impostato in \"Dati CTA\".",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_62b35ae6fa5b6",
+                                        "operator": "==",
+                                        "value": "cta-file"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "url",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": "",
+                            "mime_types": ""
                         }
                     ]
                 },
@@ -2097,10 +1649,10 @@
                             "delay": 0
                         },
                         {
-                            "key": "field_5e6b8b9067ad6",
-                            "label": "Testo CTA",
-                            "name": "module_additional_elements_cta_text",
-                            "type": "text",
+                            "key": "field_62b35dc6fef0b",
+                            "label": "Dati CTA",
+                            "name": "module_additional_elements_cta_data",
+                            "type": "link",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -2109,14 +1661,10 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "return_format": "array"
                         },
                         {
-                            "key": "field_5e70fe665a84f",
+                            "key": "field_62b35dd5fef0c",
                             "label": "Aspetto CTA",
                             "name": "module_additional_elements_cta_appearence",
                             "type": "select",
@@ -2125,7 +1673,7 @@
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5e6b8b9067ad6",
+                                        "field": "field_62b35dc6fef0b",
                                         "operator": "!=empty"
                                     }
                                 ]
@@ -2148,16 +1696,16 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_5e6b8b9a67ad7",
-                            "label": "Destinazione CTA",
-                            "name": "module_additional_elements_cta_target",
+                            "key": "field_62b35de0fef0d",
+                            "label": "Altre funzioni",
+                            "name": "module_additional_elements_cta_altre_funzioni",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5e6b8b9067ad6",
+                                        "field": "field_62b35dc6fef0b",
                                         "operator": "!=empty"
                                     }
                                 ]
@@ -2168,10 +1716,9 @@
                                 "id": ""
                             },
                             "choices": {
-                                "cta-target-internal": "Contenuto interno al sito",
-                                "cta-target-external": "Contenuto esterno al sito",
-                                "cta-target-file": "File",
-                                "cta-target-modal": "Modal"
+                                "cta-preset": "CTA predefinita",
+                                "cta-modal": "Collega ad una modal",
+                                "cta-file": "Collega ad un file (download)"
                             },
                             "default_value": false,
                             "allow_null": 0,
@@ -2182,154 +1729,18 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_5e6b8ba567ad8",
-                            "label": "Scegli un contenuto",
-                            "name": "module_additional_elements_cta_target_internal",
-                            "type": "relationship",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b8b9067ad6",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b8b9a67ad7",
-                                        "operator": "==",
-                                        "value": "cta-target-internal"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "post_type": [
-                                "post",
-                                "page"
-                            ],
-                            "taxonomy": "",
-                            "filters": [
-                                "search",
-                                "post_type",
-                                "taxonomy"
-                            ],
-                            "elements": [
-                                "featured_image"
-                            ],
-                            "min": 1,
-                            "max": 1,
-                            "return_format": "id"
-                        },
-                        {
-                            "key": "field_6186ce86fa70c",
-                            "label": "Parametro aggiuntivo URL",
-                            "name": "module_additional_elements_cta_target_internal_parameter",
-                            "type": "text",
-                            "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b8b9067ad6",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b8b9a67ad7",
-                                        "operator": "==",
-                                        "value": "cta-target-internal"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_5e6b8bad67ad9",
-                            "label": "Inserisci una URL",
-                            "name": "module_additional_elements_cta_target_external",
-                            "type": "url",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b8b9067ad6",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b8b9a67ad7",
-                                        "operator": "==",
-                                        "value": "cta-target-external"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_5e6b8bb767ada",
-                            "label": "Scegli il file",
-                            "name": "module_additional_elements_cta_target_file",
-                            "type": "file",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_5e6b8b9067ad6",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b8b9a67ad7",
-                                        "operator": "==",
-                                        "value": "cta-target-file"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "url",
-                            "library": "all",
-                            "min_size": "",
-                            "max_size": "",
-                            "mime_types": ""
-                        },
-                        {
-                            "key": "field_61d5a28a88b89",
+                            "key": "field_62b35debfef0e",
                             "label": "Scegli modal",
                             "name": "module_additional_elements_cta_modal",
                             "type": "post_object",
-                            "instructions": "",
+                            "instructions": "Se viene selezionata una modal verrà automaticamente aperta al posto del link impostato in \"Dati CTA\".",
                             "required": 1,
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5e6b8b9067ad6",
-                                        "operator": "!=empty"
-                                    },
-                                    {
-                                        "field": "field_5e6b8b9a67ad7",
+                                        "field": "field_62b35de0fef0d",
                                         "operator": "==",
-                                        "value": "cta-target-modal"
+                                        "value": "cta-modal"
                                     }
                                 ]
                             ],
@@ -2346,6 +1757,33 @@
                             "multiple": 0,
                             "return_format": "id",
                             "ui": 1
+                        },
+                        {
+                            "key": "field_62b35df9fef0f",
+                            "label": "Scegli file",
+                            "name": "module_additional_elements_cta_file",
+                            "type": "file",
+                            "instructions": "Se viene selezionato un file verrà automaticamente aperto al posto del link impostato in \"Dati CTA\".",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_62b35de0fef0d",
+                                        "operator": "==",
+                                        "value": "cta-file"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "url",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": "",
+                            "mime_types": ""
                         }
                     ]
                 },
@@ -2772,5 +2210,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1641547345
+    "modified": 1655922355
 }

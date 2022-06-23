@@ -1,7 +1,4 @@
 <?php
-// Polylang strings
-// pll_register_string("Suggerimenti", "suggerimenti_output");
-
 //conto le parole del content - call in template: echo word_count();
 function word_count() {
     $content = get_post_field( 'post_content', $post->ID );

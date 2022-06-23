@@ -5,13 +5,13 @@ function all_categories( $page_taxonomy_slug ) {
     'hide_empty' => true
   )
 );
-
-if ( !empty( $taxonomies ) ) :
+if ( !empty( $taxonomies ) ) {
+  $output = '';
   foreach( $taxonomies as $category ) {
     $output .= '<a href="' . esc_url( get_term_link( $category ) ) . '" class="default-button allupper">'.$category->name.'</a>';
   }
   echo $output;
-endif;
+}
 }
 
 
