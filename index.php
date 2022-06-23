@@ -15,7 +15,7 @@ get_header();
             </div>
             <div class="flex-hold-child-texts">
               <div class="last-child-no-margin">
-                <h2>Associare alla homepage del sito una pagian statica.</h2>
+                <h2>Associare alla homepage del sito una pagina statica.</h2>
               </div>
             </div>
           </div>

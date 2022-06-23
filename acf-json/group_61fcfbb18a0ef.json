@@ -19,7 +19,7 @@
                 "cpt_modal"
             ],
             "taxonomy": "",
-            "allow_null": 0,
+            "allow_null": 1,
             "multiple": 0,
             "return_format": "id",
             "ui": 1
@@ -43,5 +43,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1643969506
+    "modified": 1649940892
 }

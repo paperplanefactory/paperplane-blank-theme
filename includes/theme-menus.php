@@ -148,10 +148,10 @@ add_action('acf/save_post', 'options_page_clear_cache', 20);
 function add_modal_menu_atts( $atts, $item, $args ) {
   $acf_id_modal = get_field('acf_id_modal', $item);
   if( $acf_id_modal ) {
+    global $cta_url_modal_array;
     $cta_url_modal_array[] = $acf_id_modal;
     $atts['data-modal-open-id'] = '.paperplane-modal-js-' . $acf_id_modal;
     $atts['class'] = 'modal-open-js';
-
   }
   return $atts;
 }

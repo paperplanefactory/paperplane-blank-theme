@@ -1,41 +1,5 @@
 <!-- module-module-columns-fix-column -->
 <?php
-// recupero le informazioni per la CTA della colonna fissa
-$cta_fix_column_text_data = get_sub_field( 'module_columns_fix_fix_column_cta_text' );
-if ( $cta_fix_column_text_data != '' ) {
-  $cta_fix_column_type_data = get_sub_field( 'module_columns_fix_fix_column_cta_target' );
-  global $cta_url_modal_array;
-  switch ( $cta_fix_column_type_data ) {
-    case 'cta-target-internal' :
-    $cta_fix_column_url_data = get_sub_field( 'module_columns_fix_fix_column_cta_target_internal' );
-    $cta_fix_column_url_data = get_permalink( $cta_fix_column_url_data[0] );
-    $cta_fix_column_url_target = '_self';
-    $cta_url_modal_class = '';
-    $cta_fix_column_url_parameter_data = get_sub_field( 'module_columns_fix_fix_column_cta_target_internal_parameter' );
-    if ( $cta_fix_column_url_parameter_data != '' ) {
-      $cta_fix_column_url_data = $cta_fix_column_url_data . $cta_fix_column_url_parameter_data;
-    }
-    break;
-    case 'cta-target-external' :
-    $cta_fix_column_url_data = get_sub_field( 'module_columns_fix_fix_column_cta_target_external' );
-    $cta_fix_column_url_target = '_blank';
-    $cta_url_modal_class = '';
-    break;
-    case 'cta-target-file' :
-    $cta_fix_column_url_data = get_sub_field( 'module_columns_fix_fix_column_cta_target_file' );
-    $cta_fix_column_url_target = '_blank';
-    $cta_url_modal_class = '';
-    break;
-    case 'cta-target-modal' :
-    $cta_url_data = '#';
-    $cta_url_target = '_self';
-    $cta_url_modal_class = 'modal-open-js';
-    $cta_url_modal_id = get_sub_field( 'module_columns_fix_fix_column_cta_modal' );
-    $cta_url_modal_array[] = get_sub_field( 'module_columns_fix_fix_column_cta_modal' );
-    break;
-  }
-  $cta_fix_column_appearence = get_sub_field( 'module_columns_fix_fix_column_cta_appearence' );
-}
 // recupero la colonna che deve restare fissa
 $module_columns_fix_side = get_sub_field( 'module_columns_fix_side' );
 $module_columns_fix_fix_column_image = get_sub_field( 'module_columns_fix_fix_column_image' );
@@ -113,13 +77,15 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                   </div>
                 <?php endif; ?>
                 <?php
-                // se è impostata la CTA della colonna fissa la inserisco
-                if ( $cta_fix_column_text_data != '' ) :
-                  ?>
-                  <div class="cta-holder">
-                    <a href="<?php echo $cta_fix_column_url_data; ?>" target="<?php echo $cta_fix_column_url_target; ?>" class="<?php echo $cta_fix_column_appearence; ?> <?php echo $cta_url_modal_class; ?> allupper" data-modal-open-id=".paperplane-modal-js-<?php echo $cta_url_modal_id; ?>"><?php echo $cta_fix_column_text_data; ?></a>
-                  </div>
-                <?php endif; ?>
+                $cta_data = get_sub_field('module_columns_fix_fix_column_cta_data');
+                $cta_appearence = get_sub_field( 'module_columns_fix_fix_column_cta_appearence' );
+                $cta_advanced_options = get_sub_field( 'module_columns_fix_fix_column_cta_altre_funzioni' );
+                $cta_url_modal_id = get_sub_field( 'module_columns_fix_fix_column_cta_modal' );
+                $cta_file = get_sub_field( 'module_columns_fix_fix_column_cta_file' );
+                if ( $cta_data != '' ) {
+                  print_theme_cta( $cta_data, $cta_appearence, $cta_advanced_options, $cta_url_modal_id, $cta_file );
+                }
+                ?>
               </div>
             </div>
           </div>
@@ -200,7 +166,6 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
               </div>
             <?php endwhile; endif; ?>
             </div>
-
           </div>
         </div>
         <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
