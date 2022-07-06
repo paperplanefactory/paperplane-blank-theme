@@ -64,7 +64,7 @@ if( function_exists('acf_add_options_page') ) {
       'hide_empty' => 0,
       'fields' => 'slug'
     );
-    $languages = pll_languages_list($args);
+    $languages = pll_languages_list();
   }
   else {
     $languages = array('any-lang');

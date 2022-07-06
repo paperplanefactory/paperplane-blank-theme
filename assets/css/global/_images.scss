@@ -84,6 +84,10 @@ img {
 	&.lazy-loaded {
 		opacity: 1;
 	}
+
+	&.lazy-loading {
+		aspect-ratio: 1/1;
+	}
 }
 
 .lazy-loading {

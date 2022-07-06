@@ -25,12 +25,12 @@ var paperPlaneLazyLoad = new LazyLoad({
 /////////////////////////////////////////////
 // AOS
 /////////////////////////////////////////////
-
+//var aos_win_height = (jQuery(window).height() / 2.5);
 AOS.init({
   duration: 900,
   once: false,
   mirror: true,
-  //offset: 350
+  //offset: aos_win_height
 });
 
 /////////////////////////////////////////////
@@ -348,7 +348,7 @@ function hidePreload() {
 }
 //window.addEventListener('load', hidePreload);
 
-/*
+
 /////////////////////////////////////////////
 // expandables
 /////////////////////////////////////////////
@@ -365,5 +365,3 @@ jQuery('.expander').click(function(e) {
   }
   e.preventDefault();
 });
-
-*/
