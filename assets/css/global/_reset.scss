@@ -253,42 +253,6 @@ textarea {
 	white-space: revert;
 }
 
-::-webkit-scrollbar,
-::-webkit-scrollbar-thumb,
-::-webkit-scrollbar-track {
-	width: 12px;
-	border: none;
-	background: transparent;
-	-webkit-appearance: none !important;
-}
-
-::-webkit-resizer,
-::-webkit-scrollbar-button,
-::-webkit-scrollbar-corner,
-::-webkit-scrollbar-track-piece {
-	display: none;
-}
-
-::-webkit-scrollbar-thumb {
-	width: 12px;
-	background-color: $color-2;
-}
-
-::-webkit-scrollbar-track {
-	//-webkit-appearance: none !important;
-	//display: none !important;
-	opacity: 0 !important;
-	//visibility: hidden !important;
-	//width: 0 !important;
-	//background-color: $color-2;
-	background-color: transparent;
-}
-
-:root {
-	scrollbar-color: $color-4 $color-2 !important;
-	scrollbar-width: auto !important;
-}
-
 ::-webkit-input-placeholder {
 	color: $color-2;
 }
