@@ -267,6 +267,9 @@ if (jQuery('.paperplane-modal')[0]) {
   jQuery('.modal-close-js').click(function(e) {
     var modal_close_id = jQuery(this).data('modal-close-id');
     jQuery(modal_close_id).addClass('hidden');
+    var video = jQuery('.video-frame > iframe').attr('src');
+    jQuery('.video-frame > iframe').attr('src', '');
+    jQuery('.video-frame > iframe').attr('src', video);
     jQuery('html, body').css({
       overflow: 'visible',
     });

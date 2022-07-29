@@ -116,10 +116,10 @@
                     "new_lines": "br"
                 },
                 {
-                    "key": "field_5e763ef882257",
-                    "label": "Testo CTA",
-                    "name": "mega_menu_repeater_cta_text",
-                    "type": "text",
+                    "key": "field_62ced6d0bbf4d",
+                    "label": "Dati CTA",
+                    "name": "mega_menu_cta_data",
+                    "type": "link",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -128,23 +128,19 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "return_format": "array"
                 },
                 {
-                    "key": "field_5e763f1282258",
+                    "key": "field_62ced6f3bbf4e",
                     "label": "Aspetto CTA",
-                    "name": "mega_menu_repeater_cta_appearence",
+                    "name": "mega_menu_cta_appearence",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_5e763ef882257",
+                                "field": "field_62ced6d0bbf4d",
                                 "operator": "!=empty"
                             }
                         ]
@@ -158,7 +154,7 @@
                         "default-button": "CTA primaria",
                         "default-button-b": "CTA secondaria"
                     },
-                    "default_value": [],
+                    "default_value": false,
                     "allow_null": 0,
                     "multiple": 0,
                     "ui": 0,
@@ -167,16 +163,16 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_5e763f5f82259",
-                    "label": "Destinazione CTA",
-                    "name": "mega_menu_repeater_cta_target",
+                    "key": "field_62ced72abbf4f",
+                    "label": "Altre funzioni",
+                    "name": "mega_menu_cta_altre_funzioni",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_5e763ef882257",
+                                "field": "field_62ced6d0bbf4d",
                                 "operator": "!=empty"
                             }
                         ]
@@ -187,10 +183,9 @@
                         "id": ""
                     },
                     "choices": {
-                        "cta-target-internal": "Contenuto interno al sito",
-                        "cta-target-external": "Contenuto esterno al sito",
-                        "cta-target-file": "File",
-                        "cta-target-modal": "Modal"
+                        "cta-preset": "CTA predefinita",
+                        "cta-modal": "Collega ad una modal",
+                        "cta-file": "Collega ad un file (download)"
                     },
                     "default_value": false,
                     "allow_null": 0,
@@ -201,138 +196,18 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_5e763f9a8225a",
-                    "label": "Scegli un contenuto",
-                    "name": "mega_menu_repeater_cta_target_internal",
-                    "type": "relationship",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e763f5f82259",
-                                "operator": "==",
-                                "value": "cta-target-internal"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "post_type": [
-                        "post",
-                        "page"
-                    ],
-                    "taxonomy": "",
-                    "filters": [
-                        "search",
-                        "post_type",
-                        "taxonomy"
-                    ],
-                    "elements": [
-                        "featured_image"
-                    ],
-                    "min": 1,
-                    "max": 1,
-                    "return_format": "id"
-                },
-                {
-                    "key": "field_61e002ca6f9ba",
-                    "label": "Parametro aggiuntivo URL",
-                    "name": "mega_menu_repeater_cta_target_internal_parameter",
-                    "type": "text",
-                    "instructions": "Es.: #anchor-point o ?parametro=valore o \/category\/nome-categoria\/",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e763ef882257",
-                                "operator": "!=empty"
-                            },
-                            {
-                                "field": "field_5e763f5f82259",
-                                "operator": "==",
-                                "value": "cta-target-internal"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_5e763fe78225b",
-                    "label": "Inserisci una URL",
-                    "name": "mega_menu_repeater_cta_target_external",
-                    "type": "url",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e763f5f82259",
-                                "operator": "==",
-                                "value": "cta-target-external"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_5e7640168225c",
-                    "label": "Scegli il file",
-                    "name": "mega_menu_repeater_cta_target_file",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e763f5f82259",
-                                "operator": "==",
-                                "value": "cta-target-file"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "url",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": ""
-                },
-                {
-                    "key": "field_61e0031d6f9bc",
+                    "key": "field_62ced752bbf50",
                     "label": "Scegli modal",
-                    "name": "mega_menu_repeater_cta_modal",
+                    "name": "mega_menu_cta_modal",
                     "type": "post_object",
-                    "instructions": "",
+                    "instructions": "Se viene selezionata una modal verrà automaticamente aperta al posto del link impostato in \"Dati CTA\".",
                     "required": 1,
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_5e763f5f82259",
+                                "field": "field_62ced72abbf4f",
                                 "operator": "==",
-                                "value": "cta-target-modal"
+                                "value": "cta-modal"
                             }
                         ]
                     ],
@@ -349,6 +224,33 @@
                     "multiple": 0,
                     "return_format": "id",
                     "ui": 1
+                },
+                {
+                    "key": "field_62ced793bbf51",
+                    "label": "Scegli file",
+                    "name": "mega_menu_cta_file",
+                    "type": "file",
+                    "instructions": "Se viene selezionato un file verrà automaticamente aperto al posto del link impostato in \"Dati CTA\".",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_62ced72abbf4f",
+                                "operator": "==",
+                                "value": "cta-file"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "library": "all",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": ""
                 }
             ]
         }
@@ -371,5 +273,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1642071352
+    "modified": 1657722986
 }
