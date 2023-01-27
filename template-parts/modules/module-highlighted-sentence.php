@@ -41,7 +41,7 @@ $module_highlighted_sentence_image = get_sub_field( 'module_highlighted_sentence
                   <h3 class="as-h6"><?php the_sub_field( 'module_highlighted_sentence_author' ); ?></h3>
                 <?php endif; ?>
               </div>
-              <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
+              <?php paperplane_theme_cta('paperplane_theme_cta'); ?>
             </div>
           </div>
         <?php
@@ -55,7 +55,7 @@ $module_highlighted_sentence_image = get_sub_field( 'module_highlighted_sentence
                   <h3 class="as-h6"><?php the_sub_field( 'module_highlighted_sentence_author' ); ?></h3>
                 <?php endif; ?>
               </div>
-              <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
+              <?php paperplane_theme_cta('paperplane_theme_cta'); ?>
           </div>
         <?php endif; ?>
       </div>

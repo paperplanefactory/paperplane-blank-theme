@@ -6,6 +6,7 @@
             "key": "field_5e723a22e12c6",
             "label": "Schema colori",
             "name": "banner_color_scheme",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -25,12 +26,14 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "repeatable": true
         },
         {
             "key": "field_5e7244b5d5221",
             "label": "Immagine sfondo",
             "name": "banner_background_image",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -49,12 +52,14 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "repeatable": true
         },
         {
             "key": "field_5e72476e43f13",
             "label": "Immagine in primo piano",
             "name": "banner_foreground_image",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -73,13 +78,15 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "repeatable": true
         },
         {
-            "key": "field_62b35f4603da6",
-            "label": "Dati CTA",
-            "name": "banner_cta_data",
-            "type": "link",
+            "key": "field_639457e7f187d",
+            "label": "CTA",
+            "name": "paperplane_theme_cta_banner",
+            "aria-label": "",
+            "type": "component_field",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -88,129 +95,16 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array"
-        },
-        {
-            "key": "field_62b35f6803da7",
-            "label": "Aspetto CTA",
-            "name": "banner_cta_appearence",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_62b35f4603da6",
-                        "operator": "!=empty"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "default-button": "CTA primaria",
-                "default-button-b": "CTA secondaria"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_62b35f8a03da8",
-            "label": "Altre funzioni",
-            "name": "banner_cta_altre_funzioni",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_62b35f4603da6",
-                        "operator": "!=empty"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "cta-preset": "CTA predefinita",
-                "cta-modal": "Collega ad una modal",
-                "cta-file": "Collega ad un file (download)"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_62b35faf03da9",
-            "label": "Scegli modal",
-            "name": "banner_cta_modal",
-            "type": "post_object",
-            "instructions": "Se viene selezionata una modal verrà automaticamente aperta al posto del link impostato in \"Dati CTA\".",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_62b35f8a03da8",
-                        "operator": "==",
-                        "value": "cta-modal"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "cpt_modal"
-            ],
-            "taxonomy": "",
-            "allow_null": 0,
-            "multiple": 0,
-            "return_format": "id",
-            "ui": 1
-        },
-        {
-            "key": "field_62b35fdd03daa",
-            "label": "Scegli file",
-            "name": "banner_cta_file",
-            "type": "file",
-            "instructions": "Se viene selezionato un file verrà automaticamente aperto al posto del link impostato in \"Dati CTA\".",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_62b35f8a03da8",
-                        "operator": "==",
-                        "value": "cta-file"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "url",
-            "library": "all",
-            "min_size": "",
-            "max_size": "",
-            "mime_types": ""
+            "field_group_key": "group_6390c8098b762",
+            "layout": "block",
+            "repeatable": 0,
+            "button_label": "Aggiungi Riga",
+            "appearances": "",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": []
         }
     ],
     "location": [
@@ -231,5 +125,16 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1655922755
+    "is_acf_component": 0,
+    "acf_component_defaults": {
+        "layout": "block",
+        "repeatable": "0",
+        "pagination": "0",
+        "rows_per_page": "20",
+        "min": "",
+        "max": "",
+        "button_label": "",
+        "appearances": ""
+    },
+    "modified": 1670667304
 }

@@ -42,32 +42,14 @@ if( $banner ) :
                 <div class="banner-texts">
                   <div class="last-child-no-margin">
                     <h2><?php the_title(); ?></h2>
-                    <?php
-                    $cta_data = get_field('banner_cta_data');
-                    $cta_appearence = get_field( 'banner_cta_appearence' );
-                    $cta_advanced_options = get_field( 'banner_cta_altre_funzioni' );
-                    $cta_url_modal_id = get_field( 'banner_cta_modal' );
-                    $cta_file = get_field( 'banner_cta_file' );
-                    if ( $cta_data != '' ) {
-                      print_theme_cta( $cta_data, $cta_appearence, $cta_advanced_options, $cta_url_modal_id, $cta_file );
-                    }
-                    ?>
+                    <?php paperplane_theme_cta('paperplane_theme_cta_banner'); ?>
                   </div>
                 </div>
               </div>
             <?php else : ?>
               <div class="last-child-no-margin">
                 <h2><?php the_title(); ?></h2>
-                <?php
-                $cta_data = get_field('banner_cta_data');
-                $cta_appearence = get_field( 'banner_cta_appearence' );
-                $cta_advanced_options = get_field( 'banner_cta_altre_funzioni' );
-                $cta_url_modal_id = get_field( 'banner_cta_modal' );
-                $cta_file = get_field( 'banner_cta_file' );
-                if ( $cta_data != '' ) {
-                  print_theme_cta( $cta_data, $cta_appearence, $cta_advanced_options, $cta_url_modal_id, $cta_file );
-                }
-                ?>
+                <?php paperplane_theme_cta('paperplane_theme_cta_banner'); ?>
               </div>
             <?php endif; ?>
           </div>

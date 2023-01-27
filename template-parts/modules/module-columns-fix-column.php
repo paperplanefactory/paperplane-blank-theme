@@ -17,41 +17,7 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                 <?php if ( $module_columns_fix_fix_column_image != '' ) : ?>
                   <div class="column-image">
                     <?php if ( $module_columns_fix_fix_column_image_format === 'normal-image' ) : ?>
-                      <?php
-                      $image_data = array(
-                          'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
-                          'image_value' => 'module_columns_fix_fix_column_image', // se utilizzi un custom field indica qui il nome del campo
-                          'size_fallback' => 'column'
-                      );
-                      $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                          'desktop_default' => 'column',
-                          'desktop_hd' => 'column_hd',
-                          'mobile_default' => 'column',
-                          'mobile_hd' => 'column_hd',
-                          'lazy_placheholder' => 'micro'
-                      );
-                      print_theme_image( $image_data, $image_sizes );
-                      ?>
-                    <?php elseif ( $module_columns_fix_fix_column_image_format === 'round-image' ) : ?>
-                      <div class="image-rounder">
-                        <?php
-                        $image_data = array(
-                            'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
-                            'image_value' => 'module_columns_fix_fix_column_image', // se utilizzi un custom field indica qui il nome del campo
-                            'size_fallback' => 'round_image'
-                        );
-                        $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                            'desktop_default' => 'round_image',
-                            'desktop_hd' => 'round_image_hd',
-                            'mobile_default' => 'round_image',
-                            'mobile_hd' => 'round_image',
-                            'lazy_placheholder' => 'micro_cut'
-                        );
-                        print_theme_image( $image_data, $image_sizes );
-                        ?>
-                      </div>
-                    <?php else : ?>
-                      <div class="image-icon">
+                      <?php paperplane_theme_cta_image('paperplane_theme_cta_fix_column'); ?>
                         <?php
                         $image_data = array(
                             'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
@@ -59,14 +25,54 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                             'size_fallback' => 'column'
                         );
                         $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                          'desktop_default' => 'column_icon',
-                          'desktop_hd' => 'column_icon_hd',
-                          'mobile_default' => 'column_icon',
-                          'mobile_hd' => 'column_icon_hd',
-                          'lazy_placheholder' => 'micro'
+                            'desktop_default' => 'column',
+                            'desktop_hd' => 'column_hd',
+                            'mobile_default' => 'column',
+                            'mobile_hd' => 'column_hd',
+                            'lazy_placheholder' => 'micro'
                         );
                         print_theme_image( $image_data, $image_sizes );
                         ?>
+                      </a>
+                    <?php elseif ( $module_columns_fix_fix_column_image_format === 'round-image' ) : ?>
+                      <div class="image-rounder">
+                        <?php paperplane_theme_cta_image('paperplane_theme_cta_fix_column'); ?>
+                          <?php
+                          $image_data = array(
+                              'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
+                              'image_value' => 'module_columns_fix_fix_column_image', // se utilizzi un custom field indica qui il nome del campo
+                              'size_fallback' => 'round_image'
+                          );
+                          $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+                              'desktop_default' => 'round_image',
+                              'desktop_hd' => 'round_image_hd',
+                              'mobile_default' => 'round_image',
+                              'mobile_hd' => 'round_image',
+                              'lazy_placheholder' => 'micro_cut'
+                          );
+                          print_theme_image( $image_data, $image_sizes );
+                          ?>
+                        </a>
+                      </div>
+                    <?php else : ?>
+                      <div class="image-icon">
+                        <?php paperplane_theme_cta_image('paperplane_theme_cta_fix_column'); ?>
+                          <?php
+                          $image_data = array(
+                              'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
+                              'image_value' => 'module_columns_fix_fix_column_image', // se utilizzi un custom field indica qui il nome del campo
+                              'size_fallback' => 'column'
+                          );
+                          $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+                            'desktop_default' => 'column_icon',
+                            'desktop_hd' => 'column_icon_hd',
+                            'mobile_default' => 'column_icon',
+                            'mobile_hd' => 'column_icon_hd',
+                            'lazy_placheholder' => 'micro'
+                          );
+                          print_theme_image( $image_data, $image_sizes );
+                          ?>
+                        </a>
                       </div>
                     <?php endif; ?>
                   </div>
@@ -76,16 +82,7 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                     <?php the_sub_field( 'module_columns_fix_fix_column_content' ); ?>
                   </div>
                 <?php endif; ?>
-                <?php
-                $cta_data = get_sub_field('module_columns_fix_fix_column_cta_data');
-                $cta_appearence = get_sub_field( 'module_columns_fix_fix_column_cta_appearence' );
-                $cta_advanced_options = get_sub_field( 'module_columns_fix_fix_column_cta_altre_funzioni' );
-                $cta_url_modal_id = get_sub_field( 'module_columns_fix_fix_column_cta_modal' );
-                $cta_file = get_sub_field( 'module_columns_fix_fix_column_cta_file' );
-                if ( $cta_data != '' ) {
-                  print_theme_cta( $cta_data, $cta_appearence, $cta_advanced_options, $cta_url_modal_id, $cta_file );
-                }
-                ?>
+                <?php paperplane_theme_cta('paperplane_theme_cta_fix_column'); ?>
               </div>
             </div>
           </div>
@@ -101,57 +98,63 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                 <div class="<?php the_sub_field( 'module_columns_fix_repeater_align' ); ?>">
                   <?php if ( $module_columns_fix_repeater_image != '' ) : ?>
                     <div class="column-image">
-                      <?php if ( $module_columns_fix_repeater_image_format === 'normal-image' ) : ?>
-                        <?php
-                        $image_data = array(
-                            'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
-                            'image_value' => 'module_columns_fix_repeater_image', // se utilizzi un custom field indica qui il nome del campo
-                            'size_fallback' => 'round_image',
-                        );
-                        $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                            'desktop_default' => 'column',
-                            'desktop_hd' => 'column_hd',
-                            'mobile_default' => 'column',
-                            'mobile_hd' => 'column_hd',
-                            'lazy_placheholder' => 'micro'
-                        );
-                        print_theme_image( $image_data, $image_sizes );
-                        ?>
-                      <?php elseif ( $module_columns_fix_repeater_image_format === 'round-image' ) : ?>
-                        <div class="image-rounder">
+                        <?php if ( $module_columns_fix_repeater_image_format === 'normal-image' ) : ?>
+                          <?php paperplane_theme_cta_image('paperplane_theme_cta_fix_column_columns'); ?>
                           <?php
                           $image_data = array(
                               'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
                               'image_value' => 'module_columns_fix_repeater_image', // se utilizzi un custom field indica qui il nome del campo
-                              'size_fallback' => 'round_image'
+                              'size_fallback' => 'round_image',
                           );
                           $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                              'desktop_default' => 'round_image',
-                              'desktop_hd' => 'round_image_hd',
-                              'mobile_default' => 'round_image',
-                              'mobile_hd' => 'round_image',
-                              'lazy_placheholder' => 'micro_cut'
+                              'desktop_default' => 'column',
+                              'desktop_hd' => 'column_hd',
+                              'mobile_default' => 'column',
+                              'mobile_hd' => 'column_hd',
+                              'lazy_placheholder' => 'micro'
                           );
                           print_theme_image( $image_data, $image_sizes );
                           ?>
+                        </a>
+                      <?php elseif ( $module_columns_fix_repeater_image_format === 'round-image' ) : ?>
+                        <div class="image-rounder">
+                          <?php paperplane_theme_cta_image('paperplane_theme_cta_fix_column_columns'); ?>
+                            <?php
+                            $image_data = array(
+                                'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
+                                'image_value' => 'module_columns_fix_repeater_image', // se utilizzi un custom field indica qui il nome del campo
+                                'size_fallback' => 'round_image'
+                            );
+                            $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+                                'desktop_default' => 'round_image',
+                                'desktop_hd' => 'round_image_hd',
+                                'mobile_default' => 'round_image',
+                                'mobile_hd' => 'round_image',
+                                'lazy_placheholder' => 'micro_cut'
+                            );
+                            print_theme_image( $image_data, $image_sizes );
+                            ?>
+                          </a>
                         </div>
                       <?php else : ?>
                         <div class="image-icon">
-                          <?php
-                          $image_data = array(
-                              'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
-                              'image_value' => 'module_columns_fix_repeater_image', // se utilizzi un custom field indica qui il nome del campo
-                              'size_fallback' => 'round_image'
-                          );
-                          $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-                            'desktop_default' => 'column_icon',
-                            'desktop_hd' => 'column_icon_hd',
-                            'mobile_default' => 'column_icon',
-                            'mobile_hd' => 'column_icon_hd',
-                            'lazy_placheholder' => 'micro'
-                          );
-                          print_theme_image( $image_data, $image_sizes );
-                          ?>
+                          <?php paperplane_theme_cta_image('paperplane_theme_cta_fix_column_columns'); ?>
+                            <?php
+                            $image_data = array(
+                                'image_type' => 'acf_sub_field', // options: post_thumbnail, acf_field, acf_sub_field
+                                'image_value' => 'module_columns_fix_repeater_image', // se utilizzi un custom field indica qui il nome del campo
+                                'size_fallback' => 'round_image'
+                            );
+                            $image_sizes = array( // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+                              'desktop_default' => 'column_icon',
+                              'desktop_hd' => 'column_icon_hd',
+                              'mobile_default' => 'column_icon',
+                              'mobile_hd' => 'column_icon_hd',
+                              'lazy_placheholder' => 'micro'
+                            );
+                            print_theme_image( $image_data, $image_sizes );
+                            ?>
+                          </a>
                         </div>
                       <?php endif; ?>
                     </div>
@@ -161,14 +164,14 @@ $module_columns_fix_fix_column_image_format = get_sub_field( 'module_columns_fix
                       <?php the_sub_field( 'module_columns_fix_repeater_content' ); ?>
                     </div>
                   <?php endif; ?>
-                  <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
+                  <?php paperplane_theme_cta('paperplane_theme_cta_fix_column_columns'); ?>
                 </div>
               </div>
             <?php endwhile; endif; ?>
             </div>
           </div>
         </div>
-        <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
+        <?php paperplane_theme_cta('paperplane_theme_cta'); ?>
       </div>
     </div>
   </div>

@@ -6,6 +6,7 @@
             "key": "field_616fe094cc7d5",
             "label": "Gestione social",
             "name": "global_socials",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -20,11 +21,14 @@
             "max": 0,
             "layout": "row",
             "button_label": "Aggiungi social",
+            "rows_per_page": 20,
+            "repeatable": true,
             "sub_fields": [
                 {
                     "key": "field_616fe0b3cc7d6",
                     "label": "URL profilo",
                     "name": "global_socials_profile_url",
+                    "aria-label": "",
                     "type": "url",
                     "instructions": "",
                     "required": 1,
@@ -35,12 +39,15 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "placeholder": ""
+                    "placeholder": "",
+                    "repeatable": true,
+                    "parent_repeater": "field_616fe094cc7d5"
                 },
                 {
                     "key": "field_616fe0cdcc7d7",
                     "label": "Icona",
                     "name": "global_socials_icon",
+                    "aria-label": "",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
@@ -51,26 +58,29 @@
                         "id": ""
                     },
                     "choices": {
-                        "icon-newsletter-social": "Newsletter",
-                        "icon-facebook-social": "Facebook",
-                        "icon-facebook-messenger-social": "Facebook Messenger",
-                        "icon-instagram-social": "Instagram",
-                        "icon-linkedin-social": "LinkedIn",
-                        "icon-telegram-social": "Telegram",
-                        "icon-tiktok-social": "TikTok",
-                        "icon-twitter-social": "Twitter",
-                        "icon-vk-social": "VK",
-                        "icon-whatsapp-social": "WhatsApp",
-                        "icon-spotify-social": "Spotify",
-                        "icon-youtube-social": "YouTube"
+                        "paperplane-social-icon-newsletter-social": "Newsletter",
+                        "paperplane-social-icon-facebook-social": "Facebook",
+                        "paperplane-social-icon-facebook-messenger-social": "Facebook Messenger",
+                        "paperplane-social-icon-instagram-social": "Instagram",
+                        "paperplane-social-icon-linkedin-social": "LinkedIn",
+                        "paperplane-social-icon-telegram-social": "Telegram",
+                        "paperplane-social-icon-tiktok-social": "TikTok",
+                        "paperplane-social-icon-twitter-social": "Twitter",
+                        "paperplane-social-icon-vk-social": "VK",
+                        "paperplane-social-icon-whatsapp-social": "WhatsApp",
+                        "paperplane-social-icon-spotify-social": "Spotify",
+                        "paperplane-social-icon-youtube-social": "YouTube",
+                        "paperplane-social-icon-yelp-social": "Yelp",
+                        "paperplane-social-icon-tripadvisor-social": "Tripadvisor"
                     },
                     "default_value": false,
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
                     "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
                     "ajax": 0,
-                    "placeholder": ""
+                    "placeholder": "",
+                    "parent_repeater": "field_616fe094cc7d5"
                 }
             ]
         }
@@ -93,5 +103,16 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1647422633
+    "is_acf_component": 0,
+    "acf_component_defaults": {
+        "layout": "block",
+        "repeatable": "0",
+        "pagination": "0",
+        "rows_per_page": "20",
+        "min": "",
+        "max": "",
+        "button_label": "",
+        "appearances": ""
+    },
+    "modified": 1671124823
 }

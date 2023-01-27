@@ -140,25 +140,6 @@
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
-        },
-        {
-            "key": "field_61e819870fa9f",
-            "label": "Opzioni per utilizzare script esterni",
-            "name": "theme_external_scripts",
-            "type": "true_false",
-            "instructions": "Scegliere se attivare la pagina di opzioni per aggiungere script esterni (Google Analytics, Facebook Pixel...).<br \/>\r\nIn caso di siti multilingua gli script, anche se identici, andranno inseriti nella pagina opzioni di ogni lingua.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "Attiva",
-            "ui_off_text": "Disattiva"
         }
     ],
     "location": [
@@ -179,5 +160,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1642603481
+    "modified": 1659706287
 }

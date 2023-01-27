@@ -37,7 +37,7 @@ $module_slideshow_type = get_sub_field( 'module_slideshow_type' );
                     'mobile_hd' => 'slide_double_hd',
                     'lazy_placheholder' => 'micro'
                 );
-                print_theme_image( $image_data, $image_sizes );
+                print_theme_image_lazyslick( $image_data, $image_sizes );
               }
               // slideshow doppio - larghezza full
               if ( $module_slideshow_width === 'slide-full' && $module_slideshow_type === 'slide-double' ) {
@@ -53,7 +53,7 @@ $module_slideshow_type = get_sub_field( 'module_slideshow_type' );
                     'mobile_hd' => 'slide_hd',
                     'lazy_placheholder' => 'micro'
                 );
-                print_theme_image( $image_data, $image_sizes );
+                print_theme_image_lazyslick( $image_data, $image_sizes );
               }
               // slideshow singolo - larghezza contenuta
               if ( $module_slideshow_width === 'slide-contained' && $module_slideshow_type === 'slide-single' ) {
@@ -69,7 +69,7 @@ $module_slideshow_type = get_sub_field( 'module_slideshow_type' );
                     'mobile_hd' => 'slide_hd',
                     'lazy_placheholder' => 'micro'
                 );
-                print_theme_image( $image_data, $image_sizes );
+                print_theme_image_lazyslick( $image_data, $image_sizes );
               }
               // slideshow singolo - larghezza full
               if ( $module_slideshow_width === 'slide-full' && $module_slideshow_type === 'slide-single' ) {
@@ -85,7 +85,7 @@ $module_slideshow_type = get_sub_field( 'module_slideshow_type' );
                     'mobile_hd' => 'full_desk_hd',
                     'lazy_placheholder' => 'micro'
                 );
-                print_theme_image( $image_data, $image_sizes );
+                print_theme_image_lazyslick( $image_data, $image_sizes );
               }
               ?>
               <div class="slide-caption">

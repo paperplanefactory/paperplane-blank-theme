@@ -2,6 +2,12 @@
 @import '../global/vars';
 @import '../global/mixin';
 
+.cta-holder {
+	a {
+		margin: 0 10px 0 0;
+	}
+}
+
 .cta-navi a,
 .default-button {
 	position: relative;

@@ -21,7 +21,7 @@ else {
           <div class="content-styled last-child-no-margin">
             <?php the_sub_field( 'module_text' ); ?>
           </div>
-          <?php include( locate_template( 'template-parts/modules/module-cta-default.php' ) ); ?>
+          <?php paperplane_theme_cta('paperplane_theme_cta'); ?>
         </div>
       </div>
     </div>
