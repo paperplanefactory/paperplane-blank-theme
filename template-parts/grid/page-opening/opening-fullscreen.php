@@ -42,7 +42,7 @@
                 <?php endif; ?>
 
                 <div class="clearer"></div>
-                <?php include( locate_template( 'template-parts/grid/page-opening/opening-cta-default.php' ) ); ?>
+                <?php paperplane_theme_cta('paperplane_theme_cta_page_opening'); ?>
               </div>
             </div>
           </div>

@@ -23,8 +23,6 @@ include_once "includes/theme-menus.php";
 include_once "includes/theme-taxonomies.php";
 // gestione tipo di paginazione
 include_once "includes/theme-pagination.php";
-// gestione tipo di paginazione
-include_once "includes/theme-external-scripts.php";
 // gestione CTA
 include_once "includes/theme-ctas.php";
 // attivo le traduzioni

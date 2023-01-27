@@ -12,7 +12,7 @@ var paperPlaneLazyLoad = new LazyLoad({
       container: el
     });
     lazyLoadInstances.push(oneLL);
-    AOS.refreshHard();
+    //AOS.refreshHard();
   },
   callback_reveal: (el) => {
     if (el.complete && el.naturalWidth !== 0) {
@@ -121,7 +121,7 @@ var lastScrollTop = 0;
 
 function scrollDirectionMenu() {
   var st = jQuery(this).scrollTop();
-  if ((st > lastScrollTop) && (st > 100)) {
+  if ((st > lastScrollTop) && (st > 100) && !jQuery('.hambuger-element').hasClass('open')) {
     // downscroll code
     jQuery('#header').addClass('hidden');
     jQuery('.mega-menu-js').addClass('hidden');

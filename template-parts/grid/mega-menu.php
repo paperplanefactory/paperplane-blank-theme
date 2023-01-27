@@ -39,16 +39,7 @@ $mega_menu_counter++;
               <?php the_sub_field( 'mega_menu_repeater_additional_info' ); ?>
             </p>
           </div>
-          <?php
-          $cta_data = get_sub_field('mega_menu_cta_data');
-          $cta_appearence = get_sub_field( 'mega_menu_cta_appearence' );
-          $cta_advanced_options = get_sub_field( 'mega_menu_cta_altre_funzioni' );
-          $cta_url_modal_id = get_sub_field( 'mega_menu_cta_modal' );
-          $cta_file = get_sub_field( 'mega_menu_cta_file' );
-          if ( $cta_data != '' ) {
-            print_theme_cta( $cta_data, $cta_appearence, $cta_advanced_options, $cta_url_modal_id, $cta_file );
-          }
-          ?>
+          <?php paperplane_theme_cta('paperplane_theme_cta_mega_menu'); ?>
         </div>
       </div>
     </div>

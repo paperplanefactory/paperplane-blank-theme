@@ -10,80 +10,88 @@
   font-style: normal;
 }
 
-[data-icon]:before {
-  font-family: "paperplane-blank-theme-social-icons" !important;
-  content: attr(data-icon);
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  speak: none;
-  line-height: 1;
+[class^="paperplane-social-icon-"]:before,
+[class*=" paperplane-social-icon-"]:before {
+  font-family: "paperplane-blank-theme-social-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: 0.2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-[class^="icon-"]:before,
-[class*=" icon-"]:before {
-  font-family: "paperplane-blank-theme-social-icons" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.paperplane-social-icon-newsletter-social:before {
+  content: '\e800';
 }
-
-.icon-newsletter-social:before {
-  content: "\61";
+/* '' */
+.paperplane-social-icon-facebook-social:before {
+  content: '\e801';
 }
-
-.icon-facebook-social:before {
-  content: "\62";
+/* '' */
+.paperplane-social-icon-facebook-messenger-social:before {
+  content: '\e802';
 }
-
-.icon-facebook-messenger-social:before {
-  content: "\63";
+/* '' */
+.paperplane-social-icon-instagram-social:before {
+  content: '\e803';
 }
-
-.icon-instagram-social:before {
-  content: "\64";
+/* '' */
+.paperplane-social-icon-linkedin-social:before {
+  content: '\e804';
 }
-
-.icon-linkedin-social:before {
-  content: "\65";
+/* '' */
+.paperplane-social-icon-telegram-social:before {
+  content: '\e805';
 }
-
-.icon-telegram-social:before {
-  content: "\66";
+/* '' */
+.paperplane-social-icon-tiktok-social:before {
+  content: '\e806';
 }
-
-.icon-tiktok-social:before {
-  content: "\67";
+/* '' */
+.paperplane-social-icon-twitter-social:before {
+  content: '\e807';
 }
-
-.icon-twitter-social:before {
-  content: "\68";
+/* '' */
+.paperplane-social-icon-vk-social:before {
+  content: '\e808';
 }
-
-.icon-vk-social:before {
-  content: "\69";
+/* '' */
+.paperplane-social-icon-whatsapp-social:before {
+  content: '\e809';
 }
-
-.icon-whatsapp-social:before {
-  content: "\6a";
+/* '' */
+.paperplane-social-icon-spotify-social:before {
+  content: '\e80b';
 }
-
-.icon-oblique:before {
-  content: "\6b";
+/* '' */
+.paperplane-social-icon-youtube-social:before {
+  content: '\e80c';
 }
-
-.icon-spotify-social:before {
-  content: "\6c";
+/* '' */
+.paperplane-social-icon-yelp-social:before {
+  content: '\f1e9';
 }
-
-.icon-youtube-social:before {
-  content: "\6d";
+/* '' */
+.paperplane-social-icon-tripadvisor-social:before {
+  content: '\f262';
 }
+/* '' */
