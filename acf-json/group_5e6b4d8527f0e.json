@@ -1398,62 +1398,6 @@
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
-                    "key": "field_618777e8ed955",
-                    "label": "Larghezza modulo",
-                    "name": "module_slideshow_width",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "slide-contained": "Con larghezza massima del contenitore principale",
-                        "slide-full": "Larghezza massima fullscreen meno i margini"
-                    },
-                    "default_value": false,
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
-                    "placeholder": "",
-                    "repeatable": true,
-                    "parent_repeater": "field_5e6b4d8f8e1a6"
-                },
-                {
-                    "key": "field_5e71e853086a0",
-                    "label": "Tipo di slideshow",
-                    "name": "module_slideshow_type",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "slide-double": "Doppio",
-                        "slide-single": "Singolo"
-                    },
-                    "default_value": false,
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
-                    "placeholder": "",
-                    "repeatable": true,
-                    "parent_repeater": "field_5e6b4d8f8e1a6"
-                },
-                {
                     "key": "field_5e6b950fa977a",
                     "label": "Gestisci slide",
                     "name": "module_slideshow_repeater",
@@ -1859,5 +1803,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1670836939
+    "modified": 1676034788
 }

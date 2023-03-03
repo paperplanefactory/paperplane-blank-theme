@@ -6,6 +6,7 @@
             "key": "field_618785815cf57",
             "label": "Note legali",
             "name": "footer_legal_notes",
+            "aria-label": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -19,12 +20,14 @@
             "tabs": "all",
             "toolbar": "full",
             "media_upload": 0,
-            "delay": 0
+            "delay": 0,
+            "repeatable": true
         },
         {
             "key": "field_6187858d5cf58",
             "label": "Credits",
             "name": "footer_credits",
+            "aria-label": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -38,7 +41,8 @@
             "tabs": "all",
             "toolbar": "full",
             "media_upload": 0,
-            "delay": 0
+            "delay": 0,
+            "repeatable": true
         }
     ],
     "location": [
@@ -58,5 +62,17 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636271551
+    "show_in_rest": 0,
+    "is_acf_component": 0,
+    "acf_component_defaults": {
+        "layout": "block",
+        "repeatable": "0",
+        "pagination": "0",
+        "rows_per_page": "20",
+        "min": "",
+        "max": "",
+        "button_label": "",
+        "appearances": ""
+    },
+    "modified": 1677755565
 }

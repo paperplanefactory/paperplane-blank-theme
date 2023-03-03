@@ -1,45 +1,52 @@
 <?php
 global $listing_page_id;
-$pagination_color_scheme = get_field( 'page_opening_color_scheme', $listing_page_id );
-if ( $pagination_color_scheme == '' ) {
-  $pagination_color_scheme = get_field( 'theme_archive_page_color_scheme', 'option' );
+$pagination_color_scheme = get_field('page_opening_color_scheme', $listing_page_id);
+if ($pagination_color_scheme == '') {
+  $pagination_color_scheme = get_field('theme_archive_page_color_scheme', 'option');
 }
- ?>
-<div class="wrapper <?php echo $pagination_color_scheme; ?>">
-  <div class="wrapper-padded">
-    <div class="aligncenter infinite-button">
-      <a href="#" class="default-button allupper view-more-button-js">Carica altri contenuti</a>
+$next_posts_link = get_next_posts_link();
+?>
+<?php if ($next_posts_link): ?>
+  <div class="wrapper <?php echo $pagination_color_scheme; ?>">
+    <div class="wrapper-padded">
+      <div class="aligncenter infinite-button">
+        <a href="#" class="default-button allupper view-more-button-js">Carica altri contenuti</a>
+      </div>
     </div>
   </div>
-</div>
 
-<div id="infscr-loading" class="last-child-no-margin">
-  <div class="infinite-scroll-request">
-    <div class="spinner">
-      <div class="bounce1 bg-2"></div>
-      <div class="bounce2 bg-2"></div>
-      <div class="bounce3 bg-2"></div>
+  <div id="infscr-loading" class="last-child-no-margin">
+    <div class="infinite-scroll-request">
+      <div class="spinner">
+        <div class="bounce1 bg-2"></div>
+        <div class="bounce2 bg-2"></div>
+        <div class="bounce3 bg-2"></div>
+      </div>
+      <p>
+        loading more contents
+        <?php //pll_e('morecontents_output'); ?>
+      </p>
     </div>
-    <p>
-      loading more contents
-      <?php //pll_e('morecontents_output'); ?>
-    </p>
+    <div class="infinite-scroll-last">
+      <p>
+        no more contents
+        <?php //pll_e('nomorecontents_output'); ?>
+      </p>
+    </div>
+    <div class="infinite-scroll-error">
+      <p>
+        ops, an error has occurred
+        <?php //pll_e('ops_output'); ?>
+      </p>
+    </div>
   </div>
-  <div class="infinite-scroll-last">
-    <p>
-      no more contents
-      <?php //pll_e('nomorecontents_output'); ?>
-    </p>
+  <!-- qui aggiungo la paginazione classica di WP che verrà poi nascosta -->
+  <div class="navigation">
+    <div class="alignleft">
+      <?php previous_posts_link(); ?>
+    </div>
+    <div class="alignright nav-next">
+      <?php next_posts_link(); ?>
+    </div>
   </div>
-  <div class="infinite-scroll-error">
-    <p>
-      ops, an error has occurred
-      <?php //pll_e('ops_output'); ?>
-    </p>
-  </div>
-</div>
-<!-- qui aggiungo la paginazione classica di WP che verrà poi nascosta -->
-<div class="navigation">
-<div class="alignleft"><?php previous_posts_link(); ?></div>
-<div class="alignright nav-next"><?php next_posts_link(); ?></div>
-</div>
+<?php endif; ?>

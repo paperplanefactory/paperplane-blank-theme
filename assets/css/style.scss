@@ -15,6 +15,7 @@
 @import 'global/ctas';
 @import 'global/images';
 @import 'global/forms'; // imports mobile
+
 @media screen and (min-width: $break-mobile-start) and (max-width: $break-tablet-end) {
   @import 'mobile/header-footer';
   @import 'mobile/typo';
@@ -38,6 +39,7 @@
   @import 'mobile/slideshows';
   @import 'mobile/modals';
 }
+
 // imports desktop
 @media screen and (min-width: $break-desktop) {
   @import 'desktop/header-footer';
@@ -64,15 +66,27 @@
   @import 'desktop/slideshows';
   @import 'desktop/modals';
 }
+
 @import 'global/libraries/aos';
 @import 'global/libraries/slick';
 @import 'global/font-social-icons';
 @import 'global/pagenavi';
-@import 'global/cookies';
 @import 'global/admin-bar';
 @import 'global/mixin';
 @import 'global/modals'; //@import 'global/preload-animations';
+
 // @import 'global/visual-debug';
 // regole specifiche per Safari
 // es. le immagini con background-attachment: fixed; su Safari devono essere background-attachment: scroll !important;
-@media not all and (min-resolution:.001dpcm) {}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0ms !important;
+  }
+}
+
+
+@media (prefers-reduced-transparency: reduce) {
+  * {
+    opacity: 1 !important;
+  }
+}
