@@ -1,24 +1,27 @@
 <!-- module-expanding-text -->
-<div class="wrapper module-expanding-text <?php the_sub_field( 'module_bg' ); ?>">
+<div class="wrapper module-expanding-text <?php echo $module['module_bg']; ?>">
   <a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
-  <div class="<?php the_sub_field( 'module_vertical_top_space' ); ?> <?php the_sub_field( 'module_vertical_bottom_space' ); ?>">
+  <div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
     <div class="wrapper-padded">
       <div class="wrapper-padded-container">
         <div class="wrapper-padded-more-700">
-          <?php if ( have_rows( 'module_expanding_text_repeater' ) ) : while ( have_rows( 'module_expanding_text_repeater' ) ) : the_row(); ?>
-            <div class="expanding-block">
-              <div class="expander-top">
-                <button class="expander exp-open" aria-expanded="false"><span class="exp-plus"></span><?php the_sub_field( 'module_expanding_text_title' ); ?></button>
-              </div>
-              <div class="expandable-content">
-                <div class="inner">
-                  <div class="content-styled last-child-no-margin">
-                    <?php the_sub_field( 'module_expanding_text_content' ); ?>
+          <?php if ($module['module_expanding_text_repeater']):
+            foreach ($module['module_expanding_text_repeater'] as $expanding_block): ?>
+              <div class="expanding-block">
+                <div class="expander-top">
+                  <button class="expander exp-open" aria-expanded="false"><span class="exp-plus"></span>
+                    <?php echo $expanding_block['module_expanding_text_title']; ?>
+                  </button>
+                </div>
+                <div class="expandable-content">
+                  <div class="inner">
+                    <div class="content-styled last-child-no-margin">
+                      <?php echo $expanding_block['module_expanding_text_content']; ?>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          <?php endwhile; endif; ?>
+            <?php endforeach; endif; ?>
         </div>
       </div>
     </div>

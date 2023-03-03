@@ -1,6 +1,7 @@
 <?php
 /**
- *  Paperplane _blankTheme - template predefinito per pagine.
+ *  Paperplane _blankTheme
+ * Template Name: Moduli
  */
 get_header();
 ?>

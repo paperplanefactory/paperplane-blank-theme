@@ -7,7 +7,7 @@ var paperPlaneLazyLoad = new LazyLoad({
   elements_selector: ".lazy",
   class_loading: "lazy-loading",
   class_loaded: "lazy-loaded",
-  callback_enter: function(el) {
+  callback_enter: function (el) {
     var oneLL = new LazyLoad({
       container: el
     });
@@ -52,11 +52,11 @@ function initInfiniteScroll() {
       checkLastPage: true
     });
 
-    jQuery('.grid-infinite').on('append.infiniteScroll', function(event, response, path, items) {
+    jQuery('.grid-infinite').on('append.infiniteScroll', function (event, response, path, items) {
       paperPlaneLazyLoad.update();
       AOS.refreshHard();
     });
-    window.setInterval(function() {
+    window.setInterval(function () {
       if (jQuery('.infinite-scroll-last').is(":visible")) {
         jQuery('#infscr-loading').fadeOut(300);
       }
@@ -133,7 +133,7 @@ function scrollDirectionMenu() {
   lastScrollTop = st;
 }
 
-jQuery(window).scroll(function(event) {
+jQuery(window).scroll(function (event) {
   scrollDirectionMenu();
 });
 
@@ -141,7 +141,7 @@ jQuery(window).scroll(function(event) {
 // mega menu
 /////////////////////////////////////////////
 
-jQuery('.mega-menu-js-trigger').click(function(e) {
+jQuery('.mega-menu-js-trigger').click(function (e) {
   e.preventDefault();
 });
 
@@ -149,11 +149,11 @@ jQuery('.mega-menu-js-trigger').click(function(e) {
 // sub menu mobile
 /////////////////////////////////////////////
 
-jQuery('.overlay-menu-mobile-js > .menu-item-has-children > a').each(function(i, el) {
+jQuery('.overlay-menu-mobile-js > .menu-item-has-children > a').each(function (i, el) {
   jQuery(this).append('<span>▼</span>');
 });
 
-jQuery('.overlay-menu-mobile-js > .menu-item-has-children > a > span').click(function(e) {
+jQuery('.overlay-menu-mobile-js > .menu-item-has-children > a > span').click(function (e) {
   //alert('sdfsdf');
   if (jQuery(this).text() == "▼") {
     jQuery(this).text("▲");
@@ -168,46 +168,26 @@ jQuery('.overlay-menu-mobile-js > .menu-item-has-children > a > span').click(fun
 // slick slideshow
 /////////////////////////////////////////////
 
-jQuery('.slide-double-js, .slide-single-js').on('init reInit', function(event, slick, currentSlide, nextSlide) {
+
+jQuery('.slider-single-js').on('init reInit', function (event, slick, currentSlide, nextSlide) {
   AOS.refresh();
 });
 
-jQuery('.slide-double-js').slick({
-  lazyLoad: 'progressive',
-  dots: true,
-  focusOnSelect: true,
-  draggable: true,
-  infinite: false,
-  accessibility: true,
-  adaptiveHeight: false,
-  slidesToShow: 2,
-  slidesToScroll: 1,
-  arrows: true,
-  nextArrow: '<div class="slick-next">→</div>',
-  prevArrow: '<div class="slick-prev">←</div>',
-  responsive: [{
-    breakpoint: 1024,
-    settings: {
-      slidesToShow: 1,
-      slidesToScroll: 1
-    }
-  }]
-});
-jQuery(document).on('keydown', function(e) {
+jQuery(document).on('keydown', function (e) {
   if (e.keyCode == 37) {
-    jQuery('.slide-single-js').slick('slickPrev');
+    jQuery('.slider-single-js').slick('slickPrev');
   }
   if (e.keyCode == 39) {
-    jQuery('.slide-single-js').slick('slickNext');
+    jQuery('.slider-single-js').slick('slickNext');
   }
 });
 
-jQuery('.slide-single-js').slick({
+jQuery('.slider-single-js').slick({
   lazyLoad: 'progressive',
   dots: true,
   focusOnSelect: true,
   draggable: true,
-  infinite: false,
+  infinite: true,
   accessibility: true,
   adaptiveHeight: false,
   slidesToShow: 1,
@@ -232,7 +212,7 @@ function numbers_counter() {
   if (jQuery('.count')[0]) {
     var win_height = (jQuery(window).height() / 1.2);
     var scrollTop = jQuery(window).scrollTop();
-    jQuery('.count').each(function(i, el) {
+    jQuery('.count').each(function (i, el) {
       data_number = jQuery(this).data('data-bar-number');
       elementOffset = jQuery(this).offset().top,
         distance = (elementOffset - scrollTop);
@@ -242,7 +222,7 @@ function numbers_counter() {
         }, {
           duration: 2000,
           easing: 'swing',
-          step: function(now) {
+          step: function (now) {
             jQuery(this).text(Math.ceil(now));
             if (now < (jQuery(this).attr('data-bar-number') - 2)) {
               jQuery(this).addClass('blurred-counter');
@@ -264,7 +244,7 @@ numbers_counter();
 /////////////////////////////////////////////
 
 if (jQuery('.paperplane-modal')[0]) {
-  jQuery('.modal-close-js').click(function(e) {
+  jQuery('.modal-close-js').click(function (e) {
     var modal_close_id = jQuery(this).data('modal-close-id');
     jQuery(modal_close_id).addClass('hidden');
     var video = jQuery('.video-frame > iframe').attr('src');
@@ -275,7 +255,7 @@ if (jQuery('.paperplane-modal')[0]) {
     });
     e.preventDefault();
   });
-  jQuery('.modal-open-js').click(function(e) {
+  jQuery('.modal-open-js').click(function (e) {
     var modal_open_id = jQuery(this).data('modal-open-id');
     jQuery(modal_open_id).removeClass('hidden');
     jQuery('html, body').css({
@@ -308,7 +288,7 @@ function clear_overlay_scroll() {
 // Window scroll / resize events
 /////////////////////////////////////////////
 //let scrollRef = 0;
-jQuery(window).scroll(function() {
+jQuery(window).scroll(function () {
   numbers_counter();
   //scrollRef <= 10 ? scrollRef++ : AOS.refresh();
 });
@@ -335,7 +315,7 @@ window.addEventListener('resize', () => {
 // hide editor section front end labels
 /////////////////////////////////////////////
 
-jQuery('.click-hide').click(function(e) {
+jQuery('.click-hide').click(function (e) {
   jQuery(this).next('.hide-me').toggleClass('hidden-label');
   var isVisible = jQuery(this).next('.hide-me').hasClass('hidden-label');
   jQuery(this).text(isVisible ? "+" : "-");
@@ -356,7 +336,7 @@ function hidePreload() {
 // expandables
 /////////////////////////////////////////////
 
-jQuery('.expander').click(function(e) {
+jQuery('.expander').click(function (e) {
   if (jQuery(this).hasClass('exp-close')) {
     jQuery(this).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false).focus();
     jQuery(this).find('span').addClass('exp-plus').removeClass('exp-minus');
