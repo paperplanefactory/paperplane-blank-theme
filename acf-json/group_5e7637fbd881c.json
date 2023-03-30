@@ -22,11 +22,11 @@
             "repeatable": true
         },
         {
-            "key": "field_5e76380fdc31a",
-            "label": "Gestione mega menu",
-            "name": "mega_menu_repeater",
+            "key": "field_619a598119d64",
+            "label": "Voci di menu",
+            "name": "",
             "aria-label": "",
-            "type": "repeater",
+            "type": "message",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -35,138 +35,91 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
+            "message": "Le voci di menu possono essere gestite dal pannello Aspetto > Menu",
+            "new_lines": "wpautop",
+            "esc_html": 0,
+            "repeatable": true
+        },
+        {
+            "key": "field_5e763db9133f7",
+            "label": "Immagine",
+            "name": "mega_menu_repeater_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "repeatable": true
+        },
+        {
+            "key": "field_5e763e5a82256",
+            "label": "Testo aggiuntivo",
+            "name": "mega_menu_repeater_additional_info",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "br",
+            "repeatable": true
+        },
+        {
+            "key": "field_6394c085f2d4f",
+            "label": "CTA",
+            "name": "paperplane_theme_cta_mega_menu",
+            "aria-label": "",
+            "type": "component_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "field_group_key": "group_6390c8098b762",
+            "layout": "block",
+            "repeatable": 1,
+            "pagination": 0,
             "min": 0,
             "max": 0,
-            "layout": "block",
-            "button_label": "Aggiungi mega menu",
+            "button_label": "Aggiungi CTA",
+            "appearances": "",
             "rows_per_page": 20,
-            "repeatable": true,
-            "sub_fields": [
-                {
-                    "key": "field_5e763e33faceb",
-                    "label": "Elementi mega menu",
-                    "name": "",
-                    "aria-label": "",
-                    "type": "accordion",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "open": 0,
-                    "multi_expand": 0,
-                    "endpoint": 0,
-                    "repeatable": true,
-                    "parent_repeater": "field_5e76380fdc31a"
-                },
-                {
-                    "key": "field_619a598119d64",
-                    "label": "Voci di menu",
-                    "name": "",
-                    "aria-label": "",
-                    "type": "message",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "message": "Le voci di menu possono essere gestite dal pannello Aspetto > Menu",
-                    "new_lines": "wpautop",
-                    "esc_html": 0,
-                    "repeatable": true,
-                    "parent_repeater": "field_5e76380fdc31a"
-                },
-                {
-                    "key": "field_5e763db9133f7",
-                    "label": "Immagine",
-                    "name": "mega_menu_repeater_image",
-                    "aria-label": "",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "preview_size": "medium",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": "",
-                    "repeatable": true,
-                    "parent_repeater": "field_5e76380fdc31a"
-                },
-                {
-                    "key": "field_5e763e5a82256",
-                    "label": "Testo aggiuntivo",
-                    "name": "mega_menu_repeater_additional_info",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "maxlength": "",
-                    "rows": "",
-                    "new_lines": "br",
-                    "repeatable": true,
-                    "parent_repeater": "field_5e76380fdc31a"
-                },
-                {
-                    "key": "field_6394c085f2d4f",
-                    "label": "CTA",
-                    "name": "paperplane_theme_cta_mega_menu",
-                    "aria-label": "",
-                    "type": "component_field",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "field_group_key": "group_6390c8098b762",
-                    "layout": "block",
-                    "repeatable": 0,
-                    "button_label": "Aggiungi Riga",
-                    "appearances": "",
-                    "min": 0,
-                    "max": 0,
-                    "rows_per_page": 20,
-                    "collapsed": "",
-                    "sub_fields": [],
-                    "parent_repeater": "field_5e76380fdc31a"
-                }
-            ]
+            "collapsed": "",
+            "sub_fields": []
         }
     ],
     "location": [
         [
             {
-                "param": "options_page",
+                "param": "post_type",
                 "operator": "==",
-                "value": "gestione-mega-menu-any-lang"
+                "value": "cpt_mega_menu"
             }
         ]
     ],
@@ -190,5 +143,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1677755572
+    "modified": 1679737863
 }

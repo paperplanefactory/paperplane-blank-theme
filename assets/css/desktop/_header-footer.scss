@@ -11,15 +11,15 @@ $hamburger-width: 45px; // header
 
 #header {
   height: $header-desktop-height;
-  -webkit-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
-  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
 
   &.hidden {
     top: -$header-desktop-height;
-    -webkit-box-shadow: 0 10px 20px 0 rgba(0,0,0,0);
-    -moz-box-shadow: 0 10px 20px 0 rgba(0,0,0,0);
-    box-shadow: 0 10px 20px 0 rgba(0,0,0,0);
+    -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0);
   }
 
   #header-structure {
@@ -54,30 +54,37 @@ $hamburger-width: 45px; // header
           margin: 0 0 0 3%;
           text-align: left;
 
-          &.current-mega-menu {
-            &:after {
-              content: "";
-              position: absolute;
-              bottom: -27px;
-              left: 0;
-              display: block;
-              width: 100%;
-              height: 4px;
-            }
-          }
 
-          &.mega-menu-js-trigger,
+
+
           &.menu-item-has-children {
             a {
-              cursor: context-menu;
 
               &:before {
                 content: "▼";
                 font-size: 10px;
                 float: right;
                 margin-left: 10px;
+                speak: none;
               }
             }
+          }
+
+          .mega-menu-js-trigger {
+
+            &:before {
+              content: "▼";
+              font-size: 10px;
+              float: right;
+              margin-left: 10px;
+            }
+
+            &.current-mega-menu {
+              &:before {
+                content: "▲";
+              }
+            }
+
           }
 
           a {
@@ -98,7 +105,8 @@ $hamburger-width: 45px; // header
           &.menu-item-has-children {
             padding: 0;
 
-            &:hover {
+            &:hover,
+            &:focus-within {
               .sub-menu {
                 height: auto;
                 pointer-events: all;
@@ -122,9 +130,9 @@ $hamburger-width: 45px; // header
           @include define-border-radius(12px);
           text-align: left;
           text-transform: none;
-          -webkit-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
-          -moz-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
-          box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
+          -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+          -moz-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
           opacity: 0;
           pointer-events: none;
           @include define-basic-transition(opacity, 0.15s);
@@ -264,6 +272,7 @@ $hamburger-width: 45px; // header
 .scroll-opportunity {
   height: calc(100vh - #{$header-desktop-height});
 }
+
 // footer
 
 #footer {

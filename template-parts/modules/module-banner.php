@@ -4,8 +4,7 @@ $banner = $module['module_banner_object'];
 if ($banner):
   $post = $banner;
   setup_postdata($post);
-  paperplane_content_transients();
-  global $content_fields;
+  $content_fields = paperplane_content_transients($post->ID);
   $banner_background_image = $content_fields['banner_background_image'];
   if ($banner_background_image != '') {
     $banner_background_image_URL = $banner_background_image['sizes']['full_desk'];
@@ -25,7 +24,7 @@ if ($banner):
             data-bg-hidpi="<?php echo $module_fullscreen_image_image_hd_URL; ?>">
             <div class="above-image-opacity"></div>
             <div class="banner-content">
-              <?php if ($banner_foreground_image != ''): ?>
+              <?php if ($content_fields['banner_foreground_image'] != ''): ?>
                 <div class="flex-hold flex-hold-banner">
                   <div class="banner-image" data-aos="zoom-out">
                     <?php paperplane_theme_cta_absl_advanced($content_fields['paperplane_theme_cta_banner']); ?>

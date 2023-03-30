@@ -5,18 +5,22 @@
 	-webkit-flex-wrap: wrap !important;
 	flex-wrap: wrap !important;
 }
+
 @mixin define-flex-per-row($row_items) {
 	-webkit-flex: 0 0 $row_items;
 	flex: 0 0 $row_items;
 }
+
 @mixin flex-verticalize {
 	-webkit-align-items: center;
 	align-items: center;
 }
+
 @mixin flex-end {
 	-webkit-justify-content: flex-end;
 	justify-content: flex-end;
 }
+
 @mixin sticky-element {
 	position: -webkit-sticky;
 	position: -moz-sticky;
@@ -24,6 +28,7 @@
 	position: -o-sticky;
 	position: sticky;
 }
+
 @mixin reset-button {
 	padding: 0;
 	margin: 0;
@@ -33,9 +38,11 @@
 	line-height: normal;
 	-webkit-appearance: none !important;
 }
+
 @mixin define-border-radius($radius) {
 	border-radius: $radius;
 }
+
 @mixin define-blur($blur_me) {
 	filter: blur($blur_me);
 	-webkit-filter: blur($blur_me);
@@ -43,13 +50,16 @@
 	-o-filter: blur($blur_me);
 	-ms-filter: blur($blur_me);
 }
+
 @mixin define-basic-transition($effet_affected, $effect_duration) {
 	transition: $effet_affected $effect_duration ease-in-out;
 }
+
 @mixin define-transform($transforms) {
 	-webkit-transform: $transforms;
 	transform: $transforms;
 }
+
 // typography
 @mixin define-hyphens {
 	word-wrap: break-word;
@@ -58,18 +68,22 @@
 	-ms-hyphens: auto;
 	hyphens: auto;
 }
+
 // Rotate
 @mixin define-rotate ($deg) {
 	@include define-transform(rotate(#{$deg}deg));
 }
+
 // Scale
 @mixin define-scale($scale) {
 	@include define-transform(scale($scale));
 }
+
 // Translate
 @mixin define-translate ($x, $y) {
 	@include define-transform(translate($x, $y));
 }
+
 // Skew
 @mixin define-skew ($x, $y) {
 	@include define-transform(skew(#{$x}deg, #{$y}deg));

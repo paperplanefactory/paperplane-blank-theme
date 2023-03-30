@@ -8,6 +8,8 @@ $page_listing_cpt = get_field('page_listing_cpt');
 $page_listing_layout = get_field('page_listing_layout');
 global $listing_page_id;
 $listing_page_id = get_the_ID();
+$content_fields = paperplane_content_transients($post->ID);
+include(locate_template('template-parts/grid/page-opening.php'));
 ?>
 <?php if ($page_listing_layout === 'listing-grid'): ?>
   <div class="wrapper <?php the_field('page_opening_color_scheme'); ?>">

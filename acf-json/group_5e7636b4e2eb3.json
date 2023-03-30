@@ -6,6 +6,7 @@
             "key": "field_5e7636cba2ac3",
             "label": "Theme version",
             "name": "theme_version",
+            "aria-label": "",
             "type": "text",
             "instructions": "For quick cache problem solving change theme version here. Use something like 1.2.1",
             "required": 0,
@@ -19,31 +20,14 @@
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5e76370a38a26",
-            "label": "Mega menu",
-            "name": "use_mega_menus",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "Sì",
-            "ui_off_text": "No"
+            "maxlength": "",
+            "repeatable": true
         },
         {
             "key": "field_5e835c840223a",
             "label": "Larghezza header",
             "name": "theme_header_width",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -57,18 +41,20 @@
                 "full-width": "Fullscreen - meno i margini minimi previsti",
                 "contained-width": "Larghezza massima basata sul contenitore principale"
             },
-            "default_value": [],
+            "default_value": false,
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "repeatable": true
         },
         {
             "key": "field_5e83607841c0b",
             "label": "Larghezza footer",
             "name": "theme_footer_width",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -82,18 +68,20 @@
                 "full-width": "Fullscreen - meno i margini minimi previsti",
                 "contained-width": "Larghezza massima basata sul contenitore principale"
             },
-            "default_value": [],
+            "default_value": false,
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "repeatable": true
         },
         {
             "key": "field_616ff1b2505f2",
             "label": "Tipo di paginazione contenuti",
             "name": "theme_pagination",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -113,12 +101,14 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "repeatable": true
         },
         {
             "key": "field_6189679ab7c84",
             "label": "Schema colori pagine archivio",
             "name": "theme_archive_page_color_scheme",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -139,7 +129,28 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "repeatable": true
+        },
+        {
+            "key": "field_642430a281253",
+            "label": "Attivare PWA",
+            "name": "attivare_pwa",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
         }
     ],
     "location": [
@@ -160,5 +171,16 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1659706287
+    "is_acf_component": 0,
+    "acf_component_defaults": {
+        "layout": "block",
+        "repeatable": "0",
+        "pagination": "0",
+        "rows_per_page": "20",
+        "min": "",
+        "max": "",
+        "button_label": "",
+        "appearances": ""
+    },
+    "modified": 1680093384
 }

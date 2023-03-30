@@ -65,9 +65,11 @@ ul {
 .allupper {
   text-transform: uppercase;
 }
+
 // comma separated links
 
 .category-list {
+
   //margin-bottom: 24px;
   a:link {
     &:after {
@@ -89,9 +91,11 @@ ul {
     }
   }
 }
+
 // remove typography elements last child margin bottom
 
 .last-child-no-margin {
+
   h1:last-child,
   h2:last-child,
   h3:last-child,
@@ -144,7 +148,7 @@ ul {
     counter-reset: li-counter;
   }
 
-  ol > li {
+  ol>li {
     overflow: hidden;
     position: relative;
     margin: 0;

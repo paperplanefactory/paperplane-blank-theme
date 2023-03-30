@@ -16,10 +16,8 @@ function paperplane_multilang_setup()
     return $languages;
 }
 
-function paperplane_content_transients()
+function paperplane_content_transients($content_id)
 {
-    global $post, $content_fields;
-    $content_id = $post->ID;
     $content_fields_transient = get_transient('content_fields_transient_' . $content_id);
     if (empty($content_fields_transient)) {
         $content_fields = get_fields($content_id);
@@ -27,6 +25,7 @@ function paperplane_content_transients()
     } else {
         $content_fields = $content_fields_transient;
     }
+    return $content_fields;
 }
 
 function paperplane_options_transients()
@@ -60,10 +59,13 @@ function paperplane_delete_content_transients($post_id, $post, $update)
     $this_cpt = get_post_type($post_id);
     delete_transient('content_fields_transient_' . $post_id);
     if ($this_cpt === 'page' || $this_cpt === 'post' || $this_cpt === 'cpt_banner' || $this_cpt === 'cpt_modal') {
-        delete_transient('gestione_kazzum_transient_' . $post_id);
+        //delete_transient('content_fields_transient_' . $post_id);
     }
     if ($this_cpt === 'cpt_modal') {
         delete_transient('paperplane_query_modals_transient');
+    }
+    if ($this_cpt === 'cpt_mega_menu') {
+        delete_transient('paperplane_mega_menus_transient');
     }
 }
 add_action('save_post', 'paperplane_delete_content_transients', 10, 3);

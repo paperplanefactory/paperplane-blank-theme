@@ -13,13 +13,13 @@
   opacity: 1;
   pointer-events: all;
   visibility: visible;
-  @include define-basic-transition(all, 0.4s);
+  @include define-basic-transition(opacity, 0.4s);
 
   &.hidden {
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
-    z-index: -1;
+    //z-index: -1;
   }
 
   .modal-box {

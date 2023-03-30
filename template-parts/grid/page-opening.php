@@ -1,5 +1,4 @@
 <?php
-global $content_fields;
 if (is_archive()) {
   include(locate_template('template-parts/grid/page-opening/opening-archive.php'));
 } else {
