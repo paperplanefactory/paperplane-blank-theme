@@ -1779,6 +1779,13 @@
                 "operator": "==",
                 "value": "page"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
         ]
     ],
     "menu_order": 1,
@@ -1803,5 +1810,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1676034788
+    "modified": 1679853258
 }

@@ -95,20 +95,25 @@ body {
 	//overflow: overlay !important;
 	//scrollbar-gutter: auto;
 	margin: 0;
+
+	&.body-accessible-navi {
+		*:focus {
+			outline: 0;
+			box-shadow: 0 0 0 8px red;
+		}
+	}
 }
 
 main {
 	display: block;
 }
 
-*:focus {
-	outline: 0;
-}
+
 
 *,
 *::after,
 *::before {
-	outline: 0;
+	//outline: 0;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;

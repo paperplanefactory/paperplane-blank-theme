@@ -1,3 +1,4 @@
+</div><!-- id="page-content" aperto in header.php -->
 <?php
 // Paperplane _blankTheme - template per footer.
 wp_reset_query();
@@ -40,6 +41,16 @@ $cta_url_modal_array = array_unique($cta_url_modal_array);
         <div class="flex-hold flex-hold-2 margins-wide verticalize">
           <div class="flex-hold-child">
             <?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_legal_notes']; ?>
+            <p>
+              <a href="#" class="accessible-navi-activate-js"
+                title="<?php _e('Activate focus on links', 'paperPlane-blankTheme'); ?>"
+                aria-label="<?php _e('Activate focus on links', 'paperPlane-blankTheme'); ?>"
+                data-original-label="<?php _e('Activate focus on links', 'paperPlane-blankTheme'); ?>"
+                data-active-label="<?php _e('Deactivate focus on links', 'paperPlane-blankTheme'); ?>">
+                <?php _e('Activate focus on links', 'paperPlane-blankTheme'); ?>
+              </a>
+            <div id="install">install</div>
+            </p>
           </div>
           <div class="flex-hold-child desktop-align-right">
             <?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_credits']; ?>

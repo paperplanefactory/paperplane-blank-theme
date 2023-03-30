@@ -16,6 +16,7 @@
                 <div class="expandable-content">
                   <div class="inner">
                     <div class="content-styled last-child-no-margin">
+                      <a name="expandable-content-<?php echo $module_count; ?>" class="section-anchor"></a>
                       <?php echo $expanding_block['module_expanding_text_content']; ?>
                     </div>
                   </div>

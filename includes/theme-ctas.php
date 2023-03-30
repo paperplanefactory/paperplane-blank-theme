@@ -22,12 +22,14 @@ function paperplane_theme_cta_advanced($field_names)
               $cta_url = get_permalink($cta_internal_ID);
               $cta_url_modal_class = '';
               $data_modal_open_id = '';
+              $start_point = '';
             } else {
               global $cta_url_modal_array;
               $cta_url_modal_array[] = $cta_internal_ID;
-              $cta_url = '#';
+              $start_point = paperplane_random_code();
+              $cta_url = '#modal-focus-' . $cta_internal_ID;
               $cta_url_modal_class = 'modal-open-js';
-              $data_modal_open_id = '.paperplane-modal-js-' . $cta_internal_ID;
+              $data_modal_open_id = $cta_internal_ID;
             }
           }
         } elseif ($cta_destination === 'external-cta') {
@@ -35,14 +37,16 @@ function paperplane_theme_cta_advanced($field_names)
           $cta_url = $field_name['cta_url'];
           $cta_url_modal_class = '';
           $data_modal_open_id = '';
+          $start_point = '';
         } elseif ($cta_destination === 'download-cta') {
           $cta_title = __('Scarica', 'paperPlane-blankTheme');
           $cta_url = $field_name['cta_file_download'];
           $cta_url_modal_class = '';
           $data_modal_open_id = '';
+          $start_point = '';
         }
         $cta_appearance = $field_name['cta_appearance'];
-        $cta_html .= '<a href="' . $cta_url . '" target="' . $target . '" class="' . $cta_appearance . '  ' . $cta_url_modal_class . ' allupper" data-modal-open-id="' . $data_modal_open_id . '" title="' . $cta_title . ' ' . $button_text . '" aria-label="' . $cta_title . ' ' . $button_text . '">' . $button_text . '</a>';
+        $cta_html .= '<a href="' . $cta_url . '" target="' . $target . '" class="' . $cta_appearance . '  ' . $cta_url_modal_class . ' ' . $start_point . ' allupper" data-modal-open-id="' . $data_modal_open_id . '" data-modal-back-to="' . $start_point . '" title="' . $cta_title . ' ' . $button_text . '" aria-label="' . $cta_title . ' ' . $button_text . '">' . $button_text . '</a>';
       }
     }
     $cta_html .= '</div>';
@@ -78,7 +82,7 @@ function paperplane_theme_cta_absl_advanced($field_names)
               } else {
                 global $cta_url_modal_array;
                 $cta_url_modal_array[] = $cta_internal_ID;
-                $cta_url = '#';
+                $cta_url = '#paperplane-modal-js-' . $cta_internal_ID;
                 $cta_url_modal_class = 'modal-open-js';
                 $data_modal_open_id = '.paperplane-modal-js-' . $cta_internal_ID;
               }

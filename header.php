@@ -14,14 +14,8 @@
 
 <head>
   <meta charset="<?php bloginfo('charset'); ?>" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#000000">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#000000">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
   <title>
     <?php wp_title('|', true, 'right'); ?>
   </title>
@@ -29,7 +23,7 @@
   <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
   <?php
   wp_head();
-  global $acf_options_parameter, $static_bloginfo_stylesheet_directory, $options_fields, $options_fields_multilang, $cta_url_modal_array, $theme_pagination, $footer_wrapper, $mega_menu_wrapper, $header_wrapper;
+  global $acf_options_parameter, $static_bloginfo_stylesheet_directory, $options_fields, $options_fields_multilang, $cta_url_modal_array, $theme_pagination, $footer_wrapper, $mega_menu_wrapper, $header_wrapper, $attivare_pwa;
   // Imposto la variabile globale per definire:
 // - se è attivo Polylang il linguaggio in cui l'utente sta visitando il sito
 // - se non è attivo Polylang un valore generico 'any-lang'
@@ -61,45 +55,45 @@
   $cta_url_modal_array = array();
   // Imposto e valorizzo la variabile globale per definire la cartella del tema:
   $static_bloginfo_stylesheet_directory = get_bloginfo('stylesheet_directory');
-  // Genero le trnasients relative ai singoli contenuti
-  paperplane_content_transients();
   // Genero le trnasients delle pagine di opzioni
   paperplane_options_transients();
 
   ?>
-  <link rel="apple-touch-icon" sizes="57x57"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16"
-    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/favicon-16x16.png">
-  <link rel="manifest" href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/manifest.json">
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#000000">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#000000">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+  <link rel="icon" type="image/png" sizes="1024x1024"
+    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/favicon-1024x1024.png">
+  <link rel="apple-touch-icon"
+    href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/favicon-1024x1024-maskable.png">
   <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage"
-    content="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/ms-icon-144x144.png">
+  <?php if ($attivare_pwa == 1): ?>
+    <link rel="manifest" href="<?php echo get_home_url(); ?>/manifest.json">
+    <script type="text/javascript">
+      if ("serviceWorker" in navigator) {
+        // Register a service worker hosted at the root of the
+        // site using the default scope.
+        navigator.serviceWorker.register("/sw.js").then(
+          (registration) => {
+            console.log("Service worker registration succeeded:", registration);
+          },
+          (error) => {
+            console.error(`Service worker registration failed: ${error}`);
+          }
+        );
+      } else {
+        console.error("Service workers are not supported.");
+      }
+    </script>
+  <?php endif; ?>
+
 </head>
 
 <body>
+  <?php include(locate_template('template-parts/grid/accessible-navi.php')); ?>
   <div id="site-wrapper">
     <div id="preheader"></div>
     <header id="header" class="colors-black-bg">
@@ -120,13 +114,15 @@
             <div class="side-head">
               <ul>
                 <li>
-                  <div aria-haspopup="true" aria-controls="head-overlay" class="hambuger-element ham-activator"
-                    onclick="hamburgerMenu()">
+                  <button class="hambuger-element ham-activator" aria-haspopup="true" aria-controls="head-overlay"
+                    onclick="hamburgerMenu()"
+                    title="<?php _e('Accedi al menu ad hamburger', 'paperPlane-blankTheme'); ?>"
+                    aria-label="<?php _e('Accedi al menu ad hamburger', 'paperPlane-blankTheme'); ?>">
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                  </div>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -136,7 +132,7 @@
     </header>
     <?php include(locate_template('template-parts/grid/mega-menu.php')); ?>
 
-    <div id="head-overlay" class="hidden colors-black-bg">
+    <div id="head-overlay" class="hidden colors-black-bg" aria-hidden="true">
       <div class="scroll-opportunity">
         <div class="wrapper">
           <nav class="menu">
@@ -161,4 +157,4 @@
         </div>
       </div>
     </div>
-    <?php include(locate_template('template-parts/grid/page-opening.php')); ?>
+    <div id="page-content">

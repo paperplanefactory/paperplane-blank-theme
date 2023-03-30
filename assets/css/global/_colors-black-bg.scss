@@ -32,11 +32,6 @@
     }
   }
 
-  .current-mega-menu {
-    &:after {
-      background-color: $color-4;
-    }
-  }
 
   .sub-menu {
     color: $color-2 !important;
@@ -46,6 +41,7 @@
       border-bottom: $color-4 solid 1px;
 
       a {
+
         &:link,
         &:visited {
           color: $color-1;
@@ -72,6 +68,7 @@
         border-top: solid 1px $color-1 !important;
 
         a {
+
           &:link,
           &:visited {
             color: $color-4;
@@ -129,6 +126,7 @@
 
   .slide-double,
   .slide-single {
+
     &:after,
     &:before {
       background-color: rgba(0, 0, 0, 0.75);
@@ -190,6 +188,7 @@
   }
 
   input[type=file] {
+
     &::-webkit-file-upload-button,
     &::file-selector-button {
       color: $color-4;
@@ -198,6 +197,7 @@
     }
 
     &:hover {
+
       &::-webkit-file-upload-button,
       &::file-selector-button {
         color: $color-1;
@@ -227,7 +227,7 @@
       }
     }
 
-    ol > li {
+    ol>li {
       &:before {
         color: $color-3;
       }
@@ -259,7 +259,7 @@
   }
 
   &.paperplane-modal {
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 
     .modal-box,
     .modal-title {

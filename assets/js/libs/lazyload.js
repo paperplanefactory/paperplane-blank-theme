@@ -1,12 +1,12 @@
-(function(global, factory) {
+(function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LazyLoad = factory());
-}(this, (function() {
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LazyLoad = factory());
+}(this, (function () {
   'use strict';
 
   function _extends() {
-    _extends = Object.assign || function(target) {
+    _extends = Object.assign || function (target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
 
@@ -41,6 +41,7 @@
     data_bg_hidpi: "bg-hidpi",
     data_bg_multi: "bg-multi",
     data_bg_multi_hidpi: "bg-multi-hidpi",
+    data_bg_set: "bg-set",
     data_poster: "poster",
     class_applied: "applied",
     class_loading: "loading",
@@ -59,7 +60,8 @@
     callback_error: null,
     callback_finish: null,
     callback_cancel: null,
-    use_native: false
+    use_native: false,
+    restore_on_error: false
   };
   var getExtendedSettings = function getExtendedSettings(customSettings) {
     return _extends({}, defaultSettings, customSettings);
@@ -88,7 +90,7 @@
 
     window.dispatchEvent(event);
   };
-  /* Auto initialization of one or more instances of lazyload, depending on the
+  /* Auto initialization of one or more instances of lazyload, depending on the 
       options passed in (plain object or an array) */
 
 
@@ -113,6 +115,7 @@
   var SIZES = "sizes";
   var POSTER = "poster";
   var ORIGINALS = "llOriginalAttrs";
+  var DATA = "data";
 
   var statusLoading = "loading";
   var statusLoaded = "loaded";
@@ -269,6 +272,7 @@
   var attrsSrc = [SRC];
   var attrsSrcPoster = [SRC, POSTER];
   var attrsSrcSrcsetSizes = [SRC, SRCSET, SIZES];
+  var attrsData = [DATA];
   var hasOriginalAttrs = function hasOriginalAttrs(element) {
     return !!element[ORIGINALS];
   };
@@ -285,7 +289,7 @@
     }
 
     var originals = {};
-    attributes.forEach(function(attribute) {
+    attributes.forEach(function (attribute) {
       originals[attribute] = element.getAttribute(attribute);
     });
     element[ORIGINALS] = originals;
@@ -315,7 +319,7 @@
     }
 
     var originals = getOriginalAttrs(element);
-    attributes.forEach(function(attribute) {
+    attributes.forEach(function (attribute) {
       setOrResetAttribute(element, attribute, originals[attribute]);
     });
   };
@@ -362,7 +366,7 @@
     setAttributeIfValue(element, SRC, getData(element, settings.data_src));
   };
   var setSourcesImg = function setSourcesImg(imgEl, settings) {
-    forEachPictureSource(imgEl, function(sourceTag) {
+    forEachPictureSource(imgEl, function (sourceTag) {
       setOriginalsObject(sourceTag, attrsSrcSrcsetSizes);
       setImageAttributes(sourceTag, settings);
     });
@@ -374,7 +378,7 @@
     setAttributeIfValue(iframe, SRC, getData(iframe, settings.data_src));
   };
   var setSourcesVideo = function setSourcesVideo(videoEl, settings) {
-    forEachVideoSource(videoEl, function(sourceEl) {
+    forEachVideoSource(videoEl, function (sourceEl) {
       setOriginalsObject(sourceEl, attrsSrc);
       setAttributeIfValue(sourceEl, SRC, getData(sourceEl, settings.data_src));
     });
@@ -382,6 +386,10 @@
     setAttributeIfValue(videoEl, POSTER, getData(videoEl, settings.data_poster));
     setAttributeIfValue(videoEl, SRC, getData(videoEl, settings.data_src));
     videoEl.load();
+  };
+  var setSourcesObject = function setSourcesObject(object, settings) {
+    setOriginalsObject(object, attrsData);
+    setAttributeIfValue(object, DATA, getData(object, settings.data_src));
   };
   var setBackground = function setBackground(element, settings, instance) {
     var bg1xValue = getData(element, settings.data_bg);
@@ -407,10 +415,33 @@
     element.style.backgroundImage = bgDataValue;
     manageApplied(element, settings, instance);
   };
+  var setImgsetBackground = function setImgsetBackground(element, settings, instance) {
+    var bgImgSetDataValue = getData(element, settings.data_bg_set);
+
+    if (!bgImgSetDataValue) {
+      return;
+    }
+
+    var imgSetValues = bgImgSetDataValue.split("|");
+    var bgImageValues = imgSetValues.map(function (value) {
+      return "image-set(".concat(value, ")");
+    });
+    element.style.backgroundImage = bgImageValues.join(); // Temporary fix for Chromeium with the -webkit- prefix
+
+    if (element.style.backgroundImage === '') {
+      bgImageValues = imgSetValues.map(function (value) {
+        return "-webkit-image-set(".concat(value, ")");
+      });
+      element.style.backgroundImage = bgImageValues.join();
+    }
+
+    manageApplied(element, settings, instance);
+  };
   var setSourcesFunctions = {
     IMG: setSourcesImg,
     IFRAME: setSourcesIframe,
-    VIDEO: setSourcesVideo
+    VIDEO: setSourcesVideo,
+    OBJECT: setSourcesObject
   };
   var setSourcesNative = function setSourcesNative(element, settings) {
     var setSourcesFunction = setSourcesFunctions[element.tagName];
@@ -432,7 +463,7 @@
     manageLoading(element, settings, instance);
   };
 
-  var elementsWithLoadEvent = ["IMG", "IFRAME", "VIDEO"];
+  var elementsWithLoadEvent = ["IMG", "IFRAME", "VIDEO", "OBJECT"];
   var hasLoadEvent = function hasLoadEvent(element) {
     return elementsWithLoadEvent.indexOf(element.tagName) > -1;
   };
@@ -495,6 +526,7 @@
     addClass(element, settings.class_error);
     setStatus(element, statusError);
     safeCallback(settings.callback_error, element, instance);
+    if (settings.restore_on_error) restoreOriginalAttrs(element, attrsSrcSrcsetSizes);
     if (!goingNative) checkFinish(settings, instance);
   };
   var addOneShotEventListeners = function addOneShotEventListeners(element, settings, instance) {
@@ -524,6 +556,7 @@
     saveOriginalBackgroundStyle(element);
     setBackground(element, settings, instance);
     setMultiBackground(element, settings, instance);
+    setImgsetBackground(element, settings, instance);
   };
 
   var loadRegular = function loadRegular(element, settings, instance) {
@@ -552,20 +585,20 @@
   };
 
   var resetSourcesImg = function resetSourcesImg(element) {
-    forEachPictureSource(element, function(sourceTag) {
+    forEachPictureSource(element, function (sourceTag) {
       removeImageAttributes(sourceTag);
     });
     removeImageAttributes(element);
   };
 
   var restoreImg = function restoreImg(imgEl) {
-    forEachPictureSource(imgEl, function(sourceEl) {
+    forEachPictureSource(imgEl, function (sourceEl) {
       restoreOriginalAttrs(sourceEl, attrsSrcSrcsetSizes);
     });
     restoreOriginalAttrs(imgEl, attrsSrcSrcsetSizes);
   };
   var restoreVideo = function restoreVideo(videoEl) {
-    forEachVideoSource(videoEl, function(sourceEl) {
+    forEachVideoSource(videoEl, function (sourceEl) {
       restoreOriginalAttrs(sourceEl, attrsSrc);
     });
     restoreOriginalAttrs(videoEl, attrsSrcPoster);
@@ -574,10 +607,14 @@
   var restoreIframe = function restoreIframe(iframeEl) {
     restoreOriginalAttrs(iframeEl, attrsSrc);
   };
+  var restoreObject = function restoreObject(objectEl) {
+    restoreOriginalAttrs(objectEl, attrsData);
+  };
   var restoreFunctions = {
     IMG: restoreImg,
     IFRAME: restoreIframe,
-    VIDEO: restoreVideo
+    VIDEO: restoreVideo,
+    OBJECT: restoreObject
   };
 
   var restoreAttributes = function restoreAttributes(element) {
@@ -627,7 +664,7 @@
 
   var onEnter = function onEnter(element, entry, settings, instance) {
     var dontLoad = hadStartedLoading(element);
-    /* Save status
+    /* Save status 
     before setting it, to prevent loading it again. Fixes #526. */
 
     setStatus(element, statusEntered);
@@ -651,7 +688,7 @@
     return settings.use_native && "loading" in HTMLImageElement.prototype;
   };
   var loadAllNative = function loadAllNative(elements, settings, instance) {
-    elements.forEach(function(element) {
+    elements.forEach(function (element) {
       if (tagsWithNativeLazy.indexOf(element.tagName) === -1) {
         return;
       }
@@ -673,13 +710,13 @@
   };
 
   var intersectionHandler = function intersectionHandler(entries, settings, instance) {
-    entries.forEach(function(entry) {
+    entries.forEach(function (entry) {
       return isIntersecting(entry) ? onEnter(entry.target, entry, settings, instance) : onExit(entry.target, entry, settings, instance);
     });
   };
 
   var observeElements = function observeElements(observer, elements) {
-    elements.forEach(function(element) {
+    elements.forEach(function (element) {
       observer.observe(element);
     });
   };
@@ -692,7 +729,7 @@
       return;
     }
 
-    instance._observer = new IntersectionObserver(function(entries) {
+    instance._observer = new IntersectionObserver(function (entries) {
       intersectionHandler(entries, settings, instance);
     }, getObserverSettings(settings));
   };
@@ -718,7 +755,7 @@
 
   var retryLazyLoad = function retryLazyLoad(settings, instance) {
     var errorElements = filterErrorElements(queryElements(settings));
-    errorElements.forEach(function(element) {
+    errorElements.forEach(function (element) {
       removeClass(element, settings.class_error);
       resetStatus(element);
     });
@@ -729,9 +766,18 @@
       return;
     }
 
-    window.addEventListener("online", function() {
+    instance._onlineHandler = function () {
       retryLazyLoad(settings, instance);
-    });
+    };
+
+    window.addEventListener("online", instance._onlineHandler);
+  };
+  var resetOnlineCheck = function resetOnlineCheck(instance) {
+    if (!runningOnBrowser) {
+      return;
+    }
+
+    window.removeEventListener("online", instance._onlineHandler);
   };
 
   var LazyLoad = function LazyLoad(customSettings, elements) {
@@ -765,15 +811,18 @@
       // Observer
       if (this._observer) {
         this._observer.disconnect();
-      } // Clean custom attributes on elements
+      } // Clean handlers
 
 
-      queryElements(this._settings).forEach(function(element) {
+      resetOnlineCheck(this); // Clean custom attributes on elements
+
+      queryElements(this._settings).forEach(function (element) {
         deleteOriginalAttrs(element);
       }); // Delete all internal props
 
       delete this._observer;
       delete this._settings;
+      delete this._onlineHandler;
       delete this.loadingCount;
       delete this.toLoadCount;
     },
@@ -782,25 +831,25 @@
 
       var settings = this._settings;
       var elementsToLoad = getElementsToLoad(elements, settings);
-      elementsToLoad.forEach(function(element) {
+      elementsToLoad.forEach(function (element) {
         unobserve(element, _this);
         load(element, settings, _this);
       });
     },
     restoreAll: function restoreAll() {
       var settings = this._settings;
-      queryElements(settings).forEach(function(element) {
+      queryElements(settings).forEach(function (element) {
         restore(element, settings);
       });
     }
   };
 
-  LazyLoad.load = function(element, customSettings) {
+  LazyLoad.load = function (element, customSettings) {
     var settings = getExtendedSettings(customSettings);
     load(element, settings);
   };
 
-  LazyLoad.resetStatus = function(element) {
+  LazyLoad.resetStatus = function (element) {
     resetStatus(element);
   }; // Automatic instances creation if required (useful for async script loading)
 

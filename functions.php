@@ -1,6 +1,7 @@
 <?php
-global $theme_version;
+global $theme_version, $attivare_pwa;
 $theme_version = get_field('theme_version', 'option');
+$attivare_pwa = get_field('attivare_pwa', 'option');
 global $theme_pagination;
 $theme_pagination = get_field('theme_pagination', 'option');
 // gestione caricamento css
@@ -27,6 +28,10 @@ include_once "includes/theme-pagination.php";
 include_once "includes/theme-ctas.php";
 // gestione transients
 include_once "includes/theme-transients.php";
+if ($attivare_pwa == 1) {
+  // gestione PWA
+  include_once "includes/theme-pwa.php";
+}
 // attivo le traduzioni
 function paperplane_theme_load_theme_textdomain()
 {
