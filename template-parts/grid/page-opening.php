@@ -4,8 +4,7 @@ if (is_archive()) {
 } else {
   $page_opening_layout = $content_fields['page_opening_layout'];
   $thumb_id = get_post_thumbnail_id();
-  $thumb_url_desktop = wp_get_attachment_image_src($thumb_id, 'full_desk', true);
-  $thumb_url_desktop_hd = wp_get_attachment_image_src($thumb_id, 'full_desk_hd', true);
+  $thumb_url_desktop = wp_get_attachment_image_src($thumb_id, 'full_desk_hd', true);
   $page_opening_video = $content_fields['page_opening_video'];
   $page_breadcrumbs = $content_fields['page_breadcrumbs'];
   $page_scroll_button = $content_fields['page_scroll_button'];

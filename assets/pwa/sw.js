@@ -1,9 +1,8 @@
-/* global self, caches, fetch, URL, Response */
 'use strict';
-
 var config = {
   version: 'achilles',
   staticCacheItems: [
+    'wp-content/themes/paperplane-blank-theme/style.min.css',
     '/',
     '?utm_source=pwa-homescreen',
   ],

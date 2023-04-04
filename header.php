@@ -23,7 +23,7 @@
   <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
   <?php
   wp_head();
-  global $acf_options_parameter, $static_bloginfo_stylesheet_directory, $options_fields, $options_fields_multilang, $cta_url_modal_array, $theme_pagination, $footer_wrapper, $mega_menu_wrapper, $header_wrapper, $attivare_pwa;
+  global $theme_version, $acf_options_parameter, $static_bloginfo_stylesheet_directory, $options_fields, $options_fields_multilang, $cta_url_modal_array, $theme_pagination, $footer_wrapper, $mega_menu_wrapper, $header_wrapper, $attivare_pwa;
   // Imposto la variabile globale per definire:
 // - se è attivo Polylang il linguaggio in cui l'utente sta visitando il sito
 // - se non è attivo Polylang un valore generico 'any-lang'
@@ -72,22 +72,8 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <?php if ($attivare_pwa == 1): ?>
     <link rel="manifest" href="<?php echo get_home_url(); ?>/manifest.json">
-    <script type="text/javascript">
-      if ("serviceWorker" in navigator) {
-        // Register a service worker hosted at the root of the
-        // site using the default scope.
-        navigator.serviceWorker.register("/sw.js").then(
-          (registration) => {
-            console.log("Service worker registration succeeded:", registration);
-          },
-          (error) => {
-            console.error(`Service worker registration failed: ${error}`);
-          }
-        );
-      } else {
-        console.error("Service workers are not supported.");
-      }
-    </script>
+    <link rel="prefetch" href="<?php echo get_home_url(); ?>/manifest.json">
+
   <?php endif; ?>
 
 </head>

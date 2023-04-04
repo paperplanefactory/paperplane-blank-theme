@@ -49,7 +49,9 @@ $cta_url_modal_array = array_unique($cta_url_modal_array);
                 data-active-label="<?php _e('Deactivate focus on links', 'paperPlane-blankTheme'); ?>">
                 <?php _e('Activate focus on links', 'paperPlane-blankTheme'); ?>
               </a>
-            <div id="install">install</div>
+            <div id="install">install
+              <?php echo parse_url(get_stylesheet_directory_uri(), PHP_URL_PATH); ?>
+            </div>
             </p>
           </div>
           <div class="flex-hold-child desktop-align-right">

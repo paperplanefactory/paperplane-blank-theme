@@ -9,6 +9,16 @@ h1 {
   margin-bottom: $h1-marginbottom-desktop;
 }
 
+.fullscreen-cta {
+  h1 {
+    //font-size: 5vw;
+    font-size: calc(#{$h1-size-desktop} + 1.5vw);
+    line-height: calc(#{$h1-lineheight-desktop} + 1.8vw);
+    //calc((100vh / 100vw) * 100);
+
+  }
+}
+
 .as-h2,
 h2 {
   font-size: $h2-size-desktop;

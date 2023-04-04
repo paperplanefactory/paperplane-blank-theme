@@ -28,10 +28,7 @@ include_once "includes/theme-pagination.php";
 include_once "includes/theme-ctas.php";
 // gestione transients
 include_once "includes/theme-transients.php";
-if ($attivare_pwa == 1) {
-  // gestione PWA
-  include_once "includes/theme-pwa.php";
-}
+include_once "includes/theme-pwa.php";
 // attivo le traduzioni
 function paperplane_theme_load_theme_textdomain()
 {

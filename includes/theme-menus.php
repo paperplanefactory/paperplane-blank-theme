@@ -176,22 +176,14 @@ function paperplane_wysiwyg_preset_colors($init)
 }
 add_filter('tiny_mce_before_init', 'paperplane_wysiwyg_preset_colors');
 
-
 function paperplane_random_code()
 {
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $string = '';
 
-  $chars = "abcdefghijkmnopqrstuvwxyz023456789";
-  srand((double) microtime() * 1000000);
-  $i = 0;
-  $pass = '';
-
-  while ($i <= 7) {
-    $num = rand() % 33;
-    $tmp = substr($chars, $num, 1);
-    $pass = $pass . $tmp;
-    $i++;
+  for ($i = 0; $i < 5; $i++) {
+    $string .= $characters[mt_rand(0, strlen($characters) - 1)];
   }
 
-  return $pass;
-
+  return $string;
 }

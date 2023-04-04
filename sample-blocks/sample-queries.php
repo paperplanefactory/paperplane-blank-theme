@@ -87,5 +87,3 @@ if ( !empty ( $my_post_related ) ) :
 foreach ( $my_post_related as $post ) : setup_postdata ($post );
 // fai qualcosa tipo stampare il titolo
 endforeach; wp_reset_postdata();
-
- ?>
