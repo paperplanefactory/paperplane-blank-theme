@@ -281,13 +281,34 @@ if (jQuery('.paperplane-modal')[0]) {
     var modal_back_to = localStorage.getItem('modal_back_to');
     setTimeout(function () { jQuery('.' + modal_back_to).focus() }, 50);
     jQuery(modal_close_id).addClass('hidden');
-    var video = jQuery('.video-frame > iframe').attr('src');
-    jQuery('.video-frame > iframe').attr('src', '');
-    jQuery('.video-frame > iframe').attr('src', video);
+    var video = jQuery(modal_close_id).find('.video-frame > iframe').attr('src');
+    if (typeof video != "undefined") {
+      jQuery('.video-frame > iframe').attr('src', '');
+      jQuery('.video-frame > iframe').attr('src', video);
+    }
     jQuery('html, body').css({
       overflow: 'visible',
     });
     e.preventDefault();
+  });
+
+
+  jQuery('.paperplane-modal-js').keyup(function (event) {
+    if (event.which == 27) {
+      var modal_close_id = jQuery(this).data('modal-close-id');
+      var modal_back_to = localStorage.getItem('modal_back_to');
+      setTimeout(function () { jQuery('.' + modal_back_to).focus() }, 50);
+      jQuery(modal_close_id).addClass('hidden');
+      var video = jQuery(modal_close_id).find('.video-frame > iframe').attr('src');
+      if (typeof video != "undefined") {
+        jQuery('.video-frame > iframe').attr('src', '');
+        jQuery('.video-frame > iframe').attr('src', video);
+      }
+      jQuery('html, body').css({
+        overflow: 'visible',
+      });
+      e.preventDefault();
+    }
   });
 
   jQuery('.modal-open-js').on('click', function (e) {
@@ -398,6 +419,7 @@ jQuery('.accessible-navi-activate-js').on('click', function (e) {
     localStorage.setItem('accessible_navi', 'yes');
     jQuery('.accessible-navi-activate-js').html(active_label).attr('title', active_label).attr('aria-label', active_label);
     jQuery('body').addClass('body-accessible-navi');
+    jQuery('video').trigger('pause');
   };
   if (accessible_navi === 'yes') {
     localStorage.setItem('accessible_navi', 'no');
@@ -418,6 +440,7 @@ function set_accessible_navi() {
   if (accessible_navi == 'yes') {
     jQuery('.accessible-navi-activate-js').html(active_label).attr('title', active_label).attr('aria-label', active_label);
     jQuery('body').addClass('body-accessible-navi');
+    jQuery('video').hide();
   }
 }
 set_accessible_navi();

@@ -2,8 +2,7 @@
   <?php if ($thumb_id != ''): ?>
     <div
       class="<?php echo $page_opening_layout_size; ?> fullscreen-cta <?php echo $content_fields['page_opening_text_align']; ?> lazy coverize <?php echo $content_fields['page_opening_color_scheme']; ?>"
-      data-bg="<?php echo $thumb_url_desktop[0]; ?>" data-bg-hidpi="<?php echo $thumb_url_desktop_hd[0]; ?>"
-      data-aos="fade">
+      data-bg="<?php echo $thumb_url_desktop[0]; ?>" data-aos="fade">
     <?php else: ?>
       <div
         class="<?php echo $page_opening_layout_size; ?> fullscreen-cta <?php $content_fields['page_opening_text_align']; ?>           <?php $content_fields['page_opening_color_scheme']; ?>">

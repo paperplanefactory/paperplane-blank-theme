@@ -2,8 +2,8 @@
 $content_fields = paperplane_content_transients($post->ID);
 ?>
 <div id="paperplane-modal-js-<?php echo $post->ID; ?>"
-  class="paperplane-modal paperplane-modal-js-<?php echo $post->ID; ?> hidden <?php echo $content_fields['colore_di_sfondo_modal']; ?>"
-  tabindex="<?php echo $post->ID; ?>">
+  class="paperplane-modal paperplane-modal-js paperplane-modal-js-<?php echo $post->ID; ?> hidden <?php echo $content_fields['colore_di_sfondo_modal']; ?>"
+  tabindex="<?php echo $post->ID; ?>" data-modal-close-id=".paperplane-modal-js-<?php echo $post->ID; ?>">
   <div class="modal-close-area modal-close-js" data-modal-close-id=".paperplane-modal-js-<?php echo $post->ID; ?>">
   </div>
   <div class="modal-box offerta-overlay-box-js" style="max-width: <?php echo $content_fields['modal_max_width']; ?>px">
@@ -30,7 +30,9 @@ $content_fields = paperplane_content_transients($post->ID);
     </a>
     <div class="insider">
       <div class="inner-message inner-message-js">
-        <?php echo $content_fields['modal_content']; ?>
+        <div class="content-styled last-child-no-margin">
+          <?php echo $content_fields['modal_content']; ?>
+        </div>
       </div>
     </div>
   </div>

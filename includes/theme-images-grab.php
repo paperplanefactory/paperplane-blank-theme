@@ -90,3 +90,25 @@ function print_theme_image_lazyslick($image_data, $image_sizes)
     }
   }
 }
+
+function paperplane_images_add_meta_tags()
+{
+  global $post;
+  $page_opening_layout = get_field('page_opening_layout', $post->ID);
+  $page_opening_video = get_field('page_opening_video', $post->ID);
+  if ($page_opening_layout === 'opening-fullscreen' || $page_opening_layout === 'opening-almost-fullscreen') {
+    $thumb_id = get_post_thumbnail_id($post->ID);
+    $thumb_url_desktop = wp_get_attachment_image_src($thumb_id, 'full_desk_hd', true);
+    echo '<link rel="preload"
+    href="' . $thumb_url_desktop[0] . '"
+    as="image" />';
+  }
+  if ($page_opening_video === 'si') {
+    $page_opening_video_mp4 = get_field('page_opening_video_mp4', $post->ID);
+    echo '<link rel="preload"
+    href="' . $page_opening_video_mp4 . '"
+    as="video" type="video/mp4" />';
+
+  }
+}
+add_action('wp_head', 'paperplane_images_add_meta_tags');

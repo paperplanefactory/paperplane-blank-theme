@@ -195,7 +195,7 @@ $hamburger-width: 45px; // header
 
 #head-overlay {
   top: $header-desktop-height;
-  height: calc(100vh - #{$header-desktop-height});
+  //height: calc(100vh - #{$header-desktop-height});
   height: calc((var(--vh, 1vh) * 100) - #{$header-desktop-height});
 
   .menu {
