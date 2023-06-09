@@ -1,0 +1,51 @@
+// main: ../style.scss
+@import 'vars';
+@import 'mixin'; // wrappers and more
+
+.body-accessible-navi {
+    * {
+        transition-duration: 0ms !important;
+        transition-property: none !important;
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0ms !important;
+        transition-property: none !important;
+    }
+}
+
+
+@media (prefers-reduced-transparency: reduce) {
+    * {
+        opacity: 1 !important;
+        color: #000000 !important;
+    }
+}
+
+@media screen and (prefers-contrast: more) {
+    *:focus {
+        outline: 0;
+        box-shadow: 0 0 0 4px red;
+    }
+
+    * {
+        background-color: rgba(255, 255, 255, 1) !important;
+        color: #000000;
+
+        button {
+            background-color: rgba(255, 255, 255, 1) !important;
+            color: #000000 !important;
+        }
+
+        a:link,
+        a:visited,
+        a:hover,
+        a:active {
+            background-color: rgba(255, 255, 255, 1) !important;
+            color: #000000 !important;
+        }
+    }
+}

@@ -24,6 +24,12 @@
     .insider {
       padding: 0 20px 30px;
       max-height: calc(100vh - 120px);
+
+      .inner-message {
+        .video-frame {
+          margin-bottom: 24px;
+        }
+      }
     }
   }
 }

@@ -5,19 +5,23 @@
 
 get_header();
 ?>
+<div class="wrapper <?php echo $options_fields['theme_archive_page_color_scheme']; ?>">
+    <div class="wrapper-padded">
+        <div class="wrapper-padded-container">
+            <?php if (have_posts()): ?>
+                <div class="flex-hold flex-hold-3 margins-wide grid-infinite listing-grid-container">
+                    <?php
+                    while (have_posts()):
+                        the_post();
+                        include(locate_template('template-parts/grid/post-infinite.php'));
+                    endwhile; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<?php theme_pagination_system(); ?>
 
-<h1 class="allupper">Hai cercato: <?php echo get_search_query(); ?></h1>
-
-
-<?php if ( have_posts() ) : ?>
-
-<?php while ( have_posts() ) : the_post();
-// fai qualcosa tipo stampare il titolo
-endwhile; ?>
-
-<?php else : ?>
-<h2 class="allupper">Nessun risultato per: <?php echo get_search_query(); ?></h2>
-<?php endif; ?>
 
 
 <?php get_footer(); ?>

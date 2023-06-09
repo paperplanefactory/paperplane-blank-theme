@@ -43,7 +43,7 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
               </div>
               <!-- colonna -->
               <!-- colonna -->
-              <div class="module-stripe-text" data-aos="fade-in" data-aos-delay="250">
+              <div class="module-stripe-text fluid-typo" data-aos="fade-in" data-aos-delay="250">
                 <div class="spacer">
                   <div class="content-styled last-child-no-margin">
                     <?php echo $stripe['module_stripe_repeater_content']; ?>

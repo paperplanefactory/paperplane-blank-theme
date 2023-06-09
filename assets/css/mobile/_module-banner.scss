@@ -38,6 +38,7 @@
 
   .flex-hold-banner {
     .banner-image {
+      position: relative;
       width: 100%;
       margin-bottom: $flex-hold-column-thin-space-smartphone;
     }

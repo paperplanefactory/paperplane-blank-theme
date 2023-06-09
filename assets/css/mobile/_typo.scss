@@ -2,6 +2,10 @@
 @import '../global/vars';
 @import '../global/mixin';
 
+@font-face {
+  font-display: swap;
+}
+
 .as-h1,
 h1 {
   font-size: $h1-size-smartphone;
@@ -116,7 +120,7 @@ p {
     margin-bottom: $paragraph-marginbottom-smartphone;
   }
 
-  ol > li {
+  ol>li {
     &:before {
       font-family: $font-main;
       font-size: $paragraph-size-smartphone;

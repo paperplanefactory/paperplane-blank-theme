@@ -1,6 +1,50 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin'; // forms
+@import '../global/mixin';
+
+// forms
+// i colori (bordi ecc.) sono definiti nei parziali /global/colors-black-bg e /global/colors-white-bg
+
+input[type=date],
+input[type=email],
+input[type=file],
+input[type=number],
+input[type=range],
+input[type=tel],
+input[type=text],
+input[type=url] {
+  font-size: $h5-size-smartphone;
+  line-height: $h5-lineheight-smartphone;
+  margin-bottom: 15px;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  margin-bottom: 5px;
+
+  &:before {
+    position: relative;
+    top: 4px;
+    font-size: calc(#{$h5-size-smartphone} * 1.5);
+  }
+}
+
+textarea {
+  font-size: $h5-size-smartphone;
+  line-height: 18px;
+  margin-bottom: 15px;
+}
+
+select {
+  font-size: $h5-size-smartphone;
+  line-height: 18px;
+  margin-bottom: 15px;
+}
+
+input[type=submit] {
+  font-size: $paragraph-size-smartphone;
+  font-weight: $font-weight-3;
+}
 
 .form-hold {
   margin: 10px 0;
@@ -10,46 +54,5 @@
     font-size: $h5-size-smartphone;
     line-height: $h5-lineheight-smartphone;
     margin-bottom: 5px;
-  }
-
-  input[type=date],
-  input[type=email],
-  input[type=file],
-  input[type=number],
-  input[type=range],
-  input[type=tel],
-  input[type=text],
-  input[type=url] {
-    font-size: $h5-size-smartphone;
-    line-height: $h5-lineheight-smartphone;
-    margin-bottom: 15px;
-  }
-
-  input[type=checkbox],
-  input[type=radio] {
-    margin-bottom: 5px;
-
-    &:before {
-      position: relative;
-      top: 4px;
-      font-size: calc(#{$h5-size-smartphone} * 1.5);
-    }
-  }
-
-  textarea {
-    font-size: $h5-size-smartphone;
-    line-height: 18px;
-    margin-bottom: 15px;
-  }
-
-  select {
-    font-size: $h5-size-smartphone;
-    line-height: 18px;
-    margin-bottom: 15px;
-  }
-
-  input[type=submit] {
-    font-size: $paragraph-size-smartphone;
-    font-weight: $font-weight-3;
   }
 }

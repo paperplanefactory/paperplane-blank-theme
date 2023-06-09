@@ -11,12 +11,12 @@
 }
 
 .page-opening-fullscreen {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .page-opening-fullscreen-less {
   position: relative;
-  min-height: 88vh;
+  min-height: 88dvh;
 }
 
 .fullscreen-video {
@@ -37,7 +37,16 @@
 }
 
 .fullscreen-cta {
-  @include flex-wrap;
+  display: grid;
+
+  .fullscreen-cta-safe-padding {
+    padding: calc(#{$header-desktop-height} + 5vh) 0 5vh 0;
+  }
+
+  .fullscreen-cta-aligner {
+    position: relative;
+    width: 100%;
+  }
 
   .cta-holder {
     margin: 32px 0 0;
@@ -47,37 +56,26 @@
 .fullscreen-cta-center {
   padding: 0;
   margin: 0;
-  @include flex-verticalize;
+  //justify-content: center;
+  align-content: center;
+}
 
-  .fullscreen-cta-aligner {
-    width: 100%;
-
-    .fullscreen-cta-safe-padding {
-      padding: 15vh 0;
-    }
-  }
+.fullscreen-cta-top {
+  justify-content: start;
+  align-content: start;
 }
 
 .fullscreen-cta-bottom {
-  padding: 0;
-  margin: 0;
-
-  .fullscreen-cta-aligner {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
-    .fullscreen-cta-safe-padding {
-      padding: 5vh 0;
-    }
-  }
+  justify-content: end;
+  align-content: end;
 }
+
 
 .fullscreen-cta-safe-padding,
 .page-opening-simple-spacer {
+
   .last-child-no-margin {
-    //max-width: 690px;
-    max-width: 70%;
+    max-width: 80%;
   }
 
   &.alignright {

@@ -44,12 +44,15 @@
             break;
           // module-expanding-text
           case 'module-expanding-text':
-            //include( locate_template( 'template-parts/modules/module-expanding-text.php' ) );
             include(locate_template('template-parts/modules/module-expanding-text-js.php'));
             break;
           // module-banner
           case 'module-banner':
             include(locate_template('template-parts/modules/module-banner.php'));
+            break;
+          // module-video
+          case 'module-video':
+            include(locate_template('template-parts/modules/module-video.php'));
             break;
         }
       }

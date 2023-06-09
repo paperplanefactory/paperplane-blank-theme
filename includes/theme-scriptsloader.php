@@ -43,12 +43,17 @@ function all_scripts()
     wp_register_script('theme-infinitescroll', get_template_directory_uri() . '/assets/js/libs/infinite-scroll.min.js#deferload', array('jquery'), '4.0.1', false);
     wp_enqueue_script('theme-infinitescroll');
   }
+  // Vimeo API
+  wp_register_script('vimeo-api', 'https://player.vimeo.com/api/player.js#deferload', array('jquery'), '4.0.1', true);
+  wp_enqueue_script('vimeo-api');
+  //wp_register_script('youtube-api', 'https://www.youtube.com/iframe_api#deferload', array('jquery'), '4.0.1', true);
+  //wp_enqueue_script('youtube-api');
 
 
   // Lazy load
   // documentazione: http://www.andreaverlicchi.eu/lazyload/
-  wp_register_script('vanilla-lazyload', get_template_directory_uri() . '/assets/js/libs/lazyload.min.js#deferload', array('jquery'), '17.5.0', true);
-  wp_enqueue_script('vanilla-lazyload');
+  //wp_register_script('vanilla-lazyload', get_template_directory_uri() . '/assets/js/libs/lazyload.min.js#deferload', array('jquery'), '17.5.0', true);
+  //wp_enqueue_script('vanilla-lazyload');
 
   // AOS
   // documentazione: https://github.com/michalsnik/aos

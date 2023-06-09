@@ -18,12 +18,17 @@ function paperplane_multilang_setup()
 
 function paperplane_content_transients($content_id)
 {
-    $content_fields_transient = get_transient('content_fields_transient_' . $content_id);
-    if (empty($content_fields_transient)) {
-        $content_fields = get_fields($content_id);
-        set_transient('content_fields_transient_' . $content_id, $content_fields, DAY_IN_SECONDS * 4);
+    $use_transients_fields = get_field('use_transients_fields', 'option');
+    if ($use_transients_fields == 1) {
+        $content_fields_transient = get_transient('content_fields_transient_' . $content_id);
+        if (empty($content_fields_transient)) {
+            $content_fields = get_fields($content_id);
+            set_transient('content_fields_transient_' . $content_id, $content_fields, DAY_IN_SECONDS * 4);
+        } else {
+            $content_fields = $content_fields_transient;
+        }
     } else {
-        $content_fields = $content_fields_transient;
+        $content_fields = get_fields($content_id);
     }
     return $content_fields;
 }

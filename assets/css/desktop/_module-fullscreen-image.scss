@@ -33,15 +33,15 @@
     width: 100%;
     min-height: 60vh;
     overflow: hidden;
-    padding: 30vh 0;
+    padding: 10vh 0;
 
     &.coverize {
       background-attachment: fixed;
     }
 
     .module-fullscreen-texts {
-      width: 65%;
-      max-width: 950px;
+      width: 75%;
+      //max-width: 950px;
 
       &.aligncenter {
         max-width: 950px;

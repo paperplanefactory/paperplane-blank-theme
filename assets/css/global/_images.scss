@@ -7,6 +7,8 @@
 	width: 100% !important;
 
 	img {
+		position: relative;
+		object-fit: auto;
 		width: 100%;
 		height: auto;
 	}
@@ -48,52 +50,3 @@
 .wp-caption.alignleft .wp-caption-text,
 .wp-caption.alignnone .wp-caption-text,
 .wp-caption.alignright .wp-caption-text {}
-
-.coverize {
-	background-size: cover;
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-}
-
-.bg-covered {
-	width: 100%;
-	height: calc(100vh - #{$header-desktop-height});
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
-}
-
-.lazy {
-	position: relative;
-	@include define-basic-transition(all, 0.3s);
-}
-
-span,
-video {
-	&.lazy {
-		position: relative;
-	}
-}
-
-img {
-	&.lazy {
-		position: relative;
-		opacity: 0;
-	}
-
-	&.lazy-loaded {
-		opacity: 1;
-	}
-
-	&.lazy-loading {
-		aspect-ratio: 1/1;
-	}
-}
-
-.lazy-loading {
-	//@include define-blur(40px);
-}
-
-.lazy-loaded {
-	//@include define-blur(0);
-}

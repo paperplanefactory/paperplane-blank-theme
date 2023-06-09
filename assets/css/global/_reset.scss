@@ -96,16 +96,17 @@ body {
 	//scrollbar-gutter: auto;
 	margin: 0;
 
-	&.body-accessible-navi {
-		*:focus {
-			outline: 0;
-			box-shadow: 0 0 0 8px red;
-		}
+	*:focus-visible {
+		box-shadow: 0 0 0 2px red;
 	}
 }
 
 main {
 	display: block;
+}
+
+*:focus {
+	outline: 0;
 }
 
 

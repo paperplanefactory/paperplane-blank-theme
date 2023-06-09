@@ -6,6 +6,7 @@
             "key": "field_6214a7ae9e27a",
             "label": "Contenuti",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -17,12 +18,14 @@
             },
             "open": 0,
             "multi_expand": 0,
-            "endpoint": 0
+            "endpoint": 0,
+            "repeatable": true
         },
         {
             "key": "field_6214a5aa7ee5e",
             "label": "Titolo",
             "name": "modal_title",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -36,12 +39,67 @@
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "maxlength": ""
+            "maxlength": "",
+            "repeatable": true
+        },
+        {
+            "key": "field_6482f91a29c88",
+            "label": "Aggiungere un video",
+            "name": "modal_video_include",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_6481d76bc78c2",
+            "label": "Video",
+            "name": "modal_video",
+            "aria-label": "",
+            "type": "component_field",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6482f91a29c88",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "field_group_key": "group_6481ca942e75a",
+            "layout": "block",
+            "repeatable": 0,
+            "button_label": "Aggiungi Riga",
+            "appearances": "",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": []
         },
         {
             "key": "field_6214a5b47ee5f",
             "label": "Contenuto",
             "name": "modal_content",
+            "aria-label": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -55,12 +113,14 @@
             "tabs": "all",
             "toolbar": "full",
             "media_upload": 1,
-            "delay": 0
+            "delay": 0,
+            "repeatable": true
         },
         {
             "key": "field_6214a7c59e27b",
             "label": "Aspetto",
             "name": "",
+            "aria-label": "",
             "type": "accordion",
             "instructions": "",
             "required": 0,
@@ -72,12 +132,14 @@
             },
             "open": 0,
             "multi_expand": 0,
-            "endpoint": 0
+            "endpoint": 0,
+            "repeatable": true
         },
         {
             "key": "field_6214a7cf9e27c",
             "label": "Schema colori",
             "name": "colore_di_sfondo_modal",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -97,12 +159,14 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "repeatable": true
         },
         {
             "key": "field_6214a85277221",
             "label": "Larghezza massima",
             "name": "modal_max_width",
+            "aria-label": "",
             "type": "number",
             "instructions": "",
             "required": 1,
@@ -118,7 +182,8 @@
             "append": "px",
             "min": "",
             "max": "",
-            "step": ""
+            "step": "",
+            "repeatable": true
         }
     ],
     "location": [
@@ -139,5 +204,16 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1645521525
+    "is_acf_component": 0,
+    "acf_component_defaults": {
+        "layout": "block",
+        "repeatable": "0",
+        "pagination": "0",
+        "rows_per_page": "20",
+        "min": "",
+        "max": "",
+        "button_label": "",
+        "appearances": ""
+    },
+    "modified": 1686305121
 }
