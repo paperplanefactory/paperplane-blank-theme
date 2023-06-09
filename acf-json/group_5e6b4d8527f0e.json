@@ -47,16 +47,16 @@
                         "module-slideshow": "Modulo slideshow",
                         "module-fullscreen-image": "Modulo immagine fullscreen con testi",
                         "module-expanding-text": "Modulo testo ad espansione",
+                        "module-video": "Modulo video",
                         "module-banner": "Modulo banner"
                     },
                     "default_value": false,
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
                     "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
-                    "repeatable": true,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -1768,6 +1768,59 @@
                     "ui": 1,
                     "repeatable": true,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_648194b4c21f6",
+                    "label": "Modulo video",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e6b4ddf13dcb",
+                                "operator": "==",
+                                "value": "module-video"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 1,
+                    "endpoint": 0,
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_6481d0832beb1",
+                    "label": "Gestione video",
+                    "name": "gestione_video",
+                    "aria-label": "",
+                    "type": "component_field",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "field_group_key": "group_6481ca942e75a",
+                    "repeatable": false,
+                    "min": 0,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "layout": "block",
+                    "button_label": "Aggiungi Riga",
+                    "collapsed": "",
+                    "appearances": [],
+                    "sub_fields": [],
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
                 }
             ]
         }
@@ -1810,5 +1863,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1679853258
+    "modified": 1686230715
 }

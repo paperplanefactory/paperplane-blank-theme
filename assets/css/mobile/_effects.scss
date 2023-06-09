@@ -6,12 +6,13 @@
 	position: relative;
 	opacity: 0;
 	@include define-basic-transition(all, 0.3s);
+
 	&.image-icon {
 		opacity: 1;
 	}
 }
 
-span, video {
+span {
 	&.lazy {
 		position: relative;
 		opacity: 1;

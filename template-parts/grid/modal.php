@@ -1,5 +1,6 @@
 <?php
 $content_fields = paperplane_content_transients($post->ID);
+$modal_video_include = $content_fields['modal_video_include'];
 ?>
 <div id="paperplane-modal-js-<?php echo $post->ID; ?>"
   class="paperplane-modal paperplane-modal-js paperplane-modal-js-<?php echo $post->ID; ?> hidden <?php echo $content_fields['colore_di_sfondo_modal']; ?>"
@@ -30,8 +31,15 @@ $content_fields = paperplane_content_transients($post->ID);
     </a>
     <div class="insider">
       <div class="inner-message inner-message-js">
-        <div class="content-styled last-child-no-margin">
-          <?php echo $content_fields['modal_content']; ?>
+        <div class="last-child-no-margin">
+          <?php
+          if ($modal_video_include == 1) {
+            paperplane_theme_videos($content_fields['modal_video']);
+          }
+          ?>
+          <div class="content-styled last-child-no-margin">
+            <?php echo $content_fields['modal_content']; ?>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 {
     "key": "group_6390c8098b762",
-    "title": "Modello per CTA [usare solo come riferimento]",
+    "title": "Componente per CTA",
     "fields": [
         {
             "key": "field_6390c9658a31a",
@@ -240,5 +240,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1670747473
+    "modified": 1686227566
 }

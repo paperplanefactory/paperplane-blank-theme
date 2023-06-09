@@ -64,8 +64,14 @@ $hamburger-width: 45px; // header
                 content: "▼";
                 font-size: 10px;
                 float: right;
-                margin-left: 10px;
-                speak: none;
+                padding-left: 10px;
+              }
+
+              &.clicked {
+                &:before {
+                  content: "▲";
+                  content: "▲" / "";
+                }
               }
             }
           }
@@ -76,7 +82,7 @@ $hamburger-width: 45px; // header
               content: "▼";
               font-size: 10px;
               float: right;
-              margin-left: 10px;
+              padding-left: 10px;
             }
 
             &.current-mega-menu {
@@ -104,15 +110,6 @@ $hamburger-width: 45px; // header
 
           &.menu-item-has-children {
             padding: 0;
-
-            &:hover,
-            &:focus-within {
-              .sub-menu {
-                height: auto;
-                pointer-events: all;
-                opacity: 1;
-              }
-            }
           }
         }
 
@@ -137,7 +134,12 @@ $hamburger-width: 45px; // header
           pointer-events: none;
           @include define-basic-transition(opacity, 0.15s);
           overflow: hidden;
-          height: 0;
+
+          &.visible {
+            height: auto;
+            pointer-events: all;
+            opacity: 1;
+          }
 
           &.activated {
             height: auto;
@@ -164,7 +166,8 @@ $hamburger-width: 45px; // header
               margin: 0;
 
               &:before {
-                content: "";
+                display: none;
+                visibility: hidden;
               }
             }
           }
@@ -195,8 +198,7 @@ $hamburger-width: 45px; // header
 
 #head-overlay {
   top: $header-desktop-height;
-  //height: calc(100vh - #{$header-desktop-height});
-  height: calc((var(--vh, 1vh) * 100) - #{$header-desktop-height});
+  height: calc(100dvh - #{$header-desktop-height});
 
   .menu {
     width: 100%;
@@ -270,7 +272,7 @@ $hamburger-width: 45px; // header
 }
 
 .scroll-opportunity {
-  height: calc(100vh - #{$header-desktop-height});
+  height: calc(100dvh - #{$header-desktop-height});
 }
 
 // footer

@@ -26,8 +26,11 @@ include_once "includes/theme-taxonomies.php";
 include_once "includes/theme-pagination.php";
 // gestione CTA
 include_once "includes/theme-ctas.php";
+// gestione videos
+include_once "includes/theme-videos.php";
 // gestione transients
 include_once "includes/theme-transients.php";
+// PWA
 include_once "includes/theme-pwa.php";
 // attivo le traduzioni
 function paperplane_theme_load_theme_textdomain()

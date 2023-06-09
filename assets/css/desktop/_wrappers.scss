@@ -2,6 +2,20 @@
 @import '../global/vars';
 @import '../global/mixin'; // wrappers and more
 
+.mobile-only {
+  display: none;
+  visibility: hidden;
+  pointer-events: none;
+
+  *,
+  *::after,
+  *::before {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 .wrapper-padded {
   width: 100%;
   padding: 0 $wrapper-padded-desktop;

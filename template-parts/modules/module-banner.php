@@ -9,7 +9,6 @@ if ($banner):
   if ($banner_background_image != '') {
     $banner_background_image_URL = $banner_background_image['sizes']['full_desk'];
     $banner_background_image_hd_URL = $banner_background_image['sizes']['full_desk_hd'];
-    $banner_bg_lazy_class = 'lazy coverize';
   }
   $banner_foreground_image = $content_fields['banner_foreground_image'];
   ?>
@@ -18,15 +17,14 @@ if ($banner):
     <div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
       <div class="wrapper-padded">
         <div class="wrapper-padded-container">
-          <div
-            class="banner-space coverize <?php echo $banner_bg_lazy_class . ' ' . $content_fields['banner_color_scheme']; ?>"
-            data-bg="<?php echo $module_fullscreen_image_image_URL; ?>"
-            data-bg-hidpi="<?php echo $module_fullscreen_image_image_hd_URL; ?>">
+          <div class="banner-space coverize <?php echo $content_fields['banner_color_scheme']; ?>">
+            <img src="<?php echo $module_fullscreen_image_image_hd_URL; ?>" title="<?php the_title(); ?>"
+              alt="<?php the_title(); ?>" loading="lazy" />
             <div class="above-image-opacity"></div>
             <div class="banner-content">
               <?php if ($content_fields['banner_foreground_image'] != ''): ?>
                 <div class="flex-hold flex-hold-banner">
-                  <div class="banner-image" data-aos="zoom-out">
+                  <div class="banner-image uncoverize" data-aos="zoom-out">
                     <?php paperplane_theme_cta_absl_advanced($content_fields['paperplane_theme_cta_banner']); ?>
                     <?php
                     $image_data = array(

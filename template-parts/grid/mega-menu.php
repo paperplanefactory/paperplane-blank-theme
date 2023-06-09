@@ -40,12 +40,12 @@ if (!empty($my_mega_menus)): ?>
               $image_sizes = array(
                 // qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
                 'desktop_default' => 'column',
-                'desktop_hd' => 'column_hd',
+                'desktop_hd' => 'column_',
                 'mobile_default' => 'column',
-                'mobile_hd' => 'column_hd',
+                'mobile_hd' => 'column',
                 'lazy_placheholder' => 'micro'
               );
-              print_theme_image($image_data, $image_sizes);
+              print_theme_image_nolazy($image_data, $image_sizes);
               ?>
             </div>
             <div class="flex-hold-child">
@@ -63,6 +63,7 @@ if (!empty($my_mega_menus)): ?>
           </div>
         </div>
       </div>
+      <div class="mega-menu-clicker mega-menu-clicker-js"></div>
     </nav>
     <script type="text/javascript">
       jQuery('.mega-menu-js-<?php echo $post->ID; ?>-target a').last().on('keydown', function (event) {

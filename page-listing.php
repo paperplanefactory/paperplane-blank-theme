@@ -9,7 +9,6 @@ $page_listing_layout = get_field('page_listing_layout');
 global $listing_page_id;
 $listing_page_id = get_the_ID();
 $content_fields = paperplane_content_transients($post->ID);
-include(locate_template('template-parts/grid/page-opening.php'));
 ?>
 <?php if ($page_listing_layout === 'listing-grid'): ?>
   <div class="wrapper <?php the_field('page_opening_color_scheme'); ?>">
@@ -68,4 +67,11 @@ include(locate_template('template-parts/grid/page-opening.php'));
   </div>
   <?php theme_pagination_system(); ?>
 <?php endif; ?>
+
+sdfsdfd
+<?php
+wp_reset_query();
+//$content_fields = paperplane_content_transients($post->ID);
+var_dump($content_fields);
+echo $content_fields['page_opening_layout']; ?>
 <?php get_footer(); ?>

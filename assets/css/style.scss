@@ -57,6 +57,7 @@
   @import 'desktop/module-fullscreen-image';
   @import 'desktop/module-expanding-text-js';
   @import 'desktop/module-banner';
+  @import 'desktop/module-video';
   @import 'desktop/ctas';
   @import 'desktop/images';
   @import 'desktop/effects';
@@ -71,46 +72,9 @@
 @import 'global/pagenavi';
 @import 'global/admin-bar';
 @import 'global/mixin';
-@import 'global/modals'; //@import 'global/preload-animations';
+@import 'global/modals';
+@import 'global/accessibility';
 
 // @import 'global/visual-debug';
 // regole specifiche per Safari
 // es. le immagini con background-attachment: fixed; su Safari devono essere background-attachment: scroll !important;
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition-duration: 0ms !important;
-  }
-}
-
-
-@media (prefers-reduced-transparency: reduce) {
-  * {
-    opacity: 1 !important;
-    color: #000000 !important;
-  }
-}
-
-@media screen and (prefers-contrast: more) {
-  *:focus {
-    outline: 0;
-    box-shadow: 0 0 0 4px red;
-  }
-
-  * {
-    background-color: rgba(255, 255, 255, 1) !important;
-    color: #000000;
-
-    button {
-      background-color: rgba(255, 255, 255, 1) !important;
-      color: #000000 !important;
-    }
-
-    a:link,
-    a:visited,
-    a:hover,
-    a:active {
-      background-color: rgba(255, 255, 255, 1) !important;
-      color: #000000 !important;
-    }
-  }
-}

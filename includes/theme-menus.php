@@ -141,6 +141,7 @@ function paperplane_add_modal_menu_atts($atts, $item, $args)
     $atts['data-modal-back-to'] = $start_point;
     $atts['class'] = 'modal-open-js ' . $start_point;
     $atts['href'] = '#modal-focus-' . $acf_id_modal;
+    $atts['aria-label'] = __('Questo link apre una finestra sovrapposta alla pagina', 'paperPlane-blankTheme');
   }
   return $atts;
 }
@@ -154,6 +155,7 @@ function paperplane_add_mega_menu_atts($atts, $item, $args)
   if ($mega_menu_activator) {
     $atts['data-megamenu-open-id'] = $mega_menu_activator[0];
     $atts['class'] = 'mega-menu-js-trigger mega-menu-js-' . $mega_menu_activator[0] . '-trigger';
+    $atts['aria-label'] = __('Questo link permette di accedere ad un menu di navigazione aggiuntivo per:', 'paperPlane-blankTheme') . ' ' . get_the_title($mega_menu_activator[0]);
   }
   return $atts;
 }

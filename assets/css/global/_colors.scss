@@ -1,6 +1,7 @@
 // main: ../style.scss
 @import 'vars';
 @import 'mixin';
+
 // txt colors
 .txt-1 {
 	color: $color-1;
@@ -17,6 +18,7 @@
 .txt-4 {
 	color: $color-4;
 }
+
 // bg colors
 
 .bg-1 {
@@ -36,10 +38,11 @@
 }
 
 .default-box-shadow {
-	-webkit-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
-	-moz-box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
-	box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
 }
+
 // link behaviour and colors
 
 :-webkit-any-link {
@@ -84,6 +87,7 @@ a.absl:visited {
 }
 
 .content-styled {
+
 	a:link,
 	a:visited {
 		text-decoration: underline;

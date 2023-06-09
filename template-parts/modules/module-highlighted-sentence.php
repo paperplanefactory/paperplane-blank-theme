@@ -37,7 +37,7 @@ $module_highlighted_sentence_image = $module['module_highlighted_sentence_image'
                 </div>
               </div>
             </div>
-            <div class="flex-hold-rich-highlighted-sentence-text">
+            <div class="flex-hold-rich-highlighted-sentence-text fluid-typo">
               <div class="last-child-no-margin">
                 <h2>
                   <?php echo $module['module_highlighted_sentence_text']; ?>

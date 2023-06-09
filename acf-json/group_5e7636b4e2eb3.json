@@ -151,6 +151,26 @@
             "ui_on_text": "",
             "ui_off_text": "",
             "ui": 1
+        },
+        {
+            "key": "field_6435907062eee",
+            "label": "Utilizzare le transient per i campi personalizzati?",
+            "name": "use_transients_fields",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Le transient occupano spazio nel database. Se le dimensioni del database diventano eccessive, disabilitare questa opzione.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
         }
     ],
     "location": [
@@ -182,5 +202,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1680154464
+    "modified": 1681232261
 }

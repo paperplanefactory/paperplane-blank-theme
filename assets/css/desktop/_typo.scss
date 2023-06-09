@@ -9,16 +9,6 @@ h1 {
   margin-bottom: $h1-marginbottom-desktop;
 }
 
-.fullscreen-cta {
-  h1 {
-    //font-size: 5vw;
-    font-size: calc(#{$h1-size-desktop} + 1.5vw);
-    line-height: calc(#{$h1-lineheight-desktop} + 1.8vw);
-    //calc((100vh / 100vw) * 100);
-
-  }
-}
-
 .as-h2,
 h2 {
   font-size: $h2-size-desktop;
@@ -154,4 +144,16 @@ p {
   font-weight: $font-weight-1;
   font-size: $h4-size-desktop;
   line-height: $h4-lineheight-desktop;
+}
+
+.fluid-typo {
+  h1 {
+    font-size: calc(#{$h1-size-desktop} + 1.2vw);
+    line-height: calc(#{$h1-lineheight-desktop} + 1.5vw);
+  }
+
+  h2 {
+    font-size: calc(#{$h2-size-desktop} + 0.7vw);
+    line-height: calc(#{$h2-lineheight-desktop} + 1vw);
+  }
 }
