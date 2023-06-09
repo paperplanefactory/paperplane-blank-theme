@@ -55,6 +55,18 @@ $hamburger-width: 55px; // header
       }
     }
   }
+
+  .submenu-close {
+    visibility: hidden;
+    display: none;
+    pointer-events: none;
+
+    &.active {
+      visibility: hidden;
+      display: none;
+      pointer-events: none;
+    }
+  }
 }
 
 .mega-menu {
