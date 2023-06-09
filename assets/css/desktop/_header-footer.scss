@@ -54,9 +54,6 @@ $hamburger-width: 45px; // header
           margin: 0 0 0 3%;
           text-align: left;
 
-
-
-
           &.menu-item-has-children {
             a {
 
@@ -192,6 +189,22 @@ $hamburger-width: 45px; // header
           margin-right: 0;
         }
       }
+    }
+  }
+
+  .submenu-close {
+    position: absolute;
+    top: $header-desktop-height;
+    width: 100vw;
+    height: calc(100dvh - #{$header-desktop-height});
+    visibility: hidden;
+    display: none;
+    pointer-events: none;
+
+    &.active {
+      visibility: visible;
+      display: block;
+      pointer-events: all;
     }
   }
 }

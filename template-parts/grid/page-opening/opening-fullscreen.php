@@ -3,7 +3,7 @@
     class="fullscreen-cta coverize fluid-typo <?php echo $page_opening_layout_size . ' ' . $content_fields['page_opening_text_align'] . ' ' . $content_fields['page_opening_color_scheme']; ?>"
     data-aos="fade-in">
     <?php if ($page_opening_video === 'si'): ?>
-      <video preload="metadata" data-autoplay autoplay loop muted playsinline>
+      <video class="stoppable-js" preload="metadata" data-autoplay autoplay loop muted playsinline>
         <source type="video/mp4" src="<?php echo $content_fields['page_opening_video_mp4']; ?>">
       </video>
     <?php else: ?>

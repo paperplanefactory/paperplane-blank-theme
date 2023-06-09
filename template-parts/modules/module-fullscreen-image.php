@@ -11,8 +11,9 @@ if ($module_fullscreen_image_image != '') {
   <a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
   <div class="module-box-fullscreen coverize <?php echo $module['module_fullscreen_text_align_horizontal']; ?>"
     data-aos="fade">
-    <img data-src="<?php echo $module_fullscreen_image_image_hd_URL; ?>" title="<?php the_title(); ?>"
-      alt="<?php the_title(); ?>" class="lazy" />
+    <img src="<?php echo $module_fullscreen_image_image_hd_URL; ?>" title="<?php the_title(); ?>"
+      alt="<?php the_title(); ?>" loading="lazy" type="image/<?php echo $filetype_desktop['ext']; ?>"
+      decoding="async" />
     <div class="above-image-opacity"></div>
     <div class="wrapper-padded">
       <div class="module-fullscreen-texts fluid-typo" data-aos="fade-right">

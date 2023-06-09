@@ -63,7 +63,6 @@ if (!empty($my_mega_menus)): ?>
           </div>
         </div>
       </div>
-      <div class="mega-menu-clicker mega-menu-clicker-js"></div>
     </nav>
     <script type="text/javascript">
       jQuery('.mega-menu-js-<?php echo $post->ID; ?>-target a').last().on('keydown', function (event) {

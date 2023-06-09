@@ -5,17 +5,17 @@ jQuery('.accessible-navi-activate-js').on('click', function (e) {
   var accessible_navi = localStorage.getItem('accessible_navi');
   var original_label = jQuery('.accessible-navi-activate-js').data('original-label');
   var active_label = jQuery('.accessible-navi-activate-js').data('active-label');
-  console.log(accessible_navi);
   if (accessible_navi === null || accessible_navi === '' || accessible_navi === 'no') {
     localStorage.setItem('accessible_navi', 'yes');
     jQuery('.accessible-navi-activate-js').html(active_label).attr('title', active_label).attr('aria-label', active_label);
     jQuery('body').addClass('body-accessible-navi');
-    jQuery('video').trigger('pause');
+    jQuery('.stoppable-js').trigger('pause');
   };
   if (accessible_navi === 'yes') {
     localStorage.setItem('accessible_navi', 'no');
     jQuery('.accessible-navi-activate-js').html(original_label).attr('title', original_label).attr('aria-label', original_label);
     jQuery('body').removeClass('body-accessible-navi');
+    jQuery('.stoppable-js').trigger('play');
   }
   e.preventDefault();
 });
@@ -27,11 +27,12 @@ function set_accessible_navi() {
   if (accessible_navi === null || accessible_navi === '' || accessible_navi === 'no') {
     jQuery('.accessible-navi-activate-js').html(original_label).attr('title', original_label).attr('aria-label', original_label);
     jQuery('body').removeClass('body-accessible-navi');
+    jQuery('.stoppable-js').trigger('play');
   };
   if (accessible_navi == 'yes') {
     jQuery('.accessible-navi-activate-js').html(active_label).attr('title', active_label).attr('aria-label', active_label);
     jQuery('body').addClass('body-accessible-navi');
-    jQuery('video').hide();
+    jQuery('.stoppable-js').trigger('pause');
   }
 }
 set_accessible_navi();
@@ -174,11 +175,13 @@ jQuery('.mega-menu-js-trigger').on('click', function (e) {
     jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
     jQuery(this).removeClass('current-mega-menu');
     jQuery('.mega-menu-js-' + data_megamenu_id + '-target').addClass('hidden');
+    jQuery('.submenu-close-js').removeClass('active');
   }
   else {
     jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
     jQuery(this).addClass('current-mega-menu');
     jQuery('.mega-menu-js-' + data_megamenu_id + '-target').removeClass('hidden');
+    jQuery('.submenu-close-js').addClass('active');
   }
   e.preventDefault();
 });
@@ -197,10 +200,6 @@ jQuery('.mega-menu-js-trigger').on('keydown', function (event) {
   }
 });
 
-jQuery('.mega-menu-clicker-js').click(function () {
-  jQuery('.mega-menu-js').addClass('hidden');
-  jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
-});
 
 /////////////////////////////////////////////
 // sub menu desktop
@@ -211,16 +210,17 @@ jQuery('.header-menu-js > .menu-item-has-children > a').on('click', function (e)
   if (jQuery(this).hasClass('clicked')) {
     jQuery(this).addClass('clicked');
     jQuery(this).parent().find('.sub-menu').addClass('visible');
+    jQuery('.submenu-close-js').addClass('active');
   }
   else {
     jQuery(this).removeClass('clicked');
     jQuery(this).parent().find('.sub-menu').removeClass('visible');
+    jQuery('.submenu-close-js').removeClass('active');
   }
   jQuery('.header-menu-js > .menu-item-has-children > a').not(this).removeClass('clicked');
   jQuery('.header-menu-js > .menu-item-has-children > a').not(this).parent().find('.sub-menu').removeClass('visible');
   jQuery('.mega-menu-js').addClass('hidden');
   jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
-
   e.preventDefault();
 });
 
@@ -235,6 +235,16 @@ jQuery('.header-menu-js > .menu-item-has-children > a').on('keydown', function (
     event.preventDefault();
   }
 });
+
+jQuery('.submenu-close-js').on('click', function (e) {
+  jQuery('.header-menu-js > .menu-item-has-children > a').removeClass('clicked');
+  jQuery('.sub-menu').removeClass('visible');
+  jQuery('.mega-menu-js').addClass('hidden');
+  jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
+  jQuery(this).removeClass('active');
+  e.preventDefault();
+});
+
 
 /////////////////////////////////////////////
 // sub menu mobile
@@ -442,18 +452,26 @@ jQuery('.click-hide').on('click', function (e) {
 // expandables
 /////////////////////////////////////////////
 jQuery('.expander').on('click', function (e) {
-  if (jQuery(this).hasClass('exp-close')) {
-    jQuery(this).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false);
-    jQuery(this).find('span').addClass('exp-plus').removeClass('exp-minus');
-    jQuery(this).parent().next('.expandable-content').slideUp(150).removeClass('visible');
+  var expand_id = jQuery(this).data('expand-id');
+  if (jQuery('#expand-button-' + expand_id).hasClass('exp-close')) {
+    jQuery('#expand-button-' + expand_id).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false);
+    jQuery('#expand-button-' + expand_id).find('span').addClass('exp-plus').removeClass('exp-minus');
+    jQuery('#expand-content-' + expand_id).slideUp(150).removeClass('visible');
   } else {
-    jQuery(this).addClass('exp-close').removeClass('exp-open').attr('aria-expanded', true);
-    jQuery(this).find('span').removeClass('exp-plus').addClass('exp-minus');
-    jQuery(this).parent().next('.expandable-content').slideDown(150).addClass('visible');
+    jQuery('#expand-button-' + expand_id).addClass('exp-close').removeClass('exp-open').attr('aria-expanded', true);
+    jQuery('#expand-button-' + expand_id).find('span').removeClass('exp-plus').addClass('exp-minus');
+    jQuery('#expand-content-' + expand_id).slideDown(150).addClass('visible');
   }
   e.preventDefault();
 });
 
+jQuery('.expander-closer').on('click', function (e) {
+  var expand_id = jQuery(this).data('expand-id');
+  jQuery('#expand-button-' + expand_id).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false);
+  jQuery('#expand-button-' + expand_id).find('span').addClass('exp-plus').removeClass('exp-minus');
+  jQuery('#expand-content-' + expand_id).slideUp(150).removeClass('visible');
+  e.preventDefault();
+});
 
 /////////////////////////////////////////////
 // Play video

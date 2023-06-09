@@ -141,6 +141,7 @@
           </div>
         </div>
       </div>
+      <div class="submenu-close submenu-close-js"></div>
     </header>
     <?php include(locate_template('template-parts/grid/mega-menu.php')); ?>
 

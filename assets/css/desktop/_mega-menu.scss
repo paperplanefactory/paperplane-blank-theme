@@ -14,17 +14,6 @@
   pointer-events: all;
   visibility: visible;
 
-  .mega-menu-clicker {
-    content: "";
-    position: absolute;
-    display: block;
-    left: -$wrapper-padded-desktop;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-  }
-
   &.hidden {
     opacity: 0;
     pointer-events: none;
