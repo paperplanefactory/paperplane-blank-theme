@@ -1,7 +1,7 @@
 /////////////////////////////////////////////
 // accessibility
 /////////////////////////////////////////////
-jQuery('.accessible-navi-activate-js').on('click', function (e) {
+jQuery(document).on('click', '.accessible-navi-activate-js:not(.initialized)', function (e) {
   var accessible_navi = localStorage.getItem('accessible_navi');
   var original_label = jQuery('.accessible-navi-activate-js').data('original-label');
   var active_label = jQuery('.accessible-navi-activate-js').data('active-label');
@@ -40,7 +40,7 @@ set_accessible_navi();
 /////////////////////////////////////////////
 // AOS
 /////////////////////////////////////////////
-//var aos_win_height = (jQuery(window).height() / 2.5);
+
 AOS.init({
   duration: 900,
   once: false,
@@ -166,7 +166,7 @@ jQuery(window).on('scroll', function (event) {
 // mega menu
 /////////////////////////////////////////////
 
-jQuery('.mega-menu-js-trigger').on('click', function (e) {
+jQuery(document).on('click', '.mega-menu-js-trigger:not(.initialized)', function (e) {
   jQuery('.header-menu-js > .menu-item-has-children > a').removeClass('clicked');
   jQuery('.sub-menu').removeClass('visible');
   data_megamenu_id = jQuery(this).data('megamenu-open-id');
@@ -205,7 +205,7 @@ jQuery('.mega-menu-js-trigger').on('keydown', function (event) {
 // sub menu desktop
 /////////////////////////////////////////////
 
-jQuery('.header-menu-js > .menu-item-has-children > a').on('click', function (e) {
+jQuery(document).on('click', '.header-menu-js > .menu-item-has-children > a:not(.initialized)', function (e) {
   jQuery(this).toggleClass('clicked');
   if (jQuery(this).hasClass('clicked')) {
     jQuery(this).addClass('clicked');
@@ -236,7 +236,7 @@ jQuery('.header-menu-js > .menu-item-has-children > a').on('keydown', function (
   }
 });
 
-jQuery('.submenu-close-js').on('click', function (e) {
+jQuery(document).on('click', '.submenu-close-js:not(.initialized)', function (e) {
   jQuery('.header-menu-js > .menu-item-has-children > a').removeClass('clicked');
   jQuery('.sub-menu').removeClass('visible');
   jQuery('.mega-menu-js').addClass('hidden');
@@ -253,7 +253,7 @@ jQuery('.submenu-close-js').on('click', function (e) {
 jQuery('.overlay-menu-mobile-js > .menu-item-has-children > a').each(function (i, el) {
   jQuery(this).append('<span>▼</span>');
 });
-jQuery('.overlay-menu-mobile-js > .menu-item-has-children > a').on('click', function (e) {
+jQuery(document).on('click', '.overlay-menu-mobile-js > .menu-item-has-children > a:not(.initialized)', function (e) {
   //alert('sdfsdf');
   if (jQuery(this).find('span').text() == "▼") {
     jQuery(this).find('span').text("▲");
@@ -308,7 +308,6 @@ jQuery('.slider-single-js').slick({
 // Numbers counter
 /////////////////////////////////////////////
 
-
 function numbers_counter() {
   if (jQuery('.count')[0]) {
     if (jQuery('body').hasClass('body-accessible-navi')) {
@@ -341,7 +340,6 @@ function numbers_counter() {
 
           });
         }
-
       });
     }
   }
@@ -355,7 +353,7 @@ jQuery(document).ready(function () {
 // Modals
 /////////////////////////////////////////////
 
-jQuery('.modal-close-js').click(function (e) {
+jQuery(document).on('click', '.modal-close-js:not(.initialized)', function (e) {
   var modal_close_id = jQuery(this).data('modal-close-id');
   var modal_back_to = localStorage.getItem('modal_back_to');
   jQuery(modal_close_id).addClass('hidden');
@@ -376,11 +374,10 @@ jQuery('.paperplane-modal-js').keyup(function (event) {
     jQuery('html, body').css({
       overflow: 'visible',
     });
-    //e.preventDefault();
   }
 });
 
-jQuery('.modal-open-js').on('click', function (e) {
+jQuery(document).on('click', '.modal-open-js:not(.initialized)', function (e) {
   var modal_open_id = jQuery(this).data('modal-open-id');
   var modal_back_to = jQuery(this).data('modal-back-to');
   setTimeout(function () { jQuery('.modal-focus-' + modal_open_id).focus() }, 50);
@@ -389,7 +386,7 @@ jQuery('.modal-open-js').on('click', function (e) {
   jQuery('html, body').css({
     overflow: 'hidden',
   });
-  //e.preventDefault();
+  e.preventDefault();
 });
 
 if (window.location.hash) {
@@ -440,7 +437,8 @@ jQuery(window).on('scroll', function (e) {
 /////////////////////////////////////////////
 // hide editor section front end labels
 /////////////////////////////////////////////
-jQuery('.click-hide').on('click', function (e) {
+
+jQuery(document).on('click', '.click-hide:not(.initialized)', function (e) {
   jQuery(this).next('.hide-me').toggleClass('hidden-label');
   var isVisible = jQuery(this).next('.hide-me').hasClass('hidden-label');
   jQuery(this).text(isVisible ? "+" : "-");
@@ -451,7 +449,8 @@ jQuery('.click-hide').on('click', function (e) {
 /////////////////////////////////////////////
 // expandables
 /////////////////////////////////////////////
-jQuery('.expander').on('click', function (e) {
+
+jQuery(document).on('click', '.expander:not(.initialized)', function (e) {
   var expand_id = jQuery(this).data('expand-id');
   if (jQuery('#expand-button-' + expand_id).hasClass('exp-close')) {
     jQuery('#expand-button-' + expand_id).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false);
@@ -465,7 +464,7 @@ jQuery('.expander').on('click', function (e) {
   e.preventDefault();
 });
 
-jQuery('.expander-closer').on('click', function (e) {
+jQuery(document).on('click', '.expander-closer:not(.initialized)', function (e) {
   var expand_id = jQuery(this).data('expand-id');
   jQuery('#expand-button-' + expand_id).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false);
   jQuery('#expand-button-' + expand_id).find('span').addClass('exp-plus').removeClass('exp-minus');
@@ -482,7 +481,7 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-jQuery('.play-video-js').on('click', function (e) {
+jQuery(document).on('click', '.play-video-js:not(.initialized)', function (e) {
   var video_source = jQuery(this).data('video-source');
   var video_toplay = jQuery(this).data('video-toplay');
   jQuery(this).fadeOut(300);
@@ -492,7 +491,7 @@ jQuery('.play-video-js').on('click', function (e) {
     jQuery('#' + video_toplay).removeAttr("data-src").attr('src', src);
     var player = new Vimeo.Player(iframe);
     player.play();
-    jQuery('.modal-close-js').click(function (e) {
+    jQuery(document).on('click', '.modal-close-js:not(.initialized)', function (e) {
       player.pause();
     });
   }
@@ -513,12 +512,21 @@ jQuery('.play-video-js').on('click', function (e) {
     function onPlayerReady(event) {
       event.target.playVideo();
     }
-    jQuery('.modal-close-js').click(function (e) {
-      //player.pauseVideo();
+    jQuery(document).on('click', '.modal-close-js:not(.initialized)', function (e) {
+      player.pauseVideo();
     });
   }
   if (video_source == 'upload-video') {
     jQuery('#' + video_toplay).trigger('play');
+    jQuery(document).on('click', '.modal-close-js:not(.initialized)', function (e) {
+      jQuery('#' + video_toplay).trigger('pause');
+    });
   }
   e.preventDefault();
 });
+
+/////////////////////////////////////////////
+// Stop videos in autoplay to enable screensaver
+/////////////////////////////////////////////
+
+setTimeout(function () { jQuery('.stoppable-js').trigger('pause') }, 60000);

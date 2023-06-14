@@ -11,12 +11,12 @@
 }
 
 .page-opening-fullscreen {
-  min-height: calc(100dvh - #{$header-smartphone-height});
+  min-height: 100dvh;
 }
 
 .page-opening-fullscreen-less {
   position: relative;
-  min-height: calc(80dvh - #{$header-smartphone-height});
+  min-height: 88dvh;
 }
 
 .fullscreen-video {
@@ -37,7 +37,18 @@
 }
 
 .fullscreen-cta {
-  @include flex-wrap;
+  display: grid;
+
+  .fullscreen-cta-safe-padding {
+    padding: calc(#{$header-smartphone-height} + 2.5dvh) 0 5vh 0;
+    overflow: hidden;
+  }
+
+  .fullscreen-cta-aligner {
+    position: relative;
+    width: 100%;
+
+  }
 
   .cta-holder {
     margin: 32px 0 0;
@@ -47,36 +58,26 @@
 .fullscreen-cta-center {
   padding: 0;
   margin: 0;
-  @include flex-verticalize;
+  //justify-content: center;
+  align-content: center;
+}
 
-  .fullscreen-cta-aligner {
-    width: 100%;
-
-    .fullscreen-cta-safe-padding {
-      padding: 15vh 0;
-    }
-  }
+.fullscreen-cta-top {
+  justify-content: start;
+  align-content: start;
 }
 
 .fullscreen-cta-bottom {
-  padding: 0;
-  margin: 0;
-
-  .fullscreen-cta-aligner {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
-    .fullscreen-cta-safe-padding {
-      padding: 5vh 0;
-    }
-  }
+  justify-content: end;
+  align-content: end;
 }
+
 
 .fullscreen-cta-safe-padding,
 .page-opening-simple-spacer {
+
   .last-child-no-margin {
-    max-width: 690px;
+    //max-width: 80%;
   }
 
   &.alignright {
@@ -94,9 +95,9 @@
 
 .scroll-down {
   position: absolute;
-  bottom: 5vh;
+  bottom: 12px;
   left: 50%;
-  margin-left: -20px;
+  transform: translate(-50%, 0);
   width: 40px;
   height: 40px;
   @include define-border-radius(100%);
@@ -125,19 +126,19 @@
 }
 
 .page-opening-simple-spacer {
-  padding: 40px 0 32px;
+  padding: calc(#{$header-smartphone-height} + 24px) 0 48px;
 
   .cta-holder {
-    margin: 32px 0 0;
+    margin: 35px 0 0;
   }
 }
 
 .breadcrumbs-holder {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .categories-holder {
-  margin: 24px 0 0;
+  margin: 32px 0 0;
 
   a {
     margin: 0 16px;
