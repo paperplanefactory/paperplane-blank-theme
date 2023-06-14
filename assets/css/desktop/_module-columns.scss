@@ -3,30 +3,6 @@
 @import '../global/mixin';
 
 .module-columns {
-  .module-paddings-top {
-    padding-top: $module-vertical-padding-desktop;
-  }
-
-  .module-paddings-top-double {
-    padding-top: calc(#{$module-vertical-padding-desktop} * 2);
-  }
-
-  .module-no-paddings-top {
-    padding-top: 0;
-  }
-
-  .module-paddings-bottom {
-    padding-bottom: $module-vertical-padding-desktop;
-  }
-
-  .module-paddings-bottom-double {
-    padding-bottom: calc(#{$module-vertical-padding-desktop} * 2);
-  }
-
-  .module-no-paddings-bottom {
-    padding-bottom: 0;
-  }
-
   .cta-holder {
     text-align: center;
     margin: 64px 0 0;
@@ -50,6 +26,7 @@
     }
 
     .counter {
+
       h2,
       h3 {
         display: inline-block;

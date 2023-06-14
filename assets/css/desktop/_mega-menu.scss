@@ -9,15 +9,15 @@
   left: $wrapper-padded-desktop;
   display: block;
   width: calc(100% - (#{$wrapper-padded-desktop} * 2));
-  @include define-basic-transition(opacity, 0.2s);
+  @include define-basic-transition(opacity, 0.4s);
   opacity: 1;
   pointer-events: all;
-  visibility: visible;
+  //visibility: visible;
 
   &.hidden {
     opacity: 0;
     pointer-events: none;
-    visibility: hidden;
+    //visibility: hidden;
   }
 
   .mega-menu-holder {

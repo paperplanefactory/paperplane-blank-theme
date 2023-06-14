@@ -45,7 +45,7 @@
                         "module-columns-fix-column": "Modulo 3 colonne con colonna fissa",
                         "module-stripe": "Modulo strisce",
                         "module-slideshow": "Modulo slideshow",
-                        "module-fullscreen-image": "Modulo immagine fullscreen con testi",
+                        "module-fullscreen-image": "Modulo immagine o video fullscreen con testi",
                         "module-expanding-text": "Modulo testo ad espansione",
                         "module-video": "Modulo video",
                         "module-banner": "Modulo banner"
@@ -1473,7 +1473,7 @@
                 },
                 {
                     "key": "field_5e6b976676968",
-                    "label": "Modulo immagine fullscreen con testi",
+                    "label": "Modulo immagine o video fullscreen con testi",
                     "name": "",
                     "aria-label": "",
                     "type": "accordion",
@@ -1496,13 +1496,12 @@
                     "open": 0,
                     "multi_expand": 0,
                     "endpoint": 0,
-                    "repeatable": true,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
                     "key": "field_5e6b977976969",
-                    "label": "Immagine di sfondo",
-                    "name": "module_fullscreen_image_image",
+                    "label": "Immagine di sfondo (desktop)",
+                    "name": "module_fullscreen_image_image_desktop",
                     "aria-label": "",
                     "type": "image",
                     "instructions": "",
@@ -1514,7 +1513,6 @@
                         "id": ""
                     },
                     "return_format": "array",
-                    "preview_size": "medium",
                     "library": "all",
                     "min_width": "",
                     "min_height": "",
@@ -1523,7 +1521,83 @@
                     "max_height": "",
                     "max_size": "",
                     "mime_types": "",
-                    "repeatable": true,
+                    "preview_size": "medium",
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_648391261227e",
+                    "label": "Immagine di sfondo (mobile)",
+                    "name": "module_fullscreen_image_image_mobile",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Se non si dispone di un'immagine per mobile utilizzare la stessa utilizzata per la versione desktop.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "preview_size": "medium",
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_64840f64fbcde",
+                    "label": "Video",
+                    "name": "module_fullscreen_image_image_video",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Se non si dispone di un'immagine per mobile utilizzare la stessa utilizzata per la versione desktop.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1,
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_64840f97fbcdf",
+                    "label": "File video",
+                    "name": "module_fullscreen_image_image_video_file",
+                    "aria-label": "",
+                    "type": "file",
+                    "instructions": "Se non si dispone di un'immagine per mobile utilizzare la stessa utilizzata per la versione desktop.",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_64840f64fbcde",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "library": "all",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "mp4",
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -1863,5 +1937,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1686230715
+    "modified": 1686376579
 }

@@ -41,6 +41,7 @@
 
   .fullscreen-cta-safe-padding {
     padding: calc(#{$header-desktop-height} + 5vh) 0 5vh 0;
+    overflow: hidden;
   }
 
   .fullscreen-cta-aligner {
@@ -95,7 +96,7 @@
   position: absolute;
   bottom: 5vh;
   left: 50%;
-  margin-left: -20px;
+  transform: translate(-50%, 0);
   width: 40px;
   height: 40px;
   @include define-border-radius(100%);

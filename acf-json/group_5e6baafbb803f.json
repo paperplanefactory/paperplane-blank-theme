@@ -289,7 +289,7 @@
         },
         {
             "key": "field_5e6bb78a8c93c",
-            "label": "mp4",
+            "label": "File video",
             "name": "page_opening_video_mp4",
             "aria-label": "",
             "type": "file",
@@ -313,8 +313,7 @@
             "library": "all",
             "min_size": "",
             "max_size": "",
-            "mime_types": "",
-            "repeatable": true
+            "mime_types": "mp4"
         },
         {
             "key": "field_6430092e24372",
@@ -491,5 +490,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1685786632
+    "modified": 1686376599
 }
