@@ -12,10 +12,12 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 				<div class="flex-hold flex-hold-2 margins-wide verticalize">
 					<div class="flex-hold-child">
 						<div class="footer-logo">
-							<a href="<?php echo home_url(); ?>" rel="bookmark" title="homepage - <?php echo get_bloginfo( 'name' ); ?>">
+							<a href="<?php echo home_url(); ?>" rel="bookmark"
+								title="homepage - <?php echo get_bloginfo( 'name' ); ?>">
 								<div class="no-the-100">
 									<img src="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/site-logo-header.svg"
-										width="200" height="64" loading="lazy" alt="<?php echo get_bloginfo( 'name' ); ?> - homepage" />
+										width="200" height="64" loading="lazy"
+										alt="<?php echo get_bloginfo( 'name' ); ?> - homepage" />
 								</div>
 							</a>
 						</div>
@@ -27,7 +29,8 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 									<li>
 										<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
 											class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
-											aria-label="Visit <?php echo $global_social['global_socials_profile_url']; ?>" rel="noopener">
+											aria-label="Visit <?php echo $global_social['global_socials_profile_url']; ?>"
+											rel="noopener">
 										</a>
 									</li>
 								<?php endforeach; ?>

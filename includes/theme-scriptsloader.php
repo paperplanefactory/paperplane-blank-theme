@@ -22,11 +22,11 @@ function theme_defer_scripts( $url ) {
 add_filter( 'clean_url', 'theme_defer_scripts', 11, 1 );
 
 // All scripts
-add_action( 'wp_enqueue_scripts', 'all_scripts' );
-function all_scripts() {
+
+function paperplane_load_scripts() {
 	// versione del tema
-	global $theme_version;
-	global $theme_pagination;
+	global $theme_version, $theme_pagination;
+	//$content_fields = paperplane_content_transients( $post->ID );
 	// smart jquery inclusion
 	if ( ! is_admin() ) {
 		wp_deregister_script( 'jquery' );
@@ -37,7 +37,7 @@ function all_scripts() {
 	if ( $theme_pagination === 'theme-infinite-scroll' ) {
 		// Infinite Scroll
 		// documentazione: https://infinite-scroll.com/
-		wp_register_script( 'theme-infinitescroll', get_template_directory_uri() . '/assets/js/libs/infinite-scroll.min.js#deferload', array( 'jquery' ), '4.0.1', false );
+		wp_register_script( 'theme-infinitescroll', get_template_directory_uri() . '/assets/js/libs/infinite-scroll.min.js#deferload', array( 'jquery' ), '4.0.1', true );
 		wp_enqueue_script( 'theme-infinitescroll' );
 	}
 	// Vimeo API
@@ -46,12 +46,6 @@ function all_scripts() {
 	//wp_register_script('youtube-api', 'https://www.youtube.com/iframe_api#deferload', array('jquery'), '4.0.1', true);
 	//wp_enqueue_script('youtube-api');
 
-
-	// Lazy load
-	// documentazione: http://www.andreaverlicchi.eu/lazyload/
-	//wp_register_script('vanilla-lazyload', get_template_directory_uri() . '/assets/js/libs/lazyload.min.js#deferload', array('jquery'), '17.5.0', true);
-	//wp_enqueue_script('vanilla-lazyload');
-
 	// AOS
 	// documentazione: https://github.com/michalsnik/aos
 	wp_register_script( 'theme-aos', get_template_directory_uri() . '/assets/js/libs/aos.min.js#deferload', array( 'jquery' ), $theme_version, true );
@@ -59,7 +53,7 @@ function all_scripts() {
 
 	// slick
 	// documentazione: https://github.com/kenwheeler/slick
-	wp_register_script( 'slick', get_template_directory_uri() . '/assets/js/libs/slick.min.js#deferload', array( 'jquery' ), $theme_version, false );
+	wp_register_script( 'slick', get_template_directory_uri() . '/assets/js/libs/slick.min.js#deferload', array( 'jquery' ), $theme_version, true );
 	wp_enqueue_script( 'slick' );
 
 	// parallasse
@@ -71,3 +65,5 @@ function all_scripts() {
 	wp_register_script( 'theme-general', get_template_directory_uri() . '/assets/js/theme-general.min.js#deferload', array( 'jquery' ), $theme_version, true );
 	wp_enqueue_script( 'theme-general' );
 }
+
+add_action( 'wp_enqueue_scripts', 'paperplane_load_scripts' );

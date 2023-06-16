@@ -71,7 +71,4 @@ $content_fields = paperplane_content_transients( $post->ID );
 sdfsdfd
 <?php
 wp_reset_query();
-//$content_fields = paperplane_content_transients($post->ID);
-var_dump( $content_fields );
-echo $content_fields['page_opening_layout']; ?>
-<?php get_footer(); ?>
+get_footer(); ?>

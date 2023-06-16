@@ -87,10 +87,12 @@
     color: $color-1 !important;
     background-color: $color-3 !important;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       color: $color-1 !important;
       background-color: $color-4 !important;
     }
+
   }
 
   .default-button-b {
