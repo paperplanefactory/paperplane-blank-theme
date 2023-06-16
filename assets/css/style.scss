@@ -13,7 +13,7 @@
 @import 'global/modules';
 @import 'global/buttons';
 @import 'global/ctas';
-@import 'global/images';
+@import 'global/media';
 @import 'global/forms'; // imports mobile
 
 @media screen and (min-width: $break-mobile-start) and (max-width: $break-tablet-end) {
@@ -33,7 +33,7 @@
   @import 'mobile/module-banner';
   @import 'mobile/module-video';
   @import 'mobile/ctas';
-  @import 'mobile/images';
+  @import 'mobile/media';
   @import 'mobile/effects';
   @import 'mobile/forms';
   @import 'mobile/slideshows';
@@ -60,7 +60,7 @@
   @import 'desktop/module-banner';
   @import 'desktop/module-video';
   @import 'desktop/ctas';
-  @import 'desktop/images';
+  @import 'desktop/media';
   @import 'desktop/effects';
   @import 'desktop/forms';
   @import 'desktop/slideshows';

@@ -56,3 +56,37 @@
 		height: auto;
 	}
 }
+
+.video-stop {
+	position: absolute;
+	z-index: 2;
+	bottom: 10px;
+	right: 10px;
+	width: 20px;
+	height: 20px;
+	border: none;
+	background-color: $color-4;
+	border-radius: 50%;
+	cursor: pointer;
+
+	&:before {
+		position: absolute;
+		z-index: 2;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		content: '\0801';
+		font-family: "paperplane-blank-theme-social-icons";
+		font-style: normal;
+		font-weight: normal;
+		speak: never;
+		font-size: 12px;
+		color: $color-1;
+	}
+
+	&.pause {
+		&:before {
+			content: '\0802';
+		}
+	}
+}

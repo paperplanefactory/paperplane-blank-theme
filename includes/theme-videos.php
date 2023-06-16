@@ -4,7 +4,7 @@ function paperplane_theme_videos( $field_names ) {
 		$field_names = array( $field_names );
 	}
 	if ( $field_names ) {
-		//var_dump($field_names);
+		global $post;
 		foreach ( $field_names as $field_name ) {
 			$videos_count = paperplane_random_code();
 			$video_source = $field_name['video_source'];

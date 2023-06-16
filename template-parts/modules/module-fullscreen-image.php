@@ -20,7 +20,11 @@ if ( $module['module_fullscreen_image_image_video'] ?? null ) {
 	<div class="module-box-fullscreen coverize <?php echo $module['module_fullscreen_text_align_horizontal']; ?>"
 		data-aos="fade">
 		<?php if ( $module_fullscreen_image_image_video == 1 ) : ?>
-			<video class="stoppable-js" data-autoplay autoplay loop muted playsinline>
+			<button class="video-stop video-stop-js" data-video-stop="module-fullscreen-video-<?php echo $module_count; ?>"
+				title="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"
+				aria-label="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"></button>
+			<video id="module-fullscreen-video-<?php echo $module_count; ?>" class="stoppable-js" data-autoplay autoplay
+				loop muted playsinline>
 				<source type="video/mp4" src="<?php echo $module['module_fullscreen_image_image_video_file']; ?>">
 			</video>
 		<?php else : ?>

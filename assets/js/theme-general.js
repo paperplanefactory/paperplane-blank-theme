@@ -1,41 +1,61 @@
 /////////////////////////////////////////////
 // accessibility
 /////////////////////////////////////////////
-jQuery(document).on('click', '.accessible-navi-activate-js:not(.initialized)', function (e) {
-  var accessible_navi = localStorage.getItem('accessible_navi');
-  var original_label = jQuery('.accessible-navi-activate-js').data('original-label');
-  var active_label = jQuery('.accessible-navi-activate-js').data('active-label');
-  if (accessible_navi === null || accessible_navi === '' || accessible_navi === 'no') {
-    localStorage.setItem('accessible_navi', 'yes');
-    jQuery('.accessible-navi-activate-js').html(active_label).attr('title', active_label).attr('aria-label', active_label);
-    jQuery('body').addClass('body-accessible-navi');
-    jQuery('.stoppable-js').trigger('pause');
-  };
-  if (accessible_navi === 'yes') {
-    localStorage.setItem('accessible_navi', 'no');
-    jQuery('.accessible-navi-activate-js').html(original_label).attr('title', original_label).attr('aria-label', original_label);
-    jQuery('body').removeClass('body-accessible-navi');
-    jQuery('.stoppable-js').trigger('play');
+const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)') === true || window.matchMedia('(prefers-reduced-motion: reduce)').matches === true;
+if (isReduced) {
+  jQuery('.stoppable-js').trigger('pause');
+}
+else {
+  jQuery(document).on('click', '.accessible-navi-activate-js:not(.initialized)', function (e) {
+    var accessible_navi = localStorage.getItem('accessible_navi');
+    var original_label = jQuery('.accessible-navi-activate-js').data('original-label');
+    var active_label = jQuery('.accessible-navi-activate-js').data('active-label');
+    if (accessible_navi === null || accessible_navi === '' || accessible_navi === 'no') {
+      localStorage.setItem('accessible_navi', 'yes');
+      jQuery('.accessible-navi-activate-js').html(active_label).attr('title', active_label).attr('aria-label', active_label);
+      jQuery('body').addClass('body-accessible-navi');
+      jQuery('.stoppable-js').trigger('pause');
+    };
+    if (accessible_navi === 'yes') {
+      localStorage.setItem('accessible_navi', 'no');
+      jQuery('.accessible-navi-activate-js').html(original_label).attr('title', original_label).attr('aria-label', original_label);
+      jQuery('body').removeClass('body-accessible-navi');
+      jQuery('.stoppable-js').trigger('play');
+    }
+    e.preventDefault();
+  });
+
+  function set_accessible_navi() {
+    var accessible_navi = localStorage.getItem('accessible_navi');
+    var original_label = jQuery('.accessible-navi-activate-js').data('original-label');
+    var active_label = jQuery('.accessible-navi-activate-js').data('active-label');
+    if (accessible_navi === null || accessible_navi === '' || accessible_navi === 'no') {
+      jQuery('.accessible-navi-activate-js').html(original_label).attr('title', original_label).attr('aria-label', original_label);
+      jQuery('body').removeClass('body-accessible-navi');
+      jQuery('.stoppable-js').trigger('play');
+    };
+    if (accessible_navi == 'yes') {
+      jQuery('.accessible-navi-activate-js').html(active_label).attr('title', active_label).attr('aria-label', active_label);
+      jQuery('body').addClass('body-accessible-navi');
+      jQuery('.stoppable-js').trigger('pause');
+    }
+  }
+  set_accessible_navi();
+}
+
+jQuery(document).on('click', '.video-stop-js:not(.initialized)', function (e) {
+  jQuery(this).toggleClass('pause');
+  var video_stop = jQuery(this).data('video-stop');
+  var video = jQuery('#' + video_stop).get(0);
+  if (video.paused) {
+    jQuery('#' + video_stop).trigger('play');
+  }
+  else {
+    jQuery('#' + video_stop).trigger('pause');
   }
   e.preventDefault();
 });
 
-function set_accessible_navi() {
-  var accessible_navi = localStorage.getItem('accessible_navi');
-  var original_label = jQuery('.accessible-navi-activate-js').data('original-label');
-  var active_label = jQuery('.accessible-navi-activate-js').data('active-label');
-  if (accessible_navi === null || accessible_navi === '' || accessible_navi === 'no') {
-    jQuery('.accessible-navi-activate-js').html(original_label).attr('title', original_label).attr('aria-label', original_label);
-    jQuery('body').removeClass('body-accessible-navi');
-    jQuery('.stoppable-js').trigger('play');
-  };
-  if (accessible_navi == 'yes') {
-    jQuery('.accessible-navi-activate-js').html(active_label).attr('title', active_label).attr('aria-label', active_label);
-    jQuery('body').addClass('body-accessible-navi');
-    jQuery('.stoppable-js').trigger('pause');
-  }
-}
-set_accessible_navi();
 
 /////////////////////////////////////////////
 // AOS
@@ -68,7 +88,6 @@ function initInfiniteScroll() {
     });
 
     jQuery('.grid-infinite').on('append.infiniteScroll', function (event, response, path, items) {
-      paperPlaneLazyLoad.update();
       AOS.refreshHard();
     });
     window.setInterval(function () {
@@ -268,40 +287,46 @@ jQuery(document).on('click', '.overlay-menu-mobile-js > .menu-item-has-children 
 // slick slideshow
 /////////////////////////////////////////////
 
+jQuery(document).ready(function () {
+  jQuery('.slider-single-js').on('init reInit', function (event, slick, currentSlide, nextSlide) {
+    AOS.refresh();
+  });
 
-jQuery('.slider-single-js').on('init reInit', function (event, slick, currentSlide, nextSlide) {
-  AOS.refresh();
-});
-
-jQuery(document).on('keydown', function (e) {
-  if (e.keyCode == 37) {
-    jQuery('.slider-single-js').slick('slickPrev');
-  }
-  if (e.keyCode == 39) {
-    jQuery('.slider-single-js').slick('slickNext');
-  }
-});
-
-jQuery('.slider-single-js').slick({
-  lazyLoad: 'progressive',
-  dots: true,
-  focusOnSelect: true,
-  draggable: true,
-  infinite: true,
-  accessibility: true,
-  adaptiveHeight: false,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: true,
-  nextArrow: '<div class="slick-next">→</div>',
-  prevArrow: '<div class="slick-prev">←</div>',
-  responsive: [{
-    breakpoint: 1024,
-    settings: {
-      slidesToShow: 1,
-      slidesToScroll: 1
+  jQuery(document).on('keydown', function (e) {
+    if (e.keyCode == 37) {
+      jQuery('.slider-single-js').slick('slickPrev');
     }
-  }]
+    if (e.keyCode == 39) {
+      jQuery('.slider-single-js').slick('slickNext');
+    }
+  });
+
+  jQuery('.slider-single-js').slick({
+    lazyLoad: 'progressive',
+    dots: true,
+    focusOnSelect: true,
+    draggable: true,
+    infinite: true,
+    accessibility: true,
+    adaptiveHeight: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    nextArrow: '<div class="slick-next">→</div>',
+    prevArrow: '<div class="slick-prev">←</div>',
+    responsive: [{
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }]
+  });
+
+  jQuery('.slide-next-slider-single-js').click(function (e) {
+    //e.preventDefault(); 
+    jQuery('.slider-single-js').slick('slickNext');
+  });
 });
 
 /////////////////////////////////////////////

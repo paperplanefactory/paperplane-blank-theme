@@ -5,6 +5,7 @@
 		<div class="wrapper-padded">
 			<div class="wrapper-padded-container">
 				<div class="wrapper-padded-more-924">
+					<h2>Ciao <span class="slide-next-slider-single-js">next</span></h2>
 					<div class="slider-single slider-single-js">
 						<?php if ( $module['module_slideshow_repeater'] ) :
 							foreach ( $module['module_slideshow_repeater'] as $slide ) : ?>
