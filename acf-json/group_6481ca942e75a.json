@@ -100,7 +100,7 @@
             "aria-label": "",
             "type": "image",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -182,5 +182,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1686377199
+    "modified": 1686952748
 }

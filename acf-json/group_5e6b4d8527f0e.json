@@ -1245,7 +1245,7 @@
                     "sub_fields": [
                         {
                             "key": "field_6186cdc046247",
-                            "label": "Contenuti sctriscia",
+                            "label": "Contenuti striscia",
                             "name": "",
                             "aria-label": "",
                             "type": "accordion",
@@ -1260,7 +1260,6 @@
                             "open": 0,
                             "multi_expand": 0,
                             "endpoint": 0,
-                            "repeatable": true,
                             "parent_repeater": "field_5e6b8b0467ad3"
                         },
                         {
@@ -1292,6 +1291,33 @@
                             "parent_repeater": "field_5e6b8b0467ad3"
                         },
                         {
+                            "key": "field_648cd5a329b82",
+                            "label": "Contenuto media",
+                            "name": "module_stripe_repeater_content_media",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "image": "Immagine",
+                                "video": "Video"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "parent_repeater": "field_5e6b8b0467ad3"
+                        },
+                        {
                             "key": "field_5e6b8b6467ad4",
                             "label": "Immagine",
                             "name": "module_stripe_repeater_image",
@@ -1299,14 +1325,21 @@
                             "type": "image",
                             "instructions": "",
                             "required": 1,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_648cd5a329b82",
+                                        "operator": "==",
+                                        "value": "image"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
                             "return_format": "array",
-                            "preview_size": "medium",
                             "library": "all",
                             "min_width": "",
                             "min_height": "",
@@ -1315,7 +1348,41 @@
                             "max_height": "",
                             "max_size": "",
                             "mime_types": "",
-                            "repeatable": true,
+                            "preview_size": "medium",
+                            "parent_repeater": "field_5e6b8b0467ad3"
+                        },
+                        {
+                            "key": "field_648cd60729b83",
+                            "label": "Video",
+                            "name": "module_stripe_repeater_video",
+                            "aria-label": "",
+                            "type": "component_field",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_648cd5a329b82",
+                                        "operator": "==",
+                                        "value": "video"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "field_group_key": "group_6481ca942e75a",
+                            "layout": "block",
+                            "repeatable": 0,
+                            "button_label": "Aggiungi Riga",
+                            "appearances": "",
+                            "min": 0,
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [],
                             "parent_repeater": "field_5e6b8b0467ad3"
                         },
                         {
@@ -1937,5 +2004,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1686376579
+    "modified": 1686952607
 }

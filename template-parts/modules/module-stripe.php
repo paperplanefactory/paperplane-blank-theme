@@ -11,6 +11,7 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 				<?php
 				if ( $module['module_stripe_repeater'] ) :
 					foreach ( $module['module_stripe_repeater'] as $stripe ) :
+						$module_stripe_repeater_content_media = $stripe['module_stripe_repeater_content_media'];
 						?>
 						<!-- blocco -->
 						<div
@@ -18,28 +19,30 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 							<!-- colonna -->
 							<div class="module-stripe-image" data-aos="fade-up">
 								<div class="spacer">
-									<?php paperplane_theme_cta_absl_advanced( $stripe['paperplane_theme_cta_stripe'] ); ?>
-									<?php
-									$image_data = array(
-										'image_type' => 'acf',
-										// options: post_thumbnail, acf
-										'image_value' => $stripe['module_stripe_repeater_image'],
-										// se utilizzi un custom field indica qui il nome del campo
-										'size_fallback' => 'column'
-									);
-									$image_sizes = array(
-										// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-										'desktop_default' => 'column',
-										'desktop_hd' => 'column_hd',
-										'mobile_default' => 'column',
-										'mobile_hd' => 'column_hd',
-										'lazy_placheholder' => 'micro'
-									);
-									print_theme_image( $image_data, $image_sizes );
-									?>
-									</a>
+									<?php if ( $module_stripe_repeater_content_media === 'image' ) : ?>
+										<?php paperplane_theme_cta_absl_advanced( $stripe['paperplane_theme_cta_stripe'] ); ?>
+										<?php
+										$image_data = array(
+											'image_type' => 'acf',
+											// options: post_thumbnail, acf
+											'image_value' => $stripe['module_stripe_repeater_image'],
+											// se utilizzi un custom field indica qui il nome del campo
+											'size_fallback' => 'column'
+										);
+										$image_sizes = array(
+											// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+											'desktop_default' => 'column',
+											'desktop_hd' => 'column_hd',
+											'mobile_default' => 'column',
+											'mobile_hd' => 'column_hd',
+											'lazy_placheholder' => 'micro'
+										);
+										print_theme_image( $image_data, $image_sizes );
+										?>
+									<?php elseif ( $module_stripe_repeater_content_media === 'video' ) : ?>
+										<?php paperplane_theme_videos( $stripe['module_stripe_repeater_video'] ); ?>
+									<?php endif; ?>
 								</div>
-
 							</div>
 							<!-- colonna -->
 							<!-- colonna -->

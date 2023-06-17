@@ -4,9 +4,6 @@
 
 .expandable-content {
   display: none;
-  visibility: hidden;
 
-  &.visible {
-    visibility: visible;
-  }
+  &.visible {}
 }

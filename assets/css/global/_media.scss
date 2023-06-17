@@ -67,20 +67,28 @@
 		display: block;
 		width: 100%;
 		height: 100%;
+		background-color: $color-1;
 
 		&:before {
 			position: absolute;
+			width: 70px;
+			height: 70px;
 			z-index: 2;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			content: '\f144';
+			content: '\0802';
 			font-family: "paperplane-blank-theme-social-icons";
 			font-style: normal;
 			font-weight: normal;
 			speak: never;
-			font-size: 80px;
+			font-size: 40px;
+			line-height: 70px;
 			color: $color-1;
+			background-color: $color-4;
+			border-radius: 50%;
+			text-align: center;
+			padding-left: 5px;
 		}
 
 		img {
