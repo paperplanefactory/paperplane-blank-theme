@@ -70,7 +70,8 @@
 		</div>
 		<?php if ( $page_opening_layout === 'opening-fullscreen' && $page_scroll_button == 1 ) : ?>
 			<div class="scroll-down">
-				<a href="#below-the-fold" title="scroll below the fold"></a>
+				<a href="#below-the-fold" title="<?php _e( 'Vai al contenuto', 'paperPlane-blankTheme' ); ?>"
+					aria-label="<?php _e( 'Vai al contenuto', 'paperPlane-blankTheme' ); ?>"></a>
 			</div>
 		<?php endif; ?>
 	</div>

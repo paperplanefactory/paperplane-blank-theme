@@ -149,12 +149,12 @@ function paperplane_add_mega_menu_atts( $atts, $item, $args ) {
 	if ( $mega_menu_activator ) {
 		$atts['data-megamenu-open-id'] = $mega_menu_activator[0];
 		$atts['class'] = 'mega-menu-js-trigger mega-menu-js-' . $mega_menu_activator[0] . '-trigger';
-		$atts['title'] = $item->title . ': ' . __( 'permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
-		$atts['aria-label'] = $item->title . ': ' . __( 'permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
+		$atts['title'] = $item->title . ': ' . __( 'premendo invio permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
+		$atts['aria-label'] = $item->title . ': ' . __( 'premendo invio permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
 	} elseif ( in_array( 'menu-item-has-children', $item->classes ) ) {
 		$atts['aria-haspopup'] = 'true';
-		$atts['title'] = $item->title . ': ' . __( 'permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
-		$atts['aria-label'] = $item->title . ': ' . __( 'permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
+		$atts['title'] = $item->title . ': ' . __( 'premendo invio permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
+		$atts['aria-label'] = $item->title . ': ' . __( 'premendo invio permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
 	} else {
 		$atts['title'] = $item->title;
 		$atts['aria-label'] = $item->title;

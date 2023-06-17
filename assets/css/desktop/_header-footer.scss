@@ -218,7 +218,6 @@ $hamburger-width: 45px; // header
 
     .overlay-menu-mobile-css {
       width: 100%;
-      //text-align: center;
       text-align: left;
 
       li {
@@ -281,11 +280,17 @@ $hamburger-width: 45px; // header
 
   .inline-socials {
     margin-top: 20px;
+    padding: 0 $wrapper-padded-desktop;
+
+    li {
+      margin: 0 15px 10px 0;
+    }
   }
 }
 
 .scroll-opportunity {
   height: calc(100dvh - #{$header-desktop-height});
+  padding-bottom: $module-vertical-padding-desktop;
 }
 
 // footer

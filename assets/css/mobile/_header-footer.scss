@@ -139,6 +139,11 @@ $hamburger-width: 55px; // header
 
   .inline-socials {
     margin-top: 20px;
+    padding: 0 $wrapper-padded-smartphone;
+
+    li {
+      margin: 0 15px 10px 0;
+    }
   }
 }
 
@@ -149,6 +154,7 @@ $hamburger-width: 55px; // header
 .scroll-opportunity {
   width: 100%;
   height: calc(100dvh - #{$header-smartphone-height});
+  padding-bottom: $module-vertical-padding-smartphone;
 }
 
 // footer

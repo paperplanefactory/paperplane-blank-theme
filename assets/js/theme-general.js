@@ -4,8 +4,12 @@
 const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)') === true || window.matchMedia('(prefers-reduced-motion: reduce)').matches === true;
 if (isReduced) {
   jQuery('.stoppable-js').trigger('pause');
+  var animation_duration = 0;
+  var animation_duration_counter = 0;
 }
 else {
+  var animation_duration = 500;
+  var animation_duration_counter = 1500;
   jQuery(document).on('click', '.accessible-navi-activate-js:not(.initialized)', function (e) {
     var accessible_navi = localStorage.getItem('accessible_navi');
     var original_label = jQuery('.accessible-navi-activate-js').data('original-label');
@@ -64,8 +68,7 @@ jQuery(document).on('click', '.video-stop-js:not(.initialized)', function (e) {
 AOS.init({
   duration: 900,
   once: false,
-  mirror: true,
-  //offset: aos_win_height
+  mirror: true
 });
 
 /////////////////////////////////////////////
@@ -75,7 +78,6 @@ AOS.init({
 function initInfiniteScroll() {
   if (jQuery(".nav-next a")[0]) {
     jQuery('.grid-infinite').infiniteScroll({
-      // options
       path: '.nav-next a',
       append: '.grid-item-infinite',
       status: '#infscr-loading',
@@ -92,7 +94,7 @@ function initInfiniteScroll() {
     });
     window.setInterval(function () {
       if (jQuery('.infinite-scroll-last').is(":visible")) {
-        jQuery('#infscr-loading').fadeOut(300);
+        jQuery('#infscr-loading').fadeOut(animation_duration);
       }
     }, 3000);
   }
@@ -176,10 +178,6 @@ function scrollDirectionMenu() {
   }
   lastScrollTop = st;
 }
-
-jQuery(window).on('scroll', function (event) {
-  scrollDirectionMenu();
-});
 
 /////////////////////////////////////////////
 // mega menu
@@ -335,38 +333,30 @@ jQuery(document).ready(function () {
 
 function numbers_counter() {
   if (jQuery('.count')[0]) {
-    if (jQuery('body').hasClass('body-accessible-navi')) {
-      jQuery('.count').each(function (i, el) {
-        data_number = jQuery(this).data('bar-number');
-        jQuery(this).html(data_number);
-      });
-    }
-    else {
-      var win_height = (jQuery(window).height() / 1.2);
-      var scrollTop = jQuery(window).scrollTop();
-      jQuery('.count').each(function (i, el) {
-        data_number = jQuery(this).data('bar-number');
-        elementOffset = jQuery(this).offset().top,
-          distance = (elementOffset - scrollTop);
-        if (distance < win_height) {
-          jQuery(this).prop('Counter', 0).animate({
-            Counter: jQuery(this).attr('data-bar-number')
-          }, {
-            duration: 2000,
-            easing: 'swing',
-            step: function (now) {
-              jQuery(this).text(Math.ceil(now));
-              if (now < (jQuery(this).attr('data-bar-number') - 2)) {
-                jQuery(this).addClass('blurred-counter');
-              } else {
-                jQuery(this).removeClass('blurred-counter');
-              }
+    var win_height = (jQuery(window).height() / 1.2);
+    var scrollTop = jQuery(window).scrollTop();
+    jQuery('.count').each(function (i, el) {
+      data_number = jQuery(this).data('bar-number');
+      elementOffset = jQuery(this).offset().top,
+        distance = (elementOffset - scrollTop);
+      if (distance < win_height) {
+        jQuery(this).prop('Counter', 0).animate({
+          Counter: jQuery(this).attr('data-bar-number')
+        }, {
+          duration: animation_duration_counter,
+          easing: 'swing',
+          step: function (now) {
+            jQuery(this).text(Math.ceil(now));
+            if (now < (jQuery(this).attr('data-bar-number') - 2)) {
+              jQuery(this).addClass('blurred-counter');
+            } else {
+              jQuery(this).removeClass('blurred-counter');
             }
+          }
 
-          });
-        }
-      });
-    }
+        });
+      }
+    });
   }
 }
 jQuery(document).ready(function () {
@@ -429,37 +419,6 @@ if (window.location.hash) {
 }
 
 /////////////////////////////////////////////
-// Clear ovarlay scroll when resizing desktop - mobile if desktop has no overlay menu
-/////////////////////////////////////////////
-
-function clear_overlay_scroll() {
-  var clear_overlay_scroll_window_width = jQuery(window).width();
-  if (!jQuery('#head-overlay').hasClass('hidden')) {
-    if (clear_overlay_scroll_window_width > 1023) {
-      jQuery('html, body').css({
-        overflow: 'visible',
-      });
-    } else {
-      jQuery('html, body').css({
-        overflow: 'hidden',
-      });
-    }
-  }
-}
-
-/////////////////////////////////////////////
-// Window scroll / resize events
-/////////////////////////////////////////////
-//let scrollRef = 0;
-
-jQuery(window).on('scroll', function (e) {
-  numbers_counter();
-});
-
-//jQuery(window).resize(function() {
-//});
-
-/////////////////////////////////////////////
 // hide editor section front end labels
 /////////////////////////////////////////////
 
@@ -480,11 +439,11 @@ jQuery(document).on('click', '.expander:not(.initialized)', function (e) {
   if (jQuery('#expand-button-' + expand_id).hasClass('exp-close')) {
     jQuery('#expand-button-' + expand_id).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false);
     jQuery('#expand-button-' + expand_id).find('span').addClass('exp-plus').removeClass('exp-minus');
-    jQuery('#expand-content-' + expand_id).slideUp(150).removeClass('visible');
+    jQuery('#expand-content-' + expand_id).slideUp(animation_duration).removeClass('visible');
   } else {
     jQuery('#expand-button-' + expand_id).addClass('exp-close').removeClass('exp-open').attr('aria-expanded', true);
     jQuery('#expand-button-' + expand_id).find('span').removeClass('exp-plus').addClass('exp-minus');
-    jQuery('#expand-content-' + expand_id).slideDown(150).addClass('visible');
+    jQuery('#expand-content-' + expand_id).slideDown(animation_duration).addClass('visible');
   }
   e.preventDefault();
 });
@@ -493,7 +452,7 @@ jQuery(document).on('click', '.expander-closer:not(.initialized)', function (e) 
   var expand_id = jQuery(this).data('expand-id');
   jQuery('#expand-button-' + expand_id).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false);
   jQuery('#expand-button-' + expand_id).find('span').addClass('exp-plus').removeClass('exp-minus');
-  jQuery('#expand-content-' + expand_id).slideUp(150).removeClass('visible');
+  jQuery('#expand-content-' + expand_id).slideUp(animation_duration).removeClass('visible');
   e.preventDefault();
 });
 
@@ -554,4 +513,38 @@ jQuery(document).on('click', '.play-video-js:not(.initialized)', function (e) {
 // Stop videos in autoplay to enable screensaver
 /////////////////////////////////////////////
 
-setTimeout(function () { jQuery('.stoppable-js').trigger('pause') }, 60000);
+setTimeout(function () { jQuery('.stoppable-js').trigger('pause') }, 120000);
+
+
+/////////////////////////////////////////////
+// Window scroll / resize events
+/////////////////////////////////////////////
+
+jQuery(window).on('scroll', function (e) {
+  scrollDirectionMenu();
+  numbers_counter();
+});
+/*
+jQuery(window).resize(function () {
+  clear_overlay_scroll();
+});
+*/
+
+/////////////////////////////////////////////
+// Clear overlay scroll when resizing desktop - mobile: attivare se la versione desktop non ha menu overlay
+/////////////////////////////////////////////
+
+function clear_overlay_scroll() {
+  var clear_overlay_scroll_window_width = jQuery(window).width();
+  if (!jQuery('#head-overlay').hasClass('hidden')) {
+    if (clear_overlay_scroll_window_width > 1023) {
+      jQuery('html, body').css({
+        overflow: 'visible',
+      });
+    } else {
+      jQuery('html, body').css({
+        overflow: 'hidden',
+      });
+    }
+  }
+}
