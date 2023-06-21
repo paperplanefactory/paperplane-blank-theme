@@ -12,12 +12,10 @@
   @include define-basic-transition(opacity, 0.4s);
   opacity: 1;
   pointer-events: all;
-  //visibility: visible;
 
   &.hidden {
     opacity: 0;
     pointer-events: none;
-    //visibility: hidden;
   }
 
   .mega-menu-holder {
@@ -25,9 +23,7 @@
     z-index: 2;
     width: 100%;
     margin: 0 auto;
-    -webkit-box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
+    background-color: $color-4;
   }
 
   .mega-menu-holder-contained {

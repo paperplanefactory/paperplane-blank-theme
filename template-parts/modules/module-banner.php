@@ -6,20 +6,27 @@ if ( $banner ) :
 	setup_postdata( $post );
 	$content_fields = paperplane_content_transients( $post->ID );
 	if ( $content_fields['banner_background_image'] ?? null ) {
-		$banner_background_image_URL = $content_fields['banner_background_image']['sizes']['full_desk'];
+		$banner_background_image_desktop_URL = $content_fields['banner_background_image']['sizes']['column_hd'];
+		$banner_background_image_mobile_URL = $content_fields['banner_background_image']['sizes']['column'];
 	}
 	$banner_foreground_image = $content_fields['banner_foreground_image'];
 	?>
-	<div class="wrapper module-banner">
+	<div class="wrapper module-banner bg-4">
 		<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 		<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 			<div class="wrapper-padded">
 				<div class="wrapper-padded-container">
-					<div class="banner-space coverize <?php echo $content_fields['banner_color_scheme']; ?>">
-						<?php if ( isset( $banner_background_image_URL ) ) : ?>
+					<div class="banner-space coverize">
+						<?php if ( isset( $banner_background_image_desktop_URL ) ) : ?>
 							<div class="banner-mask-image">
-								<img src="<?php echo $banner_background_image_URL; ?>" title="<?php the_title(); ?>"
-									alt="<?php the_title(); ?>" />
+								<div class="desktop-only">
+									<img src="<?php echo $banner_background_image_desktop_URL; ?>" loading="lazy"
+										title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+								</div>
+								<div class="mobile-only">
+									<img src="<?php echo $banner_background_image_mobile_URL; ?>" loading="lazy"
+										title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+								</div>
 								<div class="above-image-opacity"></div>
 							</div>
 						<?php endif; ?>

@@ -108,15 +108,17 @@
 	<?php include( locate_template( 'template-parts/grid/accessible-navi.php' ) ); ?>
 	<div id="site-wrapper">
 		<div id="preheader"></div>
-		<header id="header" class="colors-black-bg">
+		<header id="header">
 			<div class="wrapper-padded">
 				<div class="<?php echo $header_wrapper; ?>">
 					<div id="header-structure">
 						<div class="logo">
 							<a href="<?php echo home_url(); ?>" rel="bookmark"
-								title="homepage - <?php echo get_bloginfo( 'name' ); ?>" class="absl"></a>
+								title="homepage - <?php echo get_bloginfo( 'name' ); ?>"
+								aria-label="homepage - <?php echo get_bloginfo( 'name' ); ?>" class="absl"></a>
 						</div>
-						<nav class="menu allupper">
+						<nav class="menu allupper" role="navigation"
+							aria-label="<?php _e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
 							<?php
 							if ( has_nav_menu( 'header-menu' ) ) {
 								wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu header-menu-js' ) );
@@ -128,8 +130,8 @@
 								<li>
 									<button class="hambuger-element ham-activator" aria-haspopup="true"
 										aria-controls="head-overlay" onclick="hamburgerMenu()"
-										title="<?php _e( 'Accedi al menu ad hamburger', 'paperPlane-blankTheme' ); ?>"
-										aria-label="<?php _e( 'Accedi al menu ad hamburger', 'paperPlane-blankTheme' ); ?>">
+										title="<?php _e( 'Premi invio per accedere al menu ad hamburger', 'paperPlane-blankTheme' ); ?>"
+										aria-label="<?php _e( 'Premi invio per accedere al menu ad hamburger', 'paperPlane-blankTheme' ); ?>">
 										<span></span>
 										<span></span>
 										<span></span>
@@ -148,7 +150,8 @@
 		<div id="head-overlay" class="hidden colors-black-bg" aria-hidden="true">
 			<div class="scroll-opportunity">
 				<div class="wrapper">
-					<nav class="menu">
+					<nav class="menu" role="navigation"
+						aria-label="<?php _e( 'Menu secondario', 'paperPlane-blankTheme' ); ?>">
 						<?php
 						if ( has_nav_menu( 'overlay-menu-mobile' ) ) {
 							wp_nav_menu( array( 'theme_location' => 'overlay-menu-mobile', 'container' => 'ul', 'menu_class' => 'overlay-menu-mobile-css overlay-menu-mobile-js' ) );

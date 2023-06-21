@@ -102,34 +102,6 @@
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
-                    "key": "field_5e6b7547e9fee",
-                    "label": "Colore di sfondo modulo",
-                    "name": "module_bg",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "colors-white-bg": "Sfondo bianco - testi neri",
-                        "colors-black-bg": "Sfondo nero - testi bianchi"
-                    },
-                    "default_value": false,
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
-                    "placeholder": "",
-                    "repeatable": true,
-                    "parent_repeater": "field_5e6b4d8f8e1a6"
-                },
-                {
                     "key": "field_61862f487bb4a",
                     "label": "Spaziatura superiore modulo",
                     "name": "module_vertical_top_space",
@@ -144,18 +116,17 @@
                         "id": ""
                     },
                     "choices": {
+                        "module-no-paddings-top": "Nessuno spazio",
                         "module-paddings-top": "Spazio predefinito",
-                        "module-paddings-top-double": "Spazio doppio",
-                        "module-no-paddings-top": "Nessuno spazio"
+                        "module-paddings-top-double": "Spazio doppio"
                     },
                     "default_value": false,
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
                     "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
-                    "repeatable": true,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -2004,5 +1975,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1686952607
+    "modified": 1687334484
 }

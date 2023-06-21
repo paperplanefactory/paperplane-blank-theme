@@ -11,15 +11,13 @@ $hamburger-width: 45px; // header
 
 #header {
   height: $header-desktop-height;
-  -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
 
   &.hidden {
     top: -$header-desktop-height;
-    -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0);
-    -moz-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0);
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0);
+  }
+
+  &.scrolled {
+    background-color: $color-4;
   }
 
   #header-structure {
@@ -53,6 +51,7 @@ $hamburger-width: 45px; // header
           display: inline-block;
           margin: 0 0 0 3%;
           text-align: left;
+          font-weight: $font-weight-3;
 
           &.menu-item-has-children {
             a {
@@ -124,13 +123,13 @@ $hamburger-width: 45px; // header
           @include define-border-radius(12px);
           text-align: left;
           text-transform: none;
-          -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
-          -moz-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
           opacity: 0;
           pointer-events: none;
           @include define-basic-transition(opacity, 0.15s);
           overflow: hidden;
+          color: $color-1;
+          background-color: $color-4;
+          border: solid 1px $color-1;
 
           &.visible {
             height: auto;
@@ -149,6 +148,8 @@ $hamburger-width: 45px; // header
             padding: 0 0 10px;
             margin: 0 0 10px;
             text-align: center;
+            border-bottom: $color-2 solid 1px;
+            font-weight: $font-weight-1;
 
             &:last-child {
               border-bottom: none;
@@ -156,16 +157,23 @@ $hamburger-width: 45px; // header
               margin: 0;
             }
 
-            a {
+            a:link,
+            a:visited {
+              color: $color-1;
               display: inline-block;
-              width: calc(100% - 50px);
-              padding: 0 25px;
+              width: 100%;
+              padding: 0 10px;
               margin: 0;
 
               &:before {
                 display: none;
                 visibility: hidden;
               }
+            }
+
+            a:active,
+            a:hover {
+              color: $color-2;
             }
           }
         }
@@ -213,16 +221,19 @@ $hamburger-width: 45px; // header
   top: $header-desktop-height;
   height: calc(100dvh - #{$header-desktop-height});
 
+
   .menu {
     width: 100%;
 
     .overlay-menu-mobile-css {
       width: 100%;
       text-align: left;
+      border-top: solid 1px $color-3 !important;
 
       li {
         position: relative;
         display: block;
+        border-bottom: solid 1px $color-3 !important;
 
         a {
           display: inline-block;
@@ -254,9 +265,11 @@ $hamburger-width: 45px; // header
 
       .sub-menu {
         display: none;
+        background-color: $color-3;
 
         li {
           width: 100%;
+          border-top: solid 1px $color-4 !important;
 
           &:last-child {
             border-bottom: none;

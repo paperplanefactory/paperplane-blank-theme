@@ -15,6 +15,25 @@
 	@include define-border-radius(24px);
 	text-align: center;
 	text-decoration: none !important;
+	border: solid 1px;
+}
+
+a.default-button:link,
+a.default-button:visited,
+.cta-navi a:link,
+.cta-navi a:visited {
+	color: $color-3;
+	background-color: $color-1;
+	border-color: $color-1;
+}
+
+a.default-button:active,
+a.default-button:hover,
+.cta-navi a:active,
+.cta-navi a:hover {
+	color: $color-1;
+	background-color: $color-4;
+	border-color: $color-1;
 }
 
 .default-button-b {
@@ -36,8 +55,21 @@
 	}
 
 	&:hover {
+
+
 		&:after {
 			right: -10px;
 		}
 	}
+}
+
+a.default-button-b:link,
+a.default-button-b:visited {
+	color: $color-1;
+
+}
+
+a.default-button-b:active,
+a.default-button-b:hover {
+	color: $color-2;
 }

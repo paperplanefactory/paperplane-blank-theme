@@ -3,7 +3,7 @@
 // allineamento verticale striscia
 $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 ?>
-<div class="wrapper module-stripe <?php echo $module['module_bg']; ?>">
+<div class="wrapper module-stripe bg-4">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">
@@ -34,7 +34,7 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 											'desktop_default' => 'column',
 											'desktop_hd' => 'column_hd',
 											'mobile_default' => 'column',
-											'mobile_hd' => 'column_hd',
+											'mobile_hd' => 'column',
 											'lazy_placheholder' => 'micro'
 										);
 										print_theme_image( $image_data, $image_sizes );

@@ -1,12 +1,12 @@
 <div class="wrapper page-opening">
 	<div
-		class="fullscreen-cta coverize fluid-typo <?php echo $page_opening_layout_size . ' ' . $content_fields['page_opening_text_align'] . ' ' . $content_fields['page_opening_color_scheme']; ?>">
+		class="fullscreen-cta coverize fluid-typo <?php echo $page_opening_layout_size . ' ' . $content_fields['page_opening_text_align']; ?>">
 		<?php if ( $page_opening_video === 'si' ) : ?>
 			<button class="video-stop video-stop-js" data-video-stop="opening-video-js"
 				title="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"
 				aria-label="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"></button>
-			<video id="opening-video-js" class="stoppable-js" data-aos="fade-in" data-autoplay autoplay loop muted
-				playsinline>
+			<video id="opening-video-js" aria-hidden="true" class="stoppable-js" data-aos="fade-in" data-autoplay autoplay
+				loop muted playsinline>
 				<source type="video/mp4" src="<?php echo $content_fields['page_opening_video_mp4']; ?>">
 			</video>
 		<?php else : ?>

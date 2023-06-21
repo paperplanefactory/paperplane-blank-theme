@@ -1,7 +1,8 @@
-<div class="wrapper <?php echo $content_fields['page_opening_color_scheme']; ?>">
+<div class="wrapper">
 	<div class="wrapper-padded">
 		<div class="wrapper-padded-container">
-			<div class="page-opening-simple-spacer <?php echo $content_fields['page_opening_text_align_horizontal']; ?>">
+			<div
+				class="page-opening-simple-spacer <?php echo $content_fields['page_opening_text_align_horizontal']; ?>">
 				<div class="last-child-no-margin">
 					<?php if ( $page_breadcrumbs === 'yes' && function_exists( 'bcn_display' ) ) : ?>
 						<div class="breadcrumbs-holder undelinked-links" typeof="BreadcrumbList" vocab="http://schema.org/">

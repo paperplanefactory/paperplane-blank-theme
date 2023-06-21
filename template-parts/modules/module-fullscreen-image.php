@@ -15,7 +15,7 @@ if ( $module['module_fullscreen_image_image_video'] ?? null ) {
 }
 ?>
 <div
-	class="wrapper module-fullscreen-image <?php echo $module['module_bg'] . ' ' . $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
+	class="wrapper module-fullscreen-image bg-4 <?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="module-box-fullscreen coverize <?php echo $module['module_fullscreen_text_align_horizontal']; ?>"
 		data-aos="fade">
@@ -23,8 +23,8 @@ if ( $module['module_fullscreen_image_image_video'] ?? null ) {
 			<button class="video-stop video-stop-js" data-video-stop="module-fullscreen-video-<?php echo $module_count; ?>"
 				title="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"
 				aria-label="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"></button>
-			<video id="module-fullscreen-video-<?php echo $module_count; ?>" class="stoppable-js" data-autoplay autoplay
-				loop muted playsinline>
+			<video id="module-fullscreen-video-<?php echo $module_count; ?>" aria-hidden="true" class="stoppable-js"
+				data-autoplay autoplay loop muted playsinline>
 				<source type="video/mp4" src="<?php echo $module['module_fullscreen_image_image_video_file']; ?>">
 			</video>
 		<?php else : ?>

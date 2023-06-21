@@ -3,11 +3,13 @@ $content_fields = paperplane_content_transients( $post->ID );
 $modal_video_include = $content_fields['modal_video_include'];
 ?>
 <div id="paperplane-modal-js-<?php echo $post->ID; ?>"
-	class="paperplane-modal paperplane-modal-js paperplane-modal-js-<?php echo $post->ID; ?> hidden <?php echo $content_fields['colore_di_sfondo_modal']; ?>"
-	tabindex="<?php echo $post->ID; ?>" data-modal-close-id=".paperplane-modal-js-<?php echo $post->ID; ?>">
+	class="paperplane-modal paperplane-modal-js paperplane-modal-js-<?php echo $post->ID; ?> hidden"
+	tabindex="<?php echo $post->ID; ?>" data-modal-close-id=".paperplane-modal-js-<?php echo $post->ID; ?>"
+	aria-hidden="true">
 	<div class="modal-close-area modal-close-js" data-modal-close-id=".paperplane-modal-js-<?php echo $post->ID; ?>">
 	</div>
-	<div class="modal-box offerta-overlay-box-js" style="max-width: <?php echo $content_fields['modal_max_width']; ?>px">
+	<div class="modal-box offerta-overlay-box-js"
+		style="max-width: <?php echo $content_fields['modal_max_width']; ?>px">
 
 		<?php if ( $content_fields['modal_title'] ) : ?>
 			<div class="modal-title">
@@ -21,13 +23,6 @@ $modal_video_include = $content_fields['modal_video_include'];
 			data-modal-close-id=".paperplane-modal-js-<?php echo $post->ID; ?>"
 			title="<?php _e( 'Chiudi questo pannello', 'paperPlane-blankTheme' ); ?>"
 			aria-label="<?php _e( 'Chiudi questo pannello', 'paperPlane-blankTheme' ); ?>">
-			<svg>
-				<rect class="svg-button-bg" width="32" height="32" />
-				<g transform="translate(2.5 3.5)">
-					<line class="svg-button-line" x2="16" y2="16" transform="translate(5.5 4.5)" />
-					<line class="svg-button-line" x1="16" y2="16" transform="translate(5.5 4.5)" />
-				</g>
-			</svg>
 		</a>
 		<div class="insider">
 			<div class="inner-message inner-message-js">

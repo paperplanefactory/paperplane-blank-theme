@@ -1,5 +1,5 @@
 <!-- module-expanding-text -->
-<div class="wrapper module-expanding-text <?php echo $module['module_bg']; ?>">
+<div class="wrapper module-expanding-text bg-4">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">
@@ -17,8 +17,10 @@
 										data-expand-id="<?php echo $module_count . '-' . $expand_count; ?>"
 										title="<?php echo $expanding_block['module_expanding_text_title'] . ': ' . __( 'questo bottone permette di accedere ad un approfondimento', 'paperPlane-blankTheme' ); ?>"
 										aria-label="<?php echo $expanding_block['module_expanding_text_title'] . ': ' . __( 'questo bottone permette di accedere ad un approfondimento', 'paperPlane-blankTheme' ); ?>"><span
-											class="exp-plus"></span>
-										<?php echo $expanding_block['module_expanding_text_title']; ?>
+											class="icon-js exp-plus"></span>
+										<span aria-hidden="true">
+											<?php echo $expanding_block['module_expanding_text_title']; ?>
+										</span>
 									</button>
 								</div>
 								<div id="expand-content-<?php echo $module_count . '-' . $expand_count; ?>"

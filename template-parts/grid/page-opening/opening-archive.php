@@ -1,7 +1,8 @@
-<div class="wrapper <?php echo $options_fields['theme_archive_page_color_scheme']; ?>">
+<div class="wrapper">
 	<div class="wrapper-padded">
 		<div class="wrapper-padded-container">
-			<div class="page-opening-simple-spacer <?php echo $content_fields['page_opening_text_align_horizontal']; ?>">
+			<div
+				class="page-opening-simple-spacer <?php echo $content_fields['page_opening_text_align_horizontal']; ?>">
 				<div class="last-child-no-margin">
 					<h1>
 						<?php single_term_title(); ?>

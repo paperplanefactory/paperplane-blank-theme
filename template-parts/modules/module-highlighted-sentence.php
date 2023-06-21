@@ -3,7 +3,7 @@
 // richiamo l'immagine associata alla frase in evidenza
 $module_highlighted_sentence_image = $module['module_highlighted_sentence_image'];
 ?>
-<section class="wrapper module-highlighted-sentence <?php echo $module['module_bg']; ?>">
+<section class="wrapper module-highlighted-sentence bg-4">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">
