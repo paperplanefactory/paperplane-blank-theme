@@ -3,52 +3,59 @@
 @import '../global/mixin';
 
 .module-expanding-text {
-  .expanding-block {
-    margin-bottom: 48px;
-    padding-bottom: 24px;
-
-    &:last-child {
-      margin-bottom: 0;
-      border-bottom: none;
-    }
-  }
-
-  .expander {
-    position: relative;
-    line-height: 17px !important;
-    font-weight: $font-weight-2 !important;
-    padding-left: 25px !important;
-    text-align: left;
-    @include reset-button;
-
-    .exp-minus,
-    .exp-plus {
-      position: absolute;
-      left: 0;
-      font-weight: $font-weight-4;
-    }
-
-    .exp-plus {
-      &:before {
-        content: "+";
-      }
-    }
-
-    .exp-minus {
-      &:before {
-        content: '–';
-      }
-    }
-  }
-
-  .expandable-content {
-    .inner {
-      padding-top: 15px;
-      padding-left: 25px;
-    }
-  }
-
   .cta-holder {
     margin: 32px 0 0;
+  }
+}
+
+.expanding-block {
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: solid 1px $color-1;
+
+
+  &:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.expander {
+  position: relative;
+  line-height: 17px !important;
+  font-weight: $font-weight-2 !important;
+  padding-left: 25px !important;
+  text-align: left;
+  @include reset-button;
+  color: $color-1;
+
+  &:hover {
+    color: $color-2;
+  }
+
+  .exp-minus,
+  .exp-plus {
+    position: absolute;
+    left: 0;
+    font-weight: $font-weight-4;
+  }
+
+  .exp-plus {
+    &:before {
+      content: "+";
+    }
+  }
+
+  .exp-minus {
+    &:before {
+      content: '–';
+    }
+  }
+}
+
+.expandable-content {
+  .inner {
+    padding-top: 15px;
+    padding-left: 25px;
   }
 }

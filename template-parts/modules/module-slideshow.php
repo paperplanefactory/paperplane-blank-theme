@@ -1,11 +1,18 @@
 <!-- module-slideshow -->
-<div class="wrapper module-slideshow <?php echo $module['module_bg']; ?>">
+<div class="wrapper module-slideshow bg-4">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">
 			<div class="wrapper-padded-container">
 				<div class="wrapper-padded-more-924">
-					<h2>Ciao <span class="slide-next-slider-single-js">next</span></h2>
+					<h2>Titolo di test
+						<button title="<?php _e( 'Vai alla slide precedente', 'paperPlane-blankTheme' ); ?>"
+							aria-label="<?php _e( 'Vai alla slide precedente', 'paperPlane-blankTheme' ); ?>"
+							class="slide-prev-custom slide-prev-slider-single-js">prev</button>
+						<button title="<?php _e( 'Vai alla slide successiva', 'paperPlane-blankTheme' ); ?>"
+							aria-label="<?php _e( 'Vai alla slide successiva', 'paperPlane-blankTheme' ); ?>"
+							class="slide-next-custom slide-next-slider-single-js">next</button>
+					</h2>
 					<div class="slider-single slider-single-js">
 						<?php if ( $module['module_slideshow_repeater'] ) :
 							foreach ( $module['module_slideshow_repeater'] as $slide ) : ?>
@@ -22,7 +29,7 @@
 										'desktop_default' => 'column_cut',
 										'desktop_hd' => 'column_cut_hd',
 										'mobile_default' => 'column_cut',
-										'mobile_hd' => 'column_cut_hd',
+										'mobile_hd' => 'column_cut',
 										'lazy_placheholder' => 'micro'
 									);
 									print_theme_image( $image_data, $image_sizes ); ?>

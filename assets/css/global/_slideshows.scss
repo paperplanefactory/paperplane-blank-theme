@@ -1,0 +1,26 @@
+// main: ../style.scss
+@import 'vars';
+@import 'mixin'; // wrappers and more
+
+.slick-next,
+.slick-prev {
+    color: $color-1;
+}
+
+.slick-dots {
+    li {
+        &.slick-active {
+            button {
+                background-color: $color-1;
+            }
+        }
+
+        button {
+            background-color: $color-3;
+
+            &:hover {
+                background-color: $color-1;
+            }
+        }
+    }
+}

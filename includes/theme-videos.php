@@ -10,11 +10,11 @@ function paperplane_theme_videos( $field_names ) {
 			$video_source = $field_name['video_source'];
 			if ( $video_source === 'youtube' || $video_source === 'vimeo' ) {
 				$video_id = $field_name['video_id'];
-				$video_cover = $field_name['video_cover']['sizes']['column'];
+				//$video_cover = $field_name['video_cover']['sizes']['column'];
 			}
 			if ( $video_source === 'upload-video' ) {
 				$video_id = 'uploaded-video';
-				$video_cover = $field_name['video_cover']['sizes']['column'];
+				//$video_cover = $field_name['video_cover']['sizes']['column'];
 			}
 			if ( $field_name['video_caption'] ?? null ) {
 				$link_title = __( 'Guarda', 'paperPlane-blankTheme' ) . ' ' . wp_strip_all_tags( $field_name['video_caption'] );
@@ -28,23 +28,40 @@ function paperplane_theme_videos( $field_names ) {
 						data-video-toplay="video-<?php echo $videos_count; ?>" data-video-source="<?php echo $video_source; ?>"
 						data-youtube-video-id="<?php echo $video_id; ?>" title="<?php echo $link_title; ?>"
 						aria-label="<?php echo $link_title; ?>">
-						<img src="<?php echo $video_cover; ?>" title="<?php echo $link_title; ?>" alt="<?php echo $link_title; ?>"
-							decoding="async" loading="lazy" />
+						<?php
+						$image_data = array(
+							'image_type' => 'acf',
+							// options: post_thumbnail, acf
+							'image_value' => $field_name['video_cover'],
+							// se utilizzi un custom field indica qui il nome del campo
+							'size_fallback' => 'column'
+						);
+						$image_sizes = array(
+							// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+							'desktop_default' => 'column',
+							'desktop_hd' => 'column_hd',
+							'mobile_default' => 'column',
+							'mobile_hd' => 'column',
+							'lazy_placheholder' => 'micro'
+						);
+						print_theme_image( $image_data, $image_sizes );
+						?>
 					</a>
 					<?php if ( $video_source === 'vimeo' ) : ?>
 						<iframe id="video-<?php echo $videos_count; ?>" class="video-stop-js"
 							data-video-source="<?php echo $video_source; ?>"
 							data-src="https://player.vimeo.com/video/<?php echo $video_id; ?>" loading="lazy" width="640" height="360"
 							allow="autoplay" mozallowfullscreen webkitallowfullscreen allowfullscreen title="<?php echo $link_title; ?>"
-							aria-label="<?php echo $link_title; ?>"></iframe>
+							aria-label="<?php echo $link_title; ?>" aria-hidden="true"></iframe>
 					<?php elseif ( $video_source === 'youtube' ) : ?>
 						<div id="video-<?php echo $videos_count; ?>" class="video-stop-js"
 							data-video-source="<?php echo $video_source; ?>" data-youtube-video-id="<?php echo $video_id; ?>"
-							data-video-tostop="video-<?php echo $videos_count; ?>">
+							data-video-tostop="video-<?php echo $videos_count; ?>" aria-hidden="true">
 						</div>
 					<?php elseif ( $video_source === 'upload-video' ) : ?>
 						<video id="video-<?php echo $videos_count; ?>" class="video-stop-js"
-							data-video-source="<?php echo $video_source; ?>" preload="metadata" loading="lazy" controls>
+							data-video-source="<?php echo $video_source; ?>" preload="metadata" loading="lazy" controls
+							aria-hidden="true">
 							<source type="video/mp4" src="<?php echo $field_name['video_file']; ?>">
 						</video>
 					<?php endif; ?>

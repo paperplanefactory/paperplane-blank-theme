@@ -68,11 +68,12 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 			jQuery('.mega-menu-js-<?php echo $post->ID; ?>-target a').last().on('keydown', function (event) {
 				if (event.keyCode == 9) {
 					jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
-					jQuery('.mega-menu-js').addClass('hidden');
+					jQuery('.mega-menu-js').addClass('hidden').attr('aria-hidden', 'true');
 					jQuery('.mega-menu-js-<?php echo $post->ID; ?>-trigger').parent().next('li').find('a:first').focus();
 					event.preventDefault();
 				}
 			});
 		</script>
-	<?php endforeach; ?>
-	<?php wp_reset_postdata(); endif; ?>
+	<?php endforeach;
+	wp_reset_postdata();
+endif; ?>

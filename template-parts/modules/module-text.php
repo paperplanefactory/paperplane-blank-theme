@@ -10,7 +10,7 @@ if ( strpos( $analize_content, 'text-align: center;' ) ) {
 	$cta_align_class = '';
 }
 ?>
-<section class="wrapper module-text <?php echo $module['module_bg']; ?>">
+<section class="wrapper module-text bg-4">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">

@@ -16,6 +16,10 @@ $hamburger-width: 55px; // header
     top: -$header-smartphone-height;
   }
 
+  &.scrolled {
+    background-color: $color-4;
+  }
+
   #header-structure {
     width: 100%;
     height: $header-smartphone-height;
@@ -72,6 +76,7 @@ $hamburger-width: 55px; // header
 
 .mega-menu {
   display: none;
+  visibility: hidden;
 }
 
 #head-overlay {
@@ -84,12 +89,14 @@ $hamburger-width: 55px; // header
 
     .overlay-menu-mobile-css {
       width: 100%;
+      border-top: solid 1px $color-3 !important;
 
       li {
         position: relative;
         display: block;
         text-align: left;
         overflow: hidden;
+        border-bottom: solid 1px $color-3 !important;
 
         a {
           position: relative;
@@ -113,9 +120,11 @@ $hamburger-width: 55px; // header
 
       .sub-menu {
         display: none;
+        background-color: $color-3;
 
         li {
           width: 100%;
+          border-top: solid 1px $color-4 !important;
 
           &:last-child {
             border-bottom: none;

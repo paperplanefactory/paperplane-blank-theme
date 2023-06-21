@@ -30,10 +30,10 @@ if ( is_archive() ) {
 		}
 
 		if ( $page_opening_image_mobile ) {
-			$thumb_url_mobile = wp_get_attachment_image_src( $page_opening_image_mobile, 'full_desk_hd', true );
+			$thumb_url_mobile = wp_get_attachment_image_src( $page_opening_image_mobile, 'full_desk', true );
 			$thumb_url_mobile = $thumb_url_mobile[0];
 		} elseif ( $thumb_id != 0 ) {
-			$thumb_url_mobile = wp_get_attachment_image_src( $thumb_id, 'full_desk_hd', true );
+			$thumb_url_mobile = wp_get_attachment_image_src( $thumb_id, 'full_desk', true );
 			$thumb_url_mobile = $thumb_url_mobile[0];
 		}
 		if ( isset( $thumb_url_desktop ) ) {

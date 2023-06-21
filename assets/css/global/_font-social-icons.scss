@@ -4,17 +4,17 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: "paperplane-blank-theme-social-icons";
-  src: url("assets/fonts/paperplane-blank-theme-social-icons.eot");
-  src: url("assets/fonts/paperplane-blank-theme-social-icons.eot?#iefix") format("embedded-opentype"), url("assets/fonts/paperplane-blank-theme-social-icons.woff") format("woff"), url("assets/fonts/paperplane-blank-theme-social-icons.ttf") format("truetype"), url("assets/fonts/paperplane-blank-theme-social-icons.svg#paperplane-blank-theme-social-icons") format("svg");
+  font-family: "paperplane-blank-theme-icons";
+  src: url("assets/fonts/paperplane-blank-theme-icons.eot");
+  src: url("assets/fonts/paperplane-blank-theme-icons.eot?#iefix") format("embedded-opentype"), url("assets/fonts/paperplane-blank-theme-icons.woff") format("woff"), url("assets/fonts/paperplane-blank-theme-icons.ttf") format("truetype"), url("assets/fonts/paperplane-blank-theme-icons.svg#paperplane-blank-theme-icons") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-[class^="paperplane-social-icon-"]:before,
-[class*=" paperplane-social-icon-"]:before {
-  font-family: "paperplane-blank-theme-social-icons";
+[class^="paperplane-blank-theme-icons-"]:before,
+[class*=" paperplane-blank-theme-icons-"]:before {
+  font-family: "paperplane-blank-theme-icons";
   font-style: normal;
   font-weight: normal;
   speak: never;
@@ -41,79 +41,104 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.paperplane-social-icon-newsletter-social:before {
+.paperplane-blank-theme-icons-play:before {
+  content: '\e666';
+}
+
+/* '' */
+.paperplane-blank-theme-icons-pause:before {
+  content: '\e667';
+}
+
+/* '' */
+.paperplane-blank-theme-icons-newsletter-social:before {
   content: '\e800';
 }
 
-
-.paperplane-social-icon-facebook-social:before {
+/* '' */
+.paperplane-blank-theme-icons-facebook-social:before {
   content: '\e801';
 }
 
 /* '' */
-.paperplane-social-icon-facebook-messenger-social:before {
+.paperplane-blank-theme-icons-facebook-messenger-social:before {
   content: '\e802';
 }
 
-
-.paperplane-social-icon-instagram-social:before {
+/* '' */
+.paperplane-blank-theme-icons-instagram-social:before {
   content: '\e803';
 }
 
-
-.paperplane-social-icon-linkedin-social:before {
+/* '' */
+.paperplane-blank-theme-icons-linkedin-social:before {
   content: '\e804';
 }
 
-
-.paperplane-social-icon-telegram-social:before {
+/* '' */
+.paperplane-blank-theme-icons-telegram-social:before {
   content: '\e805';
 }
 
-
-.paperplane-social-icon-tiktok-social:before {
+/* '' */
+.paperplane-blank-theme-icons-tiktok-social:before {
   content: '\e806';
 }
 
-
-.paperplane-social-icon-twitter-social:before {
+/* '' */
+.paperplane-blank-theme-icons-twitter-social:before {
   content: '\e807';
 }
 
-
-.paperplane-social-icon-vk-social:before {
+/* '' */
+.paperplane-blank-theme-icons-vk-social:before {
   content: '\e808';
 }
 
-
-.paperplane-social-icon-whatsapp-social:before {
+/* '' */
+.paperplane-blank-theme-icons-whatsapp-social:before {
   content: '\e809';
 }
 
-.paperplane-social-icon-spotify-social:before {
+/* '' */
+.paperplane-blank-theme-icons-spotify-social:before {
   content: '\e80b';
 }
 
-.paperplane-social-icon-youtube-social:before {
+/* '' */
+.paperplane-blank-theme-icons-youtube-social:before {
   content: '\e80c';
 }
 
-.paperplane-social-icon-yelp-social:before {
+/* '' */
+.paperplane-blank-theme-icons-reduce-motion:before {
+  content: '\e827';
+}
+
+/* '' */
+.paperplane-blank-theme-icons-form-error:before {
+  content: '\e828';
+}
+
+/* '' */
+.paperplane-blank-theme-icons-form-ok:before {
+  content: '\e829';
+}
+
+/* '' */
+.paperplane-blank-theme-icons-yelp-social:before {
   content: '\f1e9';
 }
 
-.paperplane-social-icon-tripadvisor-social:before {
+/* '' */
+.paperplane-blank-theme-icons-tripadvisor-social:before {
   content: '\f262';
 }
 
-.paperplane-social-icon-play-circled:before {
-  content: '\f144';
+/* '' */
+
+.paperplane-blank-theme-icons-icon-close:before {
+  content: '\e82a';
 }
 
-.paperplane-social-icon-pause:before {
-  content: '\0801';
-}
-
-.paperplane-social-icon-play:before {
-  content: '\0802';
-}
+/* '' */

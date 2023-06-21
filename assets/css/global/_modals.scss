@@ -14,12 +14,11 @@
   pointer-events: all;
   visibility: visible;
   @include define-basic-transition(opacity, 0.4s);
+  background-color: rgba(0, 0, 0, 0.9);
 
   &.hidden {
     opacity: 0;
     pointer-events: none;
-    visibility: hidden;
-    //z-index: -1;
   }
 
   .modal-box {
@@ -28,6 +27,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: $color-4;
 
     &:after {
       content: "";
@@ -36,6 +36,7 @@
       left: 0;
       width: calc(100% - 15px);
       height: 30px;
+      background-color: $color-4;
     }
 
     .modal-title {
@@ -43,6 +44,7 @@
       top: 0;
       left: 0;
       width: calc(100% - 56px);
+      background-color: $color-4;
 
       h1,
       h2,
@@ -61,16 +63,16 @@
       @include define-basic-transition(all, 0.3s);
 
       &:hover {
-        opacity: 0.7;
+        color: $color-2;
       }
 
-      .svg-button-bg,
-      .svg-button-line {
-        fill: none;
-      }
-
-      .svg-button-line {
-        stroke-width: 2px;
+      &:before {
+        content: '\e82a';
+        font-family: "paperplane-blank-theme-icons";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        speak: never;
       }
     }
 

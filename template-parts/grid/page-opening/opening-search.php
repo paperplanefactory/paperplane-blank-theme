@@ -1,4 +1,4 @@
-<div class="wrapper <?php echo $options_fields['theme_archive_page_color_scheme']; ?>">
+<div class="wrapper">
 	<div class="wrapper-padded">
 		<div class="wrapper-padded-container">
 			<div class="page-opening-simple-spacer alignleft">

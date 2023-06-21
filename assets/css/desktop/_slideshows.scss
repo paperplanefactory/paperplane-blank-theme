@@ -64,6 +64,8 @@
     display: inline-block;
     margin: 0 5px;
 
+
+
     button {
       width: 20px;
       height: 20px;
@@ -75,5 +77,14 @@
       @include define-border-radius(20px);
       cursor: pointer;
     }
+  }
+}
+
+.slide-prev-custom,
+.slide-next-custom {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
   }
 }

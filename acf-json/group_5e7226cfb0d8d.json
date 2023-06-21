@@ -3,33 +3,6 @@
     "title": "Impostazioni banner",
     "fields": [
         {
-            "key": "field_5e723a22e12c6",
-            "label": "Schema colori",
-            "name": "banner_color_scheme",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "colors-white-bg": "Sfondo bianco - testi neri",
-                "colors-black-bg": "Sfondo nero - testi bianchi"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "repeatable": true
-        },
-        {
             "key": "field_5e7244b5d5221",
             "label": "Immagine sfondo",
             "name": "banner_background_image",
@@ -136,5 +109,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1670667304
+    "modified": 1687334718
 }

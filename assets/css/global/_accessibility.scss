@@ -3,6 +3,7 @@
 @import 'mixin'; // wrappers and more
 
 body {
+
     *:focus-visible {
         box-shadow: 0 0 0 2px red;
     }
@@ -11,6 +12,14 @@ body {
         * {
             transition-duration: 0ms !important;
             transition-property: none !important;
+            animation: none 0 !important;
+
+            &:after,
+            &:before {
+                transition-duration: 0ms !important;
+                transition-property: none !important;
+                animation: none 0 !important;
+            }
         }
     }
 }
@@ -22,19 +31,39 @@ body {
     * {
         transition-duration: 0ms !important;
         transition-property: none !important;
+        animation: none 0 !important;
+
+        &:after,
+        &:before {
+            transition-duration: 0ms !important;
+            transition-property: none !important;
+            animation: none 0 !important;
+        }
     }
 
     .accessible-navi-activate-js {
         display: none;
         visibility: hidden;
     }
+
+    #header {
+        background-color: $color-4 !important;
+    }
 }
 
 
-@media (prefers-reduced-transparency: reduce) {
+@media (prefers-reduced-transparency) {
+    body {
+        display: none !important;
+    }
+
     * {
         opacity: 1 !important;
         color: #000000 !important;
+    }
+
+    .above-image-opacity {
+        background-color: rgba(255, 255, 255, 1) !important;
     }
 }
 
@@ -61,31 +90,20 @@ body {
             color: #000000 !important;
         }
     }
+
+    .above-image-opacity {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+    }
 }
 
 .accessible-navi {
-    position: fixed;
-    z-index: 99999;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    background-color: $color-1;
-    transform: translateY(-100vh);
-    padding: 5px $wrapper-padded-desktop;
-    font-size: $h6-size-desktop;
-    line-height: $h6-size-desktop;
+    position: fixed !important;
+    z-index: 9999;
+    top: 2vh;
+    left: $wrapper-padded-desktop;
+    transform: translateY(-10vh);
 
-    &:link,
-    &:visited {
-        color: $color-4;
-    }
-
-    &:hover {
-        text-decoration: underline;
-    }
-
-    &:focus {
+    &:focus-visible {
         transform: translateY(0);
     }
 }
@@ -120,4 +138,110 @@ body {
     &:focus {
         transform: translateY(0);
     }
+}
+
+.reduce-motion-button {
+    position: fixed;
+    z-index: 9994;
+    transform: translate(50%, 0);
+    border-radius: 40px;
+    background-color: $color-1;
+    color: $color-3;
+    border: solid 1px $color-4;
+    overflow: hidden;
+    @include define-basic-transition(all, 0.2s);
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: $font-weight-1;
+
+    &.hidden {
+        visibility: hidden;
+        display: none;
+    }
+
+    a {
+        color: $color-4;
+        text-decoration: underline;
+    }
+
+    .opening-icon {
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        color: $color-4;
+        text-align: center;
+        overflow: hidden;
+        pointer-events: none;
+
+        &:before {
+            position: relative;
+            top: 1px;
+            content: '\e827';
+            font-family: "paperplane-blank-theme-icons";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 20px;
+            speak: never;
+            animation: reduce-motion-icon 5s infinite;
+        }
+    }
+
+    .close-reduce-motion {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 40px;
+        line-height: 40px;
+        color: $color-4;
+        text-align: center;
+        border: none;
+        border-left: solid 1px $color-4;
+        background-color: $color-1;
+        cursor: pointer;
+        overflow: hidden;
+
+        &:before {
+            position: relative;
+            left: -2px;
+            top: 0;
+            content: '\e82a';
+            font-family: "paperplane-blank-theme-icons";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 20px;
+            speak: never;
+        }
+
+    }
+}
+
+@keyframes reduce-motion-icon {
+    0% {
+        top: 40px;
+        left: -40px;
+        opacity: 0;
+    }
+
+    30% {
+        top: 1px;
+        left: 0;
+        opacity: 1;
+    }
+
+    70% {
+        top: 1px;
+        left: 0;
+        opacity: 1;
+    }
+
+    100% {
+        top: -40px;
+        left: 40px;
+        opacity: 0;
+    }
+
 }

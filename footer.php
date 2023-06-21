@@ -5,7 +5,7 @@ wp_reset_query();
 global $acf_options_parameter, $options_fields, $options_fields_multilang, ${$options_fields_multilang . $acf_options_parameter}, $footer_wrapper, $static_bloginfo_stylesheet_directory, $cta_url_modal_array;
 $cta_url_modal_array = array_unique( $cta_url_modal_array );
 ?>
-<footer id="footer" class="colors-white-bg">
+<footer id="footer" class="bg-4">
 	<div class="wrapper">
 		<div class="wrapper-padded">
 			<div class="<?php echo $footer_wrapper; ?>">

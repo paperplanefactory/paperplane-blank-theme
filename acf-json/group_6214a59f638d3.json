@@ -136,33 +136,6 @@
             "repeatable": true
         },
         {
-            "key": "field_6214a7cf9e27c",
-            "label": "Schema colori",
-            "name": "colore_di_sfondo_modal",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "colors-white-bg": "Sfondo bianco - testi neri",
-                "colors-black-bg": "Sfondo nero - testi bianchi"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "repeatable": true
-        },
-        {
             "key": "field_6214a85277221",
             "label": "Larghezza massima",
             "name": "modal_max_width",
@@ -215,5 +188,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1686305121
+    "modified": 1687334595
 }

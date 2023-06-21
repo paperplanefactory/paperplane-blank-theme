@@ -41,7 +41,6 @@ h5 {
   margin-bottom: $h5-marginbottom-smartphone;
 }
 
-.mega-menu,
 .menu {
   font-size: $h5-size-smartphone;
   line-height: $h5-lineheight-smartphone;
@@ -164,4 +163,16 @@ ul {
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
+}
+
+.fluid-typo {
+  h1 {
+    font-size: calc(#{$h1-size-smartphone} + 1.1vw);
+    line-height: calc(#{$h1-lineheight-smartphone} + 1.4vw);
+  }
+
+  h2 {
+    font-size: calc(#{$h2-size-smartphone} + 0.7vw);
+    line-height: calc(#{$h2-lineheight-smartphone} + 1vw);
+  }
 }

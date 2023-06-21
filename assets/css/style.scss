@@ -5,8 +5,9 @@
 @import 'global/defaults';
 @import 'global/header-footer';
 @import 'global/colors';
-@import 'global/colors-black-bg';
-@import 'global/colors-white-bg';
+@import 'global/accessibility';
+//@import 'global/colors-black-bg';
+//@import 'global/colors-white-bg';
 @import 'global/typo';
 @import 'global/wrappers';
 @import 'global/grids';
@@ -14,10 +15,13 @@
 @import 'global/buttons';
 @import 'global/ctas';
 @import 'global/media';
-@import 'global/forms'; // imports mobile
+@import 'global/forms';
+@import 'global/slideshows';
+// imports mobile
 
 @media screen and (min-width: $break-mobile-start) and (max-width: $break-tablet-end) {
   @import 'mobile/header-footer';
+  @import 'mobile/accessibility';
   @import 'mobile/typo';
   @import 'mobile/page-opening';
   @import 'mobile/wrappers';
@@ -43,6 +47,7 @@
 // imports desktop
 @media screen and (min-width: $break-desktop) {
   @import 'desktop/header-footer';
+  @import 'desktop/accessibility';
   @import 'desktop/mega-menu';
   @import 'desktop/typo';
   @import 'desktop/page-opening';
@@ -74,7 +79,6 @@
 @import 'global/admin-bar';
 @import 'global/mixin';
 @import 'global/modals';
-@import 'global/accessibility';
 
 // @import 'global/visual-debug';
 // regole specifiche per Safari

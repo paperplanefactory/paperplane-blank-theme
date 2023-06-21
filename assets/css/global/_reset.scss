@@ -255,16 +255,20 @@ textarea {
 	white-space: revert;
 }
 
-::-webkit-input-placeholder {
-	color: $color-2;
+
+::-moz-selection {
+	background: $color-1;
+	color: $color-3;
 }
 
-:-moz-placeholder {
-	color: $color-2;
+::selection {
+	background: $color-1;
+	color: $color-3;
 }
 
-::-moz-placeholder {
-	color: $color-2;
+::-moz-selection {
+	background: $color-1;
+	color: $color-3;
 }
 
 #site-wrapper {

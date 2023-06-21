@@ -5,12 +5,13 @@ $module_columns_fix_side = $module['module_columns_fix_side'];
 $module_columns_fix_fix_column_image = $module['module_columns_fix_fix_column_image'];
 $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_column_image_format'];
 ?>
-<div class="wrapper module-columns-fix-column <?php echo $module['module_bg']; ?>">
+<div class="wrapper module-columns-fix-column bg-4">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">
 			<div class="wrapper-padded-container">
-				<div class="flex-hold flex-fix-column <?php echo $module['module_columns_fix_side']; ?> module-column-box">
+				<div
+					class="flex-hold flex-fix-column <?php echo $module['module_columns_fix_side']; ?> module-column-box">
 					<div class="fix">
 						<div class="sticky-element">
 							<div class="<?php echo $module['module_columns_fix_fix_column_align']; ?>">
