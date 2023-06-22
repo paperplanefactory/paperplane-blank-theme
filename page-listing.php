@@ -68,7 +68,6 @@ $content_fields = paperplane_content_transients( $post->ID );
 	<?php theme_pagination_system(); ?>
 <?php endif; ?>
 
-sdfsdfd
 <?php
 wp_reset_query();
 get_footer(); ?>

@@ -248,7 +248,7 @@ a {
 	text-decoration: none;
 	border: none;
 	outline: none !important;
-	@include define-basic-transition(all, 0.3s);
+	@include transition(all 0.3s linear);
 }
 
 textarea {

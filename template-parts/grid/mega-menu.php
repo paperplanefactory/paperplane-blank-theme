@@ -18,7 +18,7 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 		$content_fields = paperplane_content_transients( $post->ID );
 		?>
 		<nav class="mega-menu mega-menu-js mega-menu-js-<?php echo $post->ID; ?>-target hidden" aria-hidden="true">
-			<div class="mega-menu-holder <?php echo $mega_menu_wrapper; ?> colors-black-bg">
+			<div class="mega-menu-holder colors-black-bg">
 				<div class="mega-menu-spacer mega-menu-js-hover">
 					<div class="flex-hold flex-hold-3 margins-thin">
 						<div class="flex-hold-child">
@@ -45,7 +45,7 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 								'mobile_hd' => 'column',
 								'lazy_placheholder' => 'micro'
 							);
-							print_theme_image_nolazy( $image_data, $image_sizes );
+							print_theme_image( $image_data, $image_sizes );
 							?>
 						</div>
 						<div class="flex-hold-child">
@@ -68,7 +68,7 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 			jQuery('.mega-menu-js-<?php echo $post->ID; ?>-target a').last().on('keydown', function (event) {
 				if (event.keyCode == 9) {
 					jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
-					jQuery('.mega-menu-js').addClass('hidden').attr('aria-hidden', 'true');
+					jQuery('.mega-menu-js').addClass('hidden');
 					jQuery('.mega-menu-js-<?php echo $post->ID; ?>-trigger').parent().next('li').find('a:first').focus();
 					event.preventDefault();
 				}

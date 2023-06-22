@@ -13,12 +13,13 @@
   opacity: 1;
   pointer-events: all;
   visibility: visible;
-  @include define-basic-transition(opacity, 0.4s);
+  @include transition(visibility 0.2s linear, opacity 0.2s linear);
   background-color: rgba(0, 0, 0, 0.9);
 
   &.hidden {
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
   }
 
   .modal-box {
@@ -60,7 +61,7 @@
 
     .modal-close-button {
       cursor: pointer;
-      @include define-basic-transition(all, 0.3s);
+      @include transition(opacity 0.3s linear);
 
       &:hover {
         color: $color-2;

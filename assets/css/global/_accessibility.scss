@@ -5,7 +5,7 @@
 body {
 
     *:focus-visible {
-        box-shadow: 0 0 0 2px red;
+        box-shadow: 0 0 0 6px $color-form-error;
     }
 
     &.body-accessible-navi {
@@ -149,14 +149,17 @@ body {
     color: $color-3;
     border: solid 1px $color-4;
     overflow: hidden;
-    @include define-basic-transition(all, 0.2s);
+    @include transition(bottom 0.9s, visibility 0.3s linear, opacity 0.3s linear);
     white-space: nowrap;
     text-transform: uppercase;
     font-weight: $font-weight-1;
+    opacity: 1;
+    visibility: visible;
 
     &.hidden {
         visibility: hidden;
-        display: none;
+        opacity: 0;
+        bottom: -10dvh;
     }
 
     a {
@@ -168,7 +171,7 @@ body {
         position: absolute;
         top: 1px;
         left: 1px;
-        width: 40px;
+        width: 50px;
         height: 40px;
         line-height: 40px;
         color: $color-4;
@@ -179,13 +182,14 @@ body {
         &:before {
             position: relative;
             top: 1px;
+            left: -4px;
             content: '\e827';
             font-family: "paperplane-blank-theme-icons";
             font-style: normal;
             font-weight: normal;
             font-size: 20px;
             speak: never;
-            animation: reduce-motion-icon 5s infinite;
+            animation: reduce-motion-icon 3s infinite;
         }
     }
 
@@ -228,13 +232,13 @@ body {
 
     30% {
         top: 1px;
-        left: 0;
+        left: -4px;
         opacity: 1;
     }
 
     70% {
         top: 1px;
-        left: 0;
+        left: -4px;
         opacity: 1;
     }
 
