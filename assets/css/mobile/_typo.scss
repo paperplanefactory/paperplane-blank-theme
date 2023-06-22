@@ -159,10 +159,7 @@ h6,
 ol,
 p,
 ul {
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
+  //@include define-hyphens;
 }
 
 .fluid-typo {

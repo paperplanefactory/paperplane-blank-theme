@@ -177,5 +177,5 @@ ul {
 
 .blurred-counter {
   @include define-blur(2px);
-  @include define-basic-transition(all, 0.3s);
+  @include transition(all 0.3s linear);
 }

@@ -2,7 +2,7 @@
 	<div
 		class="fullscreen-cta coverize fluid-typo <?php echo $page_opening_layout_size . ' ' . $content_fields['page_opening_text_align']; ?>">
 		<?php if ( $page_opening_video === 'si' ) : ?>
-			<button class="video-stop video-stop-js" data-video-stop="opening-video-js"
+			<button class="video-stop video-stop-js pause" data-video-stop="opening-video-js"
 				title="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"
 				aria-label="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"></button>
 			<video id="opening-video-js" aria-hidden="true" class="stoppable-js" data-aos="fade-in" data-autoplay autoplay

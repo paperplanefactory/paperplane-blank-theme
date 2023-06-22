@@ -7,6 +7,9 @@
   visibility: hidden;
   pointer-events: none;
 
+  img,
+  video,
+  iframe,
   *,
   *::after,
   *::before {
@@ -65,10 +68,6 @@
 }
 
 .sticky-element {
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: -o-sticky;
   position: sticky;
   top: calc(#{$header-desktop-height} + 35px);
 }

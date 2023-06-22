@@ -22,7 +22,7 @@
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	<?php
 	wp_head();
-	global $theme_version, $acf_options_parameter, $static_bloginfo_stylesheet_directory, $options_fields, $options_fields_multilang, $cta_url_modal_array, $theme_pagination, $footer_wrapper, $mega_menu_wrapper, $header_wrapper, $attivare_pwa;
+	global $theme_version, $acf_options_parameter, $static_bloginfo_stylesheet_directory, $options_fields, $options_fields_multilang, $cta_url_modal_array, $theme_pagination, $attivare_pwa;
 	// Imposto la variabile globale per definire:
 // - se è attivo Polylang il linguaggio in cui l'utente sta visitando il sito
 // - se non è attivo Polylang un valore generico 'any-lang'
@@ -30,23 +30,6 @@
 		$acf_options_parameter = pll_current_language( 'slug' );
 	} else {
 		$acf_options_parameter = 'any-lang';
-	}
-	// Imposto e valorizzo le variabili globali per definire i wrapper:
-	$header_width = get_field( 'theme_header_width', 'option' );
-	if ( $header_width === 'full-width' ) {
-		$header_wrapper = '';
-		$mega_menu_wrapper = '';
-	}
-	if ( $header_width === 'contained-width' ) {
-		$header_wrapper = 'wrapper-padded-more';
-		$mega_menu_wrapper = 'mega-menu-holder-contained';
-	}
-	$footer_width = get_field( 'theme_footer_width', 'option' );
-	if ( $footer_width === 'full-width' ) {
-		$footer_wrapper = '';
-	}
-	if ( $footer_width === 'contained-width' ) {
-		$footer_wrapper = 'wrapper-padded-more';
 	}
 	// Imposto e valorizzo la variabile globale per definire il tipo di paginazione:
 	$theme_pagination = get_field( 'theme_pagination', 'option' );
@@ -99,9 +82,7 @@
 	<?php if ( $attivare_pwa == 1 ) : ?>
 		<link rel="manifest" href="<?php echo get_home_url(); ?>/manifest.json">
 		<link rel="prefetch" href="<?php echo get_home_url(); ?>/manifest.json">
-
 	<?php endif; ?>
-
 </head>
 
 <body>
@@ -110,7 +91,7 @@
 		<div id="preheader"></div>
 		<header id="header">
 			<div class="wrapper-padded">
-				<div class="<?php echo $header_wrapper; ?>">
+				<div class="">
 					<div id="header-structure">
 						<div class="logo">
 							<a href="<?php echo home_url(); ?>" rel="bookmark"
@@ -145,9 +126,7 @@
 			</div>
 			<div class="submenu-close submenu-close-js"></div>
 		</header>
-		<?php include( locate_template( 'template-parts/grid/mega-menu.php' ) ); ?>
-
-		<div id="head-overlay" class="hidden colors-black-bg" aria-hidden="true">
+		<div id="head-overlay" class="hidden bg-4" aria-hidden="true">
 			<div class="scroll-opportunity">
 				<div class="wrapper">
 					<nav class="menu" role="navigation"
@@ -159,20 +138,19 @@
 						?>
 					</nav>
 					<?php if ( $options_fields ) : ?>
-						<ul class="inline-socials">
-							<?php foreach ( $options_fields['global_socials'] as $global_social ) : ?>
-								<li>
-									<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
-										class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
-										aria-label="Visit <?php echo $global_social['global_socials_profile_url']; ?>"
-										rel="noopener">
-									</a>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					<?php endif; ?>
-				</div>
-			</div>
-		</div>
-		<div id="page-content">
-			<?php include( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>
+		<ul class="inline-socials">
+			<?php foreach ( $options_fields['global_socials'] as $global_social ) : ?>
+				<li>
+					<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
+						class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
+						aria-label="Visit <?php echo $global_social['global_socials_profile_url']; ?>" rel="noopener">
+					</a>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
+	</div>
+	</div>
+	</div>
+	<div id="page-content">
+		<?php include( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>

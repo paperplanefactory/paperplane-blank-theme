@@ -3,19 +3,21 @@
 @import '../global/mixin';
 
 .mega-menu {
-  position: fixed;
+  position: fixed !important;
   z-index: 9998;
   top: $header-desktop-height;
   left: $wrapper-padded-desktop;
   display: block;
   width: calc(100% - (#{$wrapper-padded-desktop} * 2));
-  @include define-basic-transition(opacity, 0.4s);
+  @include transition(visibility 0.2s linear, opacity 0.2s linear);
   opacity: 1;
   pointer-events: all;
+  visibility: visible;
 
   &.hidden {
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
   }
 
   .mega-menu-holder {

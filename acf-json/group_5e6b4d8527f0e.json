@@ -201,6 +201,13 @@
                                 "operator": "==",
                                 "value": "module-columns-fix-column"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_5e6b4ddf13dcb",
+                                "operator": "==",
+                                "value": "module-stripe"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -213,7 +220,7 @@
                     "repeatable": 1,
                     "min": 0,
                     "max": 0,
-                    "button_label": "Aggiungi Riga",
+                    "button_label": "Aggiungi CTA",
                     "appearances": "",
                     "rows_per_page": 20,
                     "collapsed": "",
@@ -1975,5 +1982,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1687334484
+    "modified": 1687416204
 }

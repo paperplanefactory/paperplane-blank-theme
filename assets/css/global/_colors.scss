@@ -40,15 +40,15 @@
 // link behaviour and colors
 
 :-webkit-any-link {
-	@include define-basic-transition(all, 0.3s);
+	@include transition(all 0.3s linear);
 }
 
 :-moz-any-link {
-	@include define-basic-transition(all, 0.3s);
+	@include transition(all 0.3s linear);
 }
 
 :any-link {
-	@include define-basic-transition(all, 0.3s);
+	@include transition(all 0.3s linear);
 }
 
 a:link,

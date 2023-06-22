@@ -3,7 +3,7 @@ $next_posts_link = get_next_posts_link();
 global $options_fields, $options_fields_multilang;
 ?>
 <?php if ( $next_posts_link ) : ?>
-	<div class="wrapper <?php echo $options_fields['theme_archive_page_color_scheme']; ?>">
+	<div class="wrapper bg-4">
 		<div class="wrapper-padded">
 			<div class="aligncenter infinite-button">
 				<a href="#" class="default-button allupper view-more-button-js">

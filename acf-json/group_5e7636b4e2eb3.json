@@ -24,60 +24,6 @@
             "repeatable": true
         },
         {
-            "key": "field_5e835c840223a",
-            "label": "Larghezza header",
-            "name": "theme_header_width",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "full-width": "Fullscreen - meno i margini minimi previsti",
-                "contained-width": "Larghezza massima basata sul contenitore principale"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "repeatable": true
-        },
-        {
-            "key": "field_5e83607841c0b",
-            "label": "Larghezza footer",
-            "name": "theme_footer_width",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "full-width": "Fullscreen - meno i margini minimi previsti",
-                "contained-width": "Larghezza massima basata sul contenitore principale"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "repeatable": true
-        },
-        {
             "key": "field_616ff1b2505f2",
             "label": "Tipo di paginazione contenuti",
             "name": "theme_pagination",
@@ -174,5 +120,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1687334572
+    "modified": 1687426594
 }

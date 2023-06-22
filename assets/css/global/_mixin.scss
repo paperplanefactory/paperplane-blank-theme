@@ -21,14 +21,6 @@
 	justify-content: flex-end;
 }
 
-@mixin sticky-element {
-	position: -webkit-sticky;
-	position: -moz-sticky;
-	position: -ms-sticky;
-	position: -o-sticky;
-	position: sticky;
-}
-
 @mixin reset-button {
 	padding: 0;
 	margin: 0;
@@ -39,20 +31,12 @@
 	-webkit-appearance: none !important;
 }
 
-@mixin define-border-radius($radius) {
-	border-radius: $radius;
-}
-
 @mixin define-blur($blur_me) {
 	filter: blur($blur_me);
 	-webkit-filter: blur($blur_me);
 	-moz-filter: blur($blur_me);
 	-o-filter: blur($blur_me);
 	-ms-filter: blur($blur_me);
-}
-
-@mixin define-basic-transition($effet_affected, $effect_duration) {
-	transition: $effet_affected $effect_duration ease-in-out;
 }
 
 @mixin define-transform($transforms) {
@@ -87,4 +71,62 @@
 // Skew
 @mixin define-skew ($x, $y) {
 	@include define-transform(skew(#{$x}deg, #{$y}deg));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Usage:   @include transition(width, height 0.3s ease-in-out);
+// Output:  -webkit-transition(width 0.2s, height 0.3s ease-in-out);
+//          transition(width 0.2s, height 0.3s ease-in-out);
+//
+// Pass in any number of transitions
+@mixin transition($transitions...) {
+	$unfoldedTransitions: ();
+
+	@each $transition in $transitions {
+		$unfoldedTransitions: append($unfoldedTransitions, unfoldTransition($transition), comma);
+	}
+
+	-webkit-transition: $unfoldedTransitions;
+	transition: $unfoldedTransitions;
+}
+
+@function unfoldTransition ($transition) {
+	// Default values
+	$property: all;
+	$duration: .2s;
+	$easing: null; // Browser default is ease, which is what we want
+	$delay: null; // Browser default is 0, which is what we want
+	$defaultProperties: ($property, $duration, $easing, $delay);
+
+	// Grab transition properties if they exist
+	$unfoldedTransition: ();
+
+	@for $i from 1 through length($defaultProperties) {
+		$p: null;
+
+		@if $i <=length($transition) {
+			$p: nth($transition, $i)
+		}
+
+		@else {
+			$p: nth($defaultProperties, $i)
+		}
+
+		$unfoldedTransition: append($unfoldedTransition, $p);
+	}
+
+	@return $unfoldedTransition;
 }

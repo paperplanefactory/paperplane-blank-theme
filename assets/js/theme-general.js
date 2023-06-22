@@ -45,6 +45,7 @@ function set_accessible_navi() {
     jQuery('.accessible-navi-activate-js').html(original_label).attr('title', original_label).attr('aria-label', original_label);
     jQuery('body').removeClass('body-accessible-navi');
     jQuery('.stoppable-js').trigger('play');
+    jQuery('.video-stop-js').addClass('pause');
     animation_duration = 500;
     animation_duration_counter = 1500;
   };
@@ -52,6 +53,8 @@ function set_accessible_navi() {
     jQuery('.accessible-navi-activate-js').html(active_label).attr('title', active_label).attr('aria-label', active_label);
     jQuery('body').addClass('body-accessible-navi');
     jQuery('.stoppable-js').trigger('pause');
+    jQuery('.video-stop-js').removeClass('pause');
+
     animation_duration = 0;
     animation_duration_counter = 0;
   };
@@ -76,12 +79,6 @@ jQuery(document).on('click', '.video-stop-js:not(.initialized)', function (e) {
   }
   e.preventDefault();
 });
-
-jQuery(document).on('click', '.reduce-motion-open-js:not(.initialized)', function (e) {
-  jQuery(this).parent().toggleClass('open');
-  e.preventDefault();
-});
-
 
 
 /////////////////////////////////////////////
@@ -160,7 +157,7 @@ function hamburgerMenu(e) {
     });
     jQuery(this).attr('aria-expanded', true);
   } else {
-    jQuery('#header').removeClass('scrolled');
+    scrollDirectionMenu();
     jQuery('html, body').css({
       overflow: 'visible',
     });
@@ -217,19 +214,26 @@ function scrollDirectionMenu() {
 jQuery(document).on('click', '.mega-menu-js-trigger:not(.initialized)', function (e) {
   jQuery('.header-menu-js > .menu-item-has-children > a').removeClass('clicked');
   jQuery('.sub-menu').removeClass('visible');
+  if (jQuery('.hambuger-element').hasClass('open')) {
+    jQuery('html, body').css({
+      overflow: 'visible',
+    });
+    jQuery('.hambuger-element').removeClass('open');
+    jQuery('#head-overlay').addClass('hidden');
+  }
   data_megamenu_id = jQuery(this).data('megamenu-open-id');
-  jQuery('.mega-menu-js').addClass('hidden').attr('aria-hidden', 'true');
+  jQuery('.mega-menu-js').addClass('hidden');
   if (jQuery(this).hasClass('current-mega-menu')) {
     jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
     jQuery(this).removeClass('current-mega-menu');
-    jQuery('.mega-menu-js-' + data_megamenu_id + '-target').addClass('hidden').attr('aria-hidden', 'true');
+    jQuery('.mega-menu-js-' + data_megamenu_id + '-target').addClass('hidden');
     jQuery('.submenu-close-js').removeClass('active');
-    jQuery('#header').removeClass('scrolled');
+    scrollDirectionMenu();
   }
   else {
     jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
     jQuery(this).addClass('current-mega-menu');
-    jQuery('.mega-menu-js-' + data_megamenu_id + '-target').removeClass('hidden').attr('aria-hidden', 'false');
+    jQuery('.mega-menu-js-' + data_megamenu_id + '-target').removeClass('hidden');
     jQuery('.submenu-close-js').addClass('active');
     jQuery('#header').addClass('scrolled');
   }
@@ -245,7 +249,7 @@ jQuery('.mega-menu-js-trigger').on('keydown', function (event) {
     jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
     jQuery(this).addClass('current-mega-menu');
     jQuery('.mega-menu-js').addClass('hidden');
-    jQuery('.mega-menu-js-' + data_megamenu_id + '-target').removeClass('hidden').attr('aria-hidden', 'false');
+    jQuery('.mega-menu-js-' + data_megamenu_id + '-target').removeClass('hidden');
     setTimeout(function () { jQuery('.mega-menu-page-list-' + data_megamenu_id + ' > li:first a').focus() }, 50);
     jQuery('#header').addClass('scrolled');
     event.preventDefault();
@@ -275,7 +279,7 @@ jQuery(document).on('click', '.header-menu-js > .menu-item-has-children > a:not(
   }
   jQuery('.header-menu-js > .menu-item-has-children > a').not(this).removeClass('clicked');
   jQuery('.header-menu-js > .menu-item-has-children > a').not(this).parent().find('.sub-menu').removeClass('visible');
-  jQuery('.mega-menu-js').addClass('hidden').attr('aria-hidden', 'true');
+  jQuery('.mega-menu-js').addClass('hidden');
   jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
   e.preventDefault();
 });
@@ -295,7 +299,7 @@ jQuery('.header-menu-js > .menu-item-has-children > a').on('keydown', function (
 jQuery(document).on('click', '.submenu-close-js:not(.initialized)', function (e) {
   jQuery('.header-menu-js > .menu-item-has-children > a').removeClass('clicked');
   jQuery('.sub-menu').removeClass('visible');
-  jQuery('.mega-menu-js').addClass('hidden').attr('aria-hidden', 'true');
+  jQuery('.mega-menu-js').addClass('hidden');
   jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
   jQuery(this).removeClass('active');
   e.preventDefault();
@@ -461,7 +465,6 @@ jQuery(document).on('click', '.modal-close-js:not(.initialized)', function (e) {
   var modal_close_id = jQuery(this).data('modal-close-id');
   var modal_back_to = localStorage.getItem('modal_back_to');
   jQuery(modal_close_id).addClass('hidden');
-  jQuery(modal_close_id).attr('aria-hidden', 'true');
   jQuery('html, body').css({
     overflow: 'visible',
   });
@@ -476,7 +479,6 @@ jQuery('.paperplane-modal-js').keyup(function (event) {
     var modal_back_to = localStorage.getItem('modal_back_to');
     setTimeout(function () { jQuery('.' + modal_back_to).focus() }, 50);
     jQuery(modal_close_id).addClass('hidden');
-    jQuery(modal_close_id).attr('aria-hidden', 'true');
     jQuery('html, body').css({
       overflow: 'visible',
     });
@@ -489,7 +491,6 @@ jQuery(document).on('click', '.modal-open-js:not(.initialized)', function (e) {
   setTimeout(function () { jQuery('.modal-focus-' + modal_open_id).focus() }, 50);
   localStorage.setItem('modal_back_to', modal_back_to);
   jQuery('.paperplane-modal-js-' + modal_open_id).removeClass('hidden');
-  jQuery('.paperplane-modal-js-' + modal_open_id).attr('aria-hidden', 'false');
   jQuery('html, body').css({
     overflow: 'hidden',
   });
@@ -560,7 +561,6 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 jQuery(document).on('click', '.play-video-js:not(.initialized)', function (e) {
   var video_source = jQuery(this).data('video-source');
   var video_toplay = jQuery(this).data('video-toplay');
-  jQuery('#' + video_toplay).attr('aria-hidden', 'false');
   jQuery(this).fadeOut(300);
   if (video_source == 'vimeo') {
     var iframe = document.getElementById(video_toplay);
@@ -605,7 +605,10 @@ jQuery(document).on('click', '.play-video-js:not(.initialized)', function (e) {
 // Stop videos in autoplay to enable screensaver
 /////////////////////////////////////////////
 
-setTimeout(function () { jQuery('.stoppable-js').trigger('pause') }, 120000);
+setTimeout(function () {
+  jQuery('.stoppable-js').trigger('pause');
+  jQuery('.video-stop-js').removeClass('pause');
+}, 120000);
 
 
 /////////////////////////////////////////////

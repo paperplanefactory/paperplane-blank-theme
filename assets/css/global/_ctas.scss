@@ -12,7 +12,7 @@
 .default-button {
 	position: relative;
 	display: inline-block;
-	@include define-border-radius(24px);
+	border-radius: 24px;
 	text-align: center;
 	text-decoration: none !important;
 	border: solid 1px;
@@ -51,7 +51,7 @@ a.default-button:hover,
 		text-rendering: auto;
 		-webkit-font-smoothing: antialiased;
 		content: "➜";
-		@include define-basic-transition(all, 0.15s);
+		@include transition(all 0.15s linear);
 	}
 
 	&:hover {

@@ -64,7 +64,7 @@
   opacity: 1;
   pointer-events: all;
   visibility: visible;
-  @include define-basic-transition(all, 0.3s);
+  @include transition(all 0.3s linear);
   background-color: $color-4;
 
   &.hidden {

@@ -153,7 +153,7 @@ input[type=submit] {
 	position: relative;
 	display: inline-block;
 	padding: 14px 22px;
-	@include define-border-radius(24px);
+	border-radius: 24px;
 	text-align: center;
 	text-decoration: none !important;
 	min-width: 100px;
@@ -161,7 +161,7 @@ input[type=submit] {
 	margin: 20px 0 0;
 	border: none;
 	cursor: pointer;
-	@include define-basic-transition(all, 0.3s);
+	@include transition(all 0.3s linear);
 	white-space: normal;
 	text-transform: uppercase;
 	-webkit-appearance: none;
@@ -189,7 +189,7 @@ input[type=url]:focus,
 select:focus,
 textarea:focus {
 	box-shadow: 0 0 0 3px $color-1 !important;
-	@include define-basic-transition(all, 0.3s);
+	@include transition(all 0.3s linear);
 }
 
 label {
@@ -246,6 +246,7 @@ label {
 		font-size: $h6-size-desktop !important;
 		line-height: $h6-size-desktop !important;
 		font-weight: $font-weight-1 !important;
+		font-family: $font-main;
 
 		&:before {
 			position: relative;
@@ -272,6 +273,7 @@ label {
 		font-size: $cta1-size-desktop !important;
 		line-height: $cta1-size-desktop !important;
 		font-weight: $font-weight-2 !important;
+		font-family: $font-main;
 	}
 
 	&.invalid {
