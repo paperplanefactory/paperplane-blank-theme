@@ -2,7 +2,7 @@
 
 ## Primi passaggi
 1. rinominare la cartella del tema es. cliente-theme
-2. compilare il file style.css con il nome del tema e il percorso alla repo del tema su GitHub
+2. compilare il file style.css modificando il parametro "Text Domain: paperPlane-blankTheme" e
 3. nel file wp-config.php modificare la riga define( 'UPLOADS', 'blankuploads' ); con il nome della cartella uploads corretta
 
 ## Strumenti CSS
