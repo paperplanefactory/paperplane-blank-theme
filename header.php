@@ -138,19 +138,20 @@
 						?>
 					</nav>
 					<?php if ( $options_fields ) : ?>
-		<ul class="inline-socials">
-			<?php foreach ( $options_fields['global_socials'] as $global_social ) : ?>
-				<li>
-					<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
-						class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
-						aria-label="Visit <?php echo $global_social['global_socials_profile_url']; ?>" rel="noopener">
-					</a>
-				</li>
-			<?php endforeach; ?>
-		</ul>
-	<?php endif; ?>
-	</div>
-	</div>
-	</div>
-	<div id="page-content">
-		<?php include( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>
+						<ul class="inline-socials">
+							<?php foreach ( $options_fields['global_socials'] as $global_social ) : ?>
+								<li>
+									<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
+										class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
+										aria-label="Visit <?php echo $global_social['global_socials_profile_url']; ?>"
+										rel="noopener">
+									</a>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+		<div id="page-content">
+			<?php include( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>

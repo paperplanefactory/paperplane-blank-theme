@@ -106,29 +106,46 @@ function set_pwa_data() {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
   .offline-page {
-    position: absolute;
+    position: relative;
     width: 100%;
-    padding: calc(3vw + 70px) 3vw 3vw 3vw;
+    overflow: hidden;
+    min-height: 100dvh;
+    display: grid;
+    padding: 0;
+    margin: 0;
+    align-content: center;
+    width: 100%;
+  }
+  .content {
+    position: relative;
     text-align: center;
-    background-image: url("' . parse_url( get_stylesheet_directory_uri(), PHP_URL_PATH ) . '/assets/images/site-logo-header.svg");
-    background-position: 50% 3vw;
-    background-repeat: no-repeat;
-    background-size: auto 50px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 4vw;
+  }
+
+  .content img {
+    max-width: 200px;
+    height: auto;
+    margin: 0 0 30px 0;
   }
 
   h1 {
     font-size: 20px;
+    line-height: 28px;
   }
   </style>
   </head>
   <body>
   <div class="offline-page">
-  <h1>You are offline</h1>
+  <div class="content">
+  <img src="' . parse_url( get_stylesheet_directory_uri(), PHP_URL_PATH ) . '/assets/images/site-logo-header.svg" />
+  <h1>Nessuna connessioen disponibile.<br />No connection avialable.</h1>
+  </div>
   </div>
   </body>
   </html>';
@@ -148,7 +165,7 @@ function unset_pwa_data() {
 function manage_pwa_files() {
 	$screen = get_current_screen();
 	$attivare_pwa = get_field( 'attivare_pwa', 'option' );
-	if ( strpos( $screen->id, "theme-general-settings" ) == true ) {
+	if ( strpos( $screen->id, 'theme-general-settings' ) == true ) {
 		if ( $attivare_pwa == false ) {
 			unset_pwa_data();
 		} else {

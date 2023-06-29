@@ -46,17 +46,18 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 				<div class="flex-hold flex-hold-2 margins-wide">
 					<div class="flex-hold-child">
 						<?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_legal_notes']; ?>
-						<p>
-							<i class="paperplane-blank-theme-icons-reduce-motion"></i>
-							<a href="#" class="accessible-navi-activate-js"
-								title="<?php _e( 'Activate focus on links', 'paperPlane-blankTheme' ); ?>"
-								aria-label="<?php _e( 'Activate focus on links', 'paperPlane-blankTheme' ); ?>"
-								data-original-label="<?php _e( 'Activate focus on links', 'paperPlane-blankTheme' ); ?>"
-								data-active-label="<?php _e( 'Deactivate focus on links', 'paperPlane-blankTheme' ); ?>">
-
-								<?php _e( 'Activate focus on links', 'paperPlane-blankTheme' ); ?>
-							</a>
-						</p>
+						<?php if ( $options_fields['animations_option'] == 1 ) : ?>
+							<p>
+								<i class="paperplane-blank-theme-icons-reduce-motion"></i>
+								<a href="#" class="accessible-navi-activate-js"
+									title="<?php _e( 'Riduci animazioni', 'paperPlane-blankTheme' ); ?>"
+									aria-label="<?php _e( 'Riduci animazioni', 'paperPlane-blankTheme' ); ?>"
+									data-original-label="<?php _e( 'Riduci animazioni', 'paperPlane-blankTheme' ); ?>"
+									data-active-label="<?php _e( 'Attiva animazioni', 'paperPlane-blankTheme' ); ?>">
+									<?php _e( 'Riduci animazioni', 'paperPlane-blankTheme' ); ?>
+								</a>
+							</p>
+						<?php endif; ?>
 					</div>
 					<div class="flex-hold-child desktop-align-right">
 						<?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_credits']; ?>

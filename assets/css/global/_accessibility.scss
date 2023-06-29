@@ -169,11 +169,12 @@ body {
 
     .opening-icon {
         position: absolute;
-        top: 1px;
-        left: 1px;
-        width: 50px;
-        height: 40px;
-        line-height: 40px;
+        top: 50%;
+        left: 10px;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        transform: translate(0, -50%);
         color: $color-4;
         text-align: center;
         overflow: hidden;
@@ -181,8 +182,8 @@ body {
 
         &:before {
             position: relative;
-            top: 1px;
-            left: -4px;
+            top: 0;
+            left: 0;
             content: '\e827';
             font-family: "paperplane-blank-theme-icons";
             font-style: normal;
@@ -231,14 +232,14 @@ body {
     }
 
     30% {
-        top: 1px;
-        left: -4px;
+        top: 0;
+        left: 0;
         opacity: 1;
     }
 
     70% {
-        top: 1px;
-        left: -4px;
+        top: 0;
+        left: 0;
         opacity: 1;
     }
 

@@ -3,7 +3,9 @@ $listing_content_fields = paperplane_content_transients( $post->ID );
 ?>
 <div class="flex-hold flex-hold-block flex-hold-block-listed grid-item-infinite" data-aos="fade-up">
 	<div class="flex-hold-child-image">
-		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+		<a href="<?php the_permalink(); ?>"
+			title="<?php echo __( 'Approfondisci:', 'paperPlane-blankTheme' ) . ' ' . get_the_title(); ?>"
+			aria-label="<?php echo __( 'Approfondisci:', 'paperPlane-blankTheme' ) . ' ' . get_the_title(); ?>">
 			<?php
 			$image_data = array(
 				'image_type' => 'post_thumbnail',
@@ -26,9 +28,14 @@ $listing_content_fields = paperplane_content_transients( $post->ID );
 	</div>
 	<div class="flex-hold-child-texts">
 		<div class="last-child-no-margin">
-			<h2 class="as-h3"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+			<h2 class="as-h3"><a href="<?php the_permalink(); ?>"
+					title="<?php echo __( 'Approfondisci:', 'paperPlane-blankTheme' ) . ' ' . get_the_title(); ?>"
+					aria-label="<?php echo __( 'Approfondisci:', 'paperPlane-blankTheme' ) . ' ' . get_the_title(); ?>"><?php the_title(); ?></a></h2>
 			<div class="cta-holder">
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="default-button-b allupper"><?php _e( 'Leggi tutto', 'paperPlane-blankTheme' ); ?></a>
+				<a href="<?php the_permalink(); ?>"
+					title="<?php echo __( 'Approfondisci:', 'paperPlane-blankTheme' ) . ' ' . get_the_title(); ?>"
+					aria-label="<?php echo __( 'Approfondisci:', 'paperPlane-blankTheme' ) . ' ' . get_the_title(); ?>"
+					class="default-button-b allupper"><?php _e( 'Leggi tutto', 'paperPlane-blankTheme' ); ?></a>
 			</div>
 		</div>
 	</div>

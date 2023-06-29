@@ -59,14 +59,14 @@ function paperplane_options_transients() {
 function paperplane_delete_content_transients( $post_id, $post, $update ) {
 	$this_cpt = get_post_type( $post_id );
 	delete_transient( 'content_fields_transient_' . $post_id );
-	if ( $this_cpt === 'page' || $this_cpt === 'post' || $this_cpt === 'cpt_banner' || $this_cpt === 'cpt_modal' ) {
-		//delete_transient('content_fields_transient_' . $post_id);
-	}
 	if ( $this_cpt === 'cpt_modal' ) {
 		delete_transient( 'paperplane_query_modals_transient' );
 	}
 	if ( $this_cpt === 'cpt_mega_menu' ) {
 		delete_transient( 'paperplane_mega_menus_transient' );
+	}
+	if ( $this_cpt === 'cpt_banner' ) {
+		delete_transients_with_prefix( 'content_fields_transient_' );
 	}
 }
 add_action( 'save_post', 'paperplane_delete_content_transients', 10, 3 );
@@ -79,3 +79,26 @@ function paperplane_delete_option_pages_transients() {
 	}
 }
 add_action( 'acf/save_post', 'paperplane_delete_option_pages_transients', 20 );
+
+function delete_transients_with_prefix( $prefix ) {
+	foreach ( get_transient_keys_with_prefix( $prefix ) as $key ) {
+		delete_transient( $key );
+	}
+}
+
+function get_transient_keys_with_prefix( $prefix ) {
+	global $wpdb;
+
+	$prefix = $wpdb->esc_like( '_transient_' . $prefix );
+	$sql = "SELECT `option_name` FROM $wpdb->options WHERE `option_name` LIKE '%s'";
+	$keys = $wpdb->get_results( $wpdb->prepare( $sql, $prefix . '%' ), ARRAY_A );
+
+	if ( is_wp_error( $keys ) ) {
+		return [];
+	}
+
+	return array_map( function ($key) {
+		// Remove '_transient_' from the option name.
+		return ltrim( $key['option_name'], '_transient_' );
+	}, $keys );
+}

@@ -6,7 +6,9 @@ global $options_fields, $options_fields_multilang;
 	<div class="wrapper bg-4">
 		<div class="wrapper-padded">
 			<div class="aligncenter infinite-button">
-				<a href="#" class="default-button allupper view-more-button-js">
+				<a href="#" class="default-button allupper view-more-button-js"
+					title="<?php _e( 'Questo link permette di caricare altri contenuti', 'paperPlane-blankTheme' ); ?>"
+					aria-label="<?php _e( 'Questo link permette di caricare altri contenuti', 'paperPlane-blankTheme' ); ?>">
 					<?php _e( 'Carica altri contenuti', 'paperPlane-blankTheme' ); ?>
 				</a>
 			</div>

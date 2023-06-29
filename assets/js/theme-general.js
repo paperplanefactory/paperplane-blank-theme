@@ -615,7 +615,7 @@ setTimeout(function () {
 // Window scroll / resize events
 /////////////////////////////////////////////
 document.addEventListener('scroll', { passive: true });
-document.addEventListener("scroll", (event) => {
+document.addEventListener('scroll', (event) => {
   scrollDirectionMenu();
   numbers_counter();
 });
