@@ -31,6 +31,24 @@ textarea {
 	border: $color-2 solid 1px;
 	color: $color-1;
 	background-color: $color-4;
+	font-family: $font-main;
+}
+
+input[type=date],
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=range],
+input[type=tel],
+input[type=text],
+input[type=url],
+textarea {
+	font-weight: $font-weight-1;
+	position: relative;
+	width: calc(100% - 2px);
+	margin: 10px 0 0;
+	padding: 10px;
+	background-color: transparent;
 }
 
 input[type=checkbox],
@@ -116,23 +134,7 @@ input[type=file] {
 }
 
 
-input[type=date],
-input[type=email],
-input[type=number],
-input[type=password],
-input[type=range],
-input[type=tel],
-input[type=text],
-input[type=url],
-textarea {
-	font-family: $font-main;
-	font-weight: $font-weight-1;
-	position: relative;
-	width: calc(100% - 2px);
-	margin: 10px 0 0;
-	padding: 10px;
-	background-color: transparent;
-}
+
 
 select {
 	position: relative;

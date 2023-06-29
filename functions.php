@@ -32,6 +32,8 @@ include_once "includes/theme-videos.php";
 include_once "includes/theme-transients.php";
 // PWA
 include_once "includes/theme-pwa.php";
+// Maintenance page
+include_once "includes/theme-maintenance.php";
 // attivo le traduzioni
 function paperplane_theme_load_theme_textdomain() {
 	load_theme_textdomain( 'paperPlane-blankTheme', get_template_directory() . '/languages' );
