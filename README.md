@@ -2,8 +2,10 @@
 
 ## Primi passaggi
 1. rinominare la cartella del tema es. cliente-theme
-2. compilare il file style.css modificando il parametro "Text Domain: paperPlane-blankTheme" e
-3. nel file wp-config.php modificare la riga define( 'UPLOADS', 'blankuploads' ); con il nome della cartella uploads corretta
+2. cancellare le cartelle di GitHub
+3. creare la nuova repository su GitHub
+4. compilare il file style.css modificando il parametro "Text Domain: paperPlane-blankTheme" e i link alla repository su GitHub
+5. se alcuni CPT (banner o modal) non sono necessari impostare su "falso" l'opzione "Mostra UI" ne lplugin CPT UI e verificare di toglielo nei campi di ACF (es. CTA) 
 
 ## Strumenti CSS
 - [Generatore gradiente CSS](https://cssgradient.io/)
