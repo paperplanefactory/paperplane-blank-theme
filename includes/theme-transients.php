@@ -52,8 +52,6 @@ function paperplane_options_transients() {
 			${$options_fields_multilang . $language} = $options_fields_multilang_transient;
 		}
 	}
-
-
 }
 
 function paperplane_delete_content_transients( $post_id, $post, $update ) {
@@ -70,6 +68,12 @@ function paperplane_delete_content_transients( $post_id, $post, $update ) {
 	}
 }
 add_action( 'save_post', 'paperplane_delete_content_transients', 10, 3 );
+
+add_action( 'wp_trash_post', 'paperplane_delete_content_transients_on_post_delete' );
+add_action( 'delete_post', 'paperplane_delete_content_transients_on_post_delete', 10 );
+function paperplane_delete_content_transients_on_post_delete() {
+	delete_transients_with_prefix( 'content_fields_transient_' );
+}
 
 function paperplane_delete_option_pages_transients() {
 	delete_transient( 'options_fields_transient' );

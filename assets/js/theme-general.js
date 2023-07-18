@@ -261,6 +261,14 @@ jQuery('.mega-menu-js-trigger, .cta-navi > a').on('focusin', function () {
   jQuery('.sub-menu').removeClass('visible');
 });
 
+jQuery('.mega-menu-js').keyup(function (event) {
+  data_megamenu_id = jQuery(this).data('mega-menu-id');
+  if (event.which == 27) {
+    jQuery('.mega-menu-js-' + data_megamenu_id + '-target').addClass('hidden');
+    jQuery('.mega-menu-js-' + data_megamenu_id + '-trigger').removeClass('current-mega-menu').focus();
+  }
+});
+
 /////////////////////////////////////////////
 // sub menu desktop
 /////////////////////////////////////////////
@@ -341,21 +349,12 @@ jQuery('.overlay-menu-mobile-js > .menu-item-has-children > a').on('keydown', fu
 });
 
 /////////////////////////////////////////////
-// slick slideshow
+// Slick slideshow
 /////////////////////////////////////////////
 
 jQuery(document).ready(function () {
   jQuery('.slider-single-js').on('init reInit', function (event, slick, currentSlide, nextSlide) {
     AOS.refresh();
-  });
-
-  jQuery(document).on('keydown', function (e) {
-    if (e.keyCode == 37) {
-      jQuery('.slider-single-js').slick('slickPrev');
-    }
-    if (e.keyCode == 39) {
-      jQuery('.slider-single-js').slick('slickNext');
-    }
   });
 
   jQuery('.slider-single-js').on('init', function (event, slick) {

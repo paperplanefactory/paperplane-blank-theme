@@ -129,6 +129,24 @@
             "ui_on_text": "",
             "ui_off_text": "",
             "ui": 1
+        },
+        {
+            "key": "field_649e88b7353c1",
+            "label": "Colore navbar mobile",
+            "name": "mobile_navbar_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 0,
+            "return_format": "string"
         }
     ],
     "location": [
@@ -160,5 +178,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1687948445
+    "modified": 1688111353
 }
