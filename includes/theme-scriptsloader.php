@@ -62,8 +62,8 @@ function paperplane_load_scripts() {
 	// wp_enqueue_script( 'js-parallax' );
 
 	// Comportamenti ricorrenti
-	wp_register_script( 'theme-general', get_template_directory_uri() . '/assets/js/theme-general.min.js#deferload', array( 'jquery' ), $theme_version, true );
-	wp_enqueue_script( 'theme-general' );
+	wp_register_script( 'paperplane-theme-general', get_template_directory_uri() . '/assets/js/theme-general.min.js#deferload', array( 'jquery' ), $theme_version, true );
+	wp_enqueue_script( 'paperplane-theme-general' );
 }
 
 add_action( 'wp_enqueue_scripts', 'paperplane_load_scripts' );

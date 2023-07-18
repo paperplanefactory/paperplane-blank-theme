@@ -41,11 +41,11 @@
 	paperplane_options_transients();
 	?>
 	<!-- Chrome, Firefox OS and Opera -->
-	<meta name="theme-color" content="#000000">
+	<meta name="theme-color" content="<?php echo $options_fields['mobile_navbar_color']; ?>">
 	<!-- Windows Phone -->
-	<meta name="msapplication-navbutton-color" content="#000000">
+	<meta name="msapplication-navbutton-color" content="<?php echo $options_fields['mobile_navbar_color']; ?>">
 	<!-- iOS Safari -->
-	<meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+	<meta name="apple-mobile-web-app-status-bar-style" content="<?php echo $options_fields['mobile_navbar_color']; ?>">
 	<link rel="apple-touch-icon" sizes="57x57"
 		href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60"

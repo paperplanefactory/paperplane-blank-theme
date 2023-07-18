@@ -179,6 +179,9 @@ function paperplane_images_preload_add_meta_tags() {
 				if ( $page_opening_video === 'no' && isset( $thumb_url_mobile ) ) {
 					$preload_media_meta .= '<link rel="preload" href="' . $thumb_url_mobile . '" as="image" media="(max-width: 1023px)" />' . "\n";
 				}
+				if ( $page_opening_video === 'si' ) {
+					$preload_media_meta .= '<link rel="preload" href="' . $content_fields['page_opening_video_mp4'] . '" as="video" type="video/mp4" />' . "\n";
+				}
 				echo $preload_media_meta;
 			}
 		}

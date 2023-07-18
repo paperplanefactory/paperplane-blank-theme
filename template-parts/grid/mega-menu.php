@@ -17,7 +17,8 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 		setup_postdata( $post );
 		$content_fields = paperplane_content_transients( $post->ID );
 		?>
-		<nav class="mega-menu mega-menu-js mega-menu-js-<?php echo $post->ID; ?>-target hidden" aria-hidden="true">
+		<nav class="mega-menu mega-menu-js mega-menu-js-<?php echo $post->ID; ?>-target hidden" aria-hidden="true"
+			data-mega-menu-id="<?php echo $post->ID; ?>">
 			<div class="mega-menu-holder colors-black-bg">
 				<div class="mega-menu-spacer mega-menu-js-hover">
 					<div class="flex-hold flex-hold-3 margins-thin">

@@ -51,8 +51,9 @@ function paperplane_theme_videos( $field_names ) {
 						<iframe id="video-<?php echo $videos_count; ?>" class="video-stop-js"
 							data-video-source="<?php echo $video_source; ?>"
 							data-src="https://player.vimeo.com/video/<?php echo $video_id; ?>" loading="lazy" width="640" height="360"
-							allow="autoplay" mozallowfullscreen webkitallowfullscreen allowfullscreen title="<?php echo $link_title; ?>"
-							aria-label="<?php echo $link_title; ?>" aria-hidden="true"></iframe>
+							allow="autoplay; fullscreen" data-autoplay autoplay playsinline mozallowfullscreen webkitallowfullscreen
+							allowfullscreen title="<?php echo $link_title; ?>" aria-label="<?php echo $link_title; ?>"
+							aria-hidden="true"></iframe>
 					<?php elseif ( $video_source === 'youtube' ) : ?>
 						<div id="video-<?php echo $videos_count; ?>" class="video-stop-js"
 							data-video-source="<?php echo $video_source; ?>" data-youtube-video-id="<?php echo $video_id; ?>"
