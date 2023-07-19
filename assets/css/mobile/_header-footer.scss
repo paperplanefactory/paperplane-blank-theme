@@ -13,7 +13,7 @@ $hamburger-width: 55px; // header
   height: $header-smartphone-height;
 
   &.hidden {
-    top: -$header-smartphone-height;
+    transform: translateY(-$header-smartphone-height);
   }
 
   &.scrolled {

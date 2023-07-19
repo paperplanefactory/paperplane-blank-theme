@@ -266,6 +266,7 @@ jQuery('.mega-menu-js').keyup(function (event) {
   if (event.which == 27) {
     jQuery('.mega-menu-js-' + data_megamenu_id + '-target').addClass('hidden');
     jQuery('.mega-menu-js-' + data_megamenu_id + '-trigger').removeClass('current-mega-menu').focus();
+    scrollDirectionMenu();
   }
 });
 
@@ -407,16 +408,6 @@ jQuery(document).ready(function () {
     //e.preventDefault(); 
     jQuery('.slider-single-js').slick('slickPrev');
   });
-
-
-
-
-
-
-
-
-
-
 });
 
 /////////////////////////////////////////////
