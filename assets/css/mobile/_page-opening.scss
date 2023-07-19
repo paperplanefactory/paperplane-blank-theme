@@ -8,6 +8,7 @@
   display: block;
   width: 100%;
   overflow: hidden;
+  @include transition(height 0.3s);
 }
 
 .page-opening-fullscreen {

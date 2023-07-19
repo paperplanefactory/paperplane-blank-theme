@@ -55,21 +55,11 @@ function paperplane_options_transients() {
 }
 
 function paperplane_delete_content_transients( $post_id, $post, $update ) {
-	$this_cpt = get_post_type( $post_id );
-	delete_transient( 'content_fields_transient_' . $post_id );
-	if ( $this_cpt === 'cpt_modal' ) {
-		delete_transient( 'paperplane_query_modals_transient' );
-	}
-	if ( $this_cpt === 'cpt_mega_menu' ) {
-		delete_transient( 'paperplane_mega_menus_transient' );
-	}
-	if ( $this_cpt === 'cpt_banner' ) {
-		delete_transients_with_prefix( 'content_fields_transient_' );
-	}
+	delete_transients_with_prefix( 'content_fields_transient_' );
 }
 add_action( 'save_post', 'paperplane_delete_content_transients', 10, 3 );
 
-add_action( 'wp_trash_post', 'paperplane_delete_content_transients_on_post_delete' );
+add_action( 'wp_trash_post', 'paperplane_delete_content_transients_on_post_delete', 10 );
 add_action( 'delete_post', 'paperplane_delete_content_transients_on_post_delete', 10 );
 function paperplane_delete_content_transients_on_post_delete() {
 	delete_transients_with_prefix( 'content_fields_transient_' );
