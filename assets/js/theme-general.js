@@ -636,3 +636,9 @@ function clear_overlay_scroll() {
     }
   }
 }
+
+document.addEventListener('wpcf7invalid', function (event) {
+  setTimeout(function () {
+    jQuery('#' + event.detail.unitTag + ' .wpcf7-not-valid').eq(0).focus();
+  }, 3000);
+}, false);
