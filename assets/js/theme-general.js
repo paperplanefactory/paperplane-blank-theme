@@ -637,8 +637,14 @@ function clear_overlay_scroll() {
   }
 }
 
+
 document.addEventListener('wpcf7invalid', function (event) {
-  setTimeout(function () {
+  jQuery('.form-top-js').removeClass('hidden');
+  jQuery(document).on('click', '.form-top-js:not(.initialized)', function (e) {
     jQuery('#' + event.detail.unitTag + ' .wpcf7-not-valid').eq(0).focus();
-  }, 3000);
+    e.preventDefault();
+  });
 }, false);
+
+
+
