@@ -2,14 +2,62 @@
 function set_pwa_data() {
 	// versione del tema
 	global $theme_version;
-	$color = '#FFFFFF';
-	$bg_color = '#000000';
 	$favicons_folder = get_stylesheet_directory_uri() . '/assets/images/favicons/';
 	// generate manifest
-	$manifest_data = array(
+	$manifest_data = array();
+	$manifest_data['name'] = get_field( 'pwa_name', 'option' );
+	$manifest_data['short_name'] = get_field( 'pwa_short_name', 'option' );
+	$manifest_data['description'] = get_field( 'pwa_short_description', 'option' );
+	$manifest_data['id'] = get_home_url() . '/?utm_source=pwa-homescreen';
+	$manifest_data['start_url'] = get_home_url() . '/?utm_source=pwa-homescreen';
+	$manifest_data['scope'] = '/';
+	$manifest_data['display'] = 'standalone';
+	$manifest_data['lang'] = 'it-IT';
+	$manifest_data['background_color'] = get_field( 'pwa_background_color', 'option' );
+	$manifest_data['theme_color'] = get_field( 'pwa_theme_color', 'option' );
+	$manifest_data['orientation'] = 'portrait-primary';
+	$manifest_data['icons'][0]['src'] = $favicons_folder . 'favicon-1024x1024.png';
+	$manifest_data['icons'][0]['type'] = 'image/png';
+	$manifest_data['icons'][0]['sizes'] = '1024x1024';
+	$manifest_data['icons'][0]['purpose'] = 'any';
+	$manifest_data['icons'][1]['src'] = $favicons_folder . 'favicon-1024x1024-maskable.png';
+	$manifest_data['icons'][1]['type'] = 'image/png';
+	$manifest_data['icons'][1]['sizes'] = '1024x1024';
+	$manifest_data['icons'][1]['purpose'] = 'maskable';
+	if ( get_field( 'pwa_shortcuts', 'option' ) ) {
+		$pwa_shortcuts = get_field( 'pwa_shortcuts', 'option' );
+		foreach ( $pwa_shortcuts as $index => $pwa_shortcut ) {
+			$manifest_data['shortcuts'][ $index ]['name'] = $pwa_shortcut['pwa_shortcut_name'];
+			$manifest_data['shortcuts'][ $index ]['short_name'] = $pwa_shortcut['pwa_shortcut_short_name'];
+			$manifest_data['shortcuts'][ $index ]['description'] = $pwa_shortcut['pwa_shortcut_description'];
+			$manifest_data['shortcuts'][ $index ]['url'] = $pwa_shortcut['pwa_shortcut_url'];
+			$manifest_data['shortcuts'][ $index ]['icons'][0]['src'] = $favicons_folder . 'android-icon-96x96.png';
+			$manifest_data['shortcuts'][ $index ]['icons'][0]['sizes'] = '96x96';
+		}
+	}
+	if ( get_field( 'pwa_screenshots', 'option' ) ) {
+		$pwa_screenshots = get_field( 'pwa_screenshots', 'option' );
+		foreach ( $pwa_screenshots as $index => $pwa_screenshot ) {
+			if ( $pwa_screenshot['pwa_screenshot_image']['sizes']['column_hd-width'] > $pwa_screenshot['pwa_screenshot_image']['sizes']['column_hd-height'] ) {
+				$form_factor = 'wide';
+			} else {
+				$form_factor = 'narrow';
+			}
+			$manifest_data['screenshots'][ $index ]['src'] = $pwa_screenshot['pwa_screenshot_image']['sizes']['column_hd'];
+			$manifest_data['screenshots'][ $index ]['sizes'] = $pwa_screenshot['pwa_screenshot_image']['sizes']['column_hd-width'] . 'x' . $pwa_screenshot['pwa_screenshot_image']['sizes']['column_hd-height'];
+			$manifest_data['screenshots'][ $index ]['type'] = 'image/' . $pwa_screenshot['pwa_screenshot_image']['subtype'];
+			$manifest_data['screenshots'][ $index ]['form_factor'] = $form_factor;
+			$manifest_data['screenshots'][ $index ]['label'] = $pwa_screenshot['pwa_screenshot_image_label'];
+		}
+	}
+	//var_dump( $manifest_data );
+	//die();
+
+	$manifest_data_ = array(
 		'name' => get_bloginfo( 'name' ),
 		'short_name' => get_bloginfo( 'name' ),
 		'description' => get_bloginfo( 'description' ),
+		'id' => get_home_url() . '/?utm_source=pwa-homescreen',
 		'start_url' => get_home_url() . '/?utm_source=pwa-homescreen',
 		'scope' => get_home_url(),
 		'display' => 'standalone',
@@ -31,7 +79,25 @@ function set_pwa_data() {
 				'purpose' => 'maskable'
 			),
 		),
+		'screenshots' => array(
+			array(
+				'src' => $pwa_wide_screenshot,
+				'sizes' => '1280x720',
+				'type' => 'image/png',
+				'form_factor' => 'wide',
+				'label' => 'Homescreen di' . get_bloginfo( 'name' ),
+			),
+			array(
+				'src' => $pwa_narrow_screenshot,
+				'sizes' => '720x1280',
+				'type' => 'image/png',
+				'form_factor' => 'narrow',
+				'label' => 'Homescreen di' . get_bloginfo( 'name' ),
+			),
+		),
 	);
+
+
 	// encode manifest data
 	$manifest_data = stripslashes( json_encode( $manifest_data ) );
 	// set path to manifest.json file
@@ -174,14 +240,3 @@ function manage_pwa_files() {
 	}
 }
 add_action( 'acf/save_post', 'manage_pwa_files', 20 );
-
-global $attivare_pwa;
-if ( $attivare_pwa == true ) {
-	add_action( 'wp_enqueue_scripts', 'pwa_scripts' );
-}
-
-function pwa_scripts() {
-	global $theme_version;
-	wp_register_script( 'theme-pwa-install', get_template_directory_uri() . '/assets/pwa/pwa-install.min.js', array(), $theme_version, false );
-	wp_enqueue_script( 'theme-pwa-install' );
-}

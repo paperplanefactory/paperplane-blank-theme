@@ -1,7 +1,7 @@
 <?php
 global $options_fields, $options_fields_multilang;
 ?>
-<div class="wrapper bg-4">
+<div class="wrapper">
 	<div class="wrapper-padded">
 		<div class="aligncenter">
 			<?php

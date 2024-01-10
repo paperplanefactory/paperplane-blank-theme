@@ -24,6 +24,24 @@
             "repeatable": true
         },
         {
+            "key": "field_649e88b7353c1",
+            "label": "Colore navbar mobile",
+            "name": "mobile_navbar_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 0,
+            "return_format": "string"
+        },
+        {
             "key": "field_616ff1b2505f2",
             "label": "Tipo di paginazione contenuti",
             "name": "theme_pagination",
@@ -51,9 +69,9 @@
             "repeatable": true
         },
         {
-            "key": "field_642430a281253",
-            "label": "Attivare PWA",
-            "name": "attivare_pwa",
+            "key": "field_649c0c7ad4258",
+            "label": "Mostra opzione per ridurre animazioni",
+            "name": "animations_option",
             "aria-label": "",
             "type": "true_false",
             "instructions": "",
@@ -65,7 +83,7 @@
                 "id": ""
             },
             "message": "",
-            "default_value": 0,
+            "default_value": 1,
             "ui_on_text": "",
             "ui_off_text": "",
             "ui": 1
@@ -89,6 +107,67 @@
             "ui_on_text": "",
             "ui_off_text": "",
             "ui": 1
+        },
+        {
+            "key": "field_64f1fa2039378",
+            "label": "Gestione pagina in costruzione e manutenzione",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
+            "key": "field_64f1fb0c90ff6",
+            "label": "Logo",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Il logo utilizzato è nella cartella del tema in \/assets\/images\/site-logo-header.svg - In alternativa può essere impostato un logo custom.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_65400cea22604",
+            "label": "Logo custom",
+            "name": "custom_page_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
         },
         {
             "key": "field_649964fabafec",
@@ -131,11 +210,11 @@
             "new_lines": "br"
         },
         {
-            "key": "field_649c0c7ad4258",
-            "label": "Mostra opzione per ridurre animazioni",
-            "name": "animations_option",
+            "key": "field_6503386524fea",
+            "label": "Embed  per sito in costruzione",
+            "name": "underconstruction_embed",
             "aria-label": "",
-            "type": "true_false",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -144,20 +223,20 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
-            "default_value": 1,
-            "ui_on_text": "",
-            "ui_off_text": "",
-            "ui": 1
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
         },
         {
-            "key": "field_649e88b7353c1",
-            "label": "Colore navbar mobile",
-            "name": "mobile_navbar_color",
+            "key": "field_6503392c97c5d",
+            "label": "Custom CSS per Embed",
+            "name": "underconstruction_embed_css",
             "aria-label": "",
-            "type": "color_picker",
+            "type": "textarea",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -165,6 +244,44 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_64f1fa6fcd4ec",
+            "label": "Colore testi pagina in costruzione e manutenzione",
+            "name": "uc_m_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#000000",
+            "enable_opacity": 0,
+            "return_format": "string"
+        },
+        {
+            "key": "field_64f1faa8cd4ed",
+            "label": "Colore background pagina in costruzione e manutenzione",
+            "name": "uc_m_bgcolor_copia",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#FFFFFF",
             "enable_opacity": 0,
             "return_format": "string"
         }
@@ -198,5 +315,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1690798473
+    "modified": 1699455796
 }

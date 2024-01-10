@@ -13,6 +13,7 @@ $hamburger-width: 45px; // header
   height: $header-desktop-height;
 
   &.hidden {
+    pointer-events: none;
     transform: translateY(-$header-desktop-height);
   }
 
@@ -28,10 +29,9 @@ $hamburger-width: 45px; // header
       width: $logo-width;
       height: $header-desktop-height;
 
-      &:before {
-        top: 10px;
-        left: 0;
-        height: calc(100% - 20px);
+      a {
+        top: 8px;
+        height: calc(#{$header-desktop-height} - 16px);
       }
     }
 
@@ -53,50 +53,29 @@ $hamburger-width: 45px; // header
           text-align: left;
           font-weight: $font-weight-3;
 
-          &.menu-item-has-children {
-            a {
-
-              &:before {
-                content: "▼";
-                font-size: 10px;
-                float: right;
-                padding-left: 10px;
-              }
-
-              &.clicked {
-                &:before {
-                  content: "▲";
-                  content: "▲" / "";
-                }
-              }
-            }
-          }
-
+          &.menu-item-has-children a,
           .mega-menu-js-trigger {
-
-            &:before {
-              content: "▼";
-              font-size: 10px;
-              float: right;
-              padding-left: 10px;
-            }
-
-            &.current-mega-menu {
-              &:before {
-                content: "▲";
-              }
-            }
-
-          }
-
-          a {
             &:after {
               content: "";
-              position: absolute;
-              left: 0;
-              bottom: -10px;
-              width: 100%;
-              height: 20px;
+              position: relative;
+              top: -2px;
+              display: inline-block;
+              width: 14px;
+              height: 8px;
+              margin-left: 5px;
+              -webkit-mask-image: url(assets/images/sub-menu-icon.svg);
+              mask-image: url(assets/images/sub-menu-icon.svg);
+              -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+              mask-size: contain;
+              background-color: $color-1;
+              @include transition(all 0.2s linear);
+            }
+
+            &.clicked {
+              &:after {
+                transform: rotate(180deg);
+              }
             }
           }
 
@@ -125,11 +104,17 @@ $hamburger-width: 45px; // header
           text-transform: none;
           opacity: 0;
           pointer-events: none;
-          @include transition(opacity 0.15s linear);
+          @include transition(all 0.15s linear);
           overflow: hidden;
           color: $color-1;
           background-color: $color-4;
           border: solid 1px $color-1;
+
+          &:has(a:focus-visible) {
+            height: auto;
+            pointer-events: all;
+            opacity: 1;
+          }
 
           &.visible {
             height: auto;
@@ -165,7 +150,7 @@ $hamburger-width: 45px; // header
               padding: 0 10px;
               margin: 0;
 
-              &:before {
+              &:after {
                 display: none;
                 visibility: hidden;
               }
@@ -225,10 +210,11 @@ $hamburger-width: 45px; // header
   .menu {
     width: 100%;
 
-    .overlay-menu-mobile-css {
+    .overlay-menu-css {
       width: 100%;
       text-align: left;
       border-top: solid 1px $color-3 !important;
+      margin-top: $header-desktop-height;
 
       li {
         position: relative;
@@ -236,26 +222,47 @@ $hamburger-width: 45px; // header
         border-bottom: solid 1px $color-3 !important;
 
         a {
+          position: relative;
           display: inline-block;
           width: 100%;
-          padding: 20px $wrapper-padded-desktop;
+          padding: 20px 0;
+        }
 
-          span {
-            position: relative;
-            display: inline-block;
-            width: 30px;
-            height: 100%;
-            margin-left: 10px;
+        &.menu-item-has-children {
+
+          a {
+            padding: 20px 55px 20px 0;
 
             &:after {
               content: "";
               position: absolute;
-              top: -20px;
-              left: 0;
-              display: block;
-              width: calc(100% + 20px);
-              height: calc(100% + 40px);
+              top: 50%;
+              right: 0;
+              transform: translate(0, -50%) rotate(0);
+              transform-origin: center;
+              width: 14px;
+              height: 8px;
+              margin-left: 5px;
+              -webkit-mask-image: url(assets/images/sub-menu-icon.svg);
+              mask-image: url(assets/images/sub-menu-icon.svg);
+              -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+              mask-size: contain;
+              background-color: $color-1;
+              @include transition(all 0.2s ease-in-out);
             }
+
+            &.clicked {
+              &:after {
+                transform: translate(0, -50%) rotate(180deg);
+              }
+            }
+          }
+        }
+
+        &.mobile-open-default {
+          .sub-menu {
+            display: block;
           }
         }
       }
@@ -269,34 +276,33 @@ $hamburger-width: 45px; // header
 
         li {
           width: 100%;
-          border-top: solid 1px $color-4 !important;
+          padding-left: 20px;
+          border-bottom: solid 1px $color-4 !important;
 
           &:last-child {
-            border-bottom: none;
-            padding: 0;
-            margin: 0;
+            border-bottom: none !important;
+
+
           }
 
           a {
             display: block;
             //width: calc(100% - (#{$wrapper-padded-desktop} * 2));
-            padding: 20px $wrapper-padded-desktop;
+            padding: 20px 0;
+
+            &:before {
+              display: inline-block;
+              content: "-";
+              margin-right: 10px;
+            }
 
             &:after {
-              content: "";
+              display: none;
+              visibility: hidden;
             }
           }
         }
       }
-    }
-  }
-
-  .inline-socials {
-    margin-top: 20px;
-    padding: 0 $wrapper-padded-desktop;
-
-    li {
-      margin: 0 15px 10px 0;
     }
   }
 }
@@ -318,6 +324,7 @@ $hamburger-width: 45px; // header
 
   .footer-logo {
     max-width: 200px;
+    height: 70px;
   }
 
   .footer-menu {
@@ -333,5 +340,21 @@ $hamburger-width: 45px; // header
         margin: 0;
       }
     }
+  }
+}
+
+.user-accessibility-options {
+  margin: 20px 0 0 0;
+
+  .paperplane-toggle {
+    margin: 0 0 10px 0;
+  }
+}
+
+.inline-socials {
+  margin: 20px 0;
+
+  li {
+    margin-bottom: 10px;
   }
 }

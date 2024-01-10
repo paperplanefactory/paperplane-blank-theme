@@ -24,8 +24,10 @@
     position: relative;
     z-index: 2;
     width: 100%;
+    max-height: calc(80vh - #{$header-desktop-height});
     margin: 0 auto;
     background-color: $color-4;
+    overflow-y: auto;
   }
 
   .mega-menu-holder-contained {

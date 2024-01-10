@@ -93,14 +93,15 @@
 //
 // Pass in any number of transitions
 @mixin transition($transitions...) {
-	$unfoldedTransitions: ();
+	$unfoldedTransitions: (
+	);
 
-	@each $transition in $transitions {
-		$unfoldedTransitions: append($unfoldedTransitions, unfoldTransition($transition), comma);
-	}
+@each $transition in $transitions {
+	$unfoldedTransitions: append($unfoldedTransitions, unfoldTransition($transition), comma);
+}
 
-	-webkit-transition: $unfoldedTransitions;
-	transition: $unfoldedTransitions;
+-webkit-transition: $unfoldedTransitions;
+transition: $unfoldedTransitions;
 }
 
 @function unfoldTransition ($transition) {
@@ -109,24 +110,30 @@
 	$duration: .2s;
 	$easing: null; // Browser default is ease, which is what we want
 	$delay: null; // Browser default is 0, which is what we want
-	$defaultProperties: ($property, $duration, $easing, $delay);
+	$defaultProperties: (
+		$property,
+		$duration,
+		$easing,
+		$delay
+	);
 
-	// Grab transition properties if they exist
-	$unfoldedTransition: ();
+// Grab transition properties if they exist
+$unfoldedTransition: (
+);
 
-	@for $i from 1 through length($defaultProperties) {
-		$p: null;
+@for $i from 1 through length($defaultProperties) {
+	$p: null;
 
-		@if $i <=length($transition) {
-			$p: nth($transition, $i)
-		}
-
-		@else {
-			$p: nth($defaultProperties, $i)
-		}
-
-		$unfoldedTransition: append($unfoldedTransition, $p);
+	@if $i <=length($transition) {
+		$p: nth($transition, $i)
 	}
 
-	@return $unfoldedTransition;
+	@else {
+		$p: nth($defaultProperties, $i)
+	}
+
+	$unfoldedTransition: append($unfoldedTransition, $p);
+}
+
+@return $unfoldedTransition;
 }

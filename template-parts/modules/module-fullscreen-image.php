@@ -1,25 +1,10 @@
 <!-- module-fullscreen-image -->
-<?php
-if ( $module['module_fullscreen_image_image_desktop'] ?? null ) {
-	$module_fullscreen_image_image_desktop_URL = $module['module_fullscreen_image_image_desktop']['sizes']['full_desk_hd'];
-	$filetype_desktop = wp_check_filetype( $module_fullscreen_image_image_desktop_URL );
-}
-if ( $module['module_fullscreen_image_image_mobile'] ?? null ) {
-	$module_fullscreen_image_image_mobile_URL = $module['module_fullscreen_image_image_mobile']['sizes']['full_desk'];
-	$filetype_mobile = wp_check_filetype( $module_fullscreen_image_image_mobile_URL );
-}
-if ( $module['module_fullscreen_image_image_video'] ?? null ) {
-	$module_fullscreen_image_image_video = $module['module_fullscreen_image_image_video'];
-} else {
-	$module_fullscreen_image_image_video = 0;
-}
-?>
-<div
+<section
 	class="wrapper module-fullscreen-image bg-4 <?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="module-box-fullscreen coverize <?php echo $module['module_fullscreen_text_align_horizontal']; ?>"
 		data-aos="fade">
-		<?php if ( $module_fullscreen_image_image_video == 1 ) : ?>
+		<?php if ( $module['module_fullscreen_image_image_video'] == 1 ) : ?>
 			<button class="video-stop video-stop-js pause"
 				data-video-stop="module-fullscreen-video-<?php echo $module_count; ?>"
 				title="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"
@@ -29,18 +14,56 @@ if ( $module['module_fullscreen_image_image_video'] ?? null ) {
 				<source type="video/mp4" src="<?php echo $module['module_fullscreen_image_image_video_file']; ?>">
 			</video>
 		<?php else : ?>
-			<?php if ( isset( $module_fullscreen_image_image_desktop_URL ) ) : ?>
+			<?php if ( isset( $module['module_fullscreen_image_image_desktop'] ) ) : ?>
 				<div class="desktop-only">
-					<img src="<?php echo $module_fullscreen_image_image_desktop_URL; ?>" title="<?php the_title(); ?>"
-						alt="<?php the_title(); ?>" loading="lazy" type="image/<?php echo $filetype_desktop['ext']; ?>"
-						decoding="async" />
+					<?php
+					$image_data = array(
+						'image_type' => 'acf',
+						// options: post_thumbnail, acf
+						'image_value' => $module['module_fullscreen_image_image_desktop']
+						// se utilizzi un custom field indica qui il nome del campo
+					);
+					$image_appearance = array(
+						// options: true, false
+						'lazyload' => false,
+						// options: sync, async
+						'decoding' => 'async',
+						// options: true, false - se false non mette contenitore intorno all'immagine
+						'image-wrap' => false
+					);
+					$image_sizes = array(
+						// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+						'desktop_hd' => 'full_desk_hd',
+						'mobile_hd' => 'full_desk'
+					);
+					print_theme_image( $image_data, $image_appearance, $image_sizes );
+					?>
 				</div>
 			<?php endif; ?>
-			<?php if ( isset( $module_fullscreen_image_image_mobile_URL ) ) : ?>
+			<?php if ( isset( $module['module_fullscreen_image_image_mobile'] ) ) : ?>
 				<div class="mobile-only">
-					<img src="<?php echo $module_fullscreen_image_image_mobile_URL; ?>" title="<?php the_title(); ?>"
-						alt="<?php the_title(); ?>" loading="lazy" type="image/<?php echo $filetype_mobile['ext']; ?>"
-						decoding="async" />
+					<?php
+					$image_data = array(
+						'image_type' => 'acf',
+						// options: post_thumbnail, acf
+						'image_value' => $module['module_fullscreen_image_image_mobile']
+						// se utilizzi un custom field indica qui il nome del campo
+					);
+					$image_appearance = array(
+						// options: true, false
+						'lazyload' => false,
+						// options: sync, async
+						'decoding' => 'async',
+						// options: true, false - se false non mette contenitore intorno all'immagine
+						'image-wrap' => false
+					);
+					$image_sizes = array(
+						// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+						'desktop_hd' => 'full_desk_hd',
+						'mobile_hd' => 'full_desk'
+					);
+					print_theme_image( $image_data, $image_appearance, $image_sizes );
+					?>
 				</div>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -62,5 +85,5 @@ if ( $module['module_fullscreen_image_image_video'] ?? null ) {
 			</div>
 		</div>
 	</div>
-</div>
+</section>
 <!-- module-fullscreen-image -->

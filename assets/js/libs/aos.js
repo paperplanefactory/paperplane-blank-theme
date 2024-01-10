@@ -1,7 +1,7 @@
-! function(e, t) {
+! function (e, t) {
   "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.AOS = t() : e.AOS = t()
-}(this, function() {
-  return function(e) {
+}(this, function () {
+  return function (e) {
     function t(o) {
       if (n[o]) return n[o].exports;
       var i = n[o] = {
@@ -13,7 +13,7 @@
     }
     var n = {};
     return t.m = e, t.c = n, t.p = "dist/", t(0)
-  }([function(e, t, n) {
+  }([function (e, t, n) {
     "use strict";
 
     function o(e) {
@@ -21,13 +21,13 @@
         default: e
       }
     }
-    var i = Object.assign || function(e) {
-        for (var t = 1; t < arguments.length; t++) {
-          var n = arguments[t];
-          for (var o in n) Object.prototype.hasOwnProperty.call(n, o) && (e[o] = n[o])
-        }
-        return e
-      },
+    var i = Object.assign || function (e) {
+      for (var t = 1; t < arguments.length; t++) {
+        var n = arguments[t];
+        for (var o in n) Object.prototype.hasOwnProperty.call(n, o) && (e[o] = n[o])
+      }
+      return e
+    },
       r = n(1),
       a = (o(r), n(6)),
       u = o(a),
@@ -58,27 +58,27 @@
         debounceDelay: 50,
         disableMutationObserver: !1
       },
-      O = function() {
+      O = function () {
         var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
         if (e && (k = !0), k) return w = (0, y.default)(w, j), (0, b.default)(w, j.once), w
       },
-      _ = function() {
+      _ = function () {
         w = (0, h.default)(), O()
       },
-      S = function() {
-        w.forEach(function(e, t) {
+      S = function () {
+        w.forEach(function (e, t) {
           e.node.removeAttribute("data-aos"), e.node.removeAttribute("data-aos-easing"), e.node.removeAttribute("data-aos-duration"), e.node.removeAttribute("data-aos-delay")
         })
       },
-      z = function(e) {
+      z = function (e) {
         return e === !0 || "mobile" === e && p.default.mobile() || "phone" === e && p.default.phone() || "tablet" === e && p.default.tablet() || "function" == typeof e && e() === !0
       },
-      A = function(e) {
-        return j = i(j, e), w = (0, h.default)(), z(j.disable) || x ? S() : (document.querySelector("body").setAttribute("data-aos-easing", j.easing), document.querySelector("body").setAttribute("data-aos-duration", j.duration), document.querySelector("body").setAttribute("data-aos-delay", j.delay), "DOMContentLoaded" === j.startEvent && ["complete", "interactive"].indexOf(document.readyState) > -1 ? O(!0) : "load" === j.startEvent ? window.addEventListener(j.startEvent, function() {
+      A = function (e) {
+        return j = i(j, e), w = (0, h.default)(), z(j.disable) || x ? S() : (document.querySelector("body").setAttribute("data-aos-easing", j.easing), document.querySelector("body").setAttribute("data-aos-duration", j.duration), document.querySelector("body").setAttribute("data-aos-delay", j.delay), "DOMContentLoaded" === j.startEvent && ["complete", "interactive"].indexOf(document.readyState) > -1 ? O(!0) : "load" === j.startEvent ? window.addEventListener(j.startEvent, function () {
           O(!0)
-        }) : document.addEventListener(j.startEvent, function() {
+        }) : document.addEventListener(j.startEvent, function () {
           O(!0)
-        }), window.addEventListener("resize", (0, f.default)(O, j.debounceDelay, !0)), window.addEventListener("orientationchange", (0, f.default)(O, j.debounceDelay, !0)), window.addEventListener("scroll", (0, u.default)(function() {
+        }), window.addEventListener("resize", (0, f.default)(O, j.debounceDelay, !0)), window.addEventListener("orientationchange", (0, f.default)(O, j.debounceDelay, !0)), window.addEventListener("scroll", (0, u.default)(function () {
           (0, b.default)(w, j.once)
         }, j.throttleDelay)), j.disableMutationObserver || (0, d.default)("[data-aos]", _), w)
       };
@@ -87,8 +87,8 @@
       refresh: O,
       refreshHard: _
     }
-  }, function(e, t) {}, , , , , function(e, t) {
-    (function(t) {
+  }, function (e, t) { }, , , , , function (e, t) {
+    (function (t) {
       "use strict";
 
       function n(e, t, n) {
@@ -117,7 +117,7 @@
 
         function s() {
           var e = O();
-          return c(e) ? d(e) : void(h = setTimeout(s, a(e)))
+          return c(e) ? d(e) : void (h = setTimeout(s, a(e)))
         }
 
         function d(e) {
@@ -185,11 +185,11 @@
         var n = m.test(e);
         return n || b.test(e) ? v(e.slice(2), n ? 2 : 8) : p.test(e) ? s : +e
       }
-      var c = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
-          return typeof e
-        } : function(e) {
-          return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-        },
+      var c = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (e) {
+        return typeof e
+      } : function (e) {
+        return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
+      },
         f = "Expected a function",
         s = NaN,
         d = "[object Symbol]",
@@ -205,15 +205,15 @@
         k = w.toString,
         x = Math.max,
         j = Math.min,
-        O = function() {
+        O = function () {
           return h.Date.now()
         };
       e.exports = o
-    }).call(t, function() {
+    }).call(t, function () {
       return this
     }())
-  }, function(e, t) {
-    (function(t) {
+  }, function (e, t) {
+    (function (t) {
       "use strict";
 
       function n(e, t, n) {
@@ -242,7 +242,7 @@
 
         function s() {
           var e = j();
-          return f(e) ? d(e) : void(h = setTimeout(s, u(e)))
+          return f(e) ? d(e) : void (h = setTimeout(s, u(e)))
         }
 
         function d(e) {
@@ -299,11 +299,11 @@
         var n = p.test(e);
         return n || m.test(e) ? b(e.slice(2), n ? 2 : 8) : l.test(e) ? f : +e
       }
-      var u = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
-          return typeof e
-        } : function(e) {
-          return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-        },
+      var u = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (e) {
+        return typeof e
+      } : function (e) {
+        return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
+      },
         c = "Expected a function",
         f = NaN,
         s = "[object Symbol]",
@@ -319,14 +319,14 @@
         w = h.toString,
         k = Math.max,
         x = Math.min,
-        j = function() {
+        j = function () {
           return g.Date.now()
         };
       e.exports = n
-    }).call(t, function() {
+    }).call(t, function () {
       return this
     }())
-  }, function(e, t) {
+  }, function (e, t) {
     "use strict";
 
     function n(e, t) {
@@ -339,10 +339,10 @@
     }
 
     function o(e) {
-      e && e.forEach(function(e) {
+      e && e.forEach(function (e) {
         var t = Array.prototype.slice.call(e.addedNodes),
           n = Array.prototype.slice.call(e.removedNodes),
-          o = t.concat(n).filter(function(e) {
+          o = t.concat(n).filter(function (e) {
             return e.hasAttribute && e.hasAttribute("data-aos")
           }).length;
         o && a()
@@ -353,9 +353,9 @@
     });
     var i = window.document,
       r = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver,
-      a = function() {};
+      a = function () { };
     t.default = n
-  }, function(e, t) {
+  }, function (e, t) {
     "use strict";
 
     function n(e, t) {
@@ -368,63 +368,63 @@
     Object.defineProperty(t, "__esModule", {
       value: !0
     });
-    var i = function() {
-        function e(e, t) {
-          for (var n = 0; n < t.length; n++) {
-            var o = t[n];
-            o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, o.key, o)
-          }
+    var i = function () {
+      function e(e, t) {
+        for (var n = 0; n < t.length; n++) {
+          var o = t[n];
+          o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, o.key, o)
         }
-        return function(t, n, o) {
-          return n && e(t.prototype, n), o && e(t, o), t
-        }
-      }(),
+      }
+      return function (t, n, o) {
+        return n && e(t.prototype, n), o && e(t, o), t
+      }
+    }(),
       r = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i,
       a = /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i,
       u = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i,
       c = /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i,
-      f = function() {
+      f = function () {
         function e() {
           n(this, e)
         }
         return i(e, [{
           key: "phone",
-          value: function() {
+          value: function () {
             var e = o();
             return !(!r.test(e) && !a.test(e.substr(0, 4)))
           }
         }, {
           key: "mobile",
-          value: function() {
+          value: function () {
             var e = o();
             return !(!u.test(e) && !c.test(e.substr(0, 4)))
           }
         }, {
           key: "tablet",
-          value: function() {
+          value: function () {
             return this.mobile() && !this.phone()
           }
         }]), e
       }();
     t.default = new f
-  }, function(e, t) {
+  }, function (e, t) {
     "use strict";
     Object.defineProperty(t, "__esModule", {
       value: !0
     });
-    var n = function(e, t, n) {
-        var o = e.node.getAttribute("data-aos-once");
-        t > e.position ? e.node.classList.add("aos-animate") : "undefined" != typeof o && ("false" === o || !n && "true" !== o) && e.node.classList.remove("aos-animate")
-      },
-      o = function(e, t) {
+    var n = function (e, t, n) {
+      var o = e.node.getAttribute("data-aos-once");
+      t > e.position ? e.node.classList.add("aos-animate") : "undefined" != typeof o && ("false" === o || !n && "true" !== o) && e.node.classList.remove("aos-animate")
+    },
+      o = function (e, t) {
         var o = window.pageYOffset,
           i = window.innerHeight;
-        e.forEach(function(e, r) {
+        e.forEach(function (e, r) {
           n(e, i + o, t)
         })
       };
     t.default = o
-  }, function(e, t, n) {
+  }, function (e, t, n) {
     "use strict";
 
     function o(e) {
@@ -437,13 +437,13 @@
     });
     var i = n(12),
       r = o(i),
-      a = function(e, t) {
-        return e.forEach(function(e, n) {
+      a = function (e, t) {
+        return e.forEach(function (e, n) {
           e.node.classList.add("aos-init"), e.position = (0, r.default)(e.node, t.offset)
         }), e
       };
     t.default = a
-  }, function(e, t, n) {
+  }, function (e, t, n) {
     "use strict";
 
     function o(e) {
@@ -456,7 +456,7 @@
     });
     var i = n(13),
       r = o(i),
-      a = function(e, t) {
+      a = function (e, t) {
         var n = 0,
           o = 0,
           i = window.innerHeight,
@@ -495,12 +495,12 @@
         return a.anchorPlacement || a.offset || isNaN(t) || (o = t), n + o
       };
     t.default = a
-  }, function(e, t) {
+  }, function (e, t) {
     "use strict";
     Object.defineProperty(t, "__esModule", {
       value: !0
     });
-    var n = function(e) {
+    var n = function (e) {
       for (var t = 0, n = 0; e && !isNaN(e.offsetLeft) && !isNaN(e.offsetTop);) t += e.offsetLeft - ("BODY" != e.tagName ? e.scrollLeft : 0), n += e.offsetTop - ("BODY" != e.tagName ? e.scrollTop : 0), e = e.offsetParent;
       return {
         top: n,
@@ -508,13 +508,13 @@
       }
     };
     t.default = n
-  }, function(e, t) {
+  }, function (e, t) {
     "use strict";
     Object.defineProperty(t, "__esModule", {
       value: !0
     });
-    var n = function(e) {
-      return e = e || document.querySelectorAll("[data-aos]"), Array.prototype.map.call(e, function(e) {
+    var n = function (e) {
+      return e = e || document.querySelectorAll("[data-aos]"), Array.prototype.map.call(e, function (e) {
         return {
           node: e
         }

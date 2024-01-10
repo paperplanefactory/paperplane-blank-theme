@@ -31,62 +31,6 @@
             "repeatable": true
         },
         {
-            "key": "field_5e71e8b9b5fd5",
-            "label": "Schema colori",
-            "name": "page_opening_color_scheme",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "colors-white-bg": "Sfondo bianco - testi neri",
-                "colors-black-bg": "Sfondo nero - testi bianchi"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "repeatable": true
-        },
-        {
-            "key": "field_5e765db367b11",
-            "label": "Mostrare bottone per scroll",
-            "name": "page_scroll_button",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5e6bad4b7f721",
-                        "operator": "==",
-                        "value": "opening-fullscreen"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "Sì",
-            "ui_off_text": "No",
-            "repeatable": true
-        },
-        {
             "key": "field_5e75e237b2fb3",
             "label": "Mostrare briciole di pane",
             "name": "page_breadcrumbs",
@@ -103,68 +47,6 @@
             "choices": {
                 "yes": "Sì",
                 "no": "No"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "repeatable": true
-        },
-        {
-            "key": "field_5e7c48e766540",
-            "label": "Mostrare elenco termini tassonomia",
-            "name": "page_taxonomy_show",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "no": "No",
-                "yes": "Sì"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "repeatable": true
-        },
-        {
-            "key": "field_5e7c492e66541",
-            "label": "Scegli tassonomia",
-            "name": "page_taxonomy_slug",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5e7c48e766540",
-                        "operator": "==",
-                        "value": "yes"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "category": "Categorie",
-                "post_tag": "Tag"
             },
             "default_value": false,
             "allow_null": 0,
@@ -329,7 +211,7 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "id",
+            "return_format": "array",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -354,7 +236,7 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "id",
+            "return_format": "array",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -490,5 +372,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1686376599
+    "modified": 1699095890
 }

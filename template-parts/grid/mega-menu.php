@@ -3,13 +3,19 @@ $args_mega_menus = array(
 	'post_type' => 'cpt_mega_menu',
 	'posts_per_page' => -1
 );
-$paperplane_mega_menus_transient = get_transient( 'paperplane_mega_menus_transient' );
-if ( empty( $paperplane_mega_menus_transient ) ) {
-	$my_mega_menus = get_posts( $args_mega_menus );
-	set_transient( 'paperplane_mega_menus_transient', $my_mega_menus, DAY_IN_SECONDS * 4 );
+global $use_transients_fields;
+if ( $use_transients_fields == 1 ) {
+	$paperplane_mega_menus_transient = get_transient( 'paperplane_transient_query_mega_menus' );
+	if ( empty( $paperplane_mega_menus_transient ) ) {
+		$my_mega_menus = get_posts( $args_mega_menus );
+		set_transient( 'paperplane_transient_query_mega_menus', $my_mega_menus, DAY_IN_SECONDS * 4 );
+	} else {
+		$my_mega_menus = $paperplane_mega_menus_transient;
+	}
 } else {
-	$my_mega_menus = $paperplane_mega_menus_transient;
+	$my_mega_menus = get_posts( $args_mega_menus );
 }
+
 
 
 if ( ! empty( $my_mega_menus ) ) : ?>
@@ -34,19 +40,23 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 							$image_data = array(
 								'image_type' => 'acf',
 								// options: post_thumbnail, acf
-								'image_value' => $content_fields['mega_menu_repeater_image'],
+								'image_value' => $content_fields['mega_menu_repeater_image']
 								// se utilizzi un custom field indica qui il nome del campo
-								'size_fallback' => 'column'
+							);
+							$image_appearance = array(
+								// options: true, false
+								'lazyload' => true,
+								// options: sync, async
+								'decoding' => 'async',
+								// options: true, false - se false non mette contenitore intorno all'immagine
+								'image-wrap' => true
 							);
 							$image_sizes = array(
 								// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-								'desktop_default' => 'column',
-								'desktop_hd' => 'column_',
-								'mobile_default' => 'column',
-								'mobile_hd' => 'column',
-								'lazy_placheholder' => 'micro'
+								'desktop_hd' => 'column',
+								'mobile_hd' => 'column'
 							);
-							print_theme_image( $image_data, $image_sizes );
+							print_theme_image( $image_data, $image_appearance, $image_sizes );
 							?>
 						</div>
 						<div class="flex-hold-child">
@@ -65,16 +75,6 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 				</div>
 			</div>
 		</nav>
-		<script type="text/javascript">
-			jQuery('.mega-menu-js-<?php echo $post->ID; ?>-target a').last().on('keydown', function (event) {
-				if (event.keyCode == 9) {
-					jQuery('.mega-menu-js-trigger').removeClass('current-mega-menu');
-					jQuery('.mega-menu-js').addClass('hidden');
-					jQuery('.mega-menu-js-<?php echo $post->ID; ?>-trigger').parent().next('li').find('a:first').focus();
-					event.preventDefault();
-				}
-			});
-		</script>
 	<?php endforeach;
 	wp_reset_postdata();
 endif; ?>

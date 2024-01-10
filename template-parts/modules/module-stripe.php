@@ -14,30 +14,33 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 						$module_stripe_repeater_content_media = $stripe['module_stripe_repeater_content_media'];
 						?>
 						<!-- blocco -->
-						<div
+						<section
 							class="flex-hold flex-hold-stripe-module stripe-listed <?php echo $module_stripe_vertical_aligment . ' ' . $stripe['module_stripe_repeater_order']; ?>">
 							<!-- colonna -->
 							<div class="module-stripe-image" data-aos="fade-up">
 								<div class="spacer">
 									<?php if ( $module_stripe_repeater_content_media === 'image' ) : ?>
-										<?php paperplane_theme_cta_absl_advanced( $stripe['paperplane_theme_cta_stripe'] ); ?>
 										<?php
 										$image_data = array(
 											'image_type' => 'acf',
 											// options: post_thumbnail, acf
-											'image_value' => $stripe['module_stripe_repeater_image'],
+											'image_value' => $stripe['module_stripe_repeater_image']
 											// se utilizzi un custom field indica qui il nome del campo
-											'size_fallback' => 'column'
+										);
+										$image_appearance = array(
+											// options: true, false
+											'lazyload' => true,
+											// options: sync, async
+											'decoding' => 'async',
+											// options: true, false - se false non mette contenitore intorno all'immagine
+											'image-wrap' => true
 										);
 										$image_sizes = array(
 											// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-											'desktop_default' => 'column',
 											'desktop_hd' => 'column_hd',
-											'mobile_default' => 'column',
-											'mobile_hd' => 'column',
-											'lazy_placheholder' => 'micro'
+											'mobile_hd' => 'column'
 										);
-										print_theme_image( $image_data, $image_sizes );
+										print_theme_image( $image_data, $image_appearance, $image_sizes );
 										?>
 									<?php elseif ( $module_stripe_repeater_content_media === 'video' ) : ?>
 										<?php paperplane_theme_videos( $stripe['module_stripe_repeater_video'] ); ?>
@@ -46,7 +49,7 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 							</div>
 							<!-- colonna -->
 							<!-- colonna -->
-							<div class="module-stripe-text fluid-typo" data-aos="fade-in" data-aos-delay="250">
+							<div class="module-stripe-text fluid-typo" data-aos="fade-up" data-aos-delay="250">
 								<div class="spacer">
 									<div class="content-styled last-child-no-margin">
 										<?php echo $stripe['module_stripe_repeater_content']; ?>
@@ -55,7 +58,7 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 								</div>
 							</div>
 							<!-- colonna -->
-						</div>
+						</section>
 						<!-- blocco -->
 					<?php endforeach; endif; ?>
 			</div>

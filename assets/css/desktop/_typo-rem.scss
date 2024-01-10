@@ -1,0 +1,153 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.as-h1,
+h1 {
+    font-size: 4.19rem;
+    line-height: 4.75rem;
+    margin: 0 0 4.75rem;
+}
+
+.as-h2,
+h2 {
+    font-size: 2.5rem;
+    line-height: 3.13rem;
+    margin: 0 0 3.13rem;
+}
+
+.as-h3,
+h3 {
+    font-size: 1.63rem;
+    line-height: 2.25rem;
+    margin: 0 0 2.25rem;
+}
+
+.as-h4,
+h4 {
+    font-size: 1.38rem;
+    line-height: 1.75rem;
+    margin: 0 0 1.75rem;
+}
+
+.as-h5,
+h5 {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    margin: 0 0 1.25rem;
+}
+
+.mega-menu,
+.menu {
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+#footer p,
+.as-h6,
+figcaption,
+h6 {
+    font-size: 0.88rem;
+    line-height: 1rem;
+    margin: 0 0 1rem;
+}
+
+p {
+    font-size: 1.13rem;
+    line-height: 1.75rem;
+    margin: 0 0 1.75rem;
+    padding: 0;
+}
+
+.content-styled {
+    h1:not(:first-child) {
+        margin-top: calc(#{$h1-marginbottom-desktop} * 2);
+    }
+
+    h2:not(:first-child) {
+        margin-top: calc(#{$h2-marginbottom-desktop} * 2);
+    }
+
+    h3:not(:first-child) {
+        margin-top: calc(#{$h3-marginbottom-desktop} * 2);
+    }
+
+    h4:not(:first-child) {
+        margin-top: calc(#{$h4-marginbottom-desktop} * 2);
+    }
+
+    h5:not(:first-child) {
+        margin-top: calc(#{$h5-marginbottom-desktop} * 2);
+    }
+
+    h6:not(:first-child) {
+        margin-top: calc(#{$h6-marginbottom-desktop} * 2);
+    }
+
+    ul {
+        font-size: $paragraph-size-desktop;
+        line-height: $paragraph-lineheight-desktop;
+        margin-bottom: $paragraph-marginbottom-desktop;
+
+        li {
+            display: table-row;
+
+            &:before {
+                font-size: 20px;
+                font-weight: $font-weight-1;
+            }
+
+            &:after {
+                height: calc(#{$paragraph-marginbottom-desktop} / 2);
+            }
+        }
+    }
+
+    ol {
+        font-size: $paragraph-size-desktop;
+        line-height: $paragraph-lineheight-desktop;
+        margin-bottom: $paragraph-marginbottom-desktop;
+    }
+
+    ol>li {
+        &:before {
+            font-family: $font-main;
+            font-size: $paragraph-size-desktop;
+        }
+
+        &:after {
+            height: calc(#{$paragraph-marginbottom-desktop} / 2);
+        }
+    }
+}
+
+.wp-caption-text,
+.wp-caption.aligncenter .wp-caption-text,
+.wp-caption.alignleft .wp-caption-text,
+.wp-caption.alignnone .wp-caption-text,
+.wp-caption.alignright .wp-caption-text {
+    padding: 5px 0 0;
+    font-size: $cta1-size-desktop;
+    line-height: $cta1-lineheight-desktop;
+    word-wrap: break-word;
+    font-style: italic;
+}
+
+.expander {
+    font-family: $font-main;
+    font-weight: $font-weight-1;
+    font-size: $h4-size-desktop;
+    line-height: $h4-lineheight-desktop;
+}
+
+.fluid-typo {
+    h1 {
+        font-size: calc(4.19rem + 1.2vw);
+        line-height: calc(4.75rem + 1.5vw);
+    }
+
+    h2 {
+        font-size: calc(2.5rem + 0.5vw);
+        line-height: calc(3.13rem + 0.7vw);
+    }
+}

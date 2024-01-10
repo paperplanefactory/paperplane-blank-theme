@@ -1,9 +1,13 @@
 <div class="wrapper">
 	<div class="wrapper-padded">
 		<div class="wrapper-padded-container">
-			<div
-				class="page-opening-simple-spacer <?php echo $content_fields['page_opening_text_align_horizontal']; ?>">
+			<section class="page-opening-simple-spacer alignleft">
 				<div class="last-child-no-margin">
+					<?php if ( function_exists( 'bcn_display' ) ) : ?>
+						<div class="breadcrumbs-holder undelinked-links" typeof="BreadcrumbList" vocab="http://schema.org/">
+							<?php bcn_display(); ?>
+						</div>
+					<?php endif; ?>
 					<h1>
 						<?php single_term_title(); ?>
 					</h1>
@@ -13,18 +17,8 @@
 						</p>
 					<?php endif; ?>
 				</div>
-				<div class="categories-holder">
-					<?php
-					$queried_object = get_queried_object();
-					$page_taxonomy_slug = false;
-					if ( $queried_object instanceof \WP_Term ) {
-						$page_taxonomy_slug = $queried_object->taxonomy;
-					}
-					all_categories( $page_taxonomy_slug );
-					?>
-				</div>
 				<div class="clearer"></div>
-			</div>
+			</section>
 		</div>
 	</div>
 </div>

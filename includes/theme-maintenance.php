@@ -2,8 +2,8 @@
 function paperplane_set_maintenance_page() {
 	// versione del tema
 	global $theme_version;
-	$color = '#000000';
-	$bg_color = '#FFFFFF';
+	$color = get_field( 'uc_m_color', 'option' );
+	$bg_color = get_field( 'uc_m_bgcolor_copia', 'option' );
 	$favicons_folder = get_stylesheet_directory_uri() . '/assets/images/favicons/';
 	$maintenance_message = get_field( 'maintenance_message', 'option' );
 	if ( $maintenance_message ) {
@@ -21,6 +21,15 @@ function paperplane_set_maintenance_page() {
     Under construction.';
 
 	}
+	$underconstruction_embed = get_field( 'underconstruction_embed', 'option' );
+	$underconstruction_embed_css = get_field( 'underconstruction_embed_css', 'option' );
+	$custom_page_image = get_field( 'custom_page_image', 'option' );
+	if ( $custom_page_image ) {
+		$page_image = $custom_page_image['sizes']['column_cut_hd'];
+	} else {
+		$page_image = parse_url( get_stylesheet_directory_uri(), PHP_URL_PATH ) . '/assets/images/site-logo-header.svg';
+	}
+
 	$offline_page_data = '<!doctype html>
   <html lang="it">
   <head>
@@ -77,7 +86,7 @@ function paperplane_set_maintenance_page() {
   <body>
   <div class="offline-page">
   <div class="content">
-  <img src="' . parse_url( get_stylesheet_directory_uri(), PHP_URL_PATH ) . '/assets/images/site-logo-header.svg" />
+  <img src="' . $page_image . '" />
   <h1>
   ' . $message_m . '
   </h1>
@@ -132,7 +141,7 @@ function paperplane_set_maintenance_page() {
     overflow: hidden;
     min-height: 100dvh;
     display: grid;
-    padding: 0;
+    padding: 4vw;
     margin: 0;
     align-content: center;
     width: 100%;
@@ -142,7 +151,6 @@ function paperplane_set_maintenance_page() {
     text-align: center;
     max-width: 750px;
     margin: 0 auto;
-    padding: 4vw;
   }
 
   .content img {
@@ -155,16 +163,42 @@ function paperplane_set_maintenance_page() {
     font-size: 20px;
     line-height: 28px;
   }
+  .embed {
+    position: relative;
+    padding-bottom: 56.25% !important;
+    overflow: hidden !important;
+    height: auto !important;
+    width: 100%;
+    max-width: 900px;
+    ' . $underconstruction_embed_css . '
+  }
+  .embed embed,
+  .embed iframe,
+  .embed object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .embed video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   </style>
   </head>
   <body>
   <div class="offline-page">
   <div class="content">
-  <img src="' . parse_url( get_stylesheet_directory_uri(), PHP_URL_PATH ) . '/assets/images/site-logo-header.svg" />
+  <img src="' . $page_image . '" />
   <h1>
   ' . $message_u . '
   </h1>
   </div>
+  <div class="embed">' . $underconstruction_embed . '</div>
   </div>
   </body>
   </html>';

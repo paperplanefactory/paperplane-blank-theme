@@ -9,7 +9,7 @@
   }
 
   .module-column-box {
-    margin-bottom: calc(#{$flex-hold-column-wide-space-smartphone} * 2);
+    margin-bottom: calc(#{$column-space-side-smartphone} * 2);
 
     .column-image {
       position: relative;

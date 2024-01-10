@@ -1,4 +1,6 @@
 <?php
+global $use_transients_fields;
+$use_transients_fields = get_field( 'use_transients_fields', 'option' );
 function paperplane_multilang_setup() {
 	// verifico che sia attivo Polylang e creo un array con gli slug delle lingue attive
 	if ( function_exists( 'PLL' ) ) {
@@ -16,12 +18,12 @@ function paperplane_multilang_setup() {
 }
 
 function paperplane_content_transients( $content_id ) {
-	$use_transients_fields = get_field( 'use_transients_fields', 'option' );
+	global $use_transients_fields;
 	if ( $use_transients_fields == 1 ) {
-		$content_fields_transient = get_transient( 'content_fields_transient_' . $content_id );
+		$content_fields_transient = get_transient( 'paperplane_transient_content_fields_' . $content_id );
 		if ( empty( $content_fields_transient ) ) {
 			$content_fields = get_fields( $content_id );
-			set_transient( 'content_fields_transient_' . $content_id, $content_fields, DAY_IN_SECONDS * 4 );
+			set_transient( 'paperplane_transient_content_fields_' . $content_id, $content_fields, DAY_IN_SECONDS * 4 );
 		} else {
 			$content_fields = $content_fields_transient;
 		}
@@ -32,44 +34,62 @@ function paperplane_content_transients( $content_id ) {
 }
 
 function paperplane_options_transients() {
-	global $options_fields;
-	$options_fields_multilang = '';
-	$options_fields_transient = get_transient( 'options_fields_transient' );
-	if ( empty( $options_fields_transient ) ) {
-		$options_fields = get_fields( 'options' );
-		set_transient( 'options_fields_transient', $options_fields, DAY_IN_SECONDS * 4 );
-	} else {
-		$options_fields = $options_fields_transient;
-	}
-	$languages = paperplane_multilang_setup();
-	foreach ( $languages as $language ) {
-		global ${$options_fields_multilang . $language};
-		$options_fields_multilang_transient = get_transient( 'options_fields_multilang_transient_' . $language );
-		if ( empty( $options_fields_multilang_transient ) ) {
-			${$options_fields_multilang . $language} = get_fields( $language );
-			set_transient( 'options_fields_multilang_transient_' . $language, ${$options_fields_multilang . $language}, DAY_IN_SECONDS * 4 );
+	global $options_fields, $use_transients_fields;
+	if ( $use_transients_fields == 1 ) {
+		$options_fields_multilang = '';
+		$paperplane_transient_options_fields_ = get_transient( 'paperplane_transient_options_fields_' );
+		if ( empty( $paperplane_transient_options_fields_ ) ) {
+			$options_fields = get_fields( 'options' );
+			set_transient( 'paperplane_transient_options_fields_', $options_fields, DAY_IN_SECONDS * 4 );
 		} else {
-			${$options_fields_multilang . $language} = $options_fields_multilang_transient;
+			$options_fields = $paperplane_transient_options_fields_;
+		}
+		$languages = paperplane_multilang_setup();
+		foreach ( $languages as $language ) {
+			global ${$options_fields_multilang . $language};
+			$options_fields_multilang_transient = get_transient( 'paperplane_transient_options_fields_multilang_' . $language );
+			if ( empty( $options_fields_multilang_transient ) ) {
+				${$options_fields_multilang . $language} = get_fields( $language );
+				set_transient( 'paperplane_transient_options_fields_multilang_' . $language, ${$options_fields_multilang . $language}, DAY_IN_SECONDS * 4 );
+			} else {
+				${$options_fields_multilang . $language} = $options_fields_multilang_transient;
+			}
+		}
+	} else {
+		$options_fields_multilang = '';
+		$options_fields = get_fields( 'options' );
+		$languages = paperplane_multilang_setup();
+		foreach ( $languages as $language ) {
+			global ${$options_fields_multilang . $language};
+			${$options_fields_multilang . $language} = get_fields( $language );
 		}
 	}
+
 }
 
 function paperplane_delete_content_transients( $post_id, $post, $update ) {
-	delete_transients_with_prefix( 'content_fields_transient_' );
+	delete_transients_with_prefix( 'paperplane_transient_content_fields_' );
+	delete_transients_with_prefix( 'paperplane_transient_query_modals_' );
+	delete_transients_with_prefix( 'paperplane_transient_query_mega_menus' );
+	delete_transients_with_prefix( 'paperplane_transient_options_fields_' );
+	delete_transients_with_prefix( 'paperplane_transient_options_fields_multilang_' );
 }
 add_action( 'save_post', 'paperplane_delete_content_transients', 10, 3 );
-
 add_action( 'wp_trash_post', 'paperplane_delete_content_transients_on_post_delete', 10 );
 add_action( 'delete_post', 'paperplane_delete_content_transients_on_post_delete', 10 );
 function paperplane_delete_content_transients_on_post_delete() {
-	delete_transients_with_prefix( 'content_fields_transient_' );
+	delete_transients_with_prefix( 'paperplane_transient_content_fields_' );
+	delete_transients_with_prefix( 'paperplane_transient_query_modals_' );
+	delete_transients_with_prefix( 'paperplane_transient_query_mega_menus' );
+	delete_transients_with_prefix( 'paperplane_transient_options_fields_' );
+	delete_transients_with_prefix( 'paperplane_transient_options_fields_multilang_' );
 }
 
 function paperplane_delete_option_pages_transients() {
-	delete_transient( 'options_fields_transient' );
+	delete_transient( 'paperplane_transient_options_fields_' );
 	$languages = paperplane_multilang_setup();
 	foreach ( $languages as $language ) {
-		delete_transient( 'options_fields_multilang_transient_' . $language );
+		delete_transient( 'paperplane_transient_options_fields_multilang_' . $language );
 	}
 }
 add_action( 'acf/save_post', 'paperplane_delete_option_pages_transients', 20 );
@@ -82,7 +102,6 @@ function delete_transients_with_prefix( $prefix ) {
 
 function get_transient_keys_with_prefix( $prefix ) {
 	global $wpdb;
-
 	$prefix = $wpdb->esc_like( '_transient_' . $prefix );
 	$sql = "SELECT `option_name` FROM $wpdb->options WHERE `option_name` LIKE '%s'";
 	$keys = $wpdb->get_results( $wpdb->prepare( $sql, $prefix . '%' ), ARRAY_A );

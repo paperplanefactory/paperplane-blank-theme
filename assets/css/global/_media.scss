@@ -8,7 +8,7 @@
 
 	img {
 		position: relative;
-		object-fit: auto;
+		//object-fit: auto;
 		width: 100%;
 		height: auto;
 	}
@@ -87,18 +87,14 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			content: '\e666';
-			font-family: "paperplane-blank-theme-icons";
-			font-style: normal;
-			font-weight: normal;
-			speak: never;
-			font-size: 40px;
-			line-height: 70px;
-			color: $color-1;
+			content: '';
 			background-color: $color-4;
-			border-radius: 50%;
-			text-align: center;
-			padding-left: 5px;
+			-webkit-mask-repeat: no-repeat;
+			mask-repeat: no-repeat;
+			mask-size: contain;
+			mask-position: center;
+			-webkit-mask-image: url(assets/images/icons/play.svg);
+			mask-image: url(assets/images/icons/play.svg);
 		}
 
 		img {
@@ -131,4 +127,47 @@
 	width: 100%;
 	height: 100%;
 	background-color: $color-1;
+}
+
+.video-stop {
+	position: absolute;
+	z-index: 2;
+	bottom: 10px;
+	right: 10px;
+	width: 35px;
+	height: 35px;
+	border: none;
+	background-color: $color-4;
+	border-radius: 50%;
+	cursor: pointer;
+	opacity: 0.8;
+
+	&:before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 50%;
+		height: 50%;
+		content: "";
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		mask-size: contain;
+		mask-position: center;
+		background-color: $color-1;
+	}
+
+	&.pause {
+		&:before {
+			-webkit-mask-image: url(assets/images/icons/pause.svg);
+			mask-image: url(assets/images/icons/pause.svg);
+		}
+	}
+
+	&.play {
+		&:before {
+			-webkit-mask-image: url(assets/images/icons/play.svg);
+			mask-image: url(assets/images/icons/play.svg);
+		}
+	}
 }

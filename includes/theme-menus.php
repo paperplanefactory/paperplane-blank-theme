@@ -76,7 +76,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 			array(
 				'page_title' => 'Gestione footer (' . strtoupper( $lang ) . ')',
 				'menu_title' => __( 'Gestione footer (' . strtoupper( $lang ) . ')', 'text-domain' ),
-				'menu_slug' => "gestione-footer-${lang}",
+				'menu_slug' => "gestione-footer-{$lang}",
 				'post_id' => $lang,
 				'parent_slug' => $parent['menu_slug'],
 			)
@@ -110,8 +110,6 @@ function my_custom_acf() {
     background-color: #989898 !important;
     color: #000000;
   }
-
-
   </style>';
 }
 
@@ -149,14 +147,14 @@ function paperplane_add_mega_menu_atts( $atts, $item, $args ) {
 	if ( $mega_menu_activator ) {
 		$atts['data-megamenu-open-id'] = $mega_menu_activator[0];
 		$atts['class'] = 'mega-menu-js-trigger mega-menu-js-' . $mega_menu_activator[0] . '-trigger';
-		$atts['title'] = $item->title . ': ' . __( 'premendo invio permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
+		//$atts['title'] = $item->title . ': ' . __( 'premendo invio permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
 		$atts['aria-label'] = $item->title . ': ' . __( 'premendo invio permette di accedere ad un menu di navigazione aggiuntivo.', 'paperPlane-blankTheme' );
 	} elseif ( in_array( 'menu-item-has-children', $item->classes ) ) {
 		$atts['aria-haspopup'] = 'true';
-		$atts['title'] = $item->title;
+		//$atts['title'] = $item->title;
 		$atts['aria-label'] = $item->title;
 	} else {
-		$atts['title'] = $item->title;
+		//$atts['title'] = $item->title;
 		$atts['aria-label'] = $item->title;
 	}
 	return $atts;

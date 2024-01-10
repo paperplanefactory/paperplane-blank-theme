@@ -1,10 +1,10 @@
 <div class="wrapper">
 	<div class="wrapper-padded">
 		<div class="wrapper-padded-container">
-			<div
+			<section
 				class="page-opening-simple-spacer <?php echo $content_fields['page_opening_text_align_horizontal']; ?>">
 				<div class="last-child-no-margin">
-					<?php if ( $page_breadcrumbs === 'yes' && function_exists( 'bcn_display' ) ) : ?>
+					<?php if ( $content_fields['page_breadcrumbs'] === 'yes' && function_exists( 'bcn_display' ) ) : ?>
 						<div class="breadcrumbs-holder undelinked-links" typeof="BreadcrumbList" vocab="http://schema.org/">
 							<?php bcn_display(); ?>
 						</div>
@@ -24,17 +24,9 @@
 						</p>
 					<?php endif; ?>
 				</div>
-				<?php if ( $page_taxonomy_show === 'yes' ) : ?>
-					<div class="categories-holder">
-						<?php
-						$page_taxonomy_slug = get_field( 'page_taxonomy_slug' );
-						all_categories( $page_taxonomy_slug );
-						?>
-					</div>
-				<?php endif; ?>
 				<div class="clearer"></div>
 				<?php paperplane_theme_cta_advanced( $content_fields['paperplane_theme_cta_page_opening'] ); ?>
-			</div>
+			</section>
 		</div>
 	</div>
 </div>

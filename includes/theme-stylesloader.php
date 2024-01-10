@@ -1,16 +1,13 @@
 <?php
-// Async load
-function theme_async_styles( $url ) {
-	if ( strpos( $url, '#asyncload' ) === false )
-		return $url;
-	else if ( is_admin() )
-		return str_replace( '#asyncload', '', $url );
-	else
-		return str_replace( '#asyncload', '', $url ) . "' async='async";
-}
-add_filter( 'clean_url', 'theme_async_styles', 11, 1 );
-
 if ( ! is_admin() ) {
+	function add_style_attributes( $html, $handle ) {
+
+		if ( 'paperplane-theme-font' === $handle ) {
+			return str_replace( "media='all'", "media='all' crossorigin", $html );
+		}
+		return $html;
+	}
+	add_filter( 'style_loader_tag', 'add_style_attributes', 10, 2 );
 	//Disable Gutenberg style in Front
 	function wps_deregister_styles() {
 		wp_dequeue_style( 'wp-block-library' );
@@ -21,9 +18,9 @@ if ( ! is_admin() ) {
 		// versione del tema
 		global $theme_version;
 		// stili comuni
-		wp_enqueue_style( 'paperplane-theme-font', 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap#asyncload', array(), null );
+		wp_enqueue_style( 'paperplane-theme-font', 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap', array(), null );
 		wp_enqueue_style( 'paperplane-theme-commnon', get_template_directory_uri() . '/style.min.css', '', $theme_version, 'all' );
-		wp_enqueue_style( 'paperplane-material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons&display=swap', array(), null );
+		// se non si usano Google Font rimuovere le 2 righe con il meta preconnect a Google dalla funzione paperplane_preload_self_hosted_fonts()
 	}
 	add_action( 'wp_enqueue_scripts', 'theme_css', 10, 3 );
 }
@@ -32,20 +29,21 @@ if ( ! is_admin() ) {
 function papperplane_disable_useless_styles() {
 	wp_deregister_style( 'classic-theme-styles' );
 	wp_dequeue_style( 'classic-theme-styles' );
+	wp_dequeue_style( 'global-styles' );
+	wp_dequeue_style( 'svg-icon-style-inline-css' );
 }
 add_filter( 'wp_enqueue_scripts', 'papperplane_disable_useless_styles', 100 );
 
-add_filter( 'style_loader_tag', 'preload_filter', 10, 2 );
-function preload_filter( $html, $handle ) {
-	if ( strcmp( $handle, 'paperplane-theme-commnon' ) == 0 ) {
-		$fallback = '<noscript>' . $html . '</noscript>';
-		$preload = str_replace( "rel='stylesheet'", "rel='preload' as='style' onload='this.rel=\"stylesheet\"'", $html );
-		$html = $preload . $fallback;
-	}
-	if ( strcmp( $handle, 'paperplane-theme-font' ) == 0 ) {
-		$fallback = '<noscript>' . $html . '</noscript>';
-		$preload = str_replace( "rel='stylesheet'", "rel='preload' as='style' onload='this.rel=\"stylesheet\"'", $html );
-		$html = $preload . $fallback;
-	}
-	return $html;
+
+function paperplane_preload_self_hosted_fonts() {
+	$static_bloginfo_stylesheet_directory = get_bloginfo( 'stylesheet_directory' );
+	$preload_fonts_meta = '<link rel="preconnect" href="' . get_site_url() . '">' . "\n";
+	$preload_fonts_meta .= '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+	$preload_fonts_meta .= '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+	//$preload_fonts_meta .= '<link rel="preload" href="'.$static_bloginfo_stylesheet_directory.'/assets/fonts/paperplane-blank-theme-icons.ttf" as="font" crossorigin>'."\n";
+	$preload_fonts_meta .= '<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" crossorigin>' . "\n";
+	$preload_fonts_meta .= '<link rel="preload" href="' . $static_bloginfo_stylesheet_directory . '/assets/fonts/material-icons/MaterialIcons-Regular.ttf" as="font" crossorigin>' . "\n";
+	//$preload_fonts_meta .= '<link rel="preload" href="' . $static_bloginfo_stylesheet_directory . '/style.min.css" as="style">';
+	echo $preload_fonts_meta;
 }
+add_action( 'wp_head', 'paperplane_preload_self_hosted_fonts', 1 );

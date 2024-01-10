@@ -1,5 +1,5 @@
 <!-- module-columns -->
-<div class="wrapper module-columns bg-4">
+<section class="wrapper module-columns bg-4">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">
@@ -22,19 +22,23 @@
 												$image_data = array(
 													'image_type' => 'acf',
 													// options: post_thumbnail, acf
-													'image_value' => $column['module_columns_columns_repeater_image'],
+													'image_value' => $column['module_columns_columns_repeater_image']
 													// se utilizzi un custom field indica qui il nome del campo
-													'size_fallback' => 'column'
+												);
+												$image_appearance = array(
+													// options: true, false
+													'lazyload' => true,
+													// options: sync, async
+													'decoding' => 'async',
+													// options: true, false - se false non mette contenitore intorno all'immagine
+													'image-wrap' => true
 												);
 												$image_sizes = array(
 													// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-													'desktop_default' => 'column',
 													'desktop_hd' => 'column_hd',
-													'mobile_default' => 'column',
-													'mobile_hd' => 'column_hd',
-													'lazy_placheholder' => 'micro'
+													'mobile_hd' => 'column_hd'
 												);
-												print_theme_image( $image_data, $image_sizes );
+												print_theme_image( $image_data, $image_appearance, $image_sizes );
 												?>
 											<?php elseif ( $module_columns_columns_repeater_image_format === 'round-image' ) : ?>
 												<div class="image-rounder">
@@ -43,19 +47,23 @@
 													$image_data = array(
 														'image_type' => 'acf',
 														// options: post_thumbnail, acf
-														'image_value' => $column['module_columns_columns_repeater_image'],
+														'image_value' => $column['module_columns_columns_repeater_image']
 														// se utilizzi un custom field indica qui il nome del campo
-														'size_fallback' => 'round_image'
+													);
+													$image_appearance = array(
+														// options: true, false
+														'lazyload' => true,
+														// options: sync, async
+														'decoding' => 'async',
+														// options: true, false - se false non mette contenitore intorno all'immagine
+														'image-wrap' => true
 													);
 													$image_sizes = array(
 														// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-														'desktop_default' => 'round_image',
 														'desktop_hd' => 'round_image_hd',
-														'mobile_default' => 'round_image',
-														'mobile_hd' => 'round_image',
-														'lazy_placheholder' => 'micro_cut'
+														'mobile_hd' => 'round_image'
 													);
-													print_theme_image( $image_data, $image_sizes );
+													print_theme_image( $image_data, $image_appearance, $image_sizes );
 													?>
 												</div>
 											<?php else : ?>
@@ -65,19 +73,23 @@
 													$image_data = array(
 														'image_type' => 'acf',
 														// options: post_thumbnail, acf
-														'image_value' => $column['module_columns_columns_repeater_image'],
+														'image_value' => $column['module_columns_columns_repeater_image']
 														// se utilizzi un custom field indica qui il nome del campo
-														'size_fallback' => 'column_icon'
+													);
+													$image_appearance = array(
+														// options: true, false
+														'lazyload' => true,
+														// options: sync, async
+														'decoding' => 'async',
+														// options: true, false - se false non mette contenitore intorno all'immagine
+														'image-wrap' => true
 													);
 													$image_sizes = array(
 														// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-														'desktop_default' => 'column_icon',
-														'desktop_hd' => 'column_icon_hd',
-														'mobile_default' => 'column_icon',
-														'mobile_hd' => 'column_icon_hd',
-														'lazy_placheholder' => 'micro'
+														'desktop_hd' => 'round_image_hd',
+														'mobile_hd' => 'round_image'
 													);
-													print_theme_image( $image_data, $image_sizes );
+													print_theme_image( $image_data, $image_appearance, $image_sizes );
 													?>
 												</div>
 											<?php endif; ?>
@@ -120,5 +132,5 @@
 			</div>
 		</div>
 	</div>
-</div>
+</section>
 <!-- module-columns -->

@@ -14,12 +14,12 @@ $wrapper-padded-desktop: 3.5vw; // wrapper paddings
 $wrapper-padded-smartphone: 5vw; // wrapper paddings
 $module-vertical-padding-desktop: 48px; // modules vertical paddings
 $module-vertical-padding-smartphone: 24px; // modules vertical paddings
-$flex-hold-column-thin-space-desktop: 24px; // modules vertical paddings
-$flex-hold-column-wide-space-desktop: 48px; // modules vertical paddings
-$flex-hold-column-thin-space-smartphone: 24px; // modules vertical paddings
-$flex-hold-column-wide-space-smartphone: 48px; // modules vertical paddings
+$column-space-side-desktop: 1.75vw; // columns space side desktop
+$column-space-bottom-desktop: calc(#{$column-space-side-desktop} * 2); // columns space bottom desktop
+$column-space-side-smartphone: 2.5vw; // columns space side mobile
+$column-space-bottom-smartphone: calc(#{$column-space-side-smartphone} * 4); // columns space bottom mobile
 $color-1: #000000;
-$color-2: #333333;
+$color-2: #555555;
 $color-3: #F2F2F2;
 $color-4: #FFFFFF;
 $color-upload-icon-clear: '%23FFFFFF'; // codificato per funzionare con SVG in linea nei CSS

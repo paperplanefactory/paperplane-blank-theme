@@ -8,9 +8,9 @@
   }
 
   .stripe-listed {
-    margin-bottom: $flex-hold-column-wide-space-smartphone;
+    margin-bottom: $column-space-side-smartphone;
 
-    &:last-child {
+    &:last-of-type {
       margin-bottom: 0;
     }
 

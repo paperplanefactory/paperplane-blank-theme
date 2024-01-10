@@ -1,0 +1,31 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.reduce-motion-overlay {
+    position: fixed;
+    //top: calc(100dvh - #{$wrapper-padded-desktop});
+    //left: 50%;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    background-color: $color-4;
+    border: solid 2px $color-2;
+    padding: 5px 3px 2px 3px;
+    //transform: translate(-50%, -50%);
+    transform: translate(0, 0);
+    @include transition(all 0.3s ease-in-out);
+
+    &.hidden {
+        pointer-events: none;
+        transform: translate(0, 100%);
+    }
+}
+
+.paperplane-toggle {
+    h6 {
+        line-height: 0.88rem;
+        top: -0.44rem;
+
+    }
+}

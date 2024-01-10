@@ -9,7 +9,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <style>
   body {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     color: #000000;
     font-family:Arial, Helvetica, sans-serif;
   }
@@ -26,7 +26,7 @@
     overflow: hidden;
     min-height: 100dvh;
     display: grid;
-    padding: 0;
+    padding: 4vw;
     margin: 0;
     align-content: center;
     width: 100%;
@@ -36,7 +36,6 @@
     text-align: center;
     max-width: 750px;
     margin: 0 auto;
-    padding: 4vw;
   }
 
   .content img {
@@ -49,17 +48,43 @@
     font-size: 20px;
     line-height: 28px;
   }
+  .embed {
+    position: relative;
+    padding-bottom: 56.25% !important;
+    overflow: hidden !important;
+    height: auto !important;
+    width: 100%;
+    max-width: 900px;
+    margin: 5vh auto 0 auto;
+  }
+  .embed embed,
+  .embed iframe,
+  .embed object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .embed video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   </style>
   </head>
   <body>
   <div class="offline-page">
   <div class="content">
-  <img src="/wp-content/themes/paperplane-blank-theme/assets/images/site-logo-header.svg" />
+  <img src="https://paperplaneblanktheme.local/wp-content/uploads/2020/03/security.svg" />
   <h1>
   Sito in costruzione.<br />
     Under construction.
   </h1>
   </div>
+  <div class="embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/GP7gNJOomWM?si=ql99CeMwBja3KDCg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
   </div>
   </body>
   </html>
