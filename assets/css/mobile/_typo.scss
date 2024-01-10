@@ -63,12 +63,6 @@ p {
   padding: 0;
 }
 
-.cta-2 {
-  font-size: $cta2-size-smartphone;
-  line-height: $cta2-lineheight-smartphone;
-  //margin-bottom: $cta1-marginbottom-smartphone;
-}
-
 .content-styled {
   h1:not(:first-child) {
     margin-top: calc(#{$h1-marginbottom-smartphone} * 2);

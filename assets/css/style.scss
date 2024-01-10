@@ -5,10 +5,10 @@
 @import 'global/defaults';
 @import 'global/header-footer';
 @import 'global/colors';
-@import 'global/accessibility';
-@import 'global/font-blanktheme-icons';
-//@import 'global/colors-black-bg';
-//@import 'global/colors-white-bg';
+@import 'global/a11y';
+//@import 'global/font-blanktheme-icons';
+@import 'global/socials';
+@import 'global/font-material-icons';
 @import 'global/typo';
 @import 'global/wrappers';
 @import 'global/grids';
@@ -22,11 +22,12 @@
 
 @media screen and (min-width: $break-mobile-start) and (max-width: $break-tablet-end) {
   @import 'mobile/header-footer';
-  @import 'mobile/accessibility';
+  @import 'mobile/a11y';
   @import 'mobile/typo';
   @import 'mobile/page-opening';
   @import 'mobile/wrappers';
   @import 'mobile/grids';
+  @import 'mobile/listings';
   @import 'mobile/module-text';
   @import 'mobile/module-highlighted-sentence';
   @import 'mobile/module-columns';
@@ -38,6 +39,7 @@
   @import 'mobile/module-banner';
   @import 'mobile/module-video';
   @import 'mobile/ctas';
+  @import 'mobile/buttons';
   @import 'mobile/media';
   @import 'mobile/effects';
   @import 'mobile/forms';
@@ -48,9 +50,10 @@
 // imports desktop
 @media screen and (min-width: $break-desktop) {
   @import 'desktop/header-footer';
-  @import 'desktop/accessibility';
+  @import 'desktop/a11y';
   @import 'desktop/mega-menu';
-  @import 'desktop/typo';
+  //@import 'desktop/typo';
+  @import 'desktop/typo-rem';
   @import 'desktop/page-opening';
   @import 'desktop/wrappers';
   @import 'desktop/grids';
@@ -66,6 +69,7 @@
   @import 'desktop/module-banner';
   @import 'desktop/module-video';
   @import 'desktop/ctas';
+  @import 'desktop/buttons';
   @import 'desktop/media';
   @import 'desktop/effects';
   @import 'desktop/forms';

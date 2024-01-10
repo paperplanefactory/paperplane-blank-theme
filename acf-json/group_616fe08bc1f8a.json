@@ -58,20 +58,18 @@
                         "id": ""
                     },
                     "choices": {
-                        "paperplane-blank-theme-icons-newsletter-social": "Newsletter",
-                        "paperplane-blank-theme-icons-facebook-social": "Facebook",
-                        "paperplane-blank-theme-icons-facebook-messenger-social": "Facebook Messenger",
-                        "paperplane-blank-theme-icons-instagram-social": "Instagram",
-                        "paperplane-blank-theme-icons-linkedin-social": "LinkedIn",
-                        "paperplane-blank-theme-icons-telegram-social": "Telegram",
-                        "paperplane-blank-theme-icons-tiktok-social": "TikTok",
-                        "paperplane-blank-theme-icons-twitter-social": "Twitter",
-                        "paperplane-blank-theme-icons-vk-social": "VK",
-                        "paperplane-blank-theme-icons-whatsapp-social": "WhatsApp",
-                        "paperplane-blank-theme-icons-spotify-social": "Spotify",
-                        "paperplane-blank-theme-icons-youtube-social": "YouTube",
-                        "paperplane-blank-theme-icons-yelp-social": "Yelp",
-                        "paperplane-blank-theme-icons-tripadvisor-social": "Tripadvisor"
+                        "paperplane-blank-theme-newsletter-social": "Newsletter",
+                        "paperplane-blank-theme-facebook-social": "Facebook",
+                        "paperplane-blank-theme-facebook-messenger-social": "Facebook Messenger",
+                        "paperplane-blank-theme-instagram-social": "Instagram",
+                        "paperplane-blank-theme-linkedin-social": "LinkedIn",
+                        "paperplane-blank-theme-telegram-social": "Telegram",
+                        "paperplane-blank-theme-tiktok-social": "TikTok",
+                        "paperplane-blank-theme-twitter-social": "Twitter",
+                        "paperplane-blank-theme-vk-social": "VK",
+                        "paperplane-blank-theme-whatsapp-social": "WhatsApp",
+                        "paperplane-blank-theme-spotify-social": "Spotify",
+                        "paperplane-blank-theme-youtube-social": "YouTube"
                     },
                     "default_value": false,
                     "return_format": "value",
@@ -114,5 +112,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1687349576
+    "modified": 1702921102
 }

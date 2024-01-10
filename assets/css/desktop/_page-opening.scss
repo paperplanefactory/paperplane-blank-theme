@@ -2,8 +2,8 @@
 @import '../global/vars';
 @import '../global/mixin';
 
-.page-opening-fullscreen,
-.page-opening-fullscreen-less {
+.opening-fullscreen,
+.opening-almost-fullscreen {
   position: relative;
   display: block;
   width: 100%;
@@ -11,13 +11,13 @@
   @include transition(height 0.3s);
 }
 
-.page-opening-fullscreen {
-  min-height: 100dvh;
+.opening-fullscreen {
+  min-height: 100vh;
 }
 
-.page-opening-fullscreen-less {
+.opening-almost-fullscreen {
   position: relative;
-  min-height: 88dvh;
+  min-height: 80vh;
 }
 
 .fullscreen-video {
@@ -137,20 +137,4 @@
 
 .breadcrumbs-holder {
   margin-bottom: 32px;
-}
-
-.categories-holder {
-  margin: 32px 0 0;
-
-  a {
-    margin: 0 16px;
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
 }

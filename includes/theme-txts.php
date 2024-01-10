@@ -54,13 +54,27 @@ function namespace_login_headerurl( $url ) {
 	return $url;
 }
 
-add_filter( 'login_headertitle', 'namespace_login_headertitle' );
+//fix cut paste drama from https://jonathannicol.com/blog/2015/02/19/clean-pasted-text-in-wordpress/
+add_filter( 'tiny_mce_before_init', 'paperplane_remove_paste_junk' );
+
 /**
- * Replaces the login header logo title
+ * Customize TinyMCE's configuration
  *
- * @param $title
+ * @param   array
+ * @return  array
  */
-function namespace_login_headertitle( $title ) {
-	$title = get_bloginfo( 'name' );
-	return $title;
+function paperplane_remove_paste_junk( $in ) {
+	$in['paste_preprocess'] = "function(plugin, args){
+    var whitelist = 'p,b,strong,i,em,h2,h3,h4,h5,h6,ul,li,ol,a,href';  // Strip all HTML tags except those we have whitelisted here
+    var stripped = jQuery('<div>' + args.content + '</div>');
+    var els = stripped.find('*').not(whitelist);
+    for (var i = els.length - 1; i >= 0; i--) {
+      var e = els[i];
+      jQuery(e).replaceWith(e.innerHTML);
+    }
+    // Strip all class and id attributes
+    stripped.find('*').removeAttr('id').removeAttr('class').removeAttr('style');
+    args.content = stripped.html();    // Return the clean HTML
+  }";
+	return $in;
 }

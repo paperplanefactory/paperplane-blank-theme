@@ -2,15 +2,7 @@
 // Paperplane _blankTheme - template per header.
 ?>
 <!DOCTYPE html>
-<!--[if IE 7]>
-<html class="ie ie7" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if IE 8]>
-<html class="ie ie8" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html <?php language_attributes(); ?>>
-<!--<![endif]-->
 
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
@@ -18,11 +10,9 @@
 	<title>
 		<?php wp_title( '|', true, 'right' ); ?>
 	</title>
-	<link rel="profile" href="http://gmpg.org/xfn/11">
-	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	<?php
 	wp_head();
-	global $theme_version, $acf_options_parameter, $static_bloginfo_stylesheet_directory, $options_fields, $options_fields_multilang, $cta_url_modal_array, $theme_pagination, $attivare_pwa;
+	global $use_transients_fields, $theme_version, $acf_options_parameter, $static_bloginfo_stylesheet_directory, $options_fields, $options_fields_multilang, $cta_url_modal_array, $theme_pagination, $attivare_pwa;
 	// Imposto la variabile globale per definire:
 // - se è attivo Polylang il linguaggio in cui l'utente sta visitando il sito
 // - se non è attivo Polylang un valore generico 'any-lang'
@@ -86,6 +76,9 @@
 </head>
 
 <body>
+	<div class="loader">
+		<div class="bar"></div>
+	</div>
 	<?php include( locate_template( 'template-parts/grid/accessible-navi.php' ) ); ?>
 	<div id="site-wrapper">
 		<div id="preheader"></div>
@@ -96,7 +89,7 @@
 						<div class="logo">
 							<a href="<?php echo home_url(); ?>" rel="bookmark"
 								title="homepage - <?php echo get_bloginfo( 'name' ); ?>"
-								aria-label="homepage - <?php echo get_bloginfo( 'name' ); ?>" class="absl"></a>
+								aria-label="homepage - <?php echo get_bloginfo( 'name' ); ?>"></a>
 						</div>
 						<nav class="menu allupper" role="navigation"
 							aria-label="<?php _e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
@@ -110,7 +103,7 @@
 							<ul>
 								<li>
 									<button class="hambuger-element ham-activator" aria-haspopup="true"
-										aria-controls="head-overlay" onclick="hamburgerMenu()"
+										aria-expanded="false" onclick="hamburgerMenu()" aria-controls="head-overlay"
 										title="<?php _e( 'Premi invio per accedere al menu ad hamburger', 'paperPlane-blankTheme' ); ?>"
 										aria-label="<?php _e( 'Premi invio per accedere al menu ad hamburger', 'paperPlane-blankTheme' ); ?>">
 										<span></span>
@@ -129,29 +122,39 @@
 		<div id="head-overlay" class="hidden bg-4" aria-hidden="true">
 			<div class="scroll-opportunity">
 				<div class="wrapper">
-					<nav class="menu" role="navigation"
-						aria-label="<?php _e( 'Menu secondario', 'paperPlane-blankTheme' ); ?>">
-						<?php
-						if ( has_nav_menu( 'overlay-menu-mobile' ) ) {
-							wp_nav_menu( array( 'theme_location' => 'overlay-menu-mobile', 'container' => 'ul', 'menu_class' => 'overlay-menu-mobile-css overlay-menu-mobile-js' ) );
-						}
-						?>
-					</nav>
-					<?php if ( $options_fields ) : ?>
-						<ul class="inline-socials">
-							<?php foreach ( $options_fields['global_socials'] as $global_social ) : ?>
-								<li>
-									<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
-										class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
-										aria-label="Visit <?php echo $global_social['global_socials_profile_url']; ?>"
-										rel="noopener">
-									</a>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					<?php endif; ?>
+					<div class="wrapper-padded">
+						<nav class="menu" role="navigation"
+							aria-label="<?php _e( 'Menu secondario', 'paperPlane-blankTheme' ); ?>">
+							<?php
+							if ( has_nav_menu( 'overlay-menu-mobile' ) ) {
+								wp_nav_menu( array( 'theme_location' => 'overlay-menu-mobile', 'container' => 'ul', 'menu_class' => 'overlay-menu-css overlay-menu-mobile-js' ) );
+							}
+							?>
+						</nav>
+						<?php if ( $options_fields['animations_option'] == 1 ) : ?>
+							<div class="user-accessibility-options">
+								<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
+							</div>
+						<?php endif; ?>
+						<?php if ( $options_fields['global_socials'] ) : ?>
+							<ul class="site-socials inline-socials">
+								<?php
+								foreach ( $options_fields['global_socials'] as $global_social ) :
+									$parse_social = parse_url( $global_social['global_socials_profile_url'] );
+									?>
+									<li>
+										<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
+											class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
+											aria-label="<?php echo _e( 'Visita il nostro profilo su', 'paperPlane-blankTheme' ) . ' ' . $parse_social['host']; ?>"
+											rel="noopener">
+										</a>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div id="page-content">
+		<main id="page-content">
 			<?php include( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>

@@ -12,10 +12,6 @@ $hamburger-width: 55px; // header
 #header {
   height: $header-smartphone-height;
 
-  &.hidden {
-    transform: translateY(-$header-smartphone-height);
-  }
-
   &.scrolled {
     background-color: $color-4;
   }
@@ -28,10 +24,9 @@ $hamburger-width: 55px; // header
       width: $logo-width;
       height: $header-smartphone-height;
 
-      &:before {
+      a {
         top: 10px;
-        left: 0;
-        height: calc(100% - 20px);
+        height: calc(#{$header-smartphone-height} - 20px);
       }
     }
 
@@ -87,7 +82,7 @@ $hamburger-width: 55px; // header
   .menu {
     width: 100%;
 
-    .overlay-menu-mobile-css {
+    .overlay-menu-css {
       width: 100%;
       border-top: solid 1px $color-3 !important;
 
@@ -101,16 +96,44 @@ $hamburger-width: 55px; // header
         a {
           position: relative;
           display: block;
-          padding: 20px 75px 20px $wrapper-padded-smartphone;
+          padding: 20px $wrapper-padded-smartphone 20px $wrapper-padded-smartphone;
+        }
 
-          span {
-            position: absolute;
-            top: 50%;
-            right: $wrapper-padded-smartphone;
-            margin-top: -15px;
-            width: 30px;
-            height: 30px;
-            text-align: right;
+        &.menu-item-has-children {
+
+          a {
+            padding: 20px 55px 20px $wrapper-padded-smartphone;
+
+            &:after {
+              content: "";
+              position: absolute;
+              top: 50%;
+              right: $wrapper-padded-smartphone;
+              transform: translate(0, -50%) rotate(0);
+              transform-origin: center;
+              width: 14px;
+              height: 8px;
+              margin-left: 5px;
+              -webkit-mask-image: url(assets/images/sub-menu-icon.svg);
+              mask-image: url(assets/images/sub-menu-icon.svg);
+              -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+              mask-size: contain;
+              background-color: $color-1;
+              @include transition(all 0.2s ease-in-out);
+            }
+
+            &.clicked {
+              &:after {
+                transform: translate(0, -50%) rotate(180deg);
+              }
+            }
+          }
+        }
+
+        &.mobile-open-default {
+          .sub-menu {
+            display: block;
           }
         }
       }
@@ -138,20 +161,12 @@ $hamburger-width: 55px; // header
             padding: 20px $wrapper-padded-smartphone;
 
             &:after {
-              content: "";
+              display: none;
+              visibility: hidden;
             }
           }
         }
       }
-    }
-  }
-
-  .inline-socials {
-    margin-top: 20px;
-    padding: 0 $wrapper-padded-smartphone;
-
-    li {
-      margin: 0 15px 10px 0;
     }
   }
 }
@@ -174,6 +189,7 @@ $hamburger-width: 55px; // header
 
   .footer-logo {
     max-width: 200px;
+    height: 70px;
   }
 
   .footer-menu {
@@ -189,5 +205,21 @@ $hamburger-width: 55px; // header
         margin: 0;
       }
     }
+  }
+}
+
+.user-accessibility-options {
+  margin: 20px 0 0 0;
+
+  .paperplane-toggle {
+    margin: 0 0 10px 0;
+  }
+}
+
+.inline-socials {
+  margin: 20px 0;
+
+  li {
+    margin-bottom: 10px;
   }
 }

@@ -20,19 +20,23 @@ $module_highlighted_sentence_image = $module['module_highlighted_sentence_image'
 									$image_data = array(
 										'image_type' => 'acf',
 										// options: post_thumbnail, acf
-										'image_value' => $module['module_highlighted_sentence_image'],
+										'image_value' => $module['module_highlighted_sentence_image']
 										// se utilizzi un custom field indica qui il nome del campo
-										'size_fallback' => 'round_image'
+									);
+									$image_appearance = array(
+										// options: true, false
+										'lazyload' => true,
+										// options: sync, async
+										'decoding' => 'async',
+										// options: true, false - se false non mette contenitore intorno all'immagine
+										'image-wrap' => true
 									);
 									$image_sizes = array(
 										// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-										'desktop_default' => 'round_image',
 										'desktop_hd' => 'round_image_hd',
-										'mobile_default' => 'round_image',
-										'mobile_hd' => 'round_image_hd',
-										'lazy_placheholder' => 'micro'
+										'mobile_hd' => 'round_image_hd'
 									);
-									print_theme_image( $image_data, $image_sizes );
+									print_theme_image( $image_data, $image_appearance, $image_sizes );
 									?>
 								</div>
 							</div>

@@ -1886,6 +1886,7 @@
                     "return_format": "object",
                     "ui": 1,
                     "repeatable": true,
+                    "bidirectional_target": [],
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -1947,9 +1948,9 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "page_template",
                 "operator": "==",
-                "value": "page"
+                "value": "page-modules.php"
             }
         ],
         [
@@ -1957,6 +1958,13 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "default"
             }
         ]
     ],
@@ -1982,5 +1990,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1687416204
+    "modified": 1699981963
 }

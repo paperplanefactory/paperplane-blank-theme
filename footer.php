@@ -1,4 +1,4 @@
-</div><!-- id="page-content" aperto in header.php -->
+</main><!-- id="page-content" aperto in header.php -->
 <?php
 // Paperplane _blankTheme - template per footer.
 wp_reset_query();
@@ -14,22 +14,20 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 						<div class="footer-logo">
 							<a href="<?php echo home_url(); ?>" rel="bookmark"
 								title="homepage - <?php echo get_bloginfo( 'name' ); ?>">
-								<div class="no-the-100">
-									<img src="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/site-logo-header.svg"
-										width="200" height="64" loading="lazy"
-										alt="<?php echo get_bloginfo( 'name' ); ?> - homepage" />
-								</div>
 							</a>
 						</div>
 					</div>
 					<div class="flex-hold-child desktop-align-right">
 						<?php if ( $options_fields['global_socials'] ) : ?>
-							<ul class="inline-socials">
-								<?php foreach ( $options_fields['global_socials'] as $global_social ) : ?>
+							<ul class="site-socials inline-socials">
+								<?php
+								foreach ( $options_fields['global_socials'] as $global_social ) :
+									$parse_social = parse_url( $global_social['global_socials_profile_url'] );
+									?>
 									<li>
 										<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
 											class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
-											aria-label="Visit <?php echo $global_social['global_socials_profile_url']; ?>"
+											aria-label="<?php echo _e( 'Visita il nostro profilo su', 'paperPlane-blankTheme' ) . ' ' . $parse_social['host']; ?>"
 											rel="noopener">
 										</a>
 									</li>
@@ -47,16 +45,9 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 					<div class="flex-hold-child">
 						<?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_legal_notes']; ?>
 						<?php if ( $options_fields['animations_option'] == 1 ) : ?>
-							<p>
-								<i class="paperplane-blank-theme-icons-reduce-motion"></i>
-								<a href="#" class="accessible-navi-activate-js"
-									title="<?php _e( 'Riduci animazioni', 'paperPlane-blankTheme' ); ?>"
-									aria-label="<?php _e( 'Riduci animazioni', 'paperPlane-blankTheme' ); ?>"
-									data-original-label="<?php _e( 'Riduci animazioni', 'paperPlane-blankTheme' ); ?>"
-									data-active-label="<?php _e( 'Attiva animazioni', 'paperPlane-blankTheme' ); ?>">
-									<?php _e( 'Riduci animazioni', 'paperPlane-blankTheme' ); ?>
-								</a>
-							</p>
+							<div class="user-accessibility-options">
+								<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
+							</div>
 						<?php endif; ?>
 					</div>
 					<div class="flex-hold-child desktop-align-right">
@@ -68,20 +59,28 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 	</div>
 </footer>
 <?php include( locate_template( 'template-parts/grid/mega-menu.php' ) ); ?>
+</div>
 <?php
 if ( ! empty( $cta_url_modal_array ) ) {
+	$content_id = get_the_ID();
 	$args_modals = array(
 		'post_type' => 'cpt_modal',
 		'posts_per_page' => -1,
 		'include' => $cta_url_modal_array
 	);
-	$paperplane_query_modals_transient = get_transient( 'paperplane_query_modals_transient' );
-	if ( empty( $paperplane_query_modals_transient ) ) {
-		$my_modals = get_posts( $args_modals );
-		set_transient( 'paperplane_query_modals_transient', $my_modals, DAY_IN_SECONDS * 4 );
+	global $use_transients_fields;
+	if ( $use_transients_fields == 1 ) {
+		$paperplane_query_modals_transient = get_transient( 'paperplane_transient_query_modals_' . $content_id );
+		if ( empty( $paperplane_query_modals_transient ) ) {
+			$my_modals = get_posts( $args_modals );
+			set_transient( 'paperplane_transient_query_modals_' . $content_id, $my_modals, DAY_IN_SECONDS * 4 );
+		} else {
+			$my_modals = $paperplane_query_modals_transient;
+		}
 	} else {
-		$my_modals = $paperplane_query_modals_transient;
+		$my_modals = get_posts( $args_modals );
 	}
+
 	if ( ! empty( $my_modals ) ) {
 		foreach ( $my_modals as $post ) :
 			setup_postdata( $post );
@@ -91,7 +90,6 @@ if ( ! empty( $cta_url_modal_array ) ) {
 	}
 }
 ?>
-</div>
 <?php wp_footer(); ?>
 </body>
 

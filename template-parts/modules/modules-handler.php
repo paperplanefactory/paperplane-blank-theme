@@ -1,7 +1,6 @@
 <div class="modules-handler">
 	<?php
-	global $module_count;
-	global $last_rep_color;
+	global $module_count, $last_rep_color;
 	$module_count = 0;
 	if ( $content_fields['new_module'] ) {
 		foreach ( $content_fields['new_module'] as $module ) {

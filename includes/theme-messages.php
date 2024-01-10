@@ -52,6 +52,6 @@ remove_action( 'admin_print_styles', 'print_emoji_styles' );
 
 // login custom logo
 function namespace_login_style() {
-	echo '<style>.login h1 a { background-image: url( ' . get_template_directory_uri() . '/assets/images/admin-images/logo-login.png ) !important; }</style>';
+	echo '<style>.login h1 a { background-image: url( ' . get_template_directory_uri() . '/assets/images/site-logo-header.svg ) !important; background-size:contain !important; }</style>';
 }
 add_action( 'login_head', 'namespace_login_style' );

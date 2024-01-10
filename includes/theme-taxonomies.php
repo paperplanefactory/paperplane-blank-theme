@@ -1,7 +1,9 @@
 <?php
+
+// genero un elenco di tutte le voci di tassonima
 function all_categories( $page_taxonomy_slug ) {
 	$taxonomies = get_terms( array(
-		'taxonomy' => $page_taxonomy_slug,
+		'taxonomy' => 'nome_tassonomia',
 		'hide_empty' => true
 	)
 	);
@@ -15,8 +17,9 @@ function all_categories( $page_taxonomy_slug ) {
 }
 
 
-// genero un elenco di link che rimandano alla pagina di archivio della tassonomia
+// genero un elenco delle voci di tassonima associate ad un contenuto singolo
 function call_all_cat_nome_tassonomia() {
+	global $post;
 	$terms_activity = get_the_terms( $post->ID, 'nome_tassonomia' );
 	// Loop over each item since it's an array
 	if ( $terms_activity != null ) {
@@ -31,54 +34,3 @@ function call_all_cat_nome_tassonomia() {
 }
 
 // la richiamo in pagina con "if (function_exists('call_all_cat_nome_tassonomia')) { call_all_cat_nome_tassonomia(); }
-
-
-
-
-function product_categories_navigation() {
-	// definisco lo slug della tassonomia
-	$taxonomy_slug = 'category';
-	// richiamo tutti i termini genitore
-	$taxonomies = get_terms( array(
-		'taxonomy' => $taxonomy_slug,
-		// quando hai finito metti true in modo da non mostrare le categorie senza contenuti associati
-		'hide_empty' => false,
-		'parent' => 0
-	)
-	);
-	// verifico se esistono termini
-	if ( ! empty( $taxonomies ) ) {
-		$output = '';
-		// richiamo i termini
-		foreach ( $taxonomies as $category ) {
-			// verifico se il termini ha figli
-			$child_categories = get_term_children( $category->term_id, $taxonomy_slug );
-			// se ha figli genero il box ad espansione
-			if ( ! empty( $child_categories ) ) {
-				$output .= '<div class="expanding-block">';
-				$output .= '<div class="expander-top">';
-				$output .= '<button class="expander exp-open" aria-expanded="false"><span class="exp-plus"></span>' . $category->name . '</button>';
-				$output .= '</div>';
-				$output .= '<div class="expandable-content">';
-				$output .= '<div class="inner">';
-				$output .= '<div class="content-styled last-child-no-margin">';
-				// stampo il link a tutti i contenuti del termine genitore
-				$output .= '<a href="' . esc_url( get_term_link( $category ) ) . '" class="">' . $category->name . ' - tutti</a><br />';
-				// stampo i link a tutti i contenuti dei termini figli
-				foreach ( $child_categories as $child ) {
-					$term = get_term_by( 'id', $child, $taxonomy_slug );
-					$output .= '<a href="' . get_term_link( $child, $taxonomy_name ) . '">' . $term->name . '</a><br />';
-				}
-				$output .= '</div>';
-				$output .= '</div>';
-				$output .= '</div>';
-				$output .= '</div>';
-			}
-			// se non ha figli stampo solo il link a tutti i contenuti del termine genitore
-			else {
-				$output .= '<a href="' . esc_url( get_term_link( $category ) ) . '" class="">' . $category->name . '</a><br />';
-			}
-		}
-		echo $output;
-	}
-}

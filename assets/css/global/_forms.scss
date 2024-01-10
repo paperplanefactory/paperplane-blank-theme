@@ -137,10 +137,15 @@ input[type=file] {
 
 
 select {
+	appearance: none;
 	position: relative;
 	width: calc(100% - 2px);
 	margin: 10px 0 0;
-	padding: 10px;
+	padding: 10px 30px 10px 10px;
+	background-image: url("assets/images/html-select-icon.svg");
+	background-position: calc(100% - 10px) 50%;
+	background-repeat: no-repeat;
+	background-size: 12px auto;
 }
 
 textarea {
@@ -174,6 +179,11 @@ input[type=submit] {
 		color: $color-3;
 		background-color: $color-2;
 	}
+
+	&[aria-disabled="true"] {
+		opacity: 0.7;
+		cursor: not-allowed;
+	}
 }
 
 input[type=submit]:disabled {
@@ -194,7 +204,9 @@ textarea:focus {
 	@include transition(all 0.3s linear);
 }
 
-label {
+label,
+.as-label {
+	font-family: $font-main;
 	color: $color-1;
 }
 
@@ -235,6 +247,36 @@ label {
 
 .wpcf7-form {
 
+	.wpcf7-not-valid-tip,
+	&.invalid .wpcf7-response-output,
+	&.sent .wpcf7-response-output {
+		&:before {
+			position: relative;
+			top: 2px;
+			display: inline-block;
+			margin: 0 5px 0 0;
+			color: $color-form-error !important;
+			content: '\e000';
+			font-family: 'Material Icons';
+			font-weight: normal;
+			font-style: normal;
+			display: inline-block;
+			line-height: 1;
+			text-transform: none;
+			letter-spacing: normal;
+			word-wrap: normal;
+			white-space: nowrap;
+			direction: ltr;
+			-webkit-font-smoothing: antialiased;
+			text-rendering: optimizeLegibility;
+			-moz-osx-font-smoothing: grayscale;
+			font-feature-settings: 'liga';
+			font-style: normal;
+			font-weight: normal;
+			font-size: 20px;
+		}
+	}
+
 	.wpcf7-not-valid-tip {
 		position: relative;
 		border: solid 1px $color-form-error !important;
@@ -251,17 +293,8 @@ label {
 		font-family: $font-main;
 
 		&:before {
-			position: relative;
-			top: 2px;
-			display: inline-block;
-			margin: 0 5px 0 0;
 			color: $color-form-error !important;
-			content: '\e828';
-			font-family: "paperplane-blank-theme-icons";
-			font-style: normal;
-			font-weight: normal;
-			font-size: 20px;
-			speak: never;
+			content: '\e000';
 		}
 	}
 
@@ -289,17 +322,8 @@ label {
 			font-weight: $font-weight-3 !important;
 
 			&:before {
-				position: relative;
-				top: 2px;
-				display: inline-block;
-				margin: 0 5px 0 0;
 				color: $color-form-error !important;
-				content: '\e828';
-				font-family: "paperplane-blank-theme-icons";
-				font-style: normal;
-				font-weight: normal;
-				font-size: 20px;
-				speak: never;
+				content: '\e000';
 			}
 		}
 	}
@@ -315,17 +339,8 @@ label {
 			font-weight: $font-weight-3 !important;
 
 			&:before {
-				position: relative;
-				top: 2px;
-				display: inline-block;
-				margin: 0 5px 0 0;
 				color: $color-form-ok !important;
-				content: '\e829';
-				font-family: "paperplane-blank-theme-icons";
-				font-style: normal;
-				font-weight: normal;
-				font-size: 20px;
-				speak: never;
+				content: '\e5ca';
 			}
 
 		}
@@ -343,8 +358,11 @@ label {
 	clip: rect(1px, 1px, 1px, 1px);
 	clip-path: inset(50%);
 
-
 	&.hidden {
 		visibility: hidden;
 	}
+}
+
+.form-block {
+	display: block;
 }

@@ -15,7 +15,7 @@
  * MIT license
  */
 
-(function(window, factory) {
+(function (window, factory) {
   // module definition
   if (typeof module == 'object' && module.exports) {
     // CommonJS
@@ -38,8 +38,8 @@
   // helper function for logging errors
   // $.error breaks jQuery chaining
   let console = window.console;
-  let logError = typeof console == 'undefined' ? function() {} :
-    function(message) {
+  let logError = typeof console == 'undefined' ? function () { } :
+    function (message) {
       console.error(message);
     };
 
@@ -54,7 +54,7 @@
     // add option method -> $().plugin('option', {...})
     if (!PluginClass.prototype.option) {
       // option setter
-      PluginClass.prototype.option = function(opts) {
+      PluginClass.prototype.option = function (opts) {
         if (!opts) return;
 
         this.options = Object.assign(this.options || {}, opts);
@@ -62,7 +62,7 @@
     }
 
     // make jQuery plugin
-    $.fn[namespace] = function(arg0, ...args) {
+    $.fn[namespace] = function (arg0, ...args) {
       if (typeof arg0 == 'string') {
         // method call $().plugin( 'methodName', { options } )
         return methodCall(this, arg0, args);
@@ -77,7 +77,7 @@
       let returnValue;
       let pluginMethodStr = `$().${namespace}("${methodName}")`;
 
-      $elems.each(function(i, elem) {
+      $elems.each(function (i, elem) {
         // get instance
         let instance = $.data(elem, namespace);
         if (!instance) {
@@ -102,7 +102,7 @@
     }
 
     function plainCall($elems, options) {
-      $elems.each(function(i, elem) {
+      $elems.each(function (i, elem) {
         let instance = $.data(elem, namespace);
         if (instance) {
           // set options & init
@@ -129,7 +129,7 @@
  * MIT License
  */
 
-(function(global, factory) {
+(function (global, factory) {
   // universal module definition
   if (typeof module == 'object' && module.exports) {
     // CommonJS - Browserify, Webpack
@@ -139,13 +139,13 @@
     global.EvEmitter = factory();
   }
 
-}(typeof window != 'undefined' ? window : this, function() {
+}(typeof window != 'undefined' ? window : this, function () {
 
-  function EvEmitter() {}
+  function EvEmitter() { }
 
   let proto = EvEmitter.prototype;
 
-  proto.on = function(eventName, listener) {
+  proto.on = function (eventName, listener) {
     if (!eventName || !listener) return this;
 
     // set events hash
@@ -160,7 +160,7 @@
     return this;
   };
 
-  proto.once = function(eventName, listener) {
+  proto.once = function (eventName, listener) {
     if (!eventName || !listener) return this;
 
     // add event
@@ -176,7 +176,7 @@
     return this;
   };
 
-  proto.off = function(eventName, listener) {
+  proto.off = function (eventName, listener) {
     let listeners = this._events && this._events[eventName];
     if (!listeners || !listeners.length) return this;
 
@@ -188,7 +188,7 @@
     return this;
   };
 
-  proto.emitEvent = function(eventName, args) {
+  proto.emitEvent = function (eventName, args) {
     let listeners = this._events && this._events[eventName];
     if (!listeners || !listeners.length) return this;
 
@@ -214,7 +214,7 @@
     return this;
   };
 
-  proto.allOff = function() {
+  proto.allOff = function () {
     delete this._events;
     delete this._onceEvents;
     return this;
@@ -228,7 +228,7 @@
  * MIT license
  */
 
-(function(global, factory) {
+(function (global, factory) {
   // universal module definition
   if (typeof module == 'object' && module.exports) {
     // CommonJS
@@ -245,20 +245,20 @@
   // ----- extend ----- //
 
   // extends objects
-  utils.extend = function(a, b) {
+  utils.extend = function (a, b) {
     return Object.assign(a, b);
   };
 
   // ----- modulo ----- //
 
-  utils.modulo = function(num, div) {
+  utils.modulo = function (num, div) {
     return ((num % div) + div) % div;
   };
 
   // ----- makeArray ----- //
 
   // turn element or nodeList into an array
-  utils.makeArray = function(obj) {
+  utils.makeArray = function (obj) {
     // use object if already an array
     if (Array.isArray(obj)) return obj;
 
@@ -275,7 +275,7 @@
 
   // ----- removeFrom ----- //
 
-  utils.removeFrom = function(ary, obj) {
+  utils.removeFrom = function (ary, obj) {
     let index = ary.indexOf(obj);
     if (index != -1) {
       ary.splice(index, 1);
@@ -284,7 +284,7 @@
 
   // ----- getParent ----- //
 
-  utils.getParent = function(elem, selector) {
+  utils.getParent = function (elem, selector) {
     while (elem.parentNode && elem != document.body) {
       elem = elem.parentNode;
       if (elem.matches(selector)) return elem;
@@ -294,7 +294,7 @@
   // ----- getQueryElement ----- //
 
   // use element as selector string
-  utils.getQueryElement = function(elem) {
+  utils.getQueryElement = function (elem) {
     if (typeof elem == 'string') {
       return document.querySelector(elem);
     }
@@ -304,7 +304,7 @@
   // ----- handleEvent ----- //
 
   // enable .ontype to trigger from .addEventListener( elem, 'type' )
-  utils.handleEvent = function(event) {
+  utils.handleEvent = function (event) {
     let method = 'on' + event.type;
     if (this[method]) {
       this[method](event);
@@ -313,7 +313,7 @@
 
   // ----- filterFindElements ----- //
 
-  utils.filterFindElements = function(elems, selector) {
+  utils.filterFindElements = function (elems, selector) {
     // make array of elems
     elems = utils.makeArray(elems);
 
@@ -341,13 +341,13 @@
 
   // ----- debounceMethod ----- //
 
-  utils.debounceMethod = function(_class, methodName, threshold) {
+  utils.debounceMethod = function (_class, methodName, threshold) {
     threshold = threshold || 100;
     // original method
     let method = _class.prototype[methodName];
     let timeoutName = methodName + 'Timeout';
 
-    _class.prototype[methodName] = function() {
+    _class.prototype[methodName] = function () {
       clearTimeout(this[timeoutName]);
 
       let args = arguments;
@@ -360,7 +360,7 @@
 
   // ----- docReady ----- //
 
-  utils.docReady = function(onDocReady) {
+  utils.docReady = function (onDocReady) {
     let readyState = document.readyState;
     if (readyState == 'complete' || readyState == 'interactive') {
       // do async to allow for other scripts to run. metafizzy/flickity#441
@@ -373,8 +373,8 @@
   // ----- htmlInit ----- //
 
   // http://bit.ly/3oYLusc
-  utils.toDashed = function(str) {
-    return str.replace(/(.)([A-Z])/g, function(match, $1, $2) {
+  utils.toDashed = function (str) {
+    return str.replace(/(.)([A-Z])/g, function (match, $1, $2) {
       return $1 + '-' + $2;
     }).toLowerCase();
   };
@@ -384,8 +384,8 @@
   // allow user to initialize classes via [data-namespace] or .js-namespace class
   // htmlInit( Widget, 'widgetName' )
   // options are parsed from data-namespace-options
-  utils.htmlInit = function(WidgetClass, namespace) {
-    utils.docReady(function() {
+  utils.htmlInit = function (WidgetClass, namespace) {
+    utils.docReady(function () {
       let dashedNamespace = utils.toDashed(namespace);
       let dataAttr = 'data-' + dashedNamespace;
       let dataAttrElems = document.querySelectorAll(`[${dataAttr}]`);
@@ -420,7 +420,7 @@
 
 }));
 // core
-(function(window, factory) {
+(function (window, factory) {
   // universal module definition
   if (typeof module == 'object' && module.exports) {
     // CommonJS
@@ -493,7 +493,7 @@
   // globally unique identifiers
   let GUID = 0;
 
-  proto.create = function() {
+  proto.create = function () {
     // create core
     // add id for InfiniteScroll.data
     let id = this.guid = ++GUID;
@@ -518,12 +518,12 @@
     }
   };
 
-  proto.option = function(opts) {
+  proto.option = function (opts) {
     Object.assign(this.options, opts);
   };
 
   // call onInit option, used for binding events on init
-  proto.callOnInit = function() {
+  proto.callOnInit = function () {
     let onInit = this.options.onInit;
     if (onInit) {
       onInit.call(this, this);
@@ -532,7 +532,7 @@
 
   // ----- events ----- //
 
-  proto.dispatchEvent = function(type, event, args) {
+  proto.dispatchEvent = function (type, event, args) {
     this.log(type, args);
     let emitArgs = event ? [event].concat(args) : args;
     this.emitEvent(type, emitArgs);
@@ -561,13 +561,13 @@
     append: (response, path, items) => `${items.length} items. URL: ${path}`,
     last: (response, path) => `URL: ${path}`,
     history: (title, path) => `URL: ${path}`,
-    pageIndex: function(index, origin) {
+    pageIndex: function (index, origin) {
       return `current page determined to be: ${index} from ${origin}`;
     },
   };
 
   // log events
-  proto.log = function(type, args) {
+  proto.log = function (type, args) {
     if (!this.options.debug) return;
 
     let message = `[InfiniteScroll] ${type}`;
@@ -578,13 +578,13 @@
 
   // -------------------------- methods used amoung features -------------------------- //
 
-  proto.updateMeasurements = function() {
+  proto.updateMeasurements = function () {
     this.windowHeight = window.innerHeight;
     let rect = this.element.getBoundingClientRect();
     this.top = rect.top + window.scrollY;
   };
 
-  proto.updateScroller = function() {
+  proto.updateScroller = function () {
     let elementScroll = this.options.elementScroll;
     if (!elementScroll) {
       // default, use window
@@ -601,7 +601,7 @@
 
   // -------------------------- page path -------------------------- //
 
-  proto.updateGetPath = function() {
+  proto.updateGetPath = function () {
     let optPath = this.options.path;
     if (!optPath) {
       console.error(`InfiniteScroll path option required. Set as: ${optPath}`);
@@ -623,7 +623,7 @@
     this.updateGetPathSelector(optPath);
   };
 
-  proto.updateGetPathTemplate = function(optPath) {
+  proto.updateGetPathTemplate = function (optPath) {
     // set getPath with template string
     this.getPath = () => {
       let nextIndex = this.pageIndex + 1;
@@ -655,7 +655,7 @@
   ];
 
   // try matching href to pathRegexes patterns
-  let getPathParts = InfiniteScroll.getPathParts = function(href) {
+  let getPathParts = InfiniteScroll.getPathParts = function (href) {
     if (!href) return;
     for (let regex of pathRegexes) {
       let match = href.match(regex);
@@ -670,7 +670,7 @@
     }
   };
 
-  proto.updateGetPathSelector = function(optPath) {
+  proto.updateGetPathSelector = function (optPath) {
     // parse href of link: '.next-page-link'
     let hrefElem = document.querySelector(optPath);
     if (!hrefElem) {
@@ -697,7 +697,7 @@
     this.log('pageIndex', [this.pageIndex, 'next link']);
   };
 
-  proto.updateGetAbsolutePath = function() {
+  proto.updateGetAbsolutePath = function () {
     let path = this.getPath();
     // path doesn't start with http or /
     let isAbsolute = path.match(/^http/) || path.match(/^\//);
@@ -721,7 +721,7 @@
   // -------------------------- nav -------------------------- //
 
   // hide navigation
-  InfiniteScroll.create.hideNav = function() {
+  InfiniteScroll.create.hideNav = function () {
     let nav = utils.getQueryElement(this.options.hideNav);
     if (!nav) return;
 
@@ -729,13 +729,13 @@
     this.nav = nav;
   };
 
-  InfiniteScroll.destroy.hideNav = function() {
+  InfiniteScroll.destroy.hideNav = function () {
     if (this.nav) this.nav.style.display = '';
   };
 
   // -------------------------- destroy -------------------------- //
 
-  proto.destroy = function() {
+  proto.destroy = function () {
     this.allOff(); // remove all event listeners
     // call destroy methods
     for (let method in InfiniteScroll.destroy) {
@@ -753,11 +753,11 @@
   // -------------------------- utilities -------------------------- //
 
   // https://remysharp.com/2010/07/21/throttling-function-calls
-  InfiniteScroll.throttle = function(fn, threshold) {
+  InfiniteScroll.throttle = function (fn, threshold) {
     threshold = threshold || 200;
     let last, timeout;
 
-    return function() {
+    return function () {
       let now = +new Date();
       let args = arguments;
       let trigger = () => {
@@ -774,14 +774,14 @@
     };
   };
 
-  InfiniteScroll.data = function(elem) {
+  InfiniteScroll.data = function (elem) {
     elem = utils.getQueryElement(elem);
     let id = elem && elem.infiniteScrollGUID;
     return id && instances[id];
   };
 
   // set internal jQuery, for Webpack + jQuery v3
-  InfiniteScroll.setJQuery = function(jqry) {
+  InfiniteScroll.setJQuery = function (jqry) {
     jQuery = jqry;
   };
 
@@ -790,7 +790,7 @@
   utils.htmlInit(InfiniteScroll, 'infinite-scroll');
 
   // add noop _init method for jQuery Bridget. #768
-  proto._init = function() {};
+  proto._init = function () { };
 
   let {
     jQueryBridget
@@ -805,7 +805,7 @@
 
 }));
 // page-load
-(function(window, factory) {
+(function (window, factory) {
   // universal module definition
   if (typeof module == 'object' && module.exports) {
     // CommonJS
@@ -835,7 +835,7 @@
     // outlayer: null,
   });
 
-  InfiniteScroll.create.pageLoad = function() {
+  InfiniteScroll.create.pageLoad = function () {
     this.canLoad = true;
     this.on('scrollThreshold', this.onScrollThresholdLoad);
     this.on('load', this.checkLastPage);
@@ -844,13 +844,13 @@
     }
   };
 
-  proto.onScrollThresholdLoad = function() {
+  proto.onScrollThresholdLoad = function () {
     if (this.options.loadOnScroll) this.loadNextPage();
   };
 
   let domParser = new DOMParser();
 
-  proto.loadNextPage = function() {
+  proto.loadNextPage = function () {
     if (this.isLoading || !this.canLoad) return;
 
     let {
@@ -897,7 +897,7 @@
     return fetchPromise;
   };
 
-  proto.onPageLoad = function(body, path, response) {
+  proto.onPageLoad = function (body, path, response) {
     // done loading if not appending
     if (!this.options.append) {
       this.isLoading = false;
@@ -908,7 +908,7 @@
     return this.appendNextPage(body, path, response);
   };
 
-  proto.appendNextPage = function(body, path, response) {
+  proto.appendNextPage = function (body, path, response) {
     let {
       append,
       responseBody,
@@ -949,7 +949,7 @@
     }
   };
 
-  proto.appendItems = function(items, fragment) {
+  proto.appendItems = function (items, fragment) {
     if (!items || !items.length) return;
 
     // get fragment if not provided
@@ -985,7 +985,7 @@
 
   // ----- outlayer ----- //
 
-  proto.appendOutlayerItems = function(fragment, appendReady) {
+  proto.appendOutlayerItems = function (fragment, appendReady) {
     let imagesLoaded = InfiniteScroll.imagesLoaded || window.imagesLoaded;
     if (!imagesLoaded) {
       console.error('[InfiniteScroll] imagesLoaded required for outlayer option');
@@ -993,22 +993,22 @@
       return;
     }
     // append once images loaded
-    return new Promise(function(resolve) {
-      imagesLoaded(fragment, function() {
+    return new Promise(function (resolve) {
+      imagesLoaded(fragment, function () {
         let bodyResponse = appendReady();
         resolve(bodyResponse);
       });
     });
   };
 
-  proto.onAppendOutlayer = function(response, path, items) {
+  proto.onAppendOutlayer = function (response, path, items) {
     this.options.outlayer.appended(items);
   };
 
   // ----- checkLastPage ----- //
 
   // check response for next element
-  proto.checkLastPage = function(body, path) {
+  proto.checkLastPage = function (body, path) {
     let {
       checkLastPage,
       path: pathOpt
@@ -1040,14 +1040,14 @@
     if (!nextElem) this.lastPageReached(body, path);
   };
 
-  proto.lastPageReached = function(body, path) {
+  proto.lastPageReached = function (body, path) {
     this.canLoad = false;
     this.dispatchEvent('last', null, [body, path]);
   };
 
   // ----- error ----- //
 
-  proto.onPageError = function(error, path, response) {
+  proto.onPageError = function (error, path, response) {
     this.isLoading = false;
     this.canLoad = false;
     this.dispatchEvent('error', null, [error, path, response]);
@@ -1056,7 +1056,7 @@
 
   // -------------------------- prefill -------------------------- //
 
-  InfiniteScroll.create.prefill = function() {
+  InfiniteScroll.create.prefill = function () {
     if (!this.options.prefill) return;
 
     let append = this.options.append;
@@ -1073,7 +1073,7 @@
     this.prefill();
   };
 
-  proto.prefill = function() {
+  proto.prefill = function () {
     let distance = this.getPrefillDistance();
     this.isPrefilling = distance >= 0;
     if (this.isPrefilling) {
@@ -1084,7 +1084,7 @@
     }
   };
 
-  proto.getPrefillDistance = function() {
+  proto.getPrefillDistance = function () {
     // element scroll
     if (this.options.elementScroll) {
       return this.scroller.clientHeight - this.scroller.scrollHeight;
@@ -1093,7 +1093,7 @@
     return this.windowHeight - this.element.clientHeight;
   };
 
-  proto.stopPrefill = function() {
+  proto.stopPrefill = function () {
     this.log('stopPrefill');
     this.off('append', this.prefill);
   };
@@ -1104,7 +1104,7 @@
 
 }));
 // scroll-watch
-(function(window, factory) {
+(function (window, factory) {
   // universal module definition
   if (typeof module == 'object' && module.exports) {
     // CommonJS
@@ -1132,7 +1132,7 @@
     // elementScroll: null,
   });
 
-  InfiniteScroll.create.scrollWatch = function() {
+  InfiniteScroll.create.scrollWatch = function () {
     // events
     this.pageScrollHandler = this.onPageScroll.bind(this);
     this.resizeHandler = this.onResize.bind(this);
@@ -1142,11 +1142,11 @@
     if (isEnable) this.enableScrollWatch();
   };
 
-  InfiniteScroll.destroy.scrollWatch = function() {
+  InfiniteScroll.destroy.scrollWatch = function () {
     this.disableScrollWatch();
   };
 
-  proto.enableScrollWatch = function() {
+  proto.enableScrollWatch = function () {
     if (this.isScrollWatching) return;
 
     this.isScrollWatching = true;
@@ -1157,27 +1157,27 @@
     this.bindScrollWatchEvents(true);
   };
 
-  proto.disableScrollWatch = function() {
+  proto.disableScrollWatch = function () {
     if (!this.isScrollWatching) return;
 
     this.bindScrollWatchEvents(false);
     delete this.isScrollWatching;
   };
 
-  proto.bindScrollWatchEvents = function(isBind) {
+  proto.bindScrollWatchEvents = function (isBind) {
     let addRemove = isBind ? 'addEventListener' : 'removeEventListener';
     this.scroller[addRemove]('scroll', this.pageScrollHandler);
     window[addRemove]('resize', this.resizeHandler);
   };
 
-  proto.onPageScroll = InfiniteScroll.throttle(function() {
+  proto.onPageScroll = InfiniteScroll.throttle(function () {
     let distance = this.getBottomDistance();
     if (distance <= this.options.scrollThreshold) {
       this.dispatchEvent('scrollThreshold');
     }
   });
 
-  proto.getBottomDistance = function() {
+  proto.getBottomDistance = function () {
     let bottom, scrollY;
     if (this.options.elementScroll) {
       bottom = this.scroller.scrollHeight;
@@ -1189,7 +1189,7 @@
     return bottom - scrollY;
   };
 
-  proto.onResize = function() {
+  proto.onResize = function () {
     this.updateMeasurements();
   };
 
@@ -1201,7 +1201,7 @@
 
 }));
 // history
-(function(window, factory) {
+(function (window, factory) {
   // universal module definition
   if (typeof module == 'object' && module.exports) {
     // CommonJS
@@ -1232,7 +1232,7 @@
 
   // ----- create/destroy ----- //
 
-  InfiniteScroll.create.history = function() {
+  InfiniteScroll.create.history = function () {
     if (!this.options.history) return;
 
     // check for same origin
@@ -1255,7 +1255,7 @@
     }
   };
 
-  proto.createHistoryAppend = function() {
+  proto.createHistoryAppend = function () {
     this.updateMeasurements();
     this.updateScroller();
     // array of scroll positions of appended pages
@@ -1276,18 +1276,18 @@
     this.bindHistoryAppendEvents(true);
   };
 
-  proto.bindHistoryAppendEvents = function(isBind) {
+  proto.bindHistoryAppendEvents = function (isBind) {
     let addRemove = isBind ? 'addEventListener' : 'removeEventListener';
     this.scroller[addRemove]('scroll', this.scrollHistoryHandler);
     window[addRemove]('unload', this.unloadHandler);
   };
 
-  proto.createHistoryPageLoad = function() {
+  proto.createHistoryPageLoad = function () {
     this.on('load', this.onPageLoadHistory);
   };
 
   InfiniteScroll.destroy.history =
-    proto.destroyHistory = function() {
+    proto.destroyHistory = function () {
       let isHistoryAppend = this.options.history && this.options.append;
       if (isHistoryAppend) {
         this.bindHistoryAppendEvents(false);
@@ -1296,7 +1296,7 @@
 
   // ----- append history ----- //
 
-  proto.onAppendHistory = function(response, path, items) {
+  proto.onAppendHistory = function (response, path, items) {
     // do not proceed if no items. #779
     if (!items || !items.length) return;
 
@@ -1312,7 +1312,7 @@
     });
   };
 
-  proto.getElementScrollY = function(elem) {
+  proto.getElementScrollY = function (elem) {
     if (this.options.elementScroll) {
       return elem.offsetTop - this.top;
     } else {
@@ -1321,7 +1321,7 @@
     }
   };
 
-  proto.onScrollHistory = function() {
+  proto.onScrollHistory = function () {
     // cycle through positions, find biggest without going over
     let scrollPage = this.getClosestScrollPage();
     // set history if changed
@@ -1333,7 +1333,7 @@
 
   utils.debounceMethod(InfiniteScroll, 'onScrollHistory', 150);
 
-  proto.getClosestScrollPage = function() {
+  proto.getClosestScrollPage = function () {
     let scrollViewY;
     if (this.options.elementScroll) {
       scrollViewY = this.scroller.scrollTop + this.scroller.clientHeight / 2;
@@ -1350,7 +1350,7 @@
     return scrollPage;
   };
 
-  proto.setHistory = function(title, path) {
+  proto.setHistory = function (title, path) {
     let optHistory = this.options.history;
     let historyMethod = optHistory && history[optHistory + 'State'];
     if (!historyMethod) return;
@@ -1362,7 +1362,7 @@
 
   // scroll to top to prevent initial scroll-reset after page refresh
   // https://stackoverflow.com/a/18633915/182183
-  proto.onUnload = function() {
+  proto.onUnload = function () {
     if (this.scrollPage.top === 0) return;
 
     // calculate where scroll position would be on refresh
@@ -1375,7 +1375,7 @@
   // ----- load history ----- //
 
   // update URL
-  proto.onPageLoadHistory = function(response, path) {
+  proto.onPageLoadHistory = function (response, path) {
     this.setHistory(response.title, path);
   };
 
@@ -1385,7 +1385,7 @@
 
 }));
 // button
-(function(window, factory) {
+(function (window, factory) {
   // universal module definition
   if (typeof module == 'object' && module.exports) {
     // CommonJS
@@ -1447,14 +1447,14 @@
 
   // InfiniteScroll.defaults.button = null;
 
-  InfiniteScroll.create.button = function() {
+  InfiniteScroll.create.button = function () {
     let buttonElem = utils.getQueryElement(this.options.button);
     if (buttonElem) {
       this.button = new InfiniteScrollButton(buttonElem, this);
     }
   };
 
-  InfiniteScroll.destroy.button = function() {
+  InfiniteScroll.destroy.button = function () {
     if (this.button) this.button.destroy();
   };
 
@@ -1466,7 +1466,7 @@
 
 }));
 // status
-(function(window, factory) {
+(function (window, factory) {
   // universal module definition
   if (typeof module == 'object' && module.exports) {
     // CommonJS
@@ -1490,7 +1490,7 @@
 
   // InfiniteScroll.defaults.status = null;
 
-  InfiniteScroll.create.status = function() {
+  InfiniteScroll.create.status = function () {
     let statusElem = utils.getQueryElement(this.options.status);
     if (!statusElem) return;
 
@@ -1508,38 +1508,38 @@
     this.bindHideStatus('on');
   };
 
-  proto.bindHideStatus = function(bindMethod) {
+  proto.bindHideStatus = function (bindMethod) {
     let hideEvent = this.options.append ? 'append' : 'load';
     this[bindMethod](hideEvent, this.hideAllStatus);
   };
 
-  proto.showRequestStatus = function() {
+  proto.showRequestStatus = function () {
     this.showStatus('request');
   };
 
-  proto.showErrorStatus = function() {
+  proto.showErrorStatus = function () {
     this.showStatus('error');
   };
 
-  proto.showLastStatus = function() {
+  proto.showLastStatus = function () {
     this.showStatus('last');
     // prevent last then append event race condition from showing last status #706
     this.bindHideStatus('off');
   };
 
-  proto.showStatus = function(eventName) {
+  proto.showStatus = function (eventName) {
     show(this.statusElement);
     this.hideStatusEventElements();
     let eventElem = this.statusEventElements[eventName];
     show(eventElem);
   };
 
-  proto.hideAllStatus = function() {
+  proto.hideAllStatus = function () {
     hide(this.statusElement);
     this.hideStatusEventElements();
   };
 
-  proto.hideStatusEventElements = function() {
+  proto.hideStatusEventElements = function () {
     for (let type in this.statusEventElements) {
       let eventElem = this.statusEventElements[type];
       hide(eventElem);
@@ -1573,7 +1573,7 @@
  * MIT License
  */
 
-(function(window, factory) {
+(function (window, factory) {
   'use strict';
   // universal module definition
 
@@ -1583,7 +1583,7 @@
     // AMD
     define([
       'ev-emitter/ev-emitter'
-    ], function(EvEmitter) {
+    ], function (EvEmitter) {
       return factory(window, EvEmitter);
     });
   } else if (typeof module == 'object' && module.exports) {
@@ -1691,7 +1691,7 @@
 
     ImagesLoaded.prototype.options = {};
 
-    ImagesLoaded.prototype.getImages = function() {
+    ImagesLoaded.prototype.getImages = function () {
       this.images = [];
 
       // filter & find items if we have an item selector
@@ -1701,7 +1701,7 @@
     /**
      * @param {Node} element
      */
-    ImagesLoaded.prototype.addElementImages = function(elem) {
+    ImagesLoaded.prototype.addElementImages = function (elem) {
       // filter siblings
       if (elem.nodeName == 'IMG') {
         this.addImage(elem);
@@ -1740,7 +1740,7 @@
       11: true
     };
 
-    ImagesLoaded.prototype.addElementBackgroundImages = function(elem) {
+    ImagesLoaded.prototype.addElementBackgroundImages = function (elem) {
       var style = getComputedStyle(elem);
       if (!style) {
         // Firefox returns null if in a hidden iframe https://bugzil.la/548397
@@ -1761,17 +1761,17 @@
     /**
      * @param {Image} img
      */
-    ImagesLoaded.prototype.addImage = function(img) {
+    ImagesLoaded.prototype.addImage = function (img) {
       var loadingImage = new LoadingImage(img);
       this.images.push(loadingImage);
     };
 
-    ImagesLoaded.prototype.addBackground = function(url, elem) {
+    ImagesLoaded.prototype.addBackground = function (url, elem) {
       var background = new Background(url, elem);
       this.images.push(background);
     };
 
-    ImagesLoaded.prototype.check = function() {
+    ImagesLoaded.prototype.check = function () {
       var _this = this;
       this.progressedCount = 0;
       this.hasAnyBroken = false;
@@ -1783,18 +1783,18 @@
 
       function onProgress(image, elem, message) {
         // HACK - Chrome triggers event before object properties have changed. #83
-        setTimeout(function() {
+        setTimeout(function () {
           _this.progress(image, elem, message);
         });
       }
 
-      this.images.forEach(function(loadingImage) {
+      this.images.forEach(function (loadingImage) {
         loadingImage.once('progress', onProgress);
         loadingImage.check();
       });
     };
 
-    ImagesLoaded.prototype.progress = function(image, elem, message) {
+    ImagesLoaded.prototype.progress = function (image, elem, message) {
       this.progressedCount++;
       this.hasAnyBroken = this.hasAnyBroken || !image.isLoaded;
       // progress event
@@ -1812,7 +1812,7 @@
       }
     };
 
-    ImagesLoaded.prototype.complete = function() {
+    ImagesLoaded.prototype.complete = function () {
       var eventName = this.hasAnyBroken ? 'fail' : 'done';
       this.isComplete = true;
       this.emitEvent(eventName, [this]);
@@ -1831,7 +1831,7 @@
 
     LoadingImage.prototype = Object.create(EvEmitter.prototype);
 
-    LoadingImage.prototype.check = function() {
+    LoadingImage.prototype.check = function () {
       // If complete is true and browser supports natural sizes,
       // try to check for image status manually.
       var isComplete = this.getIsImageComplete();
@@ -1851,13 +1851,13 @@
       this.proxyImage.src = this.img.src;
     };
 
-    LoadingImage.prototype.getIsImageComplete = function() {
+    LoadingImage.prototype.getIsImageComplete = function () {
       // check for non-zero, non-undefined naturalWidth
       // fixes Safari+InfiniteScroll+Masonry bug infinite-scroll#671
       return this.img.complete && this.img.naturalWidth;
     };
 
-    LoadingImage.prototype.confirm = function(isLoaded, message) {
+    LoadingImage.prototype.confirm = function (isLoaded, message) {
       this.isLoaded = isLoaded;
       this.emitEvent('progress', [this, this.img, message]);
     };
@@ -1865,24 +1865,24 @@
     // ----- events ----- //
 
     // trigger specified handler for event type
-    LoadingImage.prototype.handleEvent = function(event) {
+    LoadingImage.prototype.handleEvent = function (event) {
       var method = 'on' + event.type;
       if (this[method]) {
         this[method](event);
       }
     };
 
-    LoadingImage.prototype.onload = function() {
+    LoadingImage.prototype.onload = function () {
       this.confirm(true, 'onload');
       this.unbindEvents();
     };
 
-    LoadingImage.prototype.onerror = function() {
+    LoadingImage.prototype.onerror = function () {
       this.confirm(false, 'onerror');
       this.unbindEvents();
     };
 
-    LoadingImage.prototype.unbindEvents = function() {
+    LoadingImage.prototype.unbindEvents = function () {
       this.proxyImage.removeEventListener('load', this);
       this.proxyImage.removeEventListener('error', this);
       this.img.removeEventListener('load', this);
@@ -1900,7 +1900,7 @@
     // inherit LoadingImage prototype
     Background.prototype = Object.create(LoadingImage.prototype);
 
-    Background.prototype.check = function() {
+    Background.prototype.check = function () {
       this.img.addEventListener('load', this);
       this.img.addEventListener('error', this);
       this.img.src = this.url;
@@ -1912,19 +1912,19 @@
       }
     };
 
-    Background.prototype.unbindEvents = function() {
+    Background.prototype.unbindEvents = function () {
       this.img.removeEventListener('load', this);
       this.img.removeEventListener('error', this);
     };
 
-    Background.prototype.confirm = function(isLoaded, message) {
+    Background.prototype.confirm = function (isLoaded, message) {
       this.isLoaded = isLoaded;
       this.emitEvent('progress', [this, this.element, message]);
     };
 
     // -------------------------- jQuery -------------------------- //
 
-    ImagesLoaded.makeJQueryPlugin = function(jQuery) {
+    ImagesLoaded.makeJQueryPlugin = function (jQuery) {
       jQuery = jQuery || window.jQuery;
       if (!jQuery) {
         return;
@@ -1932,7 +1932,7 @@
       // set local variable
       $ = jQuery;
       // $().imagesLoaded()
-      $.fn.imagesLoaded = function(options, callback) {
+      $.fn.imagesLoaded = function (options, callback) {
         var instance = new ImagesLoaded(this, options, callback);
         return instance.jqDeferred.promise($(this));
       };

@@ -2,12 +2,12 @@
 get_header();
 ?>
 
-<div class="wrapper <?php echo $options_fields['theme_archive_page_color_scheme']; ?>">
+<div class="wrapper">
 	<div class="wrapper-padded">
 		<div class="wrapper-padded-container">
 			<?php
 			if ( have_posts() ) : ?>
-				<div class="flex-hold flex-hold-3 margins-wide grid-infinite listing-grid-container">
+				<div class="flex-hold flex-hold-3 grid-infinite listing-grid-container">
 					<?php
 					while ( have_posts() ) :
 						the_post();

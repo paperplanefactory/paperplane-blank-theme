@@ -1,7 +1,7 @@
 <div class="wrapper page-opening">
 	<div
-		class="fullscreen-cta coverize fluid-typo <?php echo $page_opening_layout_size . ' ' . $content_fields['page_opening_text_align']; ?>">
-		<?php if ( $page_opening_video === 'si' ) : ?>
+		class="fullscreen-cta coverize fluid-typo <?php echo $content_fields['page_opening_layout'] . ' ' . $content_fields['page_opening_text_align']; ?>">
+		<?php if ( $content_fields['page_opening_video'] === 'si' ) : ?>
 			<button class="video-stop video-stop-js pause" data-video-stop="opening-video-js"
 				title="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"
 				aria-label="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"></button>
@@ -10,16 +10,56 @@
 				<source type="video/mp4" src="<?php echo $content_fields['page_opening_video_mp4']; ?>">
 			</video>
 		<?php else : ?>
-			<?php if ( isset( $thumb_url_desktop ) ) : ?>
+			<?php if ( isset( $content_fields['page_opening_image_desktop'] ) ) : ?>
 				<div class="desktop-only">
-					<img src="<?php echo $thumb_url_desktop; ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>"
-						data-aos="fade-in" type="image/<?php echo $filetype_desktop['ext']; ?>" decoding="async" />
+					<?php
+					$image_data = array(
+						'image_type' => 'acf',
+						// options: post_thumbnail, acf
+						'image_value' => $content_fields['page_opening_image_desktop']
+						// se utilizzi un custom field indica qui il nome del campo
+					);
+					$image_appearance = array(
+						// options: true, false
+						'lazyload' => false,
+						// options: sync, async
+						'decoding' => 'async',
+						// options: true, false - se false non mette contenitore intorno all'immagine
+						'image-wrap' => false
+					);
+					$image_sizes = array(
+						// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+						'desktop_hd' => 'full_desk_hd',
+						'mobile_hd' => 'full_desk_hd'
+					);
+					print_theme_image( $image_data, $image_appearance, $image_sizes );
+					?>
 				</div>
 			<?php endif; ?>
-			<?php if ( isset( $thumb_url_mobile ) ) : ?>
+			<?php if ( isset( $content_fields['page_opening_image_mobile'] ) ) : ?>
 				<div class="mobile-only">
-					<img src="<?php echo $thumb_url_mobile; ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>"
-						data-aos="fade-in" type="image/<?php echo $filetype_mobile['ext']; ?>" decoding="async" />
+					<?php
+					$image_data = array(
+						'image_type' => 'acf',
+						// options: post_thumbnail, acf
+						'image_value' => $content_fields['page_opening_image_mobile']
+						// se utilizzi un custom field indica qui il nome del campo
+					);
+					$image_appearance = array(
+						// options: true, false
+						'lazyload' => false,
+						// options: sync, async
+						'decoding' => 'async',
+						// options: true, false - se false non mette contenitore intorno all'immagine
+						'image-wrap' => false
+					);
+					$image_sizes = array(
+						// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+						'desktop_hd' => 'full_desk',
+						'mobile_hd' => 'full_desk'
+					);
+					print_theme_image( $image_data, $image_appearance, $image_sizes );
+					?>
 				</div>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -27,11 +67,11 @@
 		<div class="fullscreen-cta-aligner">
 			<div class="wrapper">
 				<div class="wrapper-padded">
-					<div
+					<section
 						class="fullscreen-cta-safe-padding <?php echo $content_fields['page_opening_text_align_horizontal']; ?>">
 						<div data-aos="fade-up" data-aos-delay="300">
 							<div class="last-child-no-margin">
-								<?php if ( $page_breadcrumbs === 'yes' && function_exists( 'bcn_display' ) ) : ?>
+								<?php if ( $content_fields['page_breadcrumbs'] === 'yes' && function_exists( 'bcn_display' ) ) : ?>
 									<div class="breadcrumbs-holder undelinked-links" typeof="BreadcrumbList"
 										vocab="http://schema.org/">
 										<?php bcn_display(); ?>
@@ -52,30 +92,12 @@
 									</p>
 								<?php endif; ?>
 							</div>
-							<?php if ( $page_taxonomy_show === 'yes' ) : ?>
-								<div class="categories-holder">
-									<?php
-									$page_taxonomy_slug = $content_fields['page_taxonomy_slug'];
-									all_categories( $page_taxonomy_slug );
-									?>
-								</div>
-							<?php endif; ?>
-
 							<div class="clearer"></div>
 							<?php paperplane_theme_cta_advanced( $content_fields['paperplane_theme_cta_page_opening'] ); ?>
 						</div>
-					</div>
+					</section>
 				</div>
 			</div>
 		</div>
-		<?php if ( $page_opening_layout === 'opening-fullscreen' && $page_scroll_button == 1 ) : ?>
-			<div class="scroll-down">
-				<a href="#below-the-fold" title="<?php _e( 'Vai al contenuto', 'paperPlane-blankTheme' ); ?>"
-					aria-label="<?php _e( 'Vai al contenuto', 'paperPlane-blankTheme' ); ?>"></a>
-			</div>
-		<?php endif; ?>
 	</div>
-</div>
-<div class="wrapper">
-	<a name="below-the-fold" class="header-offset-anchor"></a>
 </div>

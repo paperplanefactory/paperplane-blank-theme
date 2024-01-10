@@ -13,6 +13,7 @@
   padding-bottom: 24px;
   border-bottom: solid 1px $color-1;
 
+
   &:last-child {
     margin-bottom: 0;
     border-bottom: none;
@@ -32,23 +33,26 @@
     color: $color-2;
   }
 
-  .exp-minus,
-  .exp-plus {
+  &.exp-open {
+    .icon-js {
+      &:before {
+        content: "+";
+      }
+    }
+  }
+
+  &.exp-close {
+    .icon-js {
+      &:before {
+        content: "-";
+      }
+    }
+  }
+
+  .icon-js {
     position: absolute;
     left: 0;
     font-weight: $font-weight-4;
-  }
-
-  .exp-plus {
-    &:before {
-      content: "+";
-    }
-  }
-
-  .exp-minus {
-    &:before {
-      content: '–';
-    }
   }
 }
 
@@ -57,4 +61,11 @@
     padding-top: 15px;
     padding-left: 25px;
   }
+}
+
+.expander-closer {
+  font-family: $font-main;
+  font-size: $h6-size-smartphone;
+  line-height: $h6-lineheight-smartphone;
+  @include reset-button;
 }

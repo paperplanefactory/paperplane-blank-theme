@@ -1,7 +1,7 @@
 <div class="wrapper">
 	<div class="wrapper-padded">
 		<div class="wrapper-padded-container">
-			<div class="page-opening-simple-spacer alignleft">
+			<section class="page-opening-simple-spacer alignleft">
 				<div class="last-child-no-margin">
 					<h1>
 						<?php _e( 'Hai cercato: ', 'paperPlane-blankTheme' ); ?>
@@ -26,7 +26,7 @@
 					<?php endif; ?>
 				</div>
 				<div class="clearer"></div>
-			</div>
+			</section>
 		</div>
 	</div>
 </div>

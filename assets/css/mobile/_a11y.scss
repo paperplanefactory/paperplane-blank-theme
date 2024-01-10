@@ -1,0 +1,20 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+.reduce-motion-overlay {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.paperplane-toggle {
+    display: block;
+
+    h6 {
+        font-size: cta1-size-smartphone;
+        line-height: cta1-size-smartphone;
+        top: -0.44rem;
+
+    }
+}

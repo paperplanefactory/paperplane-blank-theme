@@ -8,9 +8,9 @@
   }
 
   .stripe-listed {
-    margin-bottom: $flex-hold-column-wide-space-desktop;
+    margin-bottom: 100px;
 
-    &:last-child {
+    &:last-of-type {
       margin-bottom: 0;
     }
 
@@ -19,7 +19,7 @@
         order: 1;
 
         .spacer {
-          padding-right: $flex-hold-column-thin-space-desktop;
+          width: 100%;
         }
       }
 
@@ -27,7 +27,8 @@
         order: 2;
 
         .spacer {
-          padding: 20px $flex-hold-column-thin-space-desktop 20px $flex-hold-column-wide-space-desktop;
+          width: 100%;
+          padding: 20px 0 20px 50px;
           max-width: 850px;
         }
       }
@@ -38,7 +39,7 @@
         order: 2;
 
         .spacer {
-          padding-left: $flex-hold-column-thin-space-desktop;
+          width: 100%;
         }
       }
 
@@ -46,7 +47,8 @@
         order: 1;
 
         .spacer {
-          padding: 20px $flex-hold-column-wide-space-desktop 20px $flex-hold-column-thin-space-desktop;
+          width: 100%;
+          padding: 20px 50px 20px 0;
           max-width: 850px;
           margin-left: auto;
         }

@@ -3,6 +3,24 @@
     "title": "Componente per CTA",
     "fields": [
         {
+            "key": "field_6552233385fc3",
+            "label": "Dati CTA",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
             "key": "field_6390c9658a31a",
             "label": "Testo CTA",
             "name": "cta_text",
@@ -95,7 +113,8 @@
             "max": 1,
             "elements": [
                 "featured_image"
-            ]
+            ],
+            "bidirectional_target": []
         },
         {
             "key": "field_6390ca8f8a31c",
@@ -217,6 +236,54 @@
             "ui": 0,
             "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_65522391c2690",
+            "label": "Impostare un evento personalizzato per Google Analytics?",
+            "name": "cta_custom_event_google_analytics",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Se attivo all'evento verranno aggiunte automaticamente la URL, il titolo della pagina e il testo di questa CTA.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_655224a2c2691",
+            "label": "Nome evento",
+            "name": "cta_custom_event_google_analytics_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Impostare un nome usando solo lettere minuscole, senza spazi e senza accenti. Es. nome_evento_personalizzato",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_65522391c2690",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [],
@@ -237,8 +304,8 @@
         "rows_per_page": "20",
         "min": "",
         "max": "",
-        "button_label": "",
+        "button_label": "Aggiungi CTA",
         "appearances": ""
     },
-    "modified": 1686227566
+    "modified": 1699882417
 }

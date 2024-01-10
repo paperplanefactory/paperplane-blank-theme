@@ -6,10 +6,6 @@
 	clear: both;
 }
 
-.verticalize {
-	@include flex-verticalize;
-}
-
 .last-message {
 	position: relative;
 	display: block;
