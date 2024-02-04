@@ -128,7 +128,6 @@
 							</div>
 						<?php endforeach; endif; ?>
 				</div>
-				<?php paperplane_theme_cta_advanced( $module['paperplane_theme_cta'] ); ?>
 			</div>
 		</div>
 	</div>

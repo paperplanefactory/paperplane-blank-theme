@@ -81,7 +81,7 @@
 					</h2>
 				<?php endif; ?>
 				<div class="clearer"></div>
-				<?php paperplane_theme_cta_advanced( $module['paperplane_theme_cta'] ); ?>
+				<?php paperplane_theme_cta_advanced( $module['module_fullscreen_image_cta'] ); ?>
 			</div>
 		</div>
 	</div>

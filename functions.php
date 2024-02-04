@@ -36,6 +36,8 @@ include_once "includes/theme-pwa.php";
 include_once "includes/theme-maintenance.php";
 // CF7 Forms
 include_once "includes/theme-cf7-forms.php";
+// Performance
+include_once "includes/theme-performance.php";
 // A/B testing
 include_once "includes/theme-ab-testing.php";
 // attivo le traduzioni

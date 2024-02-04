@@ -52,7 +52,7 @@ $module_highlighted_sentence_image = $module['module_highlighted_sentence_image'
 									</h3>
 								<?php endif; ?>
 							</div>
-							<?php paperplane_theme_cta_advanced( $module['paperplane_theme_cta'] ); ?>
+							<?php paperplane_theme_cta_advanced( $module['module_highlighted_sentence_cta'] ); ?>
 						</div>
 					</div>
 					<?php
@@ -70,7 +70,7 @@ $module_highlighted_sentence_image = $module['module_highlighted_sentence_image'
 								</h3>
 							<?php endif; ?>
 						</div>
-						<?php paperplane_theme_cta_advanced( $module['paperplane_theme_cta'] ); ?>
+						<?php paperplane_theme_cta_advanced( $module['module_highlighted_sentence_cta'] ); ?>
 					</div>
 				<?php endif; ?>
 			</div>

@@ -26,7 +26,7 @@ function saveArrayToLocalStorage(arrayName, array) {
 //saveArrayToLocalStorage('paperplane_user_accessibility', myArray);
 
 if (localStorage.getItem('paperplane_user_accessibility') === null) {
-  const initial_a11y_values = { reduced_motion: 0, reduced_transparency: 0 };
+  const initial_a11y_values = { reduced_motion: 1, reduced_transparency: 0 };
   saveArrayToLocalStorage('paperplane_user_accessibility', initial_a11y_values);
 }
 
@@ -36,11 +36,11 @@ jQuery(document).on('click', '.paperplane-reduce-motion-js:not(.initialized)', f
   );
   Object.keys(paperplane_user_accessibility_array).forEach(function (key) {
 
-    if (key == 'reduced_motion' && paperplane_user_accessibility_array[key] == 1) {
-      paperplane_user_accessibility_array[key] = 0;
-    }
-    else if (key == 'reduced_motion' && paperplane_user_accessibility_array[key] == 0) {
+    if (key == 'reduced_motion' && paperplane_user_accessibility_array[key] == 0) {
       paperplane_user_accessibility_array[key] = 1;
+    }
+    else if (key == 'reduced_motion' && paperplane_user_accessibility_array[key] == 1) {
+      paperplane_user_accessibility_array[key] = 0;
     }
   });
   saveArrayToLocalStorage('paperplane_user_accessibility', paperplane_user_accessibility_array);
@@ -66,28 +66,26 @@ jQuery(document).on('click', '.paperplane-reduce-transparency-js:not(.initialize
   e.preventDefault();
 });
 
-
-
 function user_set_accessibility() {
   const paperplane_user_accessibility_options_array = JSON.parse(
     localStorage.getItem('paperplane_user_accessibility'),
   );
   Object.keys(paperplane_user_accessibility_options_array).forEach(function (key) {
-    if (key == 'reduced_motion' && paperplane_user_accessibility_options_array[key] == 1) {
+    if (key == 'reduced_motion' && paperplane_user_accessibility_options_array[key] == 0) {
       jQuery('body').addClass('body-reduced-motion');
       jQuery('.stoppable-js').trigger('pause');
       jQuery('.video-stop-js').removeClass('pause').addClass('play');
-      jQuery('.paperplane-reduce-motion-js').addClass('active');
-      jQuery('.paperplane-reduce-motion-js').attr('aria-pressed', 'true');
+      jQuery('.paperplane-reduce-motion-js').removeClass('active');
+      jQuery('.paperplane-reduce-motion-js').attr('aria-pressed', 'false');
       animation_duration = 0;
       animation_duration_counter = 0;
     }
-    else if (key == 'reduced_motion' && paperplane_user_accessibility_options_array[key] == 0) {
+    else if (key == 'reduced_motion' && paperplane_user_accessibility_options_array[key] == 1) {
       jQuery('body').removeClass('body-reduced-motion');
       jQuery('.stoppable-js').trigger('play');
       jQuery('.video-stop-js').addClass('pause').removeClass('play');
-      jQuery('.paperplane-reduce-motion-js').removeClass('active');
-      jQuery('.paperplane-reduce-motion-js').attr('aria-pressed', 'false');
+      jQuery('.paperplane-reduce-motion-js').addClass('active');
+      jQuery('.paperplane-reduce-motion-js').attr('aria-pressed', 'true');
       animation_duration = 500;
       animation_duration_counter = 1500;
     }
@@ -236,7 +234,7 @@ function hamburgerMenu(e) {
     });
     jQuery('.hambuger-element').attr('aria-expanded', true);
   } else {
-    scrollDirectionMenu();
+    //scrollDirectionMenu();
     jQuery('html, body').css({
       overflow: 'visible',
     });
@@ -266,6 +264,7 @@ var lastScrollTop = 0;
 
 function scrollDirectionMenu() {
   var st = jQuery(this).scrollTop();
+  /*
   if ((st > lastScrollTop) && (st > 100) && !jQuery('.hambuger-element').hasClass('open')) {
     // downscroll code
     jQuery('#header').addClass('hidden');
@@ -277,6 +276,7 @@ function scrollDirectionMenu() {
     // upscroll code
     jQuery('#header').removeClass('hidden');
   }
+  */
   if (st > 200) {
     jQuery('#header').addClass('scrolled');
   }
@@ -307,21 +307,21 @@ jQuery(document).on('click', '.mega-menu-js-trigger:not(.initialized)', function
     jQuery(this).removeClass('clicked');
     jQuery('.mega-menu-js-' + data_megamenu_id + '-target').addClass('hidden');
     jQuery('.submenu-close-js').removeClass('active');
-    scrollDirectionMenu();
+    //scrollDirectionMenu();
   }
   else {
     jQuery('.mega-menu-js-trigger').removeClass('clicked');
     jQuery(this).addClass('clicked');
     jQuery('.mega-menu-js-' + data_megamenu_id + '-target').removeClass('hidden');
     jQuery('.submenu-close-js').addClass('active');
-    jQuery('#header').addClass('scrolled');
+    //jQuery('#header').addClass('scrolled');
   }
   e.preventDefault();
 });
 
 jQuery('.mega-menu-js-trigger').on('keydown', function (event) {
   data_megamenu_id = jQuery(this).data('megamenu-open-id');
-  jQuery('#header').removeClass('scrolled');
+  //jQuery('#header').removeClass('scrolled');
   if (event.keyCode == 13) {
     jQuery('.header-menu-js > .menu-item-has-children > a').removeClass('clicked');
     jQuery('.sub-menu').removeClass('visible');
@@ -329,8 +329,8 @@ jQuery('.mega-menu-js-trigger').on('keydown', function (event) {
     jQuery(this).addClass('clicked');
     jQuery('.mega-menu-js').addClass('hidden');
     jQuery('.mega-menu-js-' + data_megamenu_id + '-target').removeClass('hidden');
-    setTimeout(function () { jQuery('.mega-menu-page-list-' + data_megamenu_id + ' > li:first a').focus() }, 50);
-    jQuery('#header').addClass('scrolled');
+    setTimeout(function () { jQuery('.mega-menu-js-' + data_megamenu_id + '-target a').first().focus() }, 150);
+    //jQuery('#header').addClass('scrolled');
     event.preventDefault();
   }
 });
@@ -345,18 +345,29 @@ jQuery('.mega-menu-js').keyup(function (event) {
   if (event.which == 27) {
     jQuery('.mega-menu-js-' + data_megamenu_id + '-target').addClass('hidden');
     jQuery('.mega-menu-js-' + data_megamenu_id + '-trigger').removeClass('clicked').focus();
-    scrollDirectionMenu();
+    //scrollDirectionMenu();
   }
 });
 
 jQuery('.mega-menu-js a').last().on('keydown', function (event) {
-  menu_id = jQuery(this).closest('.mega-menu-js').data('mega-menu-id');
+  data_megamenu_id = jQuery(this).closest('.mega-menu-js').data('mega-menu-id');
   if (event.keyCode == 9) {
     jQuery('.mega-menu-js-trigger').removeClass('clicked');
     jQuery('.mega-menu-js').addClass('hidden');
-    jQuery('.mega-menu-js-' + menu_id + '-trigger').parent().next('li').find('a:first').focus();
+    jQuery('.mega-menu-js-' + data_megamenu_id + '-trigger').parent().next('li').find('a:first').focus();
     event.preventDefault();
   }
+});
+
+jQuery('.mega-menu-js').each(function (i, el) {
+  data_megamenu_id = jQuery(this).data('mega-menu-id');
+  jQuery(this).find('a').first().on('keydown', function (event) {
+    if (event.shiftKey && (event.keyCode == 9)) {
+      jQuery('.mega-menu-js-' + data_megamenu_id + '-target').addClass('hidden');
+      setTimeout(function () { jQuery('.mega-menu-js-' + data_megamenu_id + '-trigger').removeClass('clicked').focus() }, 1);
+      event.preventDefault();
+    }
+  });
 });
 
 /////////////////////////////////////////////
@@ -609,10 +620,10 @@ jQuery(document).on('click', '.expander:not(.initialized)', function (e) {
   var expand_id = jQuery(this).data('expand-id');
   if (jQuery('#expand-button-' + expand_id).hasClass('exp-close')) {
     jQuery('#expand-button-' + expand_id).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false);
-    jQuery('#expand-content-' + expand_id).slideUp(animation_duration).removeClass('visible');
+    jQuery('#expand-content-' + expand_id).slideUp(animation_duration).removeClass('visible').attr('aria-hidden', true);
   } else {
     jQuery('#expand-button-' + expand_id).addClass('exp-close').removeClass('exp-open').attr('aria-expanded', true);
-    jQuery('#expand-content-' + expand_id).slideDown(animation_duration).addClass('visible');
+    jQuery('#expand-content-' + expand_id).slideDown(animation_duration).addClass('visible').attr('aria-hidden', false);
   }
   e.preventDefault();
 });
@@ -620,7 +631,7 @@ jQuery(document).on('click', '.expander:not(.initialized)', function (e) {
 jQuery(document).on('click', '.expander-closer:not(.initialized)', function (e) {
   var expand_id = jQuery(this).data('expand-id');
   jQuery('#expand-button-' + expand_id).addClass('exp-open').removeClass('exp-close').attr('aria-expanded', false);
-  jQuery('#expand-content-' + expand_id).slideUp(animation_duration).removeClass('visible');
+  jQuery('#expand-content-' + expand_id).slideUp(animation_duration).removeClass('visible').attr('aria-hidden', true);
   e.preventDefault();
 });
 

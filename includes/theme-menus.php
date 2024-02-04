@@ -71,12 +71,22 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		$languages = array( 'any-lang' );
 	}
 	foreach ( $languages as $lang ) {
-		// gestione cookie GDPR
+		// gestione footer
 		acf_add_options_sub_page(
 			array(
 				'page_title' => 'Gestione footer (' . strtoupper( $lang ) . ')',
 				'menu_title' => __( 'Gestione footer (' . strtoupper( $lang ) . ')', 'text-domain' ),
 				'menu_slug' => "gestione-footer-{$lang}",
+				'post_id' => $lang,
+				'parent_slug' => $parent['menu_slug'],
+			)
+		);
+		// gestione archivi
+		acf_add_options_sub_page(
+			array(
+				'page_title' => 'Gestione archivi (' . strtoupper( $lang ) . ')',
+				'menu_title' => __( 'Gestione archivi (' . strtoupper( $lang ) . ')', 'text-domain' ),
+				'menu_slug' => "gestione-archivi-{$lang}",
 				'post_id' => $lang,
 				'parent_slug' => $parent['menu_slug'],
 			)
