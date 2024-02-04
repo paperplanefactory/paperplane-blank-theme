@@ -16,62 +16,79 @@ else {
 // accessibility user
 /////////////////////////////////////////////
 
-
+var theme_version = jQuery('body').data('theme-version');
 function saveArrayToLocalStorage(arrayName, array) {
   localStorage.setItem(arrayName, JSON.stringify(array));
 }
-
+function addHours(date, hours) {
+  date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+  return date;
+}
 // Example usage
 //const myArray = { reduced_motion: 0, reduced_transparency: 0 };
-//saveArrayToLocalStorage('paperplane_user_accessibility', myArray);
+//saveArrayToLocalStorage('paperplane_user_preferences', myArray);
 
-if (localStorage.getItem('paperplane_user_accessibility') === null) {
-  const initial_a11y_values = { reduced_motion: 1, reduced_transparency: 0 };
-  saveArrayToLocalStorage('paperplane_user_accessibility', initial_a11y_values);
+if (localStorage.getItem('paperplane_user_preferences' + theme_version) != null) {
+  const now = new Date();
+  const paperplane_user_preferences_array = JSON.parse(
+    localStorage.getItem('paperplane_user_preferences' + theme_version),
+  );
+  Object.keys(paperplane_user_preferences_array).forEach(function (key) {
+    if (key == 'expiry' && now.getTime() > paperplane_user_preferences_array[key]) {
+      localStorage.removeItem('paperplane_user_preferences' + theme_version);
+    }
+  });
+}
+
+if (localStorage.getItem('paperplane_user_preferences' + theme_version) === null) {
+  const expry_date = addHours(new Date(), (1 * 24) * 365);
+  //const expry_date = addHours(new Date(), 1 / 60);
+  const initial_a11y_values = { expiry: expry_date.getTime(), reduced_motion: 1, reduced_transparency: 0, dark_mode: 0 };
+  saveArrayToLocalStorage('paperplane_user_preferences' + theme_version, initial_a11y_values);
 }
 
 jQuery(document).on('click', '.paperplane-reduce-motion-js:not(.initialized)', function (e) {
-  const paperplane_user_accessibility_array = JSON.parse(
-    localStorage.getItem('paperplane_user_accessibility'),
+  const paperplane_user_preferences_array = JSON.parse(
+    localStorage.getItem('paperplane_user_preferences' + theme_version),
   );
-  Object.keys(paperplane_user_accessibility_array).forEach(function (key) {
+  Object.keys(paperplane_user_preferences_array).forEach(function (key) {
 
-    if (key == 'reduced_motion' && paperplane_user_accessibility_array[key] == 0) {
-      paperplane_user_accessibility_array[key] = 1;
+    if (key == 'reduced_motion' && paperplane_user_preferences_array[key] == 0) {
+      paperplane_user_preferences_array[key] = 1;
     }
-    else if (key == 'reduced_motion' && paperplane_user_accessibility_array[key] == 1) {
-      paperplane_user_accessibility_array[key] = 0;
+    else if (key == 'reduced_motion' && paperplane_user_preferences_array[key] == 1) {
+      paperplane_user_preferences_array[key] = 0;
     }
   });
-  saveArrayToLocalStorage('paperplane_user_accessibility', paperplane_user_accessibility_array);
+  saveArrayToLocalStorage('paperplane_user_preferences' + theme_version, paperplane_user_preferences_array);
   user_set_accessibility();
   e.preventDefault();
 });
 
 jQuery(document).on('click', '.paperplane-reduce-transparency-js:not(.initialized)', function (e) {
-  const paperplane_user_accessibility_array = JSON.parse(
-    localStorage.getItem('paperplane_user_accessibility'),
+  const paperplane_user_preferences_array = JSON.parse(
+    localStorage.getItem('paperplane_user_preferences' + theme_version),
   );
-  Object.keys(paperplane_user_accessibility_array).forEach(function (key) {
+  Object.keys(paperplane_user_preferences_array).forEach(function (key) {
 
-    if (key == 'reduced_transparency' && paperplane_user_accessibility_array[key] == 1) {
-      paperplane_user_accessibility_array[key] = 0;
+    if (key == 'reduced_transparency' && paperplane_user_preferences_array[key] == 1) {
+      paperplane_user_preferences_array[key] = 0;
     }
-    else if (key == 'reduced_transparency' && paperplane_user_accessibility_array[key] == 0) {
-      paperplane_user_accessibility_array[key] = 1;
+    else if (key == 'reduced_transparency' && paperplane_user_preferences_array[key] == 0) {
+      paperplane_user_preferences_array[key] = 1;
     }
   });
-  saveArrayToLocalStorage('paperplane_user_accessibility', paperplane_user_accessibility_array);
+  saveArrayToLocalStorage('paperplane_user_preferences' + theme_version, paperplane_user_preferences_array);
   user_set_accessibility();
   e.preventDefault();
 });
 
 function user_set_accessibility() {
-  const paperplane_user_accessibility_options_array = JSON.parse(
-    localStorage.getItem('paperplane_user_accessibility'),
+  const paperplane_user_preferences_options_array = JSON.parse(
+    localStorage.getItem('paperplane_user_preferences' + theme_version),
   );
-  Object.keys(paperplane_user_accessibility_options_array).forEach(function (key) {
-    if (key == 'reduced_motion' && paperplane_user_accessibility_options_array[key] == 0) {
+  Object.keys(paperplane_user_preferences_options_array).forEach(function (key) {
+    if (key == 'reduced_motion' && paperplane_user_preferences_options_array[key] == 0) {
       jQuery('body').addClass('body-reduced-motion');
       jQuery('.stoppable-js').trigger('pause');
       jQuery('.video-stop-js').removeClass('pause').addClass('play');
@@ -79,7 +96,7 @@ function user_set_accessibility() {
       animation_duration = 0;
       animation_duration_counter = 0;
     }
-    else if (key == 'reduced_motion' && paperplane_user_accessibility_options_array[key] == 1) {
+    else if (key == 'reduced_motion' && paperplane_user_preferences_options_array[key] == 1) {
       jQuery('body').removeClass('body-reduced-motion');
       jQuery('.stoppable-js').trigger('play');
       jQuery('.video-stop-js').addClass('pause').removeClass('play');
@@ -87,11 +104,11 @@ function user_set_accessibility() {
       animation_duration = 500;
       animation_duration_counter = 1500;
     }
-    if (key == 'reduced_transparency' && paperplane_user_accessibility_options_array[key] == 1) {
+    if (key == 'reduced_transparency' && paperplane_user_preferences_options_array[key] == 1) {
       jQuery('body').addClass('body-reduced-transparency');
       jQuery('.paperplane-reduce-transparency-js').attr('aria-checked', 'true');
     }
-    else if (key == 'reduced_transparency' && paperplane_user_accessibility_options_array[key] == 0) {
+    else if (key == 'reduced_transparency' && paperplane_user_preferences_options_array[key] == 0) {
       jQuery('body').removeClass('body-reduced-transparency');
       jQuery('.paperplane-reduce-transparency-js').attr('aria-checked', 'false');
     }
@@ -278,6 +295,18 @@ jQuery('#head-overlay a:last').on('keydown', function (event) {
 });
 jQuery(document).on('click', '.ham-activator-js:not(.initialized)', function (e) {
   hamburgerMenu();
+});
+
+jQuery('.overlay-navi-reset-js').on('focusin', function (e) {
+  jQuery('.ham-activator-js').focus();
+  e.preventDefault();
+});
+
+jQuery('#head-overlay').on('keydown', function (event) {
+  if (event.keyCode == 27) {
+    jQuery('.ham-activator-js').focus();
+    closeHamburgerMenu();
+  }
 });
 
 /////////////////////////////////////////////
