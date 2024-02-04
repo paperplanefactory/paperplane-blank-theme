@@ -2,6 +2,12 @@
 @import 'vars';
 @import 'mixin'; // wrappers and more
 
+.paperplane-slider {
+    &>.slide:not(:first-child) {
+        display: none;
+    }
+}
+
 .slick-next,
 .slick-prev {
     color: $color-1;
@@ -22,5 +28,18 @@
                 background-color: $color-1;
             }
         }
+    }
+}
+
+.hidden-dots {
+    .slick-dots {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        overflow: hidden;
     }
 }

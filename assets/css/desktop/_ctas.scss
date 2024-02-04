@@ -2,7 +2,14 @@
 @import '../global/vars';
 @import '../global/mixin';
 
-.cta-navi a,
+.cta-holder {
+
+	button,
+	a {
+		margin: 0 15px 0 0;
+	}
+}
+
 .default-button {
 	padding: 14px 22px 12px !important;
 	font-size: 1rem;
@@ -10,6 +17,9 @@
 }
 
 .default-button-b {
+	font-size: 1rem;
+	line-height: 1rem;
+
 	&:after {
 		font-size: calc(#{$cta1-size-desktop} + 5px);
 		line-height: calc(#{$cta1-lineheight-desktop} + 5px);

@@ -62,8 +62,8 @@ function set_pwa_data() {
 		'scope' => get_home_url(),
 		'display' => 'standalone',
 		'lang' => 'it-IT',
-		'background_color' => $bg_color,
-		'theme_color' => $color,
+		'background_color' => $manifest_data['background_color'],
+		'theme_color' => $manifest_data['theme_color'],
 		'orientation' => 'portrait-primary',
 		'icons' => array(
 			array(
@@ -81,14 +81,14 @@ function set_pwa_data() {
 		),
 		'screenshots' => array(
 			array(
-				'src' => $pwa_wide_screenshot,
+				'src' => $manifest_data['screenshots'][ $index ]['src'],
 				'sizes' => '1280x720',
 				'type' => 'image/png',
 				'form_factor' => 'wide',
 				'label' => 'Homescreen di' . get_bloginfo( 'name' ),
 			),
 			array(
-				'src' => $pwa_narrow_screenshot,
+				'src' => $manifest_data['screenshots'][ $index ]['src'],
 				'sizes' => '720x1280',
 				'type' => 'image/png',
 				'form_factor' => 'narrow',
@@ -164,8 +164,8 @@ function set_pwa_data() {
   <meta name="robots" content="noindex, nofollow" />
   <style>
   body {
-    background-color: ' . $bg_color . ';
-    color: ' . $color . ';
+    background-color: ' . get_field( 'uc_m_bgcolor', 'option' ) . ';
+    color: ' . get_field( 'uc_m_color', 'option' ) . ';
     font-family:Arial, Helvetica, sans-serif;
   }
   * {

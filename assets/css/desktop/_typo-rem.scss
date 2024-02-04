@@ -20,7 +20,7 @@ h2 {
 h3 {
     font-size: 1.63rem;
     line-height: 2.25rem;
-    margin: 0 0 2.25rem;
+    margin: 0 0 1rem;
 }
 
 .as-h4,
@@ -39,10 +39,17 @@ h5 {
 
 .mega-menu,
 .menu {
-    font-size: 1rem;
-    line-height: 1rem;
+    font-size: 0.88rem;
+    line-height: 0.88rem;
+
+    a,
+    button {
+        font-size: 0.88rem;
+        line-height: 0.88rem;
+    }
 }
 
+.mega-menu p,
 #footer p,
 .as-h6,
 figcaption,
@@ -55,7 +62,7 @@ h6 {
 p {
     font-size: 1.13rem;
     line-height: 1.75rem;
-    margin: 0 0 1.75rem;
+    margin: 0 0 1rem;
     padding: 0;
 }
 
@@ -133,21 +140,16 @@ p {
     font-style: italic;
 }
 
-.expander {
-    font-family: $font-main;
-    font-weight: $font-weight-1;
-    font-size: $h4-size-desktop;
-    line-height: $h4-lineheight-desktop;
-}
-
 .fluid-typo {
     h1 {
-        font-size: calc(4.19rem + 1.2vw);
-        line-height: calc(4.75rem + 1.5vw);
+        font-size: calc(1rem + 4vw);
+        line-height: calc(2rem + 4vw);
+        margin-bottom: calc(1rem + 2vw);
     }
 
     h2 {
-        font-size: calc(2.5rem + 0.5vw);
-        line-height: calc(3.13rem + 0.7vw);
+        font-size: calc(1rem + 2vw);
+        line-height: calc(1.2rem + 2vw);
+        margin-bottom: calc(1.2rem + 2vw);
     }
 }

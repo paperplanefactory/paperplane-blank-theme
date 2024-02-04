@@ -270,7 +270,7 @@
         {
             "key": "field_64f1faa8cd4ed",
             "label": "Colore background pagina in costruzione e manutenzione",
-            "name": "uc_m_bgcolor_copia",
+            "name": "uc_m_bgcolor",
             "aria-label": "",
             "type": "color_picker",
             "instructions": "",
@@ -315,5 +315,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1699455796
+    "modified": 1706879498
 }

@@ -19,20 +19,22 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 					</div>
 					<div class="flex-hold-child desktop-align-right">
 						<?php if ( $options_fields['global_socials'] ) : ?>
-							<ul class="site-socials inline-socials">
-								<?php
-								foreach ( $options_fields['global_socials'] as $global_social ) :
-									$parse_social = parse_url( $global_social['global_socials_profile_url'] );
-									?>
-									<li>
-										<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
-											class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
-											aria-label="<?php echo _e( 'Visita il nostro profilo su', 'paperPlane-blankTheme' ) . ' ' . $parse_social['host']; ?>"
-											rel="noopener">
-										</a>
-									</li>
-								<?php endforeach; ?>
-							</ul>
+							<nav aria-label="<?php _e( 'Menu social', 'paperPlane-blankTheme' ); ?>">
+								<ul class="site-socials inline-socials">
+									<?php
+									foreach ( $options_fields['global_socials'] as $global_social ) :
+										$parse_social = parse_url( $global_social['global_socials_profile_url'] );
+										?>
+										<li>
+											<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
+												class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
+												aria-label="<?php echo __( 'Visita il nostro profilo su', 'paperPlane-blankTheme' ) . ' ' . $parse_social['host'] . ' ' . __( '- si apre in una nuova finestra', 'paperPlane-blankTheme' ); ?>"
+												rel="noopener">
+											</a>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+							</nav>
 						<?php endif; ?>
 					</div>
 				</div>
@@ -45,9 +47,10 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 					<div class="flex-hold-child">
 						<?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_legal_notes']; ?>
 						<?php if ( $options_fields['animations_option'] == 1 ) : ?>
-							<div class="user-accessibility-options">
+							<nav class="user-accessibility-options"
+								aria-label="<?php _e( 'Preferenze accessibilità', 'paperPlane-blankTheme' ); ?>">
 								<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
-							</div>
+							</nav>
 						<?php endif; ?>
 					</div>
 					<div class="flex-hold-child desktop-align-right">
@@ -58,7 +61,7 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 		</div>
 	</div>
 </footer>
-<?php include( locate_template( 'template-parts/grid/mega-menu.php' ) ); ?>
+<?php //include( locate_template( 'template-parts/grid/mega-menu.php' ) ); ?>
 </div>
 <?php
 if ( ! empty( $cta_url_modal_array ) ) {

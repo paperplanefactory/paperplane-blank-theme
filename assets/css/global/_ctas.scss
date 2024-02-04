@@ -2,13 +2,6 @@
 @import '../global/vars';
 @import '../global/mixin';
 
-.cta-holder {
-	a {
-		margin: 0 10px 0 0;
-	}
-}
-
-.cta-navi a,
 .default-button {
 	position: relative;
 	display: inline-block;
@@ -16,21 +9,22 @@
 	text-align: center;
 	text-decoration: none !important;
 	border: solid 1px;
+	@include transition(all 0.3s linear);
+	cursor: pointer;
+	font-family: $font-main;
+	font-weight: $font-weight-3;
 }
 
-a.default-button:link,
-a.default-button:visited,
-.cta-navi a:link,
-.cta-navi a:visited {
+.default-button,
+.default-button:link,
+.default-button:visited {
 	color: $color-3;
 	background-color: $color-1;
 	border-color: $color-1;
 }
 
-a.default-button:active,
-a.default-button:hover,
-.cta-navi a:active,
-.cta-navi a:hover {
+.default-button:active,
+.default-button:hover {
 	color: $color-1;
 	background-color: $color-4;
 	border-color: $color-1;
@@ -40,6 +34,11 @@ a.default-button:hover,
 	position: relative;
 	display: inline-block;
 	text-decoration: none !important;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font-family: $font-main;
+	font-weight: $font-weight-3;
 
 	&:after {
 		position: relative;

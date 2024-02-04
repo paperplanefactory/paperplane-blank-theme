@@ -2,14 +2,25 @@
 @import '../global/vars';
 @import '../global/mixin';
 
+.cta-holder {
+
+	button,
+	a {
+		margin: 0 15px 15px 0;
+	}
+}
+
 .cta-navi a,
 .default-button {
 	padding: 14px 22px 12px !important;
-	font-size: $cta1-size-smartphone;
-	line-height: $cta1-lineheight-smartphone;
+	font-size: 1rem;
+	line-height: 1rem;
 }
 
 .default-button-b {
+	font-size: 1rem;
+	line-height: 1rem;
+
 	&:after {
 		font-size: calc(#{$cta1-size-smartphone} + 5px);
 		line-height: calc(#{$cta1-lineheight-smartphone} + 5px);

@@ -347,22 +347,6 @@ label,
 	}
 }
 
-.form-top {
-	position: absolute;
-	margin: -1px;
-	font-size: 0;
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
-	visibility: visible;
-	clip: rect(1px, 1px, 1px, 1px);
-	clip-path: inset(50%);
-
-	&.hidden {
-		visibility: hidden;
-	}
-}
-
 .form-block {
 	display: block;
 }

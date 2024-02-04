@@ -1,7 +1,64 @@
 {
     "key": "group_65ae7ed0ce578",
-    "title": "Pagine in preload",
+    "title": "Gestione archivi e altro",
     "fields": [
+        {
+            "key": "field_65b7de451c352",
+            "label": "Archivi",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
+            "key": "field_65b7de521c353",
+            "label": "Pagina archivio test",
+            "name": "pagina_archivio_test",
+            "aria-label": "",
+            "type": "page_link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": "",
+            "post_status": "",
+            "taxonomy": "",
+            "allow_archives": 1,
+            "multiple": 0,
+            "allow_null": 0
+        },
+        {
+            "key": "field_65b7de321c351",
+            "label": "Pagine in preload",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
         {
             "key": "field_65ae7ed11fec6",
             "label": "Attenzione",
@@ -16,7 +73,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "Per ridurre i tempi di caricamento è possibile aggiungere fino a 5 pagine che verranno pre caricate tre quelle che vengono visualizzate più spesso.",
+            "message": "Per ridurre i tempi di caricamento è possibile aggiungere fino a 5 pagine che verranno pre caricate tra quelle che vengono visualizzate più spesso.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -79,5 +136,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1705934800
+    "modified": 1706877983
 }

@@ -134,7 +134,7 @@
                 [
                     {
                         "field": "field_6390c9658a31a",
-                        "operator": "==empty"
+                        "operator": "!=empty"
                     },
                     {
                         "field": "field_6390c9fa8a31b",
@@ -163,7 +163,7 @@
                 [
                     {
                         "field": "field_6390c9658a31a",
-                        "operator": "==empty"
+                        "operator": "!=empty"
                     },
                     {
                         "field": "field_6390c9fa8a31b",
@@ -230,6 +230,22 @@
                     {
                         "field": "field_6390c9658a31a",
                         "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_6390c9fa8a31b",
+                        "operator": "==",
+                        "value": "external-cta"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6390c9658a31a",
+                        "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_6390c9fa8a31b",
+                        "operator": "==",
+                        "value": "download-cta"
                     }
                 ]
             ],
@@ -320,5 +336,5 @@
         "button_label": "Aggiungi CTA",
         "appearances": ""
     },
-    "modified": 1706007455
+    "modified": 1706734668
 }

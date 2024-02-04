@@ -75,6 +75,11 @@ a.absl:visited {
 	font-size: 0;
 }
 
+.last-focus {
+	font-size: 0;
+	opacity: 0;
+}
+
 .undelinked-links {
 	a {
 		text-decoration: underline;

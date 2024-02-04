@@ -4,8 +4,7 @@
 		<div class="fullscreen-cta-aligner">
 			<div class="wrapper">
 				<div class="wrapper-padded">
-					<section
-						class="fullscreen-cta-safe-padding <?php echo $content_fields['page_opening_text_align_horizontal']; ?>">
+					<section class="fullscreen-cta-safe-padding alignleft">
 						<div data-aos="fade-up" data-aos-delay="300">
 							<div class="last-child-no-margin">
 								<h1>

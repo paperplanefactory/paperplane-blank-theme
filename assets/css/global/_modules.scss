@@ -2,6 +2,11 @@
 @import '../global/vars';
 @import '../global/mixin';
 
+.modules-handler {
+  position: relative;
+  content-visibility: auto;
+}
+
 .expandable-content {
   display: none;
 

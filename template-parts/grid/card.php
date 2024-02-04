@@ -1,7 +1,7 @@
 <?php
 $card_cta_count = sizeof( $card['module_cards_repeater_cta'] );
 ?>
-<div class="flex-hold-child card" data-aos="fade-up">
+<article class="flex-hold-child card" data-aos="fade-up">
 	<div class="inner bg-4">
 		<?php if ( isset( $card['module_cards_repeater_image'] ) ) : ?>
 			<div class="card-image" aria-hidden="true">
@@ -42,6 +42,6 @@ $card_cta_count = sizeof( $card['module_cards_repeater_cta'] );
 			paperplane_theme_cta_advanced( $card['module_cards_repeater_cta'] );
 			?>
 		</div>
-		<a href="#" class="absl"></a>
+		<a href="#" class="card-link"></a>
 	</div>
-</div>
+</article>

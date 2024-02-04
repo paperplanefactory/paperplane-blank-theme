@@ -7,8 +7,6 @@
 @import 'global/colors';
 @import 'global/a11y';
 //@import 'global/font-blanktheme-icons';
-@import 'global/socials';
-@import 'global/font-material-icons';
 @import 'global/typo';
 @import 'global/wrappers';
 @import 'global/grids';
@@ -16,8 +14,6 @@
 @import 'global/buttons';
 @import 'global/ctas';
 @import 'global/media';
-@import 'global/forms';
-@import 'global/slideshows';
 // imports mobile
 
 @media screen and (min-width: $break-mobile-start) and (max-width: $break-tablet-end) {
@@ -28,6 +24,7 @@
   @import 'mobile/wrappers';
   @import 'mobile/grids';
   @import 'mobile/listings';
+  @import 'mobile/cards';
   @import 'mobile/module-text';
   @import 'mobile/module-highlighted-sentence';
   @import 'mobile/module-columns';
@@ -39,7 +36,6 @@
   @import 'mobile/module-banner';
   @import 'mobile/module-video';
   @import 'mobile/module-scroll-text';
-  @import 'mobile/module-cards';
   @import 'mobile/ctas';
   @import 'mobile/buttons';
   @import 'mobile/media';
@@ -60,6 +56,7 @@
   @import 'desktop/wrappers';
   @import 'desktop/grids';
   @import 'desktop/listings';
+  @import 'desktop/cards';
   @import 'desktop/module-text';
   @import 'desktop/module-highlighted-sentence';
   @import 'desktop/module-columns';
@@ -71,7 +68,6 @@
   @import 'desktop/module-banner';
   @import 'desktop/module-video';
   @import 'desktop/module-scroll-text';
-  @import 'desktop/module-cards';
   @import 'desktop/ctas';
   @import 'desktop/buttons';
   @import 'desktop/media';
@@ -79,12 +75,16 @@
   @import 'desktop/forms';
   @import 'desktop/slideshows';
   @import 'desktop/modals';
+  @import 'global/admin-bar';
 }
 
+@import 'global/forms';
+@import 'global/slideshows';
+@import 'global/socials';
+@import 'global/font-material-icons';
 @import 'global/libraries/aos';
 @import 'global/libraries/slick';
 @import 'global/pagenavi';
-@import 'global/admin-bar';
 @import 'global/mixin';
 @import 'global/modals';
 
