@@ -214,7 +214,6 @@ $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_co
 						</div>
 					</div>
 				</div>
-				<?php paperplane_theme_cta_advanced( $module['paperplane_theme_cta'] ); ?>
 			</div>
 		</div>
 	</div>

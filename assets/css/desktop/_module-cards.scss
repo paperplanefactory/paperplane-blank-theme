@@ -1,0 +1,58 @@
+// main: ../style.scss
+@import '../global/vars';
+@import '../global/mixin';
+
+@mixin card-outlines {
+    -webkit-border-top-left-radius: 50px;
+    -webkit-border-bottom-right-radius: 50px;
+    -moz-border-radius-topleft: 50px;
+    -moz-border-radius-bottomright: 50px;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.module-cards {
+    .flex-hold {
+        margin-top: 2px;
+    }
+
+    .cta-holder {
+        margin: 32px 0 0;
+    }
+}
+
+.card {
+
+    .inner {
+        position: relative;
+        height: 100%;
+        box-shadow: 0 0 0 2px $color-1;
+        @include card-outlines;
+        @include transition(all 0.3s ease-in-out);
+    }
+
+    .card-image {
+        -webkit-border-top-left-radius: 50px;
+        -moz-border-radius-topleft: 50px;
+        border-top-left-radius: 50px;
+        overflow: hidden;
+    }
+
+    .absl {
+        @include card-outlines;
+
+        &:hover {
+            box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    a {
+        &:not(.absl) {
+            z-index: 11;
+        }
+    }
+
+    .card-texts {
+        padding: 20px;
+    }
+}

@@ -53,6 +53,14 @@
 					case 'module-video':
 						include( locate_template( 'template-parts/modules/module-video.php' ) );
 						break;
+					// module-cards
+					case 'module-cards':
+						include( locate_template( 'template-parts/modules/module-cards.php' ) );
+						break;
+					// module-scroll-text
+					case 'module-scroll-text':
+						include( locate_template( 'template-parts/modules/module-scroll-text.php' ) );
+						break;
 				}
 			}
 		}

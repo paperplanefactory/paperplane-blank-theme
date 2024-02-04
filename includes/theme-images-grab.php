@@ -5,9 +5,9 @@ function print_theme_image( $image_data, $image_appearance, $image_sizes ) {
 		if ( array_key_exists( 'lazyload', $image_appearance ) ) {
 			$lazyload = $image_appearance['lazyload'];
 			if ( $lazyload === TRUE ) {
-				$lazyload_snippet = 'loading="lazy"';
+				$lazyload_snippet = 'loading="lazy" fetchpriority="low"';
 			} else {
-				$lazyload_snippet = 'loading="eager"';
+				$lazyload_snippet = 'loading="eager" fetchpriority="high"';
 			}
 		}
 		if ( array_key_exists( 'image-wrap', $image_appearance ) ) {
@@ -58,33 +58,3 @@ function print_theme_image( $image_data, $image_appearance, $image_sizes ) {
 	}
 }
 
-function paperplane_images_preload_add_meta_tags() {
-	global $post;
-	$static_bloginfo_stylesheet_directory = get_bloginfo( 'stylesheet_directory' );
-	$preload_media_meta = "\n" . '<link rel="preload" href="' . $static_bloginfo_stylesheet_directory . '/assets/images/site-logo-header.svg" fetchpriority="high" as="image" type="image/svg+xml" crossorigin />' . "\n";
-	if ( $post ) {
-		$content_fields = paperplane_content_transients( $post->ID );
-		if ( $content_fields ) {
-			if ( array_key_exists( 'page_opening_layout', $content_fields ) ) {
-				$page_opening_layout = $content_fields['page_opening_layout'];
-			}
-
-			if ( $page_opening_layout === 'opening-fullscreen' || $page_opening_layout === 'opening-almost-fullscreen' ) {
-				$page_opening_video = $content_fields['page_opening_video'];
-				if ( $page_opening_video === 'no' ) {
-					if ( ! empty( $content_fields['page_opening_image_desktop'] ) ) {
-						$preload_media_meta .= '<link rel="preload" media="(min-width: 1024px)" href="' . $content_fields['page_opening_image_desktop']['sizes']['full_desk_hd'] . '" fetchpriority="high" as="image" type="' . $content_fields['page_opening_image_desktop']['mime_type'] . '" />' . "\n";
-					}
-					if ( ! empty( $content_fields['page_opening_image_mobile'] ) ) {
-						$preload_media_meta .= '<link rel="preload" media="(max-width: 1023px)" href="' . $content_fields['page_opening_image_mobile']['sizes']['full_desk'] . '" fetchpriority="high" as="image" type="' . $content_fields['page_opening_image_desktop']['mime_type'] . '" />' . "\n";
-					}
-				}
-				if ( $page_opening_video === 'si' ) {
-					$preload_media_meta .= '<link rel="preload" href="' . $content_fields['page_opening_video_mp4'] . '" fetchpriority="high" as="video" type="video/mp4" />' . "\n";
-				}
-			}
-		}
-	}
-	echo $preload_media_meta;
-}
-add_action( 'wp_head', 'paperplane_images_preload_add_meta_tags', 1 );

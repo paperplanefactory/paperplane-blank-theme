@@ -41,6 +41,7 @@
                     "choices": {
                         "module-text": "Modulo colonna di testo",
                         "module-highlighted-sentence": "Modulo frase in evidenza",
+                        "module-cards": "Modulo card",
                         "module-columns": "Modulo 2, 3 o 4 colonne",
                         "module-columns-fix-column": "Modulo 3 colonne con colonna fissa",
                         "module-stripe": "Modulo strisce",
@@ -48,7 +49,8 @@
                         "module-fullscreen-image": "Modulo immagine o video fullscreen con testi",
                         "module-expanding-text": "Modulo testo ad espansione",
                         "module-video": "Modulo video",
-                        "module-banner": "Modulo banner"
+                        "module-banner": "Modulo banner",
+                        "module-scroll-text": "Modulo testo con scroll orizzontale"
                     },
                     "default_value": false,
                     "return_format": "value",
@@ -159,75 +161,6 @@
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
-                    "key": "field_5e6b52eed806b",
-                    "label": "CTA",
-                    "name": "paperplane_theme_cta",
-                    "aria-label": "",
-                    "type": "component_field",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5e6b4ddf13dcb",
-                                "operator": "==",
-                                "value": "module-text"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_5e6b4ddf13dcb",
-                                "operator": "==",
-                                "value": "module-highlighted-sentence"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_5e6b4ddf13dcb",
-                                "operator": "==",
-                                "value": "module-fullscreen-image"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_5e6b4ddf13dcb",
-                                "operator": "==",
-                                "value": "module-columns"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_5e6b4ddf13dcb",
-                                "operator": "==",
-                                "value": "module-columns-fix-column"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_5e6b4ddf13dcb",
-                                "operator": "==",
-                                "value": "module-stripe"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "field_group_key": "group_6390c8098b762",
-                    "layout": "block",
-                    "repeatable": 1,
-                    "min": 0,
-                    "max": 0,
-                    "button_label": "Aggiungi CTA",
-                    "appearances": "",
-                    "rows_per_page": 20,
-                    "collapsed": "",
-                    "sub_fields": [],
-                    "parent_repeater": "field_5e6b4d8f8e1a6"
-                },
-                {
                     "key": "field_639383a6e7e50",
                     "label": "Modulo colonna di testo",
                     "name": "",
@@ -274,6 +207,32 @@
                     "media_upload": 1,
                     "delay": 1,
                     "repeatable": true,
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_659fa5238909f",
+                    "label": "CTA",
+                    "name": "module_text_cta",
+                    "aria-label": "",
+                    "type": "component_field",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "field_group_key": "group_6390c8098b762",
+                    "layout": "block",
+                    "repeatable": 1,
+                    "min": 0,
+                    "max": 0,
+                    "button_label": "Aggiungi CTA",
+                    "appearances": "",
+                    "rows_per_page": 20,
+                    "collapsed": "",
+                    "sub_fields": [],
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -346,6 +305,32 @@
                     "append": "",
                     "maxlength": "",
                     "repeatable": true,
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_659fa4f38909e",
+                    "label": "CTA",
+                    "name": "module_highlighted_sentence_cta",
+                    "aria-label": "",
+                    "type": "component_field",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "field_group_key": "group_6390c8098b762",
+                    "layout": "block",
+                    "repeatable": 1,
+                    "min": 0,
+                    "max": 0,
+                    "button_label": "Aggiungi CTA",
+                    "appearances": "",
+                    "rows_per_page": 20,
+                    "collapsed": "",
+                    "sub_fields": [],
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -1213,13 +1198,12 @@
                         "class": "",
                         "id": ""
                     },
-                    "collapsed": "",
+                    "layout": "block",
                     "min": 0,
                     "max": 0,
-                    "layout": "block",
+                    "collapsed": "",
                     "button_label": "Aggiungi striscia",
                     "rows_per_page": 20,
-                    "repeatable": true,
                     "sub_fields": [
                         {
                             "key": "field_6186cdc046247",
@@ -1719,6 +1703,32 @@
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
+                    "key": "field_659fa4ac8909d",
+                    "label": "CTA",
+                    "name": "module_fullscreen_image_cta",
+                    "aria-label": "",
+                    "type": "component_field",
+                    "instructions": "Se viene selezionato un file verrà automaticamente aperto al posto del link impostato in \"Dati CTA\".",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "field_group_key": "group_6390c8098b762",
+                    "layout": "block",
+                    "repeatable": 0,
+                    "button_label": "Aggiungi Riga",
+                    "appearances": "",
+                    "min": 0,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "collapsed": "",
+                    "sub_fields": [],
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
                     "key": "field_5e70a353389d4",
                     "label": "Modulo testo ad espansione",
                     "name": "",
@@ -1941,6 +1951,219 @@
                     "appearances": [],
                     "sub_fields": [],
                     "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_65a2759c6962c",
+                    "label": "Modulo card",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e6b4ddf13dcb",
+                                "operator": "==",
+                                "value": "module-cards"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 1,
+                    "endpoint": 0,
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_65a275b36962d",
+                    "label": "Gestione card",
+                    "name": "module_cards_repeater",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Aggiungi Riga",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_65a2e20dc8291",
+                            "label": "Contenuti card",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "accordion",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "open": 0,
+                            "multi_expand": 1,
+                            "endpoint": 0,
+                            "parent_repeater": "field_65a275b36962d"
+                        },
+                        {
+                            "key": "field_65a275fc6962e",
+                            "label": "Immagine",
+                            "name": "module_cards_repeater_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "preview_size": "medium",
+                            "parent_repeater": "field_65a275b36962d"
+                        },
+                        {
+                            "key": "field_65a276336962f",
+                            "label": "Titolo card",
+                            "name": "module_cards_repeater_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_65a275b36962d"
+                        },
+                        {
+                            "key": "field_65a2764969630",
+                            "label": "Descrizione card",
+                            "name": "module_cards_repeater_description",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": "",
+                            "placeholder": "",
+                            "new_lines": "br",
+                            "parent_repeater": "field_65a275b36962d"
+                        },
+                        {
+                            "key": "field_65a2767969631",
+                            "label": "CTA card",
+                            "name": "module_cards_repeater_cta",
+                            "aria-label": "",
+                            "type": "component_field",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "field_group_key": "group_6390c8098b762",
+                            "layout": "block",
+                            "repeatable": 1,
+                            "min": 0,
+                            "max": 0,
+                            "button_label": "Aggiungi Riga",
+                            "appearances": "",
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [],
+                            "parent_repeater": "field_65a275b36962d"
+                        }
+                    ],
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_65aa7970f5b4d",
+                    "label": "Modulo testo con scroll orizzontale",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5e6b4ddf13dcb",
+                                "operator": "==",
+                                "value": "module-scroll-text"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 1,
+                    "endpoint": 0,
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
+                    "key": "field_65aa7aea660c2",
+                    "label": "Inserisci la frase",
+                    "name": "module_scroll_text_content",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
                 }
             ]
         }
@@ -1990,5 +2213,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1699981963
+    "modified": 1706009867
 }

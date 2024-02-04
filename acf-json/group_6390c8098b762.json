@@ -86,6 +86,10 @@
             "conditional_logic": [
                 [
                     {
+                        "field": "field_6390c9658a31a",
+                        "operator": "!=empty"
+                    },
+                    {
                         "field": "field_6390c9fa8a31b",
                         "operator": "==",
                         "value": "internal-cta"
@@ -102,6 +106,7 @@
                 "page",
                 "cpt_modal"
             ],
+            "post_status": "",
             "taxonomy": "",
             "filters": [
                 "search",
@@ -114,6 +119,7 @@
             "elements": [
                 "featured_image"
             ],
+            "bidirectional": 0,
             "bidirectional_target": []
         },
         {
@@ -126,6 +132,10 @@
             "required": 1,
             "conditional_logic": [
                 [
+                    {
+                        "field": "field_6390c9658a31a",
+                        "operator": "==empty"
+                    },
                     {
                         "field": "field_6390c9fa8a31b",
                         "operator": "==",
@@ -152,6 +162,10 @@
             "conditional_logic": [
                 [
                     {
+                        "field": "field_6390c9658a31a",
+                        "operator": "==empty"
+                    },
+                    {
                         "field": "field_6390c9fa8a31b",
                         "operator": "==",
                         "value": "download-cta"
@@ -167,8 +181,7 @@
             "library": "all",
             "min_size": "",
             "max_size": "",
-            "mime_types": "",
-            "repeatable": true
+            "mime_types": ""
         },
         {
             "key": "field_6390cae78a31d",
@@ -307,5 +320,5 @@
         "button_label": "Aggiungi CTA",
         "appearances": ""
     },
-    "modified": 1699882417
+    "modified": 1706007455
 }
