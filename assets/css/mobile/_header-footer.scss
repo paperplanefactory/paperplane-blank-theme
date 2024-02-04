@@ -101,15 +101,18 @@ $hamburger-width: 55px; // header
 
         &.menu-item-has-children {
 
-          a {
+          a,
+          button {
+            position: relative;
+            width: 100%;
             padding: 20px 55px 20px $wrapper-padded-smartphone;
 
             &:after {
               content: "";
               position: absolute;
-              top: 50%;
-              right: $wrapper-padded-smartphone;
-              transform: translate(0, -50%) rotate(0);
+              top: 20px;
+              right: 0;
+              transform: translate(0, 0) rotate(0);
               transform-origin: center;
               width: 14px;
               height: 8px;
@@ -121,11 +124,12 @@ $hamburger-width: 55px; // header
               mask-size: contain;
               background-color: $color-1;
               @include transition(all 0.2s ease-in-out);
+              transform-origin: center;
             }
 
             &.clicked {
               &:after {
-                transform: translate(0, -50%) rotate(180deg);
+                transform: translate(0, 0) rotate(180deg);
               }
             }
           }

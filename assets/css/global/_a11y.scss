@@ -11,7 +11,8 @@ body {
         transition-duration: 0ms !important;
         transition-property: none !important;
         animation: none 0 !important;
-        white-space: nowrap;
+        //white-space: nowrap;
+        //display: block !important;
     }
 
     .paperplane-toggle {
@@ -30,6 +31,14 @@ body {
         }
     }
 
+    .masked-element {
+        &:focus-visible {
+            background-color: $color-4 !important;
+            color: $color-4 !important;
+            box-shadow: 0 0 0 5px $color-1, 0 0 0 7px $color-4, 0 0 0 9px $color-form-ok, 0 0 0 11px $color-4;
+        }
+    }
+
     #header-structure {
         .logo {
 
@@ -44,6 +53,7 @@ body {
             li {
 
                 &.menu-item-has-children a:focus-visible,
+                &.menu-item-has-children button:focus-visible,
                 .mega-menu-js-trigger:focus-visible {
                     &:after {
                         background-color: $color-4 !important;
@@ -77,9 +87,26 @@ body {
         }
     }
 
-    .video-cover {
-        &:focus-visible {
-            border: solid 2px $color-form-error;
+    .image-as-link {
+
+        a:focus-visible,
+        button:focus-visible {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: transparent !important;
+
+            //
+            img {
+                margin: 11px;
+                width: calc(100% - 22px);
+                height: calc(100% - 22px);
+                box-shadow: 0 0 0 5px $color-1, 0 0 0 7px $color-4, 0 0 0 9px $color-form-ok, 0 0 0 11px $color-4;
+                //opacity: 0.1;
+            }
         }
     }
 
@@ -230,16 +257,20 @@ body {
 }
 
 .screen-reader-text {
-    font-size: 0;
+    // font-size: 0 !important;
+    //border: none !important;
+    //color: transparent !important;
+    //background-color: transparent !important;
 }
 
 .paperplane-toggle {
     cursor: pointer;
     background-color: transparent;
     border: none;
+    font-family: $font-main;
 
 
-    &.active {
+    &[aria-checked="true"] {
         .paperplane-switch {
             color: $color-4;
             background-color: $color-1;
@@ -257,7 +288,7 @@ body {
         }
     }
 
-    h6 {
+    .fake-label {
         position: relative;
         margin-bottom: 0;
         display: inline-block;

@@ -39,22 +39,28 @@ $hamburger-width: 45px; // header
       width: calc(100% - #{$logo-width} - #{$hamburger-width});
       text-align: right;
 
-      ul {
+      .header-menu {
         width: 100%;
         @include flex-wrap;
         @include flex-verticalize;
         text-align: right;
         justify-content: flex-end;
+        font-weight: $font-weight-3;
 
         li {
           position: relative;
           display: inline-block;
           margin: 0 0 0 3%;
           text-align: left;
-          font-weight: $font-weight-3;
+
+          button {
+            font-weight: $font-weight-3;
+            text-transform: uppercase;
+          }
 
           &.menu-item-has-children a,
-          .mega-menu-js-trigger {
+          .nav-simple-button {
+
             &:after {
               content: "";
               position: relative;
@@ -70,6 +76,7 @@ $hamburger-width: 45px; // header
               mask-size: contain;
               background-color: $color-1;
               @include transition(all 0.2s linear);
+              transform-origin: center;
             }
 
             &.clicked {
@@ -221,7 +228,8 @@ $hamburger-width: 45px; // header
         display: block;
         border-bottom: solid 1px $color-3 !important;
 
-        a {
+        a,
+        button {
           position: relative;
           display: inline-block;
           width: 100%;
@@ -230,7 +238,8 @@ $hamburger-width: 45px; // header
 
         &.menu-item-has-children {
 
-          a {
+          a,
+          button {
             padding: 20px 55px 20px 0;
 
             &:after {
@@ -250,6 +259,7 @@ $hamburger-width: 45px; // header
               mask-size: contain;
               background-color: $color-1;
               @include transition(all 0.2s ease-in-out);
+              transform-origin: center;
             }
 
             &.clicked {

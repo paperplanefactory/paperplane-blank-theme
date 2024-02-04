@@ -82,7 +82,7 @@
 	<?php include( locate_template( 'template-parts/grid/accessible-navi.php' ) ); ?>
 	<div id="site-wrapper">
 		<div id="preheader"></div>
-		<header id="header">
+		<header id="header" data-had-class="">
 			<div class="wrapper-padded">
 				<div class="">
 					<div id="header-structure">
@@ -91,8 +91,7 @@
 								title="homepage - <?php echo get_bloginfo( 'name' ); ?>"
 								aria-label="homepage - <?php echo get_bloginfo( 'name' ); ?>"></a>
 						</div>
-						<nav class="menu allupper" role="navigation"
-							aria-label="<?php _e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
+						<nav class="menu" aria-label="<?php _e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
 							<?php
 							if ( has_nav_menu( 'header-menu' ) ) {
 								wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu header-menu-js' ) );
@@ -102,8 +101,8 @@
 						<div class="side-head">
 							<ul>
 								<li>
-									<button class="hambuger-element ham-activator" aria-haspopup="true"
-										aria-expanded="false" onclick="hamburgerMenu()" aria-controls="head-overlay"
+									<button class="hambuger-element ham-activator-js" aria-haspopup="true"
+										aria-expanded="false" aria-controls="head-overlay"
 										title="<?php _e( 'Premi invio per accedere al menu ad hamburger', 'paperPlane-blankTheme' ); ?>"
 										aria-label="<?php _e( 'Premi invio per accedere al menu ad hamburger', 'paperPlane-blankTheme' ); ?>">
 										<span></span>
@@ -120,11 +119,10 @@
 			<div class="submenu-close submenu-close-js"></div>
 		</header>
 		<div id="head-overlay" class="hidden bg-4" aria-hidden="true">
-			<div class="scroll-opportunity">
+			<div class="scroll-opportunity scroll-opportunity-overlay-js">
 				<div class="wrapper">
 					<div class="wrapper-padded">
-						<nav class="menu" role="navigation"
-							aria-label="<?php _e( 'Menu secondario', 'paperPlane-blankTheme' ); ?>">
+						<nav class="menu" aria-label="<?php _e( 'Menu secondario', 'paperPlane-blankTheme' ); ?>">
 							<?php
 							if ( has_nav_menu( 'overlay-menu-mobile' ) ) {
 								wp_nav_menu( array( 'theme_location' => 'overlay-menu-mobile', 'container' => 'ul', 'menu_class' => 'overlay-menu-css overlay-menu-mobile-js' ) );
@@ -132,25 +130,28 @@
 							?>
 						</nav>
 						<?php if ( $options_fields['animations_option'] == 1 ) : ?>
-							<div class="user-accessibility-options">
+							<nav class="user-accessibility-options"
+								aria-label="<?php _e( 'Preferenze accessibilità', 'paperPlane-blankTheme' ); ?>">
 								<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
-							</div>
+							</nav>
 						<?php endif; ?>
 						<?php if ( $options_fields['global_socials'] ) : ?>
-							<ul class="site-socials inline-socials">
-								<?php
-								foreach ( $options_fields['global_socials'] as $global_social ) :
-									$parse_social = parse_url( $global_social['global_socials_profile_url'] );
-									?>
-									<li>
-										<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
-											class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
-											aria-label="<?php echo _e( 'Visita il nostro profilo su', 'paperPlane-blankTheme' ) . ' ' . $parse_social['host']; ?>"
-											rel="noopener">
-										</a>
-									</li>
-								<?php endforeach; ?>
-							</ul>
+							<nav aria-label="<?php _e( 'Menu social', 'paperPlane-blankTheme' ); ?>">
+								<ul class="site-socials inline-socials">
+									<?php
+									foreach ( $options_fields['global_socials'] as $global_social ) :
+										$parse_social = parse_url( $global_social['global_socials_profile_url'] );
+										?>
+										<li>
+											<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
+												class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
+												aria-label="<?php echo __( 'Visita il nostro profilo su', 'paperPlane-blankTheme' ) . ' ' . $parse_social['host'] . ' ' . __( '- si apre in una nuova finestra', 'paperPlane-blankTheme' ); ?>"
+												rel="noopener">
+											</a>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+							</nav>
 						<?php endif; ?>
 					</div>
 				</div>

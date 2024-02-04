@@ -33,14 +33,3 @@ function papperplane_disable_useless_styles() {
 	wp_dequeue_style( 'svg-icon-style-inline-css' );
 }
 add_filter( 'wp_enqueue_scripts', 'papperplane_disable_useless_styles', 100 );
-
-
-function paperplane_preload_self_hosted_fonts() {
-	$static_bloginfo_stylesheet_directory = get_bloginfo( 'stylesheet_directory' );
-	$preload_fonts_meta = '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />' . "\n";
-	$preload_fonts_meta .= '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />' . "\n";
-	$preload_fonts_meta .= '<link rel="prefetch" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700" as="style" crossorigin />' . "\n";
-	$preload_fonts_meta .= '<link rel="preload" href="' . $static_bloginfo_stylesheet_directory . '/assets/fonts/material-icons/MaterialIcons-Regular.ttf" as="font" crossorigin />' . "\n";
-	echo $preload_fonts_meta;
-}
-add_action( 'wp_head', 'paperplane_preload_self_hosted_fonts', 1 );

@@ -41,7 +41,8 @@ h5 {
   margin-bottom: $h5-marginbottom-smartphone;
 }
 
-.menu {
+.menu,
+.menu button {
   font-size: $h5-size-smartphone;
   line-height: $h5-lineheight-smartphone;
 }
@@ -137,13 +138,6 @@ p {
   font-style: italic;
 }
 
-.expander {
-  font-family: $font-main;
-  font-weight: $font-weight-1;
-  font-size: $h4-size-smartphone;
-  line-height: $h4-lineheight-smartphone;
-}
-
 h1,
 h2,
 h3,
@@ -158,12 +152,14 @@ ul {
 
 .fluid-typo {
   h1 {
-    font-size: calc(#{$h1-size-smartphone} + 1.1vw);
-    line-height: calc(#{$h1-lineheight-smartphone} + 1.4vw);
+    font-size: clamp(1.4375rem, 1rem + 5vw, 4rem);
+    line-height: clamp(1.4375rem, 1rem + 6vw, 4rem);
+    margin-bottom: clamp(1.4375rem, 1rem + 5vw, 4rem);
   }
 
   h2 {
-    font-size: calc(#{$h2-size-smartphone} + 0.7vw);
-    line-height: calc(#{$h2-lineheight-smartphone} + 1vw);
+    font-size: clamp(1.4375rem, 1rem + 3.5vw, 4rem);
+    line-height: clamp(1.4375rem, 1rem + 4.5vw, 4rem);
+    margin-bottom: clamp(1.4375rem, 1rem + 3.5vw, 4rem);
   }
 }

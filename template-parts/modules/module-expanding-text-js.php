@@ -12,18 +12,22 @@
 							?>
 							<div class="expanding-block">
 								<div class="expander-top">
-									<button id="expand-button-<?php echo $module_count . '-' . $expand_count; ?>"
-										class="expander exp-open" aria-expanded="false"
-										data-expand-id="<?php echo $module_count . '-' . $expand_count; ?>"
-										aria-label="<?php echo $expanding_block['module_expanding_text_title'] . ': ' . __( 'questo bottone permette di visualizzare un approfondimento', 'paperPlane-blankTheme' ); ?>"><span
-											class="icon-js"></span>
-										<span aria-hidden="true">
-											<?php echo $expanding_block['module_expanding_text_title']; ?>
-										</span>
-									</button>
+									<h2>
+										<button id="expand-button-<?php echo $module_count . '-' . $expand_count; ?>"
+											class="expander exp-open" aria-expanded="false"
+											data-expand-id="<?php echo $module_count . '-' . $expand_count; ?>"
+											aria-controls="expand-content-<?php echo $module_count . '-' . $expand_count; ?>"
+											aria-label="<?php echo $expanding_block['module_expanding_text_title'] . ': ' . __( 'questo bottone permette di visualizzare un approfondimento', 'paperPlane-blankTheme' ); ?>">
+											<span class="icon-js" aria-hidden="true"></span>
+											<span aria-hidden="true">
+												<?php echo $expanding_block['module_expanding_text_title']; ?>
+											</span>
+										</button>
+									</h2>
 								</div>
 								<div id="expand-content-<?php echo $module_count . '-' . $expand_count; ?>"
-									class="expandable-content" aria-hidden="true">
+									aria-labelledby="expand-button-<?php echo $module_count . '-' . $expand_count; ?>"
+									class="expandable-content">
 									<div class="inner">
 										<div class="content-styled last-child-no-margin">
 											<a name="expandable-content-<?php echo $module_count; ?>"
@@ -32,7 +36,8 @@
 											<button id="expand-close-button-<?php echo $module_count . '-' . $expand_count; ?>"
 												class="expander-closer"
 												data-expand-id="<?php echo $module_count . '-' . $expand_count; ?>"
-												aria-label="<?php echo __( 'Nascondi contenuto:', 'paperPlane-blankTheme' ) . ' ' . $expanding_block['module_expanding_text_title']; ?>">
+												aria-expanded="true"
+												aria-controls="expand-content-<?php echo $module_count . '-' . $expand_count; ?>">
 												<?php _e( 'Chiudi', 'paperPlane-blankTheme' ); ?>
 											</button>
 										</div>

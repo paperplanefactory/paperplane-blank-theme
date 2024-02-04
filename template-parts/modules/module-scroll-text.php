@@ -35,7 +35,7 @@ $text_loop = 6;
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="scrolling-txt-container" aria-hidden="true">
-			<div class="horizontal-scrolling-items horizontal-scrolling-items-<?php echo $module_count; ?>">
+			<div class="horizontal-scrolling-items horizontal-scrolling-items-<?php echo $module_count; ?> fluid-typo">
 				<div class="horizontal-scrolling-items-item">
 					<?php for ( $k = 0; $k < $text_loop; $k++ ) : ?>
 						<span class="txt-item as-h1">

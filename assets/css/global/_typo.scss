@@ -7,6 +7,7 @@
 .mega-menu,
 .mega-menu p,
 .menu,
+.menu button,
 figcaption,
 h1,
 h2,
@@ -35,10 +36,7 @@ ul {
   font-weight: $font-weight-1;
 }
 
-.as-h1,
-.cta-navi a,
-.default-button,
-.default-button-b {
+.as-h1 {
   font-weight: $font-weight-3;
 }
 

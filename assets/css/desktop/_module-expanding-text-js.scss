@@ -20,14 +20,25 @@
   }
 }
 
+.expander-top {
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
 .expander {
   position: relative;
   line-height: 17px !important;
   font-weight: $font-weight-2 !important;
   padding-left: 25px !important;
   text-align: left;
-  @include reset-button;
+  border: none;
+  background-color: transparent;
   color: $color-1;
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h4-size-desktop;
+  line-height: $h4-lineheight-desktop;
 
   &:hover {
     color: $color-2;
@@ -67,5 +78,7 @@
   font-family: $font-main;
   font-size: $h6-size-desktop;
   line-height: $h6-lineheight-desktop;
-  @include reset-button;
+  border: none;
+  background-color: transparent;
+  padding: 0;
 }

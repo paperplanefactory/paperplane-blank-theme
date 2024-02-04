@@ -8,6 +8,13 @@
   //width: 100%;
 }
 
+.nav-simple-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
 #header {
   position: fixed;
   z-index: 9998;
@@ -15,10 +22,7 @@
   left: 0;
   display: block;
   width: 100vw;
-  -webkit-transition: all 0.2s linear, width 0s;
-  -moz-transition: all 0.2s linear, width 0s;
-  -o-transition: all 0.2s linear, width 0s;
-  transition: all 0.2s linear, width 0s;
+  @include transition(opacity 0.3s linear, visibility 0.3s linear, background-color 0.3s linear);
 
   &.hidden {
     &:has(a:focus-visible) {
@@ -55,6 +59,11 @@
 
   .menu {
     -webkit-box-flex: 1;
+
+    .simple-link,
+    button {
+      text-transform: uppercase !important;
+    }
   }
 
   .side-head {
@@ -71,8 +80,10 @@
   opacity: 1;
   pointer-events: all;
   visibility: visible;
-  @include transition(opacity, visibility 0.3s linear);
+  @include transition(opacity 0.3s linear, visibility 0.3s linear);
   background-color: $color-4;
+  will-change: opacity;
+  content-visibility: auto;
 
   &.hidden {
     opacity: 0;
@@ -102,6 +113,7 @@
   display: block;
   width: 100%;
   overflow: hidden;
+  content-visibility: auto;
 
   .footer-logo {
     position: relative;
