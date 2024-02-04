@@ -75,7 +75,7 @@
 	<?php endif; ?>
 </head>
 
-<body>
+<body data-theme-version="<?php echo $theme_version; ?>">
 	<div class="loader">
 		<div class="bar"></div>
 	</div>
@@ -156,6 +156,7 @@
 					</div>
 				</div>
 			</div>
+			<a href="#" class="overlay-navi-reset-js"></a>
 		</div>
 		<main id="page-content">
 			<?php include( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>
