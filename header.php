@@ -12,29 +12,39 @@
 	</title>
 	<?php
 	wp_head();
-	global $use_transients_fields, $theme_version, $acf_options_parameter, $static_bloginfo_stylesheet_directory, $options_fields, $options_fields_multilang, $cta_url_modal_array, $theme_pagination, $attivare_pwa;
-	// Imposto la variabile globale per definire:
-// - se è attivo Polylang il linguaggio in cui l'utente sta visitando il sito
-// - se non è attivo Polylang un valore generico 'any-lang'
+	// definisco le variaibil globali che possono poi essere lette tramite 
+	// include( locate_template( 'parcorso/nome-file.php' ) );
+	global $use_transients_fields,
+	$theme_version,
+	$acf_options_parameter,
+	$static_bloginfo_stylesheet_directory,
+	$options_fields,
+	$options_fields_multilang,
+	$cta_url_modal_array,
+	$theme_pagination,
+	$attivare_pwa;
+	// genero le trnasients delle pagine di opzioni
+	paperplane_options_transients();
+	// imposto la variabile globale per definire:
+	// - se è attivo Polylang il linguaggio in cui l'utente sta visitando il sito
+	// - se non è attivo Polylang un valore generico 'any-lang'
 	if ( function_exists( 'pll_the_languages' ) ) {
 		$acf_options_parameter = pll_current_language( 'slug' );
 	} else {
 		$acf_options_parameter = 'any-lang';
 	}
-	// Imposto e valorizzo la variabile globale per definire il tipo di paginazione:
-	$theme_pagination = get_field( 'theme_pagination', 'option' );
-	// Imposto e valorizzo l'array globale con le ID delle modal eventualmente inserite in pagina:
+	// imposto e valorizzo la variabile globale per definire il tipo di paginazione:
+	$theme_pagination = $options_fields['theme_pagination'];
+	// imposto l'array globale con le ID delle modal eventualmente inserite in pagina
+	// in questo modo se nella pagina sono presenti modal il loro ID viene aggiunto a questo array
+	// l'array viene poi usato nel footer per richiamare le modali
 	$cta_url_modal_array = array();
-	// Imposto e valorizzo la variabile globale per definire la cartella del tema:
+	// imposto e valorizzo la variabile globale per definire il percorso della cartella del tema:
 	$static_bloginfo_stylesheet_directory = get_bloginfo( 'stylesheet_directory' );
-	// Genero le trnasients delle pagine di opzioni
-	paperplane_options_transients();
+
 	?>
-	<!-- Chrome, Firefox OS and Opera -->
 	<meta name="theme-color" content="<?php echo $options_fields['mobile_navbar_color']; ?>">
-	<!-- Windows Phone -->
 	<meta name="msapplication-navbutton-color" content="<?php echo $options_fields['mobile_navbar_color']; ?>">
-	<!-- iOS Safari -->
 	<meta name="apple-mobile-web-app-status-bar-style" content="<?php echo $options_fields['mobile_navbar_color']; ?>">
 	<link rel="apple-touch-icon" sizes="57x57"
 		href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/apple-icon-57x57.png">
@@ -69,17 +79,41 @@
 	<link rel="apple-touch-icon"
 		href="<?php echo $static_bloginfo_stylesheet_directory; ?>/assets/images/favicons/favicon-1024x1024-maskable.png">
 	<meta name="msapplication-TileColor" content="#ffffff">
-	<?php if ( $attivare_pwa == 1 ) : ?>
-		<link rel="manifest" href="<?php echo get_home_url(); ?>/manifest.json">
+	<?php
+	// includo il manifesto per PWA se la PWA è attiva
+	if ( $attivare_pwa == 1 ) :
+		?>
 		<link rel="prefetch" href="<?php echo get_home_url(); ?>/manifest.json">
+		<link rel="manifest" href="<?php echo get_home_url(); ?>/manifest.json">
 	<?php endif; ?>
+	<!-- meta personalizzato per versione del tema -->
+	<meta name="theme-version" data-theme-version="<?php echo $theme_version; ?>">
+	<!-- script per migliorare il paint del dark mode -->
+	<script type="text/javascript">
+		var theme_version = jQuery('meta[name=theme-version]').attr('data-theme-version');
+		const paperplane_user_preferences_options_array = JSON.parse(
+			localStorage.getItem('paperplane_user_preferences_' + theme_version),
+		);
+		Object.keys(paperplane_user_preferences_options_array).forEach(function (key) {
+			if (key == 'dark_mode' && paperplane_user_preferences_options_array[key] == 1) {
+				jQuery('html').attr('data-theme-color', 'dark');
+			}
+			else if (key == 'dark_mode' && paperplane_user_preferences_options_array[key] == 0) {
+				jQuery('html').attr('data-theme-color', '');
+			}
+		});
+	</script>
 </head>
 
-<body data-theme-version="<?php echo $theme_version; ?>">
+<body class="" data-theme-color="">
+	<!-- animazione barra di caricamento per PWA -->
 	<div class="loader">
 		<div class="bar"></div>
 	</div>
-	<?php include( locate_template( 'template-parts/grid/accessible-navi.php' ) ); ?>
+	<?php
+	// includo la navigazione accessibile
+	include( locate_template( 'template-parts/grid/accessible-navi.php' ) );
+	?>
 	<div id="site-wrapper">
 		<div id="preheader"></div>
 		<header id="header" data-had-class="">
@@ -88,8 +122,7 @@
 					<div id="header-structure">
 						<div class="logo">
 							<a href="<?php echo home_url(); ?>" rel="bookmark"
-								title="homepage - <?php echo get_bloginfo( 'name' ); ?>"
-								aria-label="homepage - <?php echo get_bloginfo( 'name' ); ?>"></a>
+								aria-label="<?php echo __( 'Visita la homepage di', 'paperPlane-blankTheme' ) . ' ' . get_bloginfo( 'name' ); ?>"></a>
 						</div>
 						<nav class="menu" aria-label="<?php _e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
 							<?php
@@ -118,7 +151,7 @@
 			</div>
 			<div class="submenu-close submenu-close-js"></div>
 		</header>
-		<div id="head-overlay" class="hidden bg-4" aria-hidden="true">
+		<div id="head-overlay" class="hidden" aria-hidden="true">
 			<div class="scroll-opportunity scroll-opportunity-overlay-js">
 				<div class="wrapper">
 					<div class="wrapper-padded">
@@ -129,12 +162,7 @@
 							}
 							?>
 						</nav>
-						<?php if ( $options_fields['animations_option'] == 1 ) : ?>
-							<nav class="user-accessibility-options"
-								aria-label="<?php _e( 'Preferenze accessibilità', 'paperPlane-blankTheme' ); ?>">
-								<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
-							</nav>
-						<?php endif; ?>
+						<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
 						<?php if ( $options_fields['global_socials'] ) : ?>
 							<nav aria-label="<?php _e( 'Menu social', 'paperPlane-blankTheme' ); ?>">
 								<ul class="site-socials inline-socials">

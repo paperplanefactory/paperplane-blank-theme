@@ -6,6 +6,10 @@
   position: relative;
   width: 100%;
   @include flex-wrap;
+
+  .flex-hold-child-full {
+    width: 100%;
+  }
 }
 
 .flex-hold-child,

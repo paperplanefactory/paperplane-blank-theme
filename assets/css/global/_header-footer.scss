@@ -43,26 +43,39 @@
     -webkit-box-flex: 1;
 
     a {
+      // se il logo non è monocromatico usare background-image
+      // altrimenti usare mask-image
+      // e commentare di conseguenza le definizioni
       position: absolute;
       top: 0;
       left: 0;
       display: block;
       width: 100%;
-      -webkit-mask-image: url(assets/images/site-logo-header.svg);
       mask-image: url(assets/images/site-logo-header.svg);
-      -webkit-mask-repeat: no-repeat;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: $color-1;
+      //background-image: url(assets/images/site-logo-header.svg);
+      //background-repeat: no-repeat;
+      //background-size: contain;
+
+      background-color: var(--color-1);
     }
   }
 
   .menu {
     -webkit-box-flex: 1;
 
-    .simple-link,
-    button {
+    .simple-link {
       text-transform: uppercase !important;
+    }
+
+    .nav-simple-button {
+      text-transform: uppercase !important;
+      color: var(--color-1);
+
+      &:hover {
+        color: var(--color-2);
+      }
     }
   }
 
@@ -81,9 +94,17 @@
   pointer-events: all;
   visibility: visible;
   @include transition(opacity 0.3s linear, visibility 0.3s linear);
-  background-color: $color-4;
+  background-color: var(--color-4);
   will-change: opacity;
   content-visibility: auto;
+
+  .nav-simple-button {
+    color: var(--color-1);
+
+    &:hover {
+      color: var(--color-2);
+    }
+  }
 
   &.hidden {
     opacity: 0;
@@ -119,18 +140,22 @@
     position: relative;
 
     a {
+      // se il logo non è monocromatico usare background-image
+      // altrimenti usare mask-image
+      // e commentare di conseguenza le definizioni
       position: absolute;
       top: 0;
       left: 0;
       display: block;
       width: 100%;
       height: 100%;
-      -webkit-mask-image: url(assets/images/site-logo-header.svg);
       mask-image: url(assets/images/site-logo-header.svg);
-      -webkit-mask-repeat: no-repeat;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: $color-1;
+      //background-image: url(assets/images/site-logo-header.svg);
+      //background-repeat: no-repeat;
+      //background-size: contain;
+      background-color: var(--color-1);
     }
   }
 }
@@ -142,7 +167,7 @@ body {
     top: 0;
     width: 100vw;
     height: 3px;
-    background-color: $color-1;
+    background-color: var(--color-1);
     pointer-events: none;
     display: none;
     visibility: hidden;
@@ -153,7 +178,7 @@ body {
       position: absolute;
       top: 0;
       height: 3px;
-      background-color: $color-3;
+      background-color: var(--color-3);
       animation-name: load-animation;
       animation-duration: 2s;
       animation-iteration-count: infinite;

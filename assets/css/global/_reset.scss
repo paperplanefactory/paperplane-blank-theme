@@ -95,7 +95,9 @@ body {
 	font-family: $font-main;
 	//line-height: 1;
 	margin: 0;
-	color: $color-1;
+	color: var(--color-1);
+	background-color: var(--color-4);
+	@include transition(color 0.3s linear, background-color 0.3s linear);
 }
 
 main {
@@ -260,18 +262,18 @@ textarea {
 
 
 ::-moz-selection {
-	background: $color-1;
-	color: $color-3;
+	background: var(--color-1);
+	color: var(--color-3);
 }
 
 ::selection {
-	background: $color-1;
-	color: $color-3;
+	background: var(--color-1);
+	color: var(--color-3);
 }
 
 ::-moz-selection {
-	background: $color-1;
-	color: $color-3;
+	background: var(--color-1);
+	color: var(--color-3);
 }
 
 #site-wrapper {

@@ -11,7 +11,7 @@
 .expanding-block {
   margin-bottom: 48px;
   padding-bottom: 24px;
-  border-bottom: solid 1px $color-1;
+  border-bottom: solid 1px var(--color-1);
 
 
   &:last-child {
@@ -34,14 +34,14 @@
   text-align: left;
   border: none;
   background-color: transparent;
-  color: $color-1;
+  color: var(--color-1);
   font-family: $font-main;
   font-weight: $font-weight-1;
   font-size: $h4-size-desktop;
   line-height: $h4-lineheight-desktop;
 
   &:hover {
-    color: $color-2;
+    color: var(--color-2);
   }
 
   &.exp-open {

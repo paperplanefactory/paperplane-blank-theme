@@ -123,7 +123,7 @@ ul {
         display: table-cell;
         content: '●';
         padding: 0 10px 0 0;
-        color: $color-2;
+        color: var(--color-2);
       }
 
       &:after {
@@ -157,7 +157,7 @@ ul {
       content: counter(li-counter)". ";
       counter-increment: li-counter;
       padding: 0 15px 0 0;
-      color: $color-2;
+      color: var(--color-2);
     }
 
     &:after {

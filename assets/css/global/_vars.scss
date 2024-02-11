@@ -22,6 +22,26 @@ $color-1: #111111;
 $color-2: #555555;
 $color-3: #F2F2F2;
 $color-4: #FFFFFF;
+
+html {
+    --color-1: #111111;
+    --color-2: #555555;
+    --color-3: #F2F2F2;
+    --color-4: #FFFFFF;
+    --above-image-opacity: rgba(255, 255, 255, 0.35);
+    --switch-box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+// rimuovere se non si utilizza il dark mode
+html[data-theme-color='dark'] {
+    --color-1: #FFFFFF;
+    --color-2: #F2F2F2;
+    --color-3: #555555;
+    --color-4: #111111;
+    --above-image-opacity: rgba(0, 0, 0, 0.35);
+    --switch-box-shadow: inset 0px 0px 4px 2px rgba(255, 255, 255, 0.2);
+}
+
 $color-upload-icon-clear: '%23FFFFFF'; // codificato per funzionare con SVG in linea nei CSS
 $color-upload-icon-dark: '%23000000'; // codificato per funzionare con SVG in linea nei CSS
 $color-form-ok: #04621B;

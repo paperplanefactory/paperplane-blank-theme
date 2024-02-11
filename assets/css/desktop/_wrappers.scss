@@ -90,7 +90,7 @@
 
 ::-webkit-scrollbar-thumb {
   width: 12px;
-  background-color: $color-2;
+  background-color: var(--color-2);
 }
 
 ::-webkit-scrollbar-track {
@@ -99,11 +99,11 @@
   opacity: 0 !important;
   //visibility: hidden !important;
   //width: 0 !important;
-  //background-color: $color-2;
+  //background-color: var(--color-2);
   background-color: transparent;
 }
 
 :root {
-  scrollbar-color: $color-4 $color-2 !important;
+  scrollbar-color: var(--color-4) var(--color-2) !important;
   scrollbar-width: auto !important;
 }

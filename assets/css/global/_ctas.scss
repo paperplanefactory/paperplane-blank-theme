@@ -18,16 +18,17 @@
 .default-button,
 .default-button:link,
 .default-button:visited {
-	color: $color-3;
-	background-color: $color-1;
-	border-color: $color-1;
+	color: var(--color-4);
+	background-color: var(--color-1);
+	border-color: var(--color-1);
 }
 
-.default-button:active,
-.default-button:hover {
-	color: $color-1;
-	background-color: $color-4;
-	border-color: $color-1;
+.default-button:hover,
+a.default-button:active,
+a.default-button:hover {
+	color: var(--color-1);
+	background-color: var(--color-4);
+	border-color: var(--color-1);
 }
 
 .default-button-b {
@@ -54,21 +55,21 @@
 	}
 
 	&:hover {
-
-
 		&:after {
 			right: -10px;
 		}
 	}
 }
 
+.default-button-b,
 a.default-button-b:link,
 a.default-button-b:visited {
-	color: $color-1;
+	color: var(--color-1);
 
 }
 
+.default-button-b:hover,
 a.default-button-b:active,
 a.default-button-b:hover {
-	color: $color-2;
+	color: var(--color-2);
 }

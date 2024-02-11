@@ -2,12 +2,15 @@
 	<div
 		class="fullscreen-cta coverize fluid-typo <?php echo $content_fields['page_opening_layout'] . ' ' . $content_fields['page_opening_text_align']; ?>">
 		<?php if ( $content_fields['page_opening_video'] === 'si' ) : ?>
-			<button class="video-stop video-stop-js pause" data-video-stop="opening-video-js"
-				title="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"
-				aria-label="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"></button>
-			<video id="opening-video-js" aria-hidden="true" class="stoppable-js" data-aos="fade-in" data-autoplay autoplay
-				loop muted playsinline>
-				<source type="video/mp4" src="<?php echo $content_fields['page_opening_video_mp4']; ?>">
+			<button id="opening-video-control" class="video-stop video-stop-js pause" data-video-stop="opening-video-js"
+				aria-label="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>" aria-checked="false"
+				aria-controls="opening-video-js"></button>
+			<video id="opening-video-js" aria-hidden="true" class="stoppable-js" data-aos="fade-in"
+				aria-labelledby="opening-video-control" data-autoplay autoplay loop muted playsinline>
+				<source type="video/mp4" src="<?php echo $content_fields['page_opening_video_mp4']['url']; ?>">
+				<meta itemprop="name"
+					content="<?php echo __( 'Questo è un video senza audio, in autoplay e in loop.', 'paperPlane-blankTheme' ) . ' ' . $content_fields['page_opening_video_mp4']['title']; ?>">
+				<meta itemprop="description" content="<?php echo $content_fields['page_opening_video_mp4']['caption']; ?>">
 			</video>
 		<?php else : ?>
 			<?php if ( isset( $content_fields['page_opening_image_desktop'] ) ) : ?>
@@ -72,7 +75,7 @@
 						<div data-aos="fade-up" data-aos-delay="300">
 							<div class="last-child-no-margin">
 								<?php if ( $content_fields['page_breadcrumbs'] === 'yes' && function_exists( 'bcn_display' ) ) : ?>
-									<div class="breadcrumbs-holder undelinked-links" typeof="BreadcrumbList"
+									<div class="breadcrumbs-holder underlined-links" typeof="BreadcrumbList"
 										vocab="http://schema.org/">
 										<?php bcn_display(); ?>
 									</div>

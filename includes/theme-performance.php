@@ -1,7 +1,7 @@
 <?php
 function paperplane_preload_self_hosted_fonts() {
 	$static_bloginfo_stylesheet_directory = get_bloginfo( 'stylesheet_directory' );
-	//$preload_fonts_meta = '<link rel="prefetch" href="' . get_template_directory_uri() . '/style.min.css" as="style" crossorigin />' . "\n";
+	//$preload_fonts_meta = '<link rel="preload" href="' . $static_bloginfo_stylesheet_directory . '/style.min.css" as="style" fetchpriority="high" crossorigin />' . "\n";
 	//$preload_fonts_meta = '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />' . "\n";
 	//$preload_fonts_meta .= '<link rel="prefetch" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style" crossorigin />' . "\n";
 	//$preload_fonts_meta .= '<link rel="preload" href="' . $static_bloginfo_stylesheet_directory . '/assets/fonts/material-icons/MaterialIcons-Regular.ttf" as="font" crossorigin />' . "\n";
@@ -26,10 +26,10 @@ function paperplane_preload_images_above_the_fold() {
 				$page_opening_video = $content_fields['page_opening_video'];
 				if ( $page_opening_video === 'no' ) {
 					if ( ! empty( $content_fields['page_opening_image_desktop'] ) ) {
-						$preload_media_meta .= '<link rel="preload" media="(min-width: 1024px)" href="' . $content_fields['page_opening_image_desktop']['sizes']['full_desk_hd'] . '" as="image" type="' . $content_fields['page_opening_image_desktop']['mime_type'] . '" />' . "\n";
+						$preload_media_meta .= '<link rel="preload" media="(min-width: 1024px)" href="' . $content_fields['page_opening_image_desktop']['sizes']['full_desk_hd'] . '" fetchpriority="auto" as="image" type="' . $content_fields['page_opening_image_desktop']['mime_type'] . '" />' . "\n";
 					}
 					if ( ! empty( $content_fields['page_opening_image_mobile'] ) ) {
-						$preload_media_meta .= '<link rel="preload" media="(max-width: 1023px)" href="' . $content_fields['page_opening_image_mobile']['sizes']['full_desk'] . '" as="image" type="' . $content_fields['page_opening_image_desktop']['mime_type'] . '" />' . "\n";
+						$preload_media_meta .= '<link rel="preload" media="(max-width: 1023px)" href="' . $content_fields['page_opening_image_mobile']['sizes']['full_desk'] . '" fetchpriority="auto" as="image" type="' . $content_fields['page_opening_image_desktop']['mime_type'] . '" />' . "\n";
 					}
 				}
 				if ( $page_opening_video === 'si' ) {

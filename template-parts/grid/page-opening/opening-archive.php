@@ -4,7 +4,7 @@
 			<section class="page-opening-simple-spacer alignleft">
 				<div class="last-child-no-margin">
 					<?php if ( function_exists( 'bcn_display' ) ) : ?>
-						<div class="breadcrumbs-holder undelinked-links" typeof="BreadcrumbList" vocab="http://schema.org/">
+						<div class="breadcrumbs-holder underlined-links" typeof="BreadcrumbList" vocab="http://schema.org/">
 							<?php bcn_display(); ?>
 						</div>
 					<?php endif; ?>

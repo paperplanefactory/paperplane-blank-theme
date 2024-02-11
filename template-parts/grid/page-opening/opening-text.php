@@ -5,7 +5,7 @@
 				class="page-opening-simple-spacer <?php echo $content_fields['page_opening_text_align_horizontal']; ?>">
 				<div class="last-child-no-margin">
 					<?php if ( $content_fields['page_breadcrumbs'] === 'yes' && function_exists( 'bcn_display' ) ) : ?>
-						<div class="breadcrumbs-holder undelinked-links" typeof="BreadcrumbList" vocab="http://schema.org/">
+						<div class="breadcrumbs-holder underlined-links" typeof="BreadcrumbList" vocab="http://schema.org/">
 							<?php bcn_display(); ?>
 						</div>
 					<?php endif; ?>

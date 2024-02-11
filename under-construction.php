@@ -78,7 +78,7 @@
   <body>
   <div class="offline-page">
   <div class="content">
-  <img src="https://paperplaneblanktheme.local/wp-content/uploads/2020/03/security.svg" />
+  <img src="/wp-content/themes/paperplane-blank-theme/assets/images/site-logo-header.svg" />
   <h1>
   Sito in costruzione.<br />
     Under construction.

@@ -17,7 +17,7 @@
 											class="expander exp-open" aria-expanded="false"
 											data-expand-id="<?php echo $module_count . '-' . $expand_count; ?>"
 											aria-controls="expand-content-<?php echo $module_count . '-' . $expand_count; ?>"
-											aria-label="<?php echo $expanding_block['module_expanding_text_title'] . ': ' . __( 'questo bottone permette di visualizzare un approfondimento', 'paperPlane-blankTheme' ); ?>">
+											aria-label="<?php echo __( 'Permette di visualizzare un approfondimento', 'paperPlane-blankTheme' ) . ' - ' . $expanding_block['module_expanding_text_title']; ?>">
 											<span class="icon-js" aria-hidden="true"></span>
 											<span aria-hidden="true">
 												<?php echo $expanding_block['module_expanding_text_title']; ?>

@@ -36,7 +36,7 @@
     @include define-rotate(0);
     @include transition(all 0.15s ease-in-out);
     border-radius: 1px;
-    background-color: $color-1;
+    background-color: var(--color-1);
   }
 }
 
@@ -55,9 +55,7 @@
 }
 
 .hambuger-element.open span:nth-child(1) {
-  top: 18px;
-  width: 0;
-  left: 50%;
+  opacity: 0;
 }
 
 .hambuger-element.open span:nth-child(2) {

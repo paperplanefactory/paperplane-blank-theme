@@ -5,7 +5,7 @@
 .hambuger-element {
     &:hover {
         span {
-            background-color: $color-2;
+            background-color: var(--color-2);
         }
     }
 }

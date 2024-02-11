@@ -13,7 +13,7 @@ function paperplane_load_scripts() {
 			array(),
 			'3.7.1',
 			array(
-				'strategy' => 'async',
+				//'strategy' => 'async',
 				'in_footer' => false, // Note: This is the default value.
 			)
 		);

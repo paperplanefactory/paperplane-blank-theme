@@ -40,21 +40,20 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 				</div>
 				<?php
 				if ( has_nav_menu( 'footer-menu' ) ) {
-					wp_nav_menu( array( 'theme_location' => 'footer-menu', 'container' => 'ul', 'menu_class' => 'footer-menu' ) );
+					wp_nav_menu( array( 'theme_location' => 'footer-menu', 'container' => 'ul', 'menu_class' => 'underlined-links footer-menu' ) );
 				}
 				?>
 				<div class="flex-hold flex-hold-2 margins-wide">
 					<div class="flex-hold-child">
-						<?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_legal_notes']; ?>
-						<?php if ( $options_fields['animations_option'] == 1 ) : ?>
-							<nav class="user-accessibility-options"
-								aria-label="<?php _e( 'Preferenze accessibilità', 'paperPlane-blankTheme' ); ?>">
-								<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
-							</nav>
-						<?php endif; ?>
+						<div class="underlined-links">
+							<?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_legal_notes']; ?>
+						</div>
 					</div>
-					<div class="flex-hold-child desktop-align-right">
+					<div class="flex-hold-child desktop-align-right underlined-links">
 						<?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_credits']; ?>
+					</div>
+					<div class="flex-hold-child-full">
+						<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
 					</div>
 				</div>
 			</div>

@@ -25,6 +25,14 @@
 // valore margin right - (valore margin right / numero elmenti per riga)
 // es. 16 - (16/2) = 8
 
+.flex-hold {
+
+  .flex-hold-child-full {
+    width: 100%;
+    padding: 0 $column-space-side-desktop $column-space-bottom-desktop $column-space-side-desktop;
+  }
+}
+
 .flex-hold-2 {
   width: calc(100% + (#{$column-space-side-desktop} * 2));
   left: -$column-space-side-desktop;
@@ -109,11 +117,11 @@
     padding: 7px 0;
     font-size: 11px;
     line-height: 11px;
-    background-color: $color-1;
-    color: $color-4;
+    background-color: var(--color-1);
+    color: var(--color-4);
 
     .click-hide {
-      background-color: $color-2;
+      background-color: var(--color-2);
       padding: 6px 8px;
       cursor: pointer;
     }
