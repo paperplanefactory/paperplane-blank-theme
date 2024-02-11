@@ -10,22 +10,22 @@
 
 .slick-next,
 .slick-prev {
-    color: $color-1;
+    color: var(--color-1);
 }
 
 .slick-dots {
     li {
         &.slick-active {
             button {
-                background-color: $color-1;
+                background-color: var(--color-1);
             }
         }
 
         button {
-            background-color: $color-3;
+            background-color: var(--color-3);
 
             &:hover {
-                background-color: $color-1;
+                background-color: var(--color-1);
             }
         }
     }

@@ -14,7 +14,7 @@
   pointer-events: all;
   visibility: visible;
   @include transition(visibility 0.2s linear, opacity 0.2s linear);
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: var(--above-image-opacity);
   content-visibility: auto;
 
   &.hidden {
@@ -29,7 +29,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: $color-4;
+    background-color: var(--color-4);
 
     &:after {
       content: "";
@@ -38,7 +38,7 @@
       left: 0;
       width: calc(100% - 15px);
       height: 30px;
-      background-color: $color-4;
+      background-color: var(--color-4);
     }
 
     .modal-title {
@@ -46,7 +46,7 @@
       top: 0;
       left: 0;
       width: calc(100% - 56px);
-      background-color: $color-4;
+      background-color: var(--color-4);
 
       h1,
       h2,
@@ -65,7 +65,7 @@
       @include transition(opacity 0.3s linear);
 
       &:hover {
-        color: $color-2;
+        color: var(--color-2);
       }
 
       &:before {
@@ -82,7 +82,7 @@
         mask-position: center;
         -webkit-mask-image: url(assets/images/icons/close.svg);
         mask-image: url(assets/images/icons/close.svg);
-        background-color: $color-1;
+        background-color: var(--color-1);
       }
     }
 

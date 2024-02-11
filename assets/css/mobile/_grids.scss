@@ -13,6 +13,14 @@
 // valore margin right - (valore margin right / numero elmenti per riga)
 // es. 16 - (16/2) = 8
 
+.flex-hold {
+
+  .flex-hold-child-full {
+    width: 100%;
+    padding: 0 $column-space-side-smartphone $column-space-bottom-smartphone $column-space-side-smartphone;
+  }
+}
+
 .flex-hold-2 {
   &.mobile-keep-2-columns {
     width: calc(100% + (#{$column-space-side-smartphone} * 2));

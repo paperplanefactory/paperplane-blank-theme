@@ -2,28 +2,25 @@
 // Paperplane _blankTheme - template per index.
 get_header();
 ?>
-<div class="wrapper module-highlighted-sentence">
-	<div class="module-spacer">
-		<div class="wrapper-padded">
-			<div class="wrapper-padded-container">
-				<div class="wrapper-padded-more-924">
-					<div class="flex-hold flex-hold-block">
-						<div class="flex-hold-child-image">
-							<div class="no-the-100">
-								<img src="https://via.placeholder.com/236x140" />
-							</div>
-						</div>
-						<div class="flex-hold-child-texts">
+<div class="wrapper page-opening">
+	<div class="fullscreen-cta opening-almost-fullscreen fluid-typo alignleft">
+		<div class="above-image-opacity"></div>
+		<div class="fullscreen-cta-aligner">
+			<div class="wrapper">
+				<div class="wrapper-padded">
+					<section class="fullscreen-cta-safe-padding alignleft">
+						<div data-aos="fade-up" data-aos-delay="300">
 							<div class="last-child-no-margin">
-								<h2>Associare alla homepage del sito una pagina statica.</h2>
+								<h1>
+									<?php _e( 'Associare alla homepage del sito una pagina statica.', 'paperPlane-blankTheme' ); ?>
+								</h1>
 							</div>
+							<div class="clearer"></div>
 						</div>
-					</div>
+					</section>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
 <?php get_footer(); ?>

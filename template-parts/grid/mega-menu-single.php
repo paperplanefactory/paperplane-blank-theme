@@ -16,9 +16,6 @@ if ( $use_transients_fields == 1 ) {
 } else {
 	$my_mega_menus = get_posts( $args_mega_menus );
 }
-
-
-
 if ( ! empty( $my_mega_menus ) ) : ?>
 	<?php foreach ( $my_mega_menus as $post ) :
 		setup_postdata( $post );

@@ -9,9 +9,9 @@
     bottom: 0;
     left: 0;
     z-index: 99;
-    background-color: $color-4;
-    border: solid 2px $color-2;
-    padding: 5px 3px 2px 3px;
+    background-color: var(--color-4);
+    border: solid 2px var(--color-2);
+    padding: 10px 3px;
     //transform: translate(-50%, -50%);
     transform: translate(0, 0);
     @include transition(all 0.3s ease-in-out);

@@ -8,15 +8,15 @@
 // tipografia e margini sono definiti nei parziali desktop e mobile
 
 ::-webkit-input-placeholder {
-	color: $color-2;
+	color: var(--color-2);
 }
 
 :-moz-placeholder {
-	color: $color-2;
+	color: var(--color-2);
 }
 
 ::-moz-placeholder {
-	color: $color-2;
+	color: var(--color-2);
 }
 
 input[type=date],
@@ -28,9 +28,9 @@ input[type=text],
 input[type=url],
 select,
 textarea {
-	border: $color-2 solid 1px;
-	color: $color-1;
-	background-color: $color-4;
+	border: var(--color-2) solid 1px;
+	color: var(--color-1);
+	background-color: var(--color-4);
 	font-family: $font-main;
 }
 
@@ -54,7 +54,13 @@ textarea {
 input[type=checkbox],
 input[type=radio] {
 	&:before {
-		color: $color-1;
+		color: var(--color-1);
+	}
+
+	&:focus-visible {
+		&:before {
+			color: var(--color-4);
+		}
 	}
 }
 
@@ -121,8 +127,8 @@ input[type=file] {
 		padding: 8px 9px 8px 38px;
 		//	border-radius: 4px;
 		margin-right: 10px;
-		background-color: $color-1;
-		color: $color-4;
+		background-color: var(--color-1);
+		color: var(--color-4);
 		transition: 0.3s;
 		background-position: 8px 50%;
 		background-repeat: no-repeat;
@@ -172,12 +178,12 @@ input[type=submit] {
 	white-space: normal;
 	text-transform: uppercase;
 	-webkit-appearance: none;
-	color: $color-3;
-	background-color: $color-1;
+	color: var(--color-3);
+	background-color: var(--color-1);
 
 	&:hover {
-		color: $color-3;
-		background-color: $color-2;
+		color: var(--color-3);
+		background-color: var(--color-2);
 	}
 
 	&[aria-disabled="true"] {
@@ -200,14 +206,14 @@ input[type=text]:focus,
 input[type=url]:focus,
 select:focus,
 textarea:focus {
-	box-shadow: 0 0 0 3px $color-1 !important;
+	box-shadow: 0 0 0 3px var(--color-1) !important;
 	@include transition(all 0.3s linear);
 }
 
 label,
 .as-label {
 	font-family: $font-main;
-	color: $color-1;
+	color: var(--color-1);
 }
 
 .form-hold {

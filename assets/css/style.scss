@@ -1,12 +1,14 @@
 // compileExpanded: style-expanded.css, compileCompressed: ../../style.min.css
-// imports
+
+// a fine sviluppo commento i parziali che non utilizzo
+
+// imports globali
 @import 'global/vars';
 @import 'global/reset';
 @import 'global/defaults';
 @import 'global/header-footer';
 @import 'global/colors';
 @import 'global/a11y';
-//@import 'global/font-blanktheme-icons';
 @import 'global/typo';
 @import 'global/wrappers';
 @import 'global/grids';
@@ -14,8 +16,17 @@
 @import 'global/buttons';
 @import 'global/ctas';
 @import 'global/media';
-// imports mobile
+@import 'global/forms';
+@import 'global/slideshows';
+@import 'global/socials';
+@import 'global/font-material-icons';
+@import 'global/libraries/aos';
+@import 'global/libraries/slick';
+@import 'global/pagenavi';
+@import 'global/mixin';
+@import 'global/modals';
 
+// imports mobile
 @media screen and (min-width: $break-mobile-start) and (max-width: $break-tablet-end) {
   @import 'mobile/header-footer';
   @import 'mobile/a11y';
@@ -78,16 +89,13 @@
   @import 'global/admin-bar';
 }
 
-@import 'global/forms';
-@import 'global/slideshows';
-@import 'global/socials';
-@import 'global/font-material-icons';
-@import 'global/libraries/aos';
-@import 'global/libraries/slick';
-@import 'global/pagenavi';
-@import 'global/mixin';
-@import 'global/modals';
+//@import 'global/visual-debug';
 
-// @import 'global/visual-debug';
-// regole specifiche per Safari
-// es. le immagini con background-attachment: fixed; su Safari devono essere background-attachment: scroll !important;
+// generatore color gradient
+// https://cssgradient.io/
+
+// generatore box shadow
+// https://html-css-js.com/css/generator/box-shadow/
+
+// linee guida componenti accessibili
+// https://www.w3.org/WAI/ARIA/apg/patterns/

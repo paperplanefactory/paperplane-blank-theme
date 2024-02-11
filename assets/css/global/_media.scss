@@ -28,7 +28,7 @@
 	display: block;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(255, 255, 255, 0.35);
+	background-color: var(--above-image-opacity);
 }
 
 .wp-caption.aligncenter,
@@ -77,7 +77,7 @@
 		display: block;
 		width: 100%;
 		height: 100%;
-		background-color: $color-1;
+		background-color: var(--color-1);
 		border: none;
 		cursor: pointer;
 
@@ -90,7 +90,7 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 			content: '';
-			background-color: $color-4;
+			background-color: var(--color-4);
 			-webkit-mask-repeat: no-repeat;
 			mask-repeat: no-repeat;
 			mask-size: contain;
@@ -120,7 +120,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: $color-1;
+	background-color: var(--color-1);
 }
 
 .video-frame video {
@@ -129,7 +129,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: $color-1;
+	background-color: var(--color-1);
 }
 
 .video-stop {
@@ -140,7 +140,7 @@
 	width: 35px;
 	height: 35px;
 	border: none;
-	background-color: $color-4;
+	background-color: var(--color-4);
 	border-radius: 50%;
 	cursor: pointer;
 	opacity: 0.8;
@@ -157,7 +157,7 @@
 		mask-repeat: no-repeat;
 		mask-size: contain;
 		mask-position: center;
-		background-color: $color-1;
+		background-color: var(--color-1);
 	}
 
 	&.pause {

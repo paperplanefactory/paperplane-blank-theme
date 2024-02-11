@@ -89,6 +89,46 @@
             "ui": 1
         },
         {
+            "key": "field_65c0973dd314e",
+            "label": "Mostra opzione per ridurre trasparenze",
+            "name": "opacity_option",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_65c0988781d72",
+            "label": "Mostra opzione per dark mode",
+            "name": "darkmode_option",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_6435907062eee",
             "label": "Utilizzare le transient per i campi personalizzati?",
             "name": "use_transients_fields",
@@ -315,5 +355,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1706879498
+    "modified": 1707120791
 }

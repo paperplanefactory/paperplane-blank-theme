@@ -170,17 +170,17 @@ function paperplane_menu_items_as_buttons( $item_output, $item ) {
 	$mega_menu_activator = get_field( 'mega_menu_activator', $item );
 	$acf_id_modal = get_field( 'acf_id_modal', $item );
 	if ( $mega_menu_activator ) {
-		$item_output = '<button type="button" aria-expanded="false" haspopup="true" aria-controls="mega-menu-control-' . $mega_menu_activator[0] . '" id="mega-menu-controller-' . $mega_menu_activator[0] . '" class="nav-simple-button mega-menu-js-trigger mega-menu-js-' . $mega_menu_activator[0] . '-trigger" aria-controls="mega-menu-js-' . $mega_menu_activator[0] . '-target" data-megamenu-open-id="' . $mega_menu_activator[0] . '">' . $item->title . '</button>';
+		$item_output = '<button type="button" aria-expanded="false" haspopup="true" aria-controls="mega-menu-control-' . $mega_menu_activator[0] . '" id="mega-menu-controller-' . $mega_menu_activator[0] . '" class="nav-simple-button element-icon-after mega-menu-js-trigger mega-menu-js-' . $mega_menu_activator[0] . '-trigger" aria-controls="mega-menu-js-' . $mega_menu_activator[0] . '-target" data-megamenu-open-id="' . $mega_menu_activator[0] . '">' . $item->title . '</button>';
 		ob_start();
 		include( locate_template( 'template-parts/grid/mega-menu-single.php' ) );
 		$item_output .= ob_get_clean();
 	} elseif ( in_array( 'menu-item-has-children', $item->classes ) ) {
-		$item_output = '<button type="button" aria-expanded="false" class="nav-simple-button sub-menu-btn">' . $item->title . '</button>';
+		$item_output = '<button type="button" aria-expanded="false" class="nav-simple-button element-icon-after sub-menu-btn">' . $item->title . '</button>';
 	} elseif ( $acf_id_modal ) {
 		global $cta_url_modal_array;
 		$cta_url_modal_array[] = $acf_id_modal;
 		$start_point = paperplane_random_code();
-		$item_output = '<button type="button" aria-haspopup="true" aria-label="' . $item->title . ': ' . __( 'Questo bottone apre una finestra sovrapposta alla pagina', 'paperPlane-blankTheme' ) . '" class="default-button modal-open-js ' . $start_point . '" data-modal-id="' . $acf_id_modal . '" data-modal-back-to="' . $start_point . '">' . $item->title . '</button>';
+		$item_output = '<button type="button" aria-haspopup="true" aria-label="' . $item->title . ': ' . __( 'Apre una finestra sovrapposta alla pagina', 'paperPlane-blankTheme' ) . '" class="default-button modal-open-js ' . $start_point . '" data-modal-id="' . $acf_id_modal . '" data-modal-back-to="' . $start_point . '">' . $item->title . '</button>';
 	}
 	return $item_output;
 }

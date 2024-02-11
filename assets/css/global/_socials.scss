@@ -4,7 +4,6 @@
 
 .inline-socials {
     width: 100%;
-    margin: 0;
 
     li {
         position: relative;
@@ -34,7 +33,7 @@
                 mask-repeat: no-repeat;
                 mask-size: contain;
                 mask-position: center;
-                background-color: $color-1;
+                background-color: var(--color-1);
             }
         }
     }

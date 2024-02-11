@@ -18,7 +18,7 @@ $hamburger-width: 45px; // header
   }
 
   &.scrolled {
-    background-color: $color-4;
+    background-color: var(--color-4);
   }
 
   #header-structure {
@@ -74,7 +74,7 @@ $hamburger-width: 45px; // header
               -webkit-mask-repeat: no-repeat;
               mask-repeat: no-repeat;
               mask-size: contain;
-              background-color: $color-1;
+              background-color: var(--color-1);
               @include transition(all 0.2s linear);
               transform-origin: center;
             }
@@ -113,9 +113,9 @@ $hamburger-width: 45px; // header
           pointer-events: none;
           @include transition(all 0.15s linear);
           overflow: hidden;
-          color: $color-1;
-          background-color: $color-4;
-          border: solid 1px $color-1;
+          color: var(--color-1);
+          background-color: var(--color-4);
+          border: solid 1px var(--color-1);
 
           &:has(a:focus-visible) {
             height: auto;
@@ -140,7 +140,7 @@ $hamburger-width: 45px; // header
             padding: 0 0 10px;
             margin: 0 0 10px;
             text-align: center;
-            border-bottom: $color-2 solid 1px;
+            border-bottom: var(--color-2) solid 1px;
             font-weight: $font-weight-1;
 
             &:last-child {
@@ -151,7 +151,7 @@ $hamburger-width: 45px; // header
 
             a:link,
             a:visited {
-              color: $color-1;
+              color: var(--color-1);
               display: inline-block;
               width: 100%;
               padding: 0 10px;
@@ -165,7 +165,7 @@ $hamburger-width: 45px; // header
 
             a:active,
             a:hover {
-              color: $color-2;
+              color: var(--color-2);
             }
           }
         }
@@ -200,6 +200,7 @@ $hamburger-width: 45px; // header
     visibility: hidden;
     display: none;
     pointer-events: none;
+    visibility: visible;
 
     &.active {
       visibility: visible;
@@ -220,13 +221,13 @@ $hamburger-width: 45px; // header
     .overlay-menu-css {
       width: 100%;
       text-align: left;
-      border-top: solid 1px $color-3 !important;
+      border-top: solid 1px var(--color-3) !important;
       margin-top: $header-desktop-height;
 
       li {
         position: relative;
         display: block;
-        border-bottom: solid 1px $color-3 !important;
+        border-bottom: solid 1px var(--color-3) !important;
 
         a,
         button {
@@ -257,7 +258,7 @@ $hamburger-width: 45px; // header
               -webkit-mask-repeat: no-repeat;
               mask-repeat: no-repeat;
               mask-size: contain;
-              background-color: $color-1;
+              background-color: var(--color-1);
               @include transition(all 0.2s ease-in-out);
               transform-origin: center;
             }
@@ -282,12 +283,12 @@ $hamburger-width: 45px; // header
 
       .sub-menu {
         display: none;
-        background-color: $color-3;
+        background-color: var(--color-3);
 
         li {
           width: 100%;
           padding-left: 20px;
-          border-bottom: solid 1px $color-4 !important;
+          border-bottom: solid 1px var(--color-4) !important;
 
           &:last-child {
             border-bottom: none !important;
@@ -314,6 +315,10 @@ $hamburger-width: 45px; // header
         }
       }
     }
+  }
+
+  .user-accessibility-options {
+    margin: 20px 0;
   }
 }
 
@@ -351,14 +356,8 @@ $hamburger-width: 45px; // header
       }
     }
   }
-}
 
-.user-accessibility-options {
-  margin: 20px 0 0 0;
-
-  .paperplane-toggle {
-    margin: 0 0 10px 0;
-  }
+  .user-accessibility-options {}
 }
 
 .inline-socials {

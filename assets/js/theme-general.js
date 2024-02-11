@@ -16,7 +16,7 @@ else {
 // accessibility user
 /////////////////////////////////////////////
 
-var theme_version = jQuery('body').data('theme-version');
+var theme_version = jQuery('meta[name=theme-version]').attr('data-theme-version');
 function saveArrayToLocalStorage(arrayName, array) {
   localStorage.setItem(arrayName, JSON.stringify(array));
 }
@@ -26,30 +26,30 @@ function addHours(date, hours) {
 }
 // Example usage
 //const myArray = { reduced_motion: 0, reduced_transparency: 0 };
-//saveArrayToLocalStorage('paperplane_user_preferences', myArray);
+//saveArrayToLocalStorage('paperplane_user_preferences_', myArray);
 
-if (localStorage.getItem('paperplane_user_preferences' + theme_version) != null) {
+if (localStorage.getItem('paperplane_user_preferences_' + theme_version) != null) {
   const now = new Date();
   const paperplane_user_preferences_array = JSON.parse(
-    localStorage.getItem('paperplane_user_preferences' + theme_version),
+    localStorage.getItem('paperplane_user_preferences_' + theme_version),
   );
   Object.keys(paperplane_user_preferences_array).forEach(function (key) {
     if (key == 'expiry' && now.getTime() > paperplane_user_preferences_array[key]) {
-      localStorage.removeItem('paperplane_user_preferences' + theme_version);
+      localStorage.removeItem('paperplane_user_preferences_' + theme_version);
     }
   });
 }
 
-if (localStorage.getItem('paperplane_user_preferences' + theme_version) === null) {
+if (localStorage.getItem('paperplane_user_preferences_' + theme_version) === null) {
   const expry_date = addHours(new Date(), (1 * 24) * 365);
   //const expry_date = addHours(new Date(), 1 / 60);
   const initial_a11y_values = { expiry: expry_date.getTime(), reduced_motion: 1, reduced_transparency: 0, dark_mode: 0 };
-  saveArrayToLocalStorage('paperplane_user_preferences' + theme_version, initial_a11y_values);
+  saveArrayToLocalStorage('paperplane_user_preferences_' + theme_version, initial_a11y_values);
 }
 
 jQuery(document).on('click', '.paperplane-reduce-motion-js:not(.initialized)', function (e) {
   const paperplane_user_preferences_array = JSON.parse(
-    localStorage.getItem('paperplane_user_preferences' + theme_version),
+    localStorage.getItem('paperplane_user_preferences_' + theme_version),
   );
   Object.keys(paperplane_user_preferences_array).forEach(function (key) {
 
@@ -60,14 +60,14 @@ jQuery(document).on('click', '.paperplane-reduce-motion-js:not(.initialized)', f
       paperplane_user_preferences_array[key] = 0;
     }
   });
-  saveArrayToLocalStorage('paperplane_user_preferences' + theme_version, paperplane_user_preferences_array);
+  saveArrayToLocalStorage('paperplane_user_preferences_' + theme_version, paperplane_user_preferences_array);
   user_set_accessibility();
   e.preventDefault();
 });
 
 jQuery(document).on('click', '.paperplane-reduce-transparency-js:not(.initialized)', function (e) {
   const paperplane_user_preferences_array = JSON.parse(
-    localStorage.getItem('paperplane_user_preferences' + theme_version),
+    localStorage.getItem('paperplane_user_preferences_' + theme_version),
   );
   Object.keys(paperplane_user_preferences_array).forEach(function (key) {
 
@@ -78,14 +78,32 @@ jQuery(document).on('click', '.paperplane-reduce-transparency-js:not(.initialize
       paperplane_user_preferences_array[key] = 1;
     }
   });
-  saveArrayToLocalStorage('paperplane_user_preferences' + theme_version, paperplane_user_preferences_array);
+  saveArrayToLocalStorage('paperplane_user_preferences_' + theme_version, paperplane_user_preferences_array);
+  user_set_accessibility();
+  e.preventDefault();
+});
+
+jQuery(document).on('click', '.paperplane-darkmode-js:not(.initialized)', function (e) {
+  const paperplane_user_preferences_array = JSON.parse(
+    localStorage.getItem('paperplane_user_preferences_' + theme_version),
+  );
+  Object.keys(paperplane_user_preferences_array).forEach(function (key) {
+
+    if (key == 'dark_mode' && paperplane_user_preferences_array[key] == 1) {
+      paperplane_user_preferences_array[key] = 0;
+    }
+    else if (key == 'dark_mode' && paperplane_user_preferences_array[key] == 0) {
+      paperplane_user_preferences_array[key] = 1;
+    }
+  });
+  saveArrayToLocalStorage('paperplane_user_preferences_' + theme_version, paperplane_user_preferences_array);
   user_set_accessibility();
   e.preventDefault();
 });
 
 function user_set_accessibility() {
   const paperplane_user_preferences_options_array = JSON.parse(
-    localStorage.getItem('paperplane_user_preferences' + theme_version),
+    localStorage.getItem('paperplane_user_preferences_' + theme_version),
   );
   Object.keys(paperplane_user_preferences_options_array).forEach(function (key) {
     if (key == 'reduced_motion' && paperplane_user_preferences_options_array[key] == 0) {
@@ -111,6 +129,14 @@ function user_set_accessibility() {
     else if (key == 'reduced_transparency' && paperplane_user_preferences_options_array[key] == 0) {
       jQuery('body').removeClass('body-reduced-transparency');
       jQuery('.paperplane-reduce-transparency-js').attr('aria-checked', 'false');
+    }
+    if (key == 'dark_mode' && paperplane_user_preferences_options_array[key] == 1) {
+      jQuery('html').attr('data-theme-color', 'dark');
+      jQuery('.paperplane-darkmode-js').attr('aria-checked', 'true');
+    }
+    else if (key == 'dark_mode' && paperplane_user_preferences_options_array[key] == 0) {
+      jQuery('html').attr('data-theme-color', '');
+      jQuery('.paperplane-darkmode-js').attr('aria-checked', 'false');
     }
   });
 
@@ -318,12 +344,14 @@ jQuery(document).on('click', '.mega-menu-js-trigger:not(.initialized)', function
   if (jQuery(this).hasClass('clicked')) {
     jQuery(this).removeClass('clicked').attr('aria-expanded', false);
     jQuery('.mega-menu-js-' + data_megamenu_id + '-target').addClass('hidden');
+    jQuery('.submenu-close-js').removeClass('active');
     scrollDirectionMenu();
   }
   else {
     jQuery(this).addClass('clicked').attr('aria-expanded', true);
     jQuery('.mega-menu-js-' + data_megamenu_id + '-target').removeClass('hidden');
     jQuery('#header').addClass('scrolled');
+    jQuery('.submenu-close-js').addClass('active');
 
   }
   closeHamburgerMenu();
@@ -364,10 +392,10 @@ jQuery('.overlay-menu-mobile-js > .menu-item-has-children').each(function (i, el
 jQuery(document).on('click', '.overlay-menu-mobile-js > .menu-item-has-children > .sub-menu-btn:not(.initialized)', function (e) {
   if (jQuery(this).hasClass('clicked')) {
     jQuery(this).removeClass('clicked').attr('aria-expanded', false);
-    jQuery(this).parent().find('.sub-menu').slideUp(150);
+    jQuery(this).parent().find('.sub-menu').slideUp(animation_duration);
   } else {
     jQuery(this).addClass('clicked').attr('aria-expanded', true);
-    jQuery(this).parent().find('.sub-menu').slideDown(150);
+    jQuery(this).parent().find('.sub-menu').slideDown(animation_duration);
   }
 });
 
@@ -387,14 +415,16 @@ function close_sub_menus() {
   jQuery('.mega-menu-js').addClass('hidden');
   jQuery('.mega-menu-js-trigger').removeClass('clicked');
   jQuery('.submenu-close-js').removeClass('active');
-
   jQuery('.header-menu-js > .menu-item-has-children > .sub-menu-btn').removeClass('clicked').attr('aria-expanded', false);
   jQuery('.sub-menu').removeClass('visible');
-
   jQuery('.submenu-close-js').removeClass('active');
 }
 
-jQuery('.header-menu .mega-menu-js-trigger, .header-menu .sub-menu-btn, .header-menu .simple-link, .header-menu .child-link, .submenu-close-js').on('focusin', function () {
+jQuery('.header-menu .mega-menu-js-trigger, .header-menu .sub-menu-btn, .header-menu .simple-link, .header-menu .child-link').on('focusin', function () {
+  close_sub_menus();
+});
+
+jQuery(document).on('click', '.submenu-close-js:not(.initialized)', function (e) {
   close_sub_menus();
 });
 
@@ -640,11 +670,9 @@ jQuery('.play-video-js').each(function (i, el) {
   var video_source = jQuery(this).data('video-source');
   if (video_source == 'vimeo') {
     load_vimeo = true;
-
   }
   if (video_source == 'youtube') {
     load_youtube = true;
-
   }
 });
 
@@ -672,7 +700,7 @@ jQuery(document).on('click', '.play-video-js:not(.initialized)', function (e) {
   if (video_source == 'vimeo') {
     var iframe = document.getElementById(video_toplay);
     var src = jQuery('#' + video_toplay).attr("data-src");
-    jQuery('#' + video_toplay).removeAttr("data-src").attr('src', src);
+    jQuery('#' + video_toplay).removeAttr("data-src").attr('src', src).attr('aria-hidden', false);
     var player = new Vimeo.Player(iframe);
     player.play();
     jQuery(document).on('click', '.modal-close-js:not(.initialized)', function (e) {
@@ -682,6 +710,7 @@ jQuery(document).on('click', '.play-video-js:not(.initialized)', function (e) {
   if (video_source == 'youtube') {
     var youtube_video_id = jQuery(this).data('youtube-video-id');
     var player;
+    jQuery('#' + video_toplay).attr('aria-hidden', false);
     player = new YT.Player(video_toplay, {
       height: '360',
       width: '640',
@@ -700,7 +729,7 @@ jQuery(document).on('click', '.play-video-js:not(.initialized)', function (e) {
     });
   }
   if (video_source == 'upload-video') {
-    jQuery('#' + video_toplay).trigger('play');
+    jQuery('#' + video_toplay).trigger('play').attr('aria-hidden', false);
     jQuery(document).on('click', '.modal-close-js:not(.initialized)', function (e) {
       jQuery('#' + video_toplay).trigger('pause');
     });
@@ -736,7 +765,7 @@ jQuery(document).on('click', '.modal-open-js:not(.initialized)', function (e) {
 
   }
   else {
-    console.log('sorry, Google Analytics is no installed.');
+    console.log('Sorry, Google Analytics is not installed.');
   }
 });
 
@@ -758,7 +787,7 @@ jQuery(document).on('click', '.ga-custom-event-trigger-js:not(.initialized)', fu
     });
   }
   else {
-    console.log('sorry, Google Analytics is no installed.');
+    console.log('Sorry, Google Analytics is not installed.');
   }
 });
 
@@ -777,7 +806,7 @@ jQuery(document).on('click', '.ga-ab-event-trigger-js:not(.initialized)', functi
     });
   }
   else {
-    console.log('sorry, Google Analytics is no installed.');
+    console.log('Sorry, Google Analytics is not installed.');
   }
 });
 

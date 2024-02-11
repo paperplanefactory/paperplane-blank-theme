@@ -10,24 +10,21 @@ function paperplane_theme_videos( $field_names ) {
 			$video_source = $field_name['video_source'];
 			if ( $video_source === 'youtube' || $video_source === 'vimeo' ) {
 				$video_id = $field_name['video_id'];
-				//$video_cover = $field_name['video_cover']['sizes']['column'];
 			}
 			if ( $video_source === 'upload-video' ) {
 				$video_id = 'uploaded-video';
-				//$video_cover = $field_name['video_cover']['sizes']['column'];
 			}
 			if ( $field_name['video_caption'] ?? null ) {
-				$link_title = __( 'Guarda', 'paperPlane-blankTheme' ) . ' ' . wp_strip_all_tags( $field_name['video_caption'] );
+				$link_title = wp_strip_all_tags( $field_name['video_caption'] ) . ' ' . __( 'Avvia la riproduzione video', 'paperPlane-blankTheme' );
 			} else {
-				$link_title = __( 'Guarda', 'paperPlane-blankTheme' );
+				$link_title = __( 'Avvia la riproduzione video', 'paperPlane-blankTheme' );
 			}
 			?>
 			<div class="video-block">
 				<div class="video-frame image-as-link">
 					<button id="play-video-<?php echo $videos_count; ?>" class="play-video-js video-cover"
 						data-video-toplay="video-<?php echo $videos_count; ?>" data-video-source="<?php echo $video_source; ?>"
-						data-youtube-video-id="<?php echo $video_id; ?>" title="<?php echo $link_title; ?>"
-						aria-label="<?php echo $link_title; ?>">
+						data-youtube-video-id="<?php echo $video_id; ?>" aria-label="<?php echo $link_title; ?>">
 						<div aria-hidden="true">
 							<?php
 							$image_data = array(
