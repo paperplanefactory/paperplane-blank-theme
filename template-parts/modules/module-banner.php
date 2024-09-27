@@ -42,7 +42,7 @@ if ( $banner ) :
 						<div class="banner-content">
 							<?php if ( isset( $content_fields['banner_foreground_image'] ) ) : ?>
 								<div class="flex-hold flex-hold-banner">
-									<div class="banner-image uncoverize image-as-link" data-aos="zoom-out" aria-hidden="true">
+									<div class="banner-image uncoverize image-as-link" data-aos="zoom-out">
 										<?php paperplane_theme_cta_absl_advanced( $content_fields['paperplane_theme_cta_banner'] ); ?>
 										<?php
 										$image_data = array(

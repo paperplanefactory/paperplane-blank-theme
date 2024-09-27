@@ -26,7 +26,7 @@ function print_theme_image( $image_data, $image_appearance, $image_sizes ) {
 		if ( isset( $thumb_id ) ) {
 			$attachment_alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true ); // image alt text
 			if ( empty( $attachment_alt ) ) {
-				$attachment_alt = get_the_title( $thumb_id ) . ': ' . __( 'questa immagine non ha ancora un testo alternativo.', 'paperPlane-blankTheme' );
+				$attachment_alt = '';
 			}
 			if ( count( $image_sizes ) > 0 ) {
 				$print_theme_image_cache_key = 'print_theme_image_cache_' . $thumb_id;

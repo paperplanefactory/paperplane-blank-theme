@@ -18,9 +18,10 @@ if ( ! is_admin() ) {
 		// versione del tema
 		global $theme_version;
 		// stili comuni
-		wp_enqueue_style( 'paperplane-theme-font', 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap', array(), null );
+		wp_enqueue_style( 'paperplane-theme-font', 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap', array(), null );
+		// se non si usano Google Font rimuovere la riga sopra
+		// se si usano è possibile usare il CSS del link Google come parziale del tema e commentare la riga
 		wp_enqueue_style( 'paperplane-theme-commnon', get_template_directory_uri() . '/style.min.css', '', $theme_version, 'all' );
-		// se non si usano Google Font rimuovere le 2 righe con il meta preconnect a Google dalla funzione paperplane_preload_self_hosted_fonts()
 	}
 	add_action( 'wp_enqueue_scripts', 'theme_css', 10, 3 );
 }

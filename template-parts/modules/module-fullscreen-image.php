@@ -5,7 +5,7 @@
 	<div class="module-box-fullscreen coverize <?php echo $module['module_fullscreen_text_align_horizontal']; ?>"
 		data-aos="fade">
 		<?php if ( $module['module_fullscreen_image_image_video'] == 1 ) : ?>
-			<button class="video-stop video-stop-js pause"
+			<button class="play-pause-animation animation-play-pause-js pause"
 				data-video-stop="module-fullscreen-video-<?php echo $module_count; ?>"
 				title="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"
 				aria-label="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"></button>
