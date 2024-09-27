@@ -203,7 +203,7 @@
             "name": "page_opening_image_desktop",
             "aria-label": "",
             "type": "image",
-            "instructions": "Se non viene selezionata un'immagine verrà utilizzata l'immagine in evidenza.",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -228,7 +228,7 @@
             "name": "page_opening_image_mobile",
             "aria-label": "",
             "type": "image",
-            "instructions": "Se non viene selezionata un'immagine verrà utilizzata l'immagine in evidenza.",
+            "instructions": "Se non viene selezionata un'immagine verrà utilizzata l'immagine desktop.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -372,5 +372,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1707505324
+    "modified": 1712236156
 }

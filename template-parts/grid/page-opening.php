@@ -1,4 +1,3 @@
-<a name="page-skip-to-content"></a>
 <?php
 /* 
 richiamo il tipo di apertura in base al tipo di contenuto

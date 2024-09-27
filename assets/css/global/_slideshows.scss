@@ -11,6 +11,8 @@
 .slick-next,
 .slick-prev {
     color: var(--color-1);
+    background-color: transparent;
+    border: none;
 }
 
 .slick-dots {
@@ -41,5 +43,14 @@
         width: 0;
         height: 0;
         overflow: hidden;
+
+        &:has(button:focus-visible) {
+            top: auto;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            z-index: 3;
+            opacity: 1;
+        }
     }
 }

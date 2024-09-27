@@ -3,9 +3,10 @@
 /////////////////////////////////////////////
 const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)') === true || window.matchMedia('(prefers-reduced-motion: reduce)').matches === true;
 if (isReduced) {
-  jQuery('.stoppable-js').trigger('pause');
-  var animation_duration = 0;
-  var animation_duration_counter = 0;
+  //jQuery('.stoppable-js').trigger('pause');
+  //jQuery('.animation-play-pause-js').removeClass('pause').addClass('play').attr('aria-pressed', false);
+  //var animation_duration = 0;
+  //var animation_duration_counter = 0;
   jQuery('.reduce-motion-button-js').addClass('hidden');
 }
 else {
@@ -70,7 +71,6 @@ jQuery(document).on('click', '.paperplane-reduce-transparency-js:not(.initialize
     localStorage.getItem('paperplane_user_preferences_' + theme_version),
   );
   Object.keys(paperplane_user_preferences_array).forEach(function (key) {
-
     if (key == 'reduced_transparency' && paperplane_user_preferences_array[key] == 1) {
       paperplane_user_preferences_array[key] = 0;
     }
@@ -84,16 +84,20 @@ jQuery(document).on('click', '.paperplane-reduce-transparency-js:not(.initialize
 });
 
 jQuery(document).on('click', '.paperplane-darkmode-js:not(.initialized)', function (e) {
+  const expry_date_cookie = addHours(new Date(), (1 * 24) * 365);
   const paperplane_user_preferences_array = JSON.parse(
     localStorage.getItem('paperplane_user_preferences_' + theme_version),
   );
   Object.keys(paperplane_user_preferences_array).forEach(function (key) {
-
     if (key == 'dark_mode' && paperplane_user_preferences_array[key] == 1) {
       paperplane_user_preferences_array[key] = 0;
+      document.cookie = "dark_mode=0; SameSite=None; Secure; expires=" + expry_date_cookie + "";
+      jQuery('body').attr('data-theme-color', '');
     }
     else if (key == 'dark_mode' && paperplane_user_preferences_array[key] == 0) {
       paperplane_user_preferences_array[key] = 1;
+      document.cookie = "dark_mode=1; SameSite=None; Secure; expires=" + expry_date_cookie + "";
+      jQuery('body').attr('data-theme-color', 'dark');
     }
   });
   saveArrayToLocalStorage('paperplane_user_preferences_' + theme_version, paperplane_user_preferences_array);
@@ -106,10 +110,10 @@ function user_set_accessibility() {
     localStorage.getItem('paperplane_user_preferences_' + theme_version),
   );
   Object.keys(paperplane_user_preferences_options_array).forEach(function (key) {
-    if (key == 'reduced_motion' && paperplane_user_preferences_options_array[key] == 0) {
+    if ((key == 'reduced_motion' && paperplane_user_preferences_options_array[key] == 0) || isReduced) {
       jQuery('body').addClass('body-reduced-motion');
       jQuery('.stoppable-js').trigger('pause');
-      jQuery('.video-stop-js').removeClass('pause').addClass('play');
+      jQuery('.animation-play-pause-js').removeClass('pause').addClass('play').attr('aria-pressed', false);
       jQuery('.paperplane-reduce-motion-js').attr('aria-checked', 'false');
       animation_duration = 0;
       animation_duration_counter = 0;
@@ -117,7 +121,7 @@ function user_set_accessibility() {
     else if (key == 'reduced_motion' && paperplane_user_preferences_options_array[key] == 1) {
       jQuery('body').removeClass('body-reduced-motion');
       jQuery('.stoppable-js').trigger('play');
-      jQuery('.video-stop-js').addClass('pause').removeClass('play');
+      jQuery('.animation-play-pause-js').addClass('pause').removeClass('play').attr('aria-pressed', true);
       jQuery('.paperplane-reduce-motion-js').attr('aria-checked', 'true');
       animation_duration = 500;
       animation_duration_counter = 1500;
@@ -131,11 +135,11 @@ function user_set_accessibility() {
       jQuery('.paperplane-reduce-transparency-js').attr('aria-checked', 'false');
     }
     if (key == 'dark_mode' && paperplane_user_preferences_options_array[key] == 1) {
-      jQuery('html').attr('data-theme-color', 'dark');
+      //jQuery('html').attr('data-theme-color', 'dark');
       jQuery('.paperplane-darkmode-js').attr('aria-checked', 'true');
     }
     else if (key == 'dark_mode' && paperplane_user_preferences_options_array[key] == 0) {
-      jQuery('html').attr('data-theme-color', '');
+      //jQuery('html').attr('data-theme-color', '');
       jQuery('.paperplane-darkmode-js').attr('aria-checked', 'false');
     }
   });
@@ -159,16 +163,33 @@ function acessibility_panel_hide() {
 // Video bg play/pause
 /////////////////////////////////////////////
 
-jQuery(document).on('click', '.video-stop-js:not(.initialized)', function (e) {
+jQuery(document).on('click', '.animation-play-pause-js:not(.initialized)', function (e) {
   var video_stop = jQuery(this).data('video-stop');
   var video = jQuery('#' + video_stop).get(0);
   if (video.paused) {
     jQuery('#' + video_stop).trigger('play');
-    jQuery(this).addClass('pause').removeClass('play');
+    jQuery(this).addClass('pause').removeClass('play').attr('aria-pressed', true);
   }
   else {
     jQuery('#' + video_stop).trigger('pause');
-    jQuery(this).removeClass('pause').addClass('play');
+    jQuery(this).removeClass('pause').addClass('play').attr('aria-pressed', false);
+  }
+  e.preventDefault();
+});
+
+/////////////////////////////////////////////
+// Animation play/pause
+/////////////////////////////////////////////
+
+jQuery(document).on('click', '.animation-stop-js:not(.initialized)', function (e) {
+  var video_stop = jQuery(this).data('video-stop');
+  if (jQuery(this).hasClass('pause')) {
+    jQuery('#' + video_stop).removeClass('animate');
+    jQuery(this).addClass('play').removeClass('pause').attr('aria-pressed', true);
+  }
+  else {
+    jQuery('#' + video_stop).addClass('animate');
+    jQuery(this).removeClass('play').addClass('pause').attr('aria-pressed', false);
   }
   e.preventDefault();
 });
@@ -179,7 +200,7 @@ jQuery(document).on('click', '.video-stop-js:not(.initialized)', function (e) {
 
 setTimeout(function () {
   jQuery('.stoppable-js').trigger('pause');
-  jQuery('.video-stop-js').removeClass('pause').addClass('play');
+  jQuery('.animation-play-pause-js').removeClass('pause').addClass('play').attr('aria-pressed', false);
 }, 120000);
 
 /////////////////////////////////////////////
@@ -340,6 +361,8 @@ jQuery('#head-overlay').on('keydown', function (event) {
 /////////////////////////////////////////////
 
 jQuery(document).on('click', '.mega-menu-js-trigger:not(.initialized)', function (e) {
+  jQuery('.mega-menu-js-trigger').not(this).removeClass('clicked').attr('aria-expanded', false);
+  jQuery('.mega-menu-js-trigger').not(this).parent().find('.mega-menu-js').addClass('hidden').attr('aria-hidden', true);
   data_megamenu_id = jQuery(this).data('megamenu-open-id');
   if (jQuery(this).hasClass('clicked')) {
     jQuery(this).removeClass('clicked').attr('aria-expanded', false);
@@ -400,7 +423,7 @@ jQuery(document).on('click', '.overlay-menu-mobile-js > .menu-item-has-children 
 });
 
 /////////////////////////////////////////////
-// close_sub_menus
+// close_sub menus
 /////////////////////////////////////////////
 
 function closeHamburgerMenu() {
@@ -420,7 +443,7 @@ function close_sub_menus() {
   jQuery('.submenu-close-js').removeClass('active');
 }
 
-jQuery('.header-menu .mega-menu-js-trigger, .header-menu .sub-menu-btn, .header-menu .simple-link, .header-menu .child-link').on('focusin', function () {
+jQuery('.header-menu .mega-menu-js-trigger, .header-menu .sub-menu-btn, .header-menu .simple-link').on('focusin', function () {
   close_sub_menus();
 });
 
@@ -561,8 +584,8 @@ jQuery(window).on('load', function () {
     slidesToScroll: 1,
     arrows: true,
     dots: true,
-    nextArrow: '<div class="slick-next">→</div>',
-    prevArrow: '<div class="slick-prev">←</div>',
+    nextArrow: '<button class="slick-next">→</button>',
+    prevArrow: '<button class="slick-prev">←</button>',
     responsive: [{
       breakpoint: 1024,
       settings: {
@@ -861,5 +884,3 @@ jQuery('a').each(function () {
   }
 });
 */
-
-

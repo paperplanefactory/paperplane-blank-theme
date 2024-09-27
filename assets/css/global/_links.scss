@@ -1,0 +1,98 @@
+// main: ../style.scss
+@import 'vars';
+@import 'mixin';
+
+// link behaviour and colors
+
+:-webkit-any-link {
+    @include transition(all 0.3s linear);
+}
+
+:-moz-any-link {
+    @include transition(all 0.3s linear);
+}
+
+:any-link {
+    @include transition(all 0.3s linear);
+}
+
+a.absl:active,
+a.absl:hover,
+a.absl:link,
+a.absl:visited {
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+}
+
+.last-focus {
+    font-size: 0;
+    opacity: 0;
+}
+
+.underlined-links {
+
+    a:link,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a:active,
+    a:hover {
+        text-decoration: none;
+    }
+
+    button {
+        text-decoration: underline;
+    }
+}
+
+.underlined-links-on-hover {
+
+    a:link,
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:active,
+    a:hover {
+        text-decoration: underline;
+    }
+
+    button {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// comma separated links
+
+.comma-separated-list {
+
+    //margin-bottom: 24px;
+    a:link {
+        &:after {
+            content: ", ";
+        }
+
+        &:last-child:after {
+            content: "";
+        }
+    }
+
+    span {
+        &:after {
+            content: ", ";
+        }
+
+        &:last-child:after {
+            content: "";
+        }
+    }
+}

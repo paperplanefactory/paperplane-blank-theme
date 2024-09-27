@@ -154,7 +154,9 @@ function paperplane_theme_cta_advanced( $field_names ) {
 				if ( ! isset( $data_modal_title ) ) {
 					$data_modal_title = '';
 				}
-				$cta_html .= '<' . $cta_tag . ' ' . $cta_url . ' ' . $cta_target . ' class="' . $cta_class . '" data-modal-id="' . $data_modal_open_id . '" data-modal-title="' . $data_modal_title . '" data-modal-back-to="' . $start_point . '" ' . $ga_custom_event_data . ' ' . $ga_ab_event_data . ' ' . $ga_modal_event_data . ' aria-label="' . $cta_title . ' ' . $button_text . '">' . $button_text . '</' . $cta_tag . '>';
+				if ( isset( $cta_tag ) ) {
+					$cta_html .= '<' . $cta_tag . ' ' . $cta_url . ' ' . $cta_target . ' class="' . $cta_class . '" data-modal-id="' . $data_modal_open_id . '" data-modal-title="' . $data_modal_title . '" data-modal-back-to="' . $start_point . '" ' . $ga_custom_event_data . ' ' . $ga_ab_event_data . ' ' . $ga_modal_event_data . '>' . $button_text . '<span class="screen-reader-text">' . $cta_title . '</span></' . $cta_tag . '>';
+				}
 			}
 		}
 		$cta_html .= '</div>';
@@ -210,7 +212,7 @@ function paperplane_theme_cta_absl_advanced( $field_names ) {
 						$start_point = '';
 					}
 
-					$cta_html = '<a href="' . $cta_url . '" target="' . $target . '" class="' . $cta_url_modal_class . ' ' . $start_point . '" data-modal-open-id="' . $data_modal_open_id . '" data-modal-back-to="' . $start_point . '" title="' . $cta_title . ' ' . $button_text . '" aria-label="' . $cta_title . ' ' . $button_text . '"></a>';
+					$cta_html = '<a href="' . $cta_url . '" target="' . $target . '" class="' . $cta_url_modal_class . ' ' . $start_point . '" data-modal-open-id="' . $data_modal_open_id . '" data-modal-back-to="' . $start_point . '" title="' . $cta_title . ' ' . $button_text . '"><span class="screen-reader-text">' . $cta_title . ' ' . $button_text . '</span></a>';
 					echo $cta_html;
 				}
 			}

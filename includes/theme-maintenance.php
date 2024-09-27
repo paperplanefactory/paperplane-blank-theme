@@ -165,7 +165,7 @@ function paperplane_set_maintenance_page() {
   }
   .embed {
     position: relative;
-    padding-bottom: 56.25% !important;
+    padding-bottom: 26.25% !important;
     overflow: hidden !important;
     height: auto !important;
     width: 100%;
@@ -197,9 +197,11 @@ function paperplane_set_maintenance_page() {
   <h1>
   ' . $message_u . '
   </h1>
-  </div>
-  <div class="embed">' . $underconstruction_embed . '</div>
-  </div>
+  </div>';
+	if ( $underconstruction_page_data != '' ) :
+		$underconstruction_page_data .= '<div class="embed">' . $underconstruction_embed . '</div>';
+	endif;
+	$underconstruction_page_data .= '</div>
   </body>
   </html>';
 	$underconstruction_page_file = '/../under-construction.php';

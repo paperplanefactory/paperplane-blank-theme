@@ -2,6 +2,10 @@
 @import 'vars';
 @import 'mixin'; // comportamenti predefiniti
 
+@view-transition {
+	navigation: auto;
+}
+
 .clearer {
 	clear: both;
 }

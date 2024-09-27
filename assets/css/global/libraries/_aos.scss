@@ -999,7 +999,7 @@ body[data-aos-easing=ease-in-out-quart] [data-aos] {
 }
 
 [data-aos^=fade][data-aos^=fade] {
-  opacity: 0;
+  opacity: 0.01;
   transition-property: opacity, transform;
 }
 
@@ -1041,7 +1041,7 @@ body[data-aos-easing=ease-in-out-quart] [data-aos] {
 }
 
 [data-aos^=zoom][data-aos^=zoom] {
-  opacity: 0;
+  opacity: 0.01;
   transition-property: opacity, transform;
 }
 

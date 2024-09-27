@@ -3,7 +3,7 @@ $break-desktop: 1024px;
 $break-tablet-end: 1023px;
 $break-mobile-start: 1px; // fonts vars
 $font-main: 'Montserrat', sans-serif;
-$font-sub: 'Roboto Slab', serif;
+$font-sub: "Atkinson Hyperlegible", sans-serif;
 $font-weight-1: 400; //regular
 $font-weight-2: 500; //medium
 $font-weight-3: 700; //bold
@@ -23,7 +23,7 @@ $color-2: #555555;
 $color-3: #F2F2F2;
 $color-4: #FFFFFF;
 
-html {
+body {
     --color-1: #111111;
     --color-2: #555555;
     --color-3: #F2F2F2;
@@ -33,7 +33,7 @@ html {
 }
 
 // rimuovere se non si utilizza il dark mode
-html[data-theme-color='dark'] {
+body[data-theme-color="dark"] {
     --color-1: #FFFFFF;
     --color-2: #F2F2F2;
     --color-3: #555555;

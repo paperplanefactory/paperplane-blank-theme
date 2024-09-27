@@ -57,32 +57,6 @@ ul {
   text-transform: uppercase;
 }
 
-// comma separated links
-
-.category-list {
-
-  //margin-bottom: 24px;
-  a:link {
-    &:after {
-      content: ", ";
-    }
-
-    &:last-child:after {
-      content: "";
-    }
-  }
-
-  span {
-    &:after {
-      content: ", ";
-    }
-
-    &:last-child:after {
-      content: "";
-    }
-  }
-}
-
 // remove typography elements last child margin bottom
 
 .last-child-no-margin {

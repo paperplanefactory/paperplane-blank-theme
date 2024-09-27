@@ -7,7 +7,8 @@ function paperplane_preload_self_hosted_fonts() {
 	//$preload_fonts_meta .= '<link rel="preload" href="' . $static_bloginfo_stylesheet_directory . '/assets/fonts/material-icons/MaterialIcons-Regular.ttf" as="font" crossorigin />' . "\n";
 	$preload_fonts_meta = '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />' . "\n";
 	$preload_fonts_meta .= '<link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2" as="font" fetchpriority="high" type="font/woff2" crossorigin />' . "\n";
-	$preload_fonts_meta .= '<link rel="preload" href="https://fonts.gstatic.com/s/robotoslab/v34/BngMUXZYTXPIvIBgJJSb6ufN5qWr4xCC.woff2" as="font" fetchpriority="high" type="font/woff2" crossorigin />' . "\n";
+	$preload_fonts_meta .= '<link rel="preload" href="https://fonts.gstatic.com/s/atkinsonhyperlegible/v11/9Bt23C1KxNDXMspQ1lPyU89-1h6ONRlW45G04pIoWQeCbA.woff2" as="font" fetchpriority="high" type="font/woff2" crossorigin />' . "\n";
+	$preload_fonts_meta .= '<link rel="preload" href="https://fonts.gstatic.com/s/atkinsonhyperlegible/v11/9Bt73C1KxNDXMspQ1lPyU89-1h6ONRlW45G8Wbc9dCWPRl-uFQ.woff2" as="font" fetchpriority="high" type="font/woff2" crossorigin />' . "\n";
 	echo $preload_fonts_meta;
 }
 add_action( 'wp_head', 'paperplane_preload_self_hosted_fonts', 1 );
@@ -18,23 +19,24 @@ function paperplane_preload_images_above_the_fold() {
 	if ( $post ) {
 		$content_fields = paperplane_content_transients( $post->ID );
 		if ( $content_fields ) {
-			if ( array_key_exists( 'page_opening_layout', $content_fields ) ) {
-				$page_opening_layout = $content_fields['page_opening_layout'];
-			}
-
-			if ( $page_opening_layout === 'opening-fullscreen' || $page_opening_layout === 'opening-almost-fullscreen' ) {
+			if ( array_key_exists( 'page_opening_video', $content_fields ) ) {
 				$page_opening_video = $content_fields['page_opening_video'];
-				if ( $page_opening_video === 'no' ) {
-					if ( ! empty( $content_fields['page_opening_image_desktop'] ) ) {
-						$preload_media_meta .= '<link rel="preload" media="(min-width: 1024px)" href="' . $content_fields['page_opening_image_desktop']['sizes']['full_desk_hd'] . '" fetchpriority="auto" as="image" type="' . $content_fields['page_opening_image_desktop']['mime_type'] . '" />' . "\n";
-					}
-					if ( ! empty( $content_fields['page_opening_image_mobile'] ) ) {
-						$preload_media_meta .= '<link rel="preload" media="(max-width: 1023px)" href="' . $content_fields['page_opening_image_mobile']['sizes']['full_desk'] . '" fetchpriority="auto" as="image" type="' . $content_fields['page_opening_image_desktop']['mime_type'] . '" />' . "\n";
-					}
+			} else {
+				$page_opening_video = 'no';
+			}
+			if ( $page_opening_video === 'no' ) {
+				if ( array_key_exists( 'page_opening_image_desktop', $content_fields ) && $content_fields['page_opening_image_desktop'] != '' ) {
+					$preload_media_meta .= '<link rel="preload" media="(min-width: 1024px)" href="' . $content_fields['page_opening_image_desktop']['sizes']['full_desk_hd'] . '" fetchpriority="auto" as="image" type="' . $content_fields['page_opening_image_desktop']['mime_type'] . '" />' . "\n";
 				}
-				if ( $page_opening_video === 'si' ) {
-					//$preload_media_meta .= '<link rel="preload" href="' . $content_fields['page_opening_video_mp4'] . '" fetchpriority="high" as="video" type="video/mp4" />' . "\n";
+				if ( array_key_exists( 'page_opening_image_mobile', $content_fields ) && $content_fields['page_opening_image_mobile'] != '' ) {
+					$preload_media_meta .= '<link rel="preload" media="(max-width: 1023px)" href="' . $content_fields['page_opening_image_mobile']['sizes']['full_desk'] . '" fetchpriority="auto" as="image" type="' . $content_fields['page_opening_image_mobile']['mime_type'] . '" />' . "\n";
+				} elseif ( $content_fields['page_opening_image_mobile'] == false && array_key_exists( 'page_opening_image_desktop', $content_fields ) && $content_fields['page_opening_image_desktop'] != '' ) {
+					$preload_media_meta .= '<link rel="preload" media="(max-width: 1023px)" href="' . $content_fields['page_opening_image_desktop']['sizes']['full_desk'] . '" fetchpriority="auto" as="image" type="' . $content_fields['page_opening_image_desktop']['mime_type'] . '" />' . "\n";
+
 				}
+			}
+			if ( $page_opening_video === 'si' ) {
+				//$preload_media_meta .= '<link rel="preload" href="' . $content_fields['page_opening_video_mp4'] . '" fetchpriority="high" as="video" type="video/mp4" />' . "\n";
 			}
 		}
 	}

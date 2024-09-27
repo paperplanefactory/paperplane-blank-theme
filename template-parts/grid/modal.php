@@ -2,7 +2,7 @@
 $content_fields = paperplane_content_transients( $post->ID );
 $modal_video_include = $content_fields['modal_video_include'];
 ?>
-<section id="paperplane-modal-js-<?php echo $post->ID; ?>" class="paperplane-modal paperplane-modal-js hidden"
+<dialog id="paperplane-modal-js-<?php echo $post->ID; ?>" class="paperplane-modal paperplane-modal-js hidden"
 	aria-hidden="true" data-modal-id="<?php echo $post->ID; ?>">
 	<div class="modal-close-area modal-close-js" data-modal-id="<?php echo $post->ID; ?>">
 	</div>
@@ -34,4 +34,4 @@ $modal_video_include = $content_fields['modal_video_include'];
 			</div>
 		</div>
 	</div>
-</section>
+</dialog>

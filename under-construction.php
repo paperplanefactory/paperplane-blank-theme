@@ -50,7 +50,7 @@
   }
   .embed {
     position: relative;
-    padding-bottom: 56.25% !important;
+    padding-bottom: 26.25% !important;
     overflow: hidden !important;
     height: auto !important;
     width: 100%;
@@ -83,8 +83,6 @@
   Sito in costruzione.<br />
     Under construction.
   </h1>
-  </div>
-  <div class="embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/GP7gNJOomWM?si=ql99CeMwBja3KDCg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-  </div>
+  </div><div class="embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/O4IELa71J9c?si=ytK2VEZss-ktasgG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>
   </body>
   </html>
