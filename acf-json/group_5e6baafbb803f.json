@@ -274,6 +274,7 @@
             "aria-label": "",
             "type": "image",
             "instructions": "Se non viene selezionata un'immagine verrà utilizzata l'immagine desktop.",
+            "instructions": "Se non viene selezionata un'immagine verrà utilizzata l'immagine desktop.",
             "required": 0,
             "conditional_logic": [
                 [

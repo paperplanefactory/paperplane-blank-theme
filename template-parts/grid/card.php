@@ -28,15 +28,16 @@
 		<?php endif; ?>
 		<div class="card-texts last-child-no-margin">
 			<h2 class="as-h3 element-hover">
-				<?php echo $card['module_cards_repeater_title']; ?>
-			</h2>
-			<?php if ( isset( $card['module_cards_repeater_description'] ) ) : ?>
-				<div class="preserve-text remove-underline-js">
-					<p>
-						<?php echo $card['module_cards_repeater_description']; ?>
-					</p>
-				</div>
-			<?php endif; ?>
+				<h2 class="as-h3 element-hover">
+					<?php echo $card['module_cards_repeater_title']; ?>
+				</h2>
+				<?php if ( isset( $card['module_cards_repeater_description'] ) ) : ?>
+					<div class="preserve-text remove-underline-js">
+						<p>
+							<?php echo $card['module_cards_repeater_description']; ?>
+						</p>
+					</div>
+				<?php endif; ?>
 		</div>
 		<a href="#" class="card-link"><span class="screen-reader-text">Link con titolo contenuto solo per screen
 				reader</span></a>
