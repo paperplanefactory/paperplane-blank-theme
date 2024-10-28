@@ -33,10 +33,29 @@ function paperplane_content_transients( $content_id ) {
 	return $content_fields;
 }
 
+function paperplane_content_transients_generation( $content_id ) {
+	global $use_transients_fields;
+	if ( $use_transients_fields == 1 ) {
+		// Controlla se il post è stato appena salvato
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		//delete_transient( 'paperplane_transient_content_fields_' . $content_id );
+		$content_fields_transient = get_transient( 'paperplane_transient_content_fields_' . $content_id );
+		if ( empty( $content_fields_transient ) ) {
+			$content_fields = get_fields( $content_id );
+			set_transient( 'paperplane_transient_content_fields_' . $content_id, $content_fields, DAY_IN_SECONDS * 4 );
+		}
+	}
+}
+
+add_action( 'save_post', 'paperplane_content_transients_generation', 20, 3 );
+//add_action( 'wp_trash_post', 'paperplane_content_transients_generation', 10 );
+//add_action( 'delete_post', 'paperplane_content_transients_generation', 10 );
+
 function paperplane_options_transients() {
 	global $options_fields, $use_transients_fields;
 	if ( $use_transients_fields == 1 ) {
-		$options_fields_multilang = '';
 		$paperplane_transient_options_fields_ = get_transient( 'paperplane_transient_options_fields_' );
 		if ( empty( $paperplane_transient_options_fields_ ) ) {
 			$options_fields = get_fields( 'options' );
@@ -44,6 +63,18 @@ function paperplane_options_transients() {
 		} else {
 			$options_fields = $paperplane_transient_options_fields_;
 		}
+	} else {
+		$options_fields = get_fields( 'options' );
+	}
+}
+
+
+
+
+function paperplane_options_transients_multilanguage() {
+	global $options_fields_multilang, $use_transients_fields;
+	if ( $use_transients_fields == 1 ) {
+		$options_fields_multilang = '';
 		$languages = paperplane_multilang_setup();
 		foreach ( $languages as $language ) {
 			global ${$options_fields_multilang . $language};
@@ -54,17 +85,18 @@ function paperplane_options_transients() {
 			} else {
 				${$options_fields_multilang . $language} = $options_fields_multilang_transient;
 			}
+			return ${$options_fields_multilang . $language};
 		}
 	} else {
 		$options_fields_multilang = '';
-		$options_fields = get_fields( 'options' );
 		$languages = paperplane_multilang_setup();
 		foreach ( $languages as $language ) {
 			global ${$options_fields_multilang . $language};
 			${$options_fields_multilang . $language} = get_fields( $language );
+			return ${$options_fields_multilang . $language};
 		}
-	}
 
+	}
 }
 
 function paperplane_delete_content_transients( $post_id, $post, $update ) {

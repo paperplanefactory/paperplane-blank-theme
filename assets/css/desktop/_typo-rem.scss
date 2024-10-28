@@ -59,7 +59,8 @@ h6 {
     margin: 0 0 1rem;
 }
 
-p {
+p,
+.as-p {
     font-size: 1.13rem;
     line-height: 1.75rem;
     margin: 0 0 1rem;
@@ -140,7 +141,7 @@ p {
     font-style: italic;
 }
 
-.fluid-typo {
+.fluid-typo-off {
     h1 {
         font-size: calc(1rem + 4vw);
         line-height: calc(2rem + 4vw);

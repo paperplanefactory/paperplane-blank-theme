@@ -4,12 +4,11 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 	$body_reduced_transparency,
 	$body_body_reduced_motion;
 	?>
-	<nav class="user-accessibility-options" aria-label="<?php _e( 'Preferenze visive', 'paperPlane-blankTheme' ); ?>">
+	<div class="user-accessibility-options">
 		<?php
 		if ( $options_fields['animations_option'] == 1 ) : ?>
 			<button role="switch" class="paperplane-toggle active paperplane-reduce-motion-js"
-				aria-label="<?php _e( 'Permette di disattivare le animazioni.', 'paperPlane-blankTheme' ); ?>"
-				aria-checked="true">
+				aria-label="<?php _e( 'Animazioni.', 'paperPlane-blankTheme' ); ?>" aria-checked="true">
 				<span class="fake-label" aria-hidden="true">
 					<?php _e( 'Animazioni', 'paperPlane-blankTheme' ); ?>
 				</span>
@@ -30,8 +29,7 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 		<?php
 		if ( $options_fields['opacity_option'] == 1 ) : ?>
 			<button role="switch" class="paperplane-toggle paperplane-reduce-transparency-js"
-				aria-label="<?php _e( 'Permette di ridurre le trasparenze.', 'paperPlane-blankTheme' ); ?>"
-				aria-checked="false">
+				aria-label="<?php _e( 'Trasparenze.', 'paperPlane-blankTheme' ); ?>" aria-checked="false">
 				<span class="fake-label" aria-hidden="true">
 					<?php _e( 'Riduci trasparenze', 'paperPlane-blankTheme' ); ?>
 				</span>
@@ -52,7 +50,7 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 		<?php
 		if ( $options_fields['darkmode_option'] == 1 ) : ?>
 			<button role="switch" class="paperplane-toggle paperplane-darkmode-js"
-				aria-label="<?php _e( 'Permette di attivare il dark mode.', 'paperPlane-blankTheme' ); ?>" aria-checked="false">
+				aria-label="<?php _e( 'Dark mode.', 'paperPlane-blankTheme' ); ?>" aria-checked="false">
 				<span class="fake-label" aria-hidden="true">
 					<?php _e( 'Dark mode', 'paperPlane-blankTheme' ); ?>
 				</span>
@@ -70,5 +68,5 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 				<div class="clearer"></div>
 			</button>
 		<?php endif; ?>
-	</nav>
+	</div>
 <?php endif; ?>

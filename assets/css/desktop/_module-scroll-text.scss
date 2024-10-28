@@ -13,7 +13,12 @@
         }
     }
 
+    .scrolling-txt-wrapper {
+        position: relative;
+    }
+
     .scrolling-txt-container {
+        position: relative;
         width: 100%;
         overflow: hidden;
     }
@@ -42,5 +47,9 @@
         height: 0;
         opacity: 0;
         overflow: hidden;
+    }
+
+    .play-pause-animation {
+        bottom: -55px;
     }
 }

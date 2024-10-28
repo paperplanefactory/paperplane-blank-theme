@@ -15,11 +15,11 @@ if ( strpos( $analize_content, 'text-align: center;' ) ) {
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">
 			<?php if ( $module['module_cards_repeater'] ) : ?>
-				<div class="flex-hold flex-hold-3 cards">
+				<ul class="flex-hold flex-hold-3 cards">
 					<?php foreach ( $module['module_cards_repeater'] as $card ) : ?>
 						<?php include( locate_template( 'template-parts/grid/card.php' ) ); ?>
 					<?php endforeach; ?>
-				</div>
+				</ul>
 			<?php endif; ?>
 		</div>
 	</div>

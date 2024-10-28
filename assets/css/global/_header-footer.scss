@@ -57,13 +57,22 @@
       //background-image: url(assets/images/site-logo-header.svg);
       //background-repeat: no-repeat;
       //background-size: contain;
-
       background-color: var(--color-1);
     }
   }
 
   .menu {
     -webkit-box-flex: 1;
+
+    a:link:nopt(.default-button),
+    a:visited:nopt(.default-button) {
+      color: var(--color-1);
+    }
+
+    a:active:nopt(.default-button),
+    a:hover:nopt(.default-button) {
+      color: var(--color-1);
+    }
 
     .simple-link {
       text-transform: uppercase !important;
@@ -73,8 +82,16 @@
       text-transform: uppercase !important;
       color: var(--color-1);
 
+      &:after {
+        background-color: var(--color-1);
+      }
+
       &:hover {
-        color: var(--color-2);
+        color: var(--color-1);
+
+        &:after {
+          background-color: var(--color-1);
+        }
       }
     }
   }

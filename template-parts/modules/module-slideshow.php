@@ -17,7 +17,8 @@
 					<div class="slider-wrapper">
 						<div class="paperplane-slider slider-single hidden-dots slider-single-js">
 							<?php if ( $module['module_slideshow_repeater'] ) :
-								foreach ( $module['module_slideshow_repeater'] as $slide ) : ?>
+								foreach ( $module['module_slideshow_repeater'] as $slide ) :
+									?>
 									<div class="slide">
 										<?php $image_data = array(
 											'image_type' => 'acf',
@@ -39,10 +40,10 @@
 											'mobile_hd' => 'column_cut'
 										);
 										print_theme_image( $image_data, $image_appearance, $image_sizes ); ?>
-										<?php if ( $slide['module_slideshow_repeater_caption'] ) : ?>
+										<?php if ( $slide['module_slideshow_repeater_image']['caption'] ) : ?>
 											<div class="slide-caption">
 												<figcaption>
-													<?php echo $slide['module_slideshow_repeater_caption']; ?>
+													<?php echo $slide['module_slideshow_repeater_image']['caption']; ?>
 												</figcaption>
 											</div>
 										<?php endif; ?>

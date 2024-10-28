@@ -51,19 +51,19 @@ function paperplane_theme_videos( $field_names ) {
 						</div>
 					</button>
 					<?php if ( $video_source === 'vimeo' ) : ?>
-						<iframe id="video-<?php echo $videos_count; ?>" class="video-stop-js"
+						<iframe id="video-<?php echo $videos_count; ?>" class="animation-play-pause-js"
 							data-video-source="<?php echo $video_source; ?>"
 							data-src="https://player.vimeo.com/video/<?php echo $video_id; ?>" loading="lazy" width="640" height="360"
 							allow="autoplay; fullscreen" data-autoplay autoplay playsinline mozallowfullscreen webkitallowfullscreen
 							allowfullscreen title="<?php echo $link_title; ?>" aria-label="<?php echo $link_title; ?>"
 							aria-hidden="true"></iframe>
 					<?php elseif ( $video_source === 'youtube' ) : ?>
-						<div id="video-<?php echo $videos_count; ?>" class="video-stop-js"
+						<div id="video-<?php echo $videos_count; ?>" class="animation-play-pause-js"
 							data-video-source="<?php echo $video_source; ?>" data-youtube-video-id="<?php echo $video_id; ?>"
 							data-video-tostop="video-<?php echo $videos_count; ?>" aria-hidden="true">
 						</div>
 					<?php elseif ( $video_source === 'upload-video' ) : ?>
-						<video id="video-<?php echo $videos_count; ?>" class="video-stop-js"
+						<video id="video-<?php echo $videos_count; ?>" class="animation-play-pause-js"
 							data-video-source="<?php echo $video_source; ?>" preload="metadata" loading="lazy" controls
 							aria-hidden="true">
 							<source type="video/mp4" src="<?php echo $field_name['video_file']['url']; ?>">

@@ -18,10 +18,12 @@ h6 {
   font-family: $font-main;
 }
 
-p {
+p,
+.as-p {
   font-family: $font-sub;
 }
 
+.as-p,
 #footer p,
 .mega-menu-page-list,
 h1,
@@ -55,32 +57,6 @@ ul {
 
 .allupper {
   text-transform: uppercase;
-}
-
-// comma separated links
-
-.category-list {
-
-  //margin-bottom: 24px;
-  a:link {
-    &:after {
-      content: ", ";
-    }
-
-    &:last-child:after {
-      content: "";
-    }
-  }
-
-  span {
-    &:after {
-      content: ", ";
-    }
-
-    &:last-child:after {
-      content: "";
-    }
-  }
 }
 
 // remove typography elements last child margin bottom

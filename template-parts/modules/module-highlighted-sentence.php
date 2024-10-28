@@ -1,8 +1,4 @@
 <!-- module-highlighted-sentence -->
-<?php
-// richiamo l'immagine associata alla frase in evidenza
-$module_highlighted_sentence_image = $module['module_highlighted_sentence_image'];
-?>
 <section class="wrapper module-highlighted-sentence bg-4">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
@@ -10,7 +6,7 @@ $module_highlighted_sentence_image = $module['module_highlighted_sentence_image'
 			<div class="wrapper-padded-container">
 				<?php
 				// se esiste l'immagine associata alla frase in evidenza imposto il layout imagine + testo
-				if ( $module_highlighted_sentence_image != '' ) :
+				if ( $module['module_highlighted_sentence_image'] ?? null ) :
 					?>
 					<div class="flex-hold flex-hold-rich-highlighted-sentence">
 						<div class="flex-hold-rich-highlighted-sentence-image">
@@ -46,7 +42,7 @@ $module_highlighted_sentence_image = $module['module_highlighted_sentence_image'
 								<h2>
 									<?php echo $module['module_highlighted_sentence_text']; ?>
 								</h2>
-								<?php if ( $module['module_highlighted_sentence_author'] ) : ?>
+								<?php if ( $module['module_highlighted_sentence_author'] ?? null ) : ?>
 									<h3 class="as-h6">
 										<?php echo $module['module_highlighted_sentence_author']; ?>
 									</h3>
@@ -64,7 +60,7 @@ $module_highlighted_sentence_image = $module['module_highlighted_sentence_image'
 							<h2>
 								<?php echo $module['module_highlighted_sentence_text']; ?>
 							</h2>
-							<?php if ( $module['module_highlighted_sentence_author'] ) : ?>
+							<?php if ( $module['module_highlighted_sentence_author'] ?? null ) : ?>
 								<h3 class="as-h6">
 									<?php echo $module['module_highlighted_sentence_author']; ?>
 								</h3>

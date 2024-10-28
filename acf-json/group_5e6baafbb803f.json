@@ -128,9 +128,9 @@
             "repeatable": true
         },
         {
-            "key": "field_5e6bb7588c93b",
-            "label": "Video",
-            "name": "page_opening_video",
+            "key": "field_671fa88ec2374",
+            "label": "Media di apertura",
+            "name": "page_opening_media",
             "aria-label": "",
             "type": "select",
             "instructions": "",
@@ -157,17 +157,18 @@
                 "id": ""
             },
             "choices": {
-                "no": "No",
-                "si": "Sì"
+                "no-media": "Nessun media",
+                "image": "Immagine",
+                "video": "Video"
             },
             "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "ui": 0,
             "ajax": 0,
-            "placeholder": "",
-            "repeatable": true
+            "placeholder": ""
         },
         {
             "key": "field_5e6bb78a8c93c",
@@ -180,9 +181,9 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5e6bb7588c93b",
+                        "field": "field_671fa88ec2374",
                         "operator": "==",
-                        "value": "si"
+                        "value": "video"
                     }
                 ]
             ],
@@ -195,17 +196,26 @@
             "library": "all",
             "min_size": "",
             "max_size": "",
-            "mime_types": "mp4"
+            "mime_types": "mp4",
+            "allow_in_bindings": 1
         },
         {
-            "key": "field_6430092e24372",
-            "label": "Immagine desktop",
-            "name": "page_opening_image_desktop",
+            "key": "field_66fbb5692f387",
+            "label": "Poster video",
+            "name": "page_opening_video_poster",
             "aria-label": "",
             "type": "image",
-            "instructions": "Se non viene selezionata un'immagine verrà utilizzata l'immagine in evidenza.",
-            "required": 0,
-            "conditional_logic": 0,
+            "instructions": "Selezionare un'immagine da utilizzare durante il caricamento del video.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_671fa88ec2374",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -220,6 +230,41 @@
             "max_height": "",
             "max_size": "",
             "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_6430092e24372",
+            "label": "Immagine desktop",
+            "name": "page_opening_image_desktop",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_671fa88ec2374",
+                        "operator": "==",
+                        "value": "image"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 1,
             "preview_size": "medium"
         },
         {
@@ -228,9 +273,17 @@
             "name": "page_opening_image_mobile",
             "aria-label": "",
             "type": "image",
-            "instructions": "Se non viene selezionata un'immagine verrà utilizzata l'immagine in evidenza.",
+            "instructions": "Se non viene selezionata un'immagine verrà utilizzata l'immagine desktop.",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_671fa88ec2374",
+                        "operator": "==",
+                        "value": "image"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -245,6 +298,7 @@
             "max_height": "",
             "max_size": "",
             "mime_types": "",
+            "allow_in_bindings": 1,
             "preview_size": "medium"
         },
         {
@@ -372,5 +426,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1707505324
+    "modified": 1730128539
 }

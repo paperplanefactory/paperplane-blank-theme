@@ -1,4 +1,3 @@
-<a name="page-skip-to-content"></a>
 <?php
 /* 
 richiamo il tipo di apertura in base al tipo di contenuto
@@ -13,7 +12,7 @@ if ( is_page_template( 'page-modules.php' ) || is_page_template( 'page-listing.p
 		$content_fields = paperplane_content_transients( $post->ID );
 	}
 	// verifico se esiste la chiave dell'array del campo che mi serve e se ha un valore
-	if ( array_key_exists( 'page_opening_layout', $content_fields ) && isset( $content_fields['page_opening_layout'] ) ) {
+	if ( $content_fields['page_opening_layout'] ?? null ) {
 		// verifico se il campo ha il valore per apertura fullscreen
 		if ( $content_fields['page_opening_layout'] === 'opening-fullscreen' || $content_fields['page_opening_layout'] === 'opening-almost-fullscreen' ) {
 			include( locate_template( 'template-parts/grid/page-opening/opening-fullscreen.php' ) );

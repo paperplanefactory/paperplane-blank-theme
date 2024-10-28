@@ -14,17 +14,6 @@
 	wp_head();
 	// definisco le variaibil globali che possono poi essere lette tramite 
 	// include( locate_template( 'parcorso/nome-file.php' ) );
-	global $use_transients_fields,
-	$theme_version,
-	$acf_options_parameter,
-	$static_bloginfo_stylesheet_directory,
-	$options_fields,
-	$options_fields_multilang,
-	$cta_url_modal_array,
-	$theme_pagination,
-	$attivare_pwa;
-	// genero le trnasients delle pagine di opzioni
-	paperplane_options_transients();
 	// imposto la variabile globale per definire:
 	// - se è attivo Polylang il linguaggio in cui l'utente sta visitando il sito
 	// - se non è attivo Polylang un valore generico 'any-lang'
@@ -33,6 +22,19 @@
 	} else {
 		$acf_options_parameter = 'any-lang';
 	}
+	global $use_transients_fields,
+	$theme_version,
+	$acf_options_parameter,
+	$static_bloginfo_stylesheet_directory,
+	$options_fields,
+	$options_fields_multilang,
+	${$options_fields_multilang . $acf_options_parameter},
+	$cta_url_modal_array,
+	$theme_pagination,
+	$attivare_pwa;
+	// genero le trnasients delle pagine di opzioni
+	${$options_fields_multilang . $options_fields_multilang} = paperplane_options_transients_multilanguage();
+	paperplane_options_transients();
 	// imposto e valorizzo la variabile globale per definire il tipo di paginazione:
 	$theme_pagination = $options_fields['theme_pagination'];
 	// imposto l'array globale con le ID delle modal eventualmente inserite in pagina
@@ -41,7 +43,15 @@
 	$cta_url_modal_array = array();
 	// imposto e valorizzo la variabile globale per definire il percorso della cartella del tema:
 	$static_bloginfo_stylesheet_directory = get_bloginfo( 'stylesheet_directory' );
-
+	if ( isset( $_COOKIE["dark_mode"] ) ) {
+		if ( $_COOKIE["dark_mode"] == 1 ) {
+			$theme_dark_mode = 'dark';
+		} else {
+			$theme_dark_mode = '';
+		}
+	} else {
+		$theme_dark_mode = '';
+	}
 	?>
 	<meta name="theme-color" content="<?php echo $options_fields['mobile_navbar_color']; ?>">
 	<meta name="msapplication-navbutton-color" content="<?php echo $options_fields['mobile_navbar_color']; ?>">
@@ -88,31 +98,21 @@
 	<?php endif; ?>
 	<!-- meta personalizzato per versione del tema -->
 	<meta name="theme-version" data-theme-version="<?php echo $theme_version; ?>">
-	<!-- script per migliorare il paint del dark mode -->
-	<script type="text/javascript">
-		var theme_version = jQuery('meta[name=theme-version]').attr('data-theme-version');
-		const paperplane_user_preferences_options_array = JSON.parse(
-			localStorage.getItem('paperplane_user_preferences_' + theme_version),
-		);
-		Object.keys(paperplane_user_preferences_options_array).forEach(function (key) {
-			if (key == 'dark_mode' && paperplane_user_preferences_options_array[key] == 1) {
-				jQuery('html').attr('data-theme-color', 'dark');
-			}
-			else if (key == 'dark_mode' && paperplane_user_preferences_options_array[key] == 0) {
-				jQuery('html').attr('data-theme-color', '');
-			}
-		});
-	</script>
 </head>
 
-<body class="" data-theme-color="">
+<body class="" data-theme-color="<?php echo $theme_dark_mode; ?>">
+	<?php
+	if ( function_exists( 'wp_body_open' ) ) {
+		wp_body_open();
+	}
+	?>
 	<!-- animazione barra di caricamento per PWA -->
 	<div class="loader">
 		<div class="bar"></div>
 	</div>
 	<?php
 	// includo la navigazione accessibile
-	include( locate_template( 'template-parts/grid/accessible-navi.php' ) );
+	include ( locate_template( 'template-parts/grid/accessible-navi.php' ) );
 	?>
 	<div id="site-wrapper">
 		<div id="preheader"></div>
@@ -124,7 +124,8 @@
 							<a href="<?php echo home_url(); ?>" rel="bookmark"
 								aria-label="<?php echo __( 'Visita la homepage di', 'paperPlane-blankTheme' ) . ' ' . get_bloginfo( 'name' ); ?>"></a>
 						</div>
-						<nav class="menu" aria-label="<?php _e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
+						<nav class="menu underlined-links-on-hover"
+							aria-label="<?php _e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
 							<?php
 							if ( has_nav_menu( 'header-menu' ) ) {
 								wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu header-menu-js' ) );
@@ -134,8 +135,8 @@
 						<div class="side-head">
 							<ul>
 								<li>
-									<button class="hambuger-element ham-activator-js" aria-haspopup="true"
-										aria-expanded="false" aria-controls="head-overlay"
+									<button id="hamburger-button" class="hambuger-element ham-activator-js"
+										aria-haspopup="true" aria-expanded="false" aria-controls="head-overlay"
 										title="<?php _e( 'Premi invio per accedere al menu ad hamburger', 'paperPlane-blankTheme' ); ?>"
 										aria-label="<?php _e( 'Premi invio per accedere al menu ad hamburger', 'paperPlane-blankTheme' ); ?>">
 										<span></span>
@@ -162,7 +163,7 @@
 							}
 							?>
 						</nav>
-						<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
+						<?php include ( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
 						<?php if ( $options_fields['global_socials'] ) : ?>
 							<nav aria-label="<?php _e( 'Menu social', 'paperPlane-blankTheme' ); ?>">
 								<ul class="site-socials inline-socials">
@@ -184,7 +185,9 @@
 					</div>
 				</div>
 			</div>
-			<a href="#" class="overlay-navi-reset-js"></a>
+			<button class="overlay-navi-reset-js"
+				aria-label="<?php echo __( 'Ritorna al pulsante di apertura del menu', 'paperPlane-blankTheme' ); ?>"
+				aria-labelledby="hamburger-button"></button>
 		</div>
-		<main id="page-content">
-			<?php include( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>
+		<main id="page-content" aria-labelledby="skip-to-content">
+			<?php include ( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>
