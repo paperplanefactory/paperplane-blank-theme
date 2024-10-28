@@ -3,11 +3,13 @@
 // a fine sviluppo commento i parziali che non utilizzo
 
 // imports globali
+// @import 'global/theme-font';
 @import 'global/vars';
 @import 'global/reset';
 @import 'global/defaults';
 @import 'global/header-footer';
 @import 'global/colors';
+@import 'global/links';
 @import 'global/a11y';
 @import 'global/typo';
 @import 'global/wrappers';
@@ -15,6 +17,7 @@
 @import 'global/modules';
 @import 'global/buttons';
 @import 'global/ctas';
+@import 'global/cards';
 @import 'global/media';
 @import 'global/forms';
 @import 'global/slideshows';
@@ -35,7 +38,6 @@
   @import 'mobile/wrappers';
   @import 'mobile/grids';
   @import 'mobile/listings';
-  @import 'mobile/cards';
   @import 'mobile/module-text';
   @import 'mobile/module-highlighted-sentence';
   @import 'mobile/module-columns';
@@ -48,6 +50,7 @@
   @import 'mobile/module-video';
   @import 'mobile/module-scroll-text';
   @import 'mobile/ctas';
+  @import 'mobile/cards';
   @import 'mobile/buttons';
   @import 'mobile/media';
   @import 'mobile/effects';
@@ -67,7 +70,6 @@
   @import 'desktop/wrappers';
   @import 'desktop/grids';
   @import 'desktop/listings';
-  @import 'desktop/cards';
   @import 'desktop/module-text';
   @import 'desktop/module-highlighted-sentence';
   @import 'desktop/module-columns';
@@ -80,6 +82,7 @@
   @import 'desktop/module-video';
   @import 'desktop/module-scroll-text';
   @import 'desktop/ctas';
+  @import 'desktop/cards';
   @import 'desktop/buttons';
   @import 'desktop/media';
   @import 'desktop/effects';
@@ -90,12 +93,3 @@
 }
 
 //@import 'global/visual-debug';
-
-// generatore color gradient
-// https://cssgradient.io/
-
-// generatore box shadow
-// https://html-css-js.com/css/generator/box-shadow/
-
-// linee guida componenti accessibili
-// https://www.w3.org/WAI/ARIA/apg/patterns/

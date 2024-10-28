@@ -1,5 +1,5 @@
-<article class="flex-hold-child card" data-aos="fade-up">
-	<div class="inner bg-4">
+<li class="flex-hold-child" data-aos="fade-up">
+	<article class="inner card bg-4">
 		<?php if ( isset( $card['module_cards_repeater_image'] ) ) : ?>
 			<div class="card-image" aria-hidden="true">
 				<?php
@@ -27,18 +27,21 @@
 			</div>
 		<?php endif; ?>
 		<div class="card-texts last-child-no-margin">
-			<h2 class="as-h3">
+			<h2 class="as-h3 element-hover">
 				<?php echo $card['module_cards_repeater_title']; ?>
 			</h2>
 			<?php if ( isset( $card['module_cards_repeater_description'] ) ) : ?>
-				<p>
-					<?php echo $card['module_cards_repeater_description']; ?>
-				</p>
+				<div class="preserve-text remove-underline-js">
+					<p>
+						<?php echo $card['module_cards_repeater_description']; ?>
+					</p>
+				</div>
 			<?php endif; ?>
-			<a href="#" class="card-link" aria-label="Titolo contenuto"></a>
-			<?php
-			paperplane_theme_cta_advanced( $card['module_cards_repeater_cta'] );
-			?>
 		</div>
-	</div>
-</article>
+		<a href="#" class="card-link"><span class="screen-reader-text">Link con titolo contenuto solo per screen
+				reader</span></a>
+		<?php
+		paperplane_theme_cta_advanced( $card['module_cards_repeater_cta'] );
+		?>
+	</article>
+</li>

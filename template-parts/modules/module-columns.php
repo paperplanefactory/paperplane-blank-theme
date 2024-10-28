@@ -6,17 +6,14 @@
 			<div class="wrapper-padded-container">
 				<div class="flex-hold flex-hold-<?php echo $module['module_columns_columns_number']; ?> margins-wide">
 					<?php
-					if ( $module['module_columns_columns_repeater'] ) :
+					if ( $module['module_columns_columns_repeater'] ?? null ) :
 						foreach ( $module['module_columns_columns_repeater'] as $column ) :
-							$module_columns_columns_repeater_image = $column['module_columns_columns_repeater_image'];
 							$module_columns_columns_repeater_image_format = $column['module_columns_columns_repeater_image_format'];
-							$module_columns_columns_repeater_image_URL = $module_columns_columns_repeater_image['url'];
 							?>
 							<div class="flex-hold-child module-column-box">
 								<div class="<?php echo $column['module_columns_columns_repeater_align']; ?>">
-									<?php if ( $module_columns_columns_repeater_image != '' ) : ?>
+									<?php if ( $column['module_columns_columns_repeater_image'] ?? null ) : ?>
 										<div class="column-image">
-											<?php paperplane_theme_cta_absl_advanced( $column['paperplane_theme_cta_module_columns'] ); ?>
 											<?php if ( $module_columns_columns_repeater_image_format === 'normal-image' ) : ?>
 												<?php
 												$image_data = array(
@@ -42,7 +39,6 @@
 												?>
 											<?php elseif ( $module_columns_columns_repeater_image_format === 'round-image' ) : ?>
 												<div class="image-rounder">
-													<?php paperplane_theme_cta_absl_advanced( $column['paperplane_theme_cta_module_columns'] ); ?>
 													<?php
 													$image_data = array(
 														'image_type' => 'acf',
@@ -68,7 +64,6 @@
 												</div>
 											<?php else : ?>
 												<div class="image-icon">
-													<?php paperplane_theme_cta_absl_advanced( $column['paperplane_theme_cta_module_columns'] ); ?>
 													<?php
 													$image_data = array(
 														'image_type' => 'acf',
@@ -96,9 +91,9 @@
 											</a>
 										</div>
 									<?php endif; ?>
-									<?php if ( $column['module_columns_columns_repeater_counter_value'] ) : ?>
+									<?php if ( $column['module_columns_columns_repeater_counter_value'] ?? null ) : ?>
 										<div class="counter">
-											<?php if ( $column['module_columns_columns_repeater_counter_value_before'] ) : ?>
+											<?php if ( $column['module_columns_columns_repeater_counter_value_before'] ?? null ) : ?>
 												<h3>
 													<?php echo $column['module_columns_columns_repeater_counter_value_before']; ?>
 												</h3>
@@ -106,19 +101,19 @@
 											<h2 class="as-h1 count just-number count-pre"
 												data-bar-number="<?php echo $column['module_columns_columns_repeater_counter_value']; ?>">
 												0</h1>
-												<?php if ( $column['module_columns_columns_repeater_counter_value_after'] ) : ?>
+												<?php if ( $column['module_columns_columns_repeater_counter_value_after'] ?? null ) : ?>
 													<h3>
 														<?php echo $column['module_columns_columns_repeater_counter_value_after']; ?>
 													</h3>
 												<?php endif; ?>
-												<?php if ( $column['module_columns_columns_repeater_counter_description'] ) : ?>
+												<?php if ( $column['module_columns_columns_repeater_counter_description'] ?? null ) : ?>
 													<h4>
 														<?php echo $column['module_columns_columns_repeater_counter_description']; ?>
 													</h4>
 												<?php endif; ?>
 										</div>
 									<?php endif; ?>
-									<?php if ( $column['module_columns_columns_repeater_content'] ) : ?>
+									<?php if ( $column['module_columns_columns_repeater_content'] ?? null ) : ?>
 										<div class="content-styled last-child-no-margin">
 											<?php echo $column['module_columns_columns_repeater_content']; ?>
 										</div>

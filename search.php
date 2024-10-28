@@ -21,7 +21,4 @@ get_header();
 	</div>
 </div>
 <?php theme_pagination_system(); ?>
-
-
-
 <?php get_footer(); ?>

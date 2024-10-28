@@ -18,10 +18,10 @@
 							<?php the_title(); ?>
 						</h1>
 					<?php endif; ?>
-					<?php if ( $content_fields['page_opening_subtitle'] ) : ?>
-						<p>
+					<?php if ( $content_fields['page_opening_subtitle'] ?? null ) : ?>
+						<h2 class="as-p">
 							<?php echo $content_fields['page_opening_subtitle']; ?>
-						</p>
+						</h2>
 					<?php endif; ?>
 				</div>
 				<div class="clearer"></div>

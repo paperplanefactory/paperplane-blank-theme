@@ -52,6 +52,7 @@ h6 {
   margin-bottom: $h6-marginbottom-desktop;
 }
 
+.as-p,
 p {
   font-size: $paragraph-size-desktop;
   line-height: $paragraph-lineheight-desktop;
@@ -140,7 +141,7 @@ p {
   line-height: $h4-lineheight-desktop;
 }
 
-.fluid-typo {
+.fluid-typo-off {
   h1 {
     font-size: calc(#{$h1-size-desktop} + 1.2vw);
     line-height: calc(#{$h1-lineheight-desktop} + 1.5vw);

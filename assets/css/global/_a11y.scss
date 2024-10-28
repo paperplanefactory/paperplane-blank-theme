@@ -4,13 +4,25 @@
 
 body {
     *:focus-visible {
-        z-index: 99999 !important;
-        background-color: var(--color-1) !important;
-        color: var(--color-4) !important;
-        box-shadow: 0 0 0 5px var(--color-1), 0 0 0 7px var(--color-4), 0 0 0 9px $color-form-ok, 0 0 0 11px var(--color-4);
-        transition-duration: 0ms !important;
-        transition-property: none !important;
-        animation: none 0 !important;
+
+        &:not(input[type=date],
+            input[type=email],
+            input[type=number],
+            input[type=password],
+            input[type=tel],
+            input[type=text],
+            input[type=url],
+            select,
+            textarea) {
+            z-index: 99999 !important;
+            background-color: var(--color-1) !important;
+            color: var(--color-4) !important;
+            box-shadow: 0 0 0 2px var(--color-1), 0 0 0 6px var(--color-4), 0 0 0 8px var(--color-1);
+            transition-duration: 0ms !important;
+            transition-property: none !important;
+            animation: none 0 !important;
+        }
+
     }
 
     .element-icon-after {
@@ -23,7 +35,7 @@ body {
 
     .element-icon-before {
         &:focus-visible {
-            &:efore {
+            &:before {
                 background-color: var(--color-4) !important;
             }
         }
@@ -51,7 +63,7 @@ body {
         &:focus-visible {
             background-color: var(--color-4) !important;
             color: var(--color-4) !important;
-            box-shadow: 0 0 0 5px var(--color-1), 0 0 0 7px var(--color-4), 0 0 0 9px $color-form-ok, 0 0 0 11px var(--color-4);
+            box-shadow: 0 0 0 2px var(--color-1), 0 0 0 6px var(--color-4), 0 0 0 8px var(--color-1);
         }
     }
 
@@ -61,26 +73,11 @@ body {
             &:has(a:focus-visible) {
                 background-color: var(--color-4) !important;
                 color: var(--color-4) !important;
-                box-shadow: 0 0 0 5px var(--color-1), 0 0 0 7px var(--color-4), 0 0 0 9px $color-form-ok, 0 0 0 11px var(--color-4);
+                box-shadow: 0 0 0 2px var(--color-1), 0 0 0 6px var(--color-4), 0 0 0 8px var(--color-1);
             }
         }
 
-        .menu {
-            .pupirili {
-
-                &.menu-item-has-children a:focus-visible,
-                &.menu-item-has-children button:focus-visible,
-                .mega-menu-js-trigger:focus-visible,
-                .nav-simple-button:focus-visible {
-                    background-color: red !important;
-
-                    &:after {
-                        background-color: red !important;
-                        background-color: var(--color-4) !important;
-                    }
-                }
-            }
-        }
+        .menu {}
 
         .hambuger-element {
             &:focus-visible {
@@ -95,11 +92,11 @@ body {
         &:has(a:focus-visible) {
             background-color: var(--color-4) !important;
             color: var(--color-4) !important;
-            box-shadow: 0 0 0 5px var(--color-4), 0 0 0 7px var(--color-1);
+            box-shadow: 0 0 0 2px var(--color-1), 0 0 0 6px var(--color-4), 0 0 0 8px var(--color-1);
         }
     }
 
-    .video-stop {
+    .play-pause-animation {
         &:focus-visible {
             &:before {
                 background-color: var(--color-4);
@@ -124,7 +121,7 @@ body {
                 margin: 11px;
                 width: calc(100% - 22px);
                 height: calc(100% - 22px);
-                box-shadow: 0 0 0 5px var(--color-1), 0 0 0 7px var(--color-4), 0 0 0 9px $color-form-ok, 0 0 0 11px var(--color-4);
+                box-shadow: 0 0 0 2px var(--color-1), 0 0 0 6px var(--color-4), 0 0 0 8px var(--color-1);
                 //opacity: 0.1;
             }
         }
@@ -277,10 +274,16 @@ body {
 }
 
 .screen-reader-text {
-    // font-size: 0 !important;
-    //border: none !important;
-    //color: transparent !important;
-    //background-color: transparent !important;
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
 }
 
 .user-accessibility-options {

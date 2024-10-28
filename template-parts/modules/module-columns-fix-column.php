@@ -2,7 +2,6 @@
 <?php
 // recupero la colonna che deve restare fissa
 $module_columns_fix_side = $module['module_columns_fix_side'];
-$module_columns_fix_fix_column_image = $module['module_columns_fix_fix_column_image'];
 $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_column_image_format'];
 ?>
 <section class="wrapper module-columns-fix-column bg-4">
@@ -15,10 +14,9 @@ $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_co
 					<div class="fix">
 						<div class="sticky-element">
 							<div class="<?php echo $module['module_columns_fix_fix_column_align']; ?>">
-								<?php if ( $module_columns_fix_fix_column_image != '' ) : ?>
+								<?php if ( $module['module_columns_fix_fix_column_image'] ?? null ) : ?>
 									<div class="column-image">
 										<?php if ( $module_columns_fix_fix_column_image_format === 'normal-image' ) : ?>
-											<?php paperplane_theme_cta_absl_advanced( $module['paperplane_theme_cta_fix_column'] ); ?>
 											<?php
 											$image_data = array(
 												'image_type' => 'acf',
@@ -41,10 +39,8 @@ $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_co
 											);
 											print_theme_image( $image_data, $image_appearance, $image_sizes );
 											?>
-											</a>
 										<?php elseif ( $module_columns_fix_fix_column_image_format === 'round-image' ) : ?>
 											<div class="image-rounder">
-												<?php paperplane_theme_cta_absl_advanced( $module['paperplane_theme_cta_fix_column'] ); ?>
 												<?php
 												$image_data = array(
 													'image_type' => 'acf',
@@ -67,11 +63,9 @@ $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_co
 												);
 												print_theme_image( $image_data, $image_appearance, $image_sizes );
 												?>
-												</a>
 											</div>
 										<?php else : ?>
 											<div class="image-icon">
-												<?php paperplane_theme_cta_absl_advanced( $module['paperplane_theme_cta_fix_column'] ); ?>
 												<?php
 												$image_data = array(
 													'image_type' => 'acf',
@@ -94,12 +88,11 @@ $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_co
 												);
 												print_theme_image( $image_data, $image_appearance, $image_sizes );
 												?>
-												</a>
 											</div>
 										<?php endif; ?>
 									</div>
 								<?php endif; ?>
-								<?php if ( $module['module_columns_fix_fix_column_content'] ) : ?>
+								<?php if ( $module['module_columns_fix_fix_column_content'] ?? null ) : ?>
 									<div class="content-styled last-child-no-margin">
 										<?php echo $module['module_columns_fix_fix_column_content']; ?>
 									</div>
@@ -111,17 +104,15 @@ $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_co
 					<div class="nofix">
 						<div class="flex-hold flex-hold-2 margins-thin">
 							<?php
-							if ( $module['module_columns_fix_repeater'] ) :
+							if ( $module['module_columns_fix_repeater'] ?? null ) :
 								foreach ( $module['module_columns_fix_repeater'] as $column_fix ) :
-									$module_columns_fix_repeater_image = $column_fix['module_columns_fix_repeater_image'];
 									$module_columns_fix_repeater_image_format = $column_fix['module_columns_fix_repeater_image_format'];
 									?>
 									<div class="flex-hold-child module-column-box">
 										<div class="<?php echo $column_fix['module_columns_fix_repeater_align']; ?>">
-											<?php if ( $module_columns_fix_repeater_image != '' ) : ?>
+											<?php if ( $column_fix['module_columns_fix_repeater_image'] ?? null ) : ?>
 												<div class="column-image">
 													<?php if ( $module_columns_fix_repeater_image_format === 'normal-image' ) : ?>
-														<?php paperplane_theme_cta_absl_advanced( $column_fix['paperplane_theme_cta_fix_column_columns'] ); ?>
 														<?php
 														$image_data = array(
 															'image_type' => 'acf',
@@ -144,10 +135,8 @@ $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_co
 														);
 														print_theme_image( $image_data, $image_appearance, $image_sizes );
 														?>
-														</a>
 													<?php elseif ( $module_columns_fix_repeater_image_format === 'round-image' ) : ?>
 														<div class="image-rounder">
-															<?php paperplane_theme_cta_absl_advanced( $column_fix['paperplane_theme_cta_fix_column_columns'] ); ?>
 															<?php
 															$image_data = array(
 																'image_type' => 'acf',
@@ -170,11 +159,9 @@ $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_co
 															);
 															print_theme_image( $image_data, $image_appearance, $image_sizes );
 															?>
-															</a>
 														</div>
 													<?php else : ?>
 														<div class="image-icon">
-															<?php paperplane_theme_cta_absl_advanced( $column_fix['paperplane_theme_cta_fix_column_columns'] ); ?>
 															<?php
 															$image_data = array(
 																'image_type' => 'acf',
@@ -197,12 +184,11 @@ $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_co
 															);
 															print_theme_image( $image_data, $image_appearance, $image_sizes );
 															?>
-															</a>
 														</div>
 													<?php endif; ?>
 												</div>
 											<?php endif; ?>
-											<?php if ( $column_fix['module_columns_fix_repeater_content'] ) : ?>
+											<?php if ( $column_fix['module_columns_fix_repeater_content'] ?? null ) : ?>
 												<div class="content-styled last-child-no-margin">
 													<?php echo $column_fix['module_columns_fix_repeater_content']; ?>
 												</div>

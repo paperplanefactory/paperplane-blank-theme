@@ -57,7 +57,8 @@ h6 {
   margin-bottom: $h6-marginbottom-smartphone;
 }
 
-p {
+p,
+.as-p {
   font-size: $paragraph-size-smartphone;
   line-height: $paragraph-lineheight-smartphone;
   margin: 0 0 $paragraph-marginbottom-smartphone;
@@ -150,7 +151,7 @@ ul {
   //@include define-hyphens;
 }
 
-.fluid-typo {
+.fluid-typo-off {
   h1 {
     font-size: clamp(1.4375rem, 1rem + 5vw, 4rem);
     line-height: clamp(1.4375rem, 1rem + 6vw, 4rem);

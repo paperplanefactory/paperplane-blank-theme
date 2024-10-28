@@ -18,67 +18,74 @@
     margin-bottom: 0;
     border-bottom: none;
   }
-}
 
-.expander-top {
-  h2 {
-    margin-bottom: 0;
-  }
-}
+  .expander-top {
 
-.expander {
-  position: relative;
-  line-height: 17px !important;
-  font-weight: $font-weight-2 !important;
-  padding-left: 25px !important;
-  text-align: left;
-  color: var(--color-1);
-  font-family: $font-main;
-  font-weight: $font-weight-1;
-  font-size: $h4-size-smartphone;
-  line-height: $h4-lineheight-smartphone;
-  border: none;
-  background-color: transparent;
-
-  &:hover {
-    color: var(--color-2);
-  }
-
-  &.exp-open {
-    .icon-js {
-      &:before {
-        content: "+";
-      }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      all: unset;
     }
   }
 
-  &.exp-close {
-    .icon-js {
-      &:before {
-        content: "-";
+  .expander {
+    position: relative;
+    line-height: 17px !important;
+    font-weight: $font-weight-2 !important;
+    padding-left: 25px !important;
+    text-align: left;
+    color: var(--color-1);
+    font-family: $font-main;
+    font-weight: $font-weight-1;
+    font-size: $h4-size-smartphone;
+    line-height: $h4-lineheight-smartphone;
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+      color: var(--color-2);
+    }
+
+    &.exp-open {
+      .icon-js {
+        &:before {
+          content: "+";
+        }
       }
+    }
+
+    &.exp-close {
+      .icon-js {
+        &:before {
+          content: "-";
+        }
+      }
+    }
+
+    .icon-js {
+      position: absolute;
+      left: 0;
+      font-weight: $font-weight-4;
     }
   }
 
-  .icon-js {
-    position: absolute;
-    left: 0;
-    font-weight: $font-weight-4;
+  .expandable-content {
+    .inner {
+      padding-top: 15px;
+      padding-left: 25px;
+    }
   }
-}
 
-.expandable-content {
-  .inner {
-    padding-top: 15px;
-    padding-left: 25px;
+  .expander-closer {
+    font-family: $font-main;
+    font-size: $h6-size-smartphone;
+    line-height: $h6-lineheight-smartphone;
+    border: none;
+    background-color: transparent;
+    padding: 0;
   }
-}
-
-.expander-closer {
-  font-family: $font-main;
-  font-size: $h6-size-smartphone;
-  line-height: $h6-lineheight-smartphone;
-  border: none;
-  background-color: transparent;
-  padding: 0;
 }

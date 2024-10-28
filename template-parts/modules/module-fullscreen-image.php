@@ -5,7 +5,7 @@
 	<div class="module-box-fullscreen coverize <?php echo $module['module_fullscreen_text_align_horizontal']; ?>"
 		data-aos="fade">
 		<?php if ( $module['module_fullscreen_image_image_video'] == 1 ) : ?>
-			<button class="video-stop video-stop-js pause"
+			<button class="play-pause-animation animation-play-pause-js pause"
 				data-video-stop="module-fullscreen-video-<?php echo $module_count; ?>"
 				title="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"
 				aria-label="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>"></button>
@@ -14,7 +14,7 @@
 				<source type="video/mp4" src="<?php echo $module['module_fullscreen_image_image_video_file']; ?>">
 			</video>
 		<?php else : ?>
-			<?php if ( isset( $module['module_fullscreen_image_image_desktop'] ) ) : ?>
+			<?php if ( $module['module_fullscreen_image_image_desktop'] ?? null ) : ?>
 				<div class="desktop-only">
 					<?php
 					$image_data = array(
@@ -40,7 +40,7 @@
 					?>
 				</div>
 			<?php endif; ?>
-			<?php if ( isset( $module['module_fullscreen_image_image_mobile'] ) ) : ?>
+			<?php if ( $module['module_fullscreen_image_image_mobile'] ?? null ) : ?>
 				<div class="mobile-only">
 					<?php
 					$image_data = array(
@@ -70,12 +70,12 @@
 		<div class="above-image-opacity"></div>
 		<div class="wrapper-padded">
 			<div class="module-fullscreen-texts fluid-typo" data-aos="fade-right">
-				<?php if ( $module['module_fullscreen_image_main_text'] ) : ?>
+				<?php if ( $module['module_fullscreen_image_main_text'] ?? null ) : ?>
 					<h1>
 						<?php echo $module['module_fullscreen_image_main_text']; ?>
 					</h1>
 				<?php endif; ?>
-				<?php if ( $module['module_fullscreen_image_secondary_text'] ) : ?>
+				<?php if ( $module['module_fullscreen_image_secondary_text'] ?? null ) : ?>
 					<h2>
 						<?php echo $module['module_fullscreen_image_secondary_text']; ?>
 					</h2>

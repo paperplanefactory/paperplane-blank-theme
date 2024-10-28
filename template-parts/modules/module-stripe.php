@@ -11,7 +11,6 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 				<?php
 				if ( $module['module_stripe_repeater'] ) :
 					foreach ( $module['module_stripe_repeater'] as $stripe ) :
-						$module_stripe_repeater_content_media = $stripe['module_stripe_repeater_content_media'];
 						?>
 						<!-- blocco -->
 						<section
@@ -19,7 +18,7 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 							<!-- colonna -->
 							<div class="module-stripe-image" data-aos="fade-up">
 								<div class="spacer">
-									<?php if ( $module_stripe_repeater_content_media === 'image' ) : ?>
+									<?php if ( $stripe['module_stripe_repeater_content_media'] === 'image' ) : ?>
 										<?php
 										$image_data = array(
 											'image_type' => 'acf',
@@ -42,7 +41,7 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 										);
 										print_theme_image( $image_data, $image_appearance, $image_sizes );
 										?>
-									<?php elseif ( $module_stripe_repeater_content_media === 'video' ) : ?>
+									<?php elseif ( $stripe['module_stripe_repeater_content_media'] === 'video' ) : ?>
 										<?php paperplane_theme_videos( $stripe['module_stripe_repeater_video'] ); ?>
 									<?php endif; ?>
 								</div>

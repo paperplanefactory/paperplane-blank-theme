@@ -1474,28 +1474,6 @@
                             "mime_types": "",
                             "repeatable": true,
                             "parent_repeater": "field_5e6b950fa977a"
-                        },
-                        {
-                            "key": "field_5e6b9544a977c",
-                            "label": "Didascalia",
-                            "name": "module_slideshow_repeater_caption",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": "",
-                            "repeatable": true,
-                            "parent_repeater": "field_5e6b950fa977a"
                         }
                     ],
                     "parent_repeater": "field_5e6b4d8f8e1a6"
@@ -2213,5 +2191,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1706009867
+    "modified": 1730136569
 }

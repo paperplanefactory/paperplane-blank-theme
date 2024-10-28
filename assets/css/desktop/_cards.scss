@@ -2,68 +2,22 @@
 @import '../global/vars';
 @import '../global/mixin';
 
-@mixin card-outlines {
-    -webkit-border-top-left-radius: 50px;
-    -webkit-border-bottom-right-radius: 50px;
-    -moz-border-radius-topleft: 50px;
-    -moz-border-radius-bottomright: 50px;
-    border-top-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-}
-
-.cards {
-    &.flex-hold {
-        margin-top: 2px;
-    }
-
-    .cta-holder {
-        margin: 16px 0 0;
-    }
-}
-
 .card {
-    &:has(a:focus-visible) {
-        z-index: 99999 !important;
-    }
+    border: solid 1px var(--color-1);
+    display: flex;
+    flex-direction: column;
 
-    .inner {
-        position: relative;
-        height: 100%;
-        box-shadow: 0 0 0 2px var(--color-1);
-        @include card-outlines;
-        @include transition(all 0.3s ease-in-out);
-    }
 
     .card-image {
-        -webkit-border-top-left-radius: 50px;
-        -moz-border-radius-topleft: 50px;
-        border-top-left-radius: 50px;
-        overflow: hidden;
-    }
-
-    .card-link {
-        position: absolute;
-        z-index: 10;
-        left: 0;
-        top: 0;
-        display: block;
-        width: 100%;
-        height: 100%;
-        font-size: 0;
-        @include card-outlines;
-
-        &:hover {
-            box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
-        }
-    }
-
-    a {
-        &:not(.card-link) {
-            z-index: 11;
-        }
+        margin-bottom: 24px;
     }
 
     .card-texts {
-        padding: 20px;
+        padding: 0 24px 24px 24px;
+    }
+
+    .cta-holder {
+        margin-top: auto;
+        padding: 0 24px 24px 24px;
     }
 }

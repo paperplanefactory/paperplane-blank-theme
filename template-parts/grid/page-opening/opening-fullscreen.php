@@ -1,70 +1,82 @@
 <div class="wrapper page-opening">
 	<div
 		class="fullscreen-cta coverize fluid-typo <?php echo $content_fields['page_opening_layout'] . ' ' . $content_fields['page_opening_text_align']; ?>">
-		<?php if ( $content_fields['page_opening_video'] === 'si' ) : ?>
-			<button id="opening-video-control" class="video-stop video-stop-js pause" data-video-stop="opening-video-js"
-				aria-label="<?php _e( 'Ferma il video', 'paperPlane-blankTheme' ); ?>" aria-checked="false"
+		<?php
+		if ( $content_fields['page_opening_media'] ?? null ) {
+			$page_opening_media = $content_fields['page_opening_media'];
+		} else {
+			$page_opening_media = 'no-media';
+		}
+		if ( $page_opening_media === 'video' ) :
+			?>
+			<button id="opening-video-control" class="play-pause-animation animation-play-pause-js pause"
+				data-video-stop="opening-video-js"
+				aria-label="<?php _e( 'Avvia / pausa video', 'paperPlane-blankTheme' ); ?>" aria-pressed="true"
 				aria-controls="opening-video-js"></button>
-			<video id="opening-video-js" aria-hidden="true" class="stoppable-js" data-aos="fade-in"
+			<video poster="<?php echo $content_fields['page_opening_video_poster']['sizes']['large']; ?>"
+				id="opening-video-js" aria-hidden="true" class="stoppable-js" data-aos="fade-in"
 				aria-labelledby="opening-video-control" data-autoplay autoplay loop muted playsinline>
 				<source type="video/mp4" src="<?php echo $content_fields['page_opening_video_mp4']['url']; ?>">
 				<meta itemprop="name"
 					content="<?php echo __( 'Questo è un video senza audio, in autoplay e in loop.', 'paperPlane-blankTheme' ) . ' ' . $content_fields['page_opening_video_mp4']['title']; ?>">
 				<meta itemprop="description" content="<?php echo $content_fields['page_opening_video_mp4']['caption']; ?>">
 			</video>
-		<?php else : ?>
-			<?php if ( isset( $content_fields['page_opening_image_desktop'] ) ) : ?>
-				<div class="desktop-only">
-					<?php
-					$image_data = array(
-						'image_type' => 'acf',
-						// options: post_thumbnail, acf
-						'image_value' => $content_fields['page_opening_image_desktop']
-						// se utilizzi un custom field indica qui il nome del campo
-					);
-					$image_appearance = array(
-						// options: true, false
-						'lazyload' => false,
-						// options: sync, async
-						'decoding' => 'async',
-						// options: true, false - se false non mette contenitore intorno all'immagine
-						'image-wrap' => false
-					);
-					$image_sizes = array(
-						// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-						'desktop_hd' => 'full_desk_hd',
-						'mobile_hd' => 'full_desk_hd'
-					);
-					print_theme_image( $image_data, $image_appearance, $image_sizes );
-					?>
-				</div>
-			<?php endif; ?>
-			<?php if ( isset( $content_fields['page_opening_image_mobile'] ) ) : ?>
-				<div class="mobile-only">
-					<?php
-					$image_data = array(
-						'image_type' => 'acf',
-						// options: post_thumbnail, acf
-						'image_value' => $content_fields['page_opening_image_mobile']
-						// se utilizzi un custom field indica qui il nome del campo
-					);
-					$image_appearance = array(
-						// options: true, false
-						'lazyload' => false,
-						// options: sync, async
-						'decoding' => 'async',
-						// options: true, false - se false non mette contenitore intorno all'immagine
-						'image-wrap' => false
-					);
-					$image_sizes = array(
-						// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-						'desktop_hd' => 'full_desk',
-						'mobile_hd' => 'full_desk'
-					);
-					print_theme_image( $image_data, $image_appearance, $image_sizes );
-					?>
-				</div>
-			<?php endif; ?>
+			<?php
+		elseif ( $page_opening_media === 'image' ) :
+			if ( $content_fields['page_opening_image_mobile'] ?? null ) {
+				$page_opening_image_mobile = $content_fields['page_opening_image_mobile'];
+			} else {
+				$page_opening_image_mobile = $content_fields['page_opening_image_desktop'];
+			}
+			?>
+			<div class="desktop-only">
+				<?php
+				$image_data = array(
+					'image_type' => 'acf',
+					// options: post_thumbnail, acf
+					'image_value' => $content_fields['page_opening_image_desktop']
+					// se utilizzi un custom field indica qui il nome del campo
+				);
+				$image_appearance = array(
+					// options: true, false
+					'lazyload' => false,
+					// options: sync, async
+					'decoding' => 'async',
+					// options: true, false - se false non mette contenitore intorno all'immagine
+					'image-wrap' => false
+				);
+				$image_sizes = array(
+					// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+					'desktop_hd' => 'full_desk_hd',
+					'mobile_hd' => 'full_desk_hd'
+				);
+				print_theme_image( $image_data, $image_appearance, $image_sizes );
+				?>
+			</div>
+			<div class="mobile-only">
+				<?php
+				$image_data = array(
+					'image_type' => 'acf',
+					// options: post_thumbnail, acf
+					'image_value' => $page_opening_image_mobile
+					// se utilizzi un custom field indica qui il nome del campo
+				);
+				$image_appearance = array(
+					// options: true, false
+					'lazyload' => false,
+					// options: sync, async
+					'decoding' => 'async',
+					// options: true, false - se false non mette contenitore intorno all'immagine
+					'image-wrap' => false
+				);
+				$image_sizes = array(
+					// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+					'desktop_hd' => 'full_desk',
+					'mobile_hd' => 'full_desk'
+				);
+				print_theme_image( $image_data, $image_appearance, $image_sizes );
+				?>
+			</div>
 		<?php endif; ?>
 		<div class="above-image-opacity"></div>
 		<div class="fullscreen-cta-aligner">
@@ -80,7 +92,7 @@
 										<?php bcn_display(); ?>
 									</div>
 								<?php endif; ?>
-								<?php if ( $content_fields['page_opening_title'] ) : ?>
+								<?php if ( $content_fields['page_opening_title'] ?? null ) : ?>
 									<h1>
 										<?php echo $content_fields['page_opening_title']; ?>
 									</h1>
@@ -89,10 +101,10 @@
 										<?php the_title(); ?>
 									</h1>
 								<?php endif; ?>
-								<?php if ( $content_fields['page_opening_subtitle'] ) : ?>
-									<p>
+								<?php if ( $content_fields['page_opening_subtitle'] ?? null ) : ?>
+									<h2 class="as-p">
 										<?php echo $content_fields['page_opening_subtitle']; ?>
-									</p>
+									</h2>
 								<?php endif; ?>
 							</div>
 							<div class="clearer"></div>
