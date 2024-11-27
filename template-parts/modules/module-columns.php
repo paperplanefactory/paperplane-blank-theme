@@ -1,5 +1,5 @@
 <!-- module-columns -->
-<section class="wrapper module-columns bg-4">
+<section class="wrapper module-columns">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">
@@ -91,26 +91,27 @@
 											</a>
 										</div>
 									<?php endif; ?>
-									<?php if ( $column['module_columns_columns_repeater_counter_value'] ?? null ) : ?>
+									<?php
+									if ( $column['module_columns_columns_repeater_counter_value'] ?? null ) :
+										$counter_text = '';
+										?>
 										<div class="counter">
-											<?php if ( $column['module_columns_columns_repeater_counter_value_before'] ?? null ) : ?>
-												<h3>
-													<?php echo $column['module_columns_columns_repeater_counter_value_before']; ?>
-												</h3>
-											<?php endif; ?>
-											<h2 class="as-h1 count just-number count-pre"
-												data-bar-number="<?php echo $column['module_columns_columns_repeater_counter_value']; ?>">
-												0</h1>
-												<?php if ( $column['module_columns_columns_repeater_counter_value_after'] ?? null ) : ?>
-													<h3>
-														<?php echo $column['module_columns_columns_repeater_counter_value_after']; ?>
-													</h3>
-												<?php endif; ?>
-												<?php if ( $column['module_columns_columns_repeater_counter_description'] ?? null ) : ?>
-													<h4>
-														<?php echo $column['module_columns_columns_repeater_counter_description']; ?>
-													</h4>
-												<?php endif; ?>
+											<h2 class="as-h1">
+												<?php
+												if ( $column['module_columns_columns_repeater_counter_value_before'] ?? null ) {
+													$counter_text .= $column['module_columns_columns_repeater_counter_value_before'];
+													$counter_text .= '<span class="count just-number count-pre"
+													data-bar-number="' . $column['module_columns_columns_repeater_counter_value'] . '">0</span>';
+												}
+												if ( $column['module_columns_columns_repeater_counter_value_after'] ?? null ) {
+													$counter_text .= $column['module_columns_columns_repeater_counter_value_after'];
+												}
+												if ( $column['module_columns_columns_repeater_counter_description'] ?? null ) {
+													$counter_text .= '<br /><span class="as-h4"> ' . $column['module_columns_columns_repeater_counter_description'] . '</span>';
+												}
+												echo $counter_text;
+												?>
+											</h2>
 										</div>
 									<?php endif; ?>
 									<?php if ( $column['module_columns_columns_repeater_content'] ?? null ) : ?>

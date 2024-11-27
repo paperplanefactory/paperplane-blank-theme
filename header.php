@@ -6,13 +6,23 @@
 
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 	<title>
 		<?php wp_title( '|', true, 'right' ); ?>
 	</title>
 	<?php
 	wp_head();
 	// definisco le variaibil globali che possono poi essere lette tramite 
+	global $use_transients_fields,
+	$theme_version,
+	$acf_options_parameter,
+	$static_bloginfo_stylesheet_directory,
+	$options_fields,
+	$options_fields_multilang,
+	$cta_url_modal_array,
+	$theme_pagination,
+	$attivare_pwa,
+	$content_fields;
 	// include( locate_template( 'parcorso/nome-file.php' ) );
 	// imposto la variabile globale per definire:
 	// - se è attivo Polylang il linguaggio in cui l'utente sta visitando il sito
@@ -22,19 +32,14 @@
 	} else {
 		$acf_options_parameter = 'any-lang';
 	}
-	global $use_transients_fields,
-	$theme_version,
-	$acf_options_parameter,
-	$static_bloginfo_stylesheet_directory,
-	$options_fields,
-	$options_fields_multilang,
-	${$options_fields_multilang . $acf_options_parameter},
-	$cta_url_modal_array,
-	$theme_pagination,
-	$attivare_pwa;
 	// genero le trnasients delle pagine di opzioni
-	${$options_fields_multilang . $options_fields_multilang} = paperplane_options_transients_multilanguage();
-	paperplane_options_transients();
+	$options_fields_multilang = paperplane_options_transients_multilanguage( $acf_options_parameter );
+	$options_fields = paperplane_options_transients();
+	// verifico se esiste l'oggetto $post
+	if ( isset( $post ) ) {
+		// se esiste l'oggetto $post richiamo l'array con i campi personalizzati
+		$content_fields = paperplane_content_transients( $post->ID );
+	}
 	// imposto e valorizzo la variabile globale per definire il tipo di paginazione:
 	$theme_pagination = $options_fields['theme_pagination'];
 	// imposto l'array globale con le ID delle modal eventualmente inserite in pagina
@@ -112,7 +117,7 @@
 	</div>
 	<?php
 	// includo la navigazione accessibile
-	include ( locate_template( 'template-parts/grid/accessible-navi.php' ) );
+	include( locate_template( 'template-parts/grid/accessible-navi.php' ) );
 	?>
 	<div id="site-wrapper">
 		<div id="preheader"></div>
@@ -135,14 +140,15 @@
 						<div class="side-head">
 							<ul>
 								<li>
-									<button id="hamburger-button" class="hambuger-element ham-activator-js"
-										aria-haspopup="true" aria-expanded="false" aria-controls="head-overlay"
-										title="<?php _e( 'Premi invio per accedere al menu ad hamburger', 'paperPlane-blankTheme' ); ?>"
-										aria-label="<?php _e( 'Premi invio per accedere al menu ad hamburger', 'paperPlane-blankTheme' ); ?>">
-										<span></span>
-										<span></span>
-										<span></span>
-										<span></span>
+									<button id="hamburger-button" class="hambuger-element" aria-haspopup="true"
+										aria-expanded="false" aria-controls="head-overlay">
+										<span class="screen-reader-text">
+											<?php _e( 'Accedi al menu ad hamburger, usa la combinazione p + esc per chuidere il menu', 'paperPlane-blankTheme' ); ?>
+										</span>
+										<span class="ham-bar ham-bar-1"></span>
+										<span class="ham-bar ham-bar-2"></span>
+										<span class="ham-bar ham-bar-3"></span>
+										<span class="ham-bar ham-bar-4"></span>
 									</button>
 								</li>
 							</ul>
@@ -152,7 +158,7 @@
 			</div>
 			<div class="submenu-close submenu-close-js"></div>
 		</header>
-		<div id="head-overlay" class="hidden" aria-hidden="true">
+		<div id="head-overlay" class="hidden">
 			<div class="scroll-opportunity scroll-opportunity-overlay-js">
 				<div class="wrapper">
 					<div class="wrapper-padded">
@@ -163,7 +169,7 @@
 							}
 							?>
 						</nav>
-						<?php include ( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
+						<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
 						<?php if ( $options_fields['global_socials'] ) : ?>
 							<nav aria-label="<?php _e( 'Menu social', 'paperPlane-blankTheme' ); ?>">
 								<ul class="site-socials inline-socials">
@@ -189,5 +195,5 @@
 				aria-label="<?php echo __( 'Ritorna al pulsante di apertura del menu', 'paperPlane-blankTheme' ); ?>"
 				aria-labelledby="hamburger-button"></button>
 		</div>
-		<main id="page-content" aria-labelledby="skip-to-content">
-			<?php include ( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>
+		<main id="page-content" tabindex="-1">
+			<?php include( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>

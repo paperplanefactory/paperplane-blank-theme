@@ -26,7 +26,7 @@
     height: 48px;
   }
 
-  span {
+  span[class*="ham-bar-"] {
     display: block;
     position: absolute;
     height: 2px;
@@ -41,31 +41,31 @@
 }
 
 
-.hambuger-element span:nth-child(1) {
+.hambuger-element .ham-bar-1 {
   top: 0;
 }
 
-.hambuger-element span:nth-child(2),
-.hambuger-element span:nth-child(3) {
+.hambuger-element .ham-bar-2,
+.hambuger-element .ham-bar-3 {
   top: 7px;
 }
 
-.hambuger-element span:nth-child(4) {
+.hambuger-element .ham-bar-4 {
   bottom: 0;
 }
 
-.hambuger-element.open span:nth-child(1) {
-  opacity: 0;
+.hambuger-element.open .ham-bar-1 {
+  opacity: 0 !important;
 }
 
-.hambuger-element.open span:nth-child(2) {
+.hambuger-element.open .ham-bar-2 {
   @include define-rotate(45);
 }
 
-.hambuger-element.open span:nth-child(3) {
+.hambuger-element.open .ham-bar-3 {
   @include define-rotate(-45);
 }
 
-.hambuger-element.open span:nth-child(4) {
-  opacity: 0;
+.hambuger-element.open .ham-bar-4 {
+  opacity: 0 !important;
 }

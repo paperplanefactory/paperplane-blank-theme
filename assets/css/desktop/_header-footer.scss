@@ -17,10 +17,6 @@ $hamburger-width: 45px; // header
     transform: translateY(-$header-desktop-height);
   }
 
-  &.scrolled {
-    background-color: var(--color-4);
-  }
-
   #header-structure {
     width: 100%;
     height: $header-desktop-height;
@@ -69,8 +65,8 @@ $hamburger-width: 45px; // header
               width: 14px;
               height: 8px;
               margin-left: 5px;
-              -webkit-mask-image: url(assets/images/sub-menu-icon.svg);
-              mask-image: url(assets/images/sub-menu-icon.svg);
+              -webkit-mask-image: url(assets/images/icons/sub-menu-icon.svg);
+              mask-image: url(assets/images/icons/sub-menu-icon.svg);
               -webkit-mask-repeat: no-repeat;
               mask-repeat: no-repeat;
               mask-size: contain;
@@ -253,8 +249,8 @@ $hamburger-width: 45px; // header
               width: 14px;
               height: 8px;
               margin-left: 5px;
-              -webkit-mask-image: url(assets/images/sub-menu-icon.svg);
-              mask-image: url(assets/images/sub-menu-icon.svg);
+              -webkit-mask-image: url(assets/images/icons/sub-menu-icon.svg);
+              mask-image: url(assets/images/icons/sub-menu-icon.svg);
               -webkit-mask-repeat: no-repeat;
               mask-repeat: no-repeat;
               mask-size: contain;
@@ -270,20 +266,26 @@ $hamburger-width: 45px; // header
             }
           }
         }
-
-        &.mobile-open-default {
-          .sub-menu {
-            display: block;
-          }
-        }
       }
 
       .current-page-ancestor,
       .current_page_item {}
 
       .sub-menu {
-        display: none;
         background-color: var(--color-3);
+        interpolate-size: allow-keywords;
+        @include transition(opacity, height 0.3s linear);
+        overflow: hidden;
+        //visibility: hidden;
+        height: 0;
+        // opacity: 0;
+
+        &.visible {
+          @include transition(opacity, height 0.3s linear);
+          height: auto;
+          //visibility: visible;
+          //opacity: 1;
+        }
 
         li {
           width: 100%;

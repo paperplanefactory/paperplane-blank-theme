@@ -19,7 +19,7 @@ if ( $use_transients_fields == 1 ) {
 if ( ! empty( $my_mega_menus ) ) : ?>
 	<?php foreach ( $my_mega_menus as $post ) :
 		setup_postdata( $post );
-		$content_fields = paperplane_content_transients( $post->ID );
+		$content_fields_mega_menu = paperplane_content_transients( $post->ID );
 		?>
 		<nav id="mega-menu-control-<?php echo $post->ID; ?>" aria-labelledby="mega-menu-controller-<?php echo $post->ID; ?>"
 			class="mega-menu mega-menu-js mega-menu-js-<?php echo $post->ID; ?>-target hidden" aria-hidden="true"
@@ -32,7 +32,7 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 							$image_data = array(
 								'image_type' => 'acf',
 								// options: post_thumbnail, acf
-								'image_value' => $content_fields['mega_menu_repeater_image']
+								'image_value' => $content_fields_mega_menu['mega_menu_repeater_image']
 								// se utilizzi un custom field indica qui il nome del campo
 							);
 							$image_appearance = array(
@@ -60,15 +60,15 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 						</div>
 						<div class="mega-menu-column-3">
 							<div class="last-child-no-margin">
-								<?php if ( $content_fields['mega_menu_repeater_additional_info'] ) : ?>
+								<?php if ( $content_fields_mega_menu['mega_menu_repeater_additional_info'] ) : ?>
 									<p>
-										<?php echo $content_fields['mega_menu_repeater_additional_info']; ?>
+										<?php echo $content_fields_mega_menu['mega_menu_repeater_additional_info']; ?>
 									</p>
 
 								<?php endif; ?>
 
 							</div>
-							<?php paperplane_theme_cta_advanced( $content_fields['paperplane_theme_cta_mega_menu'] ); ?>
+							<?php paperplane_theme_cta_advanced( $content_fields_mega_menu['paperplane_theme_cta_mega_menu'] ); ?>
 						</div>
 					</div>
 				</div>

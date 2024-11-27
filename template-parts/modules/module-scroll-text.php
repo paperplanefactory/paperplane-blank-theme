@@ -31,7 +31,7 @@ $text_loop = 6;
 		}
 	}
 </style>
-<section class="wrapper module-scroll-text bg-4">
+<section class="wrapper module-scroll-text">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="scrolling-txt-wrapper">

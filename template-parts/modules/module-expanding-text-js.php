@@ -1,5 +1,5 @@
 <!-- module-expanding-text -->
-<section class="wrapper module-expanding-text bg-4">
+<section class="wrapper module-expanding-text">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">
@@ -36,7 +36,8 @@
 												class="expander-closer"
 												data-expand-id="<?php echo $module_count . '-' . $expand_count; ?>"
 												aria-expanded="true"
-												aria-controls="expand-content-<?php echo $module_count . '-' . $expand_count; ?>">
+												aria-controls="expand-content-<?php echo $module_count . '-' . $expand_count; ?>"
+												tabindex="-1" aria-hidden="true">
 												<?php _e( 'Chiudi', 'paperPlane-blankTheme' ); ?>
 											</button>
 										</div>

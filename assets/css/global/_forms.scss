@@ -119,23 +119,31 @@ input[type=file] {
 	margin-top: 10px;
 	font-family: $font-main;
 	font-weight: $font-weight-1;
+	background-color: var(--color-4);
 
 	&::-webkit-file-upload-button,
 	&::file-selector-button {
 		font-family: $font-main;
 		font-weight: $font-weight-1;
-		padding: 8px 9px 8px 38px;
-		//	border-radius: 4px;
+		padding: 8px 0 8px 20px;
 		margin-right: 10px;
-		background-color: var(--color-1);
 		color: var(--color-4);
 		transition: 0.3s;
-		background-position: 8px 50%;
-		background-repeat: no-repeat;
-		background-size: 25px 25px;
 		cursor: pointer;
 		border: none;
-		background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='none'><g><rect height='24' width='24'/></g><g><path fill='#{$color-upload-icon-clear}' d='M18,15v3H6v-3H4v3c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-3H18z M7,9l1.41,1.41L11,7.83V16h2V7.83l2.59,2.58L17,9l-5-5L7,9z'/></g></svg>");
+		width: 25px;
+		//background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='none'><g><rect height='24' width='24'/></g><g><path fill='#{$color-upload-icon-clear}' d='M18,15v3H6v-3H4v3c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-3H18z M7,9l1.41,1.41L11,7.83V16h2V7.83l2.59,2.58L17,9l-5-5L7,9z'/></g></svg>");
+		//background-position: 8px 50%;
+		//background-repeat: no-repeat;
+		//background-size: 25px 25px;
+
+		-webkit-mask-image: url(assets/images/icons/file-upload.svg);
+		mask-image: url(assets/images/icons/file-upload.svg);
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		mask-size: 25px 25px;
+		mask-position: 0 50%;
+		background-color: var(--color-1);
 	}
 }
 
@@ -148,7 +156,7 @@ select {
 	width: calc(100% - 2px);
 	margin: 10px 0 0;
 	padding: 10px 30px 10px 10px;
-	background-image: url("assets/images/html-select-icon.svg");
+	background-image: url("assets/images/icons/html-select-icon.svg");
 	background-position: calc(100% - 10px) 50%;
 	background-repeat: no-repeat;
 	background-size: 12px auto;

@@ -149,6 +149,27 @@
             "ui": 1
         },
         {
+            "key": "field_673e05099fbdd",
+            "label": "Abilitare Query Monitor in back end?",
+            "name": "use_query_monitor_backend",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Se le operazioni in back end sembrano lente è possibile disabilitare le analisi di Query Monitor solo in back end.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_64f1fa2039378",
             "label": "Gestione pagina in costruzione e manutenzione",
             "name": "",
@@ -355,5 +376,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1707120791
+    "modified": 1732118453
 }

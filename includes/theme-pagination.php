@@ -1,6 +1,7 @@
 <?php
 function theme_pagination_system() {
-	$theme_pagination = get_field( 'theme_pagination', 'option' );
+	// Variabili globali
+	global $theme_pagination;
 	if ( $theme_pagination === 'theme-pagenavi' ) {
 		include( locate_template( 'template-parts/grid/pagination-page-navi.php' ) );
 	} elseif ( $theme_pagination === 'theme-infinite-scroll' ) {
