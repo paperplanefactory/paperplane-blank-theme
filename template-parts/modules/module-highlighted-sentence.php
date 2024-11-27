@@ -1,5 +1,5 @@
 <!-- module-highlighted-sentence -->
-<section class="wrapper module-highlighted-sentence bg-4">
+<section class="wrapper module-highlighted-sentence">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">

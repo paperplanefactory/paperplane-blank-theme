@@ -4,21 +4,21 @@ $banner = $module['module_banner_object'];
 if ( $banner ) :
 	$post = $banner;
 	setup_postdata( $post );
-	$content_fields = paperplane_content_transients( $post->ID );
+	$content_fields_banner = paperplane_content_transients( $post->ID );
 	?>
-	<section class="wrapper module-banner bg-4">
+	<section class="wrapper module-banner">
 		<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 		<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 			<div class="wrapper-padded">
 				<div class="wrapper-padded-container">
 					<div class="banner-space">
-						<?php if ( $content_fields['banner_background_image'] ?? null ) : ?>
+						<?php if ( $content_fields_banner['banner_background_image'] ?? null ) : ?>
 							<div class="banner-mask-image coverize">
 								<?php
 								$image_data = array(
 									'image_type' => 'acf',
 									// options: post_thumbnail, acf
-									'image_value' => $content_fields['banner_background_image']
+									'image_value' => $content_fields_banner['banner_background_image']
 									// se utilizzi un custom field indica qui il nome del campo
 								);
 								$image_appearance = array(
@@ -40,15 +40,15 @@ if ( $banner ) :
 							</div>
 						<?php endif; ?>
 						<div class="banner-content">
-							<?php if ( $content_fields['banner_foreground_image'] ?? null ) : ?>
+							<?php if ( $content_fields_banner['banner_foreground_image'] ?? null ) : ?>
 								<div class="flex-hold flex-hold-banner">
 									<div class="banner-image uncoverize image-as-link" data-aos="zoom-out">
-										<?php paperplane_theme_cta_absl_advanced( $content_fields['paperplane_theme_cta_banner'] ); ?>
+										<?php paperplane_theme_cta_absl_advanced( $content_fields_banner['paperplane_theme_cta_banner'] ); ?>
 										<?php
 										$image_data = array(
 											'image_type' => 'acf',
 											// options: post_thumbnail, acf
-											'image_value' => $content_fields['banner_foreground_image']
+											'image_value' => $content_fields_banner['banner_foreground_image']
 											// se utilizzi un custom field indica qui il nome del campo
 										);
 										$image_appearance = array(
@@ -72,7 +72,7 @@ if ( $banner ) :
 											<h2>
 												<?php the_title(); ?>
 											</h2>
-											<?php paperplane_theme_cta_advanced( $content_fields['paperplane_theme_cta_banner'] ); ?>
+											<?php paperplane_theme_cta_advanced( $content_fields_banner['paperplane_theme_cta_banner'] ); ?>
 										</div>
 									</div>
 								</div>
@@ -81,7 +81,7 @@ if ( $banner ) :
 									<h2>
 										<?php the_title(); ?>
 									</h2>
-									<?php paperplane_theme_cta_advanced( $content_fields['paperplane_theme_cta_banner'] ); ?>
+									<?php paperplane_theme_cta_advanced( $content_fields_banner['paperplane_theme_cta_banner'] ); ?>
 								</div>
 							<?php endif; ?>
 						</div>

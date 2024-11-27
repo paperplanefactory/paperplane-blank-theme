@@ -12,10 +12,6 @@ $hamburger-width: 55px; // header
 #header {
   height: $header-smartphone-height;
 
-  &.scrolled {
-    background-color: var(--color-4);
-  }
-
   #header-structure {
     width: 100%;
     height: $header-smartphone-height;
@@ -117,8 +113,8 @@ $hamburger-width: 55px; // header
               width: 14px;
               height: 8px;
               margin-left: 5px;
-              -webkit-mask-image: url(assets/images/sub-menu-icon.svg);
-              mask-image: url(assets/images/sub-menu-icon.svg);
+              -webkit-mask-image: url(assets/images/icons/sub-menu-icon.svg);
+              mask-image: url(assets/images/icons/sub-menu-icon.svg);
               -webkit-mask-repeat: no-repeat;
               mask-repeat: no-repeat;
               mask-size: contain;
@@ -134,20 +130,25 @@ $hamburger-width: 55px; // header
             }
           }
         }
-
-        &.mobile-open-default {
-          .sub-menu {
-            display: block;
-          }
-        }
       }
 
       .current-page-ancestor,
       .current_page_item {}
 
       .sub-menu {
-        display: none;
         background-color: var(--color-3);
+        position: relative;
+        interpolate-size: allow-keywords;
+        @include transition(visibility, height 0.3s linear);
+        overflow: hidden;
+        visibility: hidden;
+        height: 0;
+
+        &.visible {
+          @include transition(visibility, height 0.3s linear);
+          height: auto;
+          visibility: visible;
+        }
 
         li {
           width: 100%;

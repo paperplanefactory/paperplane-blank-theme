@@ -21,6 +21,9 @@ body {
             transition-duration: 0ms !important;
             transition-property: none !important;
             animation: none 0 !important;
+            outline-style: solid;
+            outline-color: transparent;
+            outline-width: 10px;
         }
 
     }
@@ -36,6 +39,16 @@ body {
     .element-icon-before {
         &:focus-visible {
             &:before {
+                background-color: var(--color-4) !important;
+            }
+        }
+    }
+
+    input[type=file] {
+        &:focus-visible {
+
+            &::-webkit-file-upload-button,
+            &::file-selector-button {
                 background-color: var(--color-4) !important;
             }
         }
@@ -169,7 +182,7 @@ body {
     }
 
     &.body-reduced-transparency {
-        * :not(.sub-menu) {
+        * :not(#head-overlay, .sub-menu, span[class*="ham-bar-"]) {
             opacity: 1 !important;
         }
 
@@ -203,6 +216,10 @@ body {
 @media (prefers-reduced-transparency),
 (prefers-contrast: more) {
     * :not(.sub-menu) {
+        opacity: 1 !important;
+    }
+
+    * :not(#head-overlay, .sub-menu, span[class*="ham-bar-"]) {
         opacity: 1 !important;
     }
 

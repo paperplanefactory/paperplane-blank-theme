@@ -6,7 +6,7 @@
 get_header();
 global $listing_page_id;
 $listing_page_id = get_the_ID();
-$content_fields = paperplane_content_transients( $post->ID );
+//$content_fields = paperplane_content_transients( $post->ID );
 ?>
 <div class="wrapper">
 	<div class="wrapper-padded">

@@ -4,8 +4,8 @@
 
 .hambuger-element {
     &:hover {
-        span {
-            background-color: var(--color-2);
+        span[class*="ham-bar-"] {
+            background-color: var(--color-1);
         }
     }
 }

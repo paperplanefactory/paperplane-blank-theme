@@ -2,7 +2,15 @@
 <?php
 // Paperplane _blankTheme - template per footer.
 wp_reset_query();
-global $acf_options_parameter, $options_fields, $options_fields_multilang, ${$options_fields_multilang . $acf_options_parameter}, $static_bloginfo_stylesheet_directory, $cta_url_modal_array;
+global $use_transients_fields,
+$theme_version,
+$acf_options_parameter,
+$static_bloginfo_stylesheet_directory,
+$options_fields,
+$options_fields_multilang,
+$cta_url_modal_array,
+$theme_pagination,
+$attivare_pwa;
 $cta_url_modal_array = array_unique( $cta_url_modal_array );
 ?>
 <footer id="footer" class="bg-4">
@@ -46,11 +54,11 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 				<div class="flex-hold flex-hold-2 margins-wide">
 					<div class="flex-hold-child">
 						<div class="underlined-links">
-							<?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_legal_notes']; ?>
+							<?php echo $options_fields_multilang['footer_legal_notes']; ?>
 						</div>
 					</div>
 					<div class="flex-hold-child desktop-align-right underlined-links">
-						<?php echo ${$options_fields_multilang . $acf_options_parameter}['footer_credits']; ?>
+						<?php echo $options_fields_multilang['footer_credits']; ?>
 					</div>
 					<div class="flex-hold-child-full">
 						<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>

@@ -9,26 +9,3 @@ Description: A light and flexible starter theme from Paperplane, handcrafted to 
 Version: 7.0.1
 GitHub Theme URI: https://github.com/paperplanefactory/paperplane-blank-theme
 */
-
-/*
-## Per iniziare
-1. rinomina cartella es. nome-cliente-theme (senza maiuscole)
-2. rimuovi file Github
-3. crea la nuova repository su GitHub
-4. compila il file style.css modificando il parametro "Text Domain: paperPlane-blankTheme" e i link alla repository su GitHub
-nuovo Text Domain uguale a nome cartella (es. nome-cliente-theme)
-5. cerca e sostituisci in tutta la cartella del tema vecchio Text Domain -> nuovo Text Domain
-6. se alcuni CPT (banner o modal) non sono necessari imposta su "falso" l'opzione "Mostra UI" nel plugin CPT UI e rimuovili nei campi di ACF interessati (es. CTA) 
-7. Salvando la pagina "Theme Settings" vengono generate in automatico la pagina under construction e la pagina di manutenzione basate su logo e colori del sito. Perchè funzioni è importante che il logo "site-logo-header.svg" venga sostituito ma non rinominato
-
-Migrazione Updraft: rimuovere vechie cartelle dopo migrazione
-
-
-## Strumenti CSS e altro
-- [Generatore gradiente CSS](https://cssgradient.io/)
-- [Generatore Text Shadow CSS](https://css3gen.com/text-shadow/)
-- [Generatore Border Radius CSS](https://css3gen.com/border-radius/)
-- [Generatore Box Shadow CSS](https://css3gen.com/box-shadow/)
-- [Come usare mixin con parametri](https://marksheet.io/sass-mixins.html)
-- [Linee guida componenti accessibili](https://www.w3.org/WAI/ARIA/apg/patterns/)
-*/

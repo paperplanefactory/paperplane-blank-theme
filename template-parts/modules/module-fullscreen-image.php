@@ -1,6 +1,6 @@
 <!-- module-fullscreen-image -->
 <section
-	class="wrapper module-fullscreen-image bg-4 <?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
+	class="wrapper module-fullscreen-image <?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
 	<div class="module-box-fullscreen coverize <?php echo $module['module_fullscreen_text_align_horizontal']; ?>"
 		data-aos="fade">

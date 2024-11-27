@@ -171,9 +171,9 @@ function paperplane_menu_items_as_buttons( $item_output, $item ) {
 	$acf_id_modal = get_field( 'acf_id_modal', $item );
 	if ( $mega_menu_activator ) {
 		$item_output = '<button type="button" aria-expanded="false" haspopup="true" aria-controls="mega-menu-control-' . $mega_menu_activator[0] . '" id="mega-menu-controller-' . $mega_menu_activator[0] . '" class="nav-simple-button element-icon-after mega-menu-js-trigger mega-menu-js-' . $mega_menu_activator[0] . '-trigger" aria-controls="mega-menu-js-' . $mega_menu_activator[0] . '-target" data-megamenu-open-id="' . $mega_menu_activator[0] . '">' . $item->title . '</button>';
-		//ob_start();
+		ob_start();
 		include( locate_template( 'template-parts/grid/mega-menu-single.php' ) );
-		//$item_output .= ob_get_clean();
+		$item_output .= ob_get_clean();
 	} elseif ( in_array( 'menu-item-has-children', $item->classes ) ) {
 		$item_output = '<button type="button" aria-expanded="false" class="nav-simple-button element-icon-after sub-menu-btn">' . $item->title . '</button>';
 	} elseif ( $acf_id_modal ) {
@@ -228,3 +228,17 @@ function module_page_template_default() {
 	}
 }
 add_action( 'add_meta_boxes', 'module_page_template_default', 1 );
+
+
+function allow_editor_manage_menus() {
+	// Ottieni il ruolo "editor"
+	$role = get_role( 'editor' );
+
+	// Verifica se il ruolo esiste e non ha già il permesso di modificare le opzioni del tema
+	if ( $role && ! $role->has_cap( 'edit_theme_options' ) ) {
+		// Aggiungi la capability "edit_theme_options" agli editor
+		$role->add_cap( 'edit_theme_options' );
+	}
+}
+// Usa l'hook 'init' per eseguire questa funzione quando WordPress si inizializza
+// add_action( 'init', 'allow_editor_manage_menus' );

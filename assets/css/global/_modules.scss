@@ -8,7 +8,13 @@
 }
 
 .expandable-content {
-  display: none;
+  position: relative;
+  interpolate-size: allow-keywords;
+  @include transition(height 0.3s linear);
+  overflow: hidden;
+  height: 0;
 
-  &.active {}
+  &.visible {
+    height: auto;
+  }
 }

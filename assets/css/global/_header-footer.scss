@@ -24,6 +24,10 @@
   width: 100vw;
   @include transition(opacity 0.3s linear, visibility 0.3s linear, background-color 0.3s linear);
 
+  &.scrolled {
+    background-color: var(--color-4);
+  }
+
   &.hidden {
     &:has(a:focus-visible) {
       transform: translateY(0);
