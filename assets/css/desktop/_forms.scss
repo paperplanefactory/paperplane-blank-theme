@@ -62,3 +62,28 @@ input[type=submit] {
 	line-height: $h5-lineheight-desktop;
 	margin-bottom: 5px;
 }
+
+.search-submit {
+	background-color: var(--color-4);
+	border: none;
+	cursor: pointer;
+
+	&:after {
+		content: "";
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		-webkit-mask-image: url(assets/images/icons/search-button.svg);
+		mask-image: url(assets/images/icons/search-button.svg);
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		mask-size: 20px 20px;
+		mask-position: 50% 50%;
+		background-color: var(--color-1);
+		@include transition(all 0.2s linear);
+		transform-origin: center;
+	}
+}

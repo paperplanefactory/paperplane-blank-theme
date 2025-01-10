@@ -1,10 +1,4 @@
 <?php
-// Disabilita Gutenberg
-add_filter( 'use_block_editor_for_post', '__return_false' );
-
-// Disabilita anche per i widget
-add_filter( 'use_widgets_block_editor', '__return_false' );
-
 //conto le parole del content - call in template: echo word_count();
 function word_count() {
 	$content = get_post_field( 'post_content', $post->ID );
@@ -59,33 +53,6 @@ function namespace_login_headerurl( $url ) {
 	$url = home_url( '/' );
 	return $url;
 }
-
-//fix cut paste drama from https://jonathannicol.com/blog/2015/02/19/clean-pasted-text-in-wordpress/
-add_filter( 'tiny_mce_before_init', 'paperplane_remove_paste_junk' );
-
-/**
- * Customize TinyMCE's configuration
- *
- * @param   array
- * @return  array
- */
-function paperplane_remove_paste_junk( $in ) {
-	$in['paste_preprocess'] = "function(plugin, args){
-    var whitelist = 'p,b,strong,i,em,h2,h3,h4,h5,h6,ul,li,ol,a,href';  // Strip all HTML tags except those we have whitelisted here
-    var stripped = jQuery('<div>' + args.content + '</div>');
-    var els = stripped.find('*').not(whitelist);
-    for (var i = els.length - 1; i >= 0; i--) {
-      var e = els[i];
-      jQuery(e).replaceWith(e.innerHTML);
-    }
-    // Strip all class and id attributes
-    stripped.find('*').removeAttr('id').removeAttr('class').removeAttr('style');
-    args.content = stripped.html();    // Return the clean HTML
-  }";
-	return $in;
-}
-
-
 
 class Clean_Paste_Handler {
 	public function __construct() {

@@ -94,9 +94,20 @@
 									<?php
 									if ( $column['module_columns_columns_repeater_counter_value'] ?? null ) :
 										$counter_text = '';
+										$counter_label = '';
+										if ( $column['module_columns_columns_repeater_counter_value_before'] ?? null ) {
+											$counter_label .= $column['module_columns_columns_repeater_counter_value_before'];
+										}
+										$counter_label .= $column['module_columns_columns_repeater_counter_value'];
+										if ( $column['module_columns_columns_repeater_counter_value_after'] ?? null ) {
+											$counter_label .= $column['module_columns_columns_repeater_counter_value_after'];
+										}
+										if ( $column['module_columns_columns_repeater_counter_description'] ?? null ) {
+											$counter_label .= ' ' . $column['module_columns_columns_repeater_counter_description'];
+										}
 										?>
 										<div class="counter">
-											<h2 class="as-h1">
+											<h2 class="as-h1" aria-label="<?php echo $counter_label; ?>">
 												<?php
 												if ( $column['module_columns_columns_repeater_counter_value_before'] ?? null ) {
 													$counter_text .= $column['module_columns_columns_repeater_counter_value_before'];

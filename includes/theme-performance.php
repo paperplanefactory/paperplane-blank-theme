@@ -14,7 +14,6 @@ function paperplane_preload_data() {
 		echo $cached_preload_data;
 		return;
 	}
-
 	// Inizializza la stringa che conterrà tutti i tag di preload
 	$preload_data = '';
 
@@ -231,7 +230,8 @@ add_action( 'wp_footer', 'paperplane_preload_speculationrules_pages' );
 $options_fields = paperplane_options_transients();
 
 // Disabilita Query Monitor nel backend se l'opzione è disattivata
-if ( $options_fields['use_query_monitor_backend'] != 1 ) {
+if ( $options_fields['use_query_monitor_backend'] != true ) {
+
 	add_filter( 'qm/dispatch/html', function () {
 		// Restituisce false nelle pagine di amministrazione
 		// per disabilitare Query Monitor

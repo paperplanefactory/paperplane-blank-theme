@@ -267,12 +267,12 @@
             "placeholder": ""
         },
         {
-            "key": "field_65522391c2690",
-            "label": "Impostare un evento personalizzato per Google Analytics?",
-            "name": "cta_custom_event_google_analytics",
+            "key": "field_677ff6576487f",
+            "label": "Tracking",
+            "name": "cta_tracking",
             "aria-label": "",
-            "type": "true_false",
-            "instructions": "Se attivo all'evento verranno aggiunte automaticamente la URL, il titolo della pagina e il testo di questa CTA.",
+            "type": "textarea",
+            "instructions": "Esempio: data-track \r\n    data-track-event=\"contact\"\r\n    data-track-platforms=\"linkedin,facebook\"\r\n    data-track-meta='{\"category\": \"CTA\", \"label\": \"main-contact\"}'",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -280,39 +280,12 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
-            "default_value": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
-            "ui": 1
-        },
-        {
-            "key": "field_655224a2c2691",
-            "label": "Nome evento",
-            "name": "cta_custom_event_google_analytics_name",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Impostare un nome usando solo lettere minuscole, senza spazi e senza accenti. Es. nome_evento_personalizzato",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_65522391c2690",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
             "default_value": "",
             "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
             "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "new_lines": ""
         }
     ],
     "location": [],
@@ -336,5 +309,5 @@
         "button_label": "Aggiungi CTA",
         "appearances": ""
     },
-    "modified": 1706734668
+    "modified": 1736496442
 }

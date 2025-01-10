@@ -21,15 +21,3 @@ if ( ! is_admin() ) {
 	}
 	add_action( 'wp_enqueue_scripts', 'paperplane_theme_css', 10, 3 );
 }
-
-
-function papperplane_disable_useless_styles() {
-	wp_deregister_style( 'classic-theme-styles' );
-	wp_dequeue_style( 'classic-theme-styles' );
-	wp_dequeue_style( 'global-styles' );
-	wp_dequeue_style( 'svg-icon-style-inline-css' );
-	wp_dequeue_style( 'wp-block-library' );
-	wp_dequeue_style( 'safe-svg-svg-icon-style' );
-	wp_deregister_style( 'safe-svg-svg-icon-style' );
-}
-add_filter( 'wp_enqueue_scripts', 'papperplane_disable_useless_styles', 100 );

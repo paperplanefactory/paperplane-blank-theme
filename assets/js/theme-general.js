@@ -517,59 +517,84 @@ function hamburgerMenu(e) {
 // Funzione per chiudere il menu hamburger
 function closeHamburgerMenu() {
   // Ripristina lo scroll
-  document.documentElement.style.overflow = 'visible';
-  document.body.style.overflow = 'visible';
+  document.documentElement.style.overflow = "visible";
+  document.body.style.overflow = "visible";
 
-  // Rimuovi classe open e aggiorna aria-expanded
-  const hamburger = document.querySelector('.ham-activator-js');
-  const header = document.getElementById('header'); // Seleziona l'header
-  hamburger.classList.remove('open');
-  hamburger.setAttribute('aria-expanded', 'false');
-  header.classList.remove('scrolled');
-  // Nascondi overlay
-  document.getElementById('head-overlay').classList.add('hidden');
+  // Ottieni gli elementi e verifica che esistano prima di usarli
+  const hamburger = document.querySelector(".ham-activator-js");
+  const header = document.getElementById("header");
+  const overlay = document.getElementById("head-overlay");
+
+  // Verifica e manipola gli elementi solo se esistono
+  if (hamburger) {
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+  }
+
+  if (header) {
+    header.classList.remove("scrolled");
+  }
+
+  if (overlay) {
+    overlay.classList.add("hidden");
+  }
 }
 
-document.querySelector('#head-overlay a:last-of-type').addEventListener('keydown', function (event) {
-  if (event.key === 'Tab') {
-    closeSubMenus();
-  }
-});
+const lastOverlayLink = document.querySelector('#head-overlay a:last-of-type');
+if (lastOverlayLink) {
+  lastOverlayLink.addEventListener('keydown', function (event) {
+    if (event.key === 'Tab') {
+      closeSubMenus();
+    }
+  });
+}
+const hamburgerButton = document.getElementById('hamburger-button');
+if (hamburgerButton) {
+  hamburgerButton.addEventListener('click', hamburgerMenu);
+}
 
-document.getElementById('hamburger-button').addEventListener('click', hamburgerMenu);
 
-document.querySelector('.overlay-navi-reset-js').addEventListener('focusin', function (e) {
-  document.querySelector('#hamburger-button').focus();
-  e.preventDefault();
-});
+const overlayNaviReset = document.querySelector('.overlay-navi-reset-js');
+if (overlayNaviReset) {
+  overlayNaviReset.addEventListener('focusin', function (e) {
+    document.querySelector('#hamburger-button').focus();
+    e.preventDefault();
+  });
+}
+
 
 let isPKeyPressed = false;
 let isEscKeyPressed = false;
 
-document.querySelector('#head-overlay').addEventListener('keydown', function (event) {
-  if (event.key === 'p') {
-    isPKeyPressed = true;
-  }
-  if (event.key === 'Escape') {
-    isEscKeyPressed = true;
-  }
+const headOverlayKeydown = document.querySelector('#head-overlay');
+if (headOverlayKeydown) {
+  headOverlayKeydown.addEventListener('keydown', function (event) {
+    if (event.key === 'p') {
+      isPKeyPressed = true;
+    }
+    if (event.key === 'Escape') {
+      isEscKeyPressed = true;
+    }
 
-  // Controlla se entrambi i tasti sono premuti contemporaneamente
-  if (isPKeyPressed && isEscKeyPressed) {
-    document.querySelector('.ham-activator-js').focus();
-    closeHamburgerMenu();
-  }
-});
+    // Controlla se entrambi i tasti sono premuti contemporaneamente
+    if (isPKeyPressed && isEscKeyPressed) {
+      document.querySelector('.ham-activator-js').focus();
+      closeHamburgerMenu();
+    }
+  });
+  headOverlayKeydown.addEventListener('keyup', function (event) {
+    // Resetta lo stato dei tasti quando vengono rilasciati
+    if (event.key === 'p') {
+      isPKeyPressed = false;
+    }
+    if (event.key === 'Escape') {
+      isEscKeyPressed = false;
+    }
+  });
+}
 
-document.querySelector('#head-overlay').addEventListener('keyup', function (event) {
-  // Resetta lo stato dei tasti quando vengono rilasciati
-  if (event.key === 'p') {
-    isPKeyPressed = false;
-  }
-  if (event.key === 'Escape') {
-    isEscKeyPressed = false;
-  }
-});
+
+
 
 /////////////////////////////////////////////
 // mega menu
@@ -736,10 +761,9 @@ document.addEventListener('click', function (e) {
     const modal_id = target.dataset.modalId;
     const modal_back_to = target.dataset.modalBackTo;
     localStorage.setItem('modal_back_to', modal_back_to);
-
     const modal = document.getElementById(`paperplane-modal-js-${modal_id}`);
     modal.classList.remove('hidden');
-    modal.setAttribute('aria-hidden', 'false');
+    //modal.setAttribute('aria-hidden', 'false');
 
     const focusable = modal.querySelectorAll('button, a, input:not([type=hidden]), select, textarea, [tabindex]:not([tabindex="-1"])');
     if (focusable.length > 0) {
@@ -749,13 +773,6 @@ document.addEventListener('click', function (e) {
     }
 
     document.documentElement.style.overflow = 'hidden';
-
-    if (typeof gtag === 'function') {
-      const modal_title = target.dataset.modalTitle;
-      gtag('event', 'modal_open', {
-        'modal_title': modal_title
-      });
-    }
     closeHamburgerMenu();
     e.preventDefault();
   }
@@ -766,10 +783,9 @@ document.addEventListener('click', function (e) {
   if (target) {
     const modal_id = target.dataset.modalId;
     const modal_back_to = localStorage.getItem('modal_back_to');
-
     const modal = document.getElementById(`paperplane-modal-js-${modal_id}`);
     modal.classList.add('hidden');
-    modal.setAttribute('aria-hidden', 'true');
+    //modal.setAttribute('aria-hidden', 'true');
 
     document.documentElement.style.overflow = 'visible';
 
@@ -1253,91 +1269,6 @@ function fadeOut(element, duration) {
 }
 
 /////////////////////////////////////////////
-// GA modal open event trigger
-/////////////////////////////////////////////
-
-// Aggiungi event listener per l'apertura dei modal
-document.addEventListener('click', function (e) {
-  // Verifica se l'elemento cliccato è un modal-open non inizializzato
-  if (e.target.matches('.modal-open-js')) {
-    // Verifica se la funzione gtag di Google Analytics esiste
-    if (typeof gtag === 'function') {
-      // Ottieni i dati per l'evento GA dai data attributes
-      var ga_modal_event_name = e.target.getAttribute('data-ga-modal-event-name');
-      var ga_modal_event_cta_text = e.target.getAttribute('data-ga-modal-event-cta-text');
-      var ga_modal_event_modal_title = e.target.getAttribute('data-ga-modal-title');
-
-      // Invia l'evento a Google Analytics
-      gtag('event', ga_modal_event_name, {
-        'page_title': ga_custom_event_cta_page_title,
-        'modal_title': ga_modal_event_modal_title,
-        'cta_text': ga_modal_event_cta_text
-      });
-    } else {
-      // Log se Google Analytics non è installato
-      console.log('Sorry, Google Analytics is not installed.');
-    }
-  }
-});
-
-
-/////////////////////////////////////////////
-// GA custom event trigger
-/////////////////////////////////////////////
-
-// Aggiungi event listener per eventi GA personalizzati
-document.addEventListener('click', function (e) {
-  // Verifica se l'elemento cliccato ha la classe per il trigger dell'evento GA
-  if (e.target.matches('.ga-custom-event-trigger-js')) {
-    // Verifica se la funzione gtag di Google Analytics esiste
-    if (typeof gtag === 'function') {
-      // Ottieni i dati per l'evento GA dai data attributes
-      var ga_custom_event_name = e.target.getAttribute('data-ga-custom-event-name');
-      var ga_custom_event_cta_text = e.target.getAttribute('data-ga-custom-event-cta-text');
-      var ga_custom_event_cta_url = e.target.getAttribute('data-ga-custom-event-cta-url');
-      var ga_custom_event_cta_page_title = e.target.getAttribute('data-ga-custom-event-cta-page-title');
-
-      // Invia l'evento personalizzato a Google Analytics
-      gtag('event', ga_custom_event_name, {
-        'page_title': ga_custom_event_cta_page_title,
-        'page_location': ga_custom_event_cta_url,
-        'cta_text': ga_custom_event_cta_text
-      });
-    } else {
-      // Log se Google Analytics non è installato
-      console.log('Sorry, Google Analytics is not installed.');
-    }
-  }
-});
-
-/////////////////////////////////////////////
-// GA custom event trigger A/B test
-/////////////////////////////////////////////
-
-// Aggiungi event listener per eventi GA A/B testing
-document.addEventListener('click', function (e) {
-  // Verifica se l'elemento cliccato è un trigger A/B non inizializzato
-  if (e.target.matches('.ga-ab-event-trigger-js:not(.initialized)')) {
-    // Verifica se la funzione gtag di Google Analytics esiste
-    if (typeof gtag === 'function') {
-      // Ottieni i dati per l'evento GA dai data attributes
-      var ga_custom_event_name = e.target.getAttribute('data-ga-ab-event-name');
-      var ga_custom_event_cta_text = e.target.getAttribute('data-ga-ab-cta-text');
-      var ga_custom_event_cta_url = e.target.getAttribute('data-ga-ab-cta-url');
-
-      // Invia l'evento A/B a Google Analytics
-      gtag('event', ga_custom_event_name, {
-        'cta_text': ga_custom_event_cta_text,
-        'cta_url': ga_custom_event_cta_url
-      });
-    } else {
-      // Log se Google Analytics non è installato
-      console.log('Sorry, Google Analytics is not installed.');
-    }
-  }
-});
-
-/////////////////////////////////////////////
 // Clear overlay scroll when resizing desktop - mobile: attivare se la versione desktop non ha menu overlay
 /////////////////////////////////////////////
 
@@ -1442,3 +1373,188 @@ window.addEventListener('resize', function () {
     clearOverlayScroll();
   }, 200);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.TrackingSystem = (function () {
+  // Configurazione dei tracking ID per piattaforma e lingua
+  const TRACKING_CONFIG = {
+    linkedin: {
+      it: { contact: 20851897, download: 20851898, form_submit: 20851899 },
+      en: { contact: 20851900, download: 20851901, form_submit: 20851902 },
+      default: { contact: 20851897, download: 20851898, form_submit: 20851899 }
+    },
+    facebook: {
+      it: { contact: 'FB123', download: 'FB124', form_submit: 'FB125' },
+      en: { contact: 'FB126', download: 'FB127', form_submit: 'FB128' },
+      default: { contact: 'FB123', download: 'FB124', form_submit: 'FB125' }
+    },
+    analytics: {
+      all: {
+        contact: 'contact_event',
+        download: 'download_event',
+        form_submit: 'form_submit_event'
+      }
+    }
+  };
+
+  // Funzione per ottenere la lingua corrente
+  function getCurrentLanguage() {
+    const lang = document.documentElement.lang || 'default';
+    return lang.split('-')[0].toLowerCase();
+  }
+
+  // Handler per le diverse piattaforme
+  const trackingHandlers = {
+    linkedin: function (eventName, metadata) {
+      const lang = getCurrentLanguage();
+      const config = TRACKING_CONFIG.linkedin[lang] || TRACKING_CONFIG.linkedin.default;
+      const conversionId = config[eventName];
+
+      if (window.lintrk && conversionId) {
+        window.lintrk('track', { conversion_id: conversionId });
+        console.log('LinkedIn track:', { eventName, conversionId, metadata });
+      }
+    },
+
+    facebook: function (eventName, metadata) {
+      const lang = getCurrentLanguage();
+      const config = TRACKING_CONFIG.facebook[lang] || TRACKING_CONFIG.facebook.default;
+      const eventId = config[eventName];
+
+      if (window.fbq && eventId) {
+        // Lista degli eventi standard di Facebook
+        const standardEvents = [
+          'AddPaymentInfo', 'AddToCart', 'AddToWishlist', 'CompleteRegistration',
+          'Contact', 'CustomizeProduct', 'Donate', 'FindLocation', 'InitiateCheckout',
+          'Lead', 'PageView', 'Purchase', 'Schedule', 'Search', 'StartTrial',
+          'SubmitApplication', 'Subscribe', 'ViewContent'
+        ];
+
+        // Usa track per eventi standard e trackCustom per eventi personalizzati
+        if (standardEvents.includes(eventId)) {
+          window.fbq('track', eventId, metadata);
+        } else {
+          window.fbq('trackCustom', eventId, metadata);
+        }
+
+        console.log('Facebook track:', { eventName, eventId, metadata });
+      }
+    },
+
+    analytics: function (eventName, metadata) {
+      const config = TRACKING_CONFIG.analytics.all;
+      const gaEventName = config[eventName];
+
+      if (window.gtag && gaEventName) {
+        window.gtag('event', gaEventName, {
+          event_category: metadata.category,
+          event_label: metadata.label
+        });
+        console.log('Analytics track:', { eventName, gaEventName, metadata });
+      }
+    }
+  };
+
+  // Funzione principale di tracking
+  function handleTracking(element, event) {
+    const eventName = element.dataset.trackEvent;
+    const platformsString = element.dataset.trackPlatforms;
+    const platforms = platformsString ? platformsString.split(',') : [];
+    let metadata = {};
+
+    try {
+      metadata = JSON.parse(element.dataset.trackMeta || '{}');
+    } catch (e) {
+      console.error('Invalid metadata JSON:', e);
+    }
+
+    platforms.forEach(function (platform) {
+      if (trackingHandlers[platform]) {
+        trackingHandlers[platform](eventName, metadata);
+      }
+    });
+
+    if (element.tagName.toLowerCase() === 'a' && element.href) {
+      event.preventDefault();
+      setTimeout(function () {
+        window.location.href = element.href;
+      }, 100);
+    }
+  }
+
+  // Inizializzazione del sistema
+  function init() {
+    // Gestione click su elementi con data-track
+    document.addEventListener('click', function (event) {
+      const trackElement = event.target.closest('[data-track]');
+      if (trackElement) {
+        handleTracking(trackElement, event);
+      }
+    });
+
+    // Gestione submit dei form con data-track
+    document.addEventListener('submit', function (event) {
+      const trackElement = event.target.closest('[data-track]');
+      if (trackElement) {
+        handleTracking(trackElement, event);
+      }
+    });
+
+    //console.log('Tracking system initialized');
+  }
+
+  // Debug helper
+  function checkTrackingSetup() {
+    const trackElements = document.querySelectorAll('[data-track]');
+    const stats = Array.from(trackElements).map(function (el) {
+      const platformsString = el.dataset.trackPlatforms;
+      return {
+        element: el.tagName.toLowerCase(),
+        event: el.dataset.trackEvent,
+        platforms: platformsString ? platformsString.split(',') : [],
+        metadata: JSON.parse(el.dataset.trackMeta || '{}')
+      };
+    });
+
+    console.log({
+      documentLang: document.documentElement.lang,
+      detectedLang: getCurrentLanguage(),
+      trackingElements: stats,
+      platformsAvailable: {
+        linkedin: typeof window.lintrk === 'function',
+        facebook: typeof window.fbq === 'function',
+        analytics: typeof window.gtag === 'function'
+      }
+    });
+  }
+
+  // API pubblica
+  return {
+    init: init,
+    track: handleTracking,
+    debug: checkTrackingSetup
+  };
+})();
+//window.TrackingSystem.debug();
+//console.log(!!window.TrackingSystem);
+
+// Inizializzazione automatica quando il documento è pronto
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', window.TrackingSystem.init);
+} else {
+  window.TrackingSystem.init();
+}

@@ -5,6 +5,8 @@ $attivare_pwa = get_field( 'attivare_pwa', 'option' );
 global $theme_pagination;
 $theme_pagination = get_field( 'theme_pagination', 'option' );
 // gestione caricamento css
+include_once "includes/theme-wordpress-disableds.php";
+// gestione caricamento css
 include_once "includes/theme-stylesloader.php";
 // gestione caricamento script
 include_once "includes/theme-scriptsloader.php";
@@ -36,6 +38,8 @@ include_once "includes/theme-maintenance.php";
 include_once "includes/theme-cf7-forms.php";
 // Performance
 include_once "includes/theme-performance.php";
+// Improved search
+include_once "includes/theme-search.php";
 // A/B testing
 include_once "includes/theme-ab-testing.php";
 // attivo le traduzioni

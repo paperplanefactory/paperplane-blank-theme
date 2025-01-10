@@ -13,7 +13,8 @@ body {
             input[type=text],
             input[type=url],
             select,
-            textarea) {
+            textarea,
+            .absl) {
             z-index: 99999 !important;
             background-color: var(--color-1) !important;
             color: var(--color-4) !important;
@@ -26,6 +27,21 @@ body {
             outline-width: 10px;
         }
 
+    }
+
+    .absl {
+        &:focus-visible {
+            z-index: 99999 !important;
+            background-color: transparent !important;
+            color: var(--color-4) !important;
+            box-shadow: 0 0 0 2px var(--color-1), 0 0 0 6px var(--color-4), 0 0 0 8px var(--color-1);
+            transition-duration: 0ms !important;
+            transition-property: none !important;
+            animation: none 0 !important;
+            outline-style: solid;
+            outline-color: transparent;
+            outline-width: 10px;
+        }
     }
 
     .element-icon-after {
@@ -64,13 +80,7 @@ body {
         }
     }
 
-    .card {
-        .absl {
-            &:focus-visible {
-                background-color: transparent !important;
-            }
-        }
-    }
+    .card {}
 
     .masked-element {
         &:focus-visible {

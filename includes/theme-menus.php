@@ -206,14 +206,14 @@ function paperplane_wysiwyg_preset_colors( $init ) {
 add_filter( 'tiny_mce_before_init', 'paperplane_wysiwyg_preset_colors' );
 
 function paperplane_random_code() {
-	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$string = '';
+	$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$code = '';
 
 	for ( $i = 0; $i < 5; $i++ ) {
-		$string .= $characters[ mt_rand( 0, strlen( $characters ) - 1 ) ];
+		$code .= $chars[ random_int( 0, strlen( $chars ) - 1 ) ];
 	}
 
-	return $string;
+	return $code;
 }
 
 // Template di pagina predefinito MODULI

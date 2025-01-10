@@ -1,5 +1,5 @@
 <nav class="accessible-navi-container"
-	aria-label="<?php _e( 'Menu per saltare il menu di navigazione.', 'paperPlane-blankTheme' ); ?>">
+	aria-label="<?php _e( 'Menu di navigazione rapida.', 'paperPlane-blankTheme' ); ?>">
 	<!-- link per saltare la navigazione principale -->
 	<a href="#page-content" id="skip-to-content" class="accessible-navi default-button">
 		<?php _e( 'Vai al contenuto', 'paperPlane-blankTheme' ); ?>
