@@ -72,8 +72,6 @@ function paperplane_theme_cta_advanced( $field_names ) {
 							$cta_tag = 'button';
 							// recupero il titolo della modal per avere un bottone piu accessibile
 							$data_modal_title = get_the_title( $cta_internal_ID );
-							// definisco l'evento GA per la modal
-							$ga_modal_event_data = 'data-ga-modal-event-name="open_modal" data-ga-modal-event-cta-text="' . $button_text . '" data-ga-modal-title="' . $data_modal_title . '"';
 						}
 					}
 					// gestisco la CTA per i link esterni o interni con un parametro
@@ -119,43 +117,19 @@ function paperplane_theme_cta_advanced( $field_names ) {
 					// si tratta di un link, quindi definisco il tag a
 					$cta_tag = 'a';
 				}
+				if ( $field_name['cta_tracking'] ?? null ) {
+					$cta_tracking = $field_name['cta_tracking'];
+				} else {
+					$cta_tracking = '';
+				}
 
 				// custom event for specific CTA
-				$cta_custom_event_google_analytics = $field_name['cta_custom_event_google_analytics'];
-				if ( $cta_custom_event_google_analytics == 1 ) {
-					$function_unique_id = paperplane_random_code();
-					$cta_class .= ' ga-custom-event-trigger-js';
-					$ga_custom_event_data = 'data-ga-custom-event-name="' . $field_name['cta_custom_event_google_analytics_name'] . '" data-ga-custom-event-cta-text="' . $button_text . '" data-ga-custom-event-cta-url="' . get_permalink() . '" data-ga-custom-event-cta-page-title="' . get_the_title() . '"';
-				} else {
-					$cta_class .= '';
-					$ga_custom_event_data = '';
-				}
-				// custom event for A/B testing
-				global $post;
-				$ab_testing_page_a = get_post_meta( $post->ID, 'ab_testing_page_a', true );
-				if ( ! empty( $ab_testing_page_a ) ) {
-					$cta_class .= ' ga-ab-event-trigger-js';
-					$ab_testing_page_b = get_post_meta( $post->ID, 'ab_testing_page_b', true );
-					$ab_testing_page_this = $post->ID;
-					$ab_ga4_event_name = get_post_meta( $post->ID, 'ab_ga4_event_name', true );
-					if ( $ab_testing_page_this == $ab_testing_page_a ) {
-						$ab_ga4_event_sent_name = $ab_ga4_event_name . '_a_cta_click';
-					}
-					if ( $ab_testing_page_this == $ab_testing_page_b ) {
-						$ab_ga4_event_sent_name = $ab_ga4_event_name . '_b_cta_click';
-					}
-					$ga_ab_event_data = 'data-ga-ab-event-name="' . $ab_ga4_event_sent_name . '" data-ga-ab-cta-text="' . $button_text . '" data-ga-ab-cta-url="' . $cta_url . '"';
 
-				} else {
-					$cta_class .= '';
-					$ga_ab_event_data = '';
-
-				}
 				if ( ! isset( $data_modal_title ) ) {
 					$data_modal_title = '';
 				}
 				if ( isset( $cta_tag ) ) {
-					$cta_html .= '<' . $cta_tag . ' ' . $cta_url . ' ' . $cta_target . ' class="' . $cta_class . '" data-modal-id="' . $data_modal_open_id . '" data-modal-title="' . $data_modal_title . '" data-modal-back-to="' . $start_point . '" ' . $ga_custom_event_data . ' ' . $ga_ab_event_data . ' ' . $ga_modal_event_data . '>' . $button_text . '<span class="screen-reader-text">' . $cta_title . '</span></' . $cta_tag . '>';
+					$cta_html .= '<' . $cta_tag . ' ' . $cta_url . ' ' . $cta_target . ' class="' . $cta_class . '" data-modal-id="' . $data_modal_open_id . '" data-modal-title="' . $data_modal_title . '" data-modal-back-to="' . $start_point . '" ' . $cta_tracking . ' ' . ' ' . '>' . $button_text . '<span class="screen-reader-text">' . $cta_title . '</span></' . $cta_tag . '>';
 				}
 			}
 		}
