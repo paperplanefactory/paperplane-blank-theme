@@ -46,13 +46,13 @@ textarea {
 	font-weight: $font-weight-1;
 	position: relative;
 	width: calc(100% - 2px);
-	margin: 10px 0 0;
 	padding: 10px;
 	background-color: transparent;
 }
 
 input[type=checkbox],
 input[type=radio] {
+
 	&:before {
 		color: var(--color-1);
 	}
@@ -69,6 +69,7 @@ input[type=radio] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
+	cursor: pointer;
 
 	&:before {
 		font-family: 'Material Icons';
@@ -153,17 +154,17 @@ input[type=file] {
 select {
 	appearance: none;
 	position: relative;
-	width: calc(100% - 2px);
-	margin: 10px 0 0;
+	width: 100%;
 	padding: 10px 30px 10px 10px;
 	background-image: url("assets/images/icons/html-select-icon.svg");
 	background-position: calc(100% - 10px) 50%;
 	background-repeat: no-repeat;
 	background-size: 12px auto;
+	cursor: pointer;
 }
 
 textarea {
-	width: calc(100% - 2px);
+	width: 100%;
 	height: 100px;
 	margin: 10px 0 0;
 	padding: 10px;
@@ -363,4 +364,35 @@ label,
 
 .form-block {
 	display: block;
+}
+
+.phone-wrapper {
+	position: relative;
+	display: block;
+	width: 100%;
+
+	.phone-prefix-populate {
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		margin: 0;
+		width: 95px;
+		opacity: 0;
+		@include transition(opacity 0.3s linear);
+
+		//height: 43px;
+		&.visible {
+			opacity: 1;
+		}
+	}
+
+	.phone-number-style {
+		z-index: 1;
+		width: calc(100% - 94px);
+		margin-left: 94px;
+	}
+
+	.just-hidden {
+		opacity: 0;
+	}
 }

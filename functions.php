@@ -40,6 +40,8 @@ include_once "includes/theme-cf7-forms.php";
 include_once "includes/theme-performance.php";
 // Improved search
 include_once "includes/theme-search.php";
+// paste cleaner
+include_once "includes/theme-paste-cleaner.php";
 // A/B testing
 include_once "includes/theme-ab-testing.php";
 // attivo le traduzioni

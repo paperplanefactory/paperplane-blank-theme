@@ -22,8 +22,8 @@
         },
         {
             "key": "field_65b7de521c353",
-            "label": "Pagina archivio test",
-            "name": "pagina_archivio_test",
+            "label": "Pagina Privacy Policy",
+            "name": "pagina_privacy_policy",
             "aria-label": "",
             "type": "page_link",
             "instructions": "",
@@ -34,12 +34,39 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": "",
+            "post_type": [
+                "page"
+            ],
             "post_status": "",
             "taxonomy": "",
             "allow_archives": 1,
             "multiple": 0,
-            "allow_null": 0
+            "allow_null": 0,
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_678be2de24a94",
+            "label": "Pagina Cookie Policy",
+            "name": "pagina_cookie_policy",
+            "aria-label": "",
+            "type": "page_link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "page"
+            ],
+            "post_status": "",
+            "taxonomy": "",
+            "allow_archives": 1,
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 1
         },
         {
             "key": "field_65b7de321c351",
@@ -136,5 +163,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1706877983
+    "modified": 1737220845
 }

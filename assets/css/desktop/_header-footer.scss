@@ -442,3 +442,8 @@ $hamburger-width: 45px; // header
 .suggestion-title {
   flex-grow: 1;
 }
+
+.search-input::selection {
+  background-color: #e0e0e0;
+  color: #666;
+}

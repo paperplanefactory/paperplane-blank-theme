@@ -16,11 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    if (!searchInput || !suggestionsContainer) {
-        console.error('Elementi di ricerca non trovati');
-        return;
-    }
-
     // Funzione per tentare il caricamento del JSON
     async function loadJSON() {
         try {
@@ -63,13 +58,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .catch(error => {
                     console.error('Errore caricamento dati:', error);
-                    // Mostra un messaggio di errore all'utente se necessario
                 });
         }
     });
 
     searchInput.addEventListener('input', debounce(function (e) {
         const query = e.target.value.toLowerCase();
+        const cursorPosition = searchInput.selectionStart;
 
         if (query.length < 3) {
             suggestionsContainer.classList.remove('visible');
@@ -131,6 +126,25 @@ document.addEventListener('DOMContentLoaded', function () {
             .slice(0, 30);
 
         if (matches.length > 0) {
+            // Trova il primo match per l'autocompletamento
+            const firstMatch = matches[0].title;
+            const queryWords = query.split(' ');
+            const lastWord = queryWords[queryWords.length - 1];
+
+            // Cerca una parola nel titolo che inizia con l'ultima parola digitata
+            const words = firstMatch.toLowerCase().split(' ');
+            const matchingWord = words.find(word => word.startsWith(lastWord));
+
+            if (matchingWord && lastWord.length > 0) {
+                // Mantieni il case originale dell'input dell'utente
+                const completion = matchingWord.slice(lastWord.length);
+                const originalValue = searchInput.value;
+
+                // Aggiungi l'autocompletamento mantenendo il testo selezionato
+                searchInput.value = originalValue + completion;
+                searchInput.setSelectionRange(cursorPosition, searchInput.value.length);
+            }
+
             suggestionsContainer.innerHTML = matches.map(post => `
                 <div class="suggestion-item">
                     ${post.featured_image ?
@@ -151,6 +165,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }, 300));
 
+    // Gestione dei tasti speciali
+    searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Tab' || e.key === 'ArrowRight') {
+            // Accetta il suggerimento
+            e.preventDefault();
+            const selection = window.getSelection();
+            if (selection.toString().length > 0) {
+                searchInput.setSelectionRange(searchInput.value.length, searchInput.value.length);
+            }
+        } else if (e.key === 'Escape') {
+            // Rimuovi il suggerimento
+            const cursorPosition = searchInput.selectionStart;
+            searchInput.value = searchInput.value.substring(0, cursorPosition);
+            suggestionsContainer.classList.remove('visible');
+        }
+    });
+
     document.addEventListener('click', function (e) {
         if (suggestionsContainer &&
             !searchInput.contains(e.target) &&
@@ -165,7 +196,6 @@ document.addEventListener('DOMContentLoaded', function () {
             suggestionsContainer.classList.remove('visible');
         }
     });
-
 });
 
 function debounce(func, wait) {
@@ -224,14 +254,12 @@ function handleExceptions(word) {
         'dio': 'dei',
         'dei': 'dio',
         'bue': 'buoi',
-        'buoi': 'bue',
-        // Altre eccezioni comuni...
+        'buoi': 'bue'
     };
 
     // Parole invariabili
     const invariableWords = new Set([
-        'città', 'virtù', 'gioventù', 'caffè', 'computer', 'sport',
-        // Altre parole invariabili...
+        'città', 'virtù', 'gioventù', 'caffè', 'computer', 'sport'
     ]);
 
     if (invariableWords.has(word.toLowerCase())) {

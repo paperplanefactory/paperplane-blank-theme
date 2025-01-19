@@ -242,3 +242,43 @@ function allow_editor_manage_menus() {
 }
 // Usa l'hook 'init' per eseguire questa funzione quando WordPress si inizializza
 // add_action( 'init', 'allow_editor_manage_menus' );
+
+function papeplane_compile_privacy_cookies() {
+	if ( function_exists( 'pll_the_languages' ) ) {
+		$acf_options_parameter = pll_current_language( 'slug' );
+	} else {
+		$acf_options_parameter = 'any-lang';
+	}
+	$options_fields_multilang = paperplane_options_transients_multilanguage( $acf_options_parameter );
+	$anno = date( 'Y' );
+	$pagina_privacy_policy = '';
+	if ( $options_fields_multilang['pagina_privacy_policy'] ?? null ) {
+		$pagina_privacy_policy = $options_fields_multilang['pagina_privacy_policy'];
+	}
+	$pagina_cookie_policy = '';
+	if ( $options_fields_multilang['pagina_cookie_policy'] ?? null ) {
+		$pagina_cookie_policy = $options_fields_multilang['pagina_cookie_policy'];
+	}
+	add_action( 'wp_footer', function () use ($anno, $pagina_privacy_policy, $pagina_cookie_policy) {
+		?>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				// Aggiunta del link privacy policy
+				document.querySelectorAll('.privacy-link-js').forEach(link => {
+					link.href = '<?php echo $pagina_privacy_policy; ?>';
+				});
+				// Aggiunta del link cookie policy
+				document.querySelectorAll('.cookie-link-js').forEach(link => {
+					link.href = '<?php echo $pagina_cookie_policy; ?>';
+				});
+				// Aggiunta anno (footer)
+				document.querySelectorAll('.year-set-js').forEach(span => {
+					span.textContent = '<?php echo $anno; ?>';
+				});
+			});
+		</script>
+		<?php
+	} );
+}
+
+add_action( 'init', 'papeplane_compile_privacy_cookies' );

@@ -111,6 +111,8 @@
 												<?php
 												if ( $column['module_columns_columns_repeater_counter_value_before'] ?? null ) {
 													$counter_text .= $column['module_columns_columns_repeater_counter_value_before'];
+												}
+												if ( $column['module_columns_columns_repeater_counter_value'] ?? null ) {
 													$counter_text .= '<span class="count just-number count-pre"
 													data-bar-number="' . $column['module_columns_columns_repeater_counter_value'] . '">0</span>';
 												}
