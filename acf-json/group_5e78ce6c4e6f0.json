@@ -7,8 +7,8 @@
             "label": "Note legali",
             "name": "footer_legal_notes",
             "aria-label": "",
-            "type": "wysiwyg",
-            "instructions": "",
+            "type": "textarea",
+            "instructions": "I link a Privacy Policy e Cookie Policy vengono compilati in automatico in base alle impostazioni della pagina opzioni \"Impostazioni sito > Gestione archivi\" se i due link hanno classi \"privacy-link-js\" e \"cookie-link-js\". L'anno viene aggiornato in automatico se è presente un elemento span con classe \"year-set-js\".",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -17,18 +17,18 @@
                 "id": ""
             },
             "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 0,
-            "delay": 0,
-            "repeatable": true
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "br"
         },
         {
             "key": "field_6187858d5cf58",
             "label": "Credits",
             "name": "footer_credits",
             "aria-label": "",
-            "type": "wysiwyg",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -38,11 +38,11 @@
                 "id": ""
             },
             "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 0,
-            "delay": 0,
-            "repeatable": true
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "br"
         }
     ],
     "location": [
@@ -74,5 +74,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1677755565
+    "modified": 1737280238
 }

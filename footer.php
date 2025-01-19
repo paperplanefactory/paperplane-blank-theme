@@ -54,11 +54,15 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 				<div class="flex-hold flex-hold-2 margins-wide">
 					<div class="flex-hold-child">
 						<div class="underlined-links">
-							<?php echo $options_fields_multilang['footer_legal_notes']; ?>
+							<p>
+								<?php echo $options_fields_multilang['footer_legal_notes']; ?>
+							</p>
 						</div>
 					</div>
 					<div class="flex-hold-child desktop-align-right underlined-links">
-						<?php echo $options_fields_multilang['footer_credits']; ?>
+						<p>
+							<?php echo $options_fields_multilang['footer_credits']; ?>
+						</p>
 					</div>
 					<div class="flex-hold-child-full">
 						<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>

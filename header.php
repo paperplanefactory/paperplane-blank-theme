@@ -203,5 +203,5 @@
 			 * Barra di ricerca con integrazione suggerimenti
 			 * Le opzioni sono gestite tramite /wp-admin/options-general.php?page=json-generator-settings
 			 */
-			//include( locate_template( 'template-parts/grid/search-bar.php' ) );
+			include( locate_template( 'template-parts/grid/search-bar.php' ) );
 			?>

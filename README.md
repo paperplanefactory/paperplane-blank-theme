@@ -1,83 +1,99 @@
 # paperplane-blank-theme
-A starter theme by PaperPlane Factory. Tema utilizzato come base di partenza per progetti WordPress.
+A starter theme by PaperPlane Factory. Theme used as a starting base for WordPress projects.
 
-## Requisiti
-Plugin richiesti:
+## Requirements
+Required plugins:
  - Advanced Custom Fields Pro
 
-## Per iniziare
-1. cancella le cartelle di GitHub in modo da scollegare la cartella dalla repo
-2. rinomina la cartella del tema es. nomecliente-theme
-3. aggiorna il file style.css modificando il parametro Text Domain: "paperPlane-blankTheme"
-4. aggiorna il file style.css modificando i link alla repository su GitHub:
-- Theme URI: https://github.com/paperplanefactory/nomecliente-theme
-- GitHub Theme URI: https://github.com/paperplanefactory/nomecliente-theme
-5. crea la nuova repository su GitHub
-6. attiva il nuovo tema in back end
+## Getting Started
+1. delete GitHub folders to disconnect the folder from the repo
+2. rename the theme folder e.g. clientname-theme
+3. update the style.css file by modifying the Text Domain parameter: "paperPlane-blankTheme"
+4. update the style.css file by modifying the GitHub repository links:
+- Theme URI: https://github.com/paperplanefactory/clientname-theme
+- GitHub Theme URI: https://github.com/paperplanefactory/clientname-theme
+5. create the new repository on GitHub
+6. activate the new theme in back end
+
+## File strcture
+### CSS
+CSS - SCSS are located in assets > css folder.  
+css folder contains desktop, global and mobile folders in order to manage SCSS partial files.  
+Main SCSS compiler file - style.scss - is in css main folder.  
+desktop, global and mobile folders can have a subfolder to manage external libraries CSS, like global > libraries > _aos.scss
+### JavaScript
+JavaScript are located in assets > js and assets > js > libs folders.
+### Theme's media files
+Media files are located in assets > images folder.  
+The folder has sub folder in order to keep clean the use of media: admin-images, favicons, icons.  
+Other images and media, like site logo, are in the main assets > images folder.
+### Fonts
+Fonts are located in assets > fonts folder.  
+This folder is used for Material Icons mainly, but if project uses fonts that needs to be stored this is the righe folder.
 
 ## Debug
-Utilizzare Query Monitor per il debug. Per evitare rallentamenti in back end è possibile disattivare le analisi di Query Monitor solo per il back end dalla pagina opzioni Theme Settings > Abilitare Query Monitor in back end?
+Use Query Monitor for debugging. To avoid slowdowns in back end, you can disable Query Monitor analyses only for the back end from the Theme Settings options page > Enable Query Monitor in back end?
 
-## Gestione CTP predefiniti
-1. se alcuni CPT (es. banner o modal) non sono necessari:
-- cancella gli eventuali contenuti presenti
-- imposta su "falso" l'opzione "Mostra UI" nel plugin CPT UI e rimuovili nei campi di ACF interessati (es. CTA) 
+## Default CPT Management
+1. if some CPTs (e.g. banners or modals) are not needed:
+- delete any existing content
+- set the "Show UI" option to "false" in the CPT UI plugin and remove them in the relevant ACF fields (e.g. CTA) 
 
-2. se è attiva l'opzione del plugin Under Construction, salvando la pagina "Theme Settings" vengono generate in automatico la pagina under construction e la pagina di manutenzione basate su logo e colori del sito. Perchè funzioni è importante che il logo "site-logo-header.svg" venga sostituito ma non rinominato
+2. if the Under Construction plugin option is active, saving the "Theme Settings" page automatically generates the under construction page and maintenance page based on the site's logo and colors. For this to work, it's important that the "site-logo-header.svg" logo is replaced but not renamed
 
-## ACF e transients
-- $content_fields = paperplane_content_transients( $post->ID ); viene utilizzato per richiamare i campi relativi al contenuto visualizzato. Viene generata in header.php e impostata come variabile globale
-- $options_fields = paperplane_options_transients(); viene utilizzato per le opzioni del tema che non richiedono traduzione. Viene generata in header.php e impostata come variabile globale
-- $options_fields_multilang = paperplane_options_transients_multilanguage( $acf_options_parameter ); viene utilizzato per le opzioni del tema predisposte per la traduzione. Viene generata in header.php e impostata come variabile globale
+## ACF and transients
+- $content_fields = paperplane_content_transients( $post->ID ); is used to recall fields related to the displayed content. It is generated in header.php and set as a global variable
+- $options_fields = paperplane_options_transients(); is used for theme options that don't require translation. It is generated in header.php and set as a global variable
+- $options_fields_multilang = paperplane_options_transients_multilanguage( $acf_options_parameter ); is used for theme options prepared for translation. It is generated in header.php and set as a global variable
 
-È possibile disattivare l'utilizzo delle transient per ACF in back end dalla pagina opzioni Theme Settings > Utilizzare le transient per i campi personalizzati? 
+You can disable the use of transients for ACF in back end from the Theme Settings options page > Use transients for custom fields?
 
-## Aperture di pagina
-Per mantenenre correttamente la funzionalità di preload delle immagini above the fold, in caso siano necessarie aperture di pagine aggiuntive, dove possibile mantenere questi nomi per i custom field delle immagini e del poster del video:
+## Page Openings
+To properly maintain the above-the-fold image preload functionality, if additional page openings are needed, where possible maintain these names for custom fields of images and video poster:
 - page_opening_image_desktop
 - page_opening_image_mobile
 - page_opening_video_poster
 
 ## Favicon
-Partendo da un file di almeno 512x512 pixel, caricarlo su https://www.favicon-generator.org/, scaricare il file zip, estrapolare i contenuti e sostituirli a quelli presenti nella cartella assets/images/favicons
+Starting from a file of at least 512x512 pixels, upload it to https://www.favicon-generator.org/, download the zip file, extract the contents and replace them with those present in the assets/images/favicons folder
 
-## Ottimizzazione performance
+## Performance Optimization
 ### CSS
-Terminato il debug rimuovere gli eventuali CSS parziali non utilizzati in assets/css/style.scss
+After debugging, remove any unused partial CSS in assets/css/style.scss
 
-### Immagini in upload
-Terminato il debug usare includes/theme-images-crop.php per verificare che:
-- i ritagli aggiunti siano della corretta misura e non sia sgranati o sovradimensionati
-- in che non siano presenti add_image_size non utilizzate: ogni immagine aggiuntiva occupa spazio su disco e, se non utilizzata, diventa un costo inutile
+### Upload Images
+After debugging, use includes/theme-images-crop.php to verify that:
+- added crops are of the correct size and are not pixelated or oversized
+- that there are no unused add_image_size: each additional image takes up disk space and, if unused, becomes an unnecessary cost
 
-Se necessario è possibile utilizzare il plugin Regenerate Thumbnails per ridimentionare in bulk tutte le immagini caricate ed eliminare i ritagli non più utilizzati.
+If necessary, you can use the Regenerate Thumbnails plugin to bulk resize all uploaded images and delete unused crops.
 
-### Immagini del tema
-Terminato il debug per ottimizzare le immagini utilizzte dal tema (logo header, file svg...) scaricare ed installare ImageOptim (https://imageoptim.com/mac) e trascinare nella finestra la cartella assets/images. ImageOptim ottimizzerà in automatico i file elencati.
+### Theme Images
+After debugging, to optimize images used by the theme (header logo, svg files...) download and install ImageOptim (https://imageoptim.com/mac) and drag the assets/images folder into the window. ImageOptim will automatically optimize the listed files.
 
 ### Font
-Per Google Fonts - Adobe Fonts copiare il contenuto del foglio di stile fornito es.<br />
+For Google Fonts - Adobe Fonts copy the content of the provided stylesheet e.g.<br />
 https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap<br />
-e sostituire il contenuto del file assets/css/global/_theme-font.scss<br />
-Terminato il debug aprire il file<br />
+and replace the content of the file assets/css/global/_theme-font.scss<br />
+After debugging open the file<br />
 /includes/theme-performance.php<br />
-ed aggiungere i font in preload in  nella funzione<br />
+and add the fonts in preload in the function<br />
 paperplane_preload_data -> $fonts_preload<br />
-che è un array dei font da precaricare con le loro configurazioni.<br />
-Se si utilizza Adobe Fonts non è possibile recuperare le URL dei font. Il passaggio successivo sarà quindi limitato al primo elemento dell'array.<br />
-Per stabilire quali font precaricare:
-- visualizzare una pagina del sito in Chrome
-- aprire il pannello dev
-- ricaricare la pagina
-- aprire la tab Network o Rete
-- filtrare per tipo di file font
-- per ogni font copiare la URL "Request URL:" e aggiungerla all'array
-- 'type' può essere 'preconnect' per la connessione al server dei font da usare come primo elemento dell'array
-- 'font/woff2' per i file dei font specifici - utilizzare l'estensione corretta del font
+which is an array of fonts to preload with their configurations.<br />
+If using Adobe Fonts, it's not possible to retrieve font URLs. The next step will therefore be limited to the first element of the array.<br />
+To determine which fonts to preload:
+- view a page of the site in Chrome
+- open the dev panel
+- reload the page
+- open the Network tab
+- filter by font file type
+- for each font copy the "Request URL:" and add it to the array
+- 'type' can be 'preconnect' for the font server connection to use as the first element of the array
+- 'font/woff2' for specific font files - use the correct font extension
 
-## Strumenti CSS
-- [Generatore gradiente CSS](https://cssgradient.io/)
-- [Generatore Text Shadow CSS](https://css3gen.com/text-shadow/)
-- [Generatore Border Radius CSS](https://css3gen.com/border-radius/)
-- [Generatore Box Shadow CSS](https://css3gen.com/box-shadow/)
-- [Come usare mixin con parametri](https://marksheet.io/sass-mixins.html)
+## CSS Tools
+- [CSS Gradient Generator](https://cssgradient.io/)
+- [CSS Text Shadow Generator](https://css3gen.com/text-shadow/)
+- [CSS Border Radius Generator](https://css3gen.com/border-radius/)
+- [CSS Box Shadow Generator](https://css3gen.com/box-shadow/)
+- [How to use mixins with parameters](https://marksheet.io/sass-mixins.html)
