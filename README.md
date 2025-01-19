@@ -91,6 +91,13 @@ To determine which fonts to preload:
 - 'type' can be 'preconnect' for the font server connection to use as the first element of the array
 - 'font/woff2' for specific font files - use the correct font extension
 
+## Footer links and © year
+Year and the Privacy and Cookie Policy links in the footer are populated via script based on their classes:  
+<code>&lt;span class="year-set-js"&gt;2025&lt;/span&gt;</code>  
+<code>&lt;a class="privacy-link-js"&gt;Privacy Policy!&lt;/a&gt;</code>  
+<code>&lt;a class="cookie-link-js"&gt;Cookie Policy&lt;/a&gt;</code>  
+The function is called paperplane_compile_privacy_cookies and can be found in the file includes/theme-menus.php
+
 ## CSS Tools
 - [CSS Gradient Generator](https://cssgradient.io/)
 - [CSS Text Shadow Generator](https://css3gen.com/text-shadow/)
