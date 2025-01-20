@@ -1,16 +1,22 @@
 <div class="modules-handler">
 	<?php
-	global $module_count, $last_rep_color;
+	global $module_count, $last_rep_color, $custom_anchor_point;
 	$module_count = 0;
 	if ( $content_fields['new_module'] ) {
 		foreach ( $content_fields['new_module'] as $module ) {
 			$module_count++;
 			$choose_module = $module['choose_module'];
 			$show_hide_module = $module['show_hide_module'];
+			if ( $module['custom_anchor_point'] ?? null ) {
+				$custom_anchor_point = $module['custom_anchor_point'];
+			} else {
+				$custom_anchor_point = 'section-' . $module_count;
+			}
+
 			if ( $show_hide_module == 1 ) {
 				$bar = get_user_option( 'show_admin_bar_front', get_current_user_id() );
 				if ( $bar == 'true' ) {
-					echo '<div class="editor-info editor-info-js"><div class="admin-index"><span class="click-hide">+</span><span class="hide-me hidden-label"> Modulo: ' . $choose_module . ' - ' . $module_count . ' URL: ' . get_permalink() . '#section-' . $module_count . '</span></div></div>';
+					echo '<div class="editor-info editor-info-js"><div class="admin-index"><span class="click-hide">+</span><span class="hide-me hidden-label"> Modulo: ' . $choose_module . ' - ' . $module_count . ' URL: ' . get_permalink() . '#' . $custom_anchor_point . '</span></div></div>';
 				}
 				switch ( $choose_module ) {
 					// module-text

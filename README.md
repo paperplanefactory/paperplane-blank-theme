@@ -1,11 +1,29 @@
 # paperplane-blank-theme
 A starter theme by PaperPlane Factory. Theme used as a starting base for WordPress projects.
 
+## Index
+- [Requirements](#requirements)
+- [Getting Started](#getting-started)
+- [File strcture](#file-strcture)
+- [Debug](#debug)
+- [Default CPT Management](#default-cpt-management)
+- [ACF and transients](#acf-and-transients)
+- [Page Openings](#page-openings)
+- [Favicon](#favicon)
+- [Performance Optimization](#performance-optimization)
+- [Upload Images](#upload-images)
+- [Theme Images](#theme-images)
+- [Fonts](#fonts)
+- [Forms - Contact Form 7](#forms-contact-form-7)
+- [Footer links and © year](#footer-links-and-©-year)
+- [CSS Tools](#css-tools)
+
+
 ## Requirements
 Required plugins:
  - Advanced Custom Fields Pro
 
-## Getting Started
+## Getting started
 1. delete GitHub folders to disconnect the folder from the repo
 2. rename the theme folder e.g. clientname-theme
 3. update the style.css file by modifying the Text Domain parameter: "paperPlane-blankTheme"
@@ -71,7 +89,7 @@ If necessary, you can use the Regenerate Thumbnails plugin to bulk resize all up
 ### Theme Images
 After debugging, to optimize images used by the theme (header logo, svg files...) download and install ImageOptim (https://imageoptim.com/mac) and drag the assets/images folder into the window. ImageOptim will automatically optimize the listed files.
 
-### Font
+### Fonts
 For Google Fonts - Adobe Fonts copy the content of the provided stylesheet e.g.<br />
 https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap<br />
 and replace the content of the file assets/css/global/_theme-font.scss<br />
@@ -90,6 +108,10 @@ To determine which fonts to preload:
 - for each font copy the "Request URL:" and add it to the array
 - 'type' can be 'preconnect' for the font server connection to use as the first element of the array
 - 'font/woff2' for specific font files - use the correct font extension
+
+## Forms - Contact Form 7
+In Contact Form 7 form editing screen, a new panel called 'Best practice impostazioni' has been added with guidelines for creating functional and accessible forms.  
+Remember to always test if the forms are sending all data correctly, and, if possible, use a plugin like [WP Mail SMTP](https://it.wordpress.org/plugins/wp-mail-smtp/) to send emails from the server with SMTP authentication.
 
 ## Footer links and © year
 Year and the Privacy and Cookie Policy links in the footer are populated via script based on their classes:  

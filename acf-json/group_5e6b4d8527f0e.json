@@ -104,6 +104,28 @@
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
+                    "key": "field_678e10577abe6",
+                    "label": "Anchor point personalizzato",
+                    "name": "custom_anchor_point",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Se è necessario un link con anchor point personalizzato inserire qui il nome da utilizzare. È possibile usare solo lettere minuscole e trattini.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_5e6b4d8f8e1a6"
+                },
+                {
                     "key": "field_61862f487bb4a",
                     "label": "Spaziatura superiore modulo",
                     "name": "module_vertical_top_space",
@@ -2191,5 +2213,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1730136569
+    "modified": 1737363808
 }
