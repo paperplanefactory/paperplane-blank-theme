@@ -1,7 +1,7 @@
 <!-- module-fullscreen-image -->
 <section
 	class="wrapper module-fullscreen-image <?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
-	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
+	<a name="<?php echo $custom_anchor_point; ?>" class="section-anchor"></a>
 	<div class="module-box-fullscreen coverize <?php echo $module['module_fullscreen_text_align_horizontal']; ?>"
 		data-aos="fade">
 		<?php if ( $module['module_fullscreen_image_image_video'] == 1 ) : ?>

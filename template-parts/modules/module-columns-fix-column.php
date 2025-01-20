@@ -5,7 +5,7 @@ $module_columns_fix_side = $module['module_columns_fix_side'];
 $module_columns_fix_fix_column_image_format = $module['module_columns_fix_fix_column_image_format'];
 ?>
 <section class="wrapper module-columns-fix-column">
-	<a name="section-<?php echo $module_count; ?>" class="section-anchor"></a>
+	<a name="<?php echo $custom_anchor_point; ?>" class="section-anchor"></a>
 	<div class="<?php echo $module['module_vertical_top_space'] . ' ' . $module['module_vertical_bottom_space']; ?>">
 		<div class="wrapper-padded">
 			<div class="wrapper-padded-container">
