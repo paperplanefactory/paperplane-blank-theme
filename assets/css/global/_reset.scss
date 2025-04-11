@@ -98,10 +98,12 @@ body {
 	color: var(--color-1);
 	background-color: var(--color-4);
 	@include transition(color 0.3s linear, background-color 0.3s linear);
+	scrollbar-gutter: stable;
 }
 
 main {
 	display: block;
+	scrollbar-gutter: stable;
 }
 
 *:focus {

@@ -15,7 +15,7 @@
 						class="slide-next-custom slide-next-slider-single-js">next</button>
 						-->
 					<div class="slider-wrapper">
-						<div class="paperplane-slider slider-single hidden-dots slider-single-js">
+						<div class="paperplane-slider slider-images hidden-dots slider-images-js">
 							<?php if ( $module['module_slideshow_repeater'] ) :
 								foreach ( $module['module_slideshow_repeater'] as $slide ) :
 									?>
@@ -36,8 +36,8 @@
 										);
 										$image_sizes = array(
 											// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-											'desktop_hd' => 'column_cut_hd',
-											'mobile_hd' => 'column_cut'
+											'desktop_hd' => 'column_hd',
+											'mobile_hd' => 'column'
 										);
 										print_theme_image( $image_data, $image_appearance, $image_sizes ); ?>
 										<?php if ( $slide['module_slideshow_repeater_image']['caption'] ) : ?>

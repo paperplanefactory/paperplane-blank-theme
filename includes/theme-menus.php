@@ -70,11 +70,16 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		$languages = array( 'any-lang' );
 	}
 	foreach ( $languages as $lang ) {
+		if ( $lang == 'any-lang' ) {
+			$lang_menu_label = '';
+		} else {
+			$lang_menu_label = ' (' . strtoupper( $lang ) . ')';
+		}
 		// gestione footer
 		acf_add_options_sub_page(
 			array(
 				'page_title' => 'Gestione footer (' . strtoupper( $lang ) . ')',
-				'menu_title' => __( 'Gestione footer (' . strtoupper( $lang ) . ')', 'text-domain' ),
+				'menu_title' => __( 'Gestione footer' . $lang_menu_label, 'grusp-conf-theme' ),
 				'menu_slug' => "gestione-footer-{$lang}",
 				'post_id' => $lang,
 				'parent_slug' => $parent['menu_slug'],
@@ -84,7 +89,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		acf_add_options_sub_page(
 			array(
 				'page_title' => 'Gestione archivi (' . strtoupper( $lang ) . ')',
-				'menu_title' => __( 'Gestione archivi (' . strtoupper( $lang ) . ')', 'text-domain' ),
+				'menu_title' => __( 'Gestione archivi ' . $lang_menu_label, 'grusp-conf-theme' ),
 				'menu_slug' => "gestione-archivi-{$lang}",
 				'post_id' => $lang,
 				'parent_slug' => $parent['menu_slug'],

@@ -1,5 +1,5 @@
 <?php
-function paperplane_theme_cta_advanced( $field_names ) {
+function paperplane_theme_cta_advanced( $field_names, $after_ctas = null ) {
 	// componente per CTA
 	if ( is_string( $field_names ) ) {
 		$field_names = array( $field_names );
@@ -81,7 +81,11 @@ function paperplane_theme_cta_advanced( $field_names ) {
 						$cta_title = '';
 					}
 					if ( $field_name['cta_target'] === '_blank' ) {
-						$cta_title = __( 'Si apre in una nuova finestra,', 'paperPlane-blankTheme' );
+						$cta_title = __( 'Si apre in una nuova finestra,', 'grusp-conf-theme' );
+						$cta_class = 'default-button blank';
+					}
+					if ( strpos( $field_name['cta_url'], '#' ) !== false ) {
+						$cta_class = 'default-button anchor';
 					}
 					// definisco parametro href
 					$cta_url = 'href="' . $field_name['cta_url'] . '" ';
@@ -99,10 +103,11 @@ function paperplane_theme_cta_advanced( $field_names ) {
 				} elseif ( $cta_destination === 'download-cta' ) {
 					// definisco parzialmente il testo dell'etichetta per il titolo
 					if ( $field_name['cta_target'] === '_self' ) {
-						$cta_title = __( 'Scarica o visualizza file', 'paperPlane-blankTheme' );
+						$cta_title = __( 'Scarica o visualizza file', 'grusp-conf-theme' );
 					}
 					if ( $field_name['cta_target'] === '_blank' ) {
-						$cta_title = __( 'Si apre in una nuova finestra, scarica o visualizza file', 'paperPlane-blankTheme' );
+						$cta_title = __( 'Si apre in una nuova finestra, scarica o visualizza file', 'grusp-conf-theme' );
+						$cta_class = 'default-button blank';
 					}
 					// definisco parametro href
 					$cta_url = 'href="' . $field_name['cta_file_download'] . '" ';
@@ -131,9 +136,17 @@ function paperplane_theme_cta_advanced( $field_names ) {
 				if ( isset( $cta_tag ) ) {
 					$cta_html .= '<' . $cta_tag . ' ' . $cta_url . ' ' . $cta_target . ' class="' . $cta_class . '" data-modal-id="' . $data_modal_open_id . '" data-modal-title="' . $data_modal_title . '" data-modal-back-to="' . $start_point . '" ' . $cta_tracking . ' ' . ' ' . '>' . $button_text . '<span class="screen-reader-text">' . $cta_title . '</span></' . $cta_tag . '>';
 				}
+
 			}
 		}
 		$cta_html .= '</div>';
+		if ( $after_ctas != 0 ) {
+			$cta_html .= '<div class="last-child-no-margin mobile-after-cta">';
+			$cta_html .= '<p class="as-h6 underlined-links">';
+			$cta_html .= $after_ctas;
+			$cta_html .= '</p>';
+			$cta_html .= '</div>';
+		}
 		echo $cta_html;
 	}
 }

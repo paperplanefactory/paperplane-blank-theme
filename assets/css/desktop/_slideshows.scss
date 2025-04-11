@@ -3,13 +3,29 @@
 @import '../global/mixin';
 
 .slider-wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
+  padding-top: 68px;
 }
 
-.slider-single {
+
+.slider-images {
   position: relative;
-  width: calc(100% + 32px);
+  width: 100%;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: -2px;
+    left: 0;
+    display: block;
+    width: 50vw;
+    height: 100%;
+    transform: translate(-50vw, 0);
+    background-color: var(--color-4);
+  }
 
   .slick-list,
   .slick-track {
@@ -18,27 +34,44 @@
 
   .slick-slide {
     overflow: hidden;
+  }
 
-    .slide {
-      padding-right: 32px;
+  .slide {
+    position: relative;
+    padding-right: 32px;
+
+    img {
+      height: 60vh;
+      width: auto;
     }
   }
 }
 
 .slide-caption {
-  padding: 15px 10px 0 0;
-}
+  position: relative;
+  width: auto;
+  height: auto;
+  display: inline-block;
 
+  overflow: visible;
+  padding: 15px 10px 0 0;
+
+  &.hidden {
+    position: absolute;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+  }
+}
 
 // navigation
 
 .slick-next,
 .slick-prev {
-  position: absolute;
-  z-index: 2;
-  bottom: 5px;
+  top: -68px;
   cursor: pointer;
-  font-size: 30px;
+  width: 38px;
+  height: 38px;
 
   &.slick-disabled {
     opacity: 0.5;
@@ -47,11 +80,11 @@
 }
 
 .slick-prev {
-  right: 64px;
+  left: 0;
 }
 
 .slick-next {
-  right: 32px;
+  left: 48px;
 }
 
 .paging-info {

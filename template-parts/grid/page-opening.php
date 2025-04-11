@@ -14,7 +14,7 @@ if ( is_page_template( 'page-modules.php' ) || is_page_template( 'page-listing.p
 	// verifico se esiste la chiave dell'array del campo che mi serve e se ha un valore
 	if ( $content_fields['page_opening_layout'] ?? null ) {
 		// verifico se il campo ha il valore per apertura fullscreen
-		if ( $content_fields['page_opening_layout'] === 'opening-fullscreen' || $content_fields['page_opening_layout'] === 'opening-almost-fullscreen' ) {
+		if ( $content_fields['page_opening_layout'] === 'opening-fullscreen' ) {
 			include( locate_template( 'template-parts/grid/page-opening/opening-fullscreen.php' ) );
 		}
 		// altrimenti uso l'apertura di solo testo

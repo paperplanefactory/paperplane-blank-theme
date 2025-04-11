@@ -63,6 +63,13 @@ function paperplane_load_scripts() {
 			'version' => $theme_version,
 			'strategy' => 'defer',
 			'in_footer' => true
+		],
+		'paperplane-video-emebds' => [ 
+			'src' => '/assets/js/video-emebds.min.js',
+			'deps' => [ 'jquery' ],
+			'version' => $theme_version,
+			'strategy' => 'defer',
+			'in_footer' => false
 		]
 	];
 

@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Gestione dei tasti speciali
     searchInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Tab' || e.key === 'ArrowRight') {
+        if (e.key === 'ArrowRight') {
             // Accetta il suggerimento
             e.preventDefault();
             const selection = window.getSelection();

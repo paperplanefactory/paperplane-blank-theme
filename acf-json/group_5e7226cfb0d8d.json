@@ -3,12 +3,12 @@
     "title": "Impostazioni banner",
     "fields": [
         {
-            "key": "field_5e7244b5d5221",
-            "label": "Immagine sfondo",
-            "name": "banner_background_image",
+            "key": "field_67f24d1fca9f7",
+            "label": "Testi banner",
+            "name": "banner_txts",
             "aria-label": "",
-            "type": "image",
-            "instructions": "",
+            "type": "wysiwyg",
+            "instructions": "Usare solo paragrafi.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,43 +16,12 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "repeatable": true
-        },
-        {
-            "key": "field_5e72476e43f13",
-            "label": "Immagine in primo piano",
-            "name": "banner_foreground_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "repeatable": true
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
             "key": "field_639457e7f187d",
@@ -109,5 +78,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1687334718
+    "modified": 1743932732
 }

@@ -2,8 +2,12 @@
 @import '../global/vars';
 @import '../global/mixin';
 
-.opening-fullscreen,
-.opening-almost-fullscreen {
+.on-header {
+  position: relative;
+  margin-top: -$header-desktop-height;
+}
+
+.opening-fullscreen {
   position: relative;
   display: block;
   width: 100%;
@@ -13,11 +17,6 @@
 
 .opening-fullscreen {
   min-height: 100vh;
-}
-
-.opening-almost-fullscreen {
-  position: relative;
-  min-height: 80vh;
 }
 
 .fullscreen-video {
@@ -92,37 +91,48 @@
   }
 }
 
-.scroll-down {
-  position: absolute;
-  bottom: 2vh;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
-  overflow: hidden;
-  text-align: center;
-  background-color: var(--color-1);
-  color: var(--color-4);
+.opening-text-image {
+  padding-top: 100px;
 
-  &:hover {
-    opacity: 0.8;
+  .image-box {
+    position: relative;
+
+    .inner {
+      position: relative;
+      width: 50vw;
+      background-color: red;
+    }
+
+    .text-box {
+      position: relative;
+    }
   }
 
-  a {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: var(--color-4);
+  &.txt-img {
+    .text-box {
+      order: 1;
+    }
 
-    &:before {
-      content: "↓";
-      position: relative;
-      display: block;
-      width: 100%;
-      font-size: 40px;
-      line-height: 37px;
+    .image-box {
+      order: 2;
+    }
+  }
+
+  &.img-txt {
+    .text-box {
+      order: 2;
+    }
+
+    .image-box {
+      order: 1;
+
+      .inner {
+        position: absolute;
+
+        right: 0;
+        width: 50vw;
+        background-color: red;
+      }
     }
   }
 }

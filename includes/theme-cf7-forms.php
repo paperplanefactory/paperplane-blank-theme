@@ -50,7 +50,7 @@ add_action( 'init', function () {
 				<p>
 					Assegnare name e ID uguali e univoci per ogni campo:
 				</p>
-				<code>&lt;label for="your-name"&gt; Nome* &lt;/label&gt;<br/>[text your-name id:your-name]</code>
+				<code>&lt;label for="your-name"&gt; Nome* &lt;/label&gt;<br/>[text your-name id:your-name autocomplete:name]</code>
 				<p>
 					Name serve per salvare il dato all'invio, ID per associare la label. Il valore "for" della label deve
 					corrispondere all'ID del campo.
@@ -71,7 +71,7 @@ add_action( 'init', function () {
 					Per i numeri di telefono è possibile associare un campo select con i prefissi internazionali usando questo
 					codice:
 				</p>
-				<code>&lt;div class="phone-wrapper"&gt;<br/>&lt;label for="phone-prefix" class="screen-reader-text"&gt;Prefisso internazionale&lt;/label&gt;<br/>[select phone-prefix class:phone-prefix-populate id:phone-prefix]<br/>&lt;label for="phone-number" class="get-prefix-space"&gt;Numero di telefono*&lt;/label&gt;<br/>[tel* phone-number class:phone-number-style id:phone-number]<br/>&lt;/div&gt;</code>
+				<code>&lt;div class="phone-wrapper"&gt;<br/>&lt;label for="phone-prefix" class="screen-reader-text"&gt;Prefisso internazionale&lt;/label&gt;<br/>[select phone-prefix class:phone-prefix-populate id:phone-prefix autocomplete:tel-country-code]<br/>&lt;label for="phone-number" class="get-prefix-space"&gt;Numero di telefono*&lt;/label&gt;<br/>[tel* phone-number class:phone-number-style id:phone-number autocomplete:tel]<br/>&lt;/div&gt;</code>
 				<p>
 					Aggiungere sempre alla label del campo per il numero di telefono la classe <code>get-prefix-space</code>: viene
 					utilizzata in JS per posizionare correttamente la select con i prefissi.
@@ -94,6 +94,16 @@ add_action( 'init', function () {
 
 				</p>
 				<code>&lt;p&gt;Leggi le &lt;a href="url-privacy"&gt;condizioni e l'informativa sulla privacy&lt;/a&gt; prima di accettare.&lt;/p&gt;<br/>[checkbox* checkbox-privacy use_label_element "Inviando i tuoi dati attraverso questa pagina confermi di aver letto e preso atto di quanto disposto nell’informativa sulla privacy prevista ai sensi dell’art. 13 del regolamento UE 2016/679 (GDPR). *"]</code>
+				<h3>Autocomplete</h3>
+				<p>
+					Quando possibile ogni campo dovrebbe essere corredato dall'attributo <code>autocomplete</code><br />
+					Ad esempio:
+				</p>
+				<code>&lt;label for="your-name"&gt; Nome* &lt;/label&gt;<br/>[text your-name id:your-name autocomplete:name]</code>
+				<p>
+					Un elenco delle possibili opzioni è <a href="https://www.w3schools.com/tags/att_input_autocomplete.asp"
+						target="_blank">disponibile qui</a>.
+				</p>
 				<h3>Flamingo</h3>
 				<p>
 					Per ottenere delle informazioni utili nella pagina di riepilogo messaggi di Flamingo usare la tab "Impostazioni
@@ -396,7 +406,6 @@ function paperplane_populate_phone_prefixes() {
 
 					const htmlLang = document.documentElement.lang;
 					const countryCode = htmlLang.split('-')[1] || htmlLang.split('_')[1] || htmlLang;
-
 					let defaultPrefix = prefixes.find(prefix =>
 						prefix.startsWith(countryCode.toUpperCase())
 					);
@@ -427,3 +436,8 @@ function paperplane_populate_phone_prefixes() {
 	}
 }
 add_action( 'init', 'paperplane_populate_phone_prefixes' );
+
+add_filter( 'wpcf7_form_autocomplete', function ($autocomplete) {
+	$autocomplete = 'on';
+	return $autocomplete;
+}, 10, 1 );

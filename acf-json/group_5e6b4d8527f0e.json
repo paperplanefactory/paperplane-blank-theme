@@ -109,12 +109,12 @@
                     "name": "custom_anchor_point",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Se è necessario un link con anchor point personalizzato inserire qui il nome da utilizzare. È possibile usare solo lettere minuscole e trattini.",
+                    "instructions": "Se è necessario un link con anchor point personalizzato inserire qui il nome da utilizzare. È possibile usare solo lettere minuscole e il simbolo - per separare le parole.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
-                        "class": "",
+                        "class": "anchor-control",
                         "id": ""
                     },
                     "default_value": "",
@@ -142,12 +142,13 @@
                     "choices": {
                         "module-no-paddings-top": "Nessuno spazio",
                         "module-paddings-top": "Spazio predefinito",
-                        "module-paddings-top-double": "Spazio doppio"
+                        "module-paddings-top-big": "Spazio ampio"
                     },
                     "default_value": false,
                     "return_format": "value",
                     "multiple": 0,
                     "allow_null": 0,
+                    "allow_in_bindings": 1,
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
@@ -169,17 +170,17 @@
                     },
                     "choices": {
                         "module-paddings-bottom": "Spazio predefinito",
-                        "module-paddings-bottom-double": "Spazio doppio",
+                        "module-paddings-bottom-big": "Spazio ampio",
                         "module-no-paddings-bottom": "Nessuno spazio"
                     },
                     "default_value": false,
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
                     "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "allow_in_bindings": 1,
+                    "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
-                    "repeatable": true,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -1370,6 +1371,50 @@
                             "parent_repeater": "field_5e6b8b0467ad3"
                         },
                         {
+                            "key": "field_67f3a13f16dcf",
+                            "label": "Pre titolo",
+                            "name": "stripe_pre_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_5e6b8b0467ad3"
+                        },
+                        {
+                            "key": "field_67f3a15b16dd0",
+                            "label": "Titolo",
+                            "name": "stripe_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_5e6b8b0467ad3"
+                        },
+                        {
                             "key": "field_5e6b8b7a67ad5",
                             "label": "Contentuto",
                             "name": "module_stripe_repeater_content",
@@ -2213,5 +2258,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1737363808
+    "modified": 1744019820
 }

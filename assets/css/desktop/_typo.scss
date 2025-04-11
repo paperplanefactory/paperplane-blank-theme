@@ -4,97 +4,104 @@
 
 .as-h1,
 h1 {
-  font-size: $h1-size-desktop;
-  line-height: $h1-lineheight-desktop;
-  margin-bottom: $h1-marginbottom-desktop;
+  font-size: rem($h1-size-desktop);
+  line-height: rem($h1-lineheight-desktop);
+  margin: 0 0 rem($h1-marginbottom-desktop);
 }
 
 .as-h2,
 h2 {
-  font-size: $h2-size-desktop;
-  line-height: $h2-lineheight-desktop;
-  margin-bottom: $h2-marginbottom-desktop;
+  font-size: rem($h2-size-desktop);
+  line-height: rem($h2-lineheight-desktop);
+  margin: 0 0 rem($h2-marginbottom-desktop);
 }
 
 .as-h3,
 h3 {
-  font-size: $h3-size-desktop;
-  line-height: $h3-lineheight-desktop;
-  margin-bottom: $h3-marginbottom-desktop;
+  font-size: rem($h3-size-desktop);
+  line-height: rem($h3-lineheight-desktop);
+  margin: 0 0 rem($h3-marginbottom-desktop);
 }
 
 .as-h4,
 h4 {
-  font-size: $h4-size-desktop;
-  line-height: $h4-lineheight-desktop;
-  margin-bottom: $h4-marginbottom-desktop;
+  font-size: rem($h4-size-desktop);
+  line-height: rem($h4-lineheight-desktop);
+  margin: 0 0 rem($h4-marginbottom-desktop);
 }
 
 .as-h5,
 h5 {
-  font-size: $h5-size-desktop;
-  line-height: $h5-lineheight-desktop;
-  margin-bottom: $h5-marginbottom-desktop;
+  font-size: rem($h5-size-desktop);
+  line-height: rem($h5-lineheight-desktop);
+  margin: 0 0 rem($h5-marginbottom-desktop);
 }
 
 .mega-menu,
 .menu {
-  font-size: $h5-size-desktop;
-  line-height: $h5-lineheight-desktop;
+  font-size: rem($cta1-size-desktop);
+  line-height: rem($cta1-lineheight-desktop);
+
+  a,
+  button {
+    font-size: rem($cta1-size-desktop);
+    line-height: rem($cta1-lineheight-desktop);
+  }
 }
 
+.mega-menu p,
 #footer p,
 .as-h6,
 figcaption,
 h6 {
-  font-size: $h6-size-desktop;
-  line-height: $h6-lineheight-desktop;
-  margin-bottom: $h6-marginbottom-desktop;
+  font-size: rem($h6-size-desktop);
+  line-height: rem($h6-lineheight-desktop);
+  margin: 0 0 rem($h6-marginbottom-desktop);
 }
 
-.as-p,
-p {
-  font-size: $paragraph-size-desktop;
-  line-height: $paragraph-lineheight-desktop;
-  margin: 0 0 $paragraph-marginbottom-desktop;
+p,
+.as-p {
+  font-size: rem($paragraph-size-desktop);
+  line-height: rem($paragraph-lineheight-desktop);
+  margin: 0 0 rem($paragraph-marginbottom-desktop);
   padding: 0;
 }
 
 .content-styled {
-  h1:not(:first-child) {
-    margin-top: calc(#{$h1-marginbottom-desktop} * 2);
+  h1:not(:first-of-type) {
+    //margin-top: calc(#{$h1-marginbottom-desktop} * 2);
   }
 
-  h2:not(:first-child) {
-    margin-top: calc(#{$h2-marginbottom-desktop} * 2);
+  h2:not(:first-of-type) {
+    margin-top: rem($h2-marginbottom-desktop);
   }
 
-  h3:not(:first-child) {
-    margin-top: calc(#{$h3-marginbottom-desktop} * 2);
+  h3:not(:first-of-type) {
+    //margin-top: calc(#{$h3-marginbottom-desktop} * 2);
   }
 
-  h4:not(:first-child) {
-    margin-top: calc(#{$h4-marginbottom-desktop} * 2);
+  h4:not(:first-of-type) {
+    //margin-top: calc(#{$h4-marginbottom-desktop} * 2);
   }
 
-  h5:not(:first-child) {
-    margin-top: calc(#{$h5-marginbottom-desktop} * 2);
+  h5:not(:first-of-type) {
+    //margin-top: calc(#{$h5-marginbottom-desktop} * 2);
   }
 
-  h6:not(:first-child) {
-    margin-top: calc(#{$h6-marginbottom-desktop} * 2);
+  h6:not(:first-of-type) {
+    //margin-top: calc(#{$h6-marginbottom-desktop} * 2);
   }
 
   ul {
-    font-size: $paragraph-size-desktop;
-    line-height: $paragraph-lineheight-desktop;
-    margin-bottom: $paragraph-marginbottom-desktop;
+    font-size: rem($paragraph-size-desktop);
+    line-height: rem($paragraph-lineheight-desktop);
+    margin-bottom: rem($paragraph-marginbottom-desktop);
 
     li {
       display: table-row;
 
       &:before {
-        font-size: 20px;
+        font-size: rem($paragraph-size-desktop);
         font-weight: $font-weight-1;
       }
 
@@ -105,15 +112,15 @@ p {
   }
 
   ol {
-    font-size: $paragraph-size-desktop;
-    line-height: $paragraph-lineheight-desktop;
-    margin-bottom: $paragraph-marginbottom-desktop;
+    font-size: rem($paragraph-size-desktop);
+    line-height: rem($paragraph-lineheight-desktop);
+    margin-bottom: rem($paragraph-marginbottom-desktop);
   }
 
   ol>li {
     &:before {
       font-family: $font-main;
-      font-size: $paragraph-size-desktop;
+      font-size: rem($paragraph-size-desktop);
     }
 
     &:after {
@@ -132,23 +139,4 @@ p {
   line-height: $cta1-lineheight-desktop;
   word-wrap: break-word;
   font-style: italic;
-}
-
-.expander {
-  font-family: $font-main;
-  font-weight: $font-weight-1;
-  font-size: $h4-size-desktop;
-  line-height: $h4-lineheight-desktop;
-}
-
-.fluid-typo-off {
-  h1 {
-    font-size: calc(#{$h1-size-desktop} + 1.2vw);
-    line-height: calc(#{$h1-lineheight-desktop} + 1.5vw);
-  }
-
-  h2 {
-    font-size: calc(#{$h2-size-desktop} + 0.7vw);
-    line-height: calc(#{$h2-lineheight-desktop} + 1vw);
-  }
 }

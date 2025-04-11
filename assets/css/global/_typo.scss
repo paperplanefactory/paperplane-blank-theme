@@ -2,6 +2,16 @@
 @import 'vars';
 @import 'mixin';
 
+@function rem($pixels) {
+  @if type-of($pixels)=='number' {
+    @return math.div($pixels, 16) * 1rem;
+  }
+
+  @else {
+    @error "Il valore passato a rem() deve essere un numero, ricevuto #{type-of($pixels)}";
+  }
+}
+
 #footer p,
 .as-h1,
 .mega-menu,
