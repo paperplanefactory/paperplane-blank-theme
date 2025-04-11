@@ -1,13 +1,30 @@
+<?php
+/*
+Rimosse da ACF le opzioni per gestire:
+
+"page_opening_text_align_horizontal" -  allineamento orizzontale contenuti fullscreen - classi opzioni disponibili:
+- alignleft
+- alignright
+- aligncenter
+*/
+
+$page_opening_text_align_horizontal_class = 'alignleft';
+?>
+
 <div class="wrapper">
 	<div class="wrapper-padded">
 		<div class="wrapper-padded-container">
-			<section
-				class="page-opening-simple-spacer <?php echo $content_fields['page_opening_text_align_horizontal']; ?>">
+			<section class="page-opening-simple-spacer <?php echo $page_opening_text_align_horizontal_class; ?>">
 				<div class="last-child-no-margin">
 					<?php if ( $content_fields['page_breadcrumbs'] === 'yes' && function_exists( 'bcn_display' ) ) : ?>
 						<div class="breadcrumbs-holder underlined-links" typeof="BreadcrumbList" vocab="http://schema.org/">
 							<?php bcn_display(); ?>
 						</div>
+					<?php endif; ?>
+					<?php if ( $content_fields['page_opening_pre_title'] ?? null ) : ?>
+						<p>
+							<?php echo $content_fields['page_opening_pre_title']; ?>
+						</p>
 					<?php endif; ?>
 					<?php if ( $content_fields['page_opening_title'] ) : ?>
 						<h1>

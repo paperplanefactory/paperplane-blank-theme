@@ -16,3 +16,16 @@
   position: relative;
   margin: 0 auto;
 }
+
+.video-error-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  z-index: 10;
+}

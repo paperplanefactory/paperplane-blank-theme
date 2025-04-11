@@ -2,12 +2,9 @@
 @import '../global/vars';
 @import '../global/mixin';
 $logo-width: 200px;
-$hamburger-width: 55px; // header
+$hamburger-width: 55px;
 
-#preheader {
-  display: none;
-  //height: $header-smartphone-height;
-}
+// header
 
 #header {
   height: $header-smartphone-height;
@@ -71,9 +68,11 @@ $hamburger-width: 55px; // header
 }
 
 #head-overlay {
-  top: $header-smartphone-height;
+  bottom: 0;
+  transform: translate(0, 100%);
   width: 100%;
-  height: calc(100dvh - #{$header-smartphone-height});
+  height: 100dvh;
+  background-color: red;
 
   .menu {
     width: 100%;

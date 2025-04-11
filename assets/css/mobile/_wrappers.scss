@@ -34,18 +34,12 @@
   overflow: hidden;
 }
 
-.wrapper-padded-container {}
-
-.wrapper-padded-more-924 {}
-
-.wrapper-padded-more-700 {}
-
 .module-paddings-top {
   padding-top: $module-vertical-padding-smartphone;
 }
 
-.module-paddings-top-double {
-  padding-top: calc(#{$module-vertical-padding-smartphone} * 2);
+.module-paddings-top-big {
+  padding-top: $module-vertical-padding-big-smartphone;
 }
 
 .module-no-paddings-top {
@@ -56,8 +50,8 @@
   padding-bottom: $module-vertical-padding-smartphone;
 }
 
-.module-paddings-bottom-double {
-  padding-bottom: calc(#{$module-vertical-padding-smartphone} * 2);
+.module-paddings-bottom-big {
+  padding-bottom: $module-vertical-padding-big-smartphone;
 }
 
 .module-no-paddings-bottom {

@@ -13,6 +13,7 @@ $theme_pagination,
 $attivare_pwa;
 $cta_url_modal_array = array_unique( $cta_url_modal_array );
 ?>
+
 <footer id="footer" class="bg-4">
 	<div class="wrapper">
 		<div class="wrapper-padded">

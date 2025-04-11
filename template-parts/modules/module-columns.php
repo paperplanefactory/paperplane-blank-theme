@@ -107,7 +107,8 @@
 										}
 										?>
 										<div class="counter">
-											<h2 class="as-h1" aria-label="<?php echo $counter_label; ?>">
+											<h2 class="screen-reader-text"><?php echo $counter_label; ?></h2>
+											<div class="as-h1" aria-hidden="true">
 												<?php
 												if ( $column['module_columns_columns_repeater_counter_value_before'] ?? null ) {
 													$counter_text .= $column['module_columns_columns_repeater_counter_value_before'];
@@ -120,11 +121,11 @@
 													$counter_text .= $column['module_columns_columns_repeater_counter_value_after'];
 												}
 												if ( $column['module_columns_columns_repeater_counter_description'] ?? null ) {
-													$counter_text .= '<br /><span class="as-h4"> ' . $column['module_columns_columns_repeater_counter_description'] . '</span>';
+													$counter_text .= '<span class="as-h4 counter-label"> ' . $column['module_columns_columns_repeater_counter_description'] . '</span>';
 												}
 												echo $counter_text;
 												?>
-											</h2>
+											</div>
 										</div>
 									<?php endif; ?>
 									<?php if ( $column['module_columns_columns_repeater_content'] ?? null ) : ?>

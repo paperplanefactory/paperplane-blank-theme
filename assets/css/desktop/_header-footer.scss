@@ -2,12 +2,9 @@
 @import '../global/vars';
 @import '../global/mixin';
 $logo-width: 200px;
-$hamburger-width: 45px; // header
+$hamburger-width: 45px;
 
-#preheader {
-  display: none;
-  //height: $header-desktop-height;
-}
+// header
 
 #header {
   height: $header-desktop-height;
@@ -86,6 +83,13 @@ $hamburger-width: 45px; // header
             margin: 0;
           }
 
+          &:last-child {
+            .sub-menu {
+              left: auto;
+              right: 0;
+            }
+          }
+
           &.menu-item-has-children {
             padding: 0;
           }
@@ -113,18 +117,8 @@ $hamburger-width: 45px; // header
           background-color: var(--color-4);
           border: solid 1px var(--color-1);
 
-          &:has(a:focus-visible) {
-            height: auto;
-            pointer-events: all;
-            opacity: 1;
-          }
-
-          &.visible {
-            height: auto;
-            pointer-events: all;
-            opacity: 1;
-          }
-
+          &:has(a:focus-visible),
+          &.visible,
           &.activated {
             height: auto;
             pointer-events: all;
@@ -191,7 +185,7 @@ $hamburger-width: 45px; // header
   .submenu-close {
     position: absolute;
     top: $header-desktop-height;
-    width: 100vw;
+    width: 100%;
     height: calc(100dvh - #{$header-desktop-height});
     visibility: hidden;
     display: none;
@@ -207,8 +201,12 @@ $hamburger-width: 45px; // header
 }
 
 #head-overlay {
-  top: $header-desktop-height;
-  height: calc(100dvh - #{$header-desktop-height});
+  bottom: 0;
+  transform: translate(0, 100%);
+  //height: calc(100dvh - #{$header-desktop-height});
+  height: 100dvh;
+  //padding-top: $header-desktop-height;
+  background-color: red;
 
 
   .menu {

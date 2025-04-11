@@ -2,104 +2,106 @@
 @import '../global/vars';
 @import '../global/mixin';
 
-@font-face {
-  font-display: swap;
-}
-
 .as-h1,
 h1 {
-  font-size: $h1-size-smartphone;
-  line-height: $h1-lineheight-smartphone;
-  margin-bottom: $h1-marginbottom-smartphone;
+  font-size: rem($h1-size-smartphone);
+  line-height: rem($h1-lineheight-smartphone);
+  margin: 0 0 rem($h1-marginbottom-smartphone);
 }
 
 .as-h2,
 h2 {
-  font-size: $h2-size-smartphone;
-  line-height: $h2-lineheight-smartphone;
-  margin-bottom: $h2-marginbottom-smartphone;
+  font-size: rem($h2-size-smartphone);
+  line-height: rem($h2-lineheight-smartphone);
+  margin: 0 0 rem($h2-marginbottom-smartphone);
 }
 
 .as-h3,
 h3 {
-  font-size: $h3-size-smartphone;
-  line-height: $h3-lineheight-smartphone;
-  margin-bottom: $h3-marginbottom-smartphone;
+  font-size: rem($h3-size-smartphone);
+  line-height: rem($h3-lineheight-smartphone);
+  margin: 0 0 rem($h3-marginbottom-smartphone);
 }
 
 .as-h4,
 h4 {
-  font-size: $h4-size-smartphone;
-  line-height: $h4-lineheight-smartphone;
-  margin-bottom: $h4-marginbottom-smartphone;
+  font-size: rem($h4-size-smartphone);
+  line-height: rem($h4-lineheight-smartphone);
+  margin: 0 0 rem($h4-marginbottom-smartphone);
 }
 
 .as-h5,
 h5 {
-  font-size: $h5-size-smartphone;
-  line-height: $h5-lineheight-smartphone;
-  margin-bottom: $h5-marginbottom-smartphone;
+  font-size: rem($h5-size-smartphone);
+  line-height: rem($h5-lineheight-smartphone);
+  margin: 0 0 rem($h5-marginbottom-smartphone);
 }
 
-.menu,
-.menu button {
-  font-size: $h5-size-smartphone;
-  line-height: $h5-lineheight-smartphone;
+.mega-menu,
+.menu {
+  font-size: rem($cta1-size-smartphone);
+  line-height: rem($cta1-lineheight-smartphone);
+
+  a,
+  button {
+    font-size: rem($cta1-size-smartphone);
+    line-height: rem($cta1-lineheight-smartphone);
+  }
 }
 
+.mega-menu p,
 #footer p,
 .as-h6,
-.slide-caption,
 figcaption,
 h6 {
-  font-size: $h6-size-smartphone;
-  line-height: $h6-lineheight-smartphone;
-  margin-bottom: $h6-marginbottom-smartphone;
+  font-size: rem($h6-size-smartphone);
+  line-height: rem($h6-lineheight-smartphone);
+  margin: 0 0 rem($h6-marginbottom-smartphone);
 }
 
 p,
 .as-p {
-  font-size: $paragraph-size-smartphone;
-  line-height: $paragraph-lineheight-smartphone;
-  margin: 0 0 $paragraph-marginbottom-smartphone;
+  font-size: rem($paragraph-size-smartphone);
+  line-height: rem($paragraph-lineheight-smartphone);
+  margin: 0 0 rem($paragraph-marginbottom-smartphone);
   padding: 0;
 }
 
 .content-styled {
-  h1:not(:first-child) {
-    margin-top: calc(#{$h1-marginbottom-smartphone} * 2);
+  h1:not(:first-of-type) {
+    //margin-top: calc(#{$h1-marginbottom-smartphone} * 2);
   }
 
-  h2:not(:first-child) {
-    margin-top: calc(#{$h2-marginbottom-smartphone} * 2);
+  h2:not(:first-of-type) {
+    margin-top: rem($h2-marginbottom-smartphone);
   }
 
-  h3:not(:first-child) {
-    margin-top: calc(#{$h3-marginbottom-smartphone} * 2);
+  h3:not(:first-of-type) {
+    //margin-top: calc(#{$h3-marginbottom-smartphone} * 2);
   }
 
-  h4:not(:first-child) {
-    margin-top: calc(#{$h4-marginbottom-smartphone} * 2);
+  h4:not(:first-of-type) {
+    //margin-top: calc(#{$h4-marginbottom-smartphone} * 2);
   }
 
-  h5:not(:first-child) {
-    margin-top: calc(#{$h5-marginbottom-smartphone} * 2);
+  h5:not(:first-of-type) {
+    //margin-top: calc(#{$h5-marginbottom-smartphone} * 2);
   }
 
-  h6:not(:first-child) {
-    margin-top: calc(#{$h6-marginbottom-smartphone} * 2);
+  h6:not(:first-of-type) {
+    //margin-top: calc(#{$h6-marginbottom-smartphone} * 2);
   }
 
   ul {
-    font-size: $paragraph-size-smartphone;
-    line-height: $paragraph-lineheight-smartphone;
-    margin-bottom: $paragraph-marginbottom-smartphone;
+    font-size: rem($paragraph-size-smartphone);
+    line-height: rem($paragraph-lineheight-smartphone);
+    margin-bottom: rem($paragraph-marginbottom-smartphone);
 
     li {
       display: table-row;
 
       &:before {
-        font-size: 20px;
+        font-size: rem($paragraph-size-smartphone);
         font-weight: $font-weight-1;
       }
 
@@ -110,15 +112,15 @@ p,
   }
 
   ol {
-    font-size: $paragraph-size-smartphone;
-    line-height: $paragraph-lineheight-smartphone;
-    margin-bottom: $paragraph-marginbottom-smartphone;
+    font-size: rem($paragraph-size-smartphone);
+    line-height: rem($paragraph-lineheight-smartphone);
+    margin-bottom: rem($paragraph-marginbottom-smartphone);
   }
 
   ol>li {
     &:before {
       font-family: $font-main;
-      font-size: $paragraph-size-smartphone;
+      font-size: rem($paragraph-size-smartphone);
     }
 
     &:after {
@@ -137,30 +139,4 @@ p,
   line-height: $cta1-lineheight-smartphone;
   word-wrap: break-word;
   font-style: italic;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ol,
-p,
-ul {
-  //@include define-hyphens;
-}
-
-.fluid-typo-off {
-  h1 {
-    font-size: clamp(1.4375rem, 1rem + 5vw, 4rem);
-    line-height: clamp(1.4375rem, 1rem + 6vw, 4rem);
-    margin-bottom: clamp(1.4375rem, 1rem + 5vw, 4rem);
-  }
-
-  h2 {
-    font-size: clamp(1.4375rem, 1rem + 3.5vw, 4rem);
-    line-height: clamp(1.4375rem, 1rem + 4.5vw, 4rem);
-    margin-bottom: clamp(1.4375rem, 1rem + 3.5vw, 4rem);
-  }
 }

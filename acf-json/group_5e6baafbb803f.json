@@ -18,17 +18,16 @@
             },
             "choices": {
                 "opening-fullscreen": "Immagine fullscreen",
-                "opening-almost-fullscreen": "Immagine fullscreen con below the fold visibile",
                 "opening-text": "Solo testo"
             },
             "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "ui": 0,
             "ajax": 0,
-            "placeholder": "",
-            "repeatable": true
+            "placeholder": ""
         },
         {
             "key": "field_5e75e237b2fb3",
@@ -47,76 +46,6 @@
             "choices": {
                 "yes": "Sì",
                 "no": "No"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "repeatable": true
-        },
-        {
-            "key": "field_5e6baf7515ac1",
-            "label": "Allinemento verticale",
-            "name": "page_opening_text_align",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5e6bad4b7f721",
-                        "operator": "==",
-                        "value": "opening-fullscreen"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_5e6bad4b7f721",
-                        "operator": "==",
-                        "value": "opening-almost-fullscreen"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "fullscreen-cta-center": "Al centro",
-                "fullscreen-cta-top": "In alto",
-                "fullscreen-cta-bottom": "In basso"
-            },
-            "default_value": false,
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_5e6bb593989f5",
-            "label": "Allinemento orizzontale",
-            "name": "page_opening_text_align_horizontal",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "alignleft": "Sinistra",
-                "aligncenter": "Centro",
-                "alignright": "Destra"
             },
             "default_value": false,
             "allow_null": 0,
@@ -147,7 +76,7 @@
                     {
                         "field": "field_5e6bad4b7f721",
                         "operator": "==",
-                        "value": "opening-almost-fullscreen"
+                        "value": "opening-txt-img"
                     }
                 ]
             ],
@@ -181,6 +110,23 @@
             "conditional_logic": [
                 [
                     {
+                        "field": "field_5e6bad4b7f721",
+                        "operator": "==",
+                        "value": "opening-fullscreen"
+                    },
+                    {
+                        "field": "field_671fa88ec2374",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5e6bad4b7f721",
+                        "operator": "==",
+                        "value": "opening-txt-img"
+                    },
+                    {
                         "field": "field_671fa88ec2374",
                         "operator": "==",
                         "value": "video"
@@ -202,13 +148,30 @@
         {
             "key": "field_66fbb5692f387",
             "label": "Poster video",
-            "name": "page_opening_video_poster",
+            "name": "page_opening_image_video_poster",
             "aria-label": "",
             "type": "image",
             "instructions": "Selezionare un'immagine da utilizzare durante il caricamento del video.",
             "required": 1,
             "conditional_logic": [
                 [
+                    {
+                        "field": "field_5e6bad4b7f721",
+                        "operator": "==",
+                        "value": "opening-fullscreen"
+                    },
+                    {
+                        "field": "field_671fa88ec2374",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5e6bad4b7f721",
+                        "operator": "==",
+                        "value": "opening-txt-img"
+                    },
                     {
                         "field": "field_671fa88ec2374",
                         "operator": "==",
@@ -244,6 +207,23 @@
             "conditional_logic": [
                 [
                     {
+                        "field": "field_5e6bad4b7f721",
+                        "operator": "==",
+                        "value": "opening-fullscreen"
+                    },
+                    {
+                        "field": "field_671fa88ec2374",
+                        "operator": "==",
+                        "value": "image"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5e6bad4b7f721",
+                        "operator": "==",
+                        "value": "opening-txt-img"
+                    },
+                    {
                         "field": "field_671fa88ec2374",
                         "operator": "==",
                         "value": "image"
@@ -274,10 +254,26 @@
             "aria-label": "",
             "type": "image",
             "instructions": "Se non viene selezionata un'immagine verrà utilizzata l'immagine desktop.",
-            "instructions": "Se non viene selezionata un'immagine verrà utilizzata l'immagine desktop.",
             "required": 0,
             "conditional_logic": [
                 [
+                    {
+                        "field": "field_5e6bad4b7f721",
+                        "operator": "==",
+                        "value": "opening-fullscreen"
+                    },
+                    {
+                        "field": "field_671fa88ec2374",
+                        "operator": "==",
+                        "value": "image"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_5e6bad4b7f721",
+                        "operator": "==",
+                        "value": "opening-txt-img"
+                    },
                     {
                         "field": "field_671fa88ec2374",
                         "operator": "==",
@@ -301,6 +297,27 @@
             "mime_types": "",
             "allow_in_bindings": 1,
             "preview_size": "medium"
+        },
+        {
+            "key": "field_67f22eadc978d",
+            "label": "Pre titolo",
+            "name": "page_opening_pre_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Se non questo campo non viene compilato verrà usato il titolo predefinito della pagina.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_5e6bab20a3413",
@@ -427,5 +444,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1730128539
+    "modified": 1743924933
 }

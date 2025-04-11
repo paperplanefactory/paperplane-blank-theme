@@ -40,10 +40,38 @@ function paperplane_content_transients_generation( $content_id ) {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		//delete_transient( 'paperplane_transient_content_fields_' . $content_id );
 		$content_fields_transient = get_transient( 'paperplane_transient_content_fields_' . $content_id );
 		if ( empty( $content_fields_transient ) ) {
 			$content_fields = get_fields( $content_id );
+			$page_opening_layout = $content_fields['page_opening_layout'] ?? null;
+			if ( $page_opening_layout === 'opening-text' ) {
+				delete_field( 'page_opening_video_mp4', $content_id );
+				delete_field( 'page_opening_image_video_poster', $content_id );
+				delete_field( 'page_opening_image_desktop', $content_id );
+				delete_field( 'page_opening_image_mobile', $content_id );
+			} else {
+				$page_opening_media = $content_fields['page_opening_media'] ?? null;
+
+				if ( $page_opening_media ) {
+					switch ( $page_opening_media ) {
+						case 'no-media':
+							delete_field( 'page_opening_video_mp4', $content_id );
+							delete_field( 'page_opening_image_video_poster', $content_id );
+							delete_field( 'page_opening_image_desktop', $content_id );
+							delete_field( 'page_opening_image_mobile', $content_id );
+							break;
+						case 'image':
+							delete_field( 'page_opening_video_mp4', $content_id );
+							delete_field( 'page_opening_image_video_poster', $content_id );
+							break;
+						case 'video':
+							delete_field( 'page_opening_image_desktop', $content_id );
+							delete_field( 'page_opening_image_mobile', $content_id );
+							break;
+					}
+				}
+			}
+
 			set_transient( 'paperplane_transient_content_fields_' . $content_id, $content_fields, DAY_IN_SECONDS * 4 );
 		}
 	}

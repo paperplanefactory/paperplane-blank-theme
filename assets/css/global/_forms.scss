@@ -270,7 +270,7 @@ label,
 			top: 2px;
 			display: inline-block;
 			margin: 0 5px 0 0;
-			color: $color-form-error !important;
+			color: var(--color-form-error) !important;
 			content: '\e000';
 			font-family: 'Material Icons';
 			font-weight: normal;
@@ -294,21 +294,19 @@ label,
 
 	.wpcf7-not-valid-tip {
 		position: relative;
-		border: solid 1px $color-form-error !important;
+		border: none !important;
 		z-index: 10;
 		width: 100% !important;
-		top: -16px !important;
-		padding: 5px !important;
-		margin: 10px 0 10px 0 !important;
-		color: $color-form-error !important;
-		background-color: $color-form-error-b !important;
-		font-size: $h6-size-desktop !important;
-		line-height: $h6-size-desktop !important;
-		font-weight: $font-weight-1 !important;
+		top: -32px !important;
+		padding: 10px !important;
+		margin: 0 0 0 0 !important;
+		color: var(--color-form-error) !important;
+		background-color: var(--color-form-error-b) !important;
+		font-weight: $font-weight-2 !important;
 		font-family: $font-main;
 
 		&:before {
-			color: $color-form-error !important;
+			color: var(--color-form-error) !important;
 			content: '\e000';
 		}
 	}
@@ -317,27 +315,21 @@ label,
 		position: relative;
 		z-index: 10;
 		width: 100% !important;
-		padding: 10px !important;
+		padding: 16px !important;
 		margin: 0 0 10px 0 !important;
-		text-transform: uppercase;
-		font-size: $cta1-size-desktop !important;
-		line-height: $cta1-size-desktop !important;
-		font-weight: $font-weight-2 !important;
+		font-size: rem($cta1-size-desktop) !important;
 		font-family: $font-main;
 	}
 
 	&.invalid {
 		.wpcf7-response-output {
-			color: $color-form-error !important;
-			background-color: $color-form-error-b !important;
-			border: none;
-			border-left: solid 6px $color-form-error !important;
-			font-size: $cta1-size-desktop !important;
-			line-height: $cta1-size-desktop !important;
-			font-weight: $font-weight-3 !important;
+			color: var(--color-form-error) !important;
+			background-color: var(--color-form-error-b) !important;
+			border: none !important;
+			font-weight: $font-weight-2 !important;
 
 			&:before {
-				color: $color-form-error !important;
+				color: var(--color-form-error) !important;
 				content: '\e000';
 			}
 		}
@@ -345,16 +337,13 @@ label,
 
 	&.sent {
 		.wpcf7-response-output {
-			color: $color-form-ok !important;
-			background-color: $color-form-ok-b !important;
-			border: none;
-			border-left: solid 6px $color-form-ok !important;
-			font-size: $cta1-size-desktop !important;
-			line-height: $cta1-size-desktop !important;
-			font-weight: $font-weight-3 !important;
+			color: var(--color-form-ok) !important;
+			background-color: var(--color-form-ok-b) !important;
+			border: none !important;
+			font-weight: $font-weight-2 !important;
 
 			&:before {
-				color: $color-form-ok !important;
+				color: var(--color-form-ok) !important;
 				content: '\e5ca';
 			}
 
@@ -364,7 +353,14 @@ label,
 
 .form-block {
 	display: block;
+
+	.wpcf7-not-valid-tip {
+
+		top: 0 !important;
+		margin-bottom: 32px !important;
+	}
 }
+
 
 .phone-wrapper {
 	position: relative;

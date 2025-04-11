@@ -2,7 +2,7 @@
 @import 'vars';
 @import 'mixin'; // wrappers and more
 
-body {
+html {
     *:focus-visible {
 
         &:not(input[type=date],
@@ -80,8 +80,6 @@ body {
         }
     }
 
-    .card {}
-
     .masked-element {
         &:focus-visible {
             background-color: var(--color-4) !important;
@@ -100,7 +98,6 @@ body {
             }
         }
 
-        .menu {}
 
         .hambuger-element {
             &:focus-visible {
@@ -166,7 +163,7 @@ body {
         }
     }
 
-    &.body-reduced-motion {
+    &[data-reduced-motion="true"] {
         * {
             transition-duration: 0ms !important;
             transition-property: none !important;
@@ -191,7 +188,21 @@ body {
         transform: none !important;
     }
 
-    &.body-reduced-transparency {
+    &[data-reduced-transparency="true"] {
+
+        // include anche prefers-contrast: more
+        * :not(#head-overlay, .sub-menu, span[class*="ham-bar-"]) {
+            opacity: 1 !important;
+        }
+
+        .above-image-opacity {
+            background-color: var(--color-3) !important;
+        }
+
+        * :not(.sub-menu) {
+            opacity: 1 !important;
+        }
+
         * :not(#head-overlay, .sub-menu, span[class*="ham-bar-"]) {
             opacity: 1 !important;
         }
@@ -201,55 +212,6 @@ body {
         }
     }
 }
-
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition-duration: 0ms !important;
-        transition-property: none !important;
-        animation: none 0 !important;
-
-        &:after,
-        &:before {
-            transition-duration: 0ms !important;
-            transition-property: none !important;
-            animation: none 0 !important;
-        }
-    }
-
-    .paperplane-reduce-motion-js {
-        display: none;
-        visibility: hidden;
-    }
-}
-
-
-@media (prefers-reduced-transparency),
-(prefers-contrast: more) {
-    * :not(.sub-menu) {
-        opacity: 1 !important;
-    }
-
-    * :not(#head-overlay, .sub-menu, span[class*="ham-bar-"]) {
-        opacity: 1 !important;
-    }
-
-    .above-image-opacity {
-        background-color: var(--color-3) !important;
-    }
-
-    .paperplane-reduce-transparency-js {
-        display: none;
-        visibility: hidden;
-    }
-}
-
-@media (prefers-reduced-transparency) and (prefers-reduced-motion: reduce) {
-    .reduce-motion-overlay-js {
-        display: none;
-        visibility: hidden;
-    }
-}
-
 
 
 .accessible-navi-container {

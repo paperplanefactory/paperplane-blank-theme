@@ -92,27 +92,8 @@ function paperplane_preload_data() {
 	if ( $post instanceof WP_Post && function_exists( 'paperplane_content_transients' ) ) {
 		$content_fields = paperplane_content_transients( $post->ID );
 
-		// Verifica la presenza di media di apertura nella pagina
-		if ( ! empty( $content_fields ) && isset( $content_fields['page_opening_media'] ) ) {
-			$page_opening_media = $content_fields['page_opening_media'] ?? 'no-media';
-
-			// Gestisce il precaricamento delle immagini
-			if ( $page_opening_media === 'image' ) {
-				$preload_data .= generate_image_preload_tags( $content_fields );
-			}
-
-			// Gestisce il precaricamento del poster del video
-			elseif ( $page_opening_media === 'video' && ! empty( $content_fields['page_opening_video_poster'] ) ) {
-				$video_poster = $content_fields['page_opening_video_poster'];
-				if ( isset( $video_poster['sizes']['large'] ) && isset( $video_poster['mime_type'] ) ) {
-					$preload_data .= sprintf(
-						'<link rel="preload" href="%s" fetchpriority="auto" as="image" type="%s" />%s',
-						esc_url( $video_poster['sizes']['large'] ),
-						esc_attr( $video_poster['mime_type'] ),
-						"\n"
-					);
-				}
-			}
+		if ( ! empty( $content_fields ) ) {
+			$preload_data .= generate_image_preload_tags( $content_fields );
 		}
 	}
 
@@ -125,46 +106,76 @@ function paperplane_preload_data() {
 
 /**
  * Genera i tag HTML per il precaricamento delle immagini responsive
- * Gestisce sia le versioni desktop che mobile delle immagini di apertura
- * 
- * @param array $content_fields Array contenente i dati delle immagini
- * @return string Tag HTML generati per il preload
+ * Gestisce dinamicamente tutte le immagini di apertura
  */
 function generate_image_preload_tags( $content_fields ) {
-	// Inizializza la stringa che conterrà i tag di preload
 	$preload_tags = '';
 
-	// Verifica la presenza dell'immagine desktop (requisito minimo)
-	if ( empty( $content_fields['page_opening_image_desktop'] ) ) {
-		return $preload_tags;
+	// Cerca tutti i campi che contengono immagini di apertura
+	$image_fields = array_filter(
+		array_keys( $content_fields ),
+		function ($key) {
+			return strpos( $key, 'page_opening_image_' ) !== false;
+		}
+	);
+
+	// Verifica la presenza di immagini desktop e mobile
+	$has_desktop = false;
+	$has_mobile = false;
+	foreach ( $image_fields as $field ) {
+		if ( strpos( $field, 'desktop' ) !== false &&
+			! empty( $content_fields[ $field ] ) &&
+			is_array( $content_fields[ $field ] ) ) {
+			$has_desktop = true;
+		}
+		if ( strpos( $field, 'mobile' ) !== false &&
+			! empty( $content_fields[ $field ] ) &&
+			is_array( $content_fields[ $field ] ) ) {
+			$has_mobile = true;
+		}
 	}
 
-	// Recupera l'immagine mobile, se non presente usa quella desktop come fallback
-	// Questo garantisce sempre un'immagine per i dispositivi mobili
-	$mobile_image = ! empty( $content_fields['page_opening_image_mobile'] )
-		? $content_fields['page_opening_image_mobile']
-		: $content_fields['page_opening_image_desktop'];
+	// Genera i tag di preload
+	foreach ( $image_fields as $field ) {
+		if ( ! empty( $content_fields[ $field ] )
+			&& is_array( $content_fields[ $field ] )
+			&& isset( $content_fields[ $field ]['mime_type'] ) ) {
 
-	// Genera il tag per il precaricamento dell'immagine desktop
-	// Usa la media query per caricare solo su schermi larghi
-	if ( isset( $content_fields['page_opening_image_desktop']['sizes']['full_desk_hd'] ) ) {
-		$preload_tags .= sprintf(
-			'<link rel="preload" media="(min-width: 1024px)" href="%s" fetchpriority="auto" as="image" type="%s" />%s',
-			esc_url( $content_fields['page_opening_image_desktop']['sizes']['full_desk_hd'] ),
-			esc_attr( $content_fields['page_opening_image_desktop']['mime_type'] ),
-			"\n"
-		);
-	}
+			// Determina se è desktop o mobile
+			$is_desktop = strpos( $field, 'desktop' ) !== false;
+			$is_mobile = strpos( $field, 'mobile' ) !== false;
+			$is_video_poster = strpos( $field, 'video_poster' ) !== false;
 
-	// Genera il tag per il precaricamento dell'immagine mobile
-	// Usa la media query per caricare solo su schermi stretti
-	if ( isset( $mobile_image['sizes']['full_desk'] ) ) {
-		$preload_tags .= sprintf(
-			'<link rel="preload" media="(max-width: 1023px)" href="%s" fetchpriority="auto" as="image" type="%s" />%s',
-			esc_url( $mobile_image['sizes']['full_desk'] ),
-			esc_attr( $mobile_image['mime_type'] ),
-			"\n"
-		);
+			// Configura i parametri in base al tipo e alla presenza di entrambe le versioni
+			if ( $is_desktop ) {
+				$config = [ 
+					'media' => ( $has_desktop && $has_mobile ) ? '(min-width: 1024px)' : '',
+					'size' => 'full_desk_hd'
+				];
+			} elseif ( $is_mobile ) {
+				$config = [ 
+					'media' => ( $has_desktop && $has_mobile ) ? '(max-width: 1023px)' : '',
+					'size' => 'full_desk'
+				];
+			} elseif ( $is_video_poster ) {
+				$config = [ 
+					'media' => '',
+					'size' => 'full_desk'
+				];
+			} else {
+				$config = null;
+			}
+
+			if ( $config && isset( $content_fields[ $field ]['sizes'][ $config['size'] ] ) ) {
+				$preload_tags .= sprintf(
+					'<link rel="preload" %shref="%s" fetchpriority="auto" as="image" type="%s" />%s',
+					$config['media'] ? sprintf( 'media="%s" ', $config['media'] ) : '',
+					esc_url( $content_fields[ $field ]['sizes'][ $config['size'] ] ),
+					esc_attr( $content_fields[ $field ]['mime_type'] ),
+					"\n"
+				);
+			}
+		}
 	}
 
 	return $preload_tags;
@@ -230,8 +241,7 @@ add_action( 'wp_footer', 'paperplane_preload_speculationrules_pages' );
 $options_fields = paperplane_options_transients();
 
 // Disabilita Query Monitor nel backend se l'opzione è disattivata
-if ( $options_fields['use_query_monitor_backend'] != true ) {
-
+if ( ! isset( $options_fields['use_query_monitor_backend'] ) || $options_fields['use_query_monitor_backend'] != true ) {
 	add_filter( 'qm/dispatch/html', function () {
 		// Restituisce false nelle pagine di amministrazione
 		// per disabilitare Query Monitor

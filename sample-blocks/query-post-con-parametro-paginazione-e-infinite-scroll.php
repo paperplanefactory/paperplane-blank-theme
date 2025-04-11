@@ -1,6 +1,6 @@
 <?php
 // alla classe del contenitore devo aggiungere il selettore ".grid-infinite"
-$page = get_query_var('paged');
+$page = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 $args_posts_paginati_infiniti = array(
   'post_type' => 'post',
   'posts_per_page' => 12,

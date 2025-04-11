@@ -1,9 +1,66 @@
 /////////////////////////////////////////////
+// Document language
+/////////////////////////////////////////////
+const lang_get = document.documentElement.lang || 'default';
+const lang = lang_get.split('-')[0].toLowerCase();
+
+/////////////////////////////////////////////
+// Configurazione accessibilità
+/////////////////////////////////////////////
+const ACCESSIBILITY_CONFIG = {
+  // Impostazioni per applicare automaticamente le preferenze di sistema
+  autoApplySystemPreferences: {
+    reducedMotion: false,      // Se true, applica automaticamente prefers-reduced-motion
+    darkMode: false,           // Se true, applica automaticamente prefers-color-scheme
+    highContrast: false,        // Se true, applica automaticamente prefers-contrast
+    reducedTransparency: false  // Se true, applica automaticamente prefers-reduced-transparency
+  }
+};
+
+/////////////////////////////////////////////
+// Rileva preferenze di sistema
+/////////////////////////////////////////////
+// Funzione per rilevare la capacità di supportare trasparenza ridotta basata su OS
+function detectReducedTransparencySupport() {
+  // Controlla se siamo su un sistema Apple (macOS/iOS)
+  const isAppleDevice = /Mac|iPad|iPhone|iPod/.test(navigator.userAgent);
+
+  // Debug media queries
+  const appleQuery = window.matchMedia('(-apple-prefers-reduced-transparency: reduce)');
+  const standardQuery = window.matchMedia('(prefers-reduced-transparency: reduce)');
+
+  // Se è un dispositivo Apple, possiamo provare a rilevare l'impostazione
+  if (isAppleDevice) {
+    const result = appleQuery.matches || standardQuery.matches;
+    return result;
+  }
+
+  // Per altri sistemi, possiamo usare solo il contrasto elevato come alternativa
+  return false;
+}
+
+const systemPreferences = {
+  isReduced: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  prefersDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
+  prefersHighContrast: window.matchMedia('(prefers-contrast: more)').matches,
+  prefersReducedTransparency: detectReducedTransparencySupport()
+};
+
+// Definisce la chiave costante per le preferenze
+const PREFERENCES_KEY = 'paperplane_user_preferences';
+
+/////////////////////////////////////////////
 // accessibility default
 /////////////////////////////////////////////
-const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)') === true || window.matchMedia('(prefers-reduced-motion: reduce)').matches === true;
+// Applica reduced motion in base alla configurazione
+const isReduced = ACCESSIBILITY_CONFIG.autoApplySystemPreferences.reducedMotion
+  ? systemPreferences.isReduced
+  : false;
 
 if (isReduced) {
+  // Applica l'attributo data-reduced-motion
+  document.documentElement.setAttribute('data-reduced-motion', 'true');
+
   // Per gli elementi con classe 'stoppable-js'
   document.querySelectorAll('.stoppable-js').forEach(el => {
     el.pause(); // Assumendo che siano elementi video/audio
@@ -19,48 +76,82 @@ if (isReduced) {
   var animation_duration = 0;
   var animation_duration_counter = 0;
 
-  // Nascondi il pulsante reduce-motion
-  document.querySelectorAll('.reduce-motion-button-js').forEach(el => {
-    el.classList.add('hidden');
+  // NON nascondere il pulsante reduce-motion anche se le preferenze di sistema sono attive
+  // Aggiorniamo solo il suo stato
+  document.querySelectorAll('.paperplane-reduce-motion-js').forEach(el => {
+    el.setAttribute('aria-checked', 'false');
   });
 } else {
   var animation_duration, animation_duration_counter;
+}
+
+// Applica dark mode in base alla configurazione
+if (ACCESSIBILITY_CONFIG.autoApplySystemPreferences.darkMode && systemPreferences.prefersDarkMode) {
+  document.documentElement.setAttribute('data-theme', 'dark');
+}
+
+// Applica high contrast o reduced transparency in base alla configurazione
+if ((ACCESSIBILITY_CONFIG.autoApplySystemPreferences.highContrast && systemPreferences.prefersHighContrast) ||
+  (ACCESSIBILITY_CONFIG.autoApplySystemPreferences.reducedTransparency && systemPreferences.prefersReducedTransparency)) {
+  document.documentElement.setAttribute('data-reduced-transparency', 'true');
 }
 
 /////////////////////////////////////////////
 // accessibility user
 /////////////////////////////////////////////
 
-const themeVersion = document.querySelector('meta[name=theme-version]').getAttribute('data-theme-version');
-
 function saveArrayToLocalStorage(arrayName, array) {
   localStorage.setItem(arrayName, JSON.stringify(array));
 }
+
+// Funzione centralizzata per salvare le preferenze sia in localStorage che come cookie
+function saveUserPreferences(preferences) {
+  // Salva in localStorage
+  saveArrayToLocalStorage(PREFERENCES_KEY, preferences);
+
+  // Salva come cookie (trasformando l'oggetto in JSON)
+  const expry_date_cookie = addHours(new Date(), (1 * 24) * 365);
+
+  document.cookie = PREFERENCES_KEY + "=" +
+    JSON.stringify(preferences) +
+    "; expires=" + expry_date_cookie + "; path=/";
+}
+
 function addHours(date, hours) {
   date.setTime(date.getTime() + hours * 60 * 60 * 1000);
   return date;
 }
-// Example usage
-//const myArray = { reduced_motion: 0, reduced_transparency: 0 };
-//saveArrayToLocalStorage('paperplane_user_preferences_', myArray);
 
-if (localStorage.getItem('paperplane_user_preferences_' + themeVersion) != null) {
+if (localStorage.getItem(PREFERENCES_KEY) != null) {
   const now = new Date();
   const paperplane_user_preferences_array = JSON.parse(
-    localStorage.getItem('paperplane_user_preferences_' + themeVersion),
+    localStorage.getItem(PREFERENCES_KEY)
   );
   Object.keys(paperplane_user_preferences_array).forEach(function (key) {
     if (key == 'expiry' && now.getTime() > paperplane_user_preferences_array[key]) {
-      localStorage.removeItem('paperplane_user_preferences_' + themeVersion);
+      localStorage.removeItem(PREFERENCES_KEY);
     }
   });
 }
 
-if (localStorage.getItem('paperplane_user_preferences_' + themeVersion) === null) {
+if (localStorage.getItem(PREFERENCES_KEY) === null) {
   const expry_date = addHours(new Date(), (1 * 24) * 365);
-  //const expry_date = addHours(new Date(), 1 / 60);
-  const initial_a11y_values = { expiry: expry_date.getTime(), reduced_motion: 1, reduced_transparency: 0, dark_mode: 0 };
-  saveArrayToLocalStorage('paperplane_user_preferences_' + themeVersion, initial_a11y_values);
+
+  // Imposta valori iniziali basati sulle preferenze del sistema
+  // Per reduced_transparency, impostiamo 1 se il sistema ha preferenze alto contrasto o trasparenza ridotta
+  const initialReducedMotion = ACCESSIBILITY_CONFIG.autoApplySystemPreferences.reducedMotion && systemPreferences.isReduced ? 0 : 1;
+  const initialReducedTransparency = systemPreferences.prefersHighContrast || systemPreferences.prefersReducedTransparency ? 1 : 0;
+  const initialDarkMode = ACCESSIBILITY_CONFIG.autoApplySystemPreferences.darkMode && systemPreferences.prefersDarkMode ? 1 : 0;
+
+  const initial_a11y_values = {
+    expiry: expry_date.getTime(),
+    reduced_motion: initialReducedMotion,
+    reduced_transparency: initialReducedTransparency,
+    dark_mode: initialDarkMode
+  };
+
+  // Salva sia in localStorage che come cookie
+  saveUserPreferences(initial_a11y_values);
 }
 
 document.addEventListener('click', function (e) {
@@ -68,7 +159,7 @@ document.addEventListener('click', function (e) {
   const target = e.target.closest('.paperplane-reduce-motion-js');
   if (target) {
     const paperplane_user_preferences_array = JSON.parse(
-      localStorage.getItem('paperplane_user_preferences_' + themeVersion)
+      localStorage.getItem(PREFERENCES_KEY)
     );
 
     Object.keys(paperplane_user_preferences_array).forEach(function (key) {
@@ -78,7 +169,8 @@ document.addEventListener('click', function (e) {
       }
     });
 
-    saveArrayToLocalStorage('paperplane_user_preferences_' + themeVersion, paperplane_user_preferences_array);
+    // Usa la nuova funzione per salvare sia in localStorage che come cookie
+    saveUserPreferences(paperplane_user_preferences_array);
     userSetAccessibility();
     e.preventDefault();
   }
@@ -89,7 +181,7 @@ document.addEventListener('click', function (e) {
   const target = e.target.closest('.paperplane-reduce-transparency-js');
   if (target) {
     const paperplane_user_preferences_array = JSON.parse(
-      localStorage.getItem('paperplane_user_preferences_' + themeVersion)
+      localStorage.getItem(PREFERENCES_KEY)
     );
 
     Object.keys(paperplane_user_preferences_array).forEach(function (key) {
@@ -99,7 +191,8 @@ document.addEventListener('click', function (e) {
       }
     });
 
-    saveArrayToLocalStorage('paperplane_user_preferences_' + themeVersion, paperplane_user_preferences_array);
+    // Usa la nuova funzione per salvare sia in localStorage che come cookie
+    saveUserPreferences(paperplane_user_preferences_array);
     userSetAccessibility();
     e.preventDefault();
   }
@@ -108,9 +201,8 @@ document.addEventListener('click', function (e) {
 document.addEventListener('click', function (e) {
   const target = e.target.closest('.paperplane-darkmode-js');
   if (target) {
-    const expry_date_cookie = addHours(new Date(), (1 * 24) * 365);
     const paperplane_user_preferences_array = JSON.parse(
-      localStorage.getItem('paperplane_user_preferences_' + themeVersion)
+      localStorage.getItem(PREFERENCES_KEY)
     );
 
     Object.keys(paperplane_user_preferences_array).forEach(function (key) {
@@ -118,18 +210,17 @@ document.addEventListener('click', function (e) {
         if (paperplane_user_preferences_array[key] == 1) {
           // Passa alla modalità chiara
           paperplane_user_preferences_array[key] = 0;
-          document.cookie = "dark_mode=0; SameSite=None; Secure; expires=" + expry_date_cookie + "";
-          document.body.setAttribute('data-theme-color', '');
+          document.documentElement.setAttribute('data-theme', 'light');
         } else if (paperplane_user_preferences_array[key] == 0) {
           // Passa alla modalità scura
           paperplane_user_preferences_array[key] = 1;
-          document.cookie = "dark_mode=1; SameSite=None; Secure; expires=" + expry_date_cookie + "";
-          document.body.setAttribute('data-theme-color', 'dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
         }
       }
     });
 
-    saveArrayToLocalStorage('paperplane_user_preferences_' + themeVersion, paperplane_user_preferences_array);
+    // Usa la nuova funzione per salvare sia in localStorage che come cookie
+    saveUserPreferences(paperplane_user_preferences_array);
     userSetAccessibility();
     e.preventDefault();
   }
@@ -137,82 +228,105 @@ document.addEventListener('click', function (e) {
 
 function userSetAccessibility() {
   const paperplane_user_preferences_options_array = JSON.parse(
-    localStorage.getItem('paperplane_user_preferences_' + themeVersion)
+    localStorage.getItem(PREFERENCES_KEY)
   );
+
+  // Flag per tenere traccia se le preferenze sono state modificate manualmente
+  const hasUserPreferences = (localStorage.getItem(PREFERENCES_KEY) !== null);
 
   Object.keys(paperplane_user_preferences_options_array).forEach(function (key) {
     // Gestione reduced motion
-    if ((key == 'reduced_motion' && paperplane_user_preferences_options_array[key] == 0) || isReduced) {
-      document.body.classList.add('body-reduced-motion');
+    if (key == 'reduced_motion') {
+      const useReducedMotion = paperplane_user_preferences_options_array[key] == 0 ||
+        (!hasUserPreferences && ACCESSIBILITY_CONFIG.autoApplySystemPreferences.reducedMotion &&
+          systemPreferences.isReduced);
 
-      // Gestione elementi stoppable
-      document.querySelectorAll('.stoppable-js').forEach(el => {
-        // Assumendo che siano elementi video/audio
-        if (el.pause) el.pause();
-      });
+      if (useReducedMotion) {
+        document.documentElement.setAttribute('data-reduced-motion', 'true');
 
-      // Gestione pulsanti play/pause
-      document.querySelectorAll('.animation-play-pause-js').forEach(el => {
-        el.classList.remove('pause');
-        el.classList.add('play');
-        el.setAttribute('aria-pressed', 'false');
-      });
+        // Gestione elementi stoppable
+        document.querySelectorAll('.stoppable-js').forEach(el => {
+          // Assumendo che siano elementi video/audio
+          if (el.pause) el.pause();
+        });
 
-      document.querySelectorAll('.paperplane-reduce-motion-js').forEach(el => {
-        el.setAttribute('aria-checked', 'false');
-      });
+        // Gestione pulsanti play/pause
+        document.querySelectorAll('.animation-play-pause-js').forEach(el => {
+          el.classList.remove('pause');
+          el.classList.add('play');
+          el.setAttribute('aria-pressed', 'false');
+        });
 
-      animation_duration = 0;
-      animation_duration_counter = 0;
-    }
-    else if (key == 'reduced_motion' && paperplane_user_preferences_options_array[key] == 1) {
-      document.body.classList.remove('body-reduced-motion');
+        document.querySelectorAll('.paperplane-reduce-motion-js').forEach(el => {
+          el.setAttribute('aria-checked', 'false');
+        });
 
-      document.querySelectorAll('.stoppable-js').forEach(el => {
-        // Assumendo che siano elementi video/audio
-        if (el.play) el.play();
-      });
+        animation_duration = 0;
+        animation_duration_counter = 0;
+      } else {
+        document.documentElement.removeAttribute('data-reduced-motion');
 
-      document.querySelectorAll('.animation-play-pause-js').forEach(el => {
-        el.classList.add('pause');
-        el.classList.remove('play');
-        el.setAttribute('aria-pressed', 'true');
-      });
+        document.querySelectorAll('.stoppable-js').forEach(el => {
+          // Assumendo che siano elementi video/audio
+          if (el.play) el.play();
+        });
 
-      document.querySelectorAll('.paperplane-reduce-motion-js').forEach(el => {
-        el.setAttribute('aria-checked', 'true');
-      });
+        document.querySelectorAll('.animation-play-pause-js').forEach(el => {
+          el.classList.add('pause');
+          el.classList.remove('play');
+          el.setAttribute('aria-pressed', 'true');
+        });
 
-      animation_duration = 500;
-      animation_duration_counter = 1500;
+        document.querySelectorAll('.paperplane-reduce-motion-js').forEach(el => {
+          el.setAttribute('aria-checked', 'true');
+        });
+
+        animation_duration = 500;
+        animation_duration_counter = 1500;
+      }
     }
 
     // Gestione reduced transparency
-    if (key == 'reduced_transparency' && paperplane_user_preferences_options_array[key] == 1) {
-      document.body.classList.add('body-reduced-transparency');
-      document.querySelectorAll('.paperplane-reduce-transparency-js').forEach(el => {
-        el.setAttribute('aria-checked', 'true');
-      });
-    }
-    else if (key == 'reduced_transparency' && paperplane_user_preferences_options_array[key] == 0) {
-      document.body.classList.remove('body-reduced-transparency');
-      document.querySelectorAll('.paperplane-reduce-transparency-js').forEach(el => {
-        el.setAttribute('aria-checked', 'false');
-      });
+    if (key == 'reduced_transparency') {
+      // IMPORTANTE: Qui ignoriamo hasUserPreferences e applichiamo le preferenze di sistema direttamente
+      // se l'utente ha impostato reduced_transparency su 1 nelle preferenze O
+      // se una delle preferenze di sistema è attiva
+      const useReducedTransparency = paperplane_user_preferences_options_array[key] == 1 ||
+        systemPreferences.prefersHighContrast ||
+        systemPreferences.prefersReducedTransparency;
+
+      if (useReducedTransparency) {
+        document.documentElement.setAttribute('data-reduced-transparency', 'true');
+        document.querySelectorAll('.paperplane-reduce-transparency-js').forEach(el => {
+          el.setAttribute('aria-checked', 'true');
+        });
+      } else {
+        document.documentElement.removeAttribute('data-reduced-transparency');
+        document.querySelectorAll('.paperplane-reduce-transparency-js').forEach(el => {
+          el.setAttribute('aria-checked', 'false');
+        });
+      }
     }
 
     // Gestione dark mode
-    if (key == 'dark_mode' && paperplane_user_preferences_options_array[key] == 1) {
-      // document.documentElement.setAttribute('data-theme-color', 'dark');
-      document.querySelectorAll('.paperplane-darkmode-js').forEach(el => {
-        el.setAttribute('aria-checked', 'true');
-      });
-    }
-    else if (key == 'dark_mode' && paperplane_user_preferences_options_array[key] == 0) {
-      // document.documentElement.setAttribute('data-theme-color', '');
-      document.querySelectorAll('.paperplane-darkmode-js').forEach(el => {
-        el.setAttribute('aria-checked', 'false');
-      });
+    if (key == 'dark_mode') {
+      const useDarkMode = paperplane_user_preferences_options_array[key] == 1 ||
+        (!hasUserPreferences && ACCESSIBILITY_CONFIG.autoApplySystemPreferences.darkMode &&
+          systemPreferences.prefersDarkMode);
+
+      if (useDarkMode) {
+        // Imposta attributo data-theme per la dark mode
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.querySelectorAll('.paperplane-darkmode-js').forEach(el => {
+          el.setAttribute('aria-checked', 'true');
+        });
+      } else {
+        // Imposta attributo data-theme per la light mode
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.querySelectorAll('.paperplane-darkmode-js').forEach(el => {
+          el.setAttribute('aria-checked', 'false');
+        });
+      }
     }
   });
 }
@@ -230,12 +344,15 @@ function acessibilityPanelHide() {
   }
 }
 
+// Aggiungi listener per lo scroll per nascondere/mostrare il pannello di accessibilità
+window.addEventListener('scroll', acessibilityPanelHide);
+
 /////////////////////////////////////////////
 // Video bg play/pause
 /////////////////////////////////////////////
 
 document.addEventListener('click', function (e) {
-  // Verifica se il target dell'evento è un elemento con la classe richiesta e non è ancora inizializzato
+  // Verifica se il target dell'evento è un elemento con la classe richiesta
   const target = e.target.closest('.animation-play-pause-js');
 
   if (target) {
@@ -432,324 +549,352 @@ function manipulateContent(e) {
 
 manipulateContent();
 
-/////////////////////////////////////////////
-// menu scroll effect
-/////////////////////////////////////////////
-
-var lastScrollTop = 0;
-
-function scrollDirectionMenu() {
-  var st = window.scrollY;
-  /*
-  if ((st > lastScrollTop) && (st > 100) && !document.querySelector('.hambuger-element').classList.contains('open')) {
-    // downscroll code
-    document.getElementById('header').classList.add('hidden');
-    document.querySelectorAll('.mega-menu-js').forEach(function(menu) {
-      menu.classList.add('hidden');
-    });
-    document.querySelectorAll('.mega-menu-js-trigger').forEach(function(trigger) {
-      trigger.classList.remove('clicked');
-    });
-    document.querySelectorAll('.header-menu-js > .menu-item-has-children > a').forEach(function(link) {
-      link.classList.remove('clicked');
-    });
-    document.querySelectorAll('.sub-menu').forEach(function(subMenu) {
-      subMenu.classList.remove('visible');
-    });
-  } else {
-    // upscroll code
-    document.getElementById('header').classList.remove('hidden');
-  }
-  */
-
-  if (st > 200) {
-    document.getElementById('header').classList.add('scrolled');
-  } else {
-    document.getElementById('header').classList.remove('scrolled');
-  }
-
-  lastScrollTop = st;
-}
 
 
 /////////////////////////////////////////////
-// hamburger
+// Menu System - Unified Management
 /////////////////////////////////////////////
 
-function hamburgerMenu(e) {
-  // Seleziona gli elementi principali
-  const hamActivator = document.querySelector('#hamburger-button');
-  const headOverlay = document.getElementById('head-overlay');
-  const scrollOpportunityOverlay = document.querySelector('.scroll-opportunity-overlay-js');
-  const header = document.getElementById('header'); // Seleziona l'header
+// Utility functions
+const MenuUtils = {
+  // Toggle body scroll with optional padding to prevent layout shift
+  toggleBodyScroll: function (disableScroll) {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-  // Controlla se il menu è aperto
-  const isOpen = hamActivator.classList.contains('open');
-
-  // Imposta lo stile di overflow per impedire o consentire lo scroll della pagina
-  document.documentElement.style.overflow = document.body.style.overflow = isOpen ? 'visible' : 'hidden';
-
-  // Aggiunge o rimuove la classe 'open' per mostrare/nascondere il menu
-  hamActivator.classList.toggle('open', !isOpen);
-
-  // Aggiorna l'attributo ARIA per migliorare l'accessibilità
-  hamActivator.setAttribute('aria-expanded', !isOpen);
-
-  // Mostra o nasconde l'overlay
-  headOverlay.classList.toggle('hidden', isOpen);
-
-  // Gestisce la classe scrolled sull'header in base alla visibilità dell'overlay
-  if (!headOverlay.classList.contains('hidden')) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-
-  // Se il menu viene aperto, reimposta la posizione di scorrimento dell'overlay
-  if (!isOpen && scrollOpportunityOverlay) {
-    scrollOpportunityOverlay.scrollTop = 0;
-  }
-
-  // Chiude eventuali sottomenu aperti
-  closeSubMenus();
-}
-
-// Funzione per chiudere il menu hamburger
-function closeHamburgerMenu() {
-  // Ripristina lo scroll
-  document.documentElement.style.overflow = "visible";
-  document.body.style.overflow = "visible";
-
-  // Ottieni gli elementi e verifica che esistano prima di usarli
-  const hamburger = document.querySelector(".ham-activator-js");
-  const header = document.getElementById("header");
-  const overlay = document.getElementById("head-overlay");
-
-  // Verifica e manipola gli elementi solo se esistono
-  if (hamburger) {
-    hamburger.classList.remove("open");
-    hamburger.setAttribute("aria-expanded", "false");
-  }
-
-  if (header) {
-    header.classList.remove("scrolled");
-  }
-
-  if (overlay) {
-    overlay.classList.add("hidden");
-  }
-}
-
-const lastOverlayLink = document.querySelector('#head-overlay a:last-of-type');
-if (lastOverlayLink) {
-  lastOverlayLink.addEventListener('keydown', function (event) {
-    if (event.key === 'Tab') {
-      closeSubMenus();
-    }
-  });
-}
-const hamburgerButton = document.getElementById('hamburger-button');
-if (hamburgerButton) {
-  hamburgerButton.addEventListener('click', hamburgerMenu);
-}
-
-
-const overlayNaviReset = document.querySelector('.overlay-navi-reset-js');
-if (overlayNaviReset) {
-  overlayNaviReset.addEventListener('focusin', function (e) {
-    document.querySelector('#hamburger-button').focus();
-    e.preventDefault();
-  });
-}
-
-
-let isPKeyPressed = false;
-let isEscKeyPressed = false;
-
-const headOverlayKeydown = document.querySelector('#head-overlay');
-if (headOverlayKeydown) {
-  headOverlayKeydown.addEventListener('keydown', function (event) {
-    if (event.key === 'p') {
-      isPKeyPressed = true;
-    }
-    if (event.key === 'Escape') {
-      isEscKeyPressed = true;
-    }
-
-    // Controlla se entrambi i tasti sono premuti contemporaneamente
-    if (isPKeyPressed && isEscKeyPressed) {
-      document.querySelector('.ham-activator-js').focus();
-      closeHamburgerMenu();
-    }
-  });
-  headOverlayKeydown.addEventListener('keyup', function (event) {
-    // Resetta lo stato dei tasti quando vengono rilasciati
-    if (event.key === 'p') {
-      isPKeyPressed = false;
-    }
-    if (event.key === 'Escape') {
-      isEscKeyPressed = false;
-    }
-  });
-}
-
-
-
-
-/////////////////////////////////////////////
-// mega menu
-/////////////////////////////////////////////
-
-// Ascolta click su elementi del documento
-document.addEventListener('click', function (e) {
-  // Verifica se l'elemento cliccato è un trigger del mega menu
-  if (!e.target.matches('.mega-menu-js-trigger')) return;
-
-  // Seleziona tutti gli altri trigger del mega menu
-  const otherTriggers = document.querySelectorAll('.mega-menu-js-trigger:not(.clicked)');
-
-  // Reset stato degli altri menu
-  otherTriggers.forEach(trigger => {
-    trigger.classList.remove('clicked');
-    trigger.setAttribute('aria-expanded', 'false');
-    const megaMenu = trigger.closest('.mega-menu-js');
-    if (megaMenu) {
-      megaMenu.classList.add('hidden');
-      megaMenu.setAttribute('aria-hidden', 'true');
-    }
-  });
-
-  // Ottiene ID del mega menu da gestire
-  const megamenuId = e.target.dataset.megamenuOpenId;
-
-  // Se il menu è già aperto, lo chiude
-  if (e.target.classList.contains('clicked')) {
-    e.target.classList.remove('clicked');
-    e.target.setAttribute('aria-expanded', 'false');
-    document.querySelector(`.mega-menu-js-${megamenuId}-target`).classList.add('hidden');
-    document.querySelector('.submenu-close-js').classList.remove('active');
-  }
-  // Altrimenti apre il menu
-  else {
-    e.target.classList.add('clicked');
-    e.target.setAttribute('aria-expanded', 'true');
-    document.querySelector(`.mega-menu-js-${megamenuId}-target`).classList.remove('hidden');
-    document.querySelector('.submenu-close-js').classList.add('active');
-  }
-
-  // Chiude menu hamburger
-  closeHamburgerMenu();
-});
-
-/////////////////////////////////////////////
-// sub menu desktop
-/////////////////////////////////////////////
-
-// Seleziona tutti i pulsanti dei sottomenu
-document.querySelectorAll('.header-menu-js > .menu-item-has-children > .sub-menu-btn').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    // Alterna la classe 'clicked'
-    btn.classList.toggle('clicked');
-
-    if (btn.classList.contains('clicked')) {
-      // Se cliccato, aggiungi la classe 'clicked' e imposta aria-expanded su true
-      btn.setAttribute('aria-expanded', 'true');
-      btn.parentElement.querySelector('.sub-menu').classList.add('visible');
-      document.querySelectorAll('.submenu-close-js').forEach(function (closeBtn) {
-        closeBtn.classList.add('active');
-      });
+    if (disableScroll) {
+      //document.documentElement.style.overflow = 'hidden';
+      //document.body.style.overflow = 'hidden';
+      //document.body.style.paddingRight = scrollbarWidth + 'px';
+      // Prevent header jump
+      const header = document.getElementById('header');
+      //if (header) header.style.paddingRight = scrollbarWidth + 'px';
     } else {
-      // Se non cliccato, rimuovi la classe 'clicked' e imposta aria-expanded su false
-      btn.setAttribute('aria-expanded', 'false');
-      btn.parentElement.querySelector('.sub-menu').classList.remove('visible');
-      document.querySelectorAll('.submenu-close-js').forEach(function (closeBtn) {
-        closeBtn.classList.remove('active');
-      });
+      //document.documentElement.style.overflow = 'visible';
+      //document.body.style.overflow = 'visible';
+      //document.body.style.paddingRight = '0';
+      const header = document.getElementById('header');
+      //if (header) header.style.paddingRight = '0';
     }
+  },
 
-    // Chiama la funzione closeHamburgerMenu, se definita
-    if (typeof closeHamburgerMenu === 'function') {
-      closeHamburgerMenu();
+  // Set accessibility attributes and toggle class
+  setElementState: function (element, isOpen, stateClass = 'open') {
+    if (isOpen) {
+      element.classList.add(stateClass);
+      element.setAttribute('aria-expanded', 'true');
+    } else {
+      element.classList.remove(stateClass);
+      element.setAttribute('aria-expanded', 'false');
     }
-  });
-});
+    return isOpen;
+  }
+};
 
+// Main Menu Manager
+const MenuManager = {
+  // Keep track of pressed keys for keyboard shortcuts
+  pressedKeys: new Set(),
+  // Track last scroll position
+  lastScrollTop: 0,
 
+  // Initialize all menu functionality
+  init: function () {
+    this.setupHamburgerMenu();
+    this.setupMegaMenu();
+    this.setupSubMenus();
+    this.setupKeyboardHandlers();
+    this.setupMenuClosers();
 
-/////////////////////////////////////////////
-// sub menu overlay
-/////////////////////////////////////////////
+    // Add scroll event listener for menu scroll effect
+    window.addEventListener('scroll', () => this.scrollDirectionMenu());
+  },
 
-document.querySelectorAll('.overlay-menu-mobile-js > .menu-item-has-children').forEach(function (el) {
-  if (el.classList.contains('mobile-open-default')) {
-    const subMenuBtn = el.querySelector('.sub-menu-btn');
-    if (subMenuBtn) {
-      subMenuBtn.classList.add('clicked');
-      const subMenu = subMenuBtn.nextElementSibling;
-      if (subMenu && subMenu.classList.contains('sub-menu')) {
-        subMenu.classList.add('visible');
+  // Handle hamburger menu toggle
+  toggleHamburgerMenu: function (forceClose = false) {
+    const hamActivator = document.querySelector('#hamburger-button');
+    const headOverlay = document.getElementById('head-overlay');
+    const scrollOpportunityOverlay = document.querySelector('.scroll-opportunity-overlay-js');
+    const header = document.getElementById('header');
+    const pageContent = document.getElementById('page-content');
+
+    // Determine state
+    let isOpen = hamActivator.classList.contains('open');
+    if (forceClose) isOpen = true; // Force close logic
+
+    // Toggle scroll behavior
+    MenuUtils.toggleBodyScroll(!isOpen);
+
+    // Update UI state
+    MenuUtils.setElementState(hamActivator, !isOpen, 'open');
+    headOverlay.classList.toggle('hidden', isOpen);
+
+    // Handle header/content positioning
+    if (!isOpen) {
+      header.classList.add('fixed');
+      if (pageContent) {
+        const headerHeight = header.offsetHeight;
+        pageContent.style.marginTop = headerHeight + 'px';
+      }
+    } else {
+      header.classList.remove('fixed');
+      if (pageContent) {
+        pageContent.style.marginTop = '0';
       }
     }
-  }
-});
 
-
-document.addEventListener('click', e => {
-  const button = e.target.closest('.overlay-menu-mobile-js > .menu-item-has-children > .sub-menu-btn');
-  if (!button) return;
-
-  const subMenu = button.parentElement.querySelector('.sub-menu');
-  const isOpen = button.classList.contains('clicked');
-
-  button.classList.toggle('clicked');
-  button.setAttribute('aria-expanded', !isOpen);
-  subMenu.classList.toggle('visible');
-});
-
-/////////////////////////////////////////////
-// close_sub menus
-/////////////////////////////////////////////
-
-
-function closeSubMenus() {
-  // Nascondi tutti i mega menu
-  document.querySelectorAll('.mega-menu-js').forEach(menu => menu.classList.add('hidden'));
-
-  // Rimuovi classe 'clicked' dai trigger dei mega menu
-  document.querySelectorAll('.mega-menu-js-trigger').forEach(trigger => trigger.classList.remove('clicked'));
-
-  // Reset pulsanti submenu nell'header
-  document.querySelectorAll('.header-menu-js > .menu-item-has-children > .sub-menu-btn').forEach(btn => {
-    btn.classList.remove('clicked');
-    btn.setAttribute('aria-expanded', 'false');
-  });
-
-  // Nascondi tutti i submenu
-  document.querySelectorAll('.header-menu-js > .menu-item-has-children > .sub-menu').forEach(menu => menu.classList.remove('visible'));
-
-  // Disattiva pulsanti di chiusura
-  document.querySelectorAll('.submenu-close-js').forEach(close => close.classList.remove('active'));
-}
-
-document.querySelectorAll('.header-menu .mega-menu-js-trigger, .header-menu .sub-menu-btn, .header-menu .simple-link').forEach(element => {
-  element.addEventListener('focusin', closeSubMenus);
-});
-
-// Gestisci click sul pulsante di chiusura submenu
-document.addEventListener('click', e => {
-  if (e.target.matches('.submenu-close-js')) {
-    closeSubMenus();
-  }
-});
-
-// Aggiungi listener keydown per il tasto ESC su tutti i mega menu
-document.querySelectorAll('.mega-menu').forEach(menu => {
-  menu.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      closeSubMenus();
+    // Reset scroll position
+    if (!isOpen && scrollOpportunityOverlay) {
+      scrollOpportunityOverlay.scrollTop = 0;
     }
-  });
+
+    // Close submenus if opening hamburger
+    if (!isOpen) {
+      this.closeAllSubMenus();
+    } else {
+      // When closing the hamburger menu, update header background
+      this.updateHeaderBackground();
+    }
+
+    return !isOpen; // Return new state
+  },
+
+  // Close all mega menus and submenus
+  closeAllSubMenus: function () {
+    // Hide all mega menus
+    document.querySelectorAll('.mega-menu-js').forEach(menu =>
+      menu.classList.add('hidden'));
+
+    // Reset mega menu triggers
+    document.querySelectorAll('.mega-menu-js-trigger').forEach(trigger => {
+      trigger.classList.remove('clicked');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+
+    // Reset desktop submenus
+    document.querySelectorAll('.header-menu-js > .menu-item-has-children > .sub-menu-btn').forEach(btn => {
+      btn.classList.remove('clicked');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Hide all submenus
+    document.querySelectorAll('.sub-menu').forEach(menu =>
+      menu.classList.remove('visible'));
+
+    // Reset close buttons
+    document.querySelectorAll('.submenu-close-js').forEach(close =>
+      close.classList.remove('active'));
+
+    // Check if we need to keep header backgrounded based on scroll position
+    this.updateHeaderBackground();
+  },
+
+  // Setup hamburger menu events
+  setupHamburgerMenu: function () {
+    const hamburgerButton = document.getElementById('hamburger-button');
+    if (hamburgerButton) {
+      hamburgerButton.addEventListener('click', () => this.toggleHamburgerMenu());
+    }
+
+    // Handle overlay reset
+    const overlayNaviReset = document.querySelector('.overlay-navi-reset-js');
+    if (overlayNaviReset) {
+      overlayNaviReset.addEventListener('focusin', (e) => {
+        const hamburgerButton = document.querySelector('#hamburger-button');
+        if (hamburgerButton) hamburgerButton.focus();
+        e.preventDefault();
+      });
+    }
+  },
+
+  // Setup mega menu with delegated events
+  setupMegaMenu: function () {
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('.mega-menu-js-trigger');
+      if (!trigger) return;
+
+      // Get menu ID
+      const megamenuId = trigger.dataset.megamenuOpenId;
+      const megaMenu = document.querySelector(`.mega-menu-js-${megamenuId}-target`);
+      const header = document.getElementById('header');
+      const isOpen = trigger.classList.contains('clicked');
+
+      // Reset other mega menus first
+      document.querySelectorAll('.mega-menu-js-trigger').forEach(otherTrigger => {
+        if (otherTrigger !== trigger && otherTrigger.classList.contains('clicked')) {
+          otherTrigger.classList.remove('clicked');
+          otherTrigger.setAttribute('aria-expanded', 'false');
+
+          const otherId = otherTrigger.dataset.megamenuOpenId;
+          const otherMenu = document.querySelector(`.mega-menu-js-${otherId}-target`);
+          if (otherMenu) otherMenu.classList.add('hidden');
+        }
+      });
+
+      // Toggle this menu
+      trigger.classList.toggle('clicked', !isOpen);
+      trigger.setAttribute('aria-expanded', !isOpen);
+
+      if (megaMenu) {
+        megaMenu.classList.toggle('hidden', isOpen);
+      }
+
+      // Toggle close button
+      const closeButton = document.querySelector('.submenu-close-js');
+      if (closeButton) closeButton.classList.toggle('active', !isOpen);
+
+      // Update header background state
+      this.updateHeaderBackground();
+
+      // Close hamburger menu
+      this.toggleHamburgerMenu(true);
+    });
+  },
+
+  // Setup sub menus with delegated events
+  setupSubMenus: function () {
+    // Desktop submenus
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.header-menu-js > .menu-item-has-children > .sub-menu-btn');
+      if (!btn) return;
+
+      const isOpen = btn.classList.contains('clicked');
+      const subMenu = btn.parentElement.querySelector('.sub-menu');
+
+      // Toggle button state
+      btn.classList.toggle('clicked', !isOpen);
+      btn.setAttribute('aria-expanded', !isOpen);
+
+      // Toggle submenu visibility
+      if (subMenu) {
+        subMenu.classList.toggle('visible', !isOpen);
+      }
+
+      // Toggle close button
+      document.querySelectorAll('.submenu-close-js').forEach(closeBtn => {
+        closeBtn.classList.toggle('active', !isOpen);
+      });
+
+      // Update header background state
+      this.updateHeaderBackground();
+
+      // Close hamburger
+      this.toggleHamburgerMenu(true);
+    });
+
+    // Mobile overlay submenus
+    document.addEventListener('click', (e) => {
+      const button = e.target.closest('.overlay-menu-mobile-js > .menu-item-has-children > .sub-menu-btn');
+      if (!button) return;
+
+      const subMenu = button.parentElement.querySelector('.sub-menu');
+      const isOpen = button.classList.contains('clicked');
+
+      button.classList.toggle('clicked', !isOpen);
+      button.setAttribute('aria-expanded', !isOpen);
+
+      if (subMenu) {
+        subMenu.classList.toggle('visible', !isOpen);
+      }
+
+      // Update header background state
+      this.updateHeaderBackground();
+    });
+  },
+
+  // Setup keyboard handlers for menu navigation
+  setupKeyboardHandlers: function () {
+    // Track pressed keys for keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      this.pressedKeys.add(e.key);
+
+      // P + ESC combination to close hamburger menu
+      if (this.pressedKeys.has('p') && this.pressedKeys.has('Escape')) {
+        const hamburgerButton = document.querySelector('.ham-activator-js');
+        if (hamburgerButton) hamburgerButton.focus();
+        this.toggleHamburgerMenu(true);
+      }
+
+      // ESC to close megamenus
+      if (e.key === 'Escape') {
+        // Only close menus if no modals are open
+        const openModals = document.querySelectorAll('.paperplane-modal:not(.hidden)');
+        if (openModals.length === 0) {
+          this.closeAllSubMenus();
+        }
+      }
+    });
+
+    // Clear keys on keyup
+    document.addEventListener('keyup', (e) => {
+      this.pressedKeys.delete(e.key);
+    });
+
+    // Handle tab navigation
+    const lastOverlayLink = document.querySelector('#head-overlay a:last-of-type');
+    if (lastOverlayLink) {
+      lastOverlayLink.addEventListener('keydown', (event) => {
+        if (event.key === 'Tab' && !event.shiftKey) {
+          this.closeAllSubMenus();
+        }
+      });
+    }
+  },
+
+  // Setup menu closers
+  setupMenuClosers: function () {
+    // Handle close submenu button
+    document.addEventListener('click', (e) => {
+      if (e.target.matches('.submenu-close-js')) {
+        this.closeAllSubMenus();
+      }
+    });
+
+    // Close menus when focusing certain elements
+    document.querySelectorAll('.header-menu .mega-menu-js-trigger, .header-menu .sub-menu-btn, .header-menu .simple-link').forEach(element => {
+      element.addEventListener('focusin', () => this.closeAllSubMenus());
+    });
+  },
+
+  // Handle menu scroll effect
+  scrollDirectionMenu: function () {
+    var st = window.scrollY;
+    this.updateHeaderBackground(st);
+    this.lastScrollTop = st;
+  },
+
+  // Update header background based on scroll position or menu state
+  updateHeaderBackground: function (scrollTop) {
+    const header = document.getElementById('header');
+    if (!header) return;
+
+    // If scrollTop not provided, use current scroll position
+    const st = scrollTop !== undefined ? scrollTop : window.scrollY;
+
+    // Check for any open menus that should force the background
+    const hasOpenMenus = document.querySelector('.mega-menu-js-trigger.clicked') ||
+      document.querySelector('.header-menu-js > .menu-item-has-children > .sub-menu-btn.clicked') ||
+      document.querySelector('#hamburger-button.open');
+
+    // Add backgrounded if scroll is beyond threshold OR any menu is open
+    if (st > 200 || hasOpenMenus) {
+      header.classList.add('backgrounded');
+    } else {
+      header.classList.remove('backgrounded');
+    }
+  }
+};
+
+// Initializing the Menu Manager (in place of original hamburgerMenu function)
+document.addEventListener('DOMContentLoaded', () => {
+  MenuManager.init();
 });
+
+// Funzione globale per compatibilità con codice esistente
+function scrollDirectionMenu() {
+  if (MenuManager) {
+    MenuManager.scrollDirectionMenu();
+  }
+}
 
 /////////////////////////////////////////////
 // Modals
@@ -773,7 +918,7 @@ document.addEventListener('click', function (e) {
     }
 
     document.documentElement.style.overflow = 'hidden';
-    closeHamburgerMenu();
+    MenuManager.toggleHamburgerMenu(true);
     e.preventDefault();
   }
 });
@@ -805,6 +950,9 @@ document.querySelectorAll('.paperplane-modal').forEach(function (modal) {
   const elementiMarcabili = modal.querySelectorAll('button:not([hidden]), a, input:not([type=hidden]), select, textarea, [tabindex]:not([tabindex="-1"])');
 
   // Aggiungi un event listener per i tasti premuti sul modal
+  modal.addEventListener('keydown', gestisciTastiModal);
+
+  // Se ci sono elementi focusabili, aggiungi gli// Aggiungi un event listener per i tasti premuti sul modal
   modal.addEventListener('keydown', gestisciTastiModal);
 
   // Se ci sono elementi focusabili, aggiungi gli event listener sul primo e sull'ultimo
@@ -888,9 +1036,17 @@ if (window.location.hash) {
 // Slick slideshow
 /////////////////////////////////////////////
 
-const slider = document.querySelector('.slider-single-js');
+const slider = document.querySelector('.slider-images-js');
 const nextButton = document.querySelector('.slide-next-slider-single-js');
 const prevButton = document.querySelector('.slide-prev-slider-single-js');
+if (lang === 'it') {
+  nextSlideLabel = 'Slide successiva';
+  prevSlideLabel = 'Slide precedente';
+}
+else {
+  nextSlideLabel = 'Next slide';
+  prevSlideLabel = 'Previous slide';
+}
 
 if (slider) {
   // Aggiunge l'evento `init` e `reInit` per aggiornare AOS
@@ -900,45 +1056,21 @@ if (slider) {
   slider.addEventListener('reInit', function () {
     AOS.refresh();
   });
-  /*
-      // Imposta inizialmente il pulsante "prev" come disabilitato
-      slider.addEventListener('init', function () {
-        prevButton.setAttribute('disabled', 'disabled');
-      });
-  
-      // Evento `afterChange` per abilitare/disabilitare i pulsanti in base allo slide corrente
-      slider.addEventListener('afterChange', function (event, slick, currentSlide) {
-        const totalSlides = slick.slideCount;
-        const currentSlideIndex = currentSlide + 1;
-  
-        // Disabilita il pulsante "next" se siamo sull'ultimo slide
-        if (currentSlideIndex === totalSlides) {
-          nextButton.setAttribute('disabled', 'disabled');
-        } else {
-          nextButton.removeAttribute('disabled');
-        }
-  
-        // Disabilita il pulsante "prev" se siamo sul primo slide
-        if (currentSlideIndex === 1) {
-          prevButton.setAttribute('disabled', 'disabled');
-        } else {
-          prevButton.removeAttribute('disabled');
-        }
-      });
-  */
+
   // Inizializza lo slider Slick con le opzioni
-  $(slider).slick({
+  $('.slider-images-js').slick({
     focusOnSelect: false,
     draggable: true,
-    infinite: false,
+    infinite: true,
     accessibility: true,
     adaptiveHeight: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
     dots: true,
-    nextArrow: '<button class="slick-next">→</button>',
-    prevArrow: '<button class="slick-prev">←</button>',
+    variableWidth: true,
+    nextArrow: '<button class="slick-next"><span class="screen-reader-text">' + nextSlideLabel + '</span></button>',
+    prevArrow: '<button class="slick-prev"><span class="screen-reader-text">' + prevSlideLabel + '</span></button>',
     responsive: [{
       breakpoint: 1024,
       settings: {
@@ -947,23 +1079,71 @@ if (slider) {
       }
     }]
   });
-  /*
-      // Aggiunge eventi click ai pulsanti per cambiare slide
-      nextButton.addEventListener('click', function () {
-        $(slider).slick('slickNext');
-      });
-      prevButton.addEventListener('click', function () {
-        $(slider).slick('slickPrev');
-      });
-      */
 }
+
+
+
+function adjustCaptionWidths() {
+  // Seleziona tutte le slide attive
+  const activeSlides = document.querySelectorAll('.slick-slide.slick-active');
+
+  activeSlides.forEach(slideContainer => {
+    // Trova l'immagine all'interno della slide
+    const img = slideContainer.querySelector('.slide img');
+
+    // Trova la didascalia correlata
+    const caption = slideContainer.querySelector('.slide-caption');
+
+    if (img && caption) {
+      // Ottieni la larghezza reale dell'immagine renderizzata
+      const imgWidth = img.offsetWidth;
+
+      // Imposta la larghezza della didascalia
+      caption.style.width = `${imgWidth}px`;
+
+      // Rimuovi la classe hidden dalla didascalia
+      caption.classList.remove('hidden');
+    }
+  });
+}
+
+// Aggancia a Slick Slider events
+document.addEventListener('DOMContentLoaded', function () {
+  // Assumi che lo slider sia già inizializzato con un ID o classe
+  const slider = document.querySelector('.slider-images-js'); // Aggiorna con il selettore corretto
+
+  if (slider && typeof $(slider).slick === 'function') {
+    // Usa l'evento init di Slick
+    $(slider).on('init reInit afterChange', function () {
+      // Attendi un po' per assicurarti che il rendering sia completo
+      setTimeout(adjustCaptionWidths, 50);
+    });
+
+    // Se lo slider è già stato inizializzato, aggiusta subito
+    if (document.querySelectorAll('.slick-initialized').length > 0) {
+      setTimeout(adjustCaptionWidths, 50);
+    }
+  }
+
+  // Fallback nel caso Slick non sia ancora inizializzato
+  setTimeout(adjustCaptionWidths, 500);
+});
+
+// Gestisci il ridimensionamento della finestra
+window.addEventListener('resize', function () {
+  // Aggiungi un ritardo per lasciare che Slick si stabilizzi
+  setTimeout(adjustCaptionWidths, 100);
+});
+
+// Aggiungi anche un listener per il caricamento delle immagini
+window.addEventListener('load', function () {
+  setTimeout(adjustCaptionWidths, 100);
+});
 
 
 /////////////////////////////////////////////
 // Numbers counter
 /////////////////////////////////////////////
-
-
 
 function numbersCounter() {
   const counts = document.querySelectorAll('.count');
@@ -1062,7 +1242,6 @@ expanders.forEach(expander => {
       expandButton.classList.remove('exp-close');
       expandButton.classList.add('exp-open');
       expandButton.setAttribute('aria-expanded', 'false');
-      //expandContent.style.display = 'block';
       expandContent.classList.remove('visible');
       expandCloseButton.setAttribute('aria-expanded', 'false');
       expandCloseButton.tabIndex = -1;
@@ -1072,7 +1251,6 @@ expanders.forEach(expander => {
       expandButton.classList.remove('exp-open');
       expandButton.classList.add('exp-close');
       expandButton.setAttribute('aria-expanded', 'true');
-      //expandContent.style.display = 'none';
       expandContent.classList.add('visible');
       expandCloseButton.setAttribute('aria-expanded', 'true');
       expandCloseButton.removeAttribute('tabindex');
@@ -1098,152 +1276,6 @@ expandersClose.forEach(expander => {
     elementsToToggle.button.setAttribute('aria-expanded', 'false');
     elementsToToggle.closeButton.setAttribute('aria-expanded', 'false');
   });
-});
-
-/////////////////////////////////////////////
-// Play video
-/////////////////////////////////////////////
-
-// Trova il primo tag script nel documento
-var firstScriptTag = document.getElementsByTagName('script')[0];
-
-// Flag per il caricamento dei video
-var load_youtube = false;
-var load_vimeo = false;
-
-// Seleziona tutti gli elementi con classe 'play-video-js'
-document.querySelectorAll('.play-video-js').forEach(function (element) {
-  // Ottiene il valore dell'attributo data-video-source
-  var video_source = element.getAttribute('data-video-source');
-  // alternativa: var video_source = element.dataset.videoSource;
-
-  // Imposta i flag in base al tipo di video
-  if (video_source == 'vimeo') {
-    load_vimeo = true;
-  }
-  if (video_source == 'youtube') {
-    load_youtube = true;
-  }
-});
-
-function add_video_platforms_apis() {
-  // Aggiungi preconnect per Vimeo
-  if (load_vimeo) {
-    // Crea il tag preconnect per Vimeo
-    var preconnectVimeo = document.createElement('link');
-    preconnectVimeo.rel = 'preconnect';
-    preconnectVimeo.href = 'https://player.vimeo.com';
-    preconnectVimeo.crossOrigin = 'anonymous';
-    document.head.appendChild(preconnectVimeo);
-
-    // Carica lo script Vimeo
-    var tag = document.createElement('script');
-    tag.src = "https://player.vimeo.com/api/player.js";
-    tag.async = true;
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  }
-
-  // Aggiungi preconnect per YouTube
-  if (load_youtube) {
-    // Crea il tag preconnect per YouTube
-    var preconnectYouTube = document.createElement('link');
-    preconnectYouTube.rel = 'preconnect';
-    preconnectYouTube.href = 'https://www.youtube.com';
-    preconnectYouTube.crossOrigin = 'anonymous';
-    document.head.appendChild(preconnectYouTube);
-
-    // Carica lo script YouTube
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    tag.async = true;
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  }
-}
-add_video_platforms_apis();
-
-
-// Aggiungi event listener per i click sui video
-document.addEventListener('click', function (e) {
-  // Verifica se l'elemento cliccato ha la classe 'play-video-js'
-  if (e.target.classList.contains('play-video-js')) {
-    // Ottieni i dati del video
-    var video_source = e.target.getAttribute('data-video-source');
-    var video_toplay = e.target.getAttribute('data-video-toplay');
-
-    // Nascondi l'elemento cliccato con fade out
-    fadeOut(e.target, 300);
-
-    // Gestione video Vimeo
-    if (video_source == 'vimeo') {
-      var iframe = document.getElementById(video_toplay);
-      var src = document.getElementById(video_toplay).getAttribute("data-src");
-
-      // Aggiorna gli attributi dell'iframe
-      var vimeoIframe = document.getElementById(video_toplay);
-      vimeoIframe.removeAttribute("data-src");
-      vimeoIframe.setAttribute('src', src);
-      vimeoIframe.setAttribute('aria-hidden', 'false');
-
-      // Inizializza e avvia il player Vimeo
-      var player = new Vimeo.Player(iframe);
-      player.play();
-
-      // Gestione pausa alla chiusura del modal
-      document.addEventListener('click', function (e) {
-        if (e.target.matches('.modal-close-js')) {
-          player.pause();
-        }
-      });
-    }
-
-    // Gestione video YouTube
-    if (video_source == 'youtube') {
-      var youtube_video_id = e.target.getAttribute('data-youtube-video-id');
-      var player;
-
-      document.getElementById(video_toplay).setAttribute('aria-hidden', 'false');
-
-      // Inizializza il player YouTube
-      player = new YT.Player(video_toplay, {
-        height: '360',
-        width: '640',
-        modestbranding: 1,
-        enablejsapi: 1,
-        videoId: youtube_video_id,
-        events: {
-          'onReady': onPlayerReady
-        }
-      });
-
-      // Funzione callback per l'avvio del video
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
-
-      // Gestione pausa alla chiusura del modal
-      document.addEventListener('click', function (e) {
-        if (e.target.matches('.modal-close-js')) {
-          player.pauseVideo();
-        }
-      });
-    }
-
-    // Gestione video caricati
-    if (video_source == 'upload-video') {
-      var videoElement = document.getElementById(video_toplay);
-      videoElement.play();
-      videoElement.setAttribute('aria-hidden', 'false');
-
-      // Gestione pausa alla chiusura del modal
-      document.addEventListener('click', function (e) {
-        if (e.target.matches('.modal-close-js:not(.initialized)')) {
-          videoElement.pause();
-        }
-      });
-    }
-
-    e.preventDefault();
-  }
 });
 
 // Funzione di utilità per il fadeOut
@@ -1275,7 +1307,6 @@ function fadeOut(element, duration) {
 function clearOverlayScroll() {
   // Ottieni la larghezza della finestra
   var clearOverlayScroll_window_width = window.innerWidth;
-  // oppure: var clearOverlayScroll_window_width = document.documentElement.clientWidth;
 
   // Verifica se l'overlay è visibile (non ha classe 'hidden')
   if (!document.getElementById('head-overlay').classList.contains('hidden')) {
@@ -1309,34 +1340,6 @@ window.addEventListener('DOMContentLoaded', () => {
     window.onbeforeunload = handleUnload;
   }
 });
-
-/*
-// link esterno
-// Crea una regex per il controllo del dominio corrente
-const hostRegex = new RegExp(location.host);
-
-// Seleziona tutti i link nella pagina
-document.querySelectorAll('a').forEach(link => {
- // Ottiene l'attributo href del link
- const href = link.getAttribute('href');
- 
- // Verifica le condizioni per cui NON aprire in nuova tab:
- // - contiene hashtag
- // - stesso dominio
- // - href non definito o vuoto
- if (href?.indexOf("#") >= 0 || 
-     hostRegex.test(href) || 
-     !href || 
-     href === '') {
-   return;
- }
- 
- // Imposta target _blank per i link esterni
- link.setAttribute('target', '_blank');
-});
-*/
-
-
 
 document.querySelectorAll('.remove-underline-js, .cta-holder a').forEach(function (element) {
   element.addEventListener('mouseenter', function () {
@@ -1374,20 +1377,9 @@ window.addEventListener('resize', function () {
   }, 200);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/////////////////////////////////////////////
+// Tracking System
+/////////////////////////////////////////////
 
 window.TrackingSystem = (function () {
   // Configurazione dei tracking ID per piattaforma e lingua
@@ -1513,8 +1505,6 @@ window.TrackingSystem = (function () {
         handleTracking(trackElement, event);
       }
     });
-
-    //console.log('Tracking system initialized');
   }
 
   // Debug helper
@@ -1549,8 +1539,6 @@ window.TrackingSystem = (function () {
     debug: checkTrackingSetup
   };
 })();
-//window.TrackingSystem.debug();
-//console.log(!!window.TrackingSystem);
 
 // Inizializzazione automatica quando il documento è pronto
 if (document.readyState === 'loading') {

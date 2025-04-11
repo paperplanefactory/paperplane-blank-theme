@@ -29,10 +29,16 @@
 
     .counter {
 
+      .as-h1,
       h2,
       h3 {
         display: inline-block;
         margin-bottom: 10px;
+      }
+
+      .counter-label {
+        display: block;
+        width: 100%;
       }
     }
 

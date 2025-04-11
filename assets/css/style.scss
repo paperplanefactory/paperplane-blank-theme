@@ -1,5 +1,5 @@
 // compileExpanded: style-expanded.css, compileCompressed: ../../style.min.css
-
+@use "sass:math";
 // a fine sviluppo commento i parziali che non utilizzo
 
 // imports globali
@@ -46,7 +46,7 @@
   @import 'mobile/module-slideshow';
   @import 'mobile/module-fullscreen-image';
   @import 'mobile/module-expanding-text-js';
-  @import 'mobile/module-banner';
+  @import 'mobile/banner';
   @import 'mobile/module-video';
   @import 'mobile/module-scroll-text';
   @import 'mobile/ctas';
@@ -64,8 +64,7 @@
   @import 'desktop/header-footer';
   @import 'desktop/a11y';
   @import 'desktop/mega-menu';
-  //@import 'desktop/typo';
-  @import 'desktop/typo-rem';
+  @import 'desktop/typo';
   @import 'desktop/page-opening';
   @import 'desktop/wrappers';
   @import 'desktop/grids';
@@ -78,7 +77,7 @@
   @import 'desktop/module-slideshow';
   @import 'desktop/module-fullscreen-image';
   @import 'desktop/module-expanding-text-js';
-  @import 'desktop/module-banner';
+  @import 'desktop/banner';
   @import 'desktop/module-video';
   @import 'desktop/module-scroll-text';
   @import 'desktop/ctas';

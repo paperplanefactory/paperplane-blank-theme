@@ -50,6 +50,16 @@ $module_stripe_vertical_aligment = $module['module_stripe_vertical_aligment'];
 							<!-- colonna -->
 							<div class="module-stripe-text fluid-typo" data-aos="fade-up" data-aos-delay="250">
 								<div class="spacer">
+									<?php if ( $stripe['stripe_pre_title'] ?? null ) : ?>
+										<p>
+											<?php echo $stripe['stripe_pre_title']; ?>
+										</p>
+									<?php endif; ?>
+									<?php if ( $stripe['stripe_title'] ?? null ) : ?>
+										<h2 class="txt-2">
+											<?php echo $stripe['stripe_title']; ?>
+										</h2>
+									<?php endif; ?>
 									<div class="content-styled last-child-no-margin">
 										<?php echo $stripe['module_stripe_repeater_content']; ?>
 									</div>
