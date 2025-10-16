@@ -20,13 +20,13 @@
     overflow: hidden;
 
     .slide {
-      padding-right: 32px;
+      padding-right: rem(32);
     }
   }
 }
 
 .slide-caption {
-  padding: 15px 10px 0 0;
+  padding: rem(15) rem(10) 0 0;
 }
 
 
@@ -36,9 +36,9 @@
 .slick-prev {
   position: absolute;
   z-index: 2;
-  bottom: 5px;
+  bottom: rem(5);
   cursor: pointer;
-  font-size: 30px;
+  font-size: rem(30);
 
   &.slick-disabled {
     opacity: 0.5;
@@ -47,38 +47,38 @@
 }
 
 .slick-prev {
-  right: 64px;
+  right: rem(64);
 }
 
 .slick-next {
-  right: 32px;
+  right: rem(32);
 }
 
 .paging-info {
   position: relative;
   display: block;
   width: 100%;
-  padding: 10px 0 0;
+  padding: rem(10) 0 0;
   text-align: center;
 }
 
 .slick-dots {
   text-align: center;
-  padding: 10px 0 0 0 !important;
+  padding: rem(10) 0 0 0 !important;
 
   li {
     display: inline-block;
-    margin: 0 5px;
+    margin: 0 rem(5);
 
     button {
-      width: 20px;
-      height: 20px;
+      width: rem(20);
+      height: rem(20);
       border: none;
       font-size: 0;
       margin: 0;
       padding: 0;
       @include transition(all 0.3s linear);
-      border-radius: 20px;
+      border-radius: rem(20);
       cursor: pointer;
     }
   }

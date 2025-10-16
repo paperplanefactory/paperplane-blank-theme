@@ -4,23 +4,23 @@
 
 .wp-caption.aligncenter,
 .wp-caption.alignnone {
-	margin-bottom: 15px;
+	margin-bottom: rem(15);
 }
 
 .wp-caption.alignleft,
 .wp-caption.alignright {
 	width: 50% !important;
-	margin-bottom: 15px;
+	margin-bottom: rem(15);
 }
 
 .wp-caption.alignleft {
 	float: left;
-	margin-right: 20px;
+	margin-right: rem(20);
 }
 
 .wp-caption.alignright {
 	float: right;
-	margin-left: 20px;
+	margin-left: rem(20);
 }
 
 .coverize {

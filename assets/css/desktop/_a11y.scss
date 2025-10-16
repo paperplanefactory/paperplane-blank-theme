@@ -10,8 +10,8 @@
     left: 0;
     z-index: 99;
     background-color: var(--color-4);
-    border: solid 2px var(--color-2);
-    padding: 10px 3px;
+    border: solid rem(2) var(--color-2);
+    padding: rem(10) rem(3);
     //transform: translate(-50%, -50%);
     transform: translate(0, 0);
     @include transition(all 0.3s ease-in-out);

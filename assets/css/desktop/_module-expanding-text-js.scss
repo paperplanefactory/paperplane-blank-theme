@@ -3,19 +3,24 @@
 @import '../global/mixin';
 
 .module-expanding-text {
-  .cta-holder {
-    margin: 32px 0 0;
+  .txt-max-width {
+    margin-bottom: $module-vertical-padding-smartphone;
   }
 }
 
 .expanding-block {
-  margin-bottom: 48px;
-  padding-bottom: 24px;
-  border-bottom: solid 1px var(--color-1);
+  margin-bottom: rem(24);
+  border: solid rem(2) var(--color-2);
+  border-radius: rem(12);
+  @include transition(all .3s ease-in-out);
+
+  &.hovered {
+    @include transition(transform .3s ease-in-out);
+    box-shadow: 0 0 0 rem(2) var(--color-1);
+  }
 
   &:last-child {
     margin-bottom: 0;
-    border-bottom: none;
   }
 
   .expander-top {
@@ -33,61 +38,50 @@
 
   .expander {
     position: relative;
-    line-height: 17px !important;
-    font-weight: $font-weight-2 !important;
-    padding-left: 25px !important;
+    width: 100%;
+    font-weight: $font-weight-2;
+    padding: rem(24) rem(24) rem(24) rem(63);
     text-align: left;
     border: none;
     background-color: transparent;
     color: var(--color-1);
-    font-family: $font-main;
-    font-weight: $font-weight-1;
-    font-size: $h4-size-desktop;
-    line-height: $h4-lineheight-desktop;
+    font-family: $font-sub;
+    font-weight: $font-weight-2;
+    font-size: rem($h4-size-desktop);
+    line-height: rem($h4-lineheight-desktop);
     cursor: pointer;
 
     &:hover {
       color: var(--color-2);
     }
 
-    &.exp-open {
-      .icon-js {
-        &:before {
-          content: "+";
-        }
-      }
-    }
-
     &.exp-close {
       .icon-js {
-        &:before {
-          content: "-";
-        }
+        transform: rotate(45deg);
       }
     }
 
     .icon-js {
       position: absolute;
-      left: 0;
-      font-weight: $font-weight-4;
+      top: rem(24);
+      left: rem(20);
+      font-size: rem($h4-size-desktop);
+      line-height: rem($h4-size-desktop);
+      text-align: center;
+      width: rem(30);
+      height: rem(30);
+      mask-image: url(assets/images/icons/icon-txt-expand.svg);
+      mask-repeat: no-repeat;
+      mask-size: contain;
+      mask-position: 0 0;
+      background-color: var(--color-2);
+      @include transition(transform .3s ease-in-out);
     }
   }
 
   .expandable-content {
-
-
     .inner {
-      padding-top: 15px;
-      padding-left: 25px;
+      padding: rem(24);
     }
-  }
-
-  .expander-closer {
-    font-family: $font-main;
-    font-size: $h6-size-desktop;
-    line-height: $h6-lineheight-desktop;
-    border: none;
-    background-color: transparent;
-    padding: 0;
   }
 }

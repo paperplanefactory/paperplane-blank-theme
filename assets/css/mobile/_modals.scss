@@ -4,32 +4,32 @@
 
 .paperplane-modal {
   .modal-box {
-    width: calc(100vw - 30px);
-    height: calc(100dvh - 30px);
-    padding: 75px 0 0;
+    width: calc(100vw - rem(30));
+    height: calc(100dvh - rem(30));
+    padding: rem(75) 0 0;
 
     .modal-title {
-      height: 75px;
-      padding: 24px 20px 0;
+      height: rem(75);
+      padding: rem(24) rem(20) 0;
     }
 
     .modal-close-button {
       position: absolute;
-      top: 24px;
-      right: 24px;
-      width: 32px;
+      top: rem(24);
+      right: rem(24);
+      width: rem(32);
       border: none;
-      height: 32px;
+      height: rem(32);
       background-color: transparent;
     }
 
     .insider {
-      padding: 0 20px 30px;
-      max-height: calc(100vh - 120px);
+      padding: 0 rem(20) rem(30);
+      max-height: calc(100vh - rem(120));
 
       .inner-message {
         .video-frame {
-          margin-bottom: 24px;
+          margin-bottom: rem(24);
         }
       }
     }

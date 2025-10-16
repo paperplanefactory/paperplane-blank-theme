@@ -132,43 +132,47 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 	include( locate_template( 'template-parts/grid/accessible-navi.php' ) );
 	?>
 	<div id="site-wrapper">
-		<div>
-			ciao<br>ciao
-			ciao<br>ciao
-			ciao<br>ciao
-		</div>
+		<?php if ( $options_fields_multilang['header_avviso'] ?? false ) : ?>
+			<div id="pre-header">
+				<div class="wrapper-padded">
+					<?php
+					mostraDettagliTestoAvanzata( $options_fields_multilang['header_avviso'], 50, 'Avviso importante', true );
+					?>
+
+				</div>
+			</div>
+		<?php endif; ?>
+
 		<header id="header" data-had-class="">
 			<div class="wrapper-padded">
-				<div class="">
-					<div id="header-structure">
-						<div class="logo">
-							<a href="<?php echo home_url(); ?>" rel="bookmark"
-								aria-label="<?php echo __( 'Visita la homepage di', 'paperPlane-blankTheme' ) . ' ' . get_bloginfo( 'name' ); ?>"></a>
-						</div>
-						<nav class="menu underlined-links-on-hover"
-							aria-label="<?php _e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
-							<?php
-							if ( has_nav_menu( 'header-menu' ) ) {
-								wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu header-menu-js' ) );
-							}
-							?>
-						</nav>
-						<div class="side-head">
-							<ul>
-								<li>
-									<button id="hamburger-button" class="hambuger-element" aria-haspopup="true"
-										aria-expanded="false" aria-controls="head-overlay">
-										<span class="screen-reader-text">
-											<?php _e( 'Accedi al menu ad hamburger, usa la combinazione p + esc per chuidere il menu', 'paperPlane-blankTheme' ); ?>
-										</span>
-										<span class="ham-bar ham-bar-1"></span>
-										<span class="ham-bar ham-bar-2"></span>
-										<span class="ham-bar ham-bar-3"></span>
-										<span class="ham-bar ham-bar-4"></span>
-									</button>
-								</li>
-							</ul>
-						</div>
+				<div id="header-structure">
+					<div class="logo">
+						<a href="<?php echo home_url(); ?>" rel="bookmark"
+							aria-label="<?php echo __( 'Visita la homepage di', 'paperPlane-blankTheme' ) . ' ' . get_bloginfo( 'name' ); ?>"></a>
+					</div>
+					<nav class="menu underlined-links-on-hover"
+						aria-label="<?php _e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
+						<?php
+						if ( has_nav_menu( 'header-menu' ) ) {
+							wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu header-menu-js' ) );
+						}
+						?>
+					</nav>
+					<div class="side-head">
+						<ul>
+							<li>
+								<button id="hamburger-button" class="hambuger-element" aria-haspopup="true"
+									aria-expanded="false" aria-controls="head-overlay">
+									<span class="screen-reader-text">
+										<?php _e( 'Accedi al menu ad hamburger, usa la combinazione p + esc per chuidere il menu', 'paperPlane-blankTheme' ); ?>
+									</span>
+									<span class="ham-bar ham-bar-1"></span>
+									<span class="ham-bar ham-bar-2"></span>
+									<span class="ham-bar ham-bar-3"></span>
+									<span class="ham-bar ham-bar-4"></span>
+								</button>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>

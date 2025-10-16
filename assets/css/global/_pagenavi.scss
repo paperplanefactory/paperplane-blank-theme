@@ -21,17 +21,17 @@
 
 .wp-pagenavi .previouspostslink {
 	display: inline-block;
-	margin: 0 20px 0 0;
+	margin: 0 rem(20) 0 0;
 }
 
 .wp-pagenavi .nextpostslink {
 	display: inline-block;
-	margin: 0 20px 0 0;
+	margin: 0 rem(20) 0 0;
 }
 
 .wp-pagenavi a {
 	display: inline-block;
-	margin: 0 20px 0 0;
+	margin: 0 rem(20) 0 0;
 	border: none !important;
 }
 
@@ -43,12 +43,12 @@
 
 .wp-pagenavi .page {
 	display: inline-block;
-	margin: 0 20px 0 0;
+	margin: 0 rem(20) 0 0;
 }
 
 .wp-pagenavi span.current {
 	display: inline-block;
-	margin: 0 20px 0 0;
+	margin: 0 rem(20) 0 0;
 	border: none !important;
 	opacity: 0.5;
 }

@@ -8,7 +8,7 @@
   }
 
   .stripe-listed {
-    margin-bottom: 100px;
+    margin-bottom: rem(80);
 
     &:last-of-type {
       margin-bottom: 0;
@@ -28,8 +28,8 @@
 
         .spacer {
           width: 100%;
-          padding: 20px 0 20px 50px;
-          max-width: 850px;
+          padding: rem(20) 0 rem(20) rem(50);
+          max-width: rem(850);
         }
       }
     }
@@ -48,8 +48,8 @@
 
         .spacer {
           width: 100%;
-          padding: 20px 50px 20px 0;
-          max-width: 850px;
+          padding: rem(20) rem(50) rem(20) 0;
+          max-width: rem(850);
           margin-left: auto;
         }
       }
@@ -57,12 +57,10 @@
 
     .cta-holder {
       text-align: inherit;
-      margin: 32px 0 0;
     }
   }
 
   .cta-holder {
     text-align: center;
-    margin: $module-vertical-padding-desktop 0 0;
   }
 }

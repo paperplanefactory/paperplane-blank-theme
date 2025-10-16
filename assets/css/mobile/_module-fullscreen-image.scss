@@ -36,10 +36,10 @@
     padding: 15vh 0;
 
     .module-fullscreen-texts {
-      max-width: 800px;
+      max-width: rem(800);
 
       &.aligncenter {
-        max-width: 950px;
+        max-width: rem(950);
         margin: 0 auto;
       }
 
@@ -47,9 +47,5 @@
         margin-left: auto;
       }
     }
-  }
-
-  .cta-holder {
-    margin: 32px 0 0;
   }
 }

@@ -62,13 +62,10 @@ $page_opening_text_align_horizontal_class = 'alignleft';
 					// options: sync, async
 					'decoding' => 'async',
 					// options: true, false - se false non mette contenitore intorno all'immagine
-					'image-wrap' => false
+					'image-wrap' => false,
 				);
-				$image_sizes = array(
-					// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
-					'desktop_hd' => 'full_desk_hd',
-					'mobile_hd' => 'full_desk_hd'
-				);
+				// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
+				$image_sizes = array( 'full_desk_hd', 'full_desk_hd' );
 				print_theme_image( $image_data, $image_appearance, $image_sizes );
 				?>
 			</div>

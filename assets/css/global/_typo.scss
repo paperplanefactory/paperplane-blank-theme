@@ -4,7 +4,17 @@
 
 @function rem($pixels) {
   @if type-of($pixels)=='number' {
-    @return math.div($pixels, 16) * 1rem;
+    $original: $pixels;
+
+    // Se ha un'unità, rimuovila per il calcolo
+    @if unit($pixels) !='' {
+      $pixels: math.div($pixels, 1px);
+    }
+
+    $result: math.div($pixels, 16) * 1rem;
+
+    // Restituisce il valore con commento
+    @return unquote("#{$result} /* #{$original} */");
   }
 
   @else {
@@ -28,6 +38,7 @@ h6 {
   font-family: $font-main;
 }
 
+summary,
 p,
 .as-p {
   font-family: $font-sub;
@@ -87,6 +98,17 @@ ul {
 }
 
 .content-styled {
+
+  a:link,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a:active,
+  a:hover {
+    text-decoration-thickness: rem(2);
+  }
+
   strong {
     font-weight: $font-weight-3;
   }
@@ -108,7 +130,7 @@ ul {
         position: relative;
         display: table-cell;
         content: '●';
-        padding: 0 10px 0 0;
+        padding: 0 rem(10) 0 0;
         color: var(--color-2);
       }
 
@@ -130,7 +152,7 @@ ul {
     overflow: hidden;
     position: relative;
     margin: 0;
-    padding: 0 0 0 20px;
+    padding: 0 0 0 rem(20);
     display: table-row;
 
     &:before {
@@ -142,7 +164,7 @@ ul {
       text-align: right;
       content: counter(li-counter)". ";
       counter-increment: li-counter;
-      padding: 0 15px 0 0;
+      padding: 0 rem(15) 0 0;
       color: var(--color-2);
     }
 
@@ -154,6 +176,6 @@ ul {
 }
 
 .blurred-counter {
-  @include define-blur(2px);
+  @include define-blur(rem(2));
   @include transition(all 0.3s linear);
 }

@@ -4,13 +4,13 @@
 
 .cards {
     &.flex-hold {
-        margin-top: 2px;
+        margin-top: rem(2);
     }
 }
 
 .card {
     position: relative;
-    border: solid 1px var(--color-1);
+    border: solid rem(1) var(--color-1);
     height: 100%;
     @include transition(all 0.3s linear);
 
@@ -20,7 +20,7 @@
 
 
     &:hover {
-        box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 0 0 rem(2) var(--color-1), inset 0 0 0 rem(4) var(--color-4);
 
         &.no-underline {
             box-shadow: none;
@@ -36,17 +36,17 @@
     }
 
     .card-image {
-        position: relative;
+        //position: relative;
         width: 100%;
     }
 
     .card-texts {
-        position: relative;
+        //position: relative;
         width: 100%;
     }
 
     .cta-holder {
-        position: relative;
+        //position: relative;
     }
 
     .card-link {
@@ -57,10 +57,6 @@
         display: block;
         width: 100%;
         height: 100%;
-
-        &:focus-visible {
-            background-color: transparent !important;
-        }
     }
 
     .preserve-text {

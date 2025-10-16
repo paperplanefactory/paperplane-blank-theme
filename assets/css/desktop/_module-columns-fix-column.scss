@@ -6,7 +6,7 @@
 
   .cta-holder {
     text-align: center;
-    margin: 64px 0 0;
+    margin: rem(64) 0 0;
   }
 
   .module-column-box {
@@ -14,21 +14,20 @@
       position: relative;
       display: inline-block;
       width: 100%;
-      margin-bottom: 24px;
+      margin-bottom: rem(24);
 
       .image-rounder {
-        width: 250px;
+        width: rem(250);
       }
 
       .image-icon {
         display: inline-block;
-        width: 100px;
+        width: rem(100);
       }
     }
 
     .cta-holder {
       text-align: inherit;
-      margin: 24px 0 0;
     }
   }
 

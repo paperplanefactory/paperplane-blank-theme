@@ -552,32 +552,12 @@ manipulateContent();
 
 
 /////////////////////////////////////////////
-// Menu System - Unified Management
+// Sistema Menu - Gestione Unificata
 /////////////////////////////////////////////
 
-// Utility functions
+// Funzioni di utilità
 const MenuUtils = {
-  // Toggle body scroll with optional padding to prevent layout shift
-  toggleBodyScroll: function (disableScroll) {
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-
-    if (disableScroll) {
-      //document.documentElement.style.overflow = 'hidden';
-      //document.body.style.overflow = 'hidden';
-      //document.body.style.paddingRight = scrollbarWidth + 'px';
-      // Prevent header jump
-      const header = document.getElementById('header');
-      //if (header) header.style.paddingRight = scrollbarWidth + 'px';
-    } else {
-      //document.documentElement.style.overflow = 'visible';
-      //document.body.style.overflow = 'visible';
-      //document.body.style.paddingRight = '0';
-      const header = document.getElementById('header');
-      //if (header) header.style.paddingRight = '0';
-    }
-  },
-
-  // Set accessibility attributes and toggle class
+  // Imposta attributi di accessibilità e alterna classe
   setElementState: function (element, isOpen, stateClass = 'open') {
     if (isOpen) {
       element.classList.add(stateClass);
@@ -587,17 +567,53 @@ const MenuUtils = {
       element.setAttribute('aria-expanded', 'false');
     }
     return isOpen;
+  },
+
+  // Calcola e applica le altezze degli elementi di navigazione
+  updateNavigationHeights: function () {
+    // Calcola l'altezza totale degli elementi di navigazione
+    let navigationElementsHeight = 0;
+    const preHeader = document.getElementById('pre-header');
+    const header = document.getElementById('header');
+
+    // Calcola l'altezza visibile del pre-header
+    if (preHeader) {
+      const preHeaderRect = preHeader.getBoundingClientRect();
+      if (preHeaderRect.bottom > 0) { // Almeno una parte è visibile
+        // Se parte del pre-header è fuori dal viewport (sopra), calcola solo la parte visibile
+        const visibleHeight = preHeaderRect.top < 0
+          ? preHeaderRect.bottom // Altezza dalla parte superiore del viewport fino al fondo del pre-header
+          : preHeaderRect.height; // Altezza completa se completamente visibile
+
+        navigationElementsHeight += visibleHeight;
+      }
+    }
+
+    if (header) navigationElementsHeight += header.offsetHeight;
+
+    // Applica la posizione top ai mega menu
+    const megaMenus = document.querySelectorAll('.mega-menu-js');
+    megaMenus.forEach(menu => {
+      menu.style.top = navigationElementsHeight + 'px';
+    });
+
+    // Applica SOLO l'altezza all'overlay
+    const headOverlay = document.getElementById('head-overlay');
+    if (headOverlay) {
+      headOverlay.style.height = `calc(100dvh - ${navigationElementsHeight}px)`;
+    }
   }
 };
 
-// Main Menu Manager
+
+// Gestore Menu Principale
 const MenuManager = {
-  // Keep track of pressed keys for keyboard shortcuts
+  // Memorizza i tasti premuti per scorciatoie da tastiera
   pressedKeys: new Set(),
-  // Track last scroll position
+  // Memorizza l'ultima posizione di scorrimento
   lastScrollTop: 0,
 
-  // Initialize all menu functionality
+  // Inizializza tutte le funzionalità del menu
   init: function () {
     this.setupHamburgerMenu();
     this.setupMegaMenu();
@@ -605,11 +621,17 @@ const MenuManager = {
     this.setupKeyboardHandlers();
     this.setupMenuClosers();
 
-    // Add scroll event listener for menu scroll effect
+    // Aggiunge ascoltatore di eventi per effetto menu durante lo scorrimento
     window.addEventListener('scroll', () => this.scrollDirectionMenu());
+
+    // Aggiunge ascoltatore di eventi per il ridimensionamento
+    window.addEventListener('resize', () => MenuUtils.updateNavigationHeights());
+
+    // Calcola le altezze iniziali
+    MenuUtils.updateNavigationHeights();
   },
 
-  // Handle hamburger menu toggle
+  // Gestisce l'attivazione del menu hamburger
   toggleHamburgerMenu: function (forceClose = false) {
     const hamActivator = document.querySelector('#hamburger-button');
     const headOverlay = document.getElementById('head-overlay');
@@ -617,18 +639,15 @@ const MenuManager = {
     const header = document.getElementById('header');
     const pageContent = document.getElementById('page-content');
 
-    // Determine state
+    // Determina lo stato
     let isOpen = hamActivator.classList.contains('open');
-    if (forceClose) isOpen = true; // Force close logic
+    if (forceClose) isOpen = true; // Logica per chiusura forzata
 
-    // Toggle scroll behavior
-    MenuUtils.toggleBodyScroll(!isOpen);
-
-    // Update UI state
+    // Aggiorna lo stato dell'UI
     MenuUtils.setElementState(hamActivator, !isOpen, 'open');
     headOverlay.classList.toggle('hidden', isOpen);
 
-    // Handle header/content positioning
+    // Gestisce il posizionamento dell'header/contenuto
     if (!isOpen) {
       header.classList.add('fixed');
       if (pageContent) {
@@ -642,60 +661,60 @@ const MenuManager = {
       }
     }
 
-    // Reset scroll position
+    // Resetta la posizione di scorrimento
     if (!isOpen && scrollOpportunityOverlay) {
       scrollOpportunityOverlay.scrollTop = 0;
     }
 
-    // Close submenus if opening hamburger
+    // Chiude i sottomenu se si apre l'hamburger
     if (!isOpen) {
       this.closeAllSubMenus();
     } else {
-      // When closing the hamburger menu, update header background
+      // Quando si chiude il menu hamburger, aggiorna lo sfondo dell'intestazione
       this.updateHeaderBackground();
     }
 
-    return !isOpen; // Return new state
+    return !isOpen; // Restituisce il nuovo stato
   },
 
-  // Close all mega menus and submenus
+  // Chiude tutti i mega menu e i sottomenu
   closeAllSubMenus: function () {
-    // Hide all mega menus
+    // Nasconde tutti i mega menu
     document.querySelectorAll('.mega-menu-js').forEach(menu =>
       menu.classList.add('hidden'));
 
-    // Reset mega menu triggers
+    // Resetta gli attivatori del mega menu
     document.querySelectorAll('.mega-menu-js-trigger').forEach(trigger => {
       trigger.classList.remove('clicked');
       trigger.setAttribute('aria-expanded', 'false');
     });
 
-    // Reset desktop submenus
+    // Resetta i sottomenu desktop
     document.querySelectorAll('.header-menu-js > .menu-item-has-children > .sub-menu-btn').forEach(btn => {
       btn.classList.remove('clicked');
       btn.setAttribute('aria-expanded', 'false');
     });
 
-    // Hide all submenus
+    // Nasconde tutti i sottomenu
     document.querySelectorAll('.sub-menu').forEach(menu =>
       menu.classList.remove('visible'));
 
-    // Reset close buttons
+    // Resetta i pulsanti di chiusura
     document.querySelectorAll('.submenu-close-js').forEach(close =>
       close.classList.remove('active'));
 
-    // Check if we need to keep header backgrounded based on scroll position
+    // Verifica se è necessario mantenere lo sfondo dell'intestazione in base alla posizione di scorrimento
     this.updateHeaderBackground();
   },
 
-  // Setup hamburger menu events
+  // Configura gli eventi del menu hamburger
   setupHamburgerMenu: function () {
     const hamburgerButton = document.getElementById('hamburger-button');
     if (hamburgerButton) {
       hamburgerButton.addEventListener('click', () => this.toggleHamburgerMenu());
     }
 
-    // Handle overlay reset
+    // Gestisce il reset dell'overlay
     const overlayNaviReset = document.querySelector('.overlay-navi-reset-js');
     if (overlayNaviReset) {
       overlayNaviReset.addEventListener('focusin', (e) => {
@@ -706,19 +725,19 @@ const MenuManager = {
     }
   },
 
-  // Setup mega menu with delegated events
+  // Configura il mega menu con eventi delegati
   setupMegaMenu: function () {
     document.addEventListener('click', (e) => {
       const trigger = e.target.closest('.mega-menu-js-trigger');
       if (!trigger) return;
 
-      // Get menu ID
+      // Ottiene l'ID del menu
       const megamenuId = trigger.dataset.megamenuOpenId;
       const megaMenu = document.querySelector(`.mega-menu-js-${megamenuId}-target`);
       const header = document.getElementById('header');
       const isOpen = trigger.classList.contains('clicked');
 
-      // Reset other mega menus first
+      // Resetta prima gli altri mega menu
       document.querySelectorAll('.mega-menu-js-trigger').forEach(otherTrigger => {
         if (otherTrigger !== trigger && otherTrigger.classList.contains('clicked')) {
           otherTrigger.classList.remove('clicked');
@@ -730,7 +749,7 @@ const MenuManager = {
         }
       });
 
-      // Toggle this menu
+      // Alterna questo menu
       trigger.classList.toggle('clicked', !isOpen);
       trigger.setAttribute('aria-expanded', !isOpen);
 
@@ -738,21 +757,24 @@ const MenuManager = {
         megaMenu.classList.toggle('hidden', isOpen);
       }
 
-      // Toggle close button
+      // Alterna il pulsante di chiusura
       const closeButton = document.querySelector('.submenu-close-js');
       if (closeButton) closeButton.classList.toggle('active', !isOpen);
 
-      // Update header background state
+      // Aggiorna lo stato dello sfondo dell'header
       this.updateHeaderBackground();
 
-      // Close hamburger menu
+      // Chiude il menu hamburger
       this.toggleHamburgerMenu(true);
+
+      // Aggiorna le altezze di navigazione
+      MenuUtils.updateNavigationHeights();
     });
   },
 
-  // Setup sub menus with delegated events
+  // Configura i sottomenu con eventi delegati
   setupSubMenus: function () {
-    // Desktop submenus
+    // Sottomenu desktop
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.header-menu-js > .menu-item-has-children > .sub-menu-btn');
       if (!btn) return;
@@ -760,28 +782,28 @@ const MenuManager = {
       const isOpen = btn.classList.contains('clicked');
       const subMenu = btn.parentElement.querySelector('.sub-menu');
 
-      // Toggle button state
+      // Alterna lo stato del pulsante
       btn.classList.toggle('clicked', !isOpen);
       btn.setAttribute('aria-expanded', !isOpen);
 
-      // Toggle submenu visibility
+      // Alterna la visibilità del sottomenu
       if (subMenu) {
         subMenu.classList.toggle('visible', !isOpen);
       }
 
-      // Toggle close button
+      // Alterna il pulsante di chiusura
       document.querySelectorAll('.submenu-close-js').forEach(closeBtn => {
         closeBtn.classList.toggle('active', !isOpen);
       });
 
-      // Update header background state
+      // Aggiorna lo stato dello sfondo dell'header
       this.updateHeaderBackground();
 
-      // Close hamburger
+      // Chiude l'hamburger
       this.toggleHamburgerMenu(true);
     });
 
-    // Mobile overlay submenus
+    // Sottomenu mobile overlay
     document.addEventListener('click', (e) => {
       const button = e.target.closest('.overlay-menu-mobile-js > .menu-item-has-children > .sub-menu-btn');
       if (!button) return;
@@ -796,27 +818,27 @@ const MenuManager = {
         subMenu.classList.toggle('visible', !isOpen);
       }
 
-      // Update header background state
+      // Aggiorna lo stato dello sfondo dell'header
       this.updateHeaderBackground();
     });
   },
 
-  // Setup keyboard handlers for menu navigation
+  // Configura i gestori da tastiera per la navigazione del menu
   setupKeyboardHandlers: function () {
-    // Track pressed keys for keyboard shortcuts
+    // Traccia i tasti premuti per le scorciatoie da tastiera
     document.addEventListener('keydown', (e) => {
       this.pressedKeys.add(e.key);
 
-      // P + ESC combination to close hamburger menu
+      // Combinazione P + ESC per chiudere il menu hamburger
       if (this.pressedKeys.has('p') && this.pressedKeys.has('Escape')) {
         const hamburgerButton = document.querySelector('.ham-activator-js');
         if (hamburgerButton) hamburgerButton.focus();
         this.toggleHamburgerMenu(true);
       }
 
-      // ESC to close megamenus
+      // ESC per chiudere i megamenu
       if (e.key === 'Escape') {
-        // Only close menus if no modals are open
+        // Chiude i menu solo se non ci sono modali aperte
         const openModals = document.querySelectorAll('.paperplane-modal:not(.hidden)');
         if (openModals.length === 0) {
           this.closeAllSubMenus();
@@ -824,12 +846,12 @@ const MenuManager = {
       }
     });
 
-    // Clear keys on keyup
+    // Cancella i tasti su keyup
     document.addEventListener('keyup', (e) => {
       this.pressedKeys.delete(e.key);
     });
 
-    // Handle tab navigation
+    // Gestisce la navigazione con tab
     const lastOverlayLink = document.querySelector('#head-overlay a:last-of-type');
     if (lastOverlayLink) {
       lastOverlayLink.addEventListener('keydown', (event) => {
@@ -840,42 +862,45 @@ const MenuManager = {
     }
   },
 
-  // Setup menu closers
+  // Configura i dispositivi di chiusura del menu
   setupMenuClosers: function () {
-    // Handle close submenu button
+    // Gestisce il pulsante di chiusura sottomenu
     document.addEventListener('click', (e) => {
       if (e.target.matches('.submenu-close-js')) {
         this.closeAllSubMenus();
       }
     });
 
-    // Close menus when focusing certain elements
+    // Chiude i menu quando si mette a fuoco certi elementi
     document.querySelectorAll('.header-menu .mega-menu-js-trigger, .header-menu .sub-menu-btn, .header-menu .simple-link').forEach(element => {
       element.addEventListener('focusin', () => this.closeAllSubMenus());
     });
   },
 
-  // Handle menu scroll effect
+  // Gestisce l'effetto di scorrimento del menu
   scrollDirectionMenu: function () {
     var st = window.scrollY;
     this.updateHeaderBackground(st);
     this.lastScrollTop = st;
+
+    // Aggiorna le altezze di navigazione durante lo scorrimento
+    MenuUtils.updateNavigationHeights();
   },
 
-  // Update header background based on scroll position or menu state
+  // Aggiorna lo sfondo dell'header in base alla posizione di scorrimento o allo stato del menu
   updateHeaderBackground: function (scrollTop) {
     const header = document.getElementById('header');
     if (!header) return;
 
-    // If scrollTop not provided, use current scroll position
+    // Se scrollTop non è fornito, usa la posizione di scorrimento corrente
     const st = scrollTop !== undefined ? scrollTop : window.scrollY;
 
-    // Check for any open menus that should force the background
+    // Verifica la presenza di menu aperti che dovrebbero forzare lo sfondo
     const hasOpenMenus = document.querySelector('.mega-menu-js-trigger.clicked') ||
       document.querySelector('.header-menu-js > .menu-item-has-children > .sub-menu-btn.clicked') ||
       document.querySelector('#hamburger-button.open');
 
-    // Add backgrounded if scroll is beyond threshold OR any menu is open
+    // Aggiunge sfondo se lo scorrimento supera la soglia O se un menu è aperto
     if (st > 200 || hasOpenMenus) {
       header.classList.add('backgrounded');
     } else {
@@ -884,7 +909,7 @@ const MenuManager = {
   }
 };
 
-// Initializing the Menu Manager (in place of original hamburgerMenu function)
+// Inizializzazione del Gestore Menu (al posto della funzione hamburgerMenu originale)
 document.addEventListener('DOMContentLoaded', () => {
   MenuManager.init();
 });
@@ -1069,8 +1094,8 @@ if (slider) {
     arrows: true,
     dots: true,
     variableWidth: true,
-    nextArrow: '<button class="slick-next"><span class="screen-reader-text">' + nextSlideLabel + '</span></button>',
-    prevArrow: '<button class="slick-prev"><span class="screen-reader-text">' + prevSlideLabel + '</span></button>',
+    nextArrow: '<button class="slick-next element-icon-after"><span class="screen-reader-text" aria-hiden="true">' + nextSlideLabel + '</span></button>',
+    prevArrow: '<button class="slick-prev element-icon-after"><span class="screen-reader-text" aria-hiden="true">' + prevSlideLabel + '</span></button>',
     responsive: [{
       breakpoint: 1024,
       settings: {
@@ -1223,7 +1248,29 @@ document.addEventListener('click', function (e) {
 // Seleziona tutti gli elementi con la classe "expander"
 const expanders = document.querySelectorAll('.expander');
 
-// Aggiungi un event listener a ciascuno degli elementi
+// Aggiungi event listener per mouseenter e mouseleave a ciascun expander
+expanders.forEach(expander => {
+  expander.addEventListener('mouseenter', () => {
+    // Trova il parent "expanding-block" del bottone
+    const expandingBlock = expander.closest('.expanding-block');
+    // Aggiungi la classe "hovered" all'expanding-block
+    if (expandingBlock) {
+      expandingBlock.classList.add('hovered');
+    }
+  });
+
+  expander.addEventListener('mouseleave', () => {
+    // Trova il parent "expanding-block" del bottone
+    const expandingBlock = expander.closest('.expanding-block');
+    // Rimuovi la classe "hovered" dall'expanding-block
+    if (expandingBlock) {
+      expandingBlock.classList.remove('hovered');
+    }
+  });
+});
+
+// Mantieni il resto del codice originale per le funzionalità di espansione...
+// Seleziona tutti gli elementi con la classe "expander"
 expanders.forEach(expander => {
   expander.addEventListener('click', (event) => {
     event.preventDefault();
@@ -1546,3 +1593,44 @@ if (document.readyState === 'loading') {
 } else {
   window.TrackingSystem.init();
 }
+
+
+// Funzione per copiare il valore di data-url-copy negli appunti
+document.addEventListener('DOMContentLoaded', function () {
+  // Seleziona tutti gli elementi con attributo data-url-copy
+  const copyableElements = document.querySelectorAll('[data-url-copy]');
+
+  // Aggiungi un event listener per il click a ciascun elemento
+  copyableElements.forEach(element => {
+    element.addEventListener('click', function (e) {
+      // Ottieni il valore dell'attributo data-url-copy
+      const urlToCopy = this.getAttribute('data-url-copy');
+
+      if (urlToCopy) {
+        // Copia negli appunti usando l'API Clipboard
+        navigator.clipboard.writeText(urlToCopy)
+          .then(() => {
+            // Feedback di successo all'utente
+            const originalText = this.textContent;
+            this.textContent = 'URL copiato!';
+
+            // Ripristina il testo originale dopo un breve ritardo
+            setTimeout(() => {
+              this.textContent = originalText;
+            }, 2000);
+          })
+          .catch(err => {
+            console.error('Errore durante la copia: ', err);
+          });
+      }
+    });
+
+    // Aggiungi stile cursore pointer per indicare che è cliccabile
+    element.style.cursor = 'pointer';
+
+    // Opzionale: aggiungi un titolo per indicare l'azione
+    if (!element.getAttribute('title')) {
+      element.setAttribute('title', 'Clicca per copiare l\'URL');
+    }
+  });
+});

@@ -6,7 +6,7 @@
   position: relative;
   display: flex;
   justify-content: center;
-  padding-top: 68px;
+  padding-top: rem(68);
 }
 
 
@@ -18,7 +18,7 @@
     content: "";
     position: absolute;
     z-index: 2;
-    top: -2px;
+    top: rem(-2);
     left: 0;
     display: block;
     width: 50vw;
@@ -38,7 +38,7 @@
 
   .slide {
     position: relative;
-    padding-right: 32px;
+    padding-right: rem(32);
 
     img {
       height: 60vh;
@@ -52,9 +52,8 @@
   width: auto;
   height: auto;
   display: inline-block;
-
   overflow: visible;
-  padding: 15px 10px 0 0;
+  padding: rem(15) rem(10) 0 0;
 
   &.hidden {
     position: absolute;
@@ -68,10 +67,10 @@
 
 .slick-next,
 .slick-prev {
-  top: -68px;
+  top: rem(-68);
   cursor: pointer;
-  width: 38px;
-  height: 38px;
+  width: rem(38);
+  height: rem(38);
 
   &.slick-disabled {
     opacity: 0.5;
@@ -84,36 +83,36 @@
 }
 
 .slick-next {
-  left: 48px;
+  left: rem(48);
 }
 
 .paging-info {
   position: relative;
   display: block;
   width: 100%;
-  padding: 10px 0 0;
+  padding: rem(10) 0 0;
   text-align: center;
 }
 
 .slick-dots {
   text-align: center;
-  padding: 10px 0 0 0 !important;
+  padding: rem(10) 0 0 0 !important;
 
   li {
     display: inline-block;
-    margin: 0 5px;
+    margin: 0 rem(5);
 
 
 
     button {
-      width: 20px;
-      height: 20px;
+      width: rem(20);
+      height: rem(20);
       border: none;
       font-size: 0;
       margin: 0;
       padding: 0;
       @include transition(all 0.3s linear);
-      border-radius: 20px;
+      border-radius: rem(20);
       cursor: pointer;
     }
   }

@@ -69,12 +69,15 @@
                         "paperplane-blank-theme-vk-social": "VK",
                         "paperplane-blank-theme-whatsapp-social": "WhatsApp",
                         "paperplane-blank-theme-spotify-social": "Spotify",
+                        "paperplane-blank-theme-spreaker-social": "Spreaker",
+                        "paperplane-blank-theme-vimeo-social": "Vimeo",
                         "paperplane-blank-theme-youtube-social": "YouTube"
                     },
                     "default_value": false,
                     "return_format": "value",
                     "multiple": 0,
                     "allow_null": 0,
+                    "allow_in_bindings": 1,
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
@@ -112,5 +115,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1702921102
+    "modified": 1744814458
 }

@@ -15,16 +15,16 @@ input[type=text],
 input[type=url] {
 	font-size: rem($h5-size-desktop);
 	line-height: rem($h5-lineheight-desktop);
-	margin-bottom: 32px;
+	margin-bottom: rem(32);
 }
 
 input[type=checkbox],
 input[type=radio] {
-	margin-bottom: 5px;
+	margin-bottom: rem(5);
 
 	&:before {
 		position: relative;
-		top: 4px;
+		top: rem(4);
 		font-size: calc(rem($h5-size-desktop) * 1.5);
 	}
 }
@@ -32,40 +32,40 @@ input[type=radio] {
 textarea {
 	font-size: rem($h5-size-desktop);
 	line-height: rem($h5-lineheight-desktop);
-	margin-bottom: 32px;
+	margin-bottom: rem(32);
 }
 
 select {
 	font-size: rem($h5-size-desktop);
 	line-height: rem($h5-lineheight-desktop);
-	margin-bottom: 32px;
+	margin-bottom: rem(32);
 }
 
 .wpcf7-submit,
 input[type=submit] {
-	padding: 26px 48px;
+	padding: rem(26) rem(48);
 	font-size: rem($paragraph-size-desktop);
 }
 
 .form-hold {
-	margin: 10px 0;
+	margin: rem(10) 0;
 
 	.required-fields {
-		margin-bottom: 32px;
+		margin-bottom: rem(32);
 	}
 
 	label,
 	p {
 		font-size: rem($h5-size-desktop);
 		line-height: rem($h5-lineheight-desktop);
-		margin-bottom: 5px;
+		margin-bottom: rem(5);
 	}
 
 	.form-block {
-		margin-bottom: 32px;
+		margin-bottom: rem(32);
 
 		.wpcf7-not-valid-tip {
-			top: -3px !important;
+			top: rem(-3) !important;
 		}
 	}
 }
@@ -73,7 +73,7 @@ input[type=submit] {
 .as-label {
 	font-size: rem($h5-size-desktop);
 	line-height: rem($h5-lineheight-desktop);
-	margin-bottom: 5px;
+	margin-bottom: rem(5);
 }
 
 .search-submit {
@@ -93,7 +93,7 @@ input[type=submit] {
 		mask-image: url(assets/images/icons/search-button.svg);
 		-webkit-mask-repeat: no-repeat;
 		mask-repeat: no-repeat;
-		mask-size: 20px 20px;
+		mask-size: rem(20) rem(20);
 		mask-position: 50% 50%;
 		background-color: var(--color-1);
 		@include transition(all 0.2s linear);

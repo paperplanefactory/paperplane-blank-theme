@@ -3,10 +3,10 @@
 @import 'mixin'; // hamburger
 
 .hambuger-element {
-  width: 20px;
-  height: 16px;
+  width: rem(20);
+  height: rem(16);
   position: relative;
-  top: -3px;
+  top: rem(-3);
   display: inline-block;
   z-index: 9998;
   padding: 0;
@@ -20,22 +20,22 @@
   &:before {
     content: '';
     position: absolute;
-    top: -15px;
-    left: -20px;
-    width: 55px;
-    height: 48px;
+    top: rem(-15);
+    left: rem(-20);
+    width: rem(55);
+    height: rem(48);
   }
 
   span[class*="ham-bar-"] {
     display: block;
     position: absolute;
-    height: 2px;
+    height: rem(2);
     width: 100%;
     opacity: 1;
     left: 0;
     @include define-rotate(0);
     @include transition(all 0.15s ease-in-out);
-    border-radius: 1px;
+    border-radius: rem(1);
     background-color: var(--color-1);
   }
 }
@@ -47,7 +47,7 @@
 
 .hambuger-element .ham-bar-2,
 .hambuger-element .ham-bar-3 {
-  top: 7px;
+  top: rem(7);
 }
 
 .hambuger-element .ham-bar-4 {

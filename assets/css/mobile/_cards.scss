@@ -3,18 +3,18 @@
 @import '../global/mixin';
 
 .card {
-    border: solid 1px var(--color-1);
+    border: solid rem(1) var(--color-1);
 
     .card-image {
-        margin-bottom: 24px;
+        margin-bottom: rem(24);
     }
 
     .card-texts {
-        padding: 0 24px 24px 24px;
+        padding: 0 rem(24) rem(24) rem(24);
     }
 
     .cta-holder {
         margin-top: auto;
-        padding: 0 24px 12px 24px;
+        padding: 0 rem(24) rem(12) rem(24);
     }
 }

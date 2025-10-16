@@ -29,74 +29,88 @@ function register_theme_mega_menus() {
 add_action( 'init', 'register_theme_mega_menus' );
 
 
-
-// necessita di ACF PRO - aggiunge pannelli per gestire ulteriori impostazioni del tema
-if ( function_exists( 'acf_add_options_page' ) ) {
-	// gestione tema per admin
-	$option_page = acf_add_options_page(
-		array(
-			'page_title' => 'Theme General Settings',
-			'menu_title' => 'Theme Settings',
-			'menu_slug' => 'theme-general-settings',
-			'capability' => 'update_core',
-			'redirect' => false
-		)
-	);
-	$parent = acf_add_options_page(
-		array(
-			'page_title' => 'Impostazioni sito',
-			'menu_title' => 'Impostazioni sito',
-			'capability' => 'edit_posts',
-			//'menu_slug' 	=> 'impostazioni-sito',
-			//'redirect'		=> false
-		)
-	);
-	// social
-	acf_add_options_sub_page(
-		array(
-			'page_title' => 'Gestione social',
-			'menu_title' => 'Gestione social',
-			'parent_slug' => $parent['menu_slug'],
-		)
-	);
-	// verifico che sia attivo Polylang
-	if ( function_exists( 'PLL' ) ) {
-		$langs_parameters = array(
-			'hide_empty' => 0,
-			'fields' => 'slug'
+function setup_theme_acf_options() {
+	// necessita di ACF PRO - aggiunge pannelli per gestire ulteriori impostazioni del tema
+	if ( function_exists( 'acf_add_options_page' ) ) {
+		// gestione tema per admin
+		$option_page = acf_add_options_page(
+			array(
+				'page_title' => 'Theme General Settings',
+				'menu_title' => 'Theme Settings',
+				'menu_slug' => 'theme-general-settings',
+				'capability' => 'update_core',
+				'redirect' => false
+			)
 		);
-		$languages = pll_languages_list();
-	} else {
-		$languages = array( 'any-lang' );
-	}
-	foreach ( $languages as $lang ) {
-		if ( $lang == 'any-lang' ) {
-			$lang_menu_label = '';
+		$parent = acf_add_options_page(
+			array(
+				'page_title' => 'Impostazioni sito',
+				'menu_title' => 'Impostazioni sito',
+				'capability' => 'edit_posts',
+				//'menu_slug' 	=> 'impostazioni-sito',
+				//'redirect'		=> false
+			)
+		);
+		// social
+		acf_add_options_sub_page(
+			array(
+				'page_title' => 'Gestione social',
+				'menu_title' => 'Gestione social',
+				'parent_slug' => $parent['menu_slug'],
+			)
+		);
+		// verifico che sia attivo Polylang
+		if ( function_exists( 'PLL' ) ) {
+			$langs_parameters = array(
+				'hide_empty' => 0,
+				'fields' => 'slug'
+			);
+			$languages = pll_languages_list();
 		} else {
-			$lang_menu_label = ' (' . strtoupper( $lang ) . ')';
+			$languages = array( 'any-lang' );
 		}
-		// gestione footer
-		acf_add_options_sub_page(
-			array(
-				'page_title' => 'Gestione footer (' . strtoupper( $lang ) . ')',
-				'menu_title' => __( 'Gestione footer' . $lang_menu_label, 'grusp-conf-theme' ),
-				'menu_slug' => "gestione-footer-{$lang}",
-				'post_id' => $lang,
-				'parent_slug' => $parent['menu_slug'],
-			)
-		);
-		// gestione archivi
-		acf_add_options_sub_page(
-			array(
-				'page_title' => 'Gestione archivi (' . strtoupper( $lang ) . ')',
-				'menu_title' => __( 'Gestione archivi ' . $lang_menu_label, 'grusp-conf-theme' ),
-				'menu_slug' => "gestione-archivi-{$lang}",
-				'post_id' => $lang,
-				'parent_slug' => $parent['menu_slug'],
-			)
-		);
+		foreach ( $languages as $lang ) {
+			if ( $lang == 'any-lang' ) {
+				$lang_menu_label = '';
+			} else {
+				$lang_menu_label = ' (' . strtoupper( $lang ) . ')';
+			}
+			// gestione header
+			acf_add_options_sub_page(
+				array(
+					'page_title' => 'Gestione header (' . strtoupper( $lang ) . ')',
+					'menu_title' => __( 'Gestione header' . $lang_menu_label, 'paperPlane-blankTheme' ),
+					'menu_slug' => "gestione-header-{$lang}",
+					'post_id' => $lang,
+					'parent_slug' => $parent['menu_slug'],
+				)
+			);
+			// gestione footer
+			acf_add_options_sub_page(
+				array(
+					'page_title' => 'Gestione footer (' . strtoupper( $lang ) . ')',
+					'menu_title' => __( 'Gestione footer' . $lang_menu_label, 'paperPlane-blankTheme' ),
+					'menu_slug' => "gestione-footer-{$lang}",
+					'post_id' => $lang,
+					'parent_slug' => $parent['menu_slug'],
+				)
+			);
+			// gestione archivi
+			acf_add_options_sub_page(
+				array(
+					'page_title' => 'Gestione archivi (' . strtoupper( $lang ) . ')',
+					'menu_title' => __( 'Gestione archivi ' . $lang_menu_label, 'paperPlane-blankTheme' ),
+					'menu_slug' => "gestione-archivi-{$lang}",
+					'post_id' => $lang,
+					'parent_slug' => $parent['menu_slug'],
+				)
+			);
+		}
 	}
 }
+
+// Esegui la funzione durante l'hook init
+add_action( 'init', 'setup_theme_acf_options' );
 
 // show flamingo to editors
 add_filter( 'flamingo_map_meta_cap', 'for_editors_flamingo_map_meta_cap' );

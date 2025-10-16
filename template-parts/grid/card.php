@@ -30,6 +30,8 @@
 			<h2 class="as-h3 element-hover">
 				<?php echo $card['module_cards_repeater_title']; ?>
 			</h2>
+			<a href="#" class="card-link"><span class="screen-reader-text">Link con titolo contenuto solo per screen
+					reader</span></a>
 			<?php if ( isset( $card['module_cards_repeater_description'] ) ) : ?>
 				<div class="preserve-text remove-underline-js">
 					<p>
@@ -38,8 +40,6 @@
 				</div>
 			<?php endif; ?>
 		</div>
-		<a href="#" class="card-link"><span class="screen-reader-text">Link con titolo contenuto solo per screen
-				reader</span></a>
 		<?php
 		paperplane_theme_cta_advanced( $card['module_cards_repeater_cta'] );
 		?>

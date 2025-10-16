@@ -16,7 +16,8 @@
 			if ( $show_hide_module == 1 ) {
 				$bar = get_user_option( 'show_admin_bar_front', get_current_user_id() );
 				if ( $bar == 'true' ) {
-					echo '<div class="editor-info editor-info-js"><div class="admin-index"><span class="click-hide">+</span><span class="hide-me hidden-label"> Modulo: ' . $choose_module . ' - ' . $module_count . ' URL: ' . get_permalink() . '#' . $custom_anchor_point . '</span></div></div>';
+					echo '<div class="editor-info editor-info-js"><div class="admin-index"><span class="click-hide">+</span><span class="hide-me hidden-label" data-url-copy="' . get_permalink() . '#' . $custom_anchor_point . '"> Modulo: ' . $choose_module . ' - ' . $module_count . ' Clicca per copiare la URL</span></div></div>';
+
 				}
 				switch ( $choose_module ) {
 					// module-text

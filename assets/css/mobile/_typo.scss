@@ -39,15 +39,16 @@ h5 {
 
 .mega-menu,
 .menu {
-  font-size: rem($cta1-size-smartphone);
-  line-height: rem($cta1-lineheight-smartphone);
+  font-size: rem($nav-size-smartphone);
+  line-height: rem($nav-lineheight-smartphone);
 
   a,
   button {
-    font-size: rem($cta1-size-smartphone);
-    line-height: rem($cta1-lineheight-smartphone);
+    font-size: rem($nav-size-smartphone);
+    line-height: rem($nav-lineheight-smartphone);
   }
 }
+
 
 .mega-menu p,
 #footer p,
@@ -65,6 +66,11 @@ p,
   line-height: rem($paragraph-lineheight-smartphone);
   margin: 0 0 rem($paragraph-marginbottom-smartphone);
   padding: 0;
+}
+
+summary {
+  font-size: rem($h5-size-smartphone);
+  line-height: rem($h5-lineheight-smartphone);
 }
 
 .content-styled {
@@ -134,7 +140,7 @@ p,
 .wp-caption.alignleft .wp-caption-text,
 .wp-caption.alignnone .wp-caption-text,
 .wp-caption.alignright .wp-caption-text {
-  padding: 5px 0 0;
+  padding: rem(5) 0 0;
   font-size: $cta1-size-smartphone;
   line-height: $cta1-lineheight-smartphone;
   word-wrap: break-word;

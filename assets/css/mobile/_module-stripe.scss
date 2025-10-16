@@ -24,19 +24,17 @@
         order: 2;
 
         .spacer {
-          padding: 20px 0;
+          padding: rem(20) 0;
         }
       }
     }
 
     .cta-holder {
       text-align: inherit;
-      margin: 32px 0 0;
     }
   }
 
   .cta-holder {
     text-align: center;
-    margin: $module-vertical-padding-smartphone 0 0;
   }
 }

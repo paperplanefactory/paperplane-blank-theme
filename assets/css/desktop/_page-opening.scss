@@ -48,10 +48,6 @@
     position: relative;
     width: 100%;
   }
-
-  .cta-holder {
-    margin: 32px 0 0;
-  }
 }
 
 .fullscreen-cta-center {
@@ -92,7 +88,7 @@
 }
 
 .opening-text-image {
-  padding-top: 100px;
+  padding-top: rem(100);
 
   .image-box {
     position: relative;
@@ -100,7 +96,6 @@
     .inner {
       position: relative;
       width: 50vw;
-      background-color: red;
     }
 
     .text-box {
@@ -131,20 +126,15 @@
 
         right: 0;
         width: 50vw;
-        background-color: red;
       }
     }
   }
 }
 
 .page-opening-simple-spacer {
-  padding: calc(#{$header-desktop-height} + 72px) 0 48px;
-
-  .cta-holder {
-    margin: 35px 0 0;
-  }
+  padding: calc(#{$header-desktop-height} + rem(72)) 0 rem(48);
 }
 
 .breadcrumbs-holder {
-  margin-bottom: 32px;
+  margin-bottom: rem(32);
 }

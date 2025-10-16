@@ -9,9 +9,9 @@
         position: relative;
         text-align: center !important;
         display: inline-block;
-        margin: 0 10px 0 0;
-        width: 32px;
-        height: 32px;
+        margin: 0 rem(10) 0 0;
+        width: rem(32);
+        height: rem(32);
 
         a {
             position: absolute;
@@ -113,6 +113,20 @@
     &:before {
         -webkit-mask-image: url(assets/images/icons/spotify.svg);
         mask-image: url(assets/images/icons/spotify.svg);
+    }
+}
+
+.paperplane-blank-theme-spotify-social {
+    &:before {
+        -webkit-mask-image: url(assets/images/icons/spotify.svg);
+        mask-image: url(assets/images/icons/spotify.svg);
+    }
+}
+
+.paperplane-blank-theme-vimeo-social {
+    &:before {
+        -webkit-mask-image: url(assets/images/icons/vimeo.svg);
+        mask-image: url(assets/images/icons/vimeo.svg);
     }
 }
 

@@ -51,6 +51,8 @@ function paperplane_theme_cta_advanced( $field_names, $after_ctas = null ) {
 							// si tratta di un link, quindi definisco il tag a
 							$cta_tag = 'a';
 							// definisco il comportamento se il post type è una modal
+							$data_modal_title = '';
+							$rel_attribute = '';
 						} else {
 							// genero una variabile con un codice univoco
 							$back_to_code = paperplane_random_code();
@@ -72,6 +74,7 @@ function paperplane_theme_cta_advanced( $field_names, $after_ctas = null ) {
 							$cta_tag = 'button';
 							// recupero il titolo della modal per avere un bottone piu accessibile
 							$data_modal_title = get_the_title( $cta_internal_ID );
+							$rel_attribute = '';
 						}
 					}
 					// gestisco la CTA per i link esterni o interni con un parametro
@@ -81,11 +84,28 @@ function paperplane_theme_cta_advanced( $field_names, $after_ctas = null ) {
 						$cta_title = '';
 					}
 					if ( $field_name['cta_target'] === '_blank' ) {
-						$cta_title = __( 'Si apre in una nuova finestra,', 'grusp-conf-theme' );
-						$cta_class = 'default-button blank';
+						$cta_title = __( 'Si apre in una nuova finestra', 'paperPlane-blankTheme' );
+						$cta_class .= ' blank';
 					}
 					if ( strpos( $field_name['cta_url'], '#' ) !== false ) {
-						$cta_class = 'default-button anchor';
+						$cta_class .= ' anchor';
+					}
+					// INIZIO MODIFICA: Verifica se il dominio è diverso da quello attuale
+					if ( isset( $field_name['cta_url'] ) && is_external_domain( $field_name['cta_url'] ) ) {
+						// Il dominio è esterno, aggiungi una classe specifica o modifica il comportamento
+						$cta_class .= ' external-domain';
+
+						// Puoi anche aggiungere un attributo rel per ragioni di sicurezza
+						$rel_attribute = 'rel="noopener noreferrer"';
+
+						// E potenzialmente modificare il titolo o altri attributi
+						if ( $field_name['cta_target'] === '_blank' ) {
+							$cta_title = __( 'Si apre in una nuova finestra su un sito esterno', 'paperPlane-blankTheme' );
+						} else {
+							$cta_title = __( 'Si apre su un sito esterno', 'paperPlane-blankTheme' );
+						}
+					} else {
+						$rel_attribute = '';
 					}
 					// definisco parametro href
 					$cta_url = 'href="' . $field_name['cta_url'] . '" ';
@@ -99,15 +119,33 @@ function paperplane_theme_cta_advanced( $field_names, $after_ctas = null ) {
 					$start_point = '';
 					// si tratta di un link, quindi definisco il tag a
 					$cta_tag = 'a';
+					$data_modal_title = '';
 					// gestisco la CTA per i download
 				} elseif ( $cta_destination === 'download-cta' ) {
 					// definisco parzialmente il testo dell'etichetta per il titolo
 					if ( $field_name['cta_target'] === '_self' ) {
-						$cta_title = __( 'Scarica o visualizza file', 'grusp-conf-theme' );
+						$cta_title = __( 'Scarica o visualizza file', 'paperPlane-blankTheme' );
 					}
 					if ( $field_name['cta_target'] === '_blank' ) {
-						$cta_title = __( 'Si apre in una nuova finestra, scarica o visualizza file', 'grusp-conf-theme' );
-						$cta_class = 'default-button blank';
+						$cta_title = __( 'Si apre in una nuova finestra, scarica o visualizza file', 'paperPlane-blankTheme' );
+						$cta_class .= ' blank';
+					}
+					// INIZIO MODIFICA: Verifica se il dominio è diverso da quello attuale
+					if ( isset( $field_name['cta_url'] ) && is_external_domain( $field_name['cta_url'] ) ) {
+						// Il dominio è esterno, aggiungi una classe specifica o modifica il comportamento
+						$cta_class .= ' external-domain';
+
+						// Puoi anche aggiungere un attributo rel per ragioni di sicurezza
+						$rel_attribute = 'rel="noopener noreferrer"';
+
+						// E potenzialmente modificare il titolo o altri attributi
+						if ( $field_name['cta_target'] === '_blank' ) {
+							$cta_title = __( 'Si apre in una nuova finestra su un sito esterno', 'paperPlane-blankTheme' );
+						} else {
+							$cta_title = __( 'Si apre su un sito esterno', 'paperPlane-blankTheme' );
+						}
+					} else {
+						$rel_attribute = '';
 					}
 					// definisco parametro href
 					$cta_url = 'href="' . $field_name['cta_file_download'] . '" ';
@@ -121,6 +159,7 @@ function paperplane_theme_cta_advanced( $field_names, $after_ctas = null ) {
 					$start_point = '';
 					// si tratta di un link, quindi definisco il tag a
 					$cta_tag = 'a';
+					$data_modal_title = '';
 				}
 				if ( $field_name['cta_tracking'] ?? null ) {
 					$cta_tracking = $field_name['cta_tracking'];
@@ -134,7 +173,7 @@ function paperplane_theme_cta_advanced( $field_names, $after_ctas = null ) {
 					$data_modal_title = '';
 				}
 				if ( isset( $cta_tag ) ) {
-					$cta_html .= '<' . $cta_tag . ' ' . $cta_url . ' ' . $cta_target . ' class="' . $cta_class . '" data-modal-id="' . $data_modal_open_id . '" data-modal-title="' . $data_modal_title . '" data-modal-back-to="' . $start_point . '" ' . $cta_tracking . ' ' . ' ' . '>' . $button_text . '<span class="screen-reader-text">' . $cta_title . '</span></' . $cta_tag . '>';
+					$cta_html .= '<' . $cta_tag . ' ' . $cta_url . ' ' . $rel_attribute . ' ' . $cta_target . ' class="' . $cta_class . '" data-modal-id="' . $data_modal_open_id . '" data-modal-title="' . $data_modal_title . '" data-modal-back-to="' . $start_point . '" ' . $cta_tracking . ' ' . ' ' . '>' . $button_text . '<span class="screen-reader-text">' . $cta_title . '</span></' . $cta_tag . '>';
 				}
 
 			}
@@ -206,4 +245,33 @@ function paperplane_theme_cta_absl_advanced( $field_names ) {
 
 		}
 	}
+}
+
+/**
+ * Funzione per verificare se un URL appartiene a un dominio diverso da quello attuale
+ *
+ * @param string $url URL da controllare
+ * @return boolean True se il dominio è esterno, False se è lo stesso dominio o URL vuoto
+ */
+function is_external_domain( $url ) {
+	// Se l'URL è vuoto, restituisci false
+	if ( empty( $url ) ) {
+		return false;
+	}
+
+	// Ottieni il dominio corrente
+	$current_domain = $_SERVER['HTTP_HOST'];
+
+	// Estrai il dominio dall'URL
+	$url_parts = parse_url( $url );
+
+	// Se non è possibile estrarre l'host o l'URL è relativo, restituisci false
+	if ( ! isset( $url_parts['host'] ) ) {
+		return false;
+	}
+
+	$url_domain = $url_parts['host'];
+
+	// Confronta i domini (case insensitive)
+	return ( strtolower( $url_domain ) !== strtolower( $current_domain ) );
 }

@@ -3,18 +3,24 @@
 @import '../global/mixin';
 
 .cta-holder {
+	margin-top: rem($paragraph-marginbottom-smartphone);
 
 	button,
 	a {
-		margin: 0 15px 15px 0;
+		margin: 0 0 rem(15) 0;
 	}
 }
 
-.cta-navi a,
 .default-button {
-	padding: 14px 22px 12px !important;
-	font-size: 1rem;
-	line-height: 1rem;
+	width: 100%;
+	padding: rem(22) rem(42) rem(22) rem(22);
+	font-size: rem($cta1-size-smartphone);
+	line-height: rem($cta1-lineheight-smartphone);
+
+	&:after {
+		width: rem($cta1-size-smartphone);
+		height: rem($cta1-lineheight-smartphone);
+	}
 }
 
 .default-button-b {
@@ -22,7 +28,7 @@
 	line-height: 1rem;
 
 	&:after {
-		font-size: calc(#{$cta1-size-smartphone} + 5px);
-		line-height: calc(#{$cta1-lineheight-smartphone} + 5px);
+		font-size: calc(#{$cta1-size-smartphone} + rem(5));
+		line-height: calc(#{$cta1-lineheight-smartphone} + rem(5));
 	}
 }

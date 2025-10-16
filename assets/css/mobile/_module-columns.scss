@@ -5,7 +5,6 @@
 .module-columns {
   .cta-holder {
     text-align: center;
-    margin: 64px 0 0;
   }
 
   .module-column-box {
@@ -15,15 +14,15 @@
       position: relative;
       display: inline-block;
       width: 100%;
-      margin-bottom: 24px;
+      margin-bottom: rem(24);
 
       .image-rounder {
-        max-width: 250px;
+        max-width: rem(250);
       }
 
       .image-icon {
         display: inline-block;
-        max-width: 100px;
+        max-width: rem(100);
       }
     }
 
@@ -33,7 +32,7 @@
       h2,
       h3 {
         display: inline-block;
-        margin-bottom: 10px;
+        margin-bottom: rem(10);
       }
 
       .counter-label {
@@ -44,7 +43,6 @@
 
     .cta-holder {
       text-align: inherit;
-      margin: 24px 0 0;
     }
   }
 }

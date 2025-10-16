@@ -7,6 +7,7 @@
  * @return void
  */
 function paperplane_preload_data() {
+	$preload_images = false;
 	// Usa una cache statica per evitare calcoli multipli della stessa funzione
 	// nella stessa richiesta
 	static $cached_preload_data = null;
@@ -48,7 +49,7 @@ function paperplane_preload_data() {
 			'type' => 'font/woff2'
 		],
 		[ 
-			'url' => 'https://paperplaneblanktheme.local/wp-content/themes/paperplane-blank-theme/assets/fonts/material-icons/MaterialIcons-Regular.ttf',
+			'url' => $stylesheet_directory . '/assets/fonts/material-icons/MaterialIcons-Regular.ttf',
 			'type' => 'font/ttf'
 		]
 	];
@@ -89,7 +90,7 @@ function paperplane_preload_data() {
 	// Gestisce il precaricamento specifico per il post corrente
 	global $post;
 	// Verifica che esista un post e che la funzione dei transient sia disponibile
-	if ( $post instanceof WP_Post && function_exists( 'paperplane_content_transients' ) ) {
+	if ( $post instanceof WP_Post && function_exists( 'paperplane_content_transients' ) && $preload_images == true ) {
 		$content_fields = paperplane_content_transients( $post->ID );
 
 		if ( ! empty( $content_fields ) ) {
@@ -106,18 +107,49 @@ function paperplane_preload_data() {
 
 /**
  * Genera i tag HTML per il precaricamento delle immagini responsive
- * Gestisce dinamicamente tutte le immagini di apertura
+ * Gestisce dinamicamente tutte le immagini di apertura in base al layout corrente
+ * 
+ * @param array $content_fields Array dei campi di contenuto
+ * @return string HTML con i tag di preload
  */
 function generate_image_preload_tags( $content_fields ) {
 	$preload_tags = '';
 
-	// Cerca tutti i campi che contengono immagini di apertura
-	$image_fields = array_filter(
-		array_keys( $content_fields ),
-		function ($key) {
-			return strpos( $key, 'page_opening_image_' ) !== false;
+	// Verifica se esiste il layout di apertura e quale tipo è stato selezionato
+	if ( empty( $content_fields['page_opening_layout'] ) ) {
+		return $preload_tags; // Ritorna stringa vuota se non c'è layout
+	}
+
+	$opening_layout = $content_fields['page_opening_layout'];
+
+	// Cerca i campi immagine solo se il layout è di tipo "opening-fullscreen"
+	if ( $opening_layout !== 'opening-fullscreen' ) {
+		return $preload_tags; // Ritorna stringa vuota per altri layout
+	}
+
+	// Determina il tipo di contenuto (immagine o video)
+	$content_type = isset( $content_fields['page_opening_media'] ) ? $content_fields['page_opening_media'] : '';
+
+	// Filtro per i campi immagine in base al tipo di contenuto
+	$image_fields = [];
+	if ( $content_type === 'image' ) {
+		// Cerca i campi specifici per immagini
+		foreach ( array_keys( $content_fields ) as $key ) {
+			if ( strpos( $key, 'page_opening_image_' ) !== false &&
+				strpos( $key, 'video_poster' ) === false ) {
+				$image_fields[] = $key;
+			}
 		}
-	);
+	} elseif ( $content_type === 'video' ) {
+		// Cerca solo i campi del poster del video
+		foreach ( array_keys( $content_fields ) as $key ) {
+			if ( strpos( $key, 'page_opening_image_video_poster' ) !== false ) {
+				$image_fields[] = $key;
+			}
+		}
+	} else {
+		return $preload_tags; // Tipo di contenuto non supportato
+	}
 
 	// Verifica la presenza di immagini desktop e mobile
 	$has_desktop = false;
@@ -168,7 +200,7 @@ function generate_image_preload_tags( $content_fields ) {
 
 			if ( $config && isset( $content_fields[ $field ]['sizes'][ $config['size'] ] ) ) {
 				$preload_tags .= sprintf(
-					'<link rel="preload" %shref="%s" fetchpriority="auto" as="image" type="%s" />%s',
+					'<link rel="preload" %shref="%s" fetchpriority="high" as="image" type="%s" />%s',
 					$config['media'] ? sprintf( 'media="%s" ', $config['media'] ) : '',
 					esc_url( $content_fields[ $field ]['sizes'][ $config['size'] ] ),
 					esc_attr( $content_fields[ $field ]['mime_type'] ),
@@ -180,7 +212,6 @@ function generate_image_preload_tags( $content_fields ) {
 
 	return $preload_tags;
 }
-
 // Aggiunge la funzione paperplane_preload_data all'hook wp_head
 // La priorità 1 assicura che venga eseguita tra le prime
 add_action( 'wp_head', 'paperplane_preload_data', 1 );

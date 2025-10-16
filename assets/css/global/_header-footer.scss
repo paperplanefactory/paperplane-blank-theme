@@ -11,6 +11,16 @@
   text-align: left;
 }
 
+#pre-header {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-4);
+
+  .intro-par {
+    margin-bottom: 0;
+  }
+}
+
 #header {
   //position: fixed;
   position: sticky;
@@ -190,7 +200,7 @@ body {
     z-index: 99999;
     top: 0;
     width: 100vw;
-    height: 3px;
+    height: rem(3);
     background-color: var(--color-1);
     pointer-events: none;
     display: none;
@@ -201,7 +211,7 @@ body {
     .bar {
       position: absolute;
       top: 0;
-      height: 3px;
+      height: rem(3);
       background-color: var(--color-3);
       animation-name: load-animation;
       animation-duration: 2s;

@@ -201,8 +201,8 @@ ins {
 hr {
 	background-color: #ccc;
 	border: 0;
-	height: 1px;
-	margin: 24px 24px 1.714285714rem;
+	height: rem(1);
+	margin: rem(24) rem(24) 1.714285714rem;
 }
 
 sub,

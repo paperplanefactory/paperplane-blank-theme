@@ -3,17 +3,24 @@
 @import '../global/mixin';
 
 .cta-holder {
+	margin-top: rem($paragraph-marginbottom-desktop);
 
 	button,
 	a {
-		margin: 0 15px 0 0;
+		margin: 0 rem(15) 0 0;
 	}
 }
 
 .default-button {
-	padding: 14px 22px 12px !important;
-	font-size: 1rem;
-	line-height: 1rem;
+	padding: rem(22) rem(42) rem(22) rem(22);
+	font-size: rem($cta1-size-desktop);
+	line-height: rem($cta1-lineheight-desktop);
+
+	&:after {
+		width: rem($cta1-size-desktop);
+		height: rem($cta1-lineheight-desktop);
+
+	}
 }
 
 .default-button-b {
@@ -21,7 +28,7 @@
 	line-height: 1rem;
 
 	&:after {
-		font-size: calc(#{$cta1-size-desktop} + 5px);
-		line-height: calc(#{$cta1-lineheight-desktop} + 5px);
+		font-size: calc(#{$cta1-size-desktop} + rem(5));
+		line-height: calc(#{$cta1-lineheight-desktop} + rem(5));
 	}
 }

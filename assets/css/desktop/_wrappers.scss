@@ -36,15 +36,15 @@
 }
 
 .wrapper-padded-container {
-  max-width: 1300px;
+  max-width: rem(1300);
 }
 
 .wrapper-padded-more-924 {
-  max-width: 924px;
+  max-width: rem(924);
 }
 
 .wrapper-padded-more-700 {
-  max-width: 700px;
+  max-width: rem(700);
 }
 
 .module-paddings-top {
@@ -73,43 +73,5 @@
 
 .sticky-element {
   position: sticky;
-  top: calc(#{$header-desktop-height} + 35px);
+  top: calc(#{$header-desktop-height} + rem(35));
 }
-
-/*
-::-webkit-scrollbar,
-::-webkit-scrollbar-thumb,
-::-webkit-scrollbar-track {
-  width: 12px;
-  border: none;
-  background: transparent;
-  -webkit-appearance: none !important;
-}
-
-::-webkit-resizer,
-::-webkit-scrollbar-button,
-::-webkit-scrollbar-corner,
-::-webkit-scrollbar-track-piece {
-  display: none;
-}
-
-::-webkit-scrollbar-thumb {
-  width: 12px;
-  background-color: var(--color-2);
-}
-
-::-webkit-scrollbar-track {
-  //-webkit-appearance: none !important;
-  //display: none !important;
-  opacity: 0 !important;
-  //visibility: hidden !important;
-  //width: 0 !important;
-  //background-color: var(--color-2);
-  background-color: transparent;
-}
-
-:root {
-  scrollbar-color: var(--color-4) var(--color-2) !important;
-  scrollbar-width: auto !important;
-}
-*/

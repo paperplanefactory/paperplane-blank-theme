@@ -5,33 +5,33 @@
 .paperplane-modal {
   .modal-box {
     //max-width: 900px;
-    min-width: 350px;
+    min-width: rem(350);
     width: 80%;
     max-height: 90vh;
-    padding: 75px 0 0;
+    padding: rem(75) 0 0;
 
     .modal-title {
-      height: 75px;
-      padding: 24px 40px 0;
+      height: rem(75);
+      padding: rem(24) rem(40) 0;
     }
 
     .modal-close-button {
       position: absolute;
-      top: 24px;
-      right: 24px;
-      width: 32px;
-      height: 32px;
+      top: rem(24);
+      right: rem(24);
+      width: rem(32);
+      height: rem(32);
       border: none;
       background-color: transparent;
     }
 
     .insider {
-      padding: 0 40px 30px;
-      max-height: calc(90vh - 120px);
+      padding: 0 rem(40) rem(30);
+      max-height: calc(90vh - rem(120));
 
       .inner-message {
         .video-frame {
-          margin-bottom: 24px;
+          margin-bottom: rem(24);
         }
       }
     }

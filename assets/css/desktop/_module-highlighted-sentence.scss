@@ -5,16 +5,12 @@
 .module-highlighted-sentence {
   .flex-hold-rich-highlighted-sentence {
     .flex-hold-rich-highlighted-sentence-image {
-      width: 250px;
+      width: rem(240);
     }
 
     .flex-hold-rich-highlighted-sentence-text {
-      width: calc(100% - 250px);
+      width: calc(100% - rem(240));
       padding-left: calc(#{$wrapper-padded-desktop} * 2);
     }
-  }
-
-  .cta-holder {
-    margin: 32px 0 0;
   }
 }

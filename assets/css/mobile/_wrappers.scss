@@ -57,3 +57,16 @@
 .module-no-paddings-bottom {
   padding-bottom: 0;
 }
+
+#wpadminbar {
+  display: none;
+  visibility: hidden;
+}
+
+body.admin-bar {
+  margin-top: 0 !important;
+}
+
+html {
+  margin-top: 0 !important;
+}

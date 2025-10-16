@@ -53,3 +53,52 @@ function namespace_login_headerurl( $url ) {
 	$url = home_url( '/' );
 	return $url;
 }
+
+/**
+ * Mostra il testo in modo condizionale: come paragrafo se breve,
+ * o come elemento details con summary se lungo
+ * 
+ * @param string $testo Il testo da mostrare
+ * @param int $lunghezzaMax Lunghezza massima prima di attivare details (default 100)
+ * @return void
+ */
+/**
+ * Versione alternativa con supporto per divisione in paragrafi
+ *
+ * @param string $testo Il testo da visualizzare, può contenere HTML
+ * @param int $lunghezzaMax Lunghezza massima prima di usare details/summary
+ * @param string $testoSummary Testo da mostrare nel summary
+ * @param bool $dividiParagrafi Se dividere il testo in paragrafi
+ */
+function mostraDettagliTestoAvanzata( $testo, $lunghezzaMax = 100, $testoSummary = "Leggi messaggio", $dividiParagrafi = true ) {
+	// Verifica la lunghezza del testo senza considerare i tag HTML
+	$testoSenzaTag = strip_tags( $testo );
+
+	if ( strlen( $testoSenzaTag ) <= $lunghezzaMax ) {
+		// Se è minore o uguale alla lunghezza massima, mostra tutto il testo con HTML
+		echo wp_kses_post( $testo );
+	} else {
+		echo "<details>";
+		echo "    <summary>" . esc_html( $testoSummary ) . "</summary>";
+		// Contenuto completo con HTML preservato
+
+		// Dividi il testo in paragrafi mantenendo i tag HTML
+		$paragrafi = preg_split( '/\n\s*\n|\r\n\s*\r\n|\r\s*\r/m', $testo );
+
+		echo "<div class=\"last-child-no-margin underlined-links\">";
+		foreach ( $paragrafi as $paragrafo ) {
+			if ( trim( $paragrafo ) !== '' ) {
+				// Controllo se il paragrafo contiene già un tag HTML di blocco
+				if ( preg_match( '/^\s*<(p|div|h[1-6]|ul|ol|table|blockquote)[^>]*>/i', $paragrafo ) ) {
+					echo wp_kses_post( $paragrafo );
+				} else {
+					echo "    <p>" . wp_kses_post( $paragrafo ) . "</p>";
+				}
+			}
+		}
+		echo "</div>";
+
+
+		echo "</details>";
+	}
+}

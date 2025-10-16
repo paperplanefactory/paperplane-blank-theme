@@ -28,7 +28,7 @@ input[type=text],
 input[type=url],
 select,
 textarea {
-	border: var(--color-2) solid 1px;
+	border: var(--color-2) solid rem(1);
 	color: var(--color-1);
 	background-color: var(--color-4);
 	font-family: $font-main;
@@ -45,8 +45,8 @@ input[type=url],
 textarea {
 	font-weight: $font-weight-1;
 	position: relative;
-	width: calc(100% - 2px);
-	padding: 10px;
+	width: calc(100% - rem(2));
+	padding: rem(10);
 	background-color: transparent;
 }
 
@@ -117,7 +117,7 @@ input[type=file] {
 	position: relative;
 	text-align: left;
 	display: block;
-	margin-top: 10px;
+	margin-top: rem(10);
 	font-family: $font-main;
 	font-weight: $font-weight-1;
 	background-color: var(--color-4);
@@ -126,23 +126,19 @@ input[type=file] {
 	&::file-selector-button {
 		font-family: $font-main;
 		font-weight: $font-weight-1;
-		padding: 8px 0 8px 20px;
-		margin-right: 10px;
+		padding: rem(8) 0 rem(8) rem(20);
+		margin-right: rem(10);
 		color: var(--color-4);
 		transition: 0.3s;
 		cursor: pointer;
 		border: none;
-		width: 25px;
-		//background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='none'><g><rect height='24' width='24'/></g><g><path fill='#{$color-upload-icon-clear}' d='M18,15v3H6v-3H4v3c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-3H18z M7,9l1.41,1.41L11,7.83V16h2V7.83l2.59,2.58L17,9l-5-5L7,9z'/></g></svg>");
-		//background-position: 8px 50%;
-		//background-repeat: no-repeat;
-		//background-size: 25px 25px;
+		width: rem(25);
 
 		-webkit-mask-image: url(assets/images/icons/file-upload.svg);
 		mask-image: url(assets/images/icons/file-upload.svg);
 		-webkit-mask-repeat: no-repeat;
 		mask-repeat: no-repeat;
-		mask-size: 25px 25px;
+		mask-size: rem(25) rem(25);
 		mask-position: 0 50%;
 		background-color: var(--color-1);
 	}
@@ -155,32 +151,32 @@ select {
 	appearance: none;
 	position: relative;
 	width: 100%;
-	padding: 10px 30px 10px 10px;
+	padding: rem(10) rem(30) rem(10) rem(10);
 	background-image: url("assets/images/icons/html-select-icon.svg");
-	background-position: calc(100% - 10px) 50%;
+	background-position: calc(100% - rem(10)) 50%;
 	background-repeat: no-repeat;
-	background-size: 12px auto;
+	background-size: rem(12) auto;
 	cursor: pointer;
 }
 
 textarea {
 	width: 100%;
-	height: 100px;
-	margin: 10px 0 0;
-	padding: 10px;
+	height: rem(100);
+	margin: rem(10) 0 0;
+	padding: rem(10);
 	resize: none;
 }
 
 input[type=submit] {
 	position: relative;
 	display: inline-block;
-	padding: 14px 22px;
-	border-radius: 24px;
+	padding: rem(14) rem(22);
+	border-radius: rem(24);
 	text-align: center;
 	text-decoration: none !important;
-	min-width: 100px;
-	max-width: 250px;
-	margin: 20px 0 0;
+	min-width: rem(100);
+	max-width: rem(250);
+	margin: rem(20) 0 0;
 	border: none;
 	cursor: pointer;
 	@include transition(all 0.3s linear);
@@ -215,7 +211,7 @@ input[type=text]:focus,
 input[type=url]:focus,
 select:focus,
 textarea:focus {
-	box-shadow: 0 0 0 3px var(--color-1) !important;
+	box-shadow: 0 0 0 rem(3) var(--color-1) !important;
 	@include transition(all 0.3s linear);
 }
 
@@ -247,13 +243,13 @@ label,
 		&.form-radio {
 			display: block;
 			padding: 0 !important;
-			margin-bottom: 10px !important;
+			margin-bottom: rem(10) !important;
 
 			.wpcf7-list-item {
-				margin: 0 10px 10px 0 !important;
+				margin: 0 rem(10) rem(10) 0 !important;
 
 				&:last-child {
-					margin: 0 0 10px 0 !important;
+					margin: 0 0 rem(10) 0 !important;
 				}
 			}
 		}
@@ -267,9 +263,9 @@ label,
 	&.sent .wpcf7-response-output {
 		&:before {
 			position: relative;
-			top: 2px;
+			top: rem(2);
 			display: inline-block;
-			margin: 0 5px 0 0;
+			margin: 0 rem(5) 0 0;
 			color: var(--color-form-error) !important;
 			content: '\e000';
 			font-family: 'Material Icons';
@@ -288,7 +284,7 @@ label,
 			font-feature-settings: 'liga';
 			font-style: normal;
 			font-weight: normal;
-			font-size: 20px;
+			font-size: rem(20);
 		}
 	}
 
@@ -297,8 +293,8 @@ label,
 		border: none !important;
 		z-index: 10;
 		width: 100% !important;
-		top: -32px !important;
-		padding: 10px !important;
+		top: rem(-32) !important;
+		padding: rem(10) !important;
 		margin: 0 0 0 0 !important;
 		color: var(--color-form-error) !important;
 		background-color: var(--color-form-error-b) !important;
@@ -315,8 +311,8 @@ label,
 		position: relative;
 		z-index: 10;
 		width: 100% !important;
-		padding: 16px !important;
-		margin: 0 0 10px 0 !important;
+		padding: rem(16) !important;
+		margin: 0 0 rem(10) 0 !important;
 		font-size: rem($cta1-size-desktop) !important;
 		font-family: $font-main;
 	}
@@ -357,7 +353,7 @@ label,
 	.wpcf7-not-valid-tip {
 
 		top: 0 !important;
-		margin-bottom: 32px !important;
+		margin-bottom: rem(32) !important;
 	}
 }
 
@@ -372,11 +368,10 @@ label,
 		z-index: 2;
 		top: 0;
 		margin: 0;
-		width: 95px;
+		width: rem(95);
 		opacity: 0;
 		@include transition(opacity 0.3s linear);
 
-		//height: 43px;
 		&.visible {
 			opacity: 1;
 		}
@@ -384,8 +379,8 @@ label,
 
 	.phone-number-style {
 		z-index: 1;
-		width: calc(100% - 94px);
-		margin-left: 94px;
+		width: calc(100% - rem(94));
+		margin-left: rem(94);
 	}
 
 	.just-hidden {

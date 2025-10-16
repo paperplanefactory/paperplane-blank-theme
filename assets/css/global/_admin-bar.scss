@@ -3,8 +3,8 @@
 @import 'mixin'; // comportamenti predefiniti
 
 body.customize-support {
-	margin-top: -32px;
-	padding-bottom: 32px;
+	margin-top: rem(-32);
+	padding-bottom: rem(32);
 }
 
 #wpadminbar {
@@ -12,10 +12,10 @@ body.customize-support {
 	bottom: 0;
 }
 
-#wpadminbar .quicklinks > ul > li {
+#wpadminbar .quicklinks>ul>li {
 	position: relative;
 }
 
-#wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper {
-	bottom: 32px;
+#wpadminbar .ab-top-menu>.menupop>.ab-sub-wrapper {
+	bottom: rem(32);
 }

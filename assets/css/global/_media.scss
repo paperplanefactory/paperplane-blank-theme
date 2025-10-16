@@ -83,8 +83,8 @@
 
 		&:before {
 			position: absolute;
-			width: 70px;
-			height: 70px;
+			width: rem(70);
+			height: rem(70);
 			z-index: 2;
 			top: 50%;
 			left: 50%;
@@ -135,13 +135,13 @@
 .play-pause-animation {
 	position: absolute;
 	z-index: 2;
-	bottom: 10px;
-	right: 10px;
-	width: 35px;
-	height: 35px;
+	bottom: rem(10);
+	right: rem(10);
+	width: rem(35);
+	height: rem(35);
 	border: none;
 	background-color: var(--color-4);
-	border: solid 1px var(--color-1);
+	border: solid rem(1) var(--color-1);
 	border-radius: 50%;
 	cursor: pointer;
 	opacity: 0.8;

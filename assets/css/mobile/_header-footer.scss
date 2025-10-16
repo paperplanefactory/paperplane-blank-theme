@@ -5,6 +5,54 @@ $logo-width: 200px;
 $hamburger-width: 55px;
 
 // header
+#pre-header {
+  padding: rem(5) 0;
+  border-bottom: solid rem(1) var(--color-1);
+
+  .intro-par {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  details {
+    summary {
+      position: relative;
+      cursor: pointer;
+      text-overflow: ellipsis;
+      /* Needed to make it work */
+      overflow: hidden;
+      white-space: nowrap;
+
+      &::marker {
+        content: "";
+
+
+      }
+
+      &::before {
+        position: relative;
+        display: inline-block;
+        content: "+";
+        margin-right: rem(5);
+        //transform-origin: 50%;
+      }
+    }
+
+    &[open] {
+      summary {
+
+        &::before {
+          //color: orangered;
+          //font-size: 2rem;
+          content: "-";
+
+        }
+      }
+    }
+  }
+}
 
 #header {
   height: $header-smartphone-height;
@@ -18,7 +66,7 @@ $hamburger-width: 55px;
       height: $header-smartphone-height;
 
       a {
-        top: 10px;
+        top: rem(10);
         height: calc(#{$header-smartphone-height} - 20px);
       }
     }
@@ -72,26 +120,25 @@ $hamburger-width: 55px;
   transform: translate(0, 100%);
   width: 100%;
   height: 100dvh;
-  background-color: red;
 
   .menu {
     width: 100%;
 
     .overlay-menu-css {
       width: 100%;
-      border-top: solid 1px var(--color-3) !important;
+      border-top: solid rem(1) var(--color-3) !important;
 
       li {
         position: relative;
         display: block;
         text-align: left;
         overflow: hidden;
-        border-bottom: solid 1px var(--color-3) !important;
+        border-bottom: solid rem(1) var(--color-3) !important;
 
         a {
           position: relative;
           display: block;
-          padding: 20px $wrapper-padded-smartphone 20px $wrapper-padded-smartphone;
+          padding: rem(20) $wrapper-padded-smartphone rem(20) $wrapper-padded-smartphone;
         }
 
         &.menu-item-has-children {
@@ -100,18 +147,18 @@ $hamburger-width: 55px;
           button {
             position: relative;
             width: 100%;
-            padding: 20px 55px 20px $wrapper-padded-smartphone;
+            padding: rem(20) rem(55) rem(20) $wrapper-padded-smartphone;
 
             &:after {
               content: "";
               position: absolute;
-              top: 20px;
+              top: rem(20);
               right: 0;
               transform: translate(0, 0) rotate(0);
               transform-origin: center;
-              width: 14px;
-              height: 8px;
-              margin-left: 5px;
+              width: rem(14);
+              height: rem(8);
+              margin-left: rem(5);
               -webkit-mask-image: url(assets/images/icons/sub-menu-icon.svg);
               mask-image: url(assets/images/icons/sub-menu-icon.svg);
               -webkit-mask-repeat: no-repeat;
@@ -151,7 +198,7 @@ $hamburger-width: 55px;
 
         li {
           width: 100%;
-          border-top: solid 1px var(--color-4) !important;
+          border-top: solid rem(1) var(--color-4) !important;
 
           &:last-child {
             border-bottom: none;
@@ -162,7 +209,7 @@ $hamburger-width: 55px;
           a {
             display: block;
             //width: calc(100% - (#{$wrapper-padded-smartphone} * 2));
-            padding: 20px $wrapper-padded-smartphone;
+            padding: rem(20) $wrapper-padded-smartphone;
 
             &:after {
               display: none;
@@ -175,7 +222,7 @@ $hamburger-width: 55px;
   }
 
   .user-accessibility-options {
-    margin: 20px 0;
+    margin: rem(20) 0;
   }
 }
 
@@ -185,29 +232,30 @@ $hamburger-width: 55px;
 
 .scroll-opportunity {
   width: 100%;
-  height: calc(100dvh - #{$header-smartphone-height});
-  padding-bottom: $module-vertical-padding-smartphone;
+  //height: calc(100dvh - #{$header-smartphone-height});
+  height: 100%;
+  padding: $module-vertical-padding-smartphone 0;
 }
 
 // footer
 
 #footer {
-  padding-top: 72px;
-  padding-bottom: 16px;
+  padding-top: rem(72);
+  padding-bottom: rem(16);
 
   .footer-logo {
-    max-width: 200px;
-    height: 70px;
+    max-width: rem(200);
+    height: rem(70);
   }
 
   .footer-menu {
     width: 100%;
     text-align: left;
-    margin: 50px 0;
+    margin: rem(50) 0;
 
     li {
       display: inline-block;
-      margin: 0 20px 0 0;
+      margin: 0 rem(20) 0 0;
 
       &:last-child {
         margin: 0;
@@ -219,9 +267,9 @@ $hamburger-width: 55px;
 .user-accessibility-options {}
 
 .inline-socials {
-  margin: 20px 0;
+  margin: rem(20) 0;
 
   li {
-    margin-bottom: 10px;
+    margin-bottom: rem(10);
   }
 }

@@ -69,13 +69,13 @@
   &.left-fix {
     .fix {
       order: 1;
-      width: 400px;
+      width: rem(400);
       margin: 0 $column-space-side-desktop $column-space-bottom-desktop 0;
     }
 
     .nofix {
       order: 2;
-      width: calc(100% - 400px - #{$column-space-side-desktop});
+      width: calc(100% - rem(400) - #{$column-space-side-desktop});
       margin-right: 0;
     }
   }
@@ -83,13 +83,13 @@
   &.right-fix {
     .fix {
       order: 2;
-      width: 400px;
+      width: rem(400);
       margin: 0 0 $column-space-side-desktop $column-space-bottom-desktop;
     }
 
     .nofix {
       order: 1;
-      width: calc(100% - 400px - #{$column-space-side-desktop});
+      width: calc(100% - rem(400) - #{$column-space-side-desktop});
       margin-right: 0;
     }
   }
@@ -113,22 +113,22 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding: 7px 0;
-    font-size: 11px;
-    line-height: 11px;
+    padding: rem(7) 0;
+    font-size: rem(11);
+    line-height: rem(1);
     background-color: var(--color-1);
     color: var(--color-4);
 
     .click-hide {
       background-color: var(--color-2);
-      padding: 6px 8px;
+      padding: rem(6) rem(8);
       cursor: pointer;
     }
 
     .hide-me {
       cursor: pointer;
-      padding: 5px 7px;
-      margin-right: 10px;
+      padding: rem(5) rem(7);
+      margin-right: rem(10);
       font-weight: $font-weight-1;
 
       &.hidden-label {
