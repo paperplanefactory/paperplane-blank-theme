@@ -1,10 +1,9 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .paperplane-modal {
   .modal-box {
-    //max-width: 900px;
     min-width: rem(350);
     width: 80%;
     max-height: 90vh;

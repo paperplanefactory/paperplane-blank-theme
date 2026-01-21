@@ -15,10 +15,10 @@ $modal_video_include = $content_fields_modal['modal_video_include'];
 				</h2>
 			</div>
 		<?php endif; ?>
-		<button
-			class="modal-close-button modal-close-js modal-close-js-<?php echo $post->ID; ?>  masked-element element-icon-before"
+		<button type="button"
+			class="modal-close-button modal-close-js modal-close-js-<?php echo $post->ID; ?> element-icon-before"
 			data-modal-id="<?php echo $post->ID; ?>"
-			aria-label="<?php _e( 'Chiudi questo pannello', 'paperPlane-blankTheme' ); ?>">
+			aria-label="<?php esc_html_e( 'Chiudi questo pannello', 'paperPlane-blankTheme' ); ?>">
 		</button>
 		<div class="insider">
 			<div class="inner-message inner-message-js">

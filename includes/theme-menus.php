@@ -3,10 +3,10 @@
 function register_theme_menus() {
 	register_nav_menus(
 		array(
-			'header-menu' => __( 'Header Menu' ),
-			'overlay-menu-desktop' => __( 'Overlay Menu Desktop' ),
-			'overlay-menu-mobile' => __( 'Overlay Menu Mobile' ),
-			'footer-menu' => __( 'Footer Menu' )
+			'header-menu' => esc_html__( 'Header Menu' ),
+			'overlay-menu-desktop' => esc_html__( 'Overlay Menu Desktop' ),
+			'overlay-menu-mobile' => esc_html__( 'Overlay Menu Mobile' ),
+			'footer-menu' => esc_html__( 'Footer Menu' )
 		)
 	);
 }
@@ -21,7 +21,7 @@ function register_theme_mega_menus() {
 	if ( ! empty( $my_filter_mega_menus ) ) {
 		foreach ( $my_filter_mega_menus as $post ) {
 			$menu_name = get_the_title( $post->ID );
-			register_nav_menu( 'mega-menu-' . $post->ID . '', __( 'Mega Menu ' . $menu_name . '' ) );
+			register_nav_menu( 'mega-menu-' . $post->ID . '', esc_html__( 'Mega Menu ' . $menu_name . '' ) );
 		}
 		wp_reset_postdata();
 	}
@@ -51,14 +51,6 @@ function setup_theme_acf_options() {
 				//'redirect'		=> false
 			)
 		);
-		// social
-		acf_add_options_sub_page(
-			array(
-				'page_title' => 'Gestione social',
-				'menu_title' => 'Gestione social',
-				'parent_slug' => $parent['menu_slug'],
-			)
-		);
 		// verifico che sia attivo Polylang
 		if ( function_exists( 'PLL' ) ) {
 			$langs_parameters = array(
@@ -79,7 +71,7 @@ function setup_theme_acf_options() {
 			acf_add_options_sub_page(
 				array(
 					'page_title' => 'Gestione header (' . strtoupper( $lang ) . ')',
-					'menu_title' => __( 'Gestione header' . $lang_menu_label, 'paperPlane-blankTheme' ),
+					'menu_title' => esc_html__( 'Gestione header' . $lang_menu_label, 'paperPlane-blankTheme' ),
 					'menu_slug' => "gestione-header-{$lang}",
 					'post_id' => $lang,
 					'parent_slug' => $parent['menu_slug'],
@@ -89,7 +81,7 @@ function setup_theme_acf_options() {
 			acf_add_options_sub_page(
 				array(
 					'page_title' => 'Gestione footer (' . strtoupper( $lang ) . ')',
-					'menu_title' => __( 'Gestione footer' . $lang_menu_label, 'paperPlane-blankTheme' ),
+					'menu_title' => esc_html__( 'Gestione footer' . $lang_menu_label, 'paperPlane-blankTheme' ),
 					'menu_slug' => "gestione-footer-{$lang}",
 					'post_id' => $lang,
 					'parent_slug' => $parent['menu_slug'],
@@ -99,13 +91,21 @@ function setup_theme_acf_options() {
 			acf_add_options_sub_page(
 				array(
 					'page_title' => 'Gestione archivi (' . strtoupper( $lang ) . ')',
-					'menu_title' => __( 'Gestione archivi ' . $lang_menu_label, 'paperPlane-blankTheme' ),
+					'menu_title' => esc_html__( 'Gestione archivi ' . $lang_menu_label, 'paperPlane-blankTheme' ),
 					'menu_slug' => "gestione-archivi-{$lang}",
 					'post_id' => $lang,
 					'parent_slug' => $parent['menu_slug'],
 				)
 			);
 		}
+		// social
+		acf_add_options_sub_page(
+			array(
+				'page_title' => 'Gestione social',
+				'menu_title' => 'Gestione social',
+				'parent_slug' => $parent['menu_slug'],
+			)
+		);
 	}
 }
 
@@ -162,7 +162,7 @@ function paperplane_add_modal_menu_atts( $atts, $item, $args ) {
 		$atts['class'] = 'modal-open-js ' . $start_point;
 		$atts['href'] = '#modal-focus-' . $acf_id_modal;
 		$atts['aria-haspopup'] = 'true';
-		$atts['aria-label'] = __( 'Questo link apre una finestra sovrapposta alla pagina', 'paperPlane-blankTheme' );
+		$atts['aria-label'] = esc_html__( 'Questo link apre una finestra sovrapposta alla pagina', 'paperPlane-blankTheme' );
 	}
 	return $atts;
 }
@@ -184,25 +184,92 @@ function paperplane_add_mega_menu_atts( $atts, $item, $args ) {
 }
 add_filter( 'nav_menu_link_attributes', 'paperplane_add_mega_menu_atts', 10, 3 );
 
-function paperplane_menu_items_as_buttons( $item_output, $item ) {
+class Paperplane_Accessible_Walker extends Walker_Nav_Menu {
+
+	private $current_parent_id = null;
+
+	// Cattura l'ID del parent prima di generare il submenu
+	function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+		// Salva l'ID del parent se ha children
+		if ( in_array( 'menu-item-has-children', $item->classes ) ) {
+			$this->current_parent_id = $item->ID;
+		}
+
+		// Chiama il parent per generare il normale output
+		parent::start_el( $output, $item, $depth, $args, $id );
+	}
+
+	// Modifica l'apertura del submenu
+	function start_lvl( &$output, $depth = 0, $args = null ) {
+		$indent = str_repeat( "\t", $depth );
+
+		// Determina il contesto in base al menu
+		$context = 'desktop'; // default
+		if ( isset( $args->theme_location ) && $args->theme_location === 'overlay-menu-mobile' ) {
+			$context = 'mobile';
+		}
+
+		if ( $this->current_parent_id ) {
+			$submenu_id = 'sub-menu-' . $this->current_parent_id;
+			$button_id = 'menu-button-' . $this->current_parent_id;
+			$output .= "\n{$indent}<ul class=\"sub-menu\" role=\"navigation\" id=\"{$submenu_id}\" aria-labelledby=\"{$button_id}\" data-menu-type=\"{$context}\">\n";
+		} else {
+			$output .= "\n{$indent}<ul class=\"sub-menu\" data-menu-type=\"{$context}\">\n";
+		}
+	}
+}
+
+function paperplane_menu_items_as_buttons( $item_output, $item, $depth, $args ) {
 	$mega_menu_activator = get_field( 'mega_menu_activator', $item );
 	$acf_id_modal = get_field( 'acf_id_modal', $item );
+
+	// Determina il contesto in base al menu
+	$context = 'desktop'; // default
+	if ( isset( $args->theme_location ) && $args->theme_location === 'overlay-menu-mobile' ) {
+		$context = 'mobile';
+	}
+
 	if ( $mega_menu_activator ) {
-		$item_output = '<button type="button" aria-expanded="false" haspopup="true" aria-controls="mega-menu-control-' . $mega_menu_activator[0] . '" id="mega-menu-controller-' . $mega_menu_activator[0] . '" class="nav-simple-button element-icon-after mega-menu-js-trigger mega-menu-js-' . $mega_menu_activator[0] . '-trigger" aria-controls="mega-menu-js-' . $mega_menu_activator[0] . '-target" data-megamenu-open-id="' . $mega_menu_activator[0] . '">' . $item->title . '</button>';
+		$item_output = '<button type="button" aria-expanded="false" aria-haspopup="true" aria-controls="mega-menu-control-' . $mega_menu_activator[0] . '" id="mega-menu-controller-' . $mega_menu_activator[0] . '" class="nav-simple-button element-icon-after mega-menu-js-trigger mega-menu-js-' . $mega_menu_activator[0] . '-trigger" aria-controls="mega-menu-js-' . $mega_menu_activator[0] . '-target" data-megamenu-open-id="' . $mega_menu_activator[0] . '" data-menu-type="' . $context . '">' . $item->title . '</button>';
 		ob_start();
 		include( locate_template( 'template-parts/grid/mega-menu-single.php' ) );
 		$item_output .= ob_get_clean();
+
 	} elseif ( in_array( 'menu-item-has-children', $item->classes ) ) {
-		$item_output = '<button type="button" aria-expanded="false" class="nav-simple-button element-icon-after sub-menu-btn">' . $item->title . '</button>';
+		$unique_id = 'menu-button-' . $item->ID;
+		$submenu_id = 'sub-menu-' . $item->ID;
+
+		$item_output = '<button type="button" aria-expanded="false" id="' . $unique_id . '" aria-controls="' . $submenu_id . '" class="nav-simple-button element-icon-after sub-menu-btn" data-menu-type="' . $context . '">' . $item->title . '</button>';
+
 	} elseif ( $acf_id_modal ) {
 		global $cta_url_modal_array;
 		$cta_url_modal_array[] = $acf_id_modal;
 		$start_point = paperplane_random_code();
-		$item_output = '<button type="button" aria-haspopup="true" aria-label="' . $item->title . ': ' . __( 'Apre una finestra sovrapposta alla pagina', 'paperPlane-blankTheme' ) . '" class="default-button modal-open-js ' . $start_point . '" data-modal-id="' . $acf_id_modal . '" data-modal-back-to="' . $start_point . '">' . $item->title . '</button>';
+		$item_output = '<button type="button" aria-haspopup="true" aria-label="' . $item->title . ': ' . esc_html__( 'Apre una finestra sovrapposta alla pagina', 'paperPlane-blankTheme' ) . '" class="default-button modal-open-js ' . $start_point . '" data-modal-id="' . $acf_id_modal . '" data-modal-back-to="' . $start_point . '">' . $item->title . '</button>';
 	}
+
 	return $item_output;
 }
-add_filter( 'walker_nav_menu_start_el', 'paperplane_menu_items_as_buttons', 10, 3 );
+add_filter( 'walker_nav_menu_start_el', 'paperplane_menu_items_as_buttons', 10, 4 );
+
+function paperplane_submenu_attributes( $output, $depth, $args ) {
+	// Determina il contesto in base al menu
+	$context = 'desktop'; // default
+	if ( isset( $args->theme_location ) && $args->theme_location === 'overlay-menu-mobile' ) {
+		$context = 'mobile';
+	}
+
+	if ( $depth === 0 ) {
+		// Aggiungi data-menu-type al <ul class="sub-menu">
+		$output = str_replace(
+			'<ul class="sub-menu">',
+			'<ul class="sub-menu" data-menu-type="' . $context . '">',
+			$output
+		);
+	}
+	return $output;
+}
+//add_filter( 'walker_nav_menu_start_lvl', 'paperplane_submenu_attributes', 10, 3 );
 
 
 

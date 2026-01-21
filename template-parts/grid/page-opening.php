@@ -1,39 +1,13 @@
 <?php
 /* 
-richiamo il tipo di apertura in base al tipo di contenuto
-la prima condizione è per i template di pagina e per il singolo post
-se ci sono nuovi CPT vanno aggiunti qui is_singular( 'cpt_nome' )
-se il nuovo CPT ha una apertura differente da quelle predefinite aggiungere una condizione specifica dopo questa per gestire più agilmente il layout
-
-in caso siano necessie aperture di pagine differenti, dove possibile mantenere questi nomi per i custom field delle immagini e del poster del video:
-page_opening_image_desktop
-page_opening_image_mobile
-page_opening_video_poster
+Richiamo il tipo di apertura in base al tipo di contenuto
+usando la configurazione centralizzata per eliminare duplicazione di logica
 */
-if ( is_page_template( 'page-modules.php' ) || is_page_template( 'page-listing.php' ) || is_singular( 'post' ) ) {
-	// verifico se esiste la chiave dell'array del campo che mi serve e se ha un valore
-	if ( $content_fields['page_opening_layout'] ?? null ) {
-		// verifico se il campo ha il valore per apertura fullscreen
-		if ( $content_fields['page_opening_layout'] === 'opening-fullscreen' ) {
-			include( locate_template( 'template-parts/grid/page-opening/opening-fullscreen.php' ) );
-		}
-		// altrimenti uso l'apertura di solo testo
-		if ( $content_fields['page_opening_layout'] === 'opening-text' ) {
-			include( locate_template( 'template-parts/grid/page-opening/opening-text.php' ) );
-		}
-	}
+
+// Ottiene la configurazione appropriata per il contesto corrente
+$opening_config = get_page_opening_config( $content_fields );
+
+// Se esiste una configurazione valida, include il template appropriato
+if ( $opening_config && ! empty( $opening_config['template'] ) ) {
+	include( locate_template( $opening_config['template'] ) );
 }
-// per la pagina di archivio generica: https://developer.wordpress.org/reference/functions/is_archive/
-// per gestione archivio personalizzato di una tassonomia custom: https://developer.wordpress.org/reference/functions/is_tax/
-if ( is_archive() ) {
-	include( locate_template( 'template-parts/grid/page-opening/opening-archive.php' ) );
-}
-// per gestione risultati di ricerca: https://developer.wordpress.org/reference/functions/is_search/
-if ( is_search() ) {
-	include( locate_template( 'template-parts/grid/page-opening/opening-search.php' ) );
-}
-// per gestione 404: https://developer.wordpress.org/reference/functions/is_404/
-if ( is_404() ) {
-	include( locate_template( 'template-parts/grid/page-opening/opening-404.php' ) );
-}
-?>

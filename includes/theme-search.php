@@ -83,7 +83,6 @@ function json_generator_frontend_script_field() {
 	$options = get_option( 'json_generator_settings' );
 	$frontend_js = isset( $options['frontend_js'] ) ? $options['frontend_js'] : true;
 
-	// Aggiungiamo un campo hidden che assicura che l'opzione esista sempre
 	echo '<input type="hidden" name="json_generator_settings[frontend_js]" value="0">';
 	echo '<label><input type="checkbox" name="json_generator_settings[frontend_js]" value="1" ' . checked( $frontend_js, true, false ) . '> ';
 	echo 'Abilita il caricamento dello script search-suggestions.min.js</label>';
@@ -113,11 +112,10 @@ function json_generator_post_types_field() {
 	$saved_types = isset( $options['post_types'] ) ? $options['post_types'] : array();
 	$priorities = isset( $options['post_type_priorities'] ) ? $options['post_type_priorities'] : array();
 
-	// Valori predefiniti per le priorità
 	$default_priorities = array(
-		'page' => 1,    // Massima priorità per le pagine
-		'post' => 2,    // Seconda priorità per i post
-		'default' => 10 // Priorità predefinita per altri tipi
+		'page' => 1,
+		'post' => 2,
+		'default' => 10
 	);
 
 	echo '<div style="max-height: 200px; overflow-y: auto; padding: 10px; border: 1px solid #ccc;">';
@@ -126,10 +124,6 @@ function json_generator_post_types_field() {
 	foreach ( $post_types as $post_type ) {
 		$checked = in_array( $post_type->name, $saved_types ) ? 'checked' : '';
 
-		// Assegna priorità con questo ordine:
-		// 1. Priorità salvata nelle opzioni
-		// 2. Priorità predefinita specifica per il post type
-		// 3. Priorità predefinita generale
 		$priority = $priorities[ $post_type->name ] ??
 			$default_priorities[ $post_type->name ] ??
 			$default_priorities['default'];
@@ -174,12 +168,12 @@ function json_generator_auto_update_field() {
 	$options = get_option( 'json_generator_settings' );
 	$auto_update = isset( $options['auto_update'] ) ? $options['auto_update'] : true;
 
-	// Aggiungiamo un campo hidden che assicura che l'opzione esista sempre
 	echo '<input type="hidden" name="json_generator_settings[auto_update]" value="0">';
 	echo '<label><input type="checkbox" name="json_generator_settings[auto_update]" value="1" ' . checked( $auto_update, true, false ) . '> ';
 	echo 'Abilita aggiornamento automatico del JSON durante il salvataggio dei contenuti</label>';
 	echo '<p class="description">Se disabilitato, il JSON verrà aggiornato solo quando richiesto manualmente.</p>';
 }
+
 /**
  * Campo per abilitare/disabilitare update giornaliera
  */
@@ -193,8 +187,63 @@ function json_generator_daily_generation_field() {
 }
 
 /**
- * Crea file JSON compresso e non compresso
+ * FUNZIONE HELPER CENTRALIZZATA
+ * Ritorna i metadati del file JSON più recente
  */
+function get_latest_json_metadata() {
+	$upload_dir = wp_upload_dir();
+	$timestamp = get_option( 'json_generator_latest_timestamp' );
+
+	if ( ! $timestamp ) {
+		return array(
+			'timestamp' => '',
+			'jsonUrl' => '',
+			'gzipUrl' => ''
+		);
+	}
+
+	return array(
+		'timestamp' => $timestamp,
+		'jsonUrl' => $upload_dir['baseurl'] . '/json-data/paperplane-search-index-' . $timestamp . '.json',
+		'gzipUrl' => $upload_dir['baseurl'] . '/json-data/paperplane-search-index-' . $timestamp . '.json.gz'
+	);
+}
+
+/**
+ * Pulisce i file JSON vecchi della cartella json-data/
+ */
+function cleanup_old_json_files() {
+	$upload_dir = wp_upload_dir();
+	$json_dir = $upload_dir['basedir'] . '/json-data';
+
+	if ( ! is_dir( $json_dir ) ) {
+		return;
+	}
+
+	$files = glob( $json_dir . '/paperplane-search-index-*.json' );
+
+	if ( ! is_array( $files ) || count( $files ) <= 1 ) {
+		return;
+	}
+
+	usort( $files, function ( $a, $b ) {
+		return filemtime( $b ) - filemtime( $a );
+	} );
+
+	for ( $i = 1; $i < count( $files ); $i++ ) {
+		$file = $files[ $i ];
+		$gz_file = $file . '.gz';
+
+		if ( file_exists( $file ) ) {
+			unlink( $file );
+		}
+
+		if ( file_exists( $gz_file ) ) {
+			unlink( $gz_file );
+		}
+	}
+}
+
 /**
  * Crea file JSON compresso e non compresso in base al tipo di server
  */
@@ -202,7 +251,6 @@ function create_compressed_json( $json_data, $json_file ) {
 	$options = get_option( 'json_generator_settings' );
 	$server_type = isset( $options['server_type'] ) ? $options['server_type'] : 'apache';
 
-	// Salva versione normale
 	$temp_file = $json_file . '.tmp';
 	$success = file_put_contents(
 		$temp_file,
@@ -212,19 +260,16 @@ function create_compressed_json( $json_data, $json_file ) {
 	if ( $success ) {
 		rename( $temp_file, $json_file );
 
-		// Gestione della compressione in base al tipo di server
 		if ( $server_type === 'apache' ) {
-			// Crea versione compressa per Apache
 			$gz_file = $json_file . '.gz';
-			$gz = gzopen( $gz_file, 'w9' ); // 9 è il livello massimo di compressione
+			$gz = gzopen( $gz_file, 'w9' );
 			gzwrite( $gz, file_get_contents( $json_file ) );
 			gzclose( $gz );
 
-			// Crea o aggiorna .htaccess per gestire la compressione
 			$htaccess = dirname( $json_file ) . '/.htaccess';
 			file_put_contents( $htaccess, "
 # Abilita l'accesso ai file JSON
-<FilesMatch \"(posts\\.json|posts\\.json\\.gz)$\">
+<FilesMatch \"(paperplane-search-index-.*\\.json|paperplane-search-index-.*\\.json\\.gz)$\">
     Order Allow,Deny
     Allow from all
 </FilesMatch>
@@ -236,18 +281,16 @@ function create_compressed_json( $json_data, $json_file ) {
 </FilesMatch>
 
 # Blocca l'accesso a tutti gli altri file
-<Files ~ \"^(?!(posts\\.json|posts\\.json\\.gz)$)\">
+<Files ~ \"^(?!(paperplane-search-index-.*\\.json|paperplane-search-index-.*\\.json\\.gz)$)\">
     Order Allow,Deny
     Deny from all
 </Files>" );
 		} elseif ( $server_type === 'nginx' ) {
-			// Per Nginx, rimuovi il file .gz se esiste
 			$gz_file = $json_file . '.gz';
 			if ( file_exists( $gz_file ) ) {
 				unlink( $gz_file );
 			}
 
-			// Rimuovi anche .htaccess se esiste
 			$htaccess = dirname( $json_file ) . '/.htaccess';
 			if ( file_exists( $htaccess ) ) {
 				unlink( $htaccess );
@@ -266,20 +309,11 @@ function json_generator_settings_page() {
 		return;
 	}
 
-	$upload_dir = wp_upload_dir();
-	$json_file = $upload_dir['baseurl'] . '/json-data/posts.json';
-	$gz_file = $json_file . '.gz';
+	$metadata = get_latest_json_metadata();
 
 	if ( isset( $_GET['message'] ) ) {
 		if ( $_GET['message'] === 'json-updated' ) {
-			$processed = isset( $_GET['processed'] ) ? intval( $_GET['processed'] ) : 0;
-			$total = isset( $_GET['total'] ) ? intval( $_GET['total'] ) : 0;
-			if ( $total > 0 ) {
-				$percentage = round( ( $processed / $total ) * 100 );
-				echo '<div class="notice notice-success"><p>File JSON aggiornato. Processati ' . $processed . ' post su ' . $total . ' (' . $percentage . '%).</p></div>';
-			} else {
-				echo '<div class="notice notice-success"><p>File JSON aggiornato con successo.</p></div>';
-			}
+			echo '<div class="notice notice-success"><p>File JSON aggiornato con successo.</p></div>';
 		}
 	}
 	?>
@@ -299,58 +333,49 @@ function json_generator_settings_page() {
 						background: #000ccc;
 					}
 
-					progress::-webkit-progress-value {
-						background: #000ccc;
+					progress::-webkit-progress-bar {
+						background-color: #f3f3f3;
 					}
 
-					progress {
-						color: #000ccc;
+					progress::-webkit-progress-value {
+						background-color: #000ccc;
 					}
 				}
 			</style>
 		</div>
 
-		<form action="options.php" method="post">
+		<!-- Sezione Genera JSON -->
+		<div class="postbox">
+			<h2 class="hndle"><span>Genera JSON</span></h2>
+			<div class="inside">
+				<?php if ( ! empty( $metadata['timestamp'] ) ) : ?>
+					<p>
+						<strong>File JSON corrente:</strong>
+						<br>
+						<code><?php echo esc_html( $metadata['jsonUrl'] ); ?></code>
+						<br><br>
+						<strong>Versione compressa:</strong>
+						<br>
+						<code><?php echo esc_html( $metadata['gzipUrl'] ); ?></code>
+					</p>
+				<?php else : ?>
+					<p>
+						<em>Nessun file JSON generato ancora.</em>
+					</p>
+				<?php endif; ?>
+
+				<p>
+					<button id="json-generate-btn" class="button button-primary">Genera JSON ora</button>
+				</p>
+			</div>
+		</div>
+
+		<form method="post" action="options.php">
 			<?php
 			settings_fields( 'json_generator_options' );
 			do_settings_sections( 'json-generator-settings' );
-			submit_button( 'Salva Impostazioni' );
+			submit_button();
 			?>
-		</form>
-
-		<hr>
-
-		<h2>Genera JSON</h2>
-		<p>File JSON corrente:
-			<br><code><?php echo esc_html( $json_file ); ?></code>
-			<br><code><?php echo esc_html( $gz_file ); ?></code> (versione compressa)
-		</p>
-
-		<?php
-		// Mostra dimensioni dei file se esistono
-		$json_path = $upload_dir['basedir'] . '/json-data/posts.json';
-		$gz_path = $json_path . '.gz';
-		if ( file_exists( $json_path ) && file_exists( $gz_path ) ) {
-			$json_size = filesize( $json_path );
-			$gz_size = filesize( $gz_path );
-			if ( $json_size > 0 ) {
-				$json_formatted = size_format( $json_size );
-				$gz_formatted = size_format( $gz_size );
-				$compression = round( ( 1 - $gz_size / $json_size ) * 100 );
-				echo "<p>Dimensioni:<br>
-					  - Non compresso: {$json_formatted}<br>
-					  - Compresso: {$gz_formatted} (riduzione del {$compression}%)</p>";
-			} else {
-				echo "<p>Il file JSON sembra essere vuoto.</p>";
-			}
-		}
-		?>
-
-		<form method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>">
-			<?php wp_nonce_field( 'generate_json_action', 'json_generator_nonce' ); ?>
-			<input type="hidden" name="action" value="generate_json_action">
-			<p><input type="number" name="post_id" placeholder="ID del post da aggiornare (opzionale)"></p>
-			<input type="submit" class="button button-primary" value="Aggiorna JSON">
 		</form>
 	</div>
 
@@ -383,8 +408,8 @@ function json_generator_settings_page() {
 							if (response.isCompleted) {
 								isGenerating = false;
 								setTimeout(function () {
-									window.location.href = '<?php echo add_query_arg( [ "page" => "json-generator-settings", "message" => "json-updated" ], admin_url( "options-general.php" ) ); ?>';
-								}, 1000);
+									location.reload();
+								}, 1500);
 							} else {
 								currentBatch++;
 								continueGeneration();
@@ -402,36 +427,35 @@ function json_generator_settings_page() {
 					url: ajaxurl,
 					type: 'POST',
 					data: {
-						action: 'generate_json_action',
+						action: 'generate_json_batch',
 						batch: currentBatch,
-						json_generator_nonce: '<?php echo wp_create_nonce( "generate_json_action" ); ?>'
+						nonce: '<?php echo wp_create_nonce( "generate_json_batch" ); ?>'
 					},
 					success: function (response) {
 						if (response.success) {
 							setTimeout(checkProgress, 1000);
 						} else {
 							console.error('Errore nella generazione del batch');
+							isGenerating = false;
 						}
 					},
 					error: function () {
 						console.error('Errore nella chiamata AJAX');
+						isGenerating = false;
 					}
 				});
 			}
 
-			$('form[action="<?php echo admin_url( "admin-post.php" ); ?>"]').on('submit', function (e) {
-				if ($(this).find('input[name="post_id"]').val()) {
-					return true;
-				}
-
+			$('#json-generate-btn').on('click', function (e) {
 				e.preventDefault();
+				const btn = $(this);
+				btn.prop('disabled', true).text('Generazione in corso...');
+
 				isGenerating = true;
 				currentBatch = 0;
 				$('#json-progress').show();
 
 				continueGeneration();
-
-				return false;
 			});
 		});
 	</script>
@@ -439,64 +463,119 @@ function json_generator_settings_page() {
 }
 
 /**
- * Ottiene i dati di un post per il JSON
+ * Estrae i dati di un singolo post per il JSON
  */
 function get_post_json_data( $post_id ) {
-	if ( get_post_status( $post_id ) !== 'publish' ) {
+	$post = get_post( $post_id );
+
+	if ( ! $post || $post->post_status !== 'publish' ) {
 		return null;
 	}
 
-	$searchable_fields = array(
-		'new_module' => array(
-			'module_text',
-			'module_highlighted_sentence_text',
-			'module_highlighted_sentence_author',
-			'module_fullscreen_image_main_text',
-			'module_fullscreen_image_secondary_text',
-			'module_scroll_text_content'
-		),
-		'direct' => array(
-			'page_opening_title',
-			'page_opening_subtitle'
-		)
-	);
+	$searchable_content = $post->post_content;
 
-	$all_fields = get_fields( $post_id, false );
-	$searchable_content = '';
-
-	if ( ! empty( $all_fields['new_module'] ) && is_array( $all_fields['new_module'] ) ) {
-		foreach ( $all_fields['new_module'] as $module ) {
-			foreach ( $searchable_fields['new_module'] as $field ) {
-				if ( ! empty( $module[ $field ] ) ) {
-					$searchable_content .= ' ' . wp_strip_all_tags( $module[ $field ], true );
+	if ( function_exists( 'get_field' ) ) {
+		$fields = get_fields( $post_id );
+		if ( is_array( $fields ) ) {
+			foreach ( $fields as $field_value ) {
+				if ( is_string( $field_value ) ) {
+					$searchable_content .= ' ' . $field_value;
 				}
 			}
 		}
 	}
 
-	foreach ( $searchable_fields['direct'] as $field ) {
-		if ( ! empty( $all_fields[ $field ] ) ) {
-			$searchable_content .= ' ' . wp_strip_all_tags( $all_fields[ $field ], true );
-		}
-	}
-
 	return array(
-		'id' => $post_id,
-		'title' => get_the_title( $post_id ),
-		'url' => get_permalink( $post_id ),
-		'post_type' => get_post_type( $post_id ),
-		'featured_image' => get_the_post_thumbnail_url( $post_id, 'full' ) ?: '',
-		'searchable_content' => trim( $searchable_content ),
-		'modified' => get_the_modified_date( 'Y-m-d H:i:s', $post_id )
+		'id' => $post->ID,
+		'title' => esc_html( $post->post_title ),
+		'url' => esc_url( get_permalink( $post->ID ) ),
+		'post_type' => $post->post_type,
+		'featured_image' => esc_url( get_the_post_thumbnail_url( $post->ID, 'thumbnail' ) ) ?: '',
+		'searchable_content' => wp_strip_all_tags( $searchable_content ),
+		'modified' => $post->post_modified
 	);
 }
 
 /**
- * Endpoint per controllare il progresso
+ * AJAX: Genera un singolo batch
+ */
+add_action( 'wp_ajax_generate_json_batch', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error( 'Permesso negato' );
+	}
+
+	if ( ! wp_verify_nonce( $_POST['nonce'], 'generate_json_batch' ) ) {
+		wp_send_json_error( 'Verifica di sicurezza fallita' );
+	}
+
+	$current_batch = isset( $_POST['batch'] ) ? intval( $_POST['batch'] ) : 0;
+	$options = get_option( 'json_generator_settings' );
+	$post_types = isset( $options['post_types'] ) ? $options['post_types'] : array( 'post' );
+	$batch_size = isset( $options['batch_size'] ) ? intval( $options['batch_size'] ) : 50;
+
+	$upload_dir = wp_upload_dir();
+	$json_dir = $upload_dir['basedir'] . '/json-data';
+
+	if ( ! file_exists( $json_dir ) ) {
+		wp_mkdir_p( $json_dir );
+	}
+
+	// Primo batch: crea il file con timestamp
+	if ( $current_batch === 0 ) {
+		$timestamp = date( 'Y-m-d-H-i' );
+		update_option( 'json_generator_generation_in_progress', $timestamp );
+		$json_data = array();
+		$json_file = $json_dir . '/paperplane-search-index-' . $timestamp . '.json';
+	} else {
+		// Batch successivi: carica il file esistente
+		$timestamp = get_option( 'json_generator_generation_in_progress' );
+		$json_file = $json_dir . '/paperplane-search-index-' . $timestamp . '.json';
+		$json_data = file_exists( $json_file ) ? json_decode( file_get_contents( $json_file ), true ) : array();
+		if ( ! is_array( $json_data ) ) {
+			$json_data = array();
+		}
+	}
+
+	// Recupera i post per questo batch
+	$args = array(
+		'post_type' => $post_types,
+		'post_status' => 'publish',
+		'posts_per_page' => $batch_size,
+		'offset' => $current_batch * $batch_size,
+		'orderby' => 'modified',
+		'order' => 'DESC',
+		'fields' => 'ids'
+	);
+
+	$posts = get_posts( $args );
+	foreach ( $posts as $post_id ) {
+		$post_data = get_post_json_data( $post_id );
+		if ( $post_data ) {
+			$json_data[ $post_id ] = $post_data;
+		}
+		clean_post_cache( $post_id );
+	}
+
+	// Salva il file
+	$success = create_compressed_json( $json_data, $json_file );
+
+	if ( $success ) {
+		wp_send_json_success();
+	} else {
+		wp_send_json_error( 'Errore nella scrittura del file JSON' );
+	}
+} );
+
+/**
+ * AJAX: Controlla il progresso
  */
 add_action( 'wp_ajax_check_json_progress', function () {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		wp_send_json_error( 'Permesso negato' );
+	}
+
+	if ( ! wp_verify_nonce( $_POST['nonce'], 'check_json_progress' ) ) {
+		wp_send_json_error( 'Verifica di sicurezza fallita' );
 	}
 
 	$batch = isset( $_POST['batch'] ) ? intval( $_POST['batch'] ) : 0;
@@ -514,199 +593,102 @@ add_action( 'wp_ajax_check_json_progress', function () {
 	);
 	$count_query = new WP_Query( $count_args );
 	$total = $count_query->found_posts;
+	wp_reset_postdata();
 
-	// Calcola quanti post sono stati processati in questo batch
-	$args = array(
-		'post_type' => $post_types,
-		'post_status' => 'publish',
-		'posts_per_page' => $batch_size,
-		'offset' => $current_batch * $batch_size,
-		'orderby' => 'modified',
-		'order' => 'DESC',
-		'fields' => 'ids'
-	);
+	// Calcola quanti post sono stati processati
+	$processed = ( $batch * $batch_size ) + $batch_size;
+	$processed = min( $processed, $total );
 
-	$posts = get_posts( $args );
-	$processed = ( $batch * $batch_size ) + count( $posts );
-	$processed = min( $processed, $total ); // Non superare il totale
+	$is_completed = $processed >= $total;
 
-	wp_send_json( [ 
+	// Se è l'ultimo batch, aggiorna il timestamp
+	if ( $is_completed ) {
+		$timestamp = get_option( 'json_generator_generation_in_progress' );
+		if ( $timestamp ) {
+			update_option( 'json_generator_latest_timestamp', $timestamp );
+			delete_option( 'json_generator_generation_in_progress' );
+			cleanup_old_json_files();
+		}
+	}
+
+	wp_send_json( array(
 		'processed' => $processed,
 		'total' => $total,
-		'isCompleted' => $processed >= $total
-	] );
-} );
-
-/**
- * Endpoint AJAX per la generazione
- */
-add_action( 'wp_ajax_generate_json_action', function () {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error( 'Permesso negato' );
-	}
-
-	if ( ! wp_verify_nonce( $_POST['json_generator_nonce'], 'generate_json_action' ) ) {
-		wp_send_json_error( 'Verifica di sicurezza fallita' );
-	}
-
-	$upload_dir = wp_upload_dir();
-	$json_dir = $upload_dir['basedir'] . '/json-data';
-	$json_file = $json_dir . '/posts.json';
-
-	if ( ! file_exists( $json_dir ) ) {
-		wp_mkdir_p( $json_dir );
-	}
-
-	$current_batch = isset( $_POST['batch'] ) ? intval( $_POST['batch'] ) : 0;
-
-	// Se è il primo batch, inizializza un array vuoto
-	if ( $current_batch === 0 ) {
-		$json_data = array();
-	} else {
-		// Altrimenti carica il JSON esistente
-		$json_data = file_exists( $json_file ) ? json_decode( file_get_contents( $json_file ), true ) : array();
-		if ( ! is_array( $json_data ) ) {
-			$json_data = array();
-		}
-	}
-
-	$options = get_option( 'json_generator_settings' );
-	$post_types = isset( $options['post_types'] ) ? $options['post_types'] : array( 'post' );
-	$batch_size = isset( $options['batch_size'] ) ? intval( $options['batch_size'] ) : 50;
-
-	// Recupera i post per questo batch
-	$args = array(
-		'post_type' => $post_types,
-		'post_status' => 'publish',
-		'posts_per_page' => $batch_size,
-		'offset' => $current_batch * $batch_size,
-		'orderby' => 'ID',
-		'order' => 'ASC',
-		'fields' => 'ids'
-	);
-
-	$posts = get_posts( $args );
-	foreach ( $posts as $post_id ) {
-		$post_data = get_post_json_data( $post_id );
-		if ( $post_data ) {
-			$json_data[ $post_id ] = $post_data;
-		}
-		clean_post_cache( $post_id );
-	}
-
-	// Usa la funzione di compressione
-	$success = create_compressed_json( $json_data, $json_file );
-
-	if ( $success ) {
-		wp_send_json_success();
-	} else {
-		wp_send_json_error( 'Errore nella scrittura del file JSON' );
-	}
-} );
-
-/**
- * Handler per il form POST (singolo post)
- */
-add_action( 'admin_post_generate_json_action', function () {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( 'Permesso negato' );
-	}
-
-	if ( ! wp_verify_nonce( $_POST['json_generator_nonce'], 'generate_json_action' ) ) {
-		wp_die( 'Verifica di sicurezza fallita' );
-	}
-
-	if ( ! empty( $_POST['post_id'] ) ) {
-		$upload_dir = wp_upload_dir();
-		$json_dir = $upload_dir['basedir'] . '/json-data';
-		$json_file = $json_dir . '/posts.json';
-
-		if ( ! file_exists( $json_dir ) ) {
-			wp_mkdir_p( $json_dir );
-		}
-
-		$json_data = file_exists( $json_file ) ? json_decode( file_get_contents( $json_file ), true ) : array();
-		if ( ! is_array( $json_data ) ) {
-			$json_data = array();
-		}
-
-		$post_id = intval( $_POST['post_id'] );
-		$post_data = get_post_json_data( $post_id );
-		if ( $post_data ) {
-			$json_data[ $post_id ] = $post_data;
-		} else {
-			unset( $json_data[ $post_id ] );
-		}
-
-		// Usa la funzione di compressione anche per il singolo post
-		create_compressed_json( $json_data, $json_file );
-
-		wp_redirect( add_query_arg(
-			array(
-				'page' => 'json-generator-settings',
-				'message' => 'json-updated',
-				'processed' => 1,
-				'total' => 1
-			),
-			admin_url( 'options-general.php' )
-		) );
-		exit;
-	}
-
-	wp_redirect( add_query_arg(
-		array( 'page' => 'json-generator-settings' ),
-		admin_url( 'options-general.php' )
+		'isCompleted' => $is_completed
 	) );
-	exit;
 } );
 
-add_action( 'wp_after_insert_post', function ($post_id, $post, $update) {
-	// Controllo se l'aggiornamento automatico è abilitato
+/**
+ * REST API ENDPOINT
+ */
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'custom/v1', '/latest-json-url/', array(
+		'methods' => 'GET',
+		'callback' => function () {
+			$metadata = get_latest_json_metadata();
+			$options = get_option( 'json_generator_settings' );
+
+			if ( empty( $metadata['timestamp'] ) ) {
+				return new WP_Error(
+					'no_index',
+					'File JSON non disponibile',
+					array( 'status' => 404 )
+				);
+			}
+
+			return array(
+				'jsonUrl' => $metadata['jsonUrl'],
+				'gzipUrl' => $metadata['gzipUrl'],
+				'postTypePriorities' => $options['post_type_priorities'] ?? array()
+			);
+		},
+		'permission_callback' => '__return_true'
+	) );
+} );
+
+/**
+ * Aggiorna il JSON al salvataggio di un post
+ */
+add_action( 'save_post', function ( $post_id ) {
 	$options = get_option( 'json_generator_settings' );
 	if ( ! isset( $options['auto_update'] ) || ! $options['auto_update'] ) {
 		return;
 	}
-	// Ignora se è un autosave o revisione
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
-		return;
-	if ( wp_is_post_revision( $post_id ) )
-		return;
 
-	// Controlla se il post è pubblicato
-	if ( $post->post_status !== 'publish' )
-		return;
-
-	// Verifica se il tipo di post è tra quelli configurati
-	$options = get_option( 'json_generator_settings' );
+	$post_type = get_post_type( $post_id );
 	$post_types = isset( $options['post_types'] ) ? $options['post_types'] : array( 'post' );
-	if ( ! in_array( $post->post_type, $post_types ) )
+	if ( ! in_array( $post_type, $post_types ) ) {
 		return;
+	}
 
-	// Aggiorna il JSON in modo asincrono
-	wp_schedule_single_event( time(), 'update_json_for_post', array( $post_id ) );
-}, 10, 3 );
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
 
-// Registra l'evento cron
-add_action( 'update_json_for_post', function ($post_id) {
 	$upload_dir = wp_upload_dir();
 	$json_dir = $upload_dir['basedir'] . '/json-data';
-	$json_file = $json_dir . '/posts.json';
 
-	// Crea la directory se non esiste
-	if ( ! file_exists( $json_dir ) ) {
-		wp_mkdir_p( $json_dir );
+	if ( ! is_dir( $json_dir ) ) {
+		return;
 	}
 
-	// Inizializza array vuoto se il file non esiste o non è valido
-	$json_data = [];
-	if ( file_exists( $json_file ) ) {
-		$json_data = json_decode( file_get_contents( $json_file ), true );
-		if ( ! is_array( $json_data ) ) {
-			$json_data = [];
-		}
+	$files = glob( $json_dir . '/paperplane-search-index-*.json' );
+	if ( ! is_array( $files ) || empty( $files ) ) {
+		return;
 	}
 
-	// Aggiorna o rimuovi il post dal JSON
+	usort( $files, function ( $a, $b ) {
+		return filemtime( $b ) - filemtime( $a );
+	} );
+
+	$latest_file = $files[0];
+	$json_file = $latest_file;
+
+	$json_data = json_decode( file_get_contents( $json_file ), true );
+	if ( ! is_array( $json_data ) ) {
+		$json_data = [];
+	}
+
 	$post_data = get_post_json_data( $post_id );
 	if ( $post_data ) {
 		$json_data[ $post_id ] = $post_data;
@@ -718,73 +700,61 @@ add_action( 'update_json_for_post', function ($post_id) {
 } );
 
 /**
- * Script frontend
+ * Carica lo script frontend
  */
 add_action( 'wp_enqueue_scripts', function () {
 	$options = get_option( 'json_generator_settings' );
 
-	// Verifica se il caricamento dello script frontend è abilitato
 	if ( ! isset( $options['frontend_js'] ) || $options['frontend_js'] ) {
 		wp_enqueue_script( 'search-suggestions', get_template_directory_uri() . '/assets/js/search-suggestions.min.js', array(), '1.0', true );
-
-		$upload_dir = wp_upload_dir();
-		$json_url = $upload_dir['baseurl'] . '/json-data/posts.json';
-
-		wp_localize_script( 'search-suggestions', 'searchConfig', array(
-			'jsonUrl' => $json_url,
-			'gzipUrl' => $options['server_type'] === 'apache' ? $json_url . '.gz' : null,
-			'postTypePriorities' => $options['post_type_priorities'] ?? array()
-		) );
 	}
 } );
 
-
-// Registra l'evento cron giornaliero
+/**
+ * Cron: Generazione giornaliera
+ */
 add_action( 'admin_init', function () {
 	if ( ! wp_next_scheduled( 'daily_json_generation_start' ) ) {
 		wp_schedule_event( strtotime( 'tomorrow midnight' ), 'daily', 'daily_json_generation_start' );
 	}
 } );
 
-// Avvia la generazione giornaliera
 add_action( 'daily_json_generation_start', function () {
 	$options = get_option( 'json_generator_settings' );
 
-	// Controlla se la generazione giornaliera è abilitata
 	if ( ! isset( $options['daily_generation'] ) || ! $options['daily_generation'] ) {
 		return;
 	}
 
-	// Inizializza il processo batch
 	wp_schedule_single_event( time(), 'daily_json_generation_batch', array( 0 ) );
 } );
 
-// Esegue un singolo batch
-add_action( 'daily_json_generation_batch', function ($current_batch) {
+add_action( 'daily_json_generation_batch', function ( $current_batch ) {
 	$options = get_option( 'json_generator_settings' );
 	$post_types = isset( $options['post_types'] ) ? $options['post_types'] : array( 'post' );
 	$batch_size = isset( $options['batch_size'] ) ? intval( $options['batch_size'] ) : 50;
 
-	// Setup file JSON
 	$upload_dir = wp_upload_dir();
 	$json_dir = $upload_dir['basedir'] . '/json-data';
-	$json_file = $json_dir . '/posts.json';
 
 	if ( ! file_exists( $json_dir ) ) {
 		wp_mkdir_p( $json_dir );
 	}
 
-	// Carica il JSON esistente solo al primo batch
 	if ( $current_batch === 0 ) {
+		$timestamp = date( 'Y-m-d-H-i' );
+		update_option( 'json_generator_generation_in_progress', $timestamp );
 		$json_data = array();
+		$json_file = $json_dir . '/paperplane-search-index-' . $timestamp . '.json';
 	} else {
+		$timestamp = get_option( 'json_generator_generation_in_progress' );
+		$json_file = $json_dir . '/paperplane-search-index-' . $timestamp . '.json';
 		$json_data = json_decode( file_get_contents( $json_file ), true );
 		if ( ! is_array( $json_data ) ) {
 			$json_data = array();
 		}
 	}
 
-	// Conta il totale dei post
 	$count_args = array(
 		'post_type' => $post_types,
 		'post_status' => 'publish',
@@ -796,7 +766,6 @@ add_action( 'daily_json_generation_batch', function ($current_batch) {
 	$total_published = $count_query->found_posts;
 	wp_reset_postdata();
 
-	// Recupera i post per questo batch
 	$args = array(
 		'post_type' => $post_types,
 		'post_status' => 'publish',
@@ -816,20 +785,20 @@ add_action( 'daily_json_generation_batch', function ($current_batch) {
 		clean_post_cache( $post_id );
 	}
 
-	// Salva il JSON
-	$success = create_compressed_json( $json_data, $json_file );
+	create_compressed_json( $json_data, $json_file );
 
-	// Calcola il progresso
 	$processed = ( $current_batch * $batch_size ) + count( $posts );
 
 	if ( $processed < $total_published ) {
-		// Schedula il prossimo batch
 		wp_schedule_single_event( time() + 30, 'daily_json_generation_batch', array( $current_batch + 1 ) );
+	} else {
+		update_option( 'json_generator_latest_timestamp', $timestamp );
+		delete_option( 'json_generator_generation_in_progress' );
+		cleanup_old_json_files();
 	}
 } );
 
-// Pulisce lo schedule quando l'opzione viene disattivata
-add_action( 'update_option_json_generator_settings', function ($old_value, $new_value) {
+add_action( 'update_option_json_generator_settings', function ( $old_value, $new_value ) {
 	$old_daily = isset( $old_value['daily_generation'] ) ? $old_value['daily_generation'] : false;
 	$new_daily = isset( $new_value['daily_generation'] ) ? $new_value['daily_generation'] : false;
 
@@ -846,45 +815,41 @@ add_action( 'update_option_json_generator_settings', function ($old_value, $new_
 }, 10, 2 );
 
 /**
- * Rimuove il post dal JSON quando viene eliminato
- */
-/**
  * Rimuove il post dal JSON quando viene spostato nel cestino
  */
-add_action( 'wp_trash_post', function ($post_id) {
-	// Controllo se l'aggiornamento automatico è abilitato
+add_action( 'wp_trash_post', function ( $post_id ) {
 	$options = get_option( 'json_generator_settings' );
 	if ( ! isset( $options['auto_update'] ) || ! $options['auto_update'] ) {
 		return;
 	}
 
-	// Verifica se il tipo di post è tra quelli configurati
 	$post_type = get_post_type( $post_id );
 	$post_types = isset( $options['post_types'] ) ? $options['post_types'] : array( 'post' );
 	if ( ! in_array( $post_type, $post_types ) ) {
 		return;
 	}
 
-	// Setup percorsi file
 	$upload_dir = wp_upload_dir();
 	$json_dir = $upload_dir['basedir'] . '/json-data';
-	$json_file = $json_dir . '/posts.json';
 
-	// Se il file JSON non esiste, non c'è niente da fare
-	if ( ! file_exists( $json_file ) ) {
+	$files = glob( $json_dir . '/paperplane-search-index-*.json' );
+	if ( ! is_array( $files ) || empty( $files ) ) {
 		return;
 	}
 
-	// Carica il JSON esistente
+	usort( $files, function ( $a, $b ) {
+		return filemtime( $b ) - filemtime( $a );
+	} );
+
+	$json_file = $files[0];
+
 	$json_data = json_decode( file_get_contents( $json_file ), true );
 	if ( ! is_array( $json_data ) ) {
 		return;
 	}
 
-	// Rimuovi il post dal JSON se esiste
 	if ( isset( $json_data[ $post_id ] ) ) {
 		unset( $json_data[ $post_id ] );
-		// Aggiorna il file JSON
 		create_compressed_json( $json_data, $json_file );
 	}
 } );
@@ -892,41 +857,39 @@ add_action( 'wp_trash_post', function ($post_id) {
 /**
  * Rimuove il post dal JSON quando passa da pubblicato a bozza
  */
-add_action( 'transition_post_status', function ($new_status, $old_status, $post) {
-	// Verifica se il post sta passando da 'publish' a un altro stato
+add_action( 'transition_post_status', function ( $new_status, $old_status, $post ) {
 	if ( $old_status === 'publish' && $new_status !== 'publish' ) {
-		// Controllo se l'aggiornamento automatico è abilitato
 		$options = get_option( 'json_generator_settings' );
 		if ( ! isset( $options['auto_update'] ) || ! $options['auto_update'] ) {
 			return;
 		}
 
-		// Verifica se il tipo di post è tra quelli configurati
 		$post_types = isset( $options['post_types'] ) ? $options['post_types'] : array( 'post' );
 		if ( ! in_array( $post->post_type, $post_types ) ) {
 			return;
 		}
 
-		// Setup percorsi file
 		$upload_dir = wp_upload_dir();
 		$json_dir = $upload_dir['basedir'] . '/json-data';
-		$json_file = $json_dir . '/posts.json';
 
-		// Se il file JSON non esiste, non c'è niente da fare
-		if ( ! file_exists( $json_file ) ) {
+		$files = glob( $json_dir . '/paperplane-search-index-*.json' );
+		if ( ! is_array( $files ) || empty( $files ) ) {
 			return;
 		}
 
-		// Carica il JSON esistente
+		usort( $files, function ( $a, $b ) {
+			return filemtime( $b ) - filemtime( $a );
+		} );
+
+		$json_file = $files[0];
+
 		$json_data = json_decode( file_get_contents( $json_file ), true );
 		if ( ! is_array( $json_data ) ) {
 			return;
 		}
 
-		// Rimuovi il post dal JSON se esiste
 		if ( isset( $json_data[ $post->ID ] ) ) {
 			unset( $json_data[ $post->ID ] );
-			// Aggiorna il file JSON
 			create_compressed_json( $json_data, $json_file );
 		}
 	}

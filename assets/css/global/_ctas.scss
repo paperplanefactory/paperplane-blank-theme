@@ -1,27 +1,27 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .default-button {
 	position: relative;
 	display: inline-block;
 	border-radius: rem(34);
 	text-align: left;
-	text-decoration: none !important;
+	text-decoration: none;
 	border: solid rem(1);
 	@include transition(all 0.3s linear);
 	cursor: pointer;
 	font-family: $font-main;
 	font-weight: $font-weight-3;
+	width: auto;
+	overflow: hidden;
 
 	&:after {
 		content: "";
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		right: rem(15);
-		/* adatta la posizione orizzontale secondo necessità */
-		display: inline-flex;
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		translate: 0 rem(-1);
 		mask-image: url(assets/images/icons/cta-arrow.svg);
 		mask-repeat: no-repeat;
 		mask-size: contain;
@@ -37,50 +37,40 @@
 	border-color: var(--color-1);
 
 	&:after {
-		background-color: var(--color-4);
+		background-color: currentColor;
 	}
 }
 
 .default-button:hover,
 a.default-button:active,
 a.default-button:hover {
-	color: var(--color-1);
-	background-color: var(--color-4);
-	border-color: var(--color-1);
+	// definito in global/_function-mixin.scss
+	@include default-button-hover-state;
 
-	&:after {
-		background-color: var(--color-1);
-		margin: 0 0 0 rem(20);
-	}
 }
 
 .default-button-b {
 	position: relative;
 	display: inline-block;
-	text-decoration: none !important;
-	background-color: transparent;
-	border: none;
+	border-radius: rem(34);
+	text-align: left;
+	text-decoration: none;
+	@include transition(all 0.3s linear);
 	cursor: pointer;
 	font-family: $font-main;
 	font-weight: $font-weight-3;
+	width: auto;
 
 	&:after {
+		content: "";
 		position: relative;
-		top: rem(1);
-		right: 0;
-		margin: 0 0 0 rem(10);
-		font-style: normal;
-		font-variant: normal;
-		text-rendering: auto;
-		-webkit-font-smoothing: antialiased;
-		content: "➜";
+		display: inline-block;
+		vertical-align: middle;
+		translate: 0 rem(-1);
+		mask-image: url(assets/images/icons/cta-arrow.svg);
+		mask-repeat: no-repeat;
+		mask-size: contain;
 		@include transition(all 0.15s linear);
-	}
-
-	&:hover {
-		&:after {
-			right: rem(-10);
-		}
 	}
 }
 
@@ -89,10 +79,37 @@ a.default-button-b:link,
 a.default-button-b:visited {
 	color: var(--color-1);
 
+	&:after {
+		background-color: currentColor;
+	}
+
 }
 
 .default-button-b:hover,
 a.default-button-b:active,
 a.default-button-b:hover {
-	color: var(--color-2);
+	// definito in global/_function-mixin.scss
+	@include default-button-b-hover-state;
+}
+
+.default-button {
+	&.external-domain {
+		&:after {
+			mask-image: url(assets/images/icons/cta-external-domain.svg);
+		}
+	}
+
+	&.download {
+		&:after {
+			mask-image: url(assets/images/icons/cta-download.svg);
+		}
+	}
+
+	&.copytext {
+		&:after {
+			mask-image: url(assets/images/icons/cta-copytext.svg);
+		}
+	}
+
+
 }

@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .card {
     border: solid rem(1) var(--color-1);

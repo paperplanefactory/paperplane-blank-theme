@@ -7,9 +7,9 @@ global $options_fields, $options_fields_multilang;
 		<div class="wrapper-padded">
 			<div class="aligncenter infinite-button">
 				<a href="#" class="default-button allupper view-more-button-js"
-					title="<?php _e( 'Questo link permette di caricare altri contenuti', 'paperPlane-blankTheme' ); ?>"
-					aria-label="<?php _e( 'Questo link permette di caricare altri contenuti', 'paperPlane-blankTheme' ); ?>">
-					<?php _e( 'Carica altri contenuti', 'paperPlane-blankTheme' ); ?>
+					title="<?php esc_html_e( 'Questo link permette di caricare altri contenuti', 'paperPlane-blankTheme' ); ?>"
+					aria-label="<?php esc_html_e( 'Questo link permette di caricare altri contenuti', 'paperPlane-blankTheme' ); ?>">
+					<?php esc_html_e( 'Carica altri contenuti', 'paperPlane-blankTheme' ); ?>
 				</a>
 			</div>
 		</div>
@@ -23,17 +23,17 @@ global $options_fields, $options_fields_multilang;
 				<div class="bounce3 bg-2"></div>
 			</div>
 			<p>
-				<?php _e( 'Caricamento altri contenuti', 'paperPlane-blankTheme' ); ?>
+				<?php esc_html_e( 'Caricamento altri contenuti', 'paperPlane-blankTheme' ); ?>
 			</p>
 		</div>
 		<div class="infinite-scroll-last">
 			<p>
-				<?php _e( 'Non sono disponibili altri contenuti', 'paperPlane-blankTheme' ); ?>
+				<?php esc_html_e( 'Non sono disponibili altri contenuti', 'paperPlane-blankTheme' ); ?>
 			</p>
 		</div>
 		<div class="infinite-scroll-error">
 			<p>
-				<?php _e( 'Ops, si è verificato un errore', 'paperPlane-blankTheme' ); ?>
+				<?php esc_html_e( 'Ops, si è verificato un errore', 'paperPlane-blankTheme' ); ?>
 			</p>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .paperplane-modal {
   position: fixed;
@@ -14,7 +14,7 @@
   pointer-events: all;
   visibility: visible;
   @include transition(visibility 0.2s linear, opacity 0.2s linear);
-  background-color: var(--above-image-opacity);
+  background-color: var(--modal-bg-layer);
   content-visibility: auto;
 
   &.hidden {

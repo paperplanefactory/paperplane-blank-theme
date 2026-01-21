@@ -1,20 +1,18 @@
-// main: ../style.scss
 @import 'vars';
-@import 'mixin'; // hamburger
+@import 'function-mixin';
+// hamburger
 
 .hambuger-element {
   width: rem(20);
   height: rem(16);
   position: relative;
-  top: rem(-3);
   display: inline-block;
   z-index: 9998;
   padding: 0;
   margin: 0;
-  @include define-rotate(0);
+  rotate: 0deg;
   cursor: pointer;
   border: none !important;
-  //overflow: hidden;
   background-color: transparent;
 
   &:before {
@@ -33,7 +31,7 @@
     width: 100%;
     opacity: 1;
     left: 0;
-    @include define-rotate(0);
+    rotate: 0deg;
     @include transition(all 0.15s ease-in-out);
     border-radius: rem(1);
     background-color: var(--color-1);
@@ -59,13 +57,104 @@
 }
 
 .hambuger-element.open .ham-bar-2 {
-  @include define-rotate(45);
+  rotate: 45deg;
 }
 
 .hambuger-element.open .ham-bar-3 {
-  @include define-rotate(-45);
+  rotate: -45deg;
 }
 
 .hambuger-element.open .ham-bar-4 {
   opacity: 0 !important;
+}
+
+.nav-simple-button {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: $font-main;
+
+  &:after {
+    content: "";
+    position: relative;
+    top: rem(-2);
+    display: inline-block;
+    width: rem(14);
+    height: rem(8);
+    margin-left: rem(5);
+    rotate: 0deg;
+    -webkit-mask-image: url(assets/images/icons/sub-menu-icon.svg);
+    mask-image: url(assets/images/icons/sub-menu-icon.svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    @include transition(all 0.2s linear);
+    transform-origin: center;
+  }
+
+  &.clicked {
+    &:after {
+      rotate: 180deg;
+    }
+  }
+}
+
+
+.expander {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+  color: var(--color-1);
+  font-family: $font-sub;
+  font-weight: $font-weight-2;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-2);
+
+    &:after {
+      background-color: currentColor;
+    }
+  }
+
+  &.exp-close {
+    &:after {
+      rotate: 45deg;
+    }
+  }
+
+  &.exp-open {
+    &:after {
+      rotate: 0;
+    }
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    mask-image: url(assets/images/icons/icon-txt-expand.svg);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: 0 0;
+    background-color: currentColor;
+    @include transition(transform .3s ease-in-out);
+  }
+}
+
+.expander-closer {
+  position: relative;
+  border: none;
+  background-color: transparent;
+  color: var(--color-1);
+  font-family: $font-sub;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
 }

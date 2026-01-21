@@ -1,0 +1,46 @@
+// compileExpanded: style-expanded.css, compileCompressed: ../../style.min.css
+@use "sass:math";
+// a fine sviluppo commento i parziali che non utilizzo
+
+// imports globali
+@import 'global/vars';
+@import 'global/vars-css';
+@import 'global/function-mixin';
+@import 'global/reset';
+@import 'global/defaults';
+@import 'global/theme-font';
+@import 'global/typo';
+@import 'global/header-footer';
+@import 'global/buttons';
+@import 'global/colors';
+@import 'global/wrappers';
+@import 'global/grids';
+@import 'global/media';
+
+
+// imports mobile
+@media screen and (min-width: $break-mobile-start) and (max-width: $break-tablet-end) {
+    @import 'mobile/typo';
+    @import 'mobile/header-footer';
+    @import 'mobile/page-opening';
+    @import 'mobile/wrappers';
+    @import 'mobile/media';
+    @import 'mobile/grids';
+    @import 'mobile/buttons';
+}
+
+// imports desktop
+@media screen and (min-width: $break-desktop) {
+    :root {
+        --header-height-real-time: 92px;
+        --header-height-static: 92px;
+    }
+
+    @import 'desktop/typo';
+    @import 'desktop/header-footer';
+    @import 'desktop/page-opening';
+    @import 'desktop/wrappers';
+    @import 'desktop/media';
+    @import 'desktop/grids';
+    @import 'desktop/buttons';
+}

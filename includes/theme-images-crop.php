@@ -34,8 +34,8 @@ function paperplane_image_sizes( $sizes ) {
 	unset( $sizes['large'] );
 	unset( $sizes['full'] );
 	$addsizes = array(
-		"full" => __( "Immagine originale, non ridimensionata. Usare solo per le immagini piccole allineate al centro." ),
-		"content_picture" => __( "Resized for text column" )
+		"full" => esc_html__( "Immagine originale, non ridimensionata. Usare solo per le immagini piccole allineate al centro.", 'paperPlane-blankTheme' ),
+		"content_picture" => esc_html__( "Resized for text column", 'paperPlane-blankTheme' )
 	);
 	$newsizes = array_merge( $sizes, $addsizes );
 	return $newsizes;

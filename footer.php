@@ -20,24 +20,22 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 			<div class="">
 				<div class="flex-hold flex-hold-2 margins-wide verticalize">
 					<div class="flex-hold-child">
-						<div class="footer-logo">
-							<a href="<?php echo home_url(); ?>" rel="bookmark"
-								title="homepage - <?php echo get_bloginfo( 'name' ); ?>">
-							</a>
+						<div class="footer-logo logo-mask-focus-visible">
+							<a href="<?php echo home_url(); ?>" aria-hidden="true" tabindex="-1"></a>
 						</div>
 					</div>
 					<div class="flex-hold-child desktop-align-right">
 						<?php if ( $options_fields['global_socials'] ) : ?>
-							<nav aria-label="<?php _e( 'Menu social', 'paperPlane-blankTheme' ); ?>">
+							<nav aria-label="<?php esc_html_e( 'Menu social', 'paperPlane-blankTheme' ); ?>">
 								<ul class="site-socials inline-socials">
 									<?php
 									foreach ( $options_fields['global_socials'] as $global_social ) :
-										$parse_social = parse_url( $global_social['global_socials_profile_url'] );
 										?>
 										<li>
 											<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
-												class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
-												aria-label="<?php echo __( 'Visita il nostro profilo su', 'paperPlane-blankTheme' ) . ' ' . $parse_social['host'] . ' ' . __( '- si apre in una nuova finestra', 'paperPlane-blankTheme' ); ?>"
+												class="<?php echo $global_social['global_socials_icon']; ?> element-icon-before"
+												target="_blank"
+												aria-label="<?php echo $global_social['global_socials_screen_reader_text']; ?>"
 												rel="noopener">
 											</a>
 										</li>
@@ -65,15 +63,11 @@ $cta_url_modal_array = array_unique( $cta_url_modal_array );
 							<?php echo $options_fields_multilang['footer_credits']; ?>
 						</p>
 					</div>
-					<div class="flex-hold-child-full">
-						<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </footer>
-<?php //include( locate_template( 'template-parts/grid/mega-menu.php' ) ); ?>
 </div>
 <?php
 if ( ! empty( $cta_url_modal_array ) ) {

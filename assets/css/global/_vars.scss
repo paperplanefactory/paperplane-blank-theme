@@ -10,54 +10,22 @@ $font-weight-1: 400; //regular
 $font-weight-2: 500; //medium
 $font-weight-3: 700; //bold
 $font-weight-4: 900; //black
-// header
-$header-desktop-height: 75px;
-$header-smartphone-height: 64px;
 // wrapper
-$wrapper-max-width-desktop: 1680px;
+$wrapper-max-width-desktop: 1680;
 $wrapper-padded-desktop: 3.5vw;
 $wrapper-padded-smartphone: 5vw;
 // modules vertical paddings
-$module-vertical-padding-desktop: 64px;
-$module-vertical-padding-big-desktop: 100px;
-$module-vertical-padding-smartphone: 48px;
-$module-vertical-padding-big-smartphone: 64px;
+$module-vertical-padding-desktop: 64;
+$module-vertical-padding-big-desktop: 100;
+$module-vertical-padding-smartphone: 48;
+$module-vertical-padding-big-smartphone: 64;
 // columns space
 $column-space-side-desktop: 1.75vw;
 $column-space-bottom-desktop: calc(#{$column-space-side-desktop} * 2);
 $column-space-side-smartphone: 2.5vw;
 $column-space-bottom-smartphone: calc(#{$column-space-side-smartphone} * 4);
 
-:root {
-    --color-1: #111111;
-    --color-2: #555555;
-    --color-3: #F2F2F2;
-    --color-4: #FFFFFF;
-    --above-image-opacity: rgba(255, 255, 255, 0.35);
-    --switch-box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
-    --color-form-ok: #00240A;
-    --color-form-ok-b: #D6F7B9;
-    --color-form-error: #8C0500;
-    --color-form-error-b: #FFE5E5;
-}
 
-[data-theme="dark"] {
-    color-scheme: dark;
-    --color-1: #FFFFFF;
-    --color-2: #F2F2F2;
-    --color-3: #555555;
-    --color-4: #111111;
-    --above-image-opacity: rgba(0, 0, 0, 0.35);
-    --switch-box-shadow: inset 0px 0px 4px 2px rgba(255, 255, 255, 0.2);
-
-}
-
-$color-upload-icon-clear: '%23FFFFFF'; // codificato per funzionare con SVG in linea nei CSS
-$color-upload-icon-dark: '%23000000'; // codificato per funzionare con SVG in linea nei CSS
-$color-form-ok: #04621B;
-$color-form-ok-b: #F4FFF4;
-$color-form-error: #D11515;
-$color-form-error-b: #FFF7F4; // form usability colors
 //fonts desktop
 $h1-size-desktop: 68;
 $h1-lineheight-desktop: 76;
@@ -83,8 +51,8 @@ $paragraph-marginbottom-desktop: 30;
 $paragraph-smaller-size-desktop: 17;
 $paragraph-smaller-lineheight-desktop: 24;
 $paragraph-smaller-marginbottom-desktop: 24;
-$cta1-size-desktop: 20;
-$cta1-lineheight-desktop: 26;
+$cta1-size-desktop: 15;
+$cta1-lineheight-desktop: 21;
 $cta1-marginbottom-desktop: 0;
 $nav-size-desktop: 16;
 $nav-lineheight-desktop: 20;
@@ -110,8 +78,8 @@ $h6-marginbottom-smartphone: 16;
 $paragraph-size-smartphone: 18;
 $paragraph-lineheight-smartphone: 26;
 $paragraph-marginbottom-smartphone: 16;
-$cta1-size-smartphone: 20;
-$cta1-lineheight-smartphone: 26;
+$cta1-size-smartphone: 15;
+$cta1-lineheight-smartphone: 21;
 $cta1-marginbottom-smartphone: 0;
 $nav-size-smartphone: 20;
 $nav-lineheight-smartphone: 20;

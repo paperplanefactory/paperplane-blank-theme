@@ -1,46 +1,5 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
-.module-scroll-text {
-    @keyframes infiniteScroll {
-        from {
-            transform: translateX(0)
-        }
-
-        to {
-            transform: translateX(-50%)
-        }
-    }
-
-    .scrolling-txt-container {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .horizontal-scrolling-items {
-        display: flex;
-        //width: 2600px;
-        width: 600vw;
-        //animation-name: infiniteScroll;
-        //animation-duration: 20s;
-        //animation-iteration-count: infinite;
-        //animation-timing-function: linear;
-    }
-
-    .horizontal-scrolling-items-item {
-        white-space: nowrap;
-
-    }
-
-    .txt-item {
-        margin: 0 2vw;
-    }
-
-    .scrolling-txt-container-accessible {
-        width: 0;
-        height: 0;
-        opacity: 0;
-        overflow: hidden;
-    }
-}
+.module-scroll-text {}

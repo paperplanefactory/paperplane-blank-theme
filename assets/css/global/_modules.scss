@@ -1,20 +1,87 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .modules-handler {
   position: relative;
-  content-visibility: auto;
+
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto rem(150);
+  }
 }
 
 .expandable-content {
   position: relative;
   interpolate-size: allow-keywords;
-  @include transition(height 0.3s linear);
+  @include transition(height 0.3s linear, visibility 0.3s linear);
   overflow: hidden;
   height: 0;
+  visibility: hidden;
 
   &.visible {
     height: auto;
+    visibility: visible;
+  }
+}
+
+
+.module-scroll-text {
+  width: 100%;
+  overflow: hidden;
+
+  .scrolling-txt-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .scrolling-txt-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .horizontal-scrolling-items {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+
+    &.animate {
+      animation-name: scroll-horizontal;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+
+      /* animation-duration viene impostato via JavaScript */
+
+      &:hover {
+        animation-play-state: paused;
+      }
+    }
+
+
+  }
+
+  .horizontal-scrolling-items-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
+  }
+
+  .txt-item {
+    display: inline-block;
+    margin: 0 6vw;
+  }
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+    /* Solo metà per loop continuo */
   }
 }

@@ -1,12 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin'; // wrappers and more
-
-.header-offset-anchor {
-  position: absolute;
-  display: block;
-  top: -$header-desktop-height;
-}
+@import '../global/function-mixin'; // wrappers and more
 
 .verticalize {
 

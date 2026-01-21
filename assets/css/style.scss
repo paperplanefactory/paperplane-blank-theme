@@ -3,40 +3,25 @@
 // a fine sviluppo commento i parziali che non utilizzo
 
 // imports globali
-@import 'global/theme-font';
-@import 'global/typo';
 @import 'global/vars';
-@import 'global/reset';
-@import 'global/defaults';
-@import 'global/header-footer';
-@import 'global/colors';
+@import 'global/function-mixin';
 @import 'global/links';
 @import 'global/a11y';
-@import 'global/wrappers';
-@import 'global/grids';
 @import 'global/modules';
-@import 'global/buttons';
 @import 'global/ctas';
 @import 'global/cards';
-@import 'global/media';
 @import 'global/forms';
 @import 'global/slideshows';
 @import 'global/socials';
 @import 'global/font-material-icons';
-@import 'global/libraries/aos';
 @import 'global/libraries/slick';
 @import 'global/pagenavi';
-@import 'global/mixin';
+@import 'global/libraries/aos';
 @import 'global/modals';
 
 // imports mobile
 @media screen and (min-width: $break-mobile-start) and (max-width: $break-tablet-end) {
-  @import 'mobile/header-footer';
   @import 'mobile/a11y';
-  @import 'mobile/typo';
-  @import 'mobile/page-opening';
-  @import 'mobile/wrappers';
-  @import 'mobile/grids';
   @import 'mobile/listings';
   @import 'mobile/module-text';
   @import 'mobile/module-highlighted-sentence';
@@ -51,23 +36,17 @@
   @import 'mobile/module-scroll-text';
   @import 'mobile/ctas';
   @import 'mobile/cards';
-  @import 'mobile/buttons';
-  @import 'mobile/media';
   @import 'mobile/effects';
   @import 'mobile/forms';
   @import 'mobile/slideshows';
   @import 'mobile/modals';
+  @import 'mobile/search-bar';
 }
 
 // imports desktop
 @media screen and (min-width: $break-desktop) {
-  @import 'desktop/header-footer';
   @import 'desktop/a11y';
   @import 'desktop/mega-menu';
-  @import 'desktop/typo';
-  @import 'desktop/page-opening';
-  @import 'desktop/wrappers';
-  @import 'desktop/grids';
   @import 'desktop/listings';
   @import 'desktop/module-text';
   @import 'desktop/module-highlighted-sentence';
@@ -82,13 +61,12 @@
   @import 'desktop/module-scroll-text';
   @import 'desktop/ctas';
   @import 'desktop/cards';
-  @import 'desktop/buttons';
-  @import 'desktop/media';
   @import 'desktop/effects';
   @import 'desktop/forms';
   @import 'desktop/slideshows';
   @import 'desktop/modals';
-  @import 'global/admin-bar';
+  @import 'desktop/search-bar';
 }
 
+@import 'global/admin-bar';
 //@import 'global/visual-debug';

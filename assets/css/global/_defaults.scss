@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import 'vars';
-@import 'mixin'; // comportamenti predefiniti
+@import 'function-mixin'; // comportamenti predefiniti
 
 @view-transition {
 	navigation: auto;

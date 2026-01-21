@@ -1,12 +1,15 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .as-h1,
 h1 {
   font-size: rem($h1-size-desktop);
   line-height: rem($h1-lineheight-desktop);
   margin: 0 0 rem($h1-marginbottom-desktop);
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphenate-limit-chars: 7 3 2;
 }
 
 .as-h2,
@@ -37,19 +40,6 @@ h5 {
   margin: 0 0 rem($h5-marginbottom-desktop);
 }
 
-.mega-menu,
-.menu {
-  font-size: rem($nav-size-desktop);
-  line-height: rem($nav-lineheight-desktop);
-
-  a,
-  button {
-    font-size: rem($nav-size-desktop);
-    line-height: rem($nav-lineheight-desktop);
-  }
-}
-
-
 .mega-menu p,
 #footer p,
 .as-h6,
@@ -71,6 +61,12 @@ p,
 summary {
   font-size: rem($h5-size-desktop);
   line-height: rem($h5-lineheight-desktop);
+}
+
+.header-main-menu-desktop,
+.header-main-menu-desktop a {
+  font-size: rem($nav-size-desktop);
+  line-height: rem($nav-lineheight-desktop);
 }
 
 .content-styled {
@@ -104,15 +100,13 @@ summary {
     margin-bottom: rem($paragraph-marginbottom-desktop);
 
     li {
-      display: table-row;
+      padding-left: rem($paragraph-size-desktop);
+      margin-bottom: rem($paragraph-size-desktop / 2);
 
       &:before {
-        font-size: rem($paragraph-size-desktop);
-        font-weight: $font-weight-1;
-      }
-
-      &:after {
-        height: calc(#{$paragraph-marginbottom-desktop} / 2);
+        top: rem($paragraph-size-desktop / 2);
+        width: rem($paragraph-size-desktop / 2);
+        height: rem($paragraph-size-desktop / 2);
       }
     }
   }

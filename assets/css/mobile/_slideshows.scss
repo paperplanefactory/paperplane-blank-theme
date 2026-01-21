@@ -1,15 +1,31 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .slider-wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
+  padding-top: rem(68);
 }
 
-.slider-single {
+
+.slider-images {
   position: relative;
   width: 100%;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: rem(-2);
+    left: 0;
+    display: block;
+    width: 50vw;
+    height: 100%;
+    transform: translate(-50vw, 0);
+    background-color: var(--color-4);
+  }
 
   .slick-list,
   .slick-track {
@@ -18,27 +34,39 @@
 
   .slick-slide {
     overflow: hidden;
+    width: 90vw;
+  }
 
-    .slide {
-      padding-right: rem(32);
-    }
+  .slide {
+    position: relative;
+    padding-right: rem(16);
   }
 }
 
 .slide-caption {
+  position: relative;
+  width: auto;
+  height: auto;
+  display: inline-block;
+  overflow: visible;
   padding: rem(15) rem(10) 0 0;
-}
 
+  &.hidden {
+    position: absolute;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+  }
+}
 
 // navigation
 
 .slick-next,
 .slick-prev {
-  position: absolute;
-  z-index: 2;
-  bottom: rem(5);
+  top: rem(-68);
   cursor: pointer;
-  font-size: rem(30);
+  width: rem(38);
+  height: rem(38);
 
   &.slick-disabled {
     opacity: 0.5;
@@ -47,11 +75,11 @@
 }
 
 .slick-prev {
-  right: rem(64);
+  left: 0;
 }
 
 .slick-next {
-  right: rem(32);
+  left: rem(48);
 }
 
 .paging-info {
@@ -62,24 +90,11 @@
   text-align: center;
 }
 
-.slick-dots {
-  text-align: center;
-  padding: rem(10) 0 0 0 !important;
+.slide-prev-custom,
+.slide-next-custom {
+  cursor: pointer;
 
-  li {
-    display: inline-block;
-    margin: 0 rem(5);
-
-    button {
-      width: rem(20);
-      height: rem(20);
-      border: none;
-      font-size: 0;
-      margin: 0;
-      padding: 0;
-      @include transition(all 0.3s linear);
-      border-radius: rem(20);
-      cursor: pointer;
-    }
+  &:disabled {
+    cursor: default;
   }
 }

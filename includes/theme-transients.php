@@ -322,7 +322,7 @@ if ( $campi_post ) {
 
 	// Output
 	if ( $titolo_hero ) {
-		echo '<h2>' . esc_html( $titolo_hero ) . '</h2>';
+		echo '<h2>' . esc_html__( $titolo_hero ) . '</h2>';
 	}
 }
 
@@ -372,7 +372,7 @@ $indirizzo = $opzioni['indirizzo_azienda'] ?? '';
 
 echo '<footer>';
 if ( $copyright ) {
-	echo '<p>' . esc_html( $copyright ) . '</p>';
+	echo '<p>' . esc_html__( $copyright ) . '</p>';
 }
 echo '</footer>';
 */
@@ -396,8 +396,8 @@ if ( function_exists( 'pll_current_language' ) ) {
 		$contatti = $opzioni_lingua['info_contatti'] ?? '';
 
 		// Uso nel template
-		echo '<h1>' . esc_html( $titolo_sito ) . '</h1>';
-		echo '<p>' . esc_html( $descrizione ) . '</p>';
+		echo '<h1>' . esc_html__( $titolo_sito ) . '</h1>';
+		echo '<p>' . esc_html__( $descrizione ) . '</p>';
 	}
 }
 
@@ -441,7 +441,7 @@ if ( $posts_query->have_posts() ) {
 		echo '<div class="prodotto-card">';
 		echo '<h3>' . get_the_title() . '</h3>';
 		if ( $prezzo ) {
-			echo '<p class="prezzo">€ ' . esc_html( $prezzo ) . '</p>';
+			echo '<p class="prezzo">€ ' . esc_html__( $prezzo ) . '</p>';
 		}
 		echo '</div>';
 	}

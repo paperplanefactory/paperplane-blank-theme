@@ -42,8 +42,36 @@
             "repeatable": true
         },
         {
+            "key": "field_694318b2f3c2b",
+            "label": "Testo aggiuntivo CTA",
+            "name": "cta_a11y_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Questo campo permette di completare i CTA sintetici (es. \"Scopri di più\") con un testo supplementare per gli screen reader, che si concatena automaticamente all'etichetta principale. Esempio: aggiungendo \"sui servizi della nostra azienda\", l'annuncio diventa \"Scopri di più sui servizi della nostra azienda\".",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6390c9658a31a",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6390c9fa8a31b",
-            "label": "Destinazione CTA",
+            "label": "Tipo di CTA",
             "name": "cta_destination",
             "aria-label": "",
             "type": "select",
@@ -65,15 +93,20 @@
             "choices": {
                 "internal-cta": "Contenuto interno al sito",
                 "external-cta": "Contenuto esterno al sito o contenuto interno con parametro URL",
-                "download-cta": "File download"
+                "download-cta": "File download",
+                "mailto-cta": "Mail to",
+                "copytext-cta": "Copia testo"
             },
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
+            "allow_in_bindings": 1,
             "ui": 0,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_6390c810fa769",
@@ -184,6 +217,71 @@
             "mime_types": ""
         },
         {
+            "key": "field_69490cd146363",
+            "label": "Indirizzo email",
+            "name": "cta_mailto",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "Inserire l'indirizzo email.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6390c9658a31a",
+                        "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_6390c9fa8a31b",
+                        "operator": "==",
+                        "value": "mailto-cta"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_69490d3746364",
+            "label": "Testo da copiare",
+            "name": "cta_copytext",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Inserire il testo che verrà copiato cliccando la CTA.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6390c9658a31a",
+                        "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_6390c9fa8a31b",
+                        "operator": "==",
+                        "value": "copytext-cta"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6390cae78a31d",
             "label": "Aspetto CTA",
             "name": "cta_appearance",
@@ -215,7 +313,9 @@
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
-            "repeatable": true
+            "repeatable": true,
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_63938169055ee",
@@ -264,17 +364,26 @@
             "allow_null": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
-            "key": "field_677ff6576487f",
-            "label": "Tracking",
-            "name": "cta_tracking",
+            "key": "field_6949289804504",
+            "label": "Classe aggiuntiva per tracciamenti marketing",
+            "name": "cta_tracking_class",
             "aria-label": "",
-            "type": "textarea",
-            "instructions": "Esempio: data-track \r\n    data-track-event=\"contact\"\r\n    data-track-platforms=\"linkedin,facebook\"\r\n    data-track-meta='{\"category\": \"CTA\", \"label\": \"main-contact\"}'",
+            "type": "text",
+            "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6390c9658a31a",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -283,9 +392,9 @@
             "default_value": "",
             "maxlength": "",
             "allow_in_bindings": 0,
-            "rows": "",
             "placeholder": "",
-            "new_lines": ""
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [],
@@ -298,6 +407,7 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
+    "display_title": "",
     "is_acf_component": 1,
     "acf_component_defaults": {
         "layout": "block",
@@ -309,5 +419,5 @@
         "button_label": "Aggiungi CTA",
         "appearances": ""
     },
-    "modified": 1736496442
+    "modified": 1766402647
 }

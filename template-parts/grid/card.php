@@ -5,20 +5,16 @@
 				<?php
 				$image_data = array(
 					'image_type' => 'acf',
-					// options: post_thumbnail, acf
 					'image_value' => $card['module_cards_repeater_image']
-					// se utilizzi un custom field indica qui il nome del campo
 				);
 				$image_appearance = array(
-					// options: true, false
 					'lazyload' => true,
-					// options: sync, async
 					'decoding' => 'async',
-					// options: true, false - se false non mette contenitore intorno all'immagine
-					'image-wrap' => true
+					'image-wrap' => true,
+					'image-wrap-custom-class' => ''
+
 				);
 				$image_sizes = array(
-					// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
 					'desktop_hd' => 'column_hd',
 					'mobile_hd' => 'column'
 				);
@@ -27,11 +23,13 @@
 			</div>
 		<?php endif; ?>
 		<div class="card-texts last-child-no-margin">
-			<h2 class="as-h3 element-hover">
+			<h2 class="as-h4 element-hover">
 				<?php echo $card['module_cards_repeater_title']; ?>
 			</h2>
-			<a href="#" class="card-link"><span class="screen-reader-text">Link con titolo contenuto solo per screen
+			<a href="#test" class="card-link"><span class="screen-reader-text">Link con titolo contenuto solo per
+					screen
 					reader</span></a>
+
 			<?php if ( isset( $card['module_cards_repeater_description'] ) ) : ?>
 				<div class="preserve-text remove-underline-js">
 					<p>
@@ -39,9 +37,15 @@
 					</p>
 				</div>
 			<?php endif; ?>
+			<div class="preserve-text remove-underline-js">
+				<a href="https://paperplaneblanktheme.local/sample-page/" target="_self" class="default-button-b"
+					data-modal-id="" data-modal-title="" data-modal-back-to="">Interno<span
+						class="screen-reader-text">Sample Page!</span></a>
+			</div>
+
 		</div>
-		<?php
-		paperplane_theme_cta_advanced( $card['module_cards_repeater_cta'] );
-		?>
+		<div class="cta-holder fake-cta" aria-hidden="true">
+			<span class="default-button">CTA finta (link uguale a .card-link)</span>
+		</div>
 	</article>
 </li>

@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin'; // wrappers and more
+@import '../global/function-mixin'; // wrappers and more
 
 .mobile-only {
   display: none;
@@ -19,14 +19,10 @@
   }
 }
 
-.wrapper {
-  //max-width: 2000px;
-}
-
 .wrapper-padded {
   width: 100%;
   padding: 0 $wrapper-padded-desktop;
-  max-width: $wrapper-max-width-desktop;
+  max-width: rem($wrapper-max-width-desktop);
 }
 
 .wrapper-padded-slideshow {
@@ -48,11 +44,11 @@
 }
 
 .module-paddings-top {
-  padding-top: $module-vertical-padding-desktop;
+  padding-top: rem($module-vertical-padding-desktop);
 }
 
 .module-paddings-top-big {
-  padding-top: $module-vertical-padding-big-desktop;
+  padding-top: rem($module-vertical-padding-big-desktop);
 }
 
 .module-no-paddings-top {
@@ -60,11 +56,11 @@
 }
 
 .module-paddings-bottom {
-  padding-bottom: $module-vertical-padding-desktop;
+  padding-bottom: rem($module-vertical-padding-desktop);
 }
 
 .module-paddings-bottom-big {
-  padding-bottom: $module-vertical-padding-big-desktop;
+  padding-bottom: rem($module-vertical-padding-big-desktop);
 }
 
 .module-no-paddings-bottom {
@@ -73,5 +69,9 @@
 
 .sticky-element {
   position: sticky;
-  top: calc(#{$header-desktop-height} + rem(35));
+  top: calc(var(--header-height-real-time) + rem(35));
+}
+
+.section-anchor {
+  scroll-margin-top: calc(var(--header-height-real-time) + rem(20));
 }

@@ -21,29 +21,6 @@ function excerpt( $limit ) {
 	return $excerpt;
 }
 
-// page title generator
-function twentytwelve_wp_title( $title, $sep ) {
-	global $paged, $page;
-
-	if ( is_feed() )
-		return $title;
-
-	// Add the site name.
-	$title .= get_bloginfo( 'name' );
-
-	// Add the site description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title = "$title $sep $site_description";
-
-	// Add a page number if necessary.
-	if ( $paged >= 2 || $page >= 2 )
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'twentytwelve' ), max( $paged, $page ) );
-
-	return $title;
-}
-add_filter( 'wp_title', 'twentytwelve_wp_title', 10, 2 );
-
 /**
  * Replaces the login header logo URL
  *
@@ -54,51 +31,55 @@ function namespace_login_headerurl( $url ) {
 	return $url;
 }
 
+
+
+
+
+
 /**
- * Mostra il testo in modo condizionale: come paragrafo se breve,
- * o come elemento details con summary se lungo
+ * Mostra il testo dell'avviso in un wrapper che verrà gestito da JS
  * 
- * @param string $testo Il testo da mostrare
- * @param int $lunghezzaMax Lunghezza massima prima di attivare details (default 100)
- * @return void
+ * @param string $testo Il testo da mostrare (solo testo + <br />)
+ * @param string $testoSummary Testo da mostrare nel summary se necessario
+ * @param string $link URL del link opzionale da mostrare alla fine
+ * @param string $testoLink Testo del link opzionale
+ * @param string $noticeHash Hash univoco dell'avviso per gestione cookie
+ * @param string $viewMode Modalità visualizzazione: 'static-text' o 'scroll-text'
  */
-/**
- * Versione alternativa con supporto per divisione in paragrafi
- *
- * @param string $testo Il testo da visualizzare, può contenere HTML
- * @param int $lunghezzaMax Lunghezza massima prima di usare details/summary
- * @param string $testoSummary Testo da mostrare nel summary
- * @param bool $dividiParagrafi Se dividere il testo in paragrafi
- */
-function mostraDettagliTestoAvanzata( $testo, $lunghezzaMax = 100, $testoSummary = "Leggi messaggio", $dividiParagrafi = true ) {
-	// Verifica la lunghezza del testo senza considerare i tag HTML
-	$testoSenzaTag = strip_tags( $testo );
+function mostraDettagliTestoAvanzata( $testo, $testoSummary = "Leggi messaggio", $link = '', $testoLink = '', $noticeHash = '', $viewMode = 'static-text' ) {
+	// Classi del container in base alla modalità
+	$container_classes = 'avviso-container';
 
-	if ( strlen( $testoSenzaTag ) <= $lunghezzaMax ) {
-		// Se è minore o uguale alla lunghezza massima, mostra tutto il testo con HTML
-		echo wp_kses_post( $testo );
-	} else {
-		echo "<details>";
-		echo "    <summary>" . esc_html( $testoSummary ) . "</summary>";
-		// Contenuto completo con HTML preservato
-
-		// Dividi il testo in paragrafi mantenendo i tag HTML
-		$paragrafi = preg_split( '/\n\s*\n|\r\n\s*\r\n|\r\s*\r/m', $testo );
-
-		echo "<div class=\"last-child-no-margin underlined-links\">";
-		foreach ( $paragrafi as $paragrafo ) {
-			if ( trim( $paragrafo ) !== '' ) {
-				// Controllo se il paragrafo contiene già un tag HTML di blocco
-				if ( preg_match( '/^\s*<(p|div|h[1-6]|ul|ol|table|blockquote)[^>]*>/i', $paragrafo ) ) {
-					echo wp_kses_post( $paragrafo );
-				} else {
-					echo "    <p>" . wp_kses_post( $paragrafo ) . "</p>";
-				}
-			}
-		}
-		echo "</div>";
-
-
-		echo "</details>";
+	if ( $viewMode === 'scroll-text' ) {
+		// Modalità scroll: già visibile, CSS gestisce animazione
+		$container_classes .= ' avviso-scroll visible';
 	}
+
+	// Wrapper con data attribute per JS
+	echo '<div class="' . esc_attr( $container_classes ) . '" data-summary-text="' . esc_attr( $testoSummary ) . '" data-notice-id="' . esc_attr( $noticeHash ) . '" data-view-mode="' . esc_attr( $viewMode ) . '">';
+
+	// Fallback CSS per JS disabilitato
+	echo '<noscript><style>.avviso-container{opacity:1!important;visibility:visible!important;}</style></noscript>';
+
+	echo '<div class="avviso-content last-child-no-margin underlined-links">';
+
+	// Il testo può contenere solo <br /> e <br>
+	$testo_pulito = wp_kses( $testo, array( 'br' => array() ) );
+
+	// Output del testo con eventuale link nello stesso paragrafo
+	echo '<p>' . $testo_pulito;
+
+	// Aggiungi il link alla fine se presente
+	if ( ! empty( $link ) && ! empty( $testoLink ) ) {
+		echo ' <a href="' . esc_url( $link ) . '" class="avviso-link">' . esc_html__( $testoLink ) . '</a>';
+	}
+
+	echo '</p>';
+
+	echo '</div>';
+
+	// Bottone close
+	echo '<button type="button" class="close-header-notice close-header-notice-js"><span class="screen-reader-text">Nascondi questo avviso permanentemente</span></button>';
+
+	echo '</div>';
 }

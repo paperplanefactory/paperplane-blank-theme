@@ -28,7 +28,9 @@
             "allow_null": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_6481cfdc10c84",
@@ -94,53 +96,6 @@
             "mime_types": ""
         },
         {
-            "key": "field_6481cffa10c86",
-            "label": "Video cover",
-            "name": "video_cover",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6481ca9410c83",
-                        "operator": "==",
-                        "value": "youtube"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_6481ca9410c83",
-                        "operator": "==",
-                        "value": "vimeo"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_6481ca9410c83",
-                        "operator": "==",
-                        "value": "upload-video"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "preview_size": "medium"
-        },
-        {
             "key": "field_6484112812cbc",
             "label": "DIdascalia",
             "name": "video_caption",
@@ -171,6 +126,7 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
+    "display_title": "",
     "is_acf_component": 1,
     "acf_component_defaults": {
         "layout": "block",
@@ -182,5 +138,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1697021073
+    "modified": 1766088598
 }

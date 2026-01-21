@@ -5,12 +5,12 @@ function paperplane_theme_wpcf7_accessibility( $output, $tag, $atts, $m ) {
 	if ( $tag === 'contact-form-7' ) {
 		$msg = '<div class="form-hold">';
 		$msg .= '<p class="as-label">';
-		$msg .= __( 'Tutti i campi obbligatori sono contrassegnati da un *', 'paperPlane-blankTheme' );
+		$msg .= esc_html__( 'Tutti i campi obbligatori sono contrassegnati da un *', 'paperPlane-blankTheme' );
 		$msg .= '</p>';
+		$msg .= '<p class="screen-reader-text"><strong>';
+		$msg .= esc_html__( 'Attenzione: al termine del form, dopo il pulsante di invio, potrebbero essere presenti dei campi generati dal sistema antispam: non devono essere compilati.', 'paperPlane-blankTheme' );
+		$msg .= '</strong></p>';
 		$output = $msg . $output;
-		// inutilizzato - aggiungo bottone per l'accessibilità per tornare al primo input con errori
-		//$check = '<button class="form-top-js screen-reader-text" aria-hidden="true" hidden>' . __( 'Sposta il focus al primo campo contenente errori.', 'paperPlane-blankTheme' ) . '</button>';
-		//$output .= $check;
 		$output .= '</div>';
 	}
 
@@ -31,12 +31,15 @@ if ( ! function_exists( 'is_cf7_active' ) ) {
 	}
 }
 
+
+
+
 // Esempio di utilizzo
 add_action( 'init', function () {
 	if ( is_cf7_active() ) {
 		// Aggiungi nuova tab
-		add_filter( 'wpcf7_editor_panels', function ($panels) {
-			$panels['instructions-wrapper'] = [ 
+		add_filter( 'wpcf7_editor_panels', function ( $panels ) {
+			$panels['instructions-wrapper'] = [
 				'title' => 'Best practice impostazioni',
 				'callback' => 'paperplane_cf7_bp'
 			];
@@ -93,7 +96,7 @@ add_action( 'init', function () {
 					campo e un link alla privacy policy. Ad esempio:
 
 				</p>
-				<code>&lt;p&gt;Leggi le &lt;a href="url-privacy"&gt;condizioni e l'informativa sulla privacy&lt;/a&gt; prima di accettare.&lt;/p&gt;<br/>[checkbox* checkbox-privacy use_label_element "Inviando i tuoi dati attraverso questa pagina confermi di aver letto e preso atto di quanto disposto nell’informativa sulla privacy prevista ai sensi dell’art. 13 del regolamento UE 2016/679 (GDPR). *"]</code>
+				<code>&lt;p&gt;Leggi le &lt;a href="url-privacy"&gt;condizioni e l'informativa sulla privacy&lt;/a&gt; prima di accettare.&lt;/p&gt;<br/>[checkbox* checkbox-privacy use_label_element "Inviando i tuoi dati attraverso questa pagina confermi di aver letto e preso atto di quanto disposto nell'informativa sulla privacy prevista ai sensi dell'art. 13 del regolamento UE 2016/679 (GDPR). *"]</code>
 				<h3>Autocomplete</h3>
 				<p>
 					Quando possibile ogni campo dovrebbe essere corredato dall'attributo <code>autocomplete</code><br />
@@ -120,7 +123,7 @@ add_action( 'init', function () {
 
 function paperplane_populate_phone_prefixes() {
 	if ( is_cf7_active() ) {
-		$country_prefixes = [ 
+		$country_prefixes = [
 			'AC +247',  // Ascension Island
 			'AD +376',  // Andorra
 			'AE +971',  // United Arab Emirates
@@ -367,7 +370,7 @@ function paperplane_populate_phone_prefixes() {
 			'ZW +263'   // Zimbabwe
 		];
 
-		add_filter( 'wpcf7_form_tag', function ($tag) use ($country_prefixes) {
+		add_filter( 'wpcf7_form_tag', function ( $tag ) use ( $country_prefixes ) {
 			if ( strpos( $tag['name'], '-prefix' ) !== false ) {
 				$tag['values'] = $country_prefixes;
 				$tag['raw_values'] = $country_prefixes;
@@ -430,6 +433,316 @@ function paperplane_populate_phone_prefixes() {
 						});
 					});
 				});
+
+				// Blocca la validazione in tempo reale di CF7
+				// Intercetta gli eventi change/blur/input nella capture phase
+				// Così CF7 non rigenera gli errori durante l'interazione con i campi
+				document.addEventListener('DOMContentLoaded', function () {
+					var forms = document.querySelectorAll('.wpcf7-form');
+
+					forms.forEach(function (form) {
+						// Aggiungi una classe al form per indicare che la validazione live è disabilitata
+						form.classList.add('wpcf7-no-live-validation');
+
+						// Seleziona tutti i campi del form
+						var inputs = form.querySelectorAll('input, select, textarea');
+
+						inputs.forEach(function (input) {
+							// Blocca gli eventi che CF7 usa per la validazione live
+							// Usa capture: true per intercettare gli eventi prima dei listener di CF7
+
+							input.addEventListener('change', function (e) {
+								e.stopPropagation();
+							}, true);
+
+							input.addEventListener('blur', function (e) {
+								e.stopPropagation();
+							}, true);
+
+							input.addEventListener('input', function (e) {
+								e.stopPropagation();
+							}, true);
+						});
+					});
+				});
+
+				// Restaura il DOM prima che CF7 validi il form
+				// Estrae la wrapper errors-summary e rimette i contenuti nello stato originale
+				document.addEventListener('wpcf7submit', function (event) {
+					var form = event.target;
+					var formId = form.id;
+
+					// Se il form non ha ID, ne generiamo uno basato sull'indice
+					if (!formId) {
+						var formIndex = Array.from(document.querySelectorAll('form')).indexOf(form);
+						formId = 'wpcf7-form-' + formIndex;
+						form.id = formId;
+					}
+
+					var errorSummaryId = 'error-summary-' + formId;
+					var wrapperSelector = '#errors-summary-wrapper-' + errorSummaryId;
+					var wrapper = document.querySelector(wrapperSelector);
+
+					if (wrapper) {
+						// Estrai errorSummary e errorList dalla wrapper
+						var errorSummary = wrapper.querySelector('#' + errorSummaryId);
+						var errorList = wrapper.querySelector('[id^="error-list-"]');
+
+						if (errorSummary && errorList) {
+							// IMPORTANTE: Rimetti errorList DENTRO errorSummary
+							// Così CF7 sa dove generare la nuova lista
+							errorSummary.appendChild(errorList);
+
+							// Svuota la lista (rimuovi tutti i <li>)
+							errorList.innerHTML = '';
+
+							// Rimuovi le classi e attributi che abbiamo aggiunto
+							errorList.classList.remove('screen-reader-response', 'section-anchor', 'show-errors');
+							errorList.removeAttribute('aria-label');
+
+							// Rimetti errorSummary al posto della wrapper
+							wrapper.parentElement.insertBefore(errorSummary, wrapper);
+
+							// Rimuovi la wrapper
+							wrapper.remove();
+						}
+					}
+				}, false);
+
+				// Gestione degli errori di validazione - REFACTORED
+				document.addEventListener('wpcf7invalid', function (event) {
+					var form = event.target;
+					var formId = form.id;
+
+					// Se il form non ha ID, ne generiamo uno basato sull'indice
+					if (!formId) {
+						var formIndex = Array.from(document.querySelectorAll('form')).indexOf(form);
+						formId = 'wpcf7-form-' + formIndex;
+						form.id = formId; // Assegna l'ID al form
+					}
+
+					var errorSummaryId = 'error-summary-' + formId;
+
+					// Cerchiamo la div .screen-reader-response generata da CF7
+					// Contact Form 7 la crea senza ID, quindi la cerchiamo per classe
+					var errorSummary = form.parentElement.querySelector('.screen-reader-response');
+
+					// Se la troviamo e non ha ID, assegniamogli l'ID dinamico
+					if (errorSummary && !errorSummary.id) {
+						errorSummary.id = errorSummaryId;
+						errorSummary.classList.add('section-anchor');
+						errorSummary.setAttribute('tabindex', '-1');
+					}
+
+					if (errorSummary) {
+						// Modifica aria-atomic nel paragrafo di stato
+						var statusParagraph = errorSummary.querySelector('p[role="status"]');
+						if (statusParagraph) {
+							statusParagraph.setAttribute('aria-atomic', 'false');
+
+							// Monitora se CF7 cambia aria-atomic e ripristinalo a false
+							var observer = new MutationObserver(function (mutations) {
+								mutations.forEach(function (mutation) {
+									if (mutation.attributeName === 'aria-atomic' &&
+										mutation.target.getAttribute('aria-atomic') === 'true') {
+										mutation.target.setAttribute('aria-atomic', 'false');
+									}
+								});
+							});
+
+							observer.observe(statusParagraph, { attributes: true, attributeFilter: ['aria-atomic'] });
+						}
+
+						// Log in tempo reale: traccia elementi con aria-live ogni 0.5 secondi
+						var liveRegionLogger = setInterval(function () {
+							var ariaLiveElements = document.querySelectorAll('[aria-live]');
+							console.log('=== Elementi con aria-live ===');
+							console.log('Totale:', ariaLiveElements.length);
+							ariaLiveElements.forEach(function (el, index) {
+								console.log(index + 1 + '.', {
+									'aria-live': el.getAttribute('aria-live'),
+									'class': el.className,
+									'id': el.id,
+									'role': el.getAttribute('role'),
+									'tagName': el.tagName
+								});
+							});
+						}, 500);
+
+						setTimeout(function () {
+							var errorList = errorSummary.querySelector('ul');
+
+							if (errorList) {
+								var errorItems = Array.prototype.slice.call(errorList.querySelectorAll('li'));
+
+								// Riordina in base alla posizione nel form
+								errorItems.sort(function (a, b) {
+									var aMatch = a.id.match(/ve-(.+)$/);
+									var bMatch = b.id.match(/ve-(.+)$/);
+
+									if (!aMatch || !bMatch) return 0;
+
+									var aFieldName = aMatch[1];
+									var bFieldName = bMatch[1];
+
+									var aWrapper = form.querySelector('[data-name="' + aFieldName + '"]');
+									var bWrapper = form.querySelector('[data-name="' + bFieldName + '"]');
+
+									if (!aWrapper || !bWrapper) return 0;
+
+									var position = aWrapper.compareDocumentPosition(bWrapper);
+
+									if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
+										return -1;
+									} else if (position & Node.DOCUMENT_POSITION_PRECEDING) {
+										return 1;
+									}
+									return 0;
+								});
+
+								// Migliora i messaggi di errore
+								for (var i = 0; i < errorItems.length; i++) {
+									var item = errorItems[i];
+									var link = item.querySelector('a');
+
+									if (link) {
+										var itemId = item.id;
+										var match = itemId.match(/ve-(.+)$/);
+
+										if (match) {
+											var fieldName = match[1];
+											var labelText = '';
+
+											var label = form.querySelector('label[for="' + fieldName + '"]');
+
+											if (label) {
+												var labelClone = label.cloneNode(true);
+												var hiddenSpans = labelClone.querySelectorAll('span[aria-label]');
+												for (var j = 0; j < hiddenSpans.length; j++) {
+													hiddenSpans[j].remove();
+												}
+												labelText = labelClone.textContent.trim();
+											} else {
+												var wrapper = form.querySelector('[data-name="' + fieldName + '"]');
+												if (wrapper) {
+													var listItemLabel = wrapper.querySelector('.wpcf7-list-item-label');
+													if (listItemLabel) {
+														labelText = listItemLabel.textContent.trim();
+													}
+												}
+											}
+
+											if (labelText) {
+												// Cerca il messaggio di errore nello span .wpcf7-not-valid-tip
+												var fieldWrapper = form.querySelector('[data-name="' + fieldName + '"]');
+												var errorTip = fieldWrapper ? fieldWrapper.querySelector('.wpcf7-not-valid-tip') : null;
+												var errorMessage = errorTip ? errorTip.textContent.trim() : '';
+
+												// Se c'è un messaggio di errore, aggiungilo al testo
+												if (errorMessage) {
+													link.textContent = labelText + ' - ' + errorMessage;
+												} else {
+													link.textContent = labelText;
+												}
+											}
+										}
+
+										// Gestore click per navigare ai campi con errori
+										link.addEventListener('click', function (e) {
+											e.preventDefault();
+											var targetId = this.getAttribute('href').substring(1);
+											var targetElement = document.getElementById(targetId);
+
+											if (targetElement) {
+												// Usa scrollIntoView nativa con scroll-margin-top gestito da CSS
+												targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+												// Focus dopo che lo scroll è completato
+												setTimeout(function () {
+													targetElement.focus();
+												}, 300);
+											}
+										});
+									}
+								}
+
+								// Reinserisci gli elementi ordinati
+								errorList.innerHTML = '';
+								for (var k = 0; k < errorItems.length; k++) {
+									errorList.appendChild(errorItems[k]);
+								}
+
+								// IMPORTANTE: Sposta la <ul> FUORI dalla regione live
+								// Così il paragrafo viene annunciato separatamente dalla lista
+								// Assegna un ID alla lista se non ce l'ha
+								if (!errorList.id) {
+									errorList.id = 'error-list-' + errorSummaryId;
+								}
+								// Sposta la lista subito dopo error-summary
+								errorSummary.parentElement.insertBefore(errorList, errorSummary.nextSibling);
+
+								// Aggiungi classi e attributi alla lista
+								errorList.classList.add('screen-reader-response', 'section-anchor', 'show-errors');
+								errorList.setAttribute('aria-label', 'Sommario campi con errori');
+
+								// WRAP: Crea una div wrapper errors-summary
+								var wrapper = document.createElement('div');
+								wrapper.className = 'errors-summary content-styled';
+								wrapper.id = 'errors-summary-wrapper-' + errorSummaryId;
+
+								// Sposta errorSummary e errorList dentro la wrapper
+								errorSummary.parentElement.insertBefore(wrapper, errorSummary);
+								wrapper.appendChild(errorSummary);
+								wrapper.appendChild(errorList);
+
+								// Rimuovi eventuali liste duplicate rimaste dentro errorSummary
+								// (CF7 a volte crea liste alternative con attributi diversi)
+								var duplicateLists = errorSummary.querySelectorAll('ul');
+								duplicateLists.forEach(function (list) {
+									list.remove();
+								});
+							}
+
+							errorSummary.classList.add('show-errors');
+
+							// Scroll verso l'error summary usando scrollIntoView nativa
+							// Lo spazio sopra è gestito da CSS: #error-summary-form-id { scroll-margin-top: 120px; }
+							errorSummary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+							// Focus dopo che lo scroll è completato
+							setTimeout(function () {
+								errorSummary.focus();
+							}, 300);
+						}, 50);
+					}
+				}, false);
+
+				// Nascondi error summary quando il form viene inviato con successo
+				document.addEventListener('wpcf7mailsent', function (event) {
+					var form = event.target;
+					var formId = form.id;
+
+					// Se il form non ha ID, ne generiamo uno basato sull'indice
+					if (!formId) {
+						var formIndex = Array.from(document.querySelectorAll('form')).indexOf(form);
+						formId = 'wpcf7-form-' + formIndex;
+						form.id = formId;
+					}
+
+					var errorSummaryId = 'error-summary-' + formId;
+					var wrapperSelector = '#errors-summary-wrapper-' + errorSummaryId;
+					var wrapper = document.querySelector(wrapperSelector);
+
+					// Se esiste la wrapper, rimuovi show-errors da lì
+					if (wrapper) {
+						wrapper.classList.remove('show-errors');
+					} else {
+						// Fallback: se non esiste la wrapper, prova con errorSummary diretto
+						var errorSummary = document.getElementById(errorSummaryId);
+						if (errorSummary) {
+							errorSummary.classList.remove('show-errors');
+						}
+					}
+				}, false);
 			</script>
 			<?php
 		} );
@@ -437,7 +750,7 @@ function paperplane_populate_phone_prefixes() {
 }
 add_action( 'init', 'paperplane_populate_phone_prefixes' );
 
-add_filter( 'wpcf7_form_autocomplete', function ($autocomplete) {
+add_filter( 'wpcf7_form_autocomplete', function ( $autocomplete ) {
 	$autocomplete = 'on';
 	return $autocomplete;
 }, 10, 1 );

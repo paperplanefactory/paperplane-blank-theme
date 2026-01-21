@@ -1,5 +1,5 @@
 <div class="wrapper page-opening">
-	<div class="fullscreen-cta opening-almost-fullscreen fluid-typo alignleft">
+	<div class="fullscreen-cta opening-almost-fullscreen alignleft">
 		<div class="above-image-opacity"></div>
 		<div class="fullscreen-cta-aligner">
 			<div class="wrapper">
@@ -9,7 +9,7 @@
 							<div class="last-child-no-margin">
 								<h1>
 									<a href="<?php echo home_url(); ?>">
-										<?php _e( '404 - Pagina non trovata: tornare alla homepage?', 'paperPlane-blankTheme' ); ?>
+										<?php esc_html_e( '404 - Pagina non trovata: tornare alla homepage?', 'paperPlane-blankTheme' ); ?>
 									</a>
 								</h1>
 							</div>

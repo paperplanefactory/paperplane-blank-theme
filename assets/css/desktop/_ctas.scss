@@ -1,34 +1,38 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .cta-holder {
-	margin-top: rem($paragraph-marginbottom-desktop);
+	margin-top: rem(15);
+	@include flex-wrap;
+	@include flex-verticalize;
 
 	button,
 	a {
-		margin: 0 rem(15) 0 0;
+		margin: 0 rem(15) rem(15) 0;
 	}
 }
 
 .default-button {
-	padding: rem(22) rem(42) rem(22) rem(22);
+	padding: rem(10) rem(20);
 	font-size: rem($cta1-size-desktop);
 	line-height: rem($cta1-lineheight-desktop);
 
 	&:after {
-		width: rem($cta1-size-desktop);
-		height: rem($cta1-lineheight-desktop);
+		margin: 0 0 0 rem(5);
+		width: rem(15);
+		height: rem(15);
 
 	}
 }
 
 .default-button-b {
-	font-size: 1rem;
-	line-height: 1rem;
+	font-size: rem($cta1-size-desktop);
+	line-height: rem($cta1-lineheight-desktop);
 
 	&:after {
-		font-size: calc(#{$cta1-size-desktop} + rem(5));
-		line-height: calc(#{$cta1-lineheight-desktop} + rem(5));
+		margin: 0 0 0 rem(5);
+		width: rem(15);
+		height: rem(15);
 	}
 }

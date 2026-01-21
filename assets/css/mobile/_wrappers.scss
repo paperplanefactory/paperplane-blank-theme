@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin'; // wrappers and more
+@import '../global/function-mixin'; // wrappers and more
 
 .desktop-only {
   display: none;
@@ -20,7 +20,7 @@
 }
 
 .wrapper {
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 .wrapper-padded {
@@ -35,11 +35,11 @@
 }
 
 .module-paddings-top {
-  padding-top: $module-vertical-padding-smartphone;
+  padding-top: rem($module-vertical-padding-smartphone);
 }
 
 .module-paddings-top-big {
-  padding-top: $module-vertical-padding-big-smartphone;
+  padding-top: rem($module-vertical-padding-big-smartphone);
 }
 
 .module-no-paddings-top {
@@ -47,15 +47,19 @@
 }
 
 .module-paddings-bottom {
-  padding-bottom: $module-vertical-padding-smartphone;
+  padding-bottom: rem($module-vertical-padding-smartphone);
 }
 
 .module-paddings-bottom-big {
-  padding-bottom: $module-vertical-padding-big-smartphone;
+  padding-bottom: rem($module-vertical-padding-big-smartphone);
 }
 
 .module-no-paddings-bottom {
   padding-bottom: 0;
+}
+
+.section-anchor {
+  scroll-margin-top: calc(var(--header-height-real-time) + rem(20));
 }
 
 #wpadminbar {

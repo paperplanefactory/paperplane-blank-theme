@@ -3,12 +3,91 @@
     "title": "Avviso header",
     "fields": [
         {
+            "key": "field_6911c51ca335f",
+            "label": "Mostrare avviso",
+            "name": "header_mostra_avviso",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_69145d0643599",
+            "label": "Visualizzazione avviso",
+            "name": "header_avviso_view",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "static-text": "Testo statico",
+                "scroll-text": "Testo con effetto scorrimento"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_6911e098ea5b0",
+            "label": "Testo bottone per mostrare avviso",
+            "name": "header_avviso_summary",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "In base alla larghezza disponibile (desktop\/mobile) se il messaggio in \"Testo avviso\" supera una riga viene nascosto e mostrato cliccando un bottone con questa etichetta. Lunghezza massima: 30 caratteri.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69145d0643599",
+                        "operator": "==",
+                        "value": "static-text"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 30,
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_67f927ef87af4",
             "label": "Testo avviso",
-            "name": "header_avviso",
+            "name": "header_avviso_testo",
             "aria-label": "",
-            "type": "wysiwyg",
-            "instructions": "Utilizzare solo paragrafi.",
+            "type": "textarea",
+            "instructions": "Lunghezza massima: 400 caratteri.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -17,11 +96,57 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": 400,
             "allow_in_bindings": 0,
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_6911f9da2ac97",
+            "label": "Testo link",
+            "name": "header_avviso_testo_link",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Lunghezza massima: 20 caratteri.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6911f9ff2ac98",
+            "label": "Link",
+            "name": "header_avviso_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6911f9da2ac97",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
         }
     ],
     "location": [
@@ -42,6 +167,7 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
+    "display_title": "",
     "is_acf_component": 0,
     "acf_component_defaults": {
         "layout": "block",
@@ -53,5 +179,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1744382481
+    "modified": 1762942472
 }

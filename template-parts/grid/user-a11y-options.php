@@ -12,21 +12,26 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 	<div class="user-accessibility-options">
 		<?php
 		if ( $options_fields['animations_option'] == 1 ) : ?>
-			<button role="switch" class="paperplane-toggle active paperplane-reduce-motion-js"
-				aria-label="<?php _e( 'Animazioni.', 'paperPlane-blankTheme' ); ?>"
+			<button type="button" role="switch" class="paperplane-toggle active paperplane-reduce-motion-js"
+				aria-label="<?php esc_html_e( 'Animazioni', 'paperPlane-blankTheme' ); ?>"
 				aria-checked="<?php echo $reduced_motion_checked; ?>">
 				<span class="fake-label" aria-hidden="true">
-					<?php _e( 'Animazioni', 'paperPlane-blankTheme' ); ?>
+					<?php esc_html_e( 'Animazioni', 'paperPlane-blankTheme' ); ?>
 				</span>
 				<div class="paperplane-switch" aria-hidden="true">
-					<div class="paperplane-switch-on">
-						<?php _e( 'On', 'paperPlane-blankTheme' ); ?>
-					</div>
-					<div class="paperplane-switch-off">
-						<?php _e( 'Off', 'paperPlane-blankTheme' ); ?>
-					</div>
 					<div class="paperplane-switch-inner">
-						<div class="paperplane-switch-dot"></div>
+						<div class="paperplane-switch-dot">
+							<div class="paperplane-switch-label">
+								<?php
+								// MODIFICATO: Ora il label si adatta allo stato iniziale
+								if ( $reduced_motion_checked === 'true' ) {
+									esc_html_e( 'On', 'paperPlane-blankTheme' );
+								} else {
+									esc_html_e( 'Off', 'paperPlane-blankTheme' );
+								}
+								?>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="clearer"></div>
@@ -34,21 +39,26 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 		<?php endif; ?>
 		<?php
 		if ( $options_fields['opacity_option'] == 1 ) : ?>
-			<button role="switch" class="paperplane-toggle paperplane-reduce-transparency-js"
-				aria-label="<?php _e( 'Trasparenze.', 'paperPlane-blankTheme' ); ?>"
+			<button type="button" role="switch" class="paperplane-toggle paperplane-reduce-transparency-js"
+				aria-label="<?php esc_html_e( 'Trasparenze', 'paperPlane-blankTheme' ); ?>"
 				aria-checked="<?php echo $reduced_transparency_checked; ?>">
 				<span class="fake-label" aria-hidden="true">
-					<?php _e( 'Riduci trasparenze', 'paperPlane-blankTheme' ); ?>
+					<?php esc_html_e( 'Riduci trasparenze', 'paperPlane-blankTheme' ); ?>
 				</span>
 				<div class="paperplane-switch" aria-hidden="true">
-					<div class="paperplane-switch-on">
-						<?php _e( 'On', 'paperPlane-blankTheme' ); ?>
-					</div>
-					<div class="paperplane-switch-off">
-						<?php _e( 'Off', 'paperPlane-blankTheme' ); ?>
-					</div>
 					<div class="paperplane-switch-inner">
-						<div class="paperplane-switch-dot"></div>
+						<div class="paperplane-switch-dot">
+							<div class="paperplane-switch-label">
+								<?php
+								// MODIFICATO: Ora il label si adatta allo stato iniziale
+								if ( $reduced_transparency_checked === 'true' ) {
+									esc_html_e( 'On', 'paperPlane-blankTheme' );
+								} else {
+									esc_html_e( 'Off', 'paperPlane-blankTheme' );
+								}
+								?>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="clearer"></div>
@@ -56,21 +66,26 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 		<?php endif; ?>
 		<?php
 		if ( $options_fields['darkmode_option'] == 1 ) : ?>
-			<button role="switch" class="paperplane-toggle paperplane-darkmode-js"
-				aria-label="<?php _e( 'Dark mode.', 'paperPlane-blankTheme' ); ?>"
+			<button type="button" role="switch" class="paperplane-toggle paperplane-darkmode-js"
+				aria-label="<?php esc_html_e( 'Dark mode', 'paperPlane-blankTheme' ); ?>"
 				aria-checked="<?php echo $dark_mode_checked; ?>">
 				<span class="fake-label" aria-hidden="true">
-					<?php _e( 'Dark mode', 'paperPlane-blankTheme' ); ?>
+					<?php esc_html_e( 'Dark mode', 'paperPlane-blankTheme' ); ?>
 				</span>
 				<div class="paperplane-switch" aria-hidden="true">
-					<div class="paperplane-switch-on">
-						<?php _e( 'On', 'paperPlane-blankTheme' ); ?>
-					</div>
-					<div class="paperplane-switch-off">
-						<?php _e( 'Off', 'paperPlane-blankTheme' ); ?>
-					</div>
 					<div class="paperplane-switch-inner">
-						<div class="paperplane-switch-dot"></div>
+						<div class="paperplane-switch-dot">
+							<div class="paperplane-switch-label">
+								<?php
+								// MODIFICATO: Ora il label si adatta allo stato iniziale
+								if ( $dark_mode_checked === 'true' ) {
+									esc_html_e( 'On', 'paperPlane-blankTheme' );
+								} else {
+									esc_html_e( 'Off', 'paperPlane-blankTheme' );
+								}
+								?>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="clearer"></div>

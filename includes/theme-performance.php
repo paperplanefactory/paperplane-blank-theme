@@ -1,63 +1,55 @@
 <?php
+/**
+ * Versione refactored delle funzioni di preload
+ * Usa la configurazione centralizzata eliminando la duplicazione di logica
+ */
+
 
 /**
  * Gestisce il precaricamento delle risorse critiche come font, immagini e video
- * Questa funzione viene eseguita nell'header della pagina per ottimizzare i tempi di caricamento
+ * VERSIONE REFACTORED - usa la configurazione centralizzata
  * 
  * @return void
  */
 function paperplane_preload_data() {
-	$preload_images = false;
 	// Usa una cache statica per evitare calcoli multipli della stessa funzione
-	// nella stessa richiesta
 	static $cached_preload_data = null;
 	if ( $cached_preload_data !== null ) {
 		echo $cached_preload_data;
 		return;
 	}
+
 	// Inizializza la stringa che conterrà tutti i tag di preload
 	$preload_data = '';
 
 	// Ottiene l'URL della directory del tema in modo sicuro
 	$stylesheet_directory = esc_url( get_bloginfo( 'stylesheet_directory' ) );
 
-	// Array dei font da precaricare con le loro configurazioni
-	// per stabilire quali font precvaricare:
-	// visualizzare una pagina del sito in Chrome
-	// aprire il pannello dev
-	// ricaricare la pagina
-	// aprire la tab Network o Rete
-	// filtrare per tipo di file font
-	// per ogni font copiare la URL "Request URL:" e aggiungerla all'array
-	// 'type' può essere 'preconnect' per la connessione al server dei font da usare come primo elemento dell'array
-	// o 'font/woff2' per i file dei font specifici - utilizzare l'estensione corretta del font
-	$fonts_preload = [ 
-		[ 
+	// Array dei font da precaricare (invariato)
+	$fonts_preload = [
+		[
 			'url' => 'https://fonts.gstatic.com',
 			'type' => 'preconnect'
 		],
-		[ 
+		[
 			'url' => 'https://fonts.gstatic.com/s/atkinsonhyperlegible/v11/9Bt23C1KxNDXMspQ1lPyU89-1h6ONRlW45G04pIoWQeCbA.woff2',
 			'type' => 'font/woff2'
 		],
-		[ 
+		[
 			'url' => 'https://fonts.gstatic.com/s/atkinsonhyperlegible/v11/9Bt73C1KxNDXMspQ1lPyU89-1h6ONRlW45G8Wbc9dCWPRl-uFQ.woff2',
 			'type' => 'font/woff2'
 		],
-		[ 
+		[
 			'url' => 'https://fonts.gstatic.com/s/montserrat/v29/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2',
 			'type' => 'font/woff2'
 		],
-		[ 
+		[
 			'url' => $stylesheet_directory . '/assets/fonts/material-icons/MaterialIcons-Regular.ttf',
 			'type' => 'font/ttf'
 		]
 	];
 
-
-
-	// Genera i tag di preload per ogni font
-	// Usa un formato diverso per preconnect e preload dei font
+	// Genera i tag di preload per ogni font (invariato)
 	foreach ( $fonts_preload as $font ) {
 		if ( $font['type'] === 'preconnect' ) {
 			$preload_data .= sprintf(
@@ -67,7 +59,7 @@ function paperplane_preload_data() {
 			);
 		} else {
 			$preload_data .= sprintf(
-				'<link rel="preload" href="%s" as="font" fetchpriority="high" type="%s" crossorigin />%s',
+				'<link rel="preload" href="%s" as="font" type="%s" crossorigin />%s',
 				esc_url( $font['url'] ),
 				esc_attr( $font['type'] ),
 				"\n"
@@ -75,26 +67,29 @@ function paperplane_preload_data() {
 		}
 	}
 
-
-
-	// Precarica il logo del sito con alta priorità
+	// Precarica il logo del sito (invariato)
 	$logo_path = $stylesheet_directory . '/assets/images/site-logo-header.svg';
 	if ( $logo_path ) {
 		$preload_data .= sprintf(
-			'<link rel="preload" href="%s" fetchpriority="high" as="image" type="image/svg+xml" crossorigin />%s',
+			'<link rel="preload" href="%s" fetchpriority="high" as="image" type="image/svg+xml" crossorigin="anonymous" />%s',
 			esc_url( $logo_path ),
 			"\n"
 		);
 	}
 
-	// Gestisce il precaricamento specifico per il post corrente
+	// NUOVA LOGICA: Usa la configurazione centralizzata per le immagini
 	global $post;
-	// Verifica che esista un post e che la funzione dei transient sia disponibile
-	if ( $post instanceof WP_Post && function_exists( 'paperplane_content_transients' ) && $preload_images == true ) {
+	if ( $post instanceof WP_Post && function_exists( 'paperplane_content_transients' ) ) {
 		$content_fields = paperplane_content_transients( $post->ID );
 
 		if ( ! empty( $content_fields ) ) {
-			$preload_data .= generate_image_preload_tags( $content_fields );
+			// Ottiene la configurazione appropriata
+			$opening_config = get_page_opening_config( $content_fields );
+
+			// Genera i tag di preload usando la configurazione
+			if ( $opening_config ) {
+				$preload_data .= generate_image_preload_tags_refactored( $opening_config );
+			}
 		}
 	}
 
@@ -107,178 +102,102 @@ function paperplane_preload_data() {
 
 /**
  * Genera i tag HTML per il precaricamento delle immagini responsive
- * Gestisce dinamicamente tutte le immagini di apertura in base al layout corrente
+ * VERSIONE REFACTORED - usa la configurazione centralizzata
  * 
- * @param array $content_fields Array dei campi di contenuto
+ * @param array $opening_config Configurazione dell'apertura dalla funzione centralizzata
  * @return string HTML con i tag di preload
  */
-function generate_image_preload_tags( $content_fields ) {
+function generate_image_preload_tags_refactored( $opening_config ) {
 	$preload_tags = '';
 
-	// Verifica se esiste il layout di apertura e quale tipo è stato selezionato
-	if ( empty( $content_fields['page_opening_layout'] ) ) {
-		return $preload_tags; // Ritorna stringa vuota se non c'è layout
-	}
+	// Ottiene le immagini da precaricare usando la funzione helper
+	$images = get_preloadable_images( $opening_config );
 
-	$opening_layout = $content_fields['page_opening_layout'];
-
-	// Cerca i campi immagine solo se il layout è di tipo "opening-fullscreen"
-	if ( $opening_layout !== 'opening-fullscreen' ) {
-		return $preload_tags; // Ritorna stringa vuota per altri layout
-	}
-
-	// Determina il tipo di contenuto (immagine o video)
-	$content_type = isset( $content_fields['page_opening_media'] ) ? $content_fields['page_opening_media'] : '';
-
-	// Filtro per i campi immagine in base al tipo di contenuto
-	$image_fields = [];
-	if ( $content_type === 'image' ) {
-		// Cerca i campi specifici per immagini
-		foreach ( array_keys( $content_fields ) as $key ) {
-			if ( strpos( $key, 'page_opening_image_' ) !== false &&
-				strpos( $key, 'video_poster' ) === false ) {
-				$image_fields[] = $key;
-			}
-		}
-	} elseif ( $content_type === 'video' ) {
-		// Cerca solo i campi del poster del video
-		foreach ( array_keys( $content_fields ) as $key ) {
-			if ( strpos( $key, 'page_opening_image_video_poster' ) !== false ) {
-				$image_fields[] = $key;
-			}
-		}
-	} else {
-		return $preload_tags; // Tipo di contenuto non supportato
-	}
-
-	// Verifica la presenza di immagini desktop e mobile
-	$has_desktop = false;
-	$has_mobile = false;
-	foreach ( $image_fields as $field ) {
-		if ( strpos( $field, 'desktop' ) !== false &&
-			! empty( $content_fields[ $field ] ) &&
-			is_array( $content_fields[ $field ] ) ) {
-			$has_desktop = true;
-		}
-		if ( strpos( $field, 'mobile' ) !== false &&
-			! empty( $content_fields[ $field ] ) &&
-			is_array( $content_fields[ $field ] ) ) {
-			$has_mobile = true;
-		}
-	}
-
-	// Genera i tag di preload
-	foreach ( $image_fields as $field ) {
-		if ( ! empty( $content_fields[ $field ] )
-			&& is_array( $content_fields[ $field ] )
-			&& isset( $content_fields[ $field ]['mime_type'] ) ) {
-
-			// Determina se è desktop o mobile
-			$is_desktop = strpos( $field, 'desktop' ) !== false;
-			$is_mobile = strpos( $field, 'mobile' ) !== false;
-			$is_video_poster = strpos( $field, 'video_poster' ) !== false;
-
-			// Configura i parametri in base al tipo e alla presenza di entrambe le versioni
-			if ( $is_desktop ) {
-				$config = [ 
-					'media' => ( $has_desktop && $has_mobile ) ? '(min-width: 1024px)' : '',
-					'size' => 'full_desk_hd'
-				];
-			} elseif ( $is_mobile ) {
-				$config = [ 
-					'media' => ( $has_desktop && $has_mobile ) ? '(max-width: 1023px)' : '',
-					'size' => 'full_desk'
-				];
-			} elseif ( $is_video_poster ) {
-				$config = [ 
-					'media' => '',
-					'size' => 'full_desk'
-				];
-			} else {
-				$config = null;
-			}
-
-			if ( $config && isset( $content_fields[ $field ]['sizes'][ $config['size'] ] ) ) {
-				$preload_tags .= sprintf(
-					'<link rel="preload" %shref="%s" fetchpriority="high" as="image" type="%s" />%s',
-					$config['media'] ? sprintf( 'media="%s" ', $config['media'] ) : '',
-					esc_url( $content_fields[ $field ]['sizes'][ $config['size'] ] ),
-					esc_attr( $content_fields[ $field ]['mime_type'] ),
-					"\n"
-				);
-			}
-		}
+	// Genera i tag di preload per ogni immagine
+	foreach ( $images as $image ) {
+		$preload_tags .= sprintf(
+			'<link rel="preload" %shref="%s" fetchpriority="high" as="image" type="%s" />%s',
+			$image['media_query'] ? sprintf( 'media="%s" ', $image['media_query'] ) : '',
+			esc_url( $image['url'] ),
+			esc_attr( $image['mime_type'] ),
+			"\n"
+		);
 	}
 
 	return $preload_tags;
 }
+
 // Aggiunge la funzione paperplane_preload_data all'hook wp_head
-// La priorità 1 assicura che venga eseguita tra le prime
 add_action( 'wp_head', 'paperplane_preload_data', 1 );
 
 
 
 /**
- * Gestisce il precaricamento speculativo delle pagine attraverso le Speculation Rules API
- * Genera un tag script con le regole per il prefetch delle pagine selezionate
+ * Gestisce il precaricamento speculativo delle pagine (invariato)
  */
 function paperplane_preload_speculationrules_pages() {
-	// Verifica il supporto multilingua e ottiene il parametro lingua
-	// Se Polylang è attivo usa la lingua corrente, altrimenti usa un valore predefinito
 	$acf_options_parameter = function_exists( 'pll_current_language' ) ?
 		pll_current_language( 'slug' ) :
 		'any-lang';
 
-	// Carica le opzioni salvate nei transient
 	paperplane_options_transients();
 
-	// Recupera l'elenco delle pagine da precaricare dalle opzioni
 	global $options_fields_multilang;
 	$speculationrules_pages = $options_fields_multilang['speculationrules_pages'] ?? [];
 
-	// Se non ci sono pagine da precaricare, termina
 	if ( empty( $speculationrules_pages ) ) {
 		return;
 	}
 
-	// Converte l'array di oggetti pagina in array di URL
-	$urls = array_map( function ($page) {
+	$urls = array_map( function ( $page ) {
 		return get_permalink( $page->ID );
 	}, $speculationrules_pages );
 
-	// Prepara l'array delle regole di speculazione
-	// 'prefetch' indica che le pagine verranno precaricate
-	// 'source': 'list' specifica che gli URL vengono da un elenco definito
-	$speculation_rules = [ 
-		'prefetch' => [ 
-			[ 
+	$speculation_rules = [
+		'prefetch' => [
+			[
 				'source' => 'list',
-				'urls' => array_filter( $urls ) // Rimuove eventuali URL vuoti
+				'urls' => array_filter( $urls )
 			]
 		]
 	];
 
-	// Stampa il tag script con le regole
-	// JSON_UNESCAPED_SLASHES mantiene gli slash negli URL
 	printf(
 		"\n" . '<script type="speculationrules">%s</script>' . "\n",
 		wp_json_encode( $speculation_rules, JSON_UNESCAPED_SLASHES )
 	);
 }
-// Aggiunge la funzione al footer della pagina
 add_action( 'wp_footer', 'paperplane_preload_speculationrules_pages' );
 
-// Carica le opzioni dai transient
+// Resto del codice invariato...
 $options_fields = paperplane_options_transients();
 
-// Disabilita Query Monitor nel backend se l'opzione è disattivata
 if ( ! isset( $options_fields['use_query_monitor_backend'] ) || $options_fields['use_query_monitor_backend'] != true ) {
 	add_filter( 'qm/dispatch/html', function () {
-		// Restituisce false nelle pagine di amministrazione
-		// per disabilitare Query Monitor
 		if ( is_admin() ) {
 			return false;
 		}
 		return true;
 	} );
 }
+
+function generate_critical_css() {
+	$critical_source = get_template_directory() . '/critical.min.css';
+	$critical_output = get_template_directory() . '/critical.processed.css';
+
+	if ( ! file_exists( $critical_output ) ||
+		filemtime( $critical_source ) > filemtime( $critical_output ) ) {
+
+		$css = file_get_contents( $critical_source );
+		$theme_slug = get_template();
+		$css = str_replace(
+			'url(assets/',
+			'url(/wp-content/themes/' . $theme_slug . '/assets/',
+			$css
+		);
+
+		file_put_contents( $critical_output, $css );
+	}
+}
+add_action( 'after_switch_theme', 'generate_critical_css' );
+add_action( 'init', 'generate_critical_css' );

@@ -1,0 +1,28 @@
+:root {
+    --color-1: #111111;
+    --color-2: #555555;
+    --color-3: #F2F2F2;
+    --color-4: #FFFFFF;
+    --above-image-opacity: rgba(255, 255, 255, 0.35);
+    --modal-bg-layer: rgba(0, 0, 0, 0.55);
+    --switch-box-shadow: inset 0 0 rem(4) rem(2) rgba(0, 0, 0, 0.2);
+    --color-form-ok: #056900;
+    --color-form-ok-b: #FFFFFF;
+    --color-form-error: #8C0500;
+    --color-form-error-b: #FFE5E5;
+}
+
+
+
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --color-1: #FFFFFF;
+    --color-2: #F2F2F2;
+    --color-3: #555555;
+    --color-4: #111111;
+    --above-image-opacity: rgba(0, 0, 0, 0.35);
+    --modal-bg-layer: rgba(255, 255, 255, 0.55);
+    --switch-box-shadow: inset 0 0 rem(4) rem(2) rgba(255, 255, 255, 0.2);
+
+}

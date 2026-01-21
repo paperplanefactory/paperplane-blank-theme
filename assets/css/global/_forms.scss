@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import 'vars';
-@import 'mixin';
+@import 'function-mixin';
 
 // forms
 // tutti gli stili di base dei form sono definiti qui
@@ -26,6 +26,7 @@ input[type=password],
 input[type=tel],
 input[type=text],
 input[type=url],
+input[type=search],
 select,
 textarea {
 	border: var(--color-2) solid rem(1);
@@ -42,24 +43,31 @@ input[type=range],
 input[type=tel],
 input[type=text],
 input[type=url],
+input[type=search],
 textarea {
 	font-weight: $font-weight-1;
 	position: relative;
-	width: calc(100% - rem(2));
+	//width: calc(100% - rem(2));
+	width: 100%;
 	padding: rem(10);
-	background-color: transparent;
 }
 
 input[type=checkbox],
 input[type=radio] {
+	width: rem(25);
+	height: rem(25);
+	position: relative;
+	top: rem(4);
 
 	&:before {
+		font-size: rem(25);
+		line-height: rem(25);
 		color: var(--color-1);
 	}
 
 	&:focus-visible {
 		&:before {
-			color: var(--color-4);
+			color: currentColor;
 		}
 	}
 }
@@ -117,9 +125,11 @@ input[type=file] {
 	position: relative;
 	text-align: left;
 	display: block;
+	width: 100%;
 	margin-top: rem(10);
 	font-family: $font-main;
 	font-weight: $font-weight-1;
+	color: var(--color-1);
 	background-color: var(--color-4);
 
 	&::-webkit-file-upload-button,
@@ -133,7 +143,6 @@ input[type=file] {
 		cursor: pointer;
 		border: none;
 		width: rem(25);
-
 		-webkit-mask-image: url(assets/images/icons/file-upload.svg);
 		mask-image: url(assets/images/icons/file-upload.svg);
 		-webkit-mask-repeat: no-repeat;
@@ -201,6 +210,7 @@ input[type=submit]:disabled {
 	opacity: 0.7;
 }
 
+input[type=file],
 input[type=date]:focus,
 input[type=email]:focus,
 input[type=number]:focus,
@@ -209,6 +219,7 @@ input[type=range]:focus,
 input[type=tel]:focus,
 input[type=text]:focus,
 input[type=url]:focus,
+input[type=search]:focus,
 select:focus,
 textarea:focus {
 	box-shadow: 0 0 0 rem(3) var(--color-1) !important;
@@ -242,8 +253,8 @@ label,
 		&.form-checkbox,
 		&.form-radio {
 			display: block;
-			padding: 0 !important;
-			margin-bottom: rem(10) !important;
+			padding: 0;
+			margin: 0;
 
 			.wpcf7-list-item {
 				margin: 0 rem(10) rem(10) 0 !important;
@@ -255,6 +266,56 @@ label,
 		}
 	}
 }
+
+.form-block {
+	display: block;
+
+	.wpcf7-not-valid-tip {
+
+		top: 0 !important;
+		margin-bottom: rem(32) !important;
+	}
+
+	&.privacy-block {
+		.wpcf7-form-control-wrap {
+			display: block;
+			width: 100%;
+		}
+	}
+}
+
+
+.phone-wrapper {
+	position: relative;
+	display: block;
+	width: 100%;
+
+	.phone-prefix-populate {
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		margin: 0;
+		width: rem(95);
+		opacity: 0;
+		@include transition(opacity 0.3s linear);
+
+		&.visible {
+			opacity: 1;
+		}
+	}
+
+	.phone-number-style {
+		z-index: 1;
+		width: calc(100% - rem(94));
+		margin-left: rem(94);
+	}
+
+	.just-hidden {
+		opacity: 0;
+	}
+}
+
+
 
 .wpcf7-form {
 
@@ -293,7 +354,7 @@ label,
 		border: none !important;
 		z-index: 10;
 		width: 100% !important;
-		top: rem(-32) !important;
+		top: rem(-28) !important;
 		padding: rem(10) !important;
 		margin: 0 0 0 0 !important;
 		color: var(--color-form-error) !important;
@@ -333,57 +394,59 @@ label,
 
 	&.sent {
 		.wpcf7-response-output {
-			color: var(--color-form-ok) !important;
-			background-color: var(--color-form-ok-b) !important;
+			color: var(--color-form-ok-b) !important;
+			background-color: var(--color-form-ok) !important;
 			border: none !important;
 			font-weight: $font-weight-2 !important;
 
 			&:before {
-				color: var(--color-form-ok) !important;
+				color: var(--color-form-ok-b) !important;
 				content: '\e5ca';
 			}
 
 		}
 	}
-}
 
-.form-block {
-	display: block;
 
-	.wpcf7-not-valid-tip {
 
-		top: 0 !important;
-		margin-bottom: rem(32) !important;
+	/* Stili per campi invalidi */
+	.wpcf7-not-valid {
+		box-shadow: 0 0 0 rem(3) var(--color-form-error) !important;
+		@include transition(all 0.3s linear);
 	}
 }
 
+.wpcf7 {
+	.screen-reader-response.show-errors {
+		display: block !important;
+		position: static !important;
+		overflow: visible !important;
+		clip: auto !important;
+		clip-path: none !important;
+		height: auto !important;
+		width: auto !important;
+		//margin: 0 0 1.5rem 0 !important;
+		//padding: 1rem !important;
+		//border: rem(1) solid var(--color-form-error) !important;
+		//background-color: var(--color-form-error-b) !important;
+	}
 
-.phone-wrapper {
-	position: relative;
-	display: block;
-	width: 100%;
+	.screen-reader-response.show-errors p[role="status"] {
+		font-weight: bold;
+		color: var(--color-form-error);
+		margin: 0 0 rem(12) 0;
+	}
 
-	.phone-prefix-populate {
-		position: absolute;
-		z-index: 2;
-		top: 0;
-		margin: 0;
-		width: rem(95);
-		opacity: 0;
-		@include transition(opacity 0.3s linear);
+	.errors-summary {
+		display: block !important;
+		position: static !important;
+		margin-top: rem(32);
+		padding: 0 rem(16) rem(16) rem(16) !important;
+		border: rem(1) solid var(--color-form-error) !important;
+		background-color: var(--color-form-error-b) !important;
 
-		&.visible {
-			opacity: 1;
+		.screen-reader-response {
+			margin-top: rem(16);
 		}
-	}
-
-	.phone-number-style {
-		z-index: 1;
-		width: calc(100% - rem(94));
-		margin-left: rem(94);
-	}
-
-	.just-hidden {
-		opacity: 0;
 	}
 }

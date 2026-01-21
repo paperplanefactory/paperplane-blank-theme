@@ -45,7 +45,7 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 	if ( $dark_mode_checked == 'true' ) {
 		$html_a11y_user_prefs .= 'data-theme="dark" ';
 	}
-	$reduced_motion_checked = ( $user_preferences && isset( $user_preferences['reduced_motion'] ) && $user_preferences['reduced_motion'] == 0 ) ? 'false' : 'true';
+	$reduced_motion_checked = ( $user_preferences && isset( $user_preferences['reduced_motion'] ) && $user_preferences['reduced_motion'] == 0 ) ? 'true' : 'false';
 	if ( $reduced_motion_checked == 'true' ) {
 		$html_a11y_user_prefs .= 'data-reduced-motion="true" ';
 	}
@@ -66,6 +66,10 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 	<title>
 		<?php wp_title( '|', true, 'right' ); ?>
 	</title>
+	<style>
+		<?php readfile( get_template_directory() . '/critical.processed.css' ); ?>
+	</style>
+
 	<?php
 	wp_head();
 	?>
@@ -109,12 +113,10 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 	// includo il manifesto per PWA se la PWA è attiva
 	if ( $attivare_pwa == 1 ) :
 		?>
-		<link rel="prefetch" href="<?php echo get_home_url(); ?>/manifest.json">
 		<link rel="manifest" href="<?php echo get_home_url(); ?>/manifest.json">
 	<?php endif; ?>
 	<!-- meta personalizzato per versione del tema -->
 	<meta name="theme-version" data-theme-version="<?php echo $theme_version; ?>">
-
 </head>
 
 <body class="">
@@ -132,39 +134,37 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 	include( locate_template( 'template-parts/grid/accessible-navi.php' ) );
 	?>
 	<div id="site-wrapper">
-		<?php if ( $options_fields_multilang['header_avviso'] ?? false ) : ?>
-			<div id="pre-header">
-				<div class="wrapper-padded">
-					<?php
-					mostraDettagliTestoAvanzata( $options_fields_multilang['header_avviso'], 50, 'Avviso importante', true );
-					?>
+		<?php include( locate_template( 'template-parts/grid/header-message.php' ) ); ?>
 
-				</div>
-			</div>
-		<?php endif; ?>
-
-		<header id="header" data-had-class="">
+		<header id="header">
+			<div class="submenu-close submenu-close-js"></div>
 			<div class="wrapper-padded">
-				<div id="header-structure">
-					<div class="logo">
+				<div id="header-structure" class="navigation-height-counter">
+					<div class="logo logo-mask-focus-visible">
 						<a href="<?php echo home_url(); ?>" rel="bookmark"
-							aria-label="<?php echo __( 'Visita la homepage di', 'paperPlane-blankTheme' ) . ' ' . get_bloginfo( 'name' ); ?>"></a>
+							aria-label="<?php printf( esc_html__( 'Visita la homepage di %s', 'paperPlane-blankTheme' ), get_bloginfo( 'name' ) ); ?>"></a>
 					</div>
-					<nav class="menu underlined-links-on-hover"
-						aria-label="<?php _e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
+					<nav class="header-main-menu-desktop"
+						aria-label="<?php esc_html_e( 'Menu principale', 'paperPlane-blankTheme' ); ?>">
 						<?php
 						if ( has_nav_menu( 'header-menu' ) ) {
-							wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => 'ul', 'menu_class' => 'header-menu header-menu-js' ) );
+							wp_nav_menu( array(
+								'theme_location' => 'header-menu',
+								'walker' => new Paperplane_Accessible_Walker(),
+								'container' => false,
+								'menu_class' => 'menu-list header-menu-js',
+								'items_wrap' => '<ul id="%1$s" class="%2$s" data-menu-type="desktop">%3$s</ul>'
+							) );
 						}
 						?>
 					</nav>
 					<div class="side-head">
 						<ul>
 							<li>
-								<button id="hamburger-button" class="hambuger-element" aria-haspopup="true"
-									aria-expanded="false" aria-controls="head-overlay">
+								<button type="button" id="hamburger-button" class="hambuger-element"
+									aria-haspopup="true" aria-expanded="false" aria-controls="head-overlay">
 									<span class="screen-reader-text">
-										<?php _e( 'Accedi al menu ad hamburger, usa la combinazione p + esc per chuidere il menu', 'paperPlane-blankTheme' ); ?>
+										<?php esc_html_e( 'Accedi al menu ad hamburger, usa la combinazione p + esc per chuidere il menu', 'paperPlane-blankTheme' ); ?>
 									</span>
 									<span class="ham-bar ham-bar-1"></span>
 									<span class="ham-bar ham-bar-2"></span>
@@ -176,40 +176,41 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 					</div>
 				</div>
 			</div>
-			<div class="submenu-close submenu-close-js"></div>
+
 			<div id="head-overlay" class="hidden">
-				<div class="scroll-opportunity scroll-opportunity-overlay-js">
+				<div class="scroll-opportunity">
 					<div class="wrapper">
+						<nav class="header-main-menu-mobile"
+							aria-label="<?php esc_html_e( 'Menu secondario', 'paperPlane-blankTheme' ); ?>">
+							<?php
+							if ( has_nav_menu( 'overlay-menu-mobile' ) ) {
+								wp_nav_menu( array(
+									'theme_location' => 'overlay-menu-mobile',
+									'walker' => new Paperplane_Accessible_Walker(),
+									'container' => false,
+									'menu_class' => 'overlay-menu-mobile-js',
+									'items_wrap' => '<ul id="%1$s" class="%2$s" data-menu-type="mobile">%3$s</ul>'
+								) );
+							}
+							?>
+						</nav>
 						<div class="wrapper-padded">
-							<nav class="menu" aria-label="<?php _e( 'Menu secondario', 'paperPlane-blankTheme' ); ?>">
-								<?php
-								if ( has_nav_menu( 'overlay-menu-mobile' ) ) {
-									wp_nav_menu( array( 'theme_location' => 'overlay-menu-mobile', 'container' => 'ul', 'menu_class' => 'overlay-menu-css overlay-menu-mobile-js' ) );
-								}
-								?>
-								<?php
-								if ( has_nav_menu( 'overlay-menu-mobile' ) ) {
-									wp_nav_menu( array( 'theme_location' => 'overlay-menu-mobile', 'container' => 'ul', 'menu_class' => 'overlay-menu-css overlay-menu-mobile-js' ) );
-								}
-								?>
-								<?php
-								if ( has_nav_menu( 'overlay-menu-mobile' ) ) {
-									wp_nav_menu( array( 'theme_location' => 'overlay-menu-mobile', 'container' => 'ul', 'menu_class' => 'overlay-menu-css overlay-menu-mobile-js' ) );
-								}
-								?>
-							</nav>
-							<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
+							<!-- pannello per opzioni accessibilità e dark mode -->
+							<?php if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_option'] == 1 || $options_fields['darkmode_option'] == 1 ) : ?>
+								<nav aria-label="<?php esc_html_e( 'Preferenze visive.', 'paperPlane-blankTheme' ); ?>">
+									<?php include( locate_template( 'template-parts/grid/user-a11y-options.php' ) ); ?>
+								</nav>
+							<?php endif; ?>
 							<?php if ( $options_fields['global_socials'] ) : ?>
-								<nav aria-label="<?php _e( 'Menu social', 'paperPlane-blankTheme' ); ?>">
+								<nav aria-label="<?php esc_html_e( 'Menu social', 'paperPlane-blankTheme' ); ?>">
 									<ul class="site-socials inline-socials">
 										<?php
 										foreach ( $options_fields['global_socials'] as $global_social ) :
-											$parse_social = parse_url( $global_social['global_socials_profile_url'] );
 											?>
 											<li>
 												<a href="<?php echo $global_social['global_socials_profile_url']; ?>"
 													class="<?php echo $global_social['global_socials_icon']; ?>" target="_blank"
-													aria-label="<?php echo __( 'Visita il nostro profilo su', 'paperPlane-blankTheme' ) . ' ' . $parse_social['host'] . ' ' . __( '- si apre in una nuova finestra', 'paperPlane-blankTheme' ); ?>"
+													aria-label="<?php echo $global_social['global_socials_screen_reader_text']; ?>"
 													rel="noopener">
 												</a>
 											</li>
@@ -219,13 +220,13 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 							<?php endif; ?>
 						</div>
 					</div>
+					<button type="button" class="overlay-navi-reset overlay-navi-reset-js"
+						aria-label="<?php echo esc_html__( 'Ritorna al pulsante di apertura del menu', 'paperPlane-blankTheme' ); ?>"
+						aria-labelledby="hamburger-button"></button>
 				</div>
-				<button class="overlay-navi-reset-js"
-					aria-label="<?php echo __( 'Ritorna al pulsante di apertura del menu', 'paperPlane-blankTheme' ); ?>"
-					aria-labelledby="hamburger-button"></button>
+
 			</div>
 		</header>
-
 		<main id="page-content" tabindex="-1">
 			<?php include( locate_template( 'template-parts/grid/page-opening.php' ) ); ?>
 
@@ -234,5 +235,5 @@ if ( $options_fields['animations_option'] == 1 || $options_fields['opacity_optio
 			 * Barra di ricerca con integrazione suggerimenti
 			 * Le opzioni sono gestite tramite /wp-admin/options-general.php?page=json-generator-settings
 			 */
-			//include( locate_template( 'template-parts/grid/search-bar.php' ) );
+			include( locate_template( 'template-parts/grid/search-bar.php' ) );
 			?>

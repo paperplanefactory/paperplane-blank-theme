@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import 'vars';
-@import 'mixin'; // wrappers and more
+@import 'function-mixin'; // wrappers and more
 
 .paperplane-slider {
     &>.slide:not(:first-child) {
@@ -40,45 +40,5 @@
 .slick-prev {
     &:after {
         transform: rotate(180deg);
-    }
-}
-
-.slick-dots {
-    li {
-        &.slick-active {
-            button {
-                background-color: var(--color-1);
-            }
-        }
-
-        button {
-            background-color: var(--color-3);
-
-            &:hover {
-                background-color: var(--color-1);
-            }
-        }
-    }
-}
-
-.hidden-dots {
-    .slick-dots {
-        opacity: 0;
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 0;
-        overflow: hidden;
-
-        &:has(button:focus-visible) {
-            top: auto;
-            bottom: 0;
-            width: 100%;
-            height: rem(40);
-            z-index: 3;
-            opacity: 1;
-        }
     }
 }

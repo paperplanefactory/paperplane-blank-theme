@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import 'vars';
-@import 'mixin'; // comportamenti predefiniti
+@import 'function-mixin'; // comportamenti predefiniti
 
 body.customize-support {
 	margin-top: rem(-32);

@@ -1,14 +1,14 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin'; // wrappers and more
+@import '../global/function-mixin'; // wrappers and more
 
 .listing-grid-container {
-  margin: $module-vertical-padding-desktop 0;
+  margin: rem($module-vertical-padding-desktop) 0;
 }
 
 .infinite-button,
 .wp-pagenavi {
-  margin-bottom: $module-vertical-padding-desktop;
+  margin-bottom: rem($module-vertical-padding-desktop);
 }
 
 .grid-listing-image {

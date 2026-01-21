@@ -1,0 +1,319 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Paperplane _blankTheme\n"
+"POT-Creation-Date: 2025-11-13 18:21+0100\n"
+"PO-Revision-Date: 2025-11-13 18:17+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: footer.php:31 header.php:230
+msgid "Menu social"
+msgstr ""
+
+#: header.php:186
+msgid "Visita la homepage di"
+msgstr ""
+
+#: header.php:189
+msgid "Menu principale"
+msgstr ""
+
+#: header.php:202
+msgid ""
+"Accedi al menu ad hamburger, usa la combinazione p + esc per chuidere il menu"
+msgstr ""
+
+#: header.php:219
+msgid "Menu secondario"
+msgstr ""
+
+#: header.php:250
+msgid "Ritorna al pulsante di apertura del menu"
+msgstr ""
+
+#: includes/theme-cf7-forms.php:8
+msgid "Tutti i campi obbligatori sono contrassegnati da un *"
+msgstr ""
+
+#: includes/theme-component-ctas.php:87
+msgid "Si apre in una nuova finestra"
+msgstr ""
+
+#: includes/theme-component-ctas.php:103 includes/theme-component-ctas.php:143
+msgid "Si apre in una nuova finestra su un sito esterno"
+msgstr ""
+
+#: includes/theme-component-ctas.php:105 includes/theme-component-ctas.php:145
+msgid "Si apre su un sito esterno"
+msgstr ""
+
+#: includes/theme-component-ctas.php:127
+msgid "Scarica o visualizza file"
+msgstr ""
+
+#: includes/theme-component-ctas.php:130
+msgid "Si apre in una nuova finestra, scarica o visualizza file"
+msgstr ""
+
+#: includes/theme-component-ctas.php:223
+msgid "Visita"
+msgstr ""
+
+#: includes/theme-component-ctas.php:229
+msgid "Scarica"
+msgstr ""
+
+#: includes/theme-component-expanding-text.php:58
+msgid "Chiudi"
+msgstr ""
+
+#: includes/theme-images-crop.php:37
+msgid ""
+"Immagine originale, non ridimensionata. Usare solo per le immagini piccole "
+"allineate al centro."
+msgstr ""
+
+#: includes/theme-images-crop.php:38
+msgid "Resized for text column"
+msgstr ""
+
+#: includes/theme-menus.php:6
+msgid "Header Menu"
+msgstr ""
+
+#: includes/theme-menus.php:7
+msgid "Overlay Menu Desktop"
+msgstr ""
+
+#: includes/theme-menus.php:8
+msgid "Overlay Menu Mobile"
+msgstr ""
+
+#: includes/theme-menus.php:9
+msgid "Footer Menu"
+msgstr ""
+
+#: includes/theme-menus.php:24
+msgid "Mega Menu "
+msgstr ""
+
+#: includes/theme-menus.php:74
+msgid "Gestione header"
+msgstr ""
+
+#: includes/theme-menus.php:84
+msgid "Gestione footer"
+msgstr ""
+
+#: includes/theme-menus.php:94
+msgid "Gestione archivi "
+msgstr ""
+
+#: includes/theme-menus.php:165
+msgid "Questo link apre una finestra sovrapposta alla pagina"
+msgstr ""
+
+#: includes/theme-menus.php:237
+msgid "Apre una finestra sovrapposta alla pagina"
+msgstr ""
+
+#. translators: Testo del pulsante per andare alla slide successiva
+#: includes/theme-scriptsloader.php:121
+msgid "Slide precedente"
+msgstr ""
+
+#. translators: Testo del pulsante per tornare alla slide precedente
+#: includes/theme-scriptsloader.php:124
+msgid "Slide successiva"
+msgstr ""
+
+#. translators: Messaggio di conferma quando l'URL viene copiato negli appunti
+#: includes/theme-scriptsloader.php:127
+msgid "URL copiato!"
+msgstr ""
+
+#. translators: Tooltip che appare al passaggio del mouse sul link
+#: includes/theme-scriptsloader.php:130
+msgid "Clicca per copiare l'URL"
+msgstr ""
+
+#: includes/theme-videos.php:18 includes/theme-videos.php:20
+msgid "Avvia la riproduzione video"
+msgstr ""
+
+#: includes/theme-videos.php:81
+msgid "Leggi la trascrizione del video"
+msgstr ""
+
+#: index.php:15
+msgid "Associare alla homepage del sito una pagina statica."
+msgstr ""
+
+#: page.php:17
+msgid "Associare a questa pagina un template."
+msgstr ""
+
+#: template-parts/grid/accessible-navi.php:3
+msgid "Vai al contenuto"
+msgstr ""
+
+#: template-parts/grid/accessible-navi.php:10
+msgid "Preferenze visive."
+msgstr ""
+
+#: template-parts/grid/modal.php:21
+msgid "Chiudi questo pannello"
+msgstr ""
+
+#: template-parts/grid/page-opening/opening-404.php:12
+msgid "404 - Pagina non trovata: tornare alla homepage?"
+msgstr ""
+
+#: template-parts/grid/page-opening/opening-fullscreen.php:32
+msgid "Avvia / pausa video"
+msgstr ""
+
+#: template-parts/grid/page-opening/opening-fullscreen.php:39
+msgid "Questo è un video senza audio, in autoplay e in loop."
+msgstr ""
+
+#: template-parts/grid/page-opening/opening-search.php:7
+msgid "Hai cercato: "
+msgstr ""
+
+#: template-parts/grid/page-opening/opening-search.php:17
+msgid "risultato"
+msgstr ""
+
+#: template-parts/grid/page-opening/opening-search.php:19
+msgid "risultati"
+msgstr ""
+
+#: template-parts/grid/page-opening/opening-search.php:24
+msgid "La ricerca non ha prodotto risultati."
+msgstr ""
+
+#: template-parts/grid/pagination-infinite-scroll.php:10
+#: template-parts/grid/pagination-infinite-scroll.php:11
+msgid "Questo link permette di caricare altri contenuti"
+msgstr ""
+
+#: template-parts/grid/pagination-infinite-scroll.php:12
+msgid "Carica altri contenuti"
+msgstr ""
+
+#: template-parts/grid/pagination-infinite-scroll.php:26
+msgid "Caricamento altri contenuti"
+msgstr ""
+
+#: template-parts/grid/pagination-infinite-scroll.php:31
+msgid "Non sono disponibili altri contenuti"
+msgstr ""
+
+#: template-parts/grid/pagination-infinite-scroll.php:36
+msgid "Ops, si è verificato un errore"
+msgstr ""
+
+#: template-parts/grid/post-infinite.php:3
+#: template-parts/grid/post-infinite.php:4
+msgid "Approfondisci:"
+msgstr ""
+
+#: template-parts/grid/user-a11y-options.php:16
+msgid "Animazioni."
+msgstr ""
+
+#: template-parts/grid/user-a11y-options.php:19
+msgid "Animazioni"
+msgstr ""
+
+#: template-parts/grid/user-a11y-options.php:23
+#: template-parts/grid/user-a11y-options.php:45
+#: template-parts/grid/user-a11y-options.php:67
+msgid "On"
+msgstr ""
+
+#: template-parts/grid/user-a11y-options.php:26
+#: template-parts/grid/user-a11y-options.php:48
+#: template-parts/grid/user-a11y-options.php:70
+msgid "Off"
+msgstr ""
+
+#: template-parts/grid/user-a11y-options.php:38
+msgid "Trasparenze."
+msgstr ""
+
+#: template-parts/grid/user-a11y-options.php:41
+msgid "Riduci trasparenze"
+msgstr ""
+
+#: template-parts/grid/user-a11y-options.php:60
+msgid "Dark mode."
+msgstr ""
+
+#: template-parts/grid/user-a11y-options.php:63
+msgid "Dark mode"
+msgstr ""
+
+#: template-parts/modules/module-fullscreen-image.php:10
+#: template-parts/modules/module-fullscreen-image.php:11
+msgid "Ferma il video"
+msgstr ""
+
+#: template-parts/modules/module-scroll-text.php:60
+msgid "Ferma animazione"
+msgstr ""
+
+#: template-parts/modules/module-slideshow.php:10
+#: template-parts/modules/module-slideshow.php:11
+msgid "Vai alla slide precedente"
+msgstr ""
+
+#: template-parts/modules/module-slideshow.php:13
+#: template-parts/modules/module-slideshow.php:14
+msgid "Vai alla slide successiva"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Paperplane _blankTheme"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://github.com/paperplanefactory/paperplane-blank-theme"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"A light and flexible starter theme from Paperplane, handcrafted to approach "
+"all custom projects."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Paper Plane Factory"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.paperplanefactory.com"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Listing"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Moduli"
+msgstr ""

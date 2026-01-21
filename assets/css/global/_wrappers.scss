@@ -1,6 +1,12 @@
 // main: ../style.scss
 @import 'vars';
-@import 'mixin'; // wrappers and more
+@import 'function-mixin'; // wrappers and more
+
+body {
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
 
 .wrapper {
   position: relative;
@@ -28,4 +34,12 @@
   border-radius: rem(4);
   text-align: center;
   z-index: 10;
+}
+
+.content-footer-wrapper {
+  position: relative;
+
+  &.hide-scroll {
+    overflow: hidden;
+  }
 }

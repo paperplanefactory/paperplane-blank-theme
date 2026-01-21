@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import 'vars';
-@import 'mixin';
+@import 'function-mixin';
 
 // txt colors
 .txt-1 {
@@ -46,4 +46,96 @@ a:visited {
 a:active,
 a:hover {
 	color: var(--color-2);
+}
+
+.header-main-menu-desktop {
+
+	a:link:not(.default-button),
+	a:visited:not(.default-button) {
+		color: var(--color-1);
+	}
+
+	a:active:not(.default-button),
+	a:hover:not(.default-button) {
+		color: var(--color-1);
+		text-decoration: underline;
+	}
+
+	.nav-simple-button {
+		color: var(--color-1);
+
+		&:after {
+			background-color: currentColor;
+		}
+
+		&:hover {
+			color: var(--color-1);
+			text-decoration: underline;
+
+			&:after {
+				background-color: currentColor;
+			}
+		}
+	}
+
+	.sub-menu {
+
+		a:link,
+		a:visited {
+			color: var(--color-1);
+		}
+
+		a:active,
+		a:hover {
+			color: var(--color-1);
+		}
+	}
+}
+
+
+
+
+
+.header-main-menu-mobile {
+
+	a:link:not(.default-button),
+	a:visited:not(.default-button) {
+		color: var(--color-1);
+	}
+
+	a:active:not(.default-button),
+	a:hover:not(.default-button) {
+		color: var(--color-1);
+		text-decoration: underline;
+	}
+
+	.nav-simple-button {
+		color: var(--color-1);
+
+		&:after {
+			background-color: currentColor;
+		}
+
+		&:hover {
+			color: var(--color-1);
+			text-decoration: underline;
+
+			&:after {
+				background-color: currentColor;
+			}
+		}
+	}
+
+	.sub-menu {
+
+		a:link,
+		a:visited {
+			color: var(--color-1);
+		}
+
+		a:active,
+		a:hover {
+			color: var(--color-1);
+		}
+	}
 }

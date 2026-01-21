@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 // forms
 // i colori (bordi ecc.) sono definiti nei parziali /global/colors-black-bg e /global/colors-white-bg
@@ -12,21 +12,11 @@ input[type=number],
 input[type=range],
 input[type=tel],
 input[type=text],
-input[type=url] {
+input[type=url],
+input[type=search] {
 	font-size: rem($h5-size-desktop);
 	line-height: rem($h5-lineheight-desktop);
 	margin-bottom: rem(32);
-}
-
-input[type=checkbox],
-input[type=radio] {
-	margin-bottom: rem(5);
-
-	&:before {
-		position: relative;
-		top: rem(4);
-		font-size: calc(rem($h5-size-desktop) * 1.5);
-	}
 }
 
 textarea {
@@ -126,6 +116,16 @@ input[type=submit] {
 			font-size: rem($h5-size-desktop) !important;
 			line-height: rem($h5-size-desktop) !important;
 
+		}
+	}
+}
+
+.form-block {
+
+
+	&.privacy-block {
+		.wpcf7-form-control-wrap {
+			margin-top: rem(5);
 		}
 	}
 }

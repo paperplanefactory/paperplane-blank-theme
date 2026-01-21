@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .cards {
     &.flex-hold {
@@ -33,20 +33,24 @@
         .element-hover {
             text-decoration: underline;
         }
+
+        .fake-cta {
+            .default-button {
+                @include default-button-hover-state;
+            }
+
+            .default-button-b {
+                @include default-button-b-hover-state;
+            }
+        }
     }
 
     .card-image {
-        //position: relative;
         width: 100%;
     }
 
     .card-texts {
-        //position: relative;
         width: 100%;
-    }
-
-    .cta-holder {
-        //position: relative;
     }
 
     .card-link {

@@ -1,14 +1,14 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .module-fullscreen-image {
   &.module-paddings-top {
-    margin-top: $module-vertical-padding-desktop;
+    margin-top: rem($module-vertical-padding-desktop);
   }
 
   &.module-paddings-top-double {
-    margin-top: calc(#{$module-vertical-padding-desktop} * 2);
+    margin-top: calc(rem($module-vertical-padding-desktop) * 2);
   }
 
   &.module-no-paddings-top {
@@ -16,11 +16,11 @@
   }
 
   &.module-paddings-bottom {
-    margin-bottom: $module-vertical-padding-desktop;
+    margin-bottom: rem($module-vertical-padding-desktop);
   }
 
   &.module-paddings-bottom-double {
-    margin-bottom: calc(#{$module-vertical-padding-desktop} * 2);
+    margin-bottom: calc(rem($module-vertical-padding-desktop) * 2);
   }
 
   &.module-no-paddings-bottom {
@@ -41,10 +41,9 @@
 
     .module-fullscreen-texts {
       width: 75%;
-      //max-width: 950px;
 
       &.aligncenter {
-        max-width: 950px;
+        max-width: rem(950);
         margin: 0 auto;
       }
 

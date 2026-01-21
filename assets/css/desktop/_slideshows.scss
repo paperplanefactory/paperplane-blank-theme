@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .slider-wrapper {
   position: relative;
@@ -92,30 +92,6 @@
   width: 100%;
   padding: rem(10) 0 0;
   text-align: center;
-}
-
-.slick-dots {
-  text-align: center;
-  padding: rem(10) 0 0 0 !important;
-
-  li {
-    display: inline-block;
-    margin: 0 rem(5);
-
-
-
-    button {
-      width: rem(20);
-      height: rem(20);
-      border: none;
-      font-size: 0;
-      margin: 0;
-      padding: 0;
-      @include transition(all 0.3s linear);
-      border-radius: rem(20);
-      cursor: pointer;
-    }
-  }
 }
 
 .slide-prev-custom,

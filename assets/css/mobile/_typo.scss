@@ -1,12 +1,15 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .as-h1,
 h1 {
   font-size: rem($h1-size-smartphone);
   line-height: rem($h1-lineheight-smartphone);
   margin: 0 0 rem($h1-marginbottom-smartphone);
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphenate-limit-chars: 7 3 2;
 }
 
 .as-h2,
@@ -37,16 +40,9 @@ h5 {
   margin: 0 0 rem($h5-marginbottom-smartphone);
 }
 
-.mega-menu,
-.menu {
+.header-main-menu-mobile {
   font-size: rem($nav-size-smartphone);
   line-height: rem($nav-lineheight-smartphone);
-
-  a,
-  button {
-    font-size: rem($nav-size-smartphone);
-    line-height: rem($nav-lineheight-smartphone);
-  }
 }
 
 
@@ -98,21 +94,20 @@ summary {
     //margin-top: calc(#{$h6-marginbottom-smartphone} * 2);
   }
 
+
   ul {
     font-size: rem($paragraph-size-smartphone);
     line-height: rem($paragraph-lineheight-smartphone);
     margin-bottom: rem($paragraph-marginbottom-smartphone);
 
     li {
-      display: table-row;
+      padding-left: rem($paragraph-size-smartphone);
+      margin-bottom: rem($paragraph-size-smartphone / 2);
 
       &:before {
-        font-size: rem($paragraph-size-smartphone);
-        font-weight: $font-weight-1;
-      }
-
-      &:after {
-        height: calc(#{$paragraph-marginbottom-smartphone} / 2);
+        top: rem($paragraph-size-smartphone / 2);
+        width: rem($paragraph-size-smartphone / 2);
+        height: rem($paragraph-size-smartphone / 2);
       }
     }
   }

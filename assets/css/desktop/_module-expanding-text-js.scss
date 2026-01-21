@@ -1,10 +1,10 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .module-expanding-text {
   .txt-max-width {
-    margin-bottom: $module-vertical-padding-smartphone;
+    margin-bottom: rem($module-vertical-padding-smartphone);
   }
 }
 
@@ -23,65 +23,9 @@
     margin-bottom: 0;
   }
 
-  .expander-top {
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
-      all: unset;
-    }
-  }
-
-  .expander {
-    position: relative;
-    width: 100%;
-    font-weight: $font-weight-2;
-    padding: rem(24) rem(24) rem(24) rem(63);
-    text-align: left;
-    border: none;
-    background-color: transparent;
-    color: var(--color-1);
-    font-family: $font-sub;
-    font-weight: $font-weight-2;
-    font-size: rem($h4-size-desktop);
-    line-height: rem($h4-lineheight-desktop);
-    cursor: pointer;
-
-    &:hover {
-      color: var(--color-2);
-    }
-
-    &.exp-close {
-      .icon-js {
-        transform: rotate(45deg);
-      }
-    }
-
-    .icon-js {
-      position: absolute;
-      top: rem(24);
-      left: rem(20);
-      font-size: rem($h4-size-desktop);
-      line-height: rem($h4-size-desktop);
-      text-align: center;
-      width: rem(30);
-      height: rem(30);
-      mask-image: url(assets/images/icons/icon-txt-expand.svg);
-      mask-repeat: no-repeat;
-      mask-size: contain;
-      mask-position: 0 0;
-      background-color: var(--color-2);
-      @include transition(transform .3s ease-in-out);
-    }
-  }
-
   .expandable-content {
     .inner {
-      padding: rem(24);
+      padding: 0 rem(24) rem(24) rem(24);
     }
   }
 }

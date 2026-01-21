@@ -1,10 +1,10 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .module-banner {}
 
 .banner-content {
   position: relative;
-  padding: $module-vertical-padding-desktop;
+  padding: rem($module-vertical-padding-desktop);
 }

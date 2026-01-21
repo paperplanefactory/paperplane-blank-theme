@@ -1,4 +1,29 @@
-// main: ../style.scss
+@import 'vars';
+$debug-comments: true; // Cambia in false per la versione minificata
+
+@function rem($pixels) {
+	@if type-of($pixels)=='number' {
+		$original: $pixels;
+
+		@if unit($pixels) !='' {
+			$pixels: math.div($pixels, 1px);
+		}
+
+		$result: math.div($pixels, 16) * 1rem;
+
+		@if $debug-comments {
+			$comment: if(unit($original)=='', "#{$original}px", "#{$original}");
+			@return unquote("#{$result} /* #{$comment} */");
+		}
+
+		@return $result;
+	}
+
+	@else {
+		@error "Il valore passato a rem() deve essere un numero, ricevuto #{type-of($pixels)}";
+	}
+}
+
 @mixin flex-wrap {
 	display: -webkit-flex !important;
 	display: flex !important;
@@ -20,71 +45,6 @@
 	-webkit-justify-content: flex-end;
 	justify-content: flex-end;
 }
-
-@mixin reset-button {
-	padding: 0;
-	margin: 0;
-	cursor: pointer;
-	border: none !important;
-	background-color: transparent !important;
-	line-height: normal;
-	-webkit-appearance: none !important;
-}
-
-@mixin define-blur($blur_me) {
-	filter: blur($blur_me);
-	-webkit-filter: blur($blur_me);
-	-moz-filter: blur($blur_me);
-	-o-filter: blur($blur_me);
-	-ms-filter: blur($blur_me);
-}
-
-@mixin define-transform($transforms) {
-	-webkit-transform: $transforms;
-	transform: $transforms;
-}
-
-// typography
-@mixin define-hyphens {
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	-webkit-hyphens: auto;
-	-ms-hyphens: auto;
-	hyphens: auto;
-}
-
-// Rotate
-@mixin define-rotate ($deg) {
-	@include define-transform(rotate(#{$deg}deg));
-}
-
-// Scale
-@mixin define-scale($scale) {
-	@include define-transform(scale($scale));
-}
-
-// Translate
-@mixin define-translate ($x, $y) {
-	@include define-transform(translate($x, $y));
-}
-
-// Skew
-@mixin define-skew ($x, $y) {
-	@include define-transform(skew(#{$x}deg, #{$y}deg));
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Usage:   @include transition(width, height 0.3s ease-in-out);
@@ -136,4 +96,24 @@ $unfoldedTransition: (
 }
 
 @return $unfoldedTransition;
+}
+
+@mixin default-button-hover-state {
+	color: var(--color-1);
+	background-color: var(--color-4);
+	border-color: var(--color-1);
+
+	&:after {
+		background-color: currentColor;
+		translate: rem(5) rem(-1);
+	}
+}
+
+@mixin default-button-b-hover-state {
+	color: var(--color-2);
+
+	&:after {
+		background-color: currentColor;
+		translate: rem(5) rem(-1);
+	}
 }

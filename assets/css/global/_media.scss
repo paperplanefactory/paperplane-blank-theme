@@ -1,16 +1,35 @@
 // main: ../style.scss
 @import 'vars';
-@import 'mixin';
+@import 'function-mixin';
 
 .no-the-100 {
 	position: relative;
 	width: 100% !important;
 
+	picture {
+		display: block;
+		aspect-ratio: var(--aspect-desktop);
+
+		@media (max-width: 1023px) {
+			aspect-ratio: var(--aspect-mobile);
+		}
+	}
+
 	img {
 		position: relative;
-		//object-fit: auto;
 		width: 100%;
 		height: auto;
+		display: block;
+	}
+}
+
+.la-mia-classe-css-cutom {
+	position: relative;
+	width: 100% !important;
+
+	img {
+		height: 60vh;
+		width: auto;
 	}
 }
 

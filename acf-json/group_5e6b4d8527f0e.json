@@ -59,6 +59,8 @@
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -152,6 +154,8 @@
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -181,6 +185,8 @@
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -438,6 +444,8 @@
                     "ajax": 0,
                     "placeholder": "",
                     "repeatable": true,
+                    "create_options": 0,
+                    "save_options": 0,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -509,6 +517,8 @@
                             "ajax": 0,
                             "placeholder": "",
                             "repeatable": true,
+                            "create_options": 0,
+                            "save_options": 0,
                             "parent_repeater": "field_5e6b679c711bb"
                         },
                         {
@@ -572,6 +582,8 @@
                             "ajax": 0,
                             "placeholder": "",
                             "repeatable": true,
+                            "create_options": 0,
+                            "save_options": 0,
                             "parent_repeater": "field_5e6b679c711bb"
                         },
                         {
@@ -721,11 +733,12 @@
                             },
                             "field_group_key": "group_6390c8098b762",
                             "layout": "block",
-                            "repeatable": 0,
-                            "button_label": "Aggiungi Riga",
-                            "appearances": "",
+                            "repeatable": 1,
                             "min": 0,
                             "max": 0,
+                            "allow_in_bindings": 1,
+                            "button_label": "Aggiungi CTA",
+                            "appearances": "",
                             "rows_per_page": 20,
                             "collapsed": "",
                             "sub_fields": [],
@@ -788,6 +801,8 @@
                     "ajax": 0,
                     "placeholder": "",
                     "repeatable": true,
+                    "create_options": 0,
+                    "save_options": 0,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -817,6 +832,8 @@
                     "ajax": 0,
                     "placeholder": "",
                     "repeatable": true,
+                    "create_options": 0,
+                    "save_options": 0,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -880,6 +897,8 @@
                     "ajax": 0,
                     "placeholder": "",
                     "repeatable": true,
+                    "create_options": 0,
+                    "save_options": 0,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -1007,6 +1026,8 @@
                             "ajax": 0,
                             "placeholder": "",
                             "repeatable": true,
+                            "create_options": 0,
+                            "save_options": 0,
                             "parent_repeater": "field_5e6b810a1836c"
                         },
                         {
@@ -1070,6 +1091,8 @@
                             "ajax": 0,
                             "placeholder": "",
                             "repeatable": true,
+                            "create_options": 0,
+                            "save_options": 0,
                             "parent_repeater": "field_5e6b810a1836c"
                         },
                         {
@@ -1177,6 +1200,8 @@
                     "ajax": 0,
                     "placeholder": "",
                     "repeatable": true,
+                    "create_options": 0,
+                    "save_options": 0,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -1205,6 +1230,8 @@
                     "ajax": 0,
                     "placeholder": "",
                     "repeatable": true,
+                    "create_options": 0,
+                    "save_options": 0,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -1273,6 +1300,8 @@
                             "ajax": 0,
                             "placeholder": "",
                             "repeatable": true,
+                            "create_options": 0,
+                            "save_options": 0,
                             "parent_repeater": "field_5e6b8b0467ad3"
                         },
                         {
@@ -1300,6 +1329,8 @@
                             "ui": 0,
                             "ajax": 0,
                             "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0,
                             "parent_repeater": "field_5e6b8b0467ad3"
                         },
                         {
@@ -1701,6 +1732,8 @@
                     "ajax": 0,
                     "placeholder": "",
                     "repeatable": true,
+                    "create_options": 0,
+                    "save_options": 0,
                     "parent_repeater": "field_5e6b4d8f8e1a6"
                 },
                 {
@@ -1885,6 +1918,28 @@
                             "media_upload": 1,
                             "delay": 1,
                             "repeatable": true,
+                            "parent_repeater": "field_61880c74e8ba6"
+                        },
+                        {
+                            "key": "field_6910f5d77a541",
+                            "label": "Stato iniziale",
+                            "name": "module_expanding_text_status",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "Aperto",
+                            "ui_off_text": "Chiuso",
+                            "ui": 1,
                             "parent_repeater": "field_61880c74e8ba6"
                         }
                     ],
@@ -2247,6 +2302,7 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
+    "display_title": "",
     "is_acf_component": 0,
     "acf_component_defaults": {
         "layout": "block",
@@ -2258,5 +2314,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1744019820
+    "modified": 1762719406
 }

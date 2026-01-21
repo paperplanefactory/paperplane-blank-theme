@@ -4,46 +4,48 @@ $theme_version = get_field( 'theme_version', 'option' );
 $attivare_pwa = get_field( 'attivare_pwa', 'option' );
 global $theme_pagination;
 $theme_pagination = get_field( 'theme_pagination', 'option' );
-// gestione caricamento css
-include_once "includes/theme-wordpress-disableds.php";
-// gestione caricamento css
-include_once "includes/theme-stylesloader.php";
-// gestione caricamento script
-include_once "includes/theme-scriptsloader.php";
-// gestione ritagli immagini
-include_once "includes/theme-images-crop.php";
-// gestione immagini
-include_once "includes/theme-images-grab.php";
-// gestione trim testi
-include_once "includes/theme-txts.php";
-// gestione core WordPress
-include_once "includes/theme-messages.php";
-// custom menus
-include_once "includes/theme-menus.php";
-// gestione tassonomie
-include_once "includes/theme-taxonomies.php";
-// gestione tipo di paginazione
-include_once "includes/theme-pagination.php";
-// gestione CTA
-include_once "includes/theme-ctas.php";
-// gestione videos
-include_once "includes/theme-videos.php";
-// gestione transients
-include_once "includes/theme-transients.php";
+// Gestione caricamento CSS
+require_once get_template_directory() . '/includes/theme-stylesloader.php';
+// Gestione caricamento script
+require_once get_template_directory() . '/includes/theme-scriptsloader.php';
+// Disabilitazione funzionalità WordPress
+require_once get_template_directory() . '/includes/theme-wordpress-disableds.php';
+// Gestione transients
+require_once get_template_directory() . '/includes/theme-transients.php';
+// Gestione ritagli immagini
+require_once get_template_directory() . '/includes/theme-images-crop.php';
+// Gestione immagini
+require_once get_template_directory() . '/includes/theme-images-grab.php';
+// Gestione trim testi
+require_once get_template_directory() . '/includes/theme-txts.php';
+// Gestione core WordPress
+require_once get_template_directory() . '/includes/theme-messages.php';
+// Custom menus
+require_once get_template_directory() . '/includes/theme-menus.php';
+// Gestione tassonomie
+require_once get_template_directory() . '/includes/theme-taxonomies.php';
+// Gestione tipo di paginazione
+require_once get_template_directory() . '/includes/theme-pagination.php';
+// Gestione CTA
+require_once get_template_directory() . '/includes/theme-component-ctas.php';
+// Gestione expanding text
+require_once get_template_directory() . '/includes/theme-component-expanding-text.php';
+// Gestione videos
+require_once get_template_directory() . '/includes/theme-component-videos.php';
+// Configurazione aperture pagina (deve essere caricato prima di theme-performance)
+require_once get_template_directory() . '/includes/theme-page-opening-config.php';
+// Performance e preload
+require_once get_template_directory() . '/includes/theme-performance.php';
 // PWA
-include_once "includes/theme-pwa.php";
+require_once get_template_directory() . '/includes/theme-pwa.php';
 // Maintenance page
-include_once "includes/theme-maintenance.php";
+require_once get_template_directory() . '/includes/theme-maintenance.php';
 // CF7 Forms
-include_once "includes/theme-cf7-forms.php";
-// Performance
-include_once "includes/theme-performance.php";
+require_once get_template_directory() . '/includes/theme-cf7-forms.php';
+// Paste cleaner
+require_once get_template_directory() . '/includes/theme-paste-cleaner.php';
 // Improved search
-include_once "includes/theme-search.php";
-// paste cleaner
-include_once "includes/theme-paste-cleaner.php";
-// A/B testing
-include_once "includes/theme-ab-testing.php";
+require_once get_template_directory() . '/includes/theme-search.php';
 // attivo le traduzioni
 function paperplane_theme_load_theme_textdomain() {
 	load_theme_textdomain( 'paperPlane-blankTheme', get_template_directory() . '/languages' );

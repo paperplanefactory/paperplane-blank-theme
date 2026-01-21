@@ -17,9 +17,10 @@ $page_opening_text_align_horizontal_class = 'alignleft';
 			<section class="page-opening-simple-spacer <?php echo $page_opening_text_align_horizontal_class; ?>">
 				<div class="last-child-no-margin">
 					<?php if ( $content_fields['page_breadcrumbs'] === 'yes' && function_exists( 'bcn_display' ) ) : ?>
-						<div class="breadcrumbs-holder underlined-links" typeof="BreadcrumbList" vocab="http://schema.org/">
+						<nav class="breadcrumbs-holder underlined-links" typeof="BreadcrumbList" vocab="http://schema.org/"
+							aria-label="<?php esc_html_e( 'Briciole di pane', 'paperPlane-blankTheme' ); ?>">
 							<?php bcn_display(); ?>
-						</div>
+						</nav>
 					<?php endif; ?>
 					<?php if ( $content_fields['page_opening_pre_title'] ?? null ) : ?>
 						<p>

@@ -52,11 +52,11 @@ add_action( 'init', function () {
 		&& preg_match( '/\\d/', $_REQUEST['author'] ) > 0
 		&& ! is_user_logged_in()
 	) {
-		wp_die( 'forbidden - number in author name not allowed = ' . esc_html( $_REQUEST['author'] ) );
+		wp_die( 'forbidden - number in author name not allowed = ' . esc_html__( $_REQUEST['author'] ) );
 	}
 } );
 
-add_action( 'rest_authentication_errors', function ($access) {
+add_action( 'rest_authentication_errors', function ( $access ) {
 	if ( is_user_logged_in() ) {
 		return $access;
 	}
@@ -67,7 +67,7 @@ add_action( 'rest_authentication_errors', function ($access) {
 		return new \WP_Error(
 			'rest_cannot_access',
 			'Only authenticated users can access the User endpoint REST API.',
-			[ 
+			[
 				'status' => rest_authorization_required_code()
 			]
 		);

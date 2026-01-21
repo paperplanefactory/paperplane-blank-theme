@@ -1,12 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin'; // wrappers and more
-
-.header-offset-anchor {
-  position: absolute;
-  display: block;
-  top: -$header-smartphone-height;
-}
+@import '../global/function-mixin'; // wrappers and more
 
 // flex boxes
 // per calcolare la larghezza degli elementi flex:

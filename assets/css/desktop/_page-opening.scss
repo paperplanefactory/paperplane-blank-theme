@@ -1,11 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
-
-.on-header {
-  position: relative;
-  margin-top: -$header-desktop-height;
-}
+@import '../global/function-mixin';
 
 .opening-fullscreen {
   position: relative;
@@ -16,7 +11,8 @@
 }
 
 .opening-fullscreen {
-  min-height: 100vh;
+  //min-height: calc(100vh - var(--header-height-static));
+  min-height: calc(100vh - rem(92));
 }
 
 .fullscreen-video {
@@ -40,7 +36,7 @@
   display: grid;
 
   .fullscreen-cta-safe-padding {
-    padding: calc(#{$header-desktop-height} + 5vh) 0 5vh 0;
+    padding: 5vh 0;
     overflow: hidden;
   }
 
@@ -132,7 +128,7 @@
 }
 
 .page-opening-simple-spacer {
-  padding: calc(#{$header-desktop-height} + rem(72)) 0 rem(48);
+  padding: rem(48) 0;
 }
 
 .breadcrumbs-holder {

@@ -1,15 +1,12 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .mega-menu {
   position: fixed !important;
   z-index: 9998;
-  top: $header-desktop-height;
-  //left: $wrapper-padded-desktop;
   left: 0;
   display: block;
-  //width: calc(100% - (#{$wrapper-padded-desktop} * 2));
   width: 100%;
   @include transition(visibility .3s linear, opacity .3s linear);
   opacity: 1;
@@ -45,7 +42,7 @@
     position: relative;
     z-index: 2;
     width: 100%;
-    max-height: calc(80vh - #{$header-desktop-height});
+    max-height: 80vh;
     margin: 0 auto;
     background-color: var(--color-4);
     overflow-y: auto;

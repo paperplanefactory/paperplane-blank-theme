@@ -4,7 +4,7 @@
 			<section class="page-opening-simple-spacer alignleft">
 				<div class="last-child-no-margin">
 					<h1>
-						<?php _e( 'Hai cercato: ', 'paperPlane-blankTheme' ); ?>
+						<?php esc_html_e( 'Hai cercato: ', 'paperPlane-blankTheme' ); ?>
 						<?php echo get_search_query(); ?>
 					</h1>
 					<?php
@@ -14,14 +14,14 @@
 						<p>
 							<?php echo $num; ?>
 							<?php if ( $num == 1 ) {
-								_e( 'risultato', 'paperPlane-blankTheme' );
+								esc_html_e( 'risultato', 'paperPlane-blankTheme' );
 							} else {
-								_e( 'risultati', 'paperPlane-blankTheme' );
+								esc_html_e( 'risultati', 'paperPlane-blankTheme' );
 							} ?>
 						</p>
 					<?php else : ?>
 						<p>
-							<?php _e( 'La ricerca non ha prodotto risultati.', 'paperPlane-blankTheme' ); ?>
+							<?php esc_html_e( 'La ricerca non ha prodotto risultati.', 'paperPlane-blankTheme' ); ?>
 						</p>
 					<?php endif; ?>
 				</div>

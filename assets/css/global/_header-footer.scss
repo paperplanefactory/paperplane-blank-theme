@@ -1,28 +1,10 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 // header
 
-.nav-simple-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-}
-
-#pre-header {
-  position: relative;
-  width: 100%;
-  background-color: var(--color-4);
-
-  .intro-par {
-    margin-bottom: 0;
-  }
-}
-
 #header {
-  //position: fixed;
   position: sticky;
   z-index: 9998;
   top: 0;
@@ -30,14 +12,13 @@
   display: block;
   width: 100%;
   @include transition(opacity 0.3s linear, visibility 0.3s linear, background-color 0.3s linear);
+  background-color: var(--color-4);
 
   &.fixed {
     //position: fixed;
   }
 
-  &.backgrounded {
-    background-color: var(--color-4);
-  }
+  &.backgrounded {}
 
   &.hidden {
     &:has(a:focus-visible) {
@@ -55,7 +36,6 @@
 
   .logo {
     position: relative;
-    -webkit-box-flex: 1;
 
     a {
       // se il logo non è monocromatico usare background-image
@@ -66,6 +46,7 @@
       left: 0;
       display: block;
       width: 100%;
+      height: 100%;
       mask-image: url(assets/images/site-logo-header.svg);
       mask-repeat: no-repeat;
       mask-size: contain;
@@ -76,50 +57,14 @@
     }
   }
 
-  .menu {
-    -webkit-box-flex: 1;
+  .header-main-menu-desktop {}
 
-    a:link:nopt(.default-button),
-    a:visited:nopt(.default-button) {
-      color: var(--color-1);
-    }
-
-    a:active:nopt(.default-button),
-    a:hover:nopt(.default-button) {
-      color: var(--color-1);
-    }
-
-    .simple-link {
-      text-transform: uppercase !important;
-    }
-
-    .nav-simple-button {
-      text-transform: uppercase !important;
-      color: var(--color-1);
-
-      &:after {
-        background-color: var(--color-1);
-      }
-
-      &:hover {
-        color: var(--color-1);
-
-        &:after {
-          background-color: var(--color-1);
-        }
-      }
-    }
-  }
-
-  .side-head {
-    -webkit-box-flex: 1;
-  }
+  .side-head {}
 }
 
 #head-overlay {
-  position: absolute;
-  //z-index: 9997;
-  left: 0;
+  //position: absolute;
+  //left: 0;
   display: block;
   width: 100%;
   opacity: 1;
@@ -130,15 +75,8 @@
   will-change: opacity;
   content-visibility: auto;
 
-  .nav-simple-button {
-    color: var(--color-1);
-
-    &:hover {
-      color: var(--color-2);
-    }
-  }
-
   &.hidden {
+    position: absolute;
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
@@ -152,13 +90,8 @@
 .scroll-opportunity {
   position: relative;
   display: block;
-  overflow-y: auto;
-
-
-  .wrapper {
-    overflow: hidden;
-    scrollbar-gutter: stable;
-  }
+  width: 100%;
+  height: auto;
 }
 
 // footer
@@ -249,5 +182,82 @@ body {
   100% {
     width: 0;
     right: 0;
+  }
+}
+
+
+
+#pre-header {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-4);
+
+  .close-header-notice {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    background-color: var(--color-4);
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      mask-image: url(assets/images/icons/close.svg);
+      mask-repeat: no-repeat;
+      mask-size: contain;
+      mask-position: 50% 50%;
+      background-color: currentColor;
+    }
+  }
+
+  .avviso-container {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    @include transition(opacity 0.3s linear, visibility 0.3s linear);
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .avviso-link {
+      font-weight: $font-weight-3;
+    }
+  }
+
+  .avviso-scroll {
+    overflow: hidden;
+    position: relative;
+    padding-right: rem(50); // Spazio per bottone close
+
+    .avviso-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: scroll-horizontal linear infinite;
+      padding-left: 100%;
+      // durata gestita da JS in base a lunghezza testo
+    }
+
+    // Pausa animazione al hover
+    &:hover .avviso-content {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes scroll-horizontal {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
   }
 }

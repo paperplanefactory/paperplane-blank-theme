@@ -81,6 +81,30 @@
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_616fe094cc7d5"
+                },
+                {
+                    "key": "field_690df8e2c7c98",
+                    "label": "Testo screen reader",
+                    "name": "global_socials_screen_reader_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Es. Visita il nostro profilo su LinkedIn (si apre in una nuova finestra)",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
                     "parent_repeater": "field_616fe094cc7d5"
                 }
             ]
@@ -104,6 +128,7 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
+    "display_title": "",
     "is_acf_component": 0,
     "acf_component_defaults": {
         "layout": "block",
@@ -115,5 +140,5 @@
         "button_label": "",
         "appearances": ""
     },
-    "modified": 1744814458
+    "modified": 1762523523
 }

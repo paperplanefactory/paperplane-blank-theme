@@ -1,6 +1,6 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin';
+@import '../global/function-mixin';
 
 .opening-fullscreen {
   position: relative;
@@ -11,8 +11,8 @@
 }
 
 .opening-fullscreen {
-  min-height: 100svh;
-  //height: min(100dvh, 100vh);
+  //min-height: calc(100vh - var(--header-height-static));
+  min-height: calc(100vh - rem(76));
 }
 
 .fullscreen-video {
@@ -36,7 +36,7 @@
   display: grid;
 
   .fullscreen-cta-safe-padding {
-    padding: calc(#{$header-smartphone-height} + 2.5dvh) 0 rem(70) 0;
+    padding: 2.5dvh 0;
     overflow: hidden;
   }
 
@@ -128,7 +128,7 @@ $box-img-width: 100%;
 }
 
 .page-opening-simple-spacer {
-  padding: calc(#{$header-smartphone-height} + rem(24)) 0 rem(48);
+  padding: rem(48) 0;
 }
 
 .breadcrumbs-holder {

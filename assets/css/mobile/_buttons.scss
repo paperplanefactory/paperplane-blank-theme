@@ -1,3 +1,40 @@
 // main: ../style.scss
 @import '../global/vars';
-@import '../global/mixin'; // lazy load / infinite load
+@import '../global/function-mixin'; // lazy load / infinite load
+
+
+.nav-simple-button {
+    width: 100%;
+    padding: rem(16) calc(#{$wrapper-padded-smartphone} + rem(32)) rem(16) $wrapper-padded-smartphone;
+    border-bottom: solid rem(1) var(--color-2);
+    font-size: rem($nav-size-smartphone);
+    line-height: rem($nav-lineheight-smartphone);
+    font-weight: $font-weight-3;
+
+    &:after {
+        position: absolute;
+        right: $wrapper-padded-smartphone;
+        top: rem(20);
+    }
+}
+
+
+.expander {
+    padding: rem(24) rem(24) rem(24) rem(63);
+    font-size: rem($h4-size-smartphone);
+    line-height: rem($h4-lineheight-smartphone);
+    font-weight: $font-weight-2;
+
+    &:after {
+        top: rem(24);
+        left: rem(20);
+        width: rem(30);
+        height: rem(30);
+    }
+}
+
+.expander-closer {
+    font-size: rem($h6-size-smartphone);
+    line-height: rem($h6-lineheight-smartphone);
+    font-weight: $font-weight-3;
+}

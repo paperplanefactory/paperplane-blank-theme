@@ -21,9 +21,9 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 		setup_postdata( $post );
 		$content_fields_mega_menu = paperplane_content_transients( $post->ID );
 		?>
-		<nav id="mega-menu-control-<?php echo $post->ID; ?>" aria-labelledby="mega-menu-controller-<?php echo $post->ID; ?>"
-			class="mega-menu mega-menu-js mega-menu-js-<?php echo $post->ID; ?>-target hidden" aria-hidden="true"
-			data-mega-menu-id="<?php echo $post->ID; ?>">
+		<div id="mega-menu-control-<?php echo $post->ID; ?>" aria-labelledby="mega-menu-controller-<?php echo $post->ID; ?>"
+			class="mega-menu mega-menu-js mega-menu-js-<?php echo $post->ID; ?>-target hidden"
+			data-mega-menu-id="<?php echo $post->ID; ?>" role="navigation">
 			<div class="mega-menu-holder colors-black-bg">
 				<div class="mega-menu-spacer mega-menu-js-hover">
 					<div class="flex-hold flex-hold-mega-menu">
@@ -31,20 +31,16 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 							<?php
 							$image_data = array(
 								'image_type' => 'acf',
-								// options: post_thumbnail, acf
 								'image_value' => $content_fields_mega_menu['mega_menu_repeater_image']
-								// se utilizzi un custom field indica qui il nome del campo
 							);
 							$image_appearance = array(
-								// options: true, false
 								'lazyload' => true,
-								// options: sync, async
 								'decoding' => 'async',
-								// options: true, false - se false non mette contenitore intorno all'immagine
-								'image-wrap' => true
+								'image-wrap' => true,
+								'image-wrap-custom-class' => ''
+
 							);
 							$image_sizes = array(
-								// qui sono definiti i ritagli o dimensioni. Devono corrispondere per numero a quanto dedinfito nella funzione nei parametri data-srcset o srcset
 								'desktop_hd' => 'column',
 								'mobile_hd' => 'column'
 							);
@@ -73,7 +69,7 @@ if ( ! empty( $my_mega_menus ) ) : ?>
 					</div>
 				</div>
 			</div>
-		</nav>
+		</div>
 	<?php endforeach;
 	wp_reset_postdata();
 endif; ?>
